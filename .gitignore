@@ -1,0 +1,73 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# NeoForge MDK
+run/
+runs/
+run_*/
+*.launch
+.cache/
+
+# Eclipse
+*.launch
+.settings/
+.metadata/
+bin/
+.classpath
+.project
+.factorypath
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Fabric Loom (in case of future Fabric port)
+.fabric/
+remappedSrc/
+
+# Java
+*.class
+*.log
+*.ctxt
+hs_err_pid*
+replay_pid*
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Secrets
+*.env
+*.env.local
+secrets.properties
+modrinth.token
+curseforge.token

@@ -1,0 +1,18 @@
+{
+  "title": "First Steps",
+  "description": "Gather some basic materials to get started.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:oak_log",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bread",
+      "count": 4
+    }
+  ]
+}
