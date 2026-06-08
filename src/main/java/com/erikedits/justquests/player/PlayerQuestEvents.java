@@ -11,7 +11,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +19,11 @@ import java.util.Map;
 
 public class PlayerQuestEvents {
     @SubscribeEvent
-    public void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-        Player player = event.getEntity();
+    public void onItemPickup(ItemEntityPickupEvent.Post event) {
+        Player player = event.getPlayer();
         if (!(player instanceof ServerPlayer serverPlayer)) return;
 
-        ItemStack picked = event.getStack();
+        ItemStack picked = event.getOriginalStack();
         if (picked.isEmpty()) return;
 
         PlayerQuests data = serverPlayer.getData(ModAttachments.PLAYER_QUESTS);
