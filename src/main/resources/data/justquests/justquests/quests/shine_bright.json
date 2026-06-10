@@ -1,0 +1,23 @@
+{
+  "title": "Shine Bright",
+  "description": "Mine diamonds from the deepest caves.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:diamond",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:experience_bottle",
+      "count": 8
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:golden_apple",
+      "count": 1
+    }
+  ]
+}

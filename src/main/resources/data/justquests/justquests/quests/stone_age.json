@@ -1,0 +1,23 @@
+{
+  "title": "Stone Age",
+  "description": "Mine and collect cobblestone to build your first base.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:cobblestone",
+      "count": 32
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:torch",
+      "count": 16
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:stone_pickaxe",
+      "count": 1
+    }
+  ]
+}

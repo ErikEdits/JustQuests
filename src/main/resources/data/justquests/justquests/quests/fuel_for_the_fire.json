@@ -1,0 +1,18 @@
+{
+  "title": "Fuel for the Fire",
+  "description": "Dig deep and gather coal to keep the furnaces burning.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:coal",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:torch",
+      "count": 32
+    }
+  ]
+}

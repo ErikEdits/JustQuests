@@ -1,0 +1,33 @@
+{
+  "title": "Monster Hunter",
+  "description": "Hunt zombies, skeletons and spiders at night and gather their drops.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:rotten_flesh",
+      "count": 8
+    },
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:bone",
+      "count": 8
+    },
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:string",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bow",
+      "count": 1
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:arrow",
+      "count": 32
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Iron Harvest",
+  "description": "Mine raw iron from the depths.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:raw_iron",
+      "count": 5
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_pickaxe",
+      "count": 1
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bread",
+      "count": 8
+    }
+  ]
+}

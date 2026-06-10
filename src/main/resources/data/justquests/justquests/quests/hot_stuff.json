@@ -1,0 +1,23 @@
+{
+  "title": "Hot Stuff",
+  "description": "Brave the Nether and defeat blazes for their rods.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:blaze_rod",
+      "count": 4
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:ender_pearl",
+      "count": 8
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:magma_cream",
+      "count": 4
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Ender Seeker",
+  "description": "Hunt endermen and collect their pearls to find the stronghold.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:ender_pearl",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:obsidian",
+      "count": 12
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:diamond",
+      "count": 2
+    }
+  ]
+}

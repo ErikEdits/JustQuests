@@ -53,6 +53,25 @@ JustQuests lets pack makers define quests in plain JSON files inside any datapac
 
 Drop this in `data/yourpack/justquests/quests/first_steps.json` and it's live after `/reload`.
 
+> **Design note:** Progress counts items *picked up from the ground* — mined blocks, crop drops, mob loot. Crafted items go straight into the inventory and do not count. Design your quests around gathering, not crafting.
+
+## Bundled starter quests
+
+The mod ships with a 10-quest starter line you can play out of the box (or override via datapack):
+
+| Quest ID | Goal | Reward |
+|----------|------|--------|
+| `justquests:first_steps` | 16 oak logs | 4 bread |
+| `justquests:stone_age` | 32 cobblestone | 16 torches, stone pickaxe |
+| `justquests:fuel_for_the_fire` | 8 coal | 32 torches |
+| `justquests:iron_harvest` | 5 raw iron | iron pickaxe, 8 bread |
+| `justquests:green_thumb` | 32 wheat | 4 golden carrots, 16 bone meal |
+| `justquests:monster_hunter` | 8 rotten flesh + 8 bones + 8 string | bow, 32 arrows |
+| `justquests:shine_bright` | 3 diamonds | 8 XP bottles, golden apple |
+| `justquests:deep_down` | 32 cobbled deepslate | 8 lanterns, golden apple |
+| `justquests:hot_stuff` | 4 blaze rods | 8 ender pearls, 4 magma cream |
+| `justquests:ender_seeker` | 8 ender pearls | 12 obsidian, 2 diamonds |
+
 ## Building from source
 
 Requirements: JDK 21, Git.

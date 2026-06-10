@@ -1,0 +1,23 @@
+{
+  "title": "Deep Down",
+  "description": "Venture below Y=0 and mine the deepslate layer.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:cobbled_deepslate",
+      "count": 32
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:lantern",
+      "count": 8
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:golden_apple",
+      "count": 1
+    }
+  ]
+}
