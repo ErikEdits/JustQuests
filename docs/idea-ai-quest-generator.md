@@ -31,14 +31,23 @@ off (or falls back to template-based random quests — to be decided).
 - Implementation hint: store generation state and timestamps per save
   (world data), not globally
 
+## Design decisions (answered 2026-06-10)
+
+**Balancing and achievability are baked into the mod during development.**
+The rules the AI must follow — which items/mobs it may use, sensible count
+limits, nothing oversized ("galactic") — are written into the mod itself
+as built-in instructions and constraints. The AI calculates quests within
+those bounds; it never invents freely outside them. Tuning happens during
+development, not by the AI at runtime.
+
+This also covers validation: the built-in constraints plus the existing
+Codec parsing (same path as datapack quests) act as the safety net —
+anything outside the rules is rejected before it goes live.
+
 ## Open questions (decide later)
 
 - Which local AI runtime? (e.g. an optional companion app the player
   installs; the mod must work fine without it)
-- How does the AI know which items/mobs exist in the loaded modpack, so
-  generated quests are actually completable?
-- Validation: every generated quest must be checked against the same rules
-  as datapack quests (valid item IDs, sane counts) before it goes live
 - Do expired quests vanish, or can an accepted quest still be finished
   after the refresh?
 
