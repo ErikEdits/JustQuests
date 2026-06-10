@@ -44,6 +44,13 @@ This also covers validation: the built-in constraints plus the existing
 Codec parsing (same path as datapack quests) act as the safety net —
 anything outside the rules is rejected before it goes live.
 
+**Balancing gets verified through a test phase.**
+Before the feature ships, there will be a dedicated testing period that
+collects data on the generated quests (what the AI produces, how hard the
+quests actually are, how long they take). The built-in rules get tuned
+against that data until everything fits — the constraints are not
+guesswork, they get adjusted based on real results.
+
 ## Open questions (decide later)
 
 - Which local AI runtime? (e.g. an optional companion app the player
