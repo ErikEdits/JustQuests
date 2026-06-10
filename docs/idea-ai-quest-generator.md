@@ -51,12 +51,19 @@ quests actually are, how long they take). The built-in rules get tuned
 against that data until everything fits — the constraints are not
 guesswork, they get adjusted based on real results.
 
-## Open questions (decide later)
+**The AI runs on demand only, never permanently.**
+The AI is invoked solely at quest refresh time (the 12-hour rotation) and
+is idle otherwise. Everything else — commands, the future GUI, progress
+tracking, rewards — works completely independently of the AI. If the AI
+is unavailable, the rest of the mod is unaffected.
+(The concrete local runtime to integrate is still to be picked during
+development.)
 
-- Which local AI runtime? (e.g. an optional companion app the player
-  installs; the mod must work fine without it)
-- Do expired quests vanish, or can an accepted quest still be finished
-  after the refresh?
+**Quest expiry depends on a difficulty setting.**
+There will likely be a configurable difficulty level that decides what
+happens to accepted quests at the 12-hour refresh: whether they expire,
+survive, or get a grace period to finish. This gets its own test phase —
+player feedback and data from that feedback drive the final tuning.
 
 ## Why this fits JustQuests
 
