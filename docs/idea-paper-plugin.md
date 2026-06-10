@@ -25,11 +25,34 @@ in, and it runs entirely on the server.
   quest pack written once works everywhere (storage backend will differ —
   plugins use their own data folder instead of datapacks/attachments)
 
+## Design decisions (answered 2026-06-10)
+
+**The AI quest generator comes to the plugin too.**
+Somewhat later than in the mod, but not much later — by then the test
+phases of the mod will already have produced balancing data, so the
+plugin version starts from proven rules instead of from scratch. On a
+server the AI runs on the server host.
+(See [idea-ai-quest-generator.md](idea-ai-quest-generator.md).)
+
+**Quest progress lives in the world folder and migrates with the world.**
+- The progress file is stored **inside the world folder**
+- Singleplayer world (played with the mod) moved onto a Paper server →
+  the progress file travels with the world, the plugin picks it up and
+  players continue where they left off
+- Plugin installed fresh on a server whose world never saw the mod →
+  there is simply no progress to import; the plugin creates a fresh
+  progress file in the world folder
+
+**Implication for storage architecture (note, not a work order):**
+v0.1 currently stores progress in per-player NBT attachments
+(`playerdata`), not as a standalone file in the world folder. Before the
+plugin edition happens, the mod's storage needs to move to (or mirror
+into) a defined world-folder file format that both editions read and
+write — that shared file IS the compatibility layer between mod and
+plugin.
+
 ## Notes for later
 
 - The mod is already designed server-side friendly (clients don't need it
   for command play), which makes a plugin port realistic
 - Timing: after the mod editions are established; no date set
-- Open: whether the AI quest generator (see
-  [idea-ai-quest-generator.md](idea-ai-quest-generator.md)) also comes to
-  the plugin edition, running on the server host
