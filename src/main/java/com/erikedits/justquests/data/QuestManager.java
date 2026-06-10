@@ -13,9 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class QuestManager extends SimpleJsonResourceReloadListener {
-    public static final QuestManager INSTANCE = new QuestManager();
     private static final Gson GSON = new Gson();
     private static final String DIRECTORY = "justquests/quests";
+    // Must come after GSON: static initializers run in declaration order,
+    // and the constructor passes GSON to super().
+    public static final QuestManager INSTANCE = new QuestManager();
 
     private Map<ResourceLocation, Quest> quests = new HashMap<>();
 
