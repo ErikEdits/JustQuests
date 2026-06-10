@@ -65,6 +65,17 @@ happens to accepted quests at the 12-hour refresh: whether they expire,
 survive, or get a grace period to finish. This gets its own test phase —
 player feedback and data from that feedback drive the final tuning.
 
+## Timeline expectations (rough, 2026-06-10)
+
+- Gets built later, step by step like everything else — after the core
+  mod is where it needs to be
+- Expect **2+ months** to mature the feature; support for several (not
+  all) MC versions lands within that window
+- After that, roughly **3 more weeks** to port it to other loaders
+  (Fabric, Forge)
+- Remaining MC versions follow gradually, piece by piece — no big-bang
+  release across everything at once
+
 ## Why this fits JustQuests
 
 The quest format is already plain JSON loaded at runtime — a generator
