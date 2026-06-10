@@ -1,5 +1,8 @@
 # Future Ideas
 
+> Open design questions live in [open-questions.md](open-questions.md) —
+> answered ones get moved into the matching brief.
+
 Collection point for JustQuests ideas that are **not** scheduled for any
 release. New ideas get added here over time — as a short section in this
 file, or as their own `docs/idea-*.md` file with a link from here.
