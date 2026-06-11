@@ -102,8 +102,9 @@ code gets built — their answer changes the storage or API design.
     coverage from **1.12.x up to the newest version** (added piece by
     piece). Note: 1.12.x is pre-flattening with very different APIs
     and Forge-only — by far the most expensive port, sensibly last.
-18. Same name **"JustQuests"** on every loader and for the plugin, or a
-    suffix like "JustQuests (Fabric)" per platform page?
+18. ~~Same name **"JustQuests"** everywhere?~~
+    ✅ Answered 2026-06-11: yes — one name across all loaders and the
+    plugin edition; loaders are marked as file tags, not in the name.
 19. Is the plugin edition also **MIT-licensed**, same as the mod?
 
 ## Localization
