@@ -76,6 +76,18 @@ file and never rotate (answered 2026-06-11, Q1).**
 - The file and its documentation are in English, and a how-to guide
   ships with it
 
+**The custom file is a fill-in-the-blanks template (added 2026-06-11).**
+- The auto-created file already contains prepared **empty quest slots**:
+  the fields for type, item id, count and reward are all there but
+  empty — players only fill in values, they never write JSON structure
+  themselves
+- The template is generated to a length of roughly **400 lines** of
+  ready-to-fill slots (about 20 empty quests)
+- Top priority: it must be easy to understand for non-technical players
+- Loader rule that makes this work: **slots that are still empty are
+  skipped silently** — only filled-in entries become quests, blank slots
+  never produce errors or log spam
+
 ## Timeline expectations (rough, 2026-06-10)
 
 - Gets built later, step by step like everything else — after the core
