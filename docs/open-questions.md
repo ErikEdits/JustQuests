@@ -70,6 +70,7 @@ code gets built — their answer changes the storage or API design.
     Final choice goes into the Discord poll.
 12. Notifications: stay **chat-only** (like v0.1), or also **toast
     popups / sounds** on progress and completion?
+    ⏳ 2026-06-11: goes into the Discord poll.
 13. Which v0.2 objective types matter most — priority order for:
     `kill_mob`, `place_block`, `reach_location`, `craft_item`?
     (`craft_item` would lift the pickup-only limitation but needs a
