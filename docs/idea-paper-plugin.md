@@ -65,6 +65,17 @@ into) a defined world-folder file format that both editions read and
 write — that shared file IS the compatibility layer between mod and
 plugin.
 
+**Storage format: both JSON and NBT, via codecs (answered 2026-06-11,
+Q15).**
+- Decision: use **both formats together** — JSON as the world-folder
+  progress file (the mod↔plugin bridge, human-readable), NBT where
+  Minecraft-native storage fits (e.g. the existing player attachments)
+- One codec definition serializes to either format (JsonOps/NbtOps), so
+  there is no duplicated logic and no lossy conversion
+- Explicit requirement: the dual-format setup **must be matured and
+  tested for reliability** before it ships — sync between the two
+  representations is the critical part (test phase material)
+
 ## Notes for later
 
 - The mod is already designed server-side friendly (clients don't need it

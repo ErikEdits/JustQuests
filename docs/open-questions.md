@@ -85,10 +85,11 @@ code gets built — their answer changes the storage or API design.
     (no own team system, integrates with existing ones; likely a
     dedicated **team quest category** instead of shareable normal
     quests; storage reserves a team/group id field)
-15. **[architecture]** The future world-folder progress file: **JSON**
-    (human-readable, plugin-friendly, easy to debug) or **NBT**
-    (Minecraft-native, compact)? JSON is the natural fit for the
-    mod↔plugin bridge.
+15. ~~**[architecture]** World-folder progress file: JSON or NBT?~~
+    ✅ Answered 2026-06-11 → moved to
+    [idea-paper-plugin.md](idea-paper-plugin.md)
+    (both, bridged by codecs: JSON world file + NBT internals; must be
+    matured for reliability before shipping)
 
 ## Distribution & Releases
 
