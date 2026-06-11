@@ -97,8 +97,11 @@ code gets built — their answer changes the storage or API design.
     ✅ Answered 2026-06-11: **both platforms.** Plan: set up CI
     auto-publish (release tag → upload to Modrinth + CurseForge in one
     go) so there is no manual double maintenance.
-17. After 1.21.1: which MC versions matter most to you first?
-    (1.20.1 is by far the most popular pack version right now.)
+17. ~~After 1.21.1: which MC versions matter most first?~~
+    ✅ Answered 2026-06-11: **first 1.20.1**, long-term goal is
+    coverage from **1.12.x up to the newest version** (added piece by
+    piece). Note: 1.12.x is pre-flattening with very different APIs
+    and Forge-only — by far the most expensive port, sensibly last.
 18. Same name **"JustQuests"** on every loader and for the plugin, or a
     suffix like "JustQuests (Fabric)" per platform page?
 19. Is the plugin edition also **MIT-licensed**, same as the mod?
