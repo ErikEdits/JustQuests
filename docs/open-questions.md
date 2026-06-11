@@ -112,6 +112,23 @@ code gets built — their answer changes the storage or API design.
 
 ## Localization
 
-20. Should the mod eventually ship **translations** (e.g. German), and
-    should quest packs support per-language quest texts — or do quest
-    authors simply write in whatever language their pack targets?
+20. ~~Should the mod eventually ship **translations**?~~
+    ✅ Answered 2026-06-11: **yes, per-user language detection.** The
+    mod reads each player's Minecraft language setting and shows quests
+    in that player's selected language (English, German, Japanese, … —
+    everything detected). Two players on the same server see the same
+    quest in their own language.
+
+## Localization follow-ups (queued for 2026-06-12)
+
+21. **Where do quest text translations come from?** Hand-written quests
+    (datapack / custom file): does the quest author write several
+    languages into one quest (e.g. `"title": {"en": "...", "de": "..."}`),
+    and what is the **fallback language** when a player's language is
+    missing — English? For AI/generated quests the templates can simply
+    exist per language.
+
+22. **Which languages does the mod itself launch with?** The mod's own
+    texts (commands, GUI buttons, messages) need lang files: which do
+    you maintain yourself at release (English + German?), and are
+    **community translations** accepted for the rest (Japanese etc.)?
