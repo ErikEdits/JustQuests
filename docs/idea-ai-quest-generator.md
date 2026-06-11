@@ -62,6 +62,9 @@ is unavailable, the rest of the mod is unaffected.
 (The concrete local runtime to integrate is still to be picked during
 development.)
 
+**On servers, only OPs may change the difficulty setting (answered
+2026-06-11, Q8 part 1).** Regular players cannot touch it.
+
 **Quest expiry depends on a difficulty setting.**
 There will likely be a configurable difficulty level that decides what
 happens to accepted quests at the 12-hour refresh: whether they expire,
