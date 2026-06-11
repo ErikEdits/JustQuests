@@ -80,7 +80,11 @@ code gets built — their answer changes the storage or API design.
 
 14. **[architecture]** Should quest progress ever be **shareable in a
     team/party** (FTB-Quests-style), or strictly per player forever?
-    This changes the storage format and is much cheaper to decide now.
+    ✅ Partial (2026-06-11): JustQuests builds **no own team system** —
+    but if the server already has one (team mod/plugin), JustQuests
+    **integrates and works together with it**. Storage must reserve a
+    team/group id field from the start. Follow-up on claiming/sharing
+    details pending.
 15. **[architecture]** The future world-folder progress file: **JSON**
     (human-readable, plugin-friendly, easy to debug) or **NBT**
     (Minecraft-native, compact)? JSON is the natural fit for the

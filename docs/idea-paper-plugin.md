@@ -43,6 +43,13 @@ server the AI runs on the server host.
   there is simply no progress to import; the plugin creates a fresh
   progress file in the world folder
 
+**Team systems: integrate, don't build (answered 2026-06-11, Q14).**
+JustQuests ships no own team system. If the server runs one (a team mod
+or plugin), JustQuests works together with it. Consequence for the
+shared progress file: reserve an optional **team/group id field** from
+the first version of the format, so external team systems can plug in
+without a format migration.
+
 **Implication for storage architecture (note, not a work order):**
 v0.1 currently stores progress in per-player NBT attachments
 (`playerdata`), not as a standalone file in the world folder. Before the
