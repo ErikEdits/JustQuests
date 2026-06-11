@@ -119,7 +119,7 @@ If you need any of those today, use [FTB Quests](https://modrinth.com/mod/ftb-qu
 
 ## Roadmap
 
-- **v0.2** — GUI, more objective types (kill mob, place block, reach location), XP/command rewards
+- **v0.2** — GUI, more objective types in this order: kill mob, place block, reach location, craft item; XP/command rewards
 - **v0.3** — Quest chains and prerequisites
 - **v1.0** — Fabric port
 
