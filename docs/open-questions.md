@@ -105,7 +105,10 @@ code gets built — their answer changes the storage or API design.
 18. ~~Same name **"JustQuests"** everywhere?~~
     ✅ Answered 2026-06-11: yes — one name across all loaders and the
     plugin edition; loaders are marked as file tags, not in the name.
-19. Is the plugin edition also **MIT-licensed**, same as the mod?
+19. ~~Is the plugin edition also **MIT-licensed**, same as the mod?~~
+    ✅ Answered 2026-06-11: the **whole project switched to LGPL-3.0**
+    (mod now, plugin later the same). Reason: forks must stay open
+    source; modpack use unaffected. See [licenses.md](licenses.md).
 
 ## Localization
 

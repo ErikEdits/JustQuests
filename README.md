@@ -3,7 +3,7 @@
 A lightweight, datapack-driven quest book for NeoForge. No GUI bloat, no complex dependencies — just JSON quests and four commands.
 
 [![Modrinth](https://img.shields.io/badge/Modrinth-JustQuests-00AF5C?logo=modrinth)](https://modrinth.com/mod/justquests)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
 ## What it does
 
@@ -135,4 +135,5 @@ Bug reports and pull requests welcome. Please keep PRs scoped — see the roadma
 
 ## License
 
-[MIT](LICENSE) — use it in any pack, modified or not.
+[LGPL-3.0](LICENSE) — free to use in any modpack, no permission needed.
+Modified versions and forks must stay open source under the LGPL.

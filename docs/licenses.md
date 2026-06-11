@@ -3,7 +3,11 @@
 Plain-language overview of the licenses that make sense for this project
 (mod + future plugin edition), and why the current choice is what it is.
 
-> **Current status:** JustQuests is **MIT-licensed** (see [LICENSE](../LICENSE)).
+> **Current status:** JustQuests is **LGPL-3.0-licensed** (see
+> [LICENSE](../LICENSE)). Switched from MIT on 2026-06-11 — goal:
+> nobody can take the code closed-source ("nix geklaut"); modpack use
+> stays completely free. Same license planned for the plugin edition.
+> Fun fact: LGPL-3.0 is the license Sodium grew up on.
 
 ## What a license decides (in mod terms)
 
