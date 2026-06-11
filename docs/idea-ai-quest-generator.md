@@ -10,10 +10,13 @@ the player's PC, and the quest set refreshes every 12 real-world hours.
 
 ## How it should work
 
-**Local AI, no cloud.**
-Quest generation runs entirely on the player's machine. No internet, no
-API keys, no accounts. If no local AI is available, the feature is simply
-off (or falls back to template-based random quests — to be decided).
+**Built-in generator, zero dependencies (revised 2026-06-11).**
+Quest generation is the mod's **own procedural generator**: weighted
+random selection + templates + the built-in rules. No AI runtime, no
+installation, nothing to download — it always works, for every player,
+on every PC. Quest **descriptions are template-based too** and fully
+independent of any AI model. An optional AI-model layer may come later
+(see design decisions below).
 
 **12-hour refresh based on the real clock.**
 - Quests rotate every 12 hours, following the system clock in the player's
@@ -112,6 +115,22 @@ file and never rotate (answered 2026-06-11, Q1).**
   (test phase) — same data-driven approach as the quest balancing
 - Confirmed: where decisions overlap (e.g. expiry vs. difficulty), the
   test phase decides everything
+
+**Generator is self-programmed; an AI model is only an optional extra
+(answered 2026-06-11, Q6).**
+- Decision: **Option B** — the generator is our own code (procedural:
+  weighted random + templates + rules), built into the mod and plugin,
+  zero external dependencies
+- Quest **descriptions** are also generated from templates, independent
+  of any AI model
+- **Server (plugin):** expected to run entirely without an AI model
+- **Singleplayer (mod):** an AI model may optionally be supported later —
+  probably unlocked via a key the player provides, integrated through our
+  own code; purely a bonus layer for fancier text
+- Because the core generator is built in, the old fallback question is
+  moot: rotating quests always work, with or without any AI model
+- This supersedes the earlier "local AI runtime" framing above — there is
+  no required runtime anymore
 
 **The custom file is a fill-in-the-blanks template (added 2026-06-11).**
 - The auto-created file already contains prepared **empty quest slots**:

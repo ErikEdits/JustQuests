@@ -27,9 +27,11 @@ code gets built — their answer changes the storage or API design.
    ✅ Answered 2026-06-11 → moved to
    [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
    (yes, AI-chosen; limits determined from collected test-phase data)
-6. If no local AI runtime is installed: is the feature **silently off**,
-   or should a simple built-in random generator (templates, no AI) act as
-   fallback so everyone gets rotating quests?
+6. ~~If no local AI runtime is installed: silently off or fallback?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (moot: generator is self-programmed and built in, always works;
+   AI model only as optional singleplayer extra via key + own code)
 7. **[architecture]** Mod on a dedicated server: are AI quests the
    **same set for all players** on the server, or generated per player?
 
