@@ -7,8 +7,10 @@ code gets built — their answer changes the storage or API design.
 
 ## AI Quest Generator
 
-1. Should players be able to turn AI quests **off per world** (config in
-   the world, not global), so one world can be pure datapack quests?
+1. ~~Should players be able to turn AI quests **off per world**?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (yes; plus auto-created, never-rotating custom quest file per world)
 2. **How many AI quests per 12-hour cycle?** A fixed number, or does the
    difficulty setting decide the amount too?
 3. Should AI-generated quests be **visually marked** as AI quests (own

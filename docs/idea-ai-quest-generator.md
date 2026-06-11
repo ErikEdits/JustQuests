@@ -65,6 +65,17 @@ happens to accepted quests at the 12-hour refresh: whether they expire,
 survive, or get a grace period to finish. This gets its own test phase —
 player feedback and data from that feedback drive the final tuning.
 
+**AI quests are per-world switchable; custom quests live in their own
+file and never rotate (answered 2026-06-11, Q1).**
+- AI quests can be turned off per world — one world can be pure
+  hand-made quests, another world runs AI quests on top
+- The 12-hour reset only ever touches **AI** quests
+- Every world gets an **auto-created custom quest file** for self-made
+  quests: editable at any time, add quests whenever you want, and its
+  contents are never reset by the rotation
+- The file and its documentation are in English, and a how-to guide
+  ships with it
+
 ## Timeline expectations (rough, 2026-06-10)
 
 - Gets built later, step by step like everything else — after the core
