@@ -71,6 +71,10 @@ development.)
 - Caveat by design: if testing shows per-player would work better, this
   can still change — the test phase decides everything
 
+**Three difficulty levels: Easy / Normal / Hard (answered 2026-06-11,
+Q9).** What each level actually changes (expiry, grace time, amounts,
+count sizes) is not designed up front — the test phase data decides it.
+
 **Quest expiry depends on a difficulty setting.**
 There will likely be a configurable difficulty level that decides what
 happens to accepted quests at the 12-hour refresh: whether they expire,

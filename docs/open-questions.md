@@ -45,9 +45,10 @@ code gets built — their answer changes the storage or API design.
    [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
    (per world/server, same for all players, OP-only; test phase may
    still revise)
-9. What difficulty levels do you imagine (e.g. Easy / Normal / Hard) and
-   roughly what should each change (expiry yes/no, grace time, quest
-   amount, count sizes)?
+9. ~~What difficulty levels and what should each change?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (Easy / Normal / Hard; effects of each level decided by test data)
 
 ## GUI (v0.2)
 
