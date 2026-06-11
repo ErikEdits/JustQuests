@@ -93,7 +93,10 @@ code gets built — their answer changes the storage or API design.
 
 ## Distribution & Releases
 
-16. Publish on **Modrinth only**, or **Modrinth + CurseForge**?
+16. ~~Publish on **Modrinth only**, or **Modrinth + CurseForge**?~~
+    ✅ Answered 2026-06-11: **both platforms.** Plan: set up CI
+    auto-publish (release tag → upload to Modrinth + CurseForge in one
+    go) so there is no manual double maintenance.
 17. After 1.21.1: which MC versions matter most to you first?
     (1.20.1 is by far the most popular pack version right now.)
 18. Same name **"JustQuests"** on every loader and for the plugin, or a
