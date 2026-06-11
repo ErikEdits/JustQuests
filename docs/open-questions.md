@@ -15,8 +15,10 @@ code gets built — their answer changes the storage or API design.
    ✅ Answered 2026-06-11 → moved to
    [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
    (server: configurable amount; singleplayer: fixed maximum cap)
-3. Should AI-generated quests be **visually marked** as AI quests (own
-   icon/color), so players always know what's hand-made vs. generated?
+3. ~~Should AI-generated quests be **visually marked**?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (everything categorized, likely distinct symbols per category)
 4. May players **reroll** an AI quest they don't like (e.g. once per
    cycle), or is the set fixed until the next refresh?
 5. Are AI quest **rewards** also chosen by the AI (within the built-in

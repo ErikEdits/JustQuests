@@ -83,6 +83,16 @@ file and never rotate (answered 2026-06-11, Q1).**
 - **Singleplayer (mod):** there is a fixed maximum cap on AI quests per
   cycle (exact number to be tuned during the test phase)
 
+**Quests are organized into categories with own symbols (answered
+2026-06-11, Q3).**
+- Everything gets categorized — AI quests, custom quests, datapack
+  quests are separate categories
+- Each category will likely get its own symbol/icon, so players always
+  see at a glance what kind of quest they are looking at
+- Ties into the v0.2 GUI design: the status icons in
+  [gui-design-brief.md](gui-design-brief.md) will need category icons
+  on top of the state icons (available/active/completed/locked)
+
 **The custom file is a fill-in-the-blanks template (added 2026-06-11).**
 - The auto-created file already contains prepared **empty quest slots**:
   the fields for type, item id, count and reward are all there but
