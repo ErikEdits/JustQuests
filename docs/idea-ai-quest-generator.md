@@ -76,6 +76,13 @@ file and never rotate (answered 2026-06-11, Q1).**
 - The file and its documentation are in English, and a how-to guide
   ships with it
 
+**Quest amount per 12h cycle depends on the edition (answered
+2026-06-11, Q2).**
+- **Server (plugin):** the amount is configurable — server owners choose
+  how many AI quests each cycle generates
+- **Singleplayer (mod):** there is a fixed maximum cap on AI quests per
+  cycle (exact number to be tuned during the test phase)
+
 **The custom file is a fill-in-the-blanks template (added 2026-06-11).**
 - The auto-created file already contains prepared **empty quest slots**:
   the fields for type, item id, count and reward are all there but

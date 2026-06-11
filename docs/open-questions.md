@@ -11,8 +11,10 @@ code gets built — their answer changes the storage or API design.
    ✅ Answered 2026-06-11 → moved to
    [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
    (yes; plus auto-created, never-rotating custom quest file per world)
-2. **How many AI quests per 12-hour cycle?** A fixed number, or does the
-   difficulty setting decide the amount too?
+2. ~~How many AI quests per 12-hour cycle?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (server: configurable amount; singleplayer: fixed maximum cap)
 3. Should AI-generated quests be **visually marked** as AI quests (own
    icon/color), so players always know what's hand-made vs. generated?
 4. May players **reroll** an AI quest they don't like (e.g. once per
