@@ -65,6 +65,8 @@ code gets built — their answer changes the storage or API design.
     ⏳ Tendency (2026-06-11): either command-only or a **book that
     appears automatically in the inventory** (not crafted). The book can
     be moved around the inventory freely but **cannot be dropped**.
+    Maybe additionally a **clickable button inside the player's
+    inventory screen** that opens the quest GUI.
     Final choice goes into the Discord poll.
 12. Notifications: stay **chat-only** (like v0.1), or also **toast
     popups / sounds** on progress and completion?
