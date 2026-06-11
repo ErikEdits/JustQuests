@@ -19,8 +19,10 @@ code gets built — their answer changes the storage or API design.
    ✅ Answered 2026-06-11 → moved to
    [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
    (everything categorized, likely distinct symbols per category)
-4. May players **reroll** an AI quest they don't like (e.g. once per
-   cycle), or is the set fixed until the next refresh?
+4. ~~May players **reroll** an AI quest they don't like?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (players: no; server OP/admin only; accepted quests survive rotation)
 5. Are AI quest **rewards** also chosen by the AI (within the built-in
    limits), or hand-defined reward pools the AI only picks from?
 6. If no local AI runtime is installed: is the feature **silently off**,

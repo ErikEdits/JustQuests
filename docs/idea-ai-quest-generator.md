@@ -93,6 +93,18 @@ file and never rotate (answered 2026-06-11, Q1).**
   [gui-design-brief.md](gui-design-brief.md) will need category icons
   on top of the state icons (available/active/completed/locked)
 
+**No reroll for players; accepted quests survive the rotation (answered
+2026-06-11, Q4).**
+- Regular players can **not** reroll AI quests — short answer: no
+- On servers, only the OP / server admin can trigger a reroll
+- Quests a player has already **accepted** are never reset by the
+  rotation — they stay until finished
+- Note to reconcile during the test phase: the difficulty setting was
+  earlier planned to decide expiry of accepted quests (expire / survive /
+  grace period). "Accepted quests survive until finished" is the default;
+  whether higher difficulties may still expire them gets decided with
+  test-phase data
+
 **The custom file is a fill-in-the-blanks template (added 2026-06-11).**
 - The auto-created file already contains prepared **empty quest slots**:
   the fields for type, item id, count and reward are all there but
