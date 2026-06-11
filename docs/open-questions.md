@@ -54,6 +54,8 @@ code gets built — their answer changes the storage or API design.
 
 10. How is the GUI opened: **command** (`/quest gui`), **keybind**,
     **physical quest book item**, or several of these?
+    ⏳ 2026-06-11: decision deferred — user will **ask the community**
+    which way works best and evaluate the feedback before deciding.
 11. Should there be a **craftable quest book item**? Should new players
     get it automatically on first join?
 12. Notifications: stay **chat-only** (like v0.1), or also **toast
