@@ -40,9 +40,11 @@ code gets built — their answer changes the storage or API design.
 
 ## Difficulty & Expiry System
 
-8. Is the difficulty setting **per world or per player**?
-   (✅ partial, 2026-06-11: on servers only OPs may change it —
-   recorded in the AI brief; per-world vs. per-player still open)
+8. ~~Is the difficulty setting **per world or per player**?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (per world/server, same for all players, OP-only; test phase may
+   still revise)
 9. What difficulty levels do you imagine (e.g. Easy / Normal / Hard) and
    roughly what should each change (expiry yes/no, grace time, quest
    amount, count sizes)?

@@ -62,8 +62,14 @@ is unavailable, the rest of the mod is unaffected.
 (The concrete local runtime to integrate is still to be picked during
 development.)
 
-**On servers, only OPs may change the difficulty setting (answered
-2026-06-11, Q8 part 1).** Regular players cannot touch it.
+**Difficulty is one shared setting per world/server (answered
+2026-06-11, Q8).**
+- The server owner or world owner (in short: OP) sets the difficulty;
+  regular players cannot touch it
+- The chosen difficulty applies **equally to all players** in that
+  world/server — no per-player difficulty
+- Caveat by design: if testing shows per-player would work better, this
+  can still change — the test phase decides everything
 
 **Quest expiry depends on a difficulty setting.**
 There will likely be a configurable difficulty level that decides what
