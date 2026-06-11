@@ -50,6 +50,13 @@ shared progress file: reserve an optional **team/group id field** from
 the first version of the format, so external team systems can plug in
 without a format migration.
 
+**Team quests are their own category (added 2026-06-11).**
+Likely a dedicated **team quest category**, designed specifically for
+teams — instead of turning normal quests shareable. Normal quests stay
+personal (with their exclusive claiming); team quests are where group
+play happens. Fits the existing category system (each category has its
+own symbol, see the AI brief).
+
 **Implication for storage architecture (note, not a work order):**
 v0.1 currently stores progress in per-player NBT attachments
 (`playerdata`), not as a standalone file in the world folder. Before the
