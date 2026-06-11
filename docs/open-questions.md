@@ -62,6 +62,10 @@ code gets built — their answer changes the storage or API design.
     which way works best and evaluate the feedback before deciding.
 11. Should there be a **craftable quest book item**? Should new players
     get it automatically on first join?
+    ⏳ Tendency (2026-06-11): either command-only or a **book that
+    appears automatically in the inventory** (not crafted). The book can
+    be moved around the inventory freely but **cannot be dropped**.
+    Final choice goes into the Discord poll.
 12. Notifications: stay **chat-only** (like v0.1), or also **toast
     popups / sounds** on progress and completion?
 13. Which v0.2 objective types matter most — priority order for:
