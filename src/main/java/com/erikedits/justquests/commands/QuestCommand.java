@@ -7,11 +7,13 @@ import com.erikedits.justquests.player.PlayerQuests;
 import com.erikedits.justquests.player.QuestProgress;
 import com.erikedits.justquests.registry.ModAttachments;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,6 +22,18 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import java.util.Map;
 
 public class QuestCommand {
+    private static final SuggestionProvider<CommandSourceStack> AVAILABLE_QUESTS = (ctx, builder) ->
+        SharedSuggestionProvider.suggestResource(QuestManager.INSTANCE.getQuests().keySet(), builder);
+
+    private static final SuggestionProvider<CommandSourceStack> ACTIVE_QUESTS = (ctx, builder) -> {
+        ServerPlayer player = ctx.getSource().getPlayer();
+        if (player != null) {
+            return SharedSuggestionProvider.suggestResource(
+                player.getData(ModAttachments.PLAYER_QUESTS).active().keySet(), builder);
+        }
+        return builder.buildFuture();
+    };
+
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         register(event.getDispatcher());
     }
@@ -29,11 +43,13 @@ public class QuestCommand {
             .then(Commands.literal("list").executes(QuestCommand::list))
             .then(Commands.literal("progress").executes(QuestCommand::progress))
             .then(Commands.literal("accept")
-                .then(Commands.argument("id", StringArgumentType.string())
-                    .executes(ctx -> accept(ctx, StringArgumentType.getString(ctx, "id")))))
+                .then(Commands.argument("id", ResourceLocationArgument.id())
+                    .suggests(AVAILABLE_QUESTS)
+                    .executes(ctx -> accept(ctx, ResourceLocationArgument.getId(ctx, "id")))))
             .then(Commands.literal("abandon")
-                .then(Commands.argument("id", StringArgumentType.string())
-                    .executes(ctx -> abandon(ctx, StringArgumentType.getString(ctx, "id")))))
+                .then(Commands.argument("id", ResourceLocationArgument.id())
+                    .suggests(ACTIVE_QUESTS)
+                    .executes(ctx -> abandon(ctx, ResourceLocationArgument.getId(ctx, "id")))))
             .then(Commands.literal("reload")
                 .requires(src -> src.hasPermission(2))
                 .executes(QuestCommand::reload)));
@@ -84,12 +100,12 @@ public class QuestCommand {
         return data.active().size();
     }
 
-    private static int accept(CommandContext<CommandSourceStack> ctx, String idStr) throws CommandSyntaxException {
+    private static int accept(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
-        ResourceLocation id = ResourceLocation.tryParse(idStr);
 
-        if (id == null || QuestManager.INSTANCE.get(id) == null) {
-            ctx.getSource().sendFailure(Component.literal("§cUnknown quest: " + idStr));
+        Quest quest = QuestManager.INSTANCE.get(id);
+        if (quest == null) {
+            ctx.getSource().sendFailure(Component.literal("§cUnknown quest: " + id));
             return 0;
         }
 
@@ -104,20 +120,13 @@ public class QuestCommand {
         }
 
         data.accept(id);
-        Quest quest = QuestManager.INSTANCE.get(id);
         ctx.getSource().sendSuccess(() ->
             Component.literal("§a✓ Accepted: " + quest.title()), false);
         return 1;
     }
 
-    private static int abandon(CommandContext<CommandSourceStack> ctx, String idStr) throws CommandSyntaxException {
+    private static int abandon(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
-        ResourceLocation id = ResourceLocation.tryParse(idStr);
-
-        if (id == null) {
-            ctx.getSource().sendFailure(Component.literal("§cInvalid quest id: " + idStr));
-            return 0;
-        }
 
         PlayerQuests data = player.getData(ModAttachments.PLAYER_QUESTS);
         if (!data.isActive(id)) {
@@ -127,7 +136,7 @@ public class QuestCommand {
 
         data.abandon(id);
         ctx.getSource().sendSuccess(() ->
-            Component.literal("§7Abandoned quest: " + idStr), false);
+            Component.literal("§7Abandoned quest: " + id), false);
         return 1;
     }
 
