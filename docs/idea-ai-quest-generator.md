@@ -132,6 +132,20 @@ file and never rotate (answered 2026-06-11, Q1).**
 - This supersedes the earlier "local AI runtime" framing above — there is
   no required runtime anymore
 
+**One shared, synced quest set — with exclusive claiming (answered
+2026-06-11, Q7).**
+- **Singleplayer/LAN:** the generated set is the same for everyone in
+  the world
+- **Server:** one shared set for all players — per-player generation
+  would be overkill; the configurable server limits (see Q2) exist
+  precisely to keep the amount regulated
+- The set is **synced to every player**
+- **Exclusive claiming:** once a player accepts a generated quest, no
+  other player can accept that same quest — first come, first served
+- Design implication: on busy servers the configurable quest amount is
+  what server owners scale with their player count, since claimed
+  quests are locked for everyone else
+
 **The custom file is a fill-in-the-blanks template (added 2026-06-11).**
 - The auto-created file already contains prepared **empty quest slots**:
   the fields for type, item id, count and reward are all there but

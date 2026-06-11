@@ -32,8 +32,11 @@ code gets built — their answer changes the storage or API design.
    [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
    (moot: generator is self-programmed and built in, always works;
    AI model only as optional singleplayer extra via key + own code)
-7. **[architecture]** Mod on a dedicated server: are AI quests the
-   **same set for all players** on the server, or generated per player?
+7. ~~**[architecture]** Same set for all players, or per player?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (one shared synced set everywhere; accepted quests are exclusively
+   claimed — no other player can take them)
 
 ## Difficulty & Expiry System
 
