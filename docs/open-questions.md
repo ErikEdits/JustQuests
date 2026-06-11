@@ -5,6 +5,10 @@ Answered questions get moved into the matching brief as a design decision.
 Questions marked **[architecture]** should be answered before the related
 code gets built — their answer changes the storage or API design.
 
+> **Community survey plan (2026-06-11):** questions marked ⏳ as
+> community-decided will be part of **one big poll on the Discord server**
+> once it has enough members — not asked one by one.
+
 ## AI Quest Generator
 
 1. ~~Should players be able to turn AI quests **off per world**?~~
