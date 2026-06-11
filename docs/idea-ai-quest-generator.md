@@ -105,6 +105,14 @@ file and never rotate (answered 2026-06-11, Q1).**
   whether higher difficulties may still expire them gets decided with
   test-phase data
 
+**The AI picks rewards itself, inside data-driven limits (answered
+2026-06-11, Q5).**
+- Rewards are chosen by the AI, not from hand-defined pools
+- The limits the AI must respect are **determined from collected data**
+  (test phase) — same data-driven approach as the quest balancing
+- Confirmed: where decisions overlap (e.g. expiry vs. difficulty), the
+  test phase decides everything
+
 **The custom file is a fill-in-the-blanks template (added 2026-06-11).**
 - The auto-created file already contains prepared **empty quest slots**:
   the fields for type, item id, count and reward are all there but

@@ -23,8 +23,10 @@ code gets built — their answer changes the storage or API design.
    ✅ Answered 2026-06-11 → moved to
    [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
    (players: no; server OP/admin only; accepted quests survive rotation)
-5. Are AI quest **rewards** also chosen by the AI (within the built-in
-   limits), or hand-defined reward pools the AI only picks from?
+5. ~~Are AI quest **rewards** also chosen by the AI?~~
+   ✅ Answered 2026-06-11 → moved to
+   [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+   (yes, AI-chosen; limits determined from collected test-phase data)
 6. If no local AI runtime is installed: is the feature **silently off**,
    or should a simple built-in random generator (templates, no AI) act as
    fallback so everyone gets rotating quests?
