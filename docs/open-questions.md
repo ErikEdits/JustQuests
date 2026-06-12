@@ -121,12 +121,12 @@ code gets built — their answer changes the storage or API design.
 
 ## Localization follow-ups (queued for 2026-06-12)
 
-21. **Where do quest text translations come from?** Hand-written quests
-    (datapack / custom file): does the quest author write several
-    languages into one quest (e.g. `"title": {"en": "...", "de": "..."}`),
-    and what is the **fallback language** when a player's language is
-    missing — English? For AI/generated quests the templates can simply
-    exist per language.
+21. ~~Where do quest text translations come from?~~
+    ✅ Answered 2026-06-12 → moved to
+    [idea-localization.md](idea-localization.md)
+    (Minecraft's built-in translation keys cover all item/block/mob
+    names for free; authors write multi-language title/description
+    fields; English is the fallback)
 
 22. **Which languages does the mod itself launch with?** The mod's own
     texts (commands, GUI buttons, messages) need lang files: which do
