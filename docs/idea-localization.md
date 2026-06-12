@@ -48,7 +48,9 @@ Minecraft. For those:
 - A plain string (`"title": "First Steps"`) stays valid and counts as
   the English/fallback text — existing quests keep working
 
-## Open
+## Mod's own texts: English at launch (Q22, 2026-06-12)
 
-- Q22 (launch languages for the mod's own texts, community
-  translations) — see [open-questions.md](open-questions.md)
+The mod's own strings (commands, GUI, messages) ship in **English
+only** at release — English is the international default. More
+languages can land later; whether community translation PRs get
+accepted will be decided when the first one actually arrives.

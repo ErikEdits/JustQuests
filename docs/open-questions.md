@@ -128,7 +128,12 @@ code gets built — their answer changes the storage or API design.
     names for free; authors write multi-language title/description
     fields; English is the fallback)
 
-22. **Which languages does the mod itself launch with?** The mod's own
-    texts (commands, GUI buttons, messages) need lang files: which do
-    you maintain yourself at release (English + German?), and are
-    **community translations** accepted for the rest (Japanese etc.)?
+22. ~~Which languages does the mod itself launch with?~~
+    ✅ Answered 2026-06-12 → moved to
+    [idea-localization.md](idea-localization.md)
+    (English only at launch — international default; community
+    translations decided when the first PR arrives)
+
+---
+
+**All questions answered.** New questions get appended below as 23+.
