@@ -136,4 +136,57 @@ code gets built — their answer changes the storage or API design.
 
 ---
 
-**All questions answered.** New questions get appended below as 23+.
+## Round 2 (added 2026-06-12)
+
+### v0.1 Release
+
+23. **Mod icon:** what should it look like — book motif matching the
+    quest book identity? Preferred colors? (Needed for Modrinth and
+    CurseForge; I can generate proposals to pick from.)
+24. **Release timing:** publish v0.1 publicly as soon as it is tested —
+    or hold back until the GUI (v0.2) exists, so the first impression
+    is stronger?
+25. **Beta test:** closed beta via the Discord server before the public
+    release, or straight to public?
+
+### Quest mechanics
+
+26. **[architecture]** **Repeatable quests:** should quests be
+    repeatable (e.g. a per-quest flag, daily/weekly), or is every quest
+    one-time forever? Changes the storage format (completed-set vs.
+    completion timestamps) — cheap to decide now.
+27. **Abandon rules:** may a player re-accept an abandoned quest
+    immediately, or with a cooldown? Does abandoning a claimed
+    generated quest free it for other players?
+28. **Locked quests (v0.3 chains):** are locked quests visible as
+    teaser ("???" with lock icon), fully visible but not acceptable,
+    or completely invisible until unlocked?
+29. **More reward types:** priority for v0.2+ — XP, command execution,
+    loot table, choice rewards (player picks 1 of 3)?
+30. **Bundled starter quests:** should pack makers be able to disable
+    the 10 built-in quests via config, so only their own show up?
+
+### Custom file & data
+
+31. **[architecture]** **Custom quest file location:** in the world
+    folder (each world has its own custom quests) or in the config
+    folder (same custom quests in every world)? Or both layers?
+32. **Live reload:** should the custom file apply changes via
+    `/quest reload` while the game runs (no restart needed)?
+
+### Admin & server
+
+33. **Admin commands:** which matter most — give/complete/reset quest
+    for a player, view another player's progress, list claimed quests?
+34. **Statistics:** should the mod count stats (completed quests per
+    player, server leaderboard)? Server owners tend to love this.
+
+### Technical
+
+35. **Config format:** TOML (NeoForge standard) or JSON (consistent
+    with the quest files) for the mod's settings?
+36. **Update notice:** notify OPs on login when a newer version exists
+    (opt-out), or no version checking at all?
+37. **GUI style direction:** the book-style two-page layout from the
+    GUI brief, a modern single-panel list, or put this into the
+    Discord poll too?
