@@ -199,8 +199,10 @@ code gets built — their answer changes the storage or API design.
     - view another player's progress (`/quest progress <player>`)
     - list claimed quests (who has what on the server)
     (give/complete-for-player are lower priority / later.)
-34. **Statistics:** should the mod count stats (completed quests per
-    player, server leaderboard)? Server owners tend to love this.
+34. ~~Statistics?~~
+    ✅ Answered 2026-06-12: **yes** — track completed quests per player
+    and a server leaderboard (who completed the most). Fits server
+    play; data also feeds the test-phase tuning.
 
 ### Technical
 
