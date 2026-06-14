@@ -99,8 +99,10 @@ $meta = @{
 Add-Type -AssemblyName System.Net.Http
 
 $client = [System.Net.Http.HttpClient]::new()
-$client.DefaultRequestHeaders.Add("Authorization", $Token)
-$client.DefaultRequestHeaders.Add("User-Agent", $UserAgent)
+# TryAddWithoutValidation: .NET's strict header parser rejects a User-Agent
+# with multiple slashes (product/product/version), so bypass validation.
+[void]$client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $Token)
+[void]$client.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", $UserAgent)
 
 $form = [System.Net.Http.MultipartFormDataContent]::new()
 
