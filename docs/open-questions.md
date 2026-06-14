@@ -174,8 +174,10 @@ code gets built — their answer changes the storage or API design.
     table) are the priority — used especially for the refreshed/
     generated quests, so the AI rotation hands out varied random loot.
     XP / command / choice rewards stay lower priority for later.
-30. **Bundled starter quests:** should pack makers be able to disable
-    the 10 built-in quests via config, so only their own show up?
+30. ~~Bundled starter quests: disable-able?~~
+    ✅ Answered 2026-06-12: **not for now** — the 10 built-in quests
+    stay always present, no disable toggle yet. May add a config option
+    later ("mal gucken").
 
 ### Custom file & data
 
