@@ -1,9 +1,9 @@
 # JustQuests
 
-**A lightweight, datapack-driven quest book for NeoForge.**
-No GUI bloat, no heavy dependencies — just plain JSON quests and a handful
-of commands. Built as a focused, server-friendly alternative to FTB Quests
-and HQM for packs that want questing without the weight.
+**A lightweight quest book for NeoForge.**
+No GUI bloat, no heavy dependencies — just quests and a handful of commands.
+Built as a focused, server-friendly alternative to FTB Quests and HQM for
+packs that want questing without the weight.
 
 > **Version 0.1 is command-only.** A full in-game GUI is on the way (see
 > the roadmap below). Everything here works right now on **NeoForge 1.21.1**.
@@ -12,10 +12,9 @@ and HQM for packs that want questing without the weight.
 
 ## ✨ What JustQuests does
 
-- **Datapack-driven** — define quests in plain JSON inside any datapack.
-  No code, no extra tools. Reload them live with `/reload`.
-- **Pack-maker friendly** — the quest format is tiny and readable; anyone
-  can write a quest in under a minute.
+- **Ready to play** — comes with a built-in quest progression you can start
+  right away, no setup required.
+- **Lightweight** — tiny and fast, with no heavy dependencies.
 - **Server-side friendly** — runs on dedicated servers and in singleplayer.
   Players don't need anything special for command-based play.
 - **Per-player progress** — every player has their own progress, saved
@@ -40,10 +39,10 @@ quest, `abandon` suggests only the ones you've taken.
 
 ---
 
-## 📦 Bundled starter quests
+## 📦 Built-in quests
 
-JustQuests ships with a ready-to-play 10-quest progression so you can try
-it instantly — or override it with your own datapack.
+JustQuests ships with a ready-to-play 10-quest progression so you can jump
+in right away.
 
 | Quest | Goal | Reward |
 |-------|------|--------|
@@ -58,42 +57,9 @@ it instantly — or override it with your own datapack.
 | Hot Stuff | 4 blaze rods | 8 ender pearls, 4 magma cream |
 | Ender Seeker | 8 ender pearls | 12 obsidian, 2 diamonds |
 
----
-
-## 🛠️ Writing your own quests
-
-Drop a JSON file into
-`data/<namespace>/justquests/quests/<id>.json`:
-
-```json
-{
-  "title": "First Steps",
-  "description": "Gather some basic materials to get started.",
-  "objectives": [
-    {
-      "type": "justquests:collect_item",
-      "item": "minecraft:oak_log",
-      "count": 16
-    }
-  ],
-  "rewards": [
-    {
-      "type": "justquests:give_item",
-      "item": "minecraft:bread",
-      "count": 4
-    }
-  ]
-}
-```
-
-Run `/reload` and it's live. The file name becomes the quest id
-(`yourpack:first_steps`).
-
-### ⚠️ Important design note
-Objectives currently track items **picked up from the ground** — mining
-blocks, harvesting crops, collecting mob drops. **Crafted items go straight
-into the inventory and do not count.** Design your quests around *gathering*,
-not crafting. (A dedicated `craft_item` objective is planned — see roadmap.)
+> **Good to know:** objectives track items **picked up from the ground** —
+> mining blocks, harvesting crops, collecting mob drops. Crafted items go
+> straight into the inventory and do not count toward a goal.
 
 ---
 
@@ -121,6 +87,7 @@ JustQuests is built step by step. Planned for upcoming versions:
 
 - **v0.2** — in-game GUI, more objective types (kill mob, place block,
   reach location, craft item) and more reward types (XP, commands)
+- **Custom quest creation** — make and add your own quests
 - **v0.3** — quest chains and prerequisites
 - **Later** — more Minecraft versions, additional loaders (Fabric/Forge),
   a Paper/Bukkit plugin edition, per-player language display, and an
