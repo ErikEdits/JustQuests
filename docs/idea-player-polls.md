@@ -69,6 +69,30 @@ is already handled for docs: CI skips builds for `docs/**` and `**.md`
 changes (paths-ignore). So any results/notes kept as a markdown/JSON file
 under `docs/` won't start a build.
 
+## Webhook decision (2026-06-12)
+
+Idea raised: embed a Discord webhook in the mod (encrypted) so the mod
+posts poll answers straight to a channel, where the existing bot tallies
+them.
+
+**Rejected for the mod — same credential-exposure problem as the GitHub
+token.** A distributed mod can be decompiled; an "encrypted" webhook must
+be decrypted at runtime, so the key ships in the jar too. The webhook
+WILL be extracted, then abused to spam the channel and inject fake poll
+results. Obfuscation is not security for client-distributed code.
+
+Key distinction:
+- A webhook is **safe inside the bot** (server-side, not distributed). ✅
+- A webhook is **unsafe inside the mod** (shipped to every player). ❌
+
+**Adopted design:** the mod only shows a prompt that **links out** to a
+Discord poll created/managed by the bot. Players vote in Discord; the bot
+tallies and reports to the author. No credential ever lives in the mod;
+consent is the explicit click. A privacy policy is still required.
+
+(Reminder: a webhook URL must never be pasted in plain text anywhere
+public — regenerate it if it leaks.)
+
 ## Decision needed (later)
 
 - Go with the safe "link-out" design (recommended, zero infra), or
