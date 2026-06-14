@@ -181,9 +181,10 @@ code gets built — their answer changes the storage or API design.
 
 ### Custom file & data
 
-31. **[architecture]** **Custom quest file location:** in the world
-    folder (each world has its own custom quests) or in the config
-    folder (same custom quests in every world)? Or both layers?
+31. ~~**[architecture]** Custom quest file location?~~
+    ✅ Answered 2026-06-12: **in the world folder** — each world has its
+    own custom quests (World A differs from World B). Matches the
+    per-world progress file; custom quests travel with the world.
 32. **Live reload:** should the custom file apply changes via
     `/quest reload` while the game runs (no restart needed)?
 
