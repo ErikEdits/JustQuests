@@ -27,6 +27,11 @@ anti-aliasing, no partial transparency except where specified.
 
 ## Screen layout to support
 
+> **Note (2026-06-12):** the overall GUI style — book-style two-page
+> layout vs. a modern single-panel list — is being decided by a Discord
+> community poll (Q37). The layout below describes the book-style option;
+> adapt if the poll picks the single-panel direction.
+
 A book-style screen, 240x180 px base size, two panels:
 - **Left panel (quest list):** scrollable rows, 18 px tall each, showing
   status icon + quest title; selected row gets a highlight frame

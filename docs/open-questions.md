@@ -216,6 +216,7 @@ code gets built — their answer changes the storage or API design.
     ✅ Partial 2026-06-12: **yes** to an update notice in principle —
     but the exact behavior (opt-out, frequency, wording) goes into the
     Discord poll to decide what works best. ⏳ poll item.
-37. **GUI style direction:** the book-style two-page layout from the
-    GUI brief, a modern single-panel list, or put this into the
-    Discord poll too?
+37. ~~GUI style direction?~~
+    ✅ Answered 2026-06-12: **the Discord poll decides** — book-style
+    two-page layout vs. modern single-panel list goes to the community.
+    ⏳ poll item.
