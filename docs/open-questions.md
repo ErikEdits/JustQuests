@@ -220,3 +220,94 @@ code gets built — their answer changes the storage or API design.
     ✅ Answered 2026-06-12: **the Discord poll decides** — book-style
     two-page layout vs. modern single-panel list goes to the community.
     ⏳ poll item.
+
+---
+
+## Round 3 (added 2026-06-12)
+
+### Objectives & matching
+
+38. **[architecture]** Should `collect_item` (and other item objectives)
+    match by **plain item type only**, or also support **item tags**
+    (e.g. `#minecraft:logs` accepts any log)? Tags make modpack quests
+    far easier but change how matching is stored.
+39. **[architecture]** Should objectives be able to require a **specific
+    item with NBT/data components** (e.g. a named or enchanted item), or
+    is item id enough for now?
+40. Multi-objective quests: must **all** objectives be completed (AND), or
+    should a quest be able to need **any one** of several (OR)? Or both
+    via a flag?
+41. New objective ideas beyond the Q13 list — worth having any of:
+    **gain advancement**, **reach level**, **tame animal**, **enchant
+    item**, **visit dimension**? Pick any that matter.
+42. Should objective progress **persist if the player drops/loses items**
+    (lifetime pickup count, like now), or track **current inventory**
+    amount? (Current = can go down; lifetime = can't be gamed.)
+
+### Quest presentation & tracking
+
+43. **Pinned/tracked quest on the HUD** — a small overlay showing your
+    active quest + progress on screen (toggle)? Or keep it command/GUI
+    only?
+44. **Per-quest icon** — should a quest show a custom icon (an item as its
+    icon) in the GUI, or just text?
+45. GUI sorting/grouping — by **category**, by **status**
+    (active/available/done), **alphabetical**, or a pack-defined **custom
+    order**?
+46. GUI **search/filter** box — needed, or overkill for the expected
+    quest counts?
+47. Should there be a configurable **max number of active quests** at once
+    per player, or unlimited?
+
+### Rewards & completion
+
+48. **Reward delivery** — handed out **instantly** on completion (current
+    behavior), or a **claim button** in the GUI the player must click?
+49. **Choice rewards** (pick 1 of N) — wanted eventually, and if so does
+    the player pick in the GUI or via a command?
+50. What should happen if a reward references an **item from a mod that's
+    no longer installed** (invalid id)? Skip silently, log, or substitute?
+
+### Integrations & multiplayer
+
+51. **Advancement integration** — completing a quest could **grant a
+    vanilla advancement**, and/or an advancement could **complete/unlock**
+    a quest. Worth it, which direction?
+52. **Economy integration** — if a server has an economy mod/plugin,
+    should a reward be able to **pay currency** (via command reward), or
+    stay out of economy entirely?
+53. **Server announcement** when a player completes a rare/marked quest
+    (broadcast in chat), or keep completions private?
+54. **[architecture]** Quest source precedence — if a datapack quest, a
+    custom-file quest and a generated quest share the **same id**, which
+    wins? (Define load order now.)
+55. **Per-quest permission** — should some quests be restricted to certain
+    ranks/permission nodes (server use), or all quests open to everyone?
+
+### API & data
+
+56. **[architecture]** Should the mod expose a small **API / event hooks**
+    so other mods or datapacks can react to quest accept/complete? (Design
+    affects internal structure.)
+57. **Export/import of player progress** for admins (backup a player's
+    quests, move between servers) — needed, what format?
+58. Should **statistics** (Q34) be viewable **in-game** (a stats GUI/
+    command) or only sent to the owner, and should the leaderboard be
+    **public to players**?
+
+### Generator & balance (AI feature, later)
+
+59. Should generated quest **difficulty scale with player progress**
+    (e.g. later quests get harder as the player advances), or stay flat
+    within a difficulty level?
+60. Should the 6-day no-repeat window (Q26) be **configurable** (server
+    owners change the days), or fixed at 6?
+61. Should the generator avoid quests the player **can't currently do**
+    (e.g. Nether items before the player has been to the Nether), or not
+    care?
+
+### Polish
+
+62. **Sounds** — which sound on quest **complete** (vanilla level-up,
+    XP, custom?), and should there be a subtle sound on **progress
+    tick**? (Likely a Discord poll item too.)
