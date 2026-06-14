@@ -19,6 +19,7 @@ file, or as their own `docs/idea-*.md` file with a link from here.
 | AI Quest Generator — local AI creates quests, 12h real-time rotation, per-world quest sets | [idea-ai-quest-generator.md](idea-ai-quest-generator.md) | 2026-06-10 |
 | Paper/Bukkit Plugin Edition — JustQuests as a pure server plugin, no mod loader needed, players install nothing | [idea-paper-plugin.md](idea-paper-plugin.md) | 2026-06-10 |
 | Localization System — per-user language via Minecraft's built-in translation keys, multi-language quest fields, English fallback | [idea-localization.md](idea-localization.md) | 2026-06-12 |
+| In-game Player Polls — occasional surveys to gather player preferences (⚠️ privacy/security constraints; safe design = link out to Discord/form) | [idea-player-polls.md](idea-player-polls.md) | 2026-06-12 |
 
 ## How to add an idea
 
