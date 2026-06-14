@@ -212,8 +212,10 @@ code gets built — their answer changes the storage or API design.
     using a loader's built-in config API would differ per loader. A
     JSON config read by the mod's own code is identical on NeoForge,
     Fabric and Forge, and consistent with the quest + progress files.
-36. **Update notice:** notify OPs on login when a newer version exists
-    (opt-out), or no version checking at all?
+36. ~~Update notice?~~
+    ✅ Partial 2026-06-12: **yes** to an update notice in principle —
+    but the exact behavior (opt-out, frequency, wording) goes into the
+    Discord poll to decide what works best. ⏳ poll item.
 37. **GUI style direction:** the book-style two-page layout from the
     GUI brief, a modern single-panel list, or put this into the
     Discord poll too?
