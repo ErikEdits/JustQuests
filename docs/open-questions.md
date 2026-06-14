@@ -164,9 +164,11 @@ code gets built — their answer changes the storage or API design.
     until the next rotation. Exact lockout duration to be tuned in the
     test phase. (Whether it frees a claimed generated quest for other
     players: assume no while locked; revisit during test phase.)
-28. **Locked quests (v0.3 chains):** are locked quests visible as
-    teaser ("???" with lock icon), fully visible but not acceptable,
-    or completely invisible until unlocked?
+28. ~~Locked quests (v0.3 chains): how shown?~~
+    ✅ Answered 2026-06-12: shown as a **teaser** ("???" with a lock
+    icon) — but only when this has been **enabled via a command**.
+    Default otherwise: hidden until unlocked. So OPs/packs opt into the
+    teaser display.
 29. **More reward types:** priority for v0.2+ — XP, command execution,
     loot table, choice rewards (player picks 1 of 3)?
 30. **Bundled starter quests:** should pack makers be able to disable
