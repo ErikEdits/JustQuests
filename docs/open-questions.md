@@ -146,8 +146,10 @@ code gets built — their answer changes the storage or API design.
     project-page version at `docs/assets/icon-512.png`.
 24. ~~Release timing~~ ✅ Answered 2026-06-12: **publish v0.1 today.**
     Early release for early feedback (fits the data/feedback approach).
-25. **Beta test:** closed beta via the Discord server before the public
-    release, or straight to public?
+25. ~~Beta test: closed beta or straight to public?~~
+    ✅ Answered 2026-06-12: **public beta** — release openly and fast,
+    no closed-beta gate. Feedback/test-phase data gets gathered from
+    the public release. (v0.1 is already public on GitHub.)
 
 ### Quest mechanics
 
