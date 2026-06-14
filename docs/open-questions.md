@@ -185,8 +185,11 @@ code gets built — their answer changes the storage or API design.
     ✅ Answered 2026-06-12: **in the world folder** — each world has its
     own custom quests (World A differs from World B). Matches the
     per-world progress file; custom quests travel with the world.
-32. **Live reload:** should the custom file apply changes via
-    `/quest reload` while the game runs (no restart needed)?
+32. ~~Live reload via command?~~
+    ✅ Answered 2026-06-12: **automatic live reload** — no action
+    needed. The mod watches the custom quest file and applies changes
+    on its own while the game runs (no command, no restart). A manual
+    `/quest reload` can still exist as a fallback.
 
 ### Admin & server
 
