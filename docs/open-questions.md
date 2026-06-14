@@ -311,3 +311,97 @@ code gets built — their answer changes the storage or API design.
 62. **Sounds** — which sound on quest **complete** (vanilla level-up,
     XP, custom?), and should there be a subtle sound on **progress
     tick**? (Likely a Discord poll item too.)
+
+---
+
+## Round 4 (added 2026-06-12) — UX details & edge cases
+
+63. **Accept confirmation** — does accepting a quest pop a confirm
+    ("Accept this quest?") or just start instantly?
+64. **GUI theming** — support light/dark variants of the GUI, or one fixed
+    look?
+65. **Controller/gamepad** navigation in the GUI — worth supporting, or
+    keyboard/mouse only?
+66. **Accessibility** — narrator/screen-reader labels and colorblind-safe
+    category icons (not color-only)? In from the start or later?
+67. **Pagination size** — how many quests per GUI page before it scrolls/
+    paginates?
+68. **Hover tooltips** — show the full vanilla item tooltip when hovering
+    a reward/objective item in the GUI?
+69. **Progress display style** — bar, `5/16` fraction, percent, or all of
+    them?
+70. **Empty state** — what shows when there are no quests available (a
+    friendly message, hidden button, etc.)?
+71. **Completion feedback** — particles/animation on completion, or just
+    text + sound?
+72. **Chat format** — should the chat prefix/colors be configurable, or
+    fixed JustQuests styling?
+73. **Chat pagination** — should `/quest list` paginate in chat when there
+    are many quests (page buttons), instead of dumping all lines?
+74. **Player favorites** — let a player bookmark/favorite quests to the
+    top of their list?
+75. **Cooldown time display** — relative ("available in 3h") or absolute
+    ("18:00") for repeatable/locked quests?
+76. **First-join hint** — show new players a one-time message pointing
+    them to the quest system?
+77. **[architecture]** Categories ([[Q3]]) — a **fixed** set (AI / custom
+    / datapack / team) or **pack-definable custom categories**? Affects
+    the data model.
+78. **Quest detail view** — clicking a quest opens a dedicated detail
+    panel, or is everything shown inline in the list?
+
+---
+
+## Round 5 (added 2026-06-12) — server & multiplayer operations
+
+79. **Cross-dimension tracking** — do objectives count in any dimension
+    (Nether/End included), or can a quest be dimension-restricted?
+80. **Offline progress** — confirm nothing advances while a player is
+    offline (only the 12h rotation clock runs)?
+81. **[architecture]** Multiverse servers — is progress **per world** or
+    **per server** when several worlds exist? (Ties to the world-folder
+    storage decision.)
+82. **Season/world wipe** — an admin command to wipe ALL quest progress
+    server-wide (for resets/seasons)?
+83. **Permission system** — which to support: vanilla OP levels,
+    **LuckPerms** permission nodes, or both?
+84. **Event logging** — log quest accept/complete events to the server
+    log or a file for admins?
+85. **Creative/spectator** — should objectives count in creative mode, or
+    only survival/adventure?
+86. **Definition changes mid-progress** — if a quest's required count
+    changes (e.g. 16 → 32) while a player is mid-progress, keep progress,
+    reset it, or cap it?
+87. **Claim race** — if two players accept the same generated quest in the
+    same instant, how is the exclusive claim ([[Q7]]) resolved?
+88. **Quest transfer** — should an admin be able to move/copy one player's
+    progress to another (e.g. account migration)?
+
+---
+
+## Round 6 (added 2026-06-12) — project, community & meta
+
+89. **Documentation home** — GitHub wiki, the Modrinth pages, or keep
+    everything in the repo `docs/`?
+90. **Versioning scheme** — strict semver (major.minor.patch), and what
+    counts as a breaking change for a quest mod?
+91. **Contributions** — accept community PRs, and for which areas
+    (translations, quests, code)? Any areas off-limits?
+92. **Example pack / template** — ship a small example datapack or a
+    template repo so pack makers have a starting point?
+93. **Showcase media** — a short trailer/GIF for the Modrinth/CurseForge
+    page beyond the gallery screenshots?
+94. **Translation crowdsourcing** — use a platform (e.g. Crowdin) for
+    community translations later, or just accept lang-file PRs?
+95. **Support channel** — GitHub issues only, or also a Discord support
+    channel (ties into the bot)?
+96. **Telemetry** — confirm the mod ships with **zero** automatic
+    telemetry/analytics (all feedback is opt-in via the Discord polls)?
+
+---
+
+## Round 7 / FINAL — reserved (NOT yet written)
+
+> Per user request (2026-06-12): the final round will be **50 questions
+> about NEW features the user plans for the mod**. **Do not generate these
+> until the user explicitly says "letzte Runde".** Placeholder only.
