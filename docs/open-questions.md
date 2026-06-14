@@ -158,9 +158,12 @@ code gets built — their answer changes the storage or API design.
     [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
     (no quest repeats within a rolling 6-day window; repeatable after
     that → storage uses timestamped history, not a plain done-set)
-27. **Abandon rules:** may a player re-accept an abandoned quest
-    immediately, or with a cooldown? Does abandoning a claimed
-    generated quest free it for other players?
+27. ~~Abandon rules: re-accept immediately or cooldown?~~
+    ✅ Answered 2026-06-12: an abandoned quest is **locked from
+    re-acceptance** afterwards (not immediately re-takeable) — likely
+    until the next rotation. Exact lockout duration to be tuned in the
+    test phase. (Whether it frees a claimed generated quest for other
+    players: assume no while locked; revisit during test phase.)
 28. **Locked quests (v0.3 chains):** are locked quests visible as
     teaser ("???" with lock icon), fully visible but not acceptable,
     or completely invisible until unlocked?
