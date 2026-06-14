@@ -206,8 +206,12 @@ code gets built — their answer changes the storage or API design.
 
 ### Technical
 
-35. **Config format:** TOML (NeoForge standard) or JSON (consistent
-    with the quest files) for the mod's settings?
+35. ~~Config format: TOML or JSON?~~
+    ✅ Answered 2026-06-12: **self-managed JSON** for cross-loader
+    uniformity. TOML is native only to NeoForge/Forge (not Fabric);
+    using a loader's built-in config API would differ per loader. A
+    JSON config read by the mod's own code is identical on NeoForge,
+    Fabric and Forge, and consistent with the quest + progress files.
 36. **Update notice:** notify OPs on login when a newer version exists
     (opt-out), or no version checking at all?
 37. **GUI style direction:** the book-style two-page layout from the
