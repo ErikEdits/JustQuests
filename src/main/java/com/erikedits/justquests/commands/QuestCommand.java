@@ -3,6 +3,7 @@ package com.erikedits.justquests.commands;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
 import com.erikedits.justquests.data.objective.QuestObjective;
+import com.erikedits.justquests.data.reward.QuestReward;
 import com.erikedits.justquests.player.PlayerQuests;
 import com.erikedits.justquests.player.QuestProgress;
 import com.erikedits.justquests.registry.ModAttachments;
@@ -63,8 +64,22 @@ public class QuestCommand {
             return 0;
         }
         src.sendSuccess(() -> Component.literal("§eAvailable quests:"), false);
-        quests.forEach((id, quest) -> src.sendSuccess(() ->
-            Component.literal("§f - §b" + id + " §7— §f" + quest.title()), false));
+        quests.forEach((id, quest) -> {
+            src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title()), false);
+            if (!quest.description().isBlank()) {
+                src.sendSuccess(() -> Component.literal("  §7§o" + quest.description()), false);
+            }
+
+            String goals = quest.objectives().stream()
+                .map(QuestObjective::displayName)
+                .collect(java.util.stream.Collectors.joining("§7, §f"));
+            src.sendSuccess(() -> Component.literal("  §6Goal: §f" + goals), false);
+
+            String rewards = quest.rewards().stream()
+                .map(QuestReward::displayName)
+                .collect(java.util.stream.Collectors.joining("§7, §a"));
+            src.sendSuccess(() -> Component.literal("  §6Reward: §a" + rewards), false);
+        });
         return quests.size();
     }
 

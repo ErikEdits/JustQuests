@@ -144,9 +144,8 @@ code gets built — their answer changes the storage or API design.
     (parchment pages, oak cover, green checkmark, dark rounded
     backdrop). In-jar logo at `src/main/resources/icon.png`, 512px
     project-page version at `docs/assets/icon-512.png`.
-24. **Release timing:** publish v0.1 publicly as soon as it is tested —
-    or hold back until the GUI (v0.2) exists, so the first impression
-    is stronger?
+24. ~~Release timing~~ ✅ Answered 2026-06-12: **publish v0.1 today.**
+    Early release for early feedback (fits the data/feedback approach).
 25. **Beta test:** closed beta via the Discord server before the public
     release, or straight to public?
 
