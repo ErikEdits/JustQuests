@@ -15,10 +15,8 @@ packs that want questing without the weight.
 - **Ready to play** — comes with a built-in quest progression you can start
   right away, no setup required.
 - **Lightweight** — tiny and fast, with no heavy dependencies.
-- **Server-side friendly** — runs on dedicated servers and in singleplayer.
-  Players don't need anything special for command-based play.
-- **Per-player progress** — every player has their own progress, saved
-  across logouts and kept after death.
+- **Persistent progress** — your progress is saved across sessions and kept
+  even after death.
 - **No conflicts** — being command-based, it stays out of the way of other
   mods and UI overhauls.
 
@@ -69,15 +67,13 @@ in right away.
 2. Put `justquests-0.1.0.jar` into your `mods` folder
 3. Launch the game and run `/quest list`
 
-Works in singleplayer and on dedicated servers.
-
 ---
 
 ## ✅ Compatibility
 
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge only (more loaders planned)
-- **Side:** works on dedicated servers and in singleplayer
+- **Environment:** singleplayer
 
 ---
 
