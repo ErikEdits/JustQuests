@@ -193,8 +193,12 @@ code gets built — their answer changes the storage or API design.
 
 ### Admin & server
 
-33. **Admin commands:** which matter most — give/complete/reset quest
-    for a player, view another player's progress, list claimed quests?
+33. ~~Admin commands: which matter most?~~
+    ✅ Answered 2026-06-12 — priority admin commands:
+    - reset a player's quest progress (`/quest reset <player>`)
+    - view another player's progress (`/quest progress <player>`)
+    - list claimed quests (who has what on the server)
+    (give/complete-for-player are lower priority / later.)
 34. **Statistics:** should the mod count stats (completed quests per
     player, server leaderboard)? Server owners tend to love this.
 
