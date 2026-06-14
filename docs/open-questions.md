@@ -153,10 +153,11 @@ code gets built — their answer changes the storage or API design.
 
 ### Quest mechanics
 
-26. **[architecture]** **Repeatable quests:** should quests be
-    repeatable (e.g. a per-quest flag, daily/weekly), or is every quest
-    one-time forever? Changes the storage format (completed-set vs.
-    completion timestamps) — cheap to decide now.
+26. ~~**[architecture]** Repeatable quests?~~
+    ✅ Answered 2026-06-12 → moved to
+    [idea-ai-quest-generator.md](idea-ai-quest-generator.md)
+    (no quest repeats within a rolling 6-day window; repeatable after
+    that → storage uses timestamped history, not a plain done-set)
 27. **Abandon rules:** may a player re-accept an abandoned quest
     immediately, or with a cooldown? Does abandoning a claimed
     generated quest free it for other players?

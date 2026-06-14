@@ -159,6 +159,16 @@ file and never rotate (answered 2026-06-11, Q1).**
   what server owners scale with their player count, since claimed
   quests are locked for everyone else
 
+**No quest repeats within a 6-day window (answered 2026-06-12, Q26).**
+- The generator must never produce the same quest twice inside a rolling
+  **6-day** period — keeps the rotation feeling fresh
+- After 6 days a quest may appear again (so quests are repeatable, just
+  rate-limited, not one-time-forever)
+- **Storage implication:** the system keeps a timestamped history of
+  recently generated/used quests (not just a done/not-done flag), so the
+  generator can filter out anything used in the last 6 days. This is the
+  timestamp-based storage format flagged as architecture-critical.
+
 **The custom file is a fill-in-the-blanks template (added 2026-06-11).**
 - The auto-created file already contains prepared **empty quest slots**:
   the fields for type, item id, count and reward are all there but
