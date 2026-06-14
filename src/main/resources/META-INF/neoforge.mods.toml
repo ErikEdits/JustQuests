@@ -1,12 +1,15 @@
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
 license="${mod_license}"
+issueTrackerURL="https://github.com/ErikEdits/JustQuests/issues"
 
 [[mods]]
 modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
 authors="${mod_authors}"
+logoFile="icon.png"
+displayURL="https://github.com/ErikEdits/JustQuests"
 description='''${mod_description}'''
 
 [[dependencies.${mod_id}]]

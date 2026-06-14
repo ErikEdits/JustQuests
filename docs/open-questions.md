@@ -140,9 +140,10 @@ code gets built — their answer changes the storage or API design.
 
 ### v0.1 Release
 
-23. **Mod icon:** what should it look like — book motif matching the
-    quest book identity? Preferred colors? (Needed for Modrinth and
-    CurseForge; I can generate proposals to pick from.)
+23. ~~Mod icon~~ ✅ Done 2026-06-12: pixel-art open quest book
+    (parchment pages, oak cover, green checkmark, dark rounded
+    backdrop). In-jar logo at `src/main/resources/icon.png`, 512px
+    project-page version at `docs/assets/icon-512.png`.
 24. **Release timing:** publish v0.1 publicly as soon as it is tested —
     or hold back until the GUI (v0.2) exists, so the first impression
     is stronger?
