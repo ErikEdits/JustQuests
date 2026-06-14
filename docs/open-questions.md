@@ -169,8 +169,11 @@ code gets built — their answer changes the storage or API design.
     icon) — but only when this has been **enabled via a command**.
     Default otherwise: hidden until unlocked. So OPs/packs opt into the
     teaser display.
-29. **More reward types:** priority for v0.2+ — XP, command execution,
-    loot table, choice rewards (player picks 1 of 3)?
+29. ~~More reward types: priority?~~
+    ✅ Answered 2026-06-12: **loot-table rewards** (random reward from a
+    table) are the priority — used especially for the refreshed/
+    generated quests, so the AI rotation hands out varied random loot.
+    XP / command / choice rewards stay lower priority for later.
 30. **Bundled starter quests:** should pack makers be able to disable
     the 10 built-in quests via config, so only their own show up?
 
