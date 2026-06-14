@@ -9,6 +9,7 @@
 
     ONE-TIME SETUP (do this once on the website before first run):
       1. Create the project at https://modrinth.com/  (slug: justquests)
+         and PUBLISH it (a Draft is not a valid upload target by slug).
       2. On the project page set the Environment (e.g. client/server)
          and description/icon as you like.
       3. Create a Personal Access Token at
@@ -35,11 +36,12 @@ $ErrorActionPreference = "Stop"
 # --- editable metadata -------------------------------------------------
 $GameVersions = @("1.21.1")     # add more MC versions here when supported
 $Loaders      = @("neoforge")   # this jar is NeoForge; add "fabric"/"forge" after porting
+$UserAgent    = "ErikEdits/JustQuests/publish-script"
 # -----------------------------------------------------------------------
 
 $repoRoot = Split-Path $PSScriptRoot -Parent
 
-# version from gradle.properties
+# version + name from gradle.properties
 $modVersion = (Select-String -Path "$repoRoot\gradle.properties" -Pattern '^mod_version=(.+)$').Matches[0].Groups[1].Value.Trim()
 $modName    = (Select-String -Path "$repoRoot\gradle.properties" -Pattern '^mod_name=(.+)$').Matches[0].Groups[1].Value.Trim()
 
@@ -61,6 +63,19 @@ if (Test-Path $clPath) {
     }
 }
 
+# pre-flight: does the project exist and is it visible to this token?
+try {
+    $proj = Invoke-RestMethod -Uri "https://api.modrinth.com/v2/project/$ProjectSlug" -Method Get `
+        -Headers @{ Authorization = $Token; "User-Agent" = $UserAgent }
+    Write-Host "Project found: $($proj.title) (id $($proj.id))" -ForegroundColor DarkGray
+}
+catch {
+    Write-Host "WARNING: project '$ProjectSlug' not reachable with this token." -ForegroundColor Yellow
+    Write-Host "Make sure you created AND published it on modrinth.com first," -ForegroundColor Yellow
+    Write-Host "and that the token has the 'Read projects' + 'Create versions' scopes." -ForegroundColor Yellow
+    Write-Host ""
+}
+
 Write-Host "Project : $ProjectSlug"        -ForegroundColor Cyan
 Write-Host "Version : $modVersion ($VersionType)" -ForegroundColor Cyan
 Write-Host "Jar     : $($jar.Name)"          -ForegroundColor Cyan
@@ -78,32 +93,44 @@ $meta = @{
     project_id     = $ProjectSlug
     file_parts     = @("file")
     primary_file   = "file"
-} | ConvertTo-Json -Depth 6 -Compress
+} | ConvertTo-Json -Depth 6
 
-# multipart/form-data: json "data" part + the jar file part
-$boundary = [System.Guid]::NewGuid().ToString()
-$LF = "`r`n"
-$fileBytes = [System.IO.File]::ReadAllBytes($jar.FullName)
-$enc = [System.Text.Encoding]::GetEncoding("iso-8859-1")
-$fileContent = $enc.GetString($fileBytes)
+# --- robust multipart upload via HttpClient (works on PS 5.1 and 7) ----
+Add-Type -AssemblyName System.Net.Http
 
-$body = (
-    "--$boundary", 'Content-Disposition: form-data; name="data"', 'Content-Type: application/json', '', $meta,
-    "--$boundary", "Content-Disposition: form-data; name=`"file`"; filename=`"$($jar.Name)`"", 'Content-Type: application/java-archive', '', $fileContent,
-    "--$boundary--", ''
-) -join $LF
+$client = [System.Net.Http.HttpClient]::new()
+$client.DefaultRequestHeaders.Add("Authorization", $Token)
+$client.DefaultRequestHeaders.Add("User-Agent", $UserAgent)
+
+$form = [System.Net.Http.MultipartFormDataContent]::new()
+
+$jsonContent = [System.Net.Http.StringContent]::new($meta, [System.Text.Encoding]::UTF8, "application/json")
+$form.Add($jsonContent, "data")
+
+$fileStream  = [System.IO.File]::OpenRead($jar.FullName)
+$fileContent = [System.Net.Http.StreamContent]::new($fileStream)
+$fileContent.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::new("application/java-archive")
+$form.Add($fileContent, "file", $jar.Name)
 
 try {
-    $resp = Invoke-RestMethod -Uri "https://api.modrinth.com/v2/version" -Method Post `
-        -Headers @{ Authorization = $Token } `
-        -ContentType "multipart/form-data; boundary=$boundary" `
-        -Body ([System.Text.Encoding]::GetEncoding("iso-8859-1").GetBytes($body))
-    Write-Host ""
-    Write-Host "Uploaded! https://modrinth.com/project/$ProjectSlug/version/$($resp.version_number)" -ForegroundColor Green
+    $response = $client.PostAsync("https://api.modrinth.com/v2/version", $form).Result
+    $respBody = $response.Content.ReadAsStringAsync().Result
+
+    if ($response.IsSuccessStatusCode) {
+        $v = $respBody | ConvertFrom-Json
+        Write-Host ""
+        Write-Host "Uploaded! https://modrinth.com/project/$ProjectSlug/version/$($v.version_number)" -ForegroundColor Green
+    }
+    else {
+        Write-Host ""
+        Write-Host "Upload failed: HTTP $([int]$response.StatusCode) $($response.StatusCode)" -ForegroundColor Red
+        Write-Host "Modrinth says:" -ForegroundColor Red
+        Write-Host $respBody -ForegroundColor Red
+        exit 1
+    }
 }
-catch {
-    Write-Host ""
-    Write-Host "Upload failed: $($_.Exception.Message)" -ForegroundColor Red
-    if ($_.ErrorDetails.Message) { Write-Host $_.ErrorDetails.Message -ForegroundColor Red }
-    exit 1
+finally {
+    $fileStream.Dispose()
+    $form.Dispose()
+    $client.Dispose()
 }

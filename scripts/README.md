@@ -5,11 +5,16 @@
 Uploads the built jar to Modrinth as a new version. You only supply your token.
 
 ### One-time setup
-1. Create the project on https://modrinth.com/ with slug **`justquests`**.
+1. Create the project on https://modrinth.com/ with slug **`justquests`**
+   and **publish it** (uploading by slug needs a real, non-draft project).
    Set the environment (client/server), description and icon
    (`docs/assets/icon-512.png`) on the project page.
 2. Generate a Personal Access Token at
-   https://modrinth.com/settings/pats with scope **"Create versions"**.
+   https://modrinth.com/settings/pats with scopes
+   **"Create versions"** and **"Read projects"**.
+
+The script does a pre-flight check and prints Modrinth's exact error
+message if the upload is rejected, so any problem is easy to diagnose.
 
 ### Each release
 ```powershell
