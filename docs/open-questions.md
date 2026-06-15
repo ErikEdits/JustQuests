@@ -233,9 +233,12 @@ code gets built — their answer changes the storage or API design.
     (`#minecraft:logs` → any item in that tag, incl. modded). Matching
     resolves the tag to its item set; storage/codec must accept both
     forms. Makes modpack quests far more flexible.
-39. **[architecture]** Should objectives be able to require a **specific
-    item with NBT/data components** (e.g. a named or enchanted item), or
-    is item id enough for now?
+39. ~~**[architecture]** NBT/data components, or item id enough?~~
+    ✅ Answered 2026-06-12: **both.** Item id/tag is the simple default
+    ([[Q38]]); an **optional** data-component/NBT match can be added per
+    objective for advanced cases (named/enchanted items). Codec: optional
+    `components` field, absent = match any. Simple part ships first; the
+    optional component matching can come in a later version.
 40. Multi-objective quests: must **all** objectives be completed (AND), or
     should a quest be able to need **any one** of several (OR)? Or both
     via a flag?
