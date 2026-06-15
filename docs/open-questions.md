@@ -284,8 +284,10 @@ code gets built — their answer changes the storage or API design.
     (pack-maker defined). Alphabetical not needed. Switchable by the
     player; sensible default = grouped by category, then status,
     respecting the pack's custom order within each group.
-46. GUI **search/filter** box — needed, or overkill for the expected
-    quest counts?
+46. ~~GUI search/filter box?~~
+    ✅ Answered 2026-06-12: **auto-appears only when there are many
+    quests** (above a threshold, e.g. 100+). Hidden for small packs where
+    scrolling is enough. Search by name/item.
 47. Should there be a configurable **max number of active quests** at once
     per player, or unlimited?
 
