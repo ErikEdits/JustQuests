@@ -152,7 +152,11 @@ file and never rotate (answered 2026-06-11, Q1).**
 - **Server:** one shared set for all players — per-player generation
   would be overkill; the configurable server limits (see Q2) exist
   precisely to keep the amount regulated
-- The set is **synced to every player**
+- The set is **synced to every player** — but **loosely** (not
+  real-time/perfectly synchronized) to avoid straining server hardware
+  (refinement 2026-06-12, Q47)
+- **One active quest at a time per player:** a player must finish their
+  current quest before accepting another (Q47)
 - **Exclusive claiming:** once a player accepts a generated quest, no
   other player can accept that same quest — first come, first served
 - Design implication: on busy servers the configurable quest amount is

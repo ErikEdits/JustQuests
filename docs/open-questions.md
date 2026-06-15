@@ -288,8 +288,16 @@ code gets built — their answer changes the storage or API design.
     ✅ Answered 2026-06-12: **auto-appears only when there are many
     quests** (above a threshold, e.g. 100+). Hidden for small packs where
     scrolling is enough. Search by name/item.
-47. Should there be a configurable **max number of active quests** at once
-    per player, or unlimited?
+47. ~~Max active quests per player?~~
+    ✅ Answered 2026-06-12: **one active quest at a time per player.**
+    While a quest is unfinished you can't accept another; finishing it
+    frees you to take the next. Applies per player individually. (Total
+    quests over time are unlimited — only the *active* count is capped at
+    1.) NOTE: this overrides the earlier assumption of multiple active
+    quests; commands like `/quest progress` will usually show just one.
+    - **Sync:** the available quest pool is shared across players but
+      **loosely synced** (not real-time/perfectly synchronized) to avoid
+      straining server hardware. Refines [[Q7]] (shared synced set).
 
 ### Rewards & completion
 
