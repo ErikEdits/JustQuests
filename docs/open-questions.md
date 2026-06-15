@@ -244,9 +244,16 @@ code gets built — their answer changes the storage or API design.
     Optional field `mode: all` (default) / `mode: any`. Cheap to build,
     full flexibility for pack makers. (Dev decision, not a poll — players
     only see the result, not the mechanism.)
-41. New objective ideas beyond the Q13 list — worth having any of:
-    **gain advancement**, **reach level**, **tame animal**, **enchant
-    item**, **visit dimension**? Pick any that matter.
+41. ~~New objective ideas beyond the Q13 list?~~
+    ✅ Answered 2026-06-12: **add all five** —
+    `gain_advancement`, `reach_level`, `tame_animal`, `enchant_item`,
+    `visit_dimension`.
+    - **Modded dimensions:** `visit_dimension` should support them. A
+      dimension is identified by its id, so matching ANY dimension by id
+      already works generically (vanilla + modded) without per-mod code.
+      Planned enhancement: a curated recognition list for **~100 popular
+      mods** so their dimensions get auto-detected with friendly names/
+      icons. Order these objective types after the Q13 set.
 42. Should objective progress **persist if the player drops/loses items**
     (lifetime pickup count, like now), or track **current inventory**
     amount? (Current = can go down; lifetime = can't be gamed.)
