@@ -410,8 +410,12 @@ code gets built — their answer changes the storage or API design.
     storage decision.)
 82. **Season/world wipe** — an admin command to wipe ALL quest progress
     server-wide (for resets/seasons)?
-83. **Permission system** — which to support: vanilla OP levels,
-    **LuckPerms** permission nodes, or both?
+83. ~~Permission system?~~
+    ✅ Answered 2026-06-12 (volunteered): support **both** — vanilla OP
+    levels **and LuckPerms / other permission-rank plugins** for certain
+    functions (e.g. who may create polls/quests, change difficulty,
+    access restricted quests). Permission-gated features use permission
+    nodes so any compatible plugin works. Relates to [[Q55]].
 84. **Event logging** — log quest accept/complete events to the server
     log or a file for admins?
 85. **Creative/spectator** — should objectives count in creative mode, or
