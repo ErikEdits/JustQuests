@@ -273,8 +273,11 @@ code gets built — their answer changes the storage or API design.
     showing active quest + progress) — the exact design/placement is
     decided by a **Discord poll**. ⏳ poll item (added to
     discord-poll-questions.md as Poll 6).
-44. **Per-quest icon** — should a quest show a custom icon (an item as its
-    icon) in the GUI, or just text?
+44. ~~Per-quest icon or just text?~~
+    ✅ Answered 2026-06-12: **custom icon.** Pack makers set an item as
+    the quest icon (`icon: minecraft:diamond_sword`) for a livelier GUI.
+    Fallback when omitted: use the first objective's (or reward's) item
+    as the icon automatically.
 45. GUI sorting/grouping — by **category**, by **status**
     (active/available/done), **alphabetical**, or a pack-defined **custom
     order**?
