@@ -301,8 +301,12 @@ code gets built — their answer changes the storage or API design.
 
 ### Rewards & completion
 
-48. **Reward delivery** — handed out **instantly** on completion (current
-    behavior), or a **claim button** in the GUI the player must click?
+48. ~~Reward delivery: instant or claim button?~~
+    ✅ Answered 2026-06-12: **claim button in the GUI** — when a quest is
+    done the player actively claims the reward (handles full inventory,
+    feels more satisfying). Storage needs a **"completed, reward pending"**
+    state. Since the GUI arrives in v0.2, v0.1 stays instant; the claim
+    flow comes with the GUI.
 49. **Choice rewards** (pick 1 of N) — wanted eventually, and if so does
     the player pick in the GUI or via a command?
 50. What should happen if a reward references an **item from a mod that's
