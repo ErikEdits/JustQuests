@@ -227,10 +227,12 @@ code gets built — their answer changes the storage or API design.
 
 ### Objectives & matching
 
-38. **[architecture]** Should `collect_item` (and other item objectives)
-    match by **plain item type only**, or also support **item tags**
-    (e.g. `#minecraft:logs` accepts any log)? Tags make modpack quests
-    far easier but change how matching is stored.
+38. ~~**[architecture]** Item type only, or also tags?~~
+    ✅ Answered 2026-06-12: **support tags.** The item field accepts
+    either a plain id (`minecraft:oak_log`) **or** a tag
+    (`#minecraft:logs` → any item in that tag, incl. modded). Matching
+    resolves the tag to its item set; storage/codec must accept both
+    forms. Makes modpack quests far more flexible.
 39. **[architecture]** Should objectives be able to require a **specific
     item with NBT/data components** (e.g. a named or enchanted item), or
     is item id enough for now?
