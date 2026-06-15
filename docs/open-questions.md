@@ -278,9 +278,12 @@ code gets built — their answer changes the storage or API design.
     the quest icon (`icon: minecraft:diamond_sword`) for a livelier GUI.
     Fallback when omitted: use the first objective's (or reward's) item
     as the icon automatically.
-45. GUI sorting/grouping — by **category**, by **status**
-    (active/available/done), **alphabetical**, or a pack-defined **custom
-    order**?
+45. ~~GUI sorting/grouping?~~
+    ✅ Answered 2026-06-12: support **by category** (AI/custom/datapack/
+    team), **by status** (active → available → done), and **custom order**
+    (pack-maker defined). Alphabetical not needed. Switchable by the
+    player; sensible default = grouped by category, then status,
+    respecting the pack's custom order within each group.
 46. GUI **search/filter** box — needed, or overkill for the expected
     quest counts?
 47. Should there be a configurable **max number of active quests** at once
