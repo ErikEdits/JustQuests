@@ -312,8 +312,12 @@ code gets built — their answer changes the storage or API design.
     where the player picks **one**, chosen in the GUI via the claim
     button ([[Q48]]). Comes with the v0.2 GUI. (Clear fit with the claim
     flow — kept as a design decision, no poll needed.)
-50. What should happen if a reward references an **item from a mod that's
-    no longer installed** (invalid id)? Skip silently, log, or substitute?
+50. ~~Invalid reward item handling?~~
+    ✅ Answered 2026-06-12: **log + substitute.** Write a warning to the
+    log (so the pack maker sees the broken id) AND give the player a
+    **placeholder item with a hint** (e.g. paper/barrier named with the
+    missing item's id). Nothing crashes, the error is visible, and the
+    player still sees what was meant.
 
 ### Integrations & multiplayer
 
