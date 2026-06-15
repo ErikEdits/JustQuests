@@ -239,9 +239,11 @@ code gets built — their answer changes the storage or API design.
     objective for advanced cases (named/enchanted items). Codec: optional
     `components` field, absent = match any. Simple part ships first; the
     optional component matching can come in a later version.
-40. Multi-objective quests: must **all** objectives be completed (AND), or
-    should a quest be able to need **any one** of several (OR)? Or both
-    via a flag?
+40. ~~Multi-objective: AND, OR, or both?~~
+    ✅ Answered 2026-06-12: **both via a per-quest flag, default AND.**
+    Optional field `mode: all` (default) / `mode: any`. Cheap to build,
+    full flexibility for pack makers. (Dev decision, not a poll — players
+    only see the result, not the mechanism.)
 41. New objective ideas beyond the Q13 list — worth having any of:
     **gain advancement**, **reach level**, **tame animal**, **enchant
     item**, **visit dimension**? Pick any that matter.
