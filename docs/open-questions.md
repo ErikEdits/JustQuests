@@ -268,9 +268,11 @@ code gets built — their answer changes the storage or API design.
 
 ### Quest presentation & tracking
 
-43. **Pinned/tracked quest on the HUD** — a small overlay showing your
-    active quest + progress on screen (toggle)? Or keep it command/GUI
-    only?
+43. ~~Pinned/tracked quest on the HUD?~~
+    ✅ Answered 2026-06-12: **yes in principle** (toggleable HUD tracker
+    showing active quest + progress) — the exact design/placement is
+    decided by a **Discord poll**. ⏳ poll item (added to
+    discord-poll-questions.md as Poll 6).
 44. **Per-quest icon** — should a quest show a custom icon (an item as its
     icon) in the GUI, or just text?
 45. GUI sorting/grouping — by **category**, by **status**

@@ -76,6 +76,19 @@ owner). The `/poll create` line under each question is ready to paste.
 
 ---
 
+## Poll 6 — HUD quest tracker (Q43)
+
+**Question:** Want a small on-screen tracker showing your active quest and progress?
+1. Yes — show it on the HUD (toggleable)
+2. Only in the menu/GUI, not on screen
+3. Don't care
+
+```
+/poll create frage:Want a small on-screen tracker showing your active quest and progress? optionen:Yes - HUD tracker (toggleable), Only in the menu, Don't care dauer_stunden:24
+```
+
+---
+
 ## After the polls
 
 Record each result back in [open-questions.md](open-questions.md) (the
