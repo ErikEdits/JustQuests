@@ -321,9 +321,13 @@ code gets built — their answer changes the storage or API design.
 
 ### Integrations & multiplayer
 
-51. **Advancement integration** — completing a quest could **grant a
-    vanilla advancement**, and/or an advancement could **complete/unlock**
-    a quest. Worth it, which direction?
+51. ~~Advancement integration: which direction?~~
+    ✅ Answered 2026-06-12: **both directions.**
+    - Quest → Advancement: completing a quest grants a vanilla
+      advancement (optional `grants_advancement` field).
+    - Advancement → Quest: reaching an advancement completes/unlocks a
+      quest (works with the `gain_advancement` objective from [[Q41]] and
+      the v0.3 unlock/chain system).
 52. **Economy integration** — if a server has an economy mod/plugin,
     should a reward be able to **pay currency** (via command reward), or
     stay out of economy entirely?
