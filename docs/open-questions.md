@@ -307,8 +307,11 @@ code gets built — their answer changes the storage or API design.
     feels more satisfying). Storage needs a **"completed, reward pending"**
     state. Since the GUI arrives in v0.2, v0.1 stays instant; the claim
     flow comes with the GUI.
-49. **Choice rewards** (pick 1 of N) — wanted eventually, and if so does
-    the player pick in the GUI or via a command?
+49. ~~Choice rewards (pick 1 of N)?~~
+    ✅ Answered 2026-06-12: **yes** — a quest can offer several rewards
+    where the player picks **one**, chosen in the GUI via the claim
+    button ([[Q48]]). Comes with the v0.2 GUI. (Clear fit with the claim
+    flow — kept as a design decision, no poll needed.)
 50. What should happen if a reward references an **item from a mod that's
     no longer installed** (invalid id)? Skip silently, log, or substitute?
 
