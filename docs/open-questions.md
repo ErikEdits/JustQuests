@@ -328,9 +328,13 @@ code gets built — their answer changes the storage or API design.
     - Advancement → Quest: reaching an advancement completes/unlocks a
       quest (works with the `gain_advancement` objective from [[Q41]] and
       the v0.3 unlock/chain system).
-52. **Economy integration** — if a server has an economy mod/plugin,
-    should a reward be able to **pay currency** (via command reward), or
-    stay out of economy entirely?
+52. ~~Economy integration?~~
+    ✅ Answered 2026-06-12: **yes, via the command reward.** Because the
+    command reward runs any command, it pays currency through **any**
+    economy plugin — including custom/self-written ones — with **no
+    direct dependency or per-plugin code**. Works for many economy
+    plugins out of the box. General note: more integrations and features
+    will keep being added over time.
 53. **Server announcement** when a player completes a rare/marked quest
     (broadcast in chat), or keep completions private?
 54. **[architecture]** Quest source precedence — if a datapack quest, a
