@@ -216,6 +216,24 @@ code gets built — their answer changes the storage or API design.
     ✅ Partial 2026-06-12: **yes** to an update notice in principle —
     but the exact behavior (opt-out, frequency, wording) goes into the
     Discord poll to decide what works best. ⏳ poll item.
+    **Extension (2026-06-16): optional AUTO-UPDATE.** OP can enable/
+    disable (server console or chat command) a check on each start/
+    restart that applies new updates (bug fixes/features) automatically.
+    Data files (world/config/progress) are always preserved — never
+    replaced with empty ones; existing files are auto-detected.
+    ⚠️ Caveats to respect when building:
+    - **Plugin (Paper/Bukkit):** feasible and safe-ish via Paper's
+      `plugins/update/` folder — download the new jar, swap on restart.
+      Good fit.
+    - **Mod (NeoForge/Fabric/Forge):** a running mod jar generally
+      cannot self-replace (file is locked, esp. Windows). Mod updates are
+      normally handled by the launcher (Modrinth app/CurseForge). For the
+      mod, an update *notice* is the safe path; full self-update is
+      fragile — likely plugin-only.
+    - **Security:** only ever download from the official source over
+      HTTPS and verify a checksum/signature before applying. Auto-running
+      unverified downloaded code is a supply-chain risk — must be
+      avoided.
 37. ~~GUI style direction?~~
     ✅ Answered 2026-06-12: **the Discord poll decides** — book-style
     two-page layout vs. modern single-panel list goes to the community.
@@ -335,8 +353,10 @@ code gets built — their answer changes the storage or API design.
     direct dependency or per-plugin code**. Works for many economy
     plugins out of the box. General note: more integrations and features
     will keep being added over time.
-53. **Server announcement** when a player completes a rare/marked quest
-    (broadcast in chat), or keep completions private?
+53. ~~Server announcement on rare quest completion?~~
+    ✅ Answered 2026-06-12: **yes, broadcast** — but only for quests
+    flagged `announce`, so ordinary quests don't spam chat.
+    **Toggleable, default ON.** Per-server setting.
 54. **[architecture]** Quest source precedence — if a datapack quest, a
     custom-file quest and a generated quest share the **same id**, which
     wins? (Define load order now.)
