@@ -248,15 +248,23 @@ code gets built — their answer changes the storage or API design.
     ✅ Answered 2026-06-12: **add all five** —
     `gain_advancement`, `reach_level`, `tame_animal`, `enchant_item`,
     `visit_dimension`.
-    - **Modded dimensions:** `visit_dimension` should support them. A
-      dimension is identified by its id, so matching ANY dimension by id
-      already works generically (vanilla + modded) without per-mod code.
-      Planned enhancement: a curated recognition list for **~100 popular
-      mods** so their dimensions get auto-detected with friendly names/
-      icons. Order these objective types after the Q13 set.
-42. Should objective progress **persist if the player drops/loses items**
-    (lifetime pickup count, like now), or track **current inventory**
-    amount? (Current = can go down; lifetime = can't be gamed.)
+    - **Modded content support (dimensions, enchantments, animals):**
+      `visit_dimension`, `enchant_item` and `tame_animal` should all work
+      with modded content. Everything is identified by registry id, so
+      matching ANY dimension/enchantment/mob by id works generically
+      (vanilla + modded) without per-mod code. Planned enhancement: a
+      curated recognition list for **~100 popular mods** so their content
+      gets auto-detected with friendly names/icons.
+    - **AI must recognize it all:** the generator reads the loaded
+      registries at runtime, so it knows which items/mobs/enchantments/
+      dimensions actually exist in the current modpack and only generates
+      quests that are completable (ties to the achievability rules in
+      [[idea-ai-quest-generator]]).
+    - Order these objective types after the Q13 set.
+42. ~~Lifetime pickup count or current inventory?~~
+    ✅ Answered 2026-06-12: **lifetime pickup counter** (keep current
+    behavior). Once collected it counts forever, even if dropped — can't
+    be gamed by drop+repickup.
 
 ### Quest presentation & tracking
 
