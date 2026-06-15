@@ -427,3 +427,18 @@ code gets built — their answer changes the storage or API design.
 > Per user request (2026-06-12): the final round will be **50 questions
 > about NEW features the user plans for the mod**. **Do not generate these
 > until the user explicitly says "letzte Runde".** Placeholder only.
+
+## Special survey section — reserved (NOT yet written)
+
+> Per user request (2026-06-14): AFTER the final round (Round 7) is
+> finished, create a **special survey part of 70 ultra-detailed
+> questions**, as elaborate as possible. **Do not generate until the
+> final round is complete.** Placeholder only.
+
+## Planned: step-by-step build TODO
+
+> Per user request (2026-06-14): produce a sophisticated, step-by-step
+> build TODO for the mod — each feature broken into ordered sub-steps,
+> more detailed than `implementation-order.md`. To be created when
+> development starts (user will signal). See implementation-order.md for
+> the high-level phase order in the meantime.
