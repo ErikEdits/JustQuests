@@ -499,10 +499,8 @@ code gets built — their answer changes the storage or API design.
 > questions**, as elaborate as possible. **Do not generate until the
 > final round is complete.** Placeholder only.
 
-## Planned: step-by-step build TODO
+## Step-by-step build TODO — DONE (2026-06-16)
 
-> Per user request (2026-06-14): produce a sophisticated, step-by-step
-> build TODO for the mod — each feature broken into ordered sub-steps,
-> more detailed than `implementation-order.md`. To be created when
-> development starts (user will signal). See implementation-order.md for
-> the high-level phase order in the meantime.
+> Created at [build-todo.md](build-todo.md): granular, checkable build
+> plan, each feature broken into ordered sub-steps. Keep it updated as
+> decisions land and steps complete.
