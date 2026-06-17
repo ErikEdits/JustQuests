@@ -74,7 +74,13 @@ public class WorldQuestStore {
         if (file == null) return;
         try {
             Files.createDirectories(file.getParent());
-            JsonElement json = PLAYERS_CODEC.encodeStart(JsonOps.INSTANCE, players).getOrThrow();
+            // Only persist players that actually have data, so the file
+            // doesn't fill up with empty {} entries.
+            Map<UUID, PlayerQuestData> nonEmpty = new HashMap<>();
+            players.forEach((id, data) -> {
+                if (!data.isEmpty()) nonEmpty.put(id, data);
+            });
+            JsonElement json = PLAYERS_CODEC.encodeStart(JsonOps.INSTANCE, nonEmpty).getOrThrow();
             Files.writeString(file, GSON.toJson(json));
             dirty = false;
         } catch (Exception e) {
@@ -101,5 +107,10 @@ public class WorldQuestStore {
     /** Returns the player's data, creating an empty record if absent. */
     public PlayerQuestData get(UUID id) {
         return players.computeIfAbsent(id, k -> new PlayerQuestData());
+    }
+
+    /** Returns the player's data, or null if they have none (no creation). */
+    public PlayerQuestData peek(UUID id) {
+        return players.get(id);
     }
 }

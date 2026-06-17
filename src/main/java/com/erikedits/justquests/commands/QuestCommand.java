@@ -30,8 +30,10 @@ public class QuestCommand {
         ServerPlayer player = ctx.getSource().getPlayer();
         WorldQuestStore store = WorldQuestStore.get();
         if (player != null && store != null) {
-            return SharedSuggestionProvider.suggestResource(
-                store.get(player.getUUID()).active.keySet(), builder);
+            PlayerQuestData data = store.peek(player.getUUID());
+            if (data != null) {
+                return SharedSuggestionProvider.suggestResource(data.active.keySet(), builder);
+            }
         }
         return builder.buildFuture();
     };
@@ -86,9 +88,10 @@ public class QuestCommand {
 
     private static int progress(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
-        PlayerQuestData data = WorldQuestStore.get().get(player.getUUID());
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
 
-        if (data.active.isEmpty()) {
+        if (data == null || data.active.isEmpty()) {
             ctx.getSource().sendSuccess(() -> Component.literal("§7You have no active quests."), false);
             return 0;
         }
@@ -125,7 +128,12 @@ public class QuestCommand {
             return 0;
         }
 
-        PlayerQuestData data = WorldQuestStore.get().get(player.getUUID());
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) {
+            ctx.getSource().sendFailure(Component.literal("§cQuest storage is not ready yet."));
+            return 0;
+        }
+        PlayerQuestData data = store.get(player.getUUID());
         if (data.isCompleted(id)) {
             ctx.getSource().sendFailure(Component.literal("§cYou already completed this quest."));
             return 0;
@@ -136,7 +144,7 @@ public class QuestCommand {
         }
 
         data.accept(id);
-        WorldQuestStore.get().markDirty();
+        store.markDirty();
         ctx.getSource().sendSuccess(() ->
             Component.literal("§a✓ Accepted: " + quest.title()), false);
         return 1;
@@ -145,14 +153,15 @@ public class QuestCommand {
     private static int abandon(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
 
-        PlayerQuestData data = WorldQuestStore.get().get(player.getUUID());
-        if (!data.isActive(id)) {
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        if (data == null || !data.isActive(id)) {
             ctx.getSource().sendFailure(Component.literal("§cQuest is not active."));
             return 0;
         }
 
         data.abandon(id);
-        WorldQuestStore.get().markDirty();
+        store.markDirty();
         ctx.getSource().sendSuccess(() ->
             Component.literal("§7Abandoned quest: " + id), false);
         return 1;

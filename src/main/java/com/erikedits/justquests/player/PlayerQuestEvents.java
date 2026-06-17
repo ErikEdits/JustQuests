@@ -54,8 +54,9 @@ public class PlayerQuestEvents {
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null) return;
 
-        PlayerQuestData data = store.get(serverPlayer.getUUID());
-        if (data.active.isEmpty()) return;
+        // peek, not get: don't create an entry for players with no quests
+        PlayerQuestData data = store.peek(serverPlayer.getUUID());
+        if (data == null || data.active.isEmpty()) return;
 
         List<ResourceLocation> completing = new ArrayList<>();
 
