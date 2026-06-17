@@ -357,9 +357,12 @@ code gets built — their answer changes the storage or API design.
     ✅ Answered 2026-06-12: **yes, broadcast** — but only for quests
     flagged `announce`, so ordinary quests don't spam chat.
     **Toggleable, default ON.** Per-server setting.
-54. **[architecture]** Quest source precedence — if a datapack quest, a
-    custom-file quest and a generated quest share the **same id**, which
-    wins? (Define load order now.)
+54. ~~**[architecture]** Quest source precedence on id clash?~~
+    ✅ Answered 2026-06-12: **custom file wins.** Precedence high→low:
+    **custom file → datapack → generated.** A server owner's custom file
+    can override any datapack or generated quest with the same id. Load
+    order applies this; later-loaded higher-precedence source replaces
+    the lower one for a shared id.
 55. **Per-quest permission** — should some quests be restricted to certain
     ranks/permission nodes (server use), or all quests open to everyone?
 
