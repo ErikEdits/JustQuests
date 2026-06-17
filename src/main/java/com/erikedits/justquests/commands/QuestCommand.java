@@ -1,12 +1,12 @@
 package com.erikedits.justquests.commands;
 
+import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
 import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.reward.QuestReward;
-import com.erikedits.justquests.player.PlayerQuests;
 import com.erikedits.justquests.player.QuestProgress;
-import com.erikedits.justquests.registry.ModAttachments;
+import com.erikedits.justquests.storage.WorldQuestStore;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -28,9 +28,10 @@ public class QuestCommand {
 
     private static final SuggestionProvider<CommandSourceStack> ACTIVE_QUESTS = (ctx, builder) -> {
         ServerPlayer player = ctx.getSource().getPlayer();
-        if (player != null) {
+        WorldQuestStore store = WorldQuestStore.get();
+        if (player != null && store != null) {
             return SharedSuggestionProvider.suggestResource(
-                player.getData(ModAttachments.PLAYER_QUESTS).active().keySet(), builder);
+                store.get(player.getUUID()).active.keySet(), builder);
         }
         return builder.buildFuture();
     };
@@ -85,16 +86,16 @@ public class QuestCommand {
 
     private static int progress(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
-        PlayerQuests data = player.getData(ModAttachments.PLAYER_QUESTS);
+        PlayerQuestData data = WorldQuestStore.get().get(player.getUUID());
 
-        if (data.active().isEmpty()) {
+        if (data.active.isEmpty()) {
             ctx.getSource().sendSuccess(() -> Component.literal("§7You have no active quests."), false);
             return 0;
         }
 
         ctx.getSource().sendSuccess(() -> Component.literal("§eActive quests:"), false);
 
-        for (Map.Entry<ResourceLocation, QuestProgress> entry : data.active().entrySet()) {
+        for (Map.Entry<ResourceLocation, QuestProgress> entry : data.active.entrySet()) {
             Quest quest = QuestManager.INSTANCE.get(entry.getKey());
             if (quest == null) continue;
 
@@ -112,7 +113,7 @@ public class QuestCommand {
                     Component.literal("  " + bar + " §f" + quest.objectives().get(idx).displayName()), false);
             }
         }
-        return data.active().size();
+        return data.active.size();
     }
 
     private static int accept(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
@@ -124,7 +125,7 @@ public class QuestCommand {
             return 0;
         }
 
-        PlayerQuests data = player.getData(ModAttachments.PLAYER_QUESTS);
+        PlayerQuestData data = WorldQuestStore.get().get(player.getUUID());
         if (data.isCompleted(id)) {
             ctx.getSource().sendFailure(Component.literal("§cYou already completed this quest."));
             return 0;
@@ -135,6 +136,7 @@ public class QuestCommand {
         }
 
         data.accept(id);
+        WorldQuestStore.get().markDirty();
         ctx.getSource().sendSuccess(() ->
             Component.literal("§a✓ Accepted: " + quest.title()), false);
         return 1;
@@ -143,13 +145,14 @@ public class QuestCommand {
     private static int abandon(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
 
-        PlayerQuests data = player.getData(ModAttachments.PLAYER_QUESTS);
+        PlayerQuestData data = WorldQuestStore.get().get(player.getUUID());
         if (!data.isActive(id)) {
             ctx.getSource().sendFailure(Component.literal("§cQuest is not active."));
             return 0;
         }
 
         data.abandon(id);
+        WorldQuestStore.get().markDirty();
         ctx.getSource().sendSuccess(() ->
             Component.literal("§7Abandoned quest: " + id), false);
         return 1;

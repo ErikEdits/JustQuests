@@ -21,25 +21,30 @@ Rules of thumb:
 
 ---
 
-## Phase 1 — Storage foundation ⚠️ (do first)
+## Phase 1 — Storage foundation ⚠️ (do first) — IN PROGRESS
 
-**1.1 Data model**
-- [ ] Define `QuestProgress` (per-objective counters, status:
-      active / completed-pending / claimed, `acceptedAt`, `completedAt`)
-- [ ] Add optional **team/group id** field (Q14)
-- [ ] Add **timestamped history** of recently used quests (Q26, 6-day)
-- [ ] One **Codec** that serializes to JSON *and* NBT (JsonOps/NbtOps) (Q15)
+**1.1 Data model** ✅
+- [x] `PlayerQuestData` (active map, pendingClaim [reserved, Q48],
+      completed map with timestamps, teamId [reserved, Q14])
+- [x] Optional **team/group id** field reserved (Q14)
+- [x] **Timestamped** completed map for the 6-day window/repeatable (Q26)
+- [x] Codecs (`QuestProgress.CODEC`, `PlayerQuestData.CODEC`) serialize
+      to JSON via JsonOps; NBT-capable via the same codecs (Q15)
 
-**1.2 World-folder file**
-- [ ] Read/write `data/justquests/progress.json` in the world folder (Q31)
-- [ ] **Loose sync** — periodic save, not every tick (Q47)
-- [ ] One-time **migration**: import old per-player NBT attachment → new
-      file; never overwrite existing data with empty (ties to auto-update
-      data-preservation rule)
+**1.2 World-folder file** ✅
+- [x] `WorldQuestStore` reads/writes `<world>/justquests/progress.json`
+      (Q31)
+- [x] **Loose sync** — dirty flag, periodic save every 30s + on stop
+      (`ServerStorageEvents`) (Q47)
+- [x] One-time **migration** from the v0.1 per-player NBT attachment on
+      login; skips players already in the store, never overwrites
 
-**1.3 Verify**
-- [ ] Dev-server test: progress survives restart, file is human-readable
-      JSON, migration runs once cleanly
+**1.3 Verify** — partial
+- [x] Build compiles; dev server boots clean; store loads with no errors
+      ("Loaded quest progress for 0 player(s)")
+- [ ] Full play test (needs a client): accept → progress.json appears →
+      survives restart → migration runs once. Do via dev `runClient` or
+      in the real instance with the new build.
 
 ---
 

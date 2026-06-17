@@ -4,6 +4,7 @@ import com.erikedits.justquests.commands.QuestCommand;
 import com.erikedits.justquests.data.QuestManager;
 import com.erikedits.justquests.player.PlayerQuestEvents;
 import com.erikedits.justquests.registry.ModAttachments;
+import com.erikedits.justquests.storage.ServerStorageEvents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -22,6 +23,7 @@ public class JustQuests {
         NeoForge.EVENT_BUS.addListener(this::onReload);
         NeoForge.EVENT_BUS.addListener(QuestCommand::onRegisterCommands);
         NeoForge.EVENT_BUS.register(new PlayerQuestEvents());
+        NeoForge.EVENT_BUS.register(new ServerStorageEvents());
 
         LOG.info("JustQuests loaded");
     }
