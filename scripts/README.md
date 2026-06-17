@@ -1,5 +1,31 @@
 # Publishing scripts
 
+## publish-modrinth-desktop.ps1 (recommended)
+
+Convenience version that **stores your token encrypted** (Windows DPAPI,
+per-user) so you don't paste it each time. A copy lives on the Desktop as
+`justquests-publish.ps1`.
+
+```powershell
+# one-time: save token (encrypted to %USERPROFILE%\.justquests\)
+.\justquests-publish.ps1 -SaveToken
+# one-time (optional): set project environment client/server
+.\justquests-publish.ps1 -SetEnvironment
+# each release: build then upload
+.\gradlew.bat build
+.\justquests-publish.ps1                 # release
+.\justquests-publish.ps1 -VersionType beta
+```
+
+Token scopes needed: "Create versions" + "Read projects" (plus "Write
+projects" only for `-SetEnvironment`). Edit `$GameVersions`, `$Loaders`,
+`$ClientSide`, `$ServerSide` at the top when they change.
+Note: Modrinth environment (client/server) is a **project** setting, not
+per-version — that's why it's a separate `-SetEnvironment` step.
+
+---
+
+
 ## publish-modrinth.ps1
 
 Uploads the built jar to Modrinth as a new version. You only supply your token.
