@@ -95,6 +95,54 @@ Design decisions this spec implements (from open-questions.md):
 
 ---
 
+## 1A. Authentic vanilla look — TOP PRIORITY
+
+The single most important goal: this must look like **real Minecraft**, not
+a generic colorful game UI. The first generation came out too flat (solid
+saturated button rectangles) — that is wrong. Treat actual vanilla GUI
+textures as the north star and emulate their exact conventions.
+
+**Reference vanilla textures to emulate (match their look, don't copy
+pixels):**
+- The **chest/inventory background** (`gui/container/generic_54.png`): the
+  `#C6C6C6` panel with a 1px near-black outer line, a 3px raised bevel
+  (white-ish top-left, `#555555` bottom-right), and the recessed item area.
+- The **item slot**: 18x18, `#8B8B8B` body, dark inset on the top-left
+  (`#373737`), light edge bottom-right, 1px border. Copy this slot look
+  exactly — it's the most recognizable Minecraft GUI element.
+- The **vanilla button** (`gui/sprites/widget/button.png` / old
+  `widgets.png`): a gray, slightly 3D pill-less rectangle with a top
+  highlight row, body gradient of just 2-3 grays, and a dark bottom edge.
+  Hover = the faint blue-white tint vanilla uses, NOT a gold box.
+- The **written-book GUI** (`gui/book.png`): the parchment field with the
+  brown wooden border — use this as the model for Layout A's pages and
+  cover, including the muted, low-saturation parchment.
+- The **advancements screen**: the tab strips and the dark tiled
+  background border feel — good reference for category tabs.
+
+**Concrete vanilla rules (override earlier guidance where they conflict):**
+1. **Buttons are vanilla-gray by default.** Do NOT make fully green/red/
+   gold filled buttons. Accept/Abandon/Claim should be the standard gray
+   vanilla button with a **colored label** (green "Accept", red "Abandon",
+   gold "Claim" — text is code-drawn) and optionally a small colored icon.
+   If a tinted button is wanted, keep the vanilla button bevel/structure
+   and only tint it lightly (a wash), never a flat saturated fill.
+2. **Low detail, few tones.** Vanilla GUI elements use ~2-4 shades each.
+   Resist over-rendering; flat-ish with a 1px bevel is correct.
+3. **Muted, earthy palette.** Vanilla is desaturated. Pull the parchment/
+   oak and accent colors toward vanilla's muted tones; avoid neon.
+4. **Hover/selection feedback like vanilla:** a subtle lighten or the
+   blue-white edge highlight, not a bright outline box.
+5. **Backgrounds use the vanilla panel construction** (outer dark line +
+   3px bevel + recessed content area), so the screen sits naturally next
+   to a chest or inventory opened side by side.
+6. **Match vanilla GUI scale density** — elements sized like their vanilla
+   counterparts (18px slots, ~20px buttons, 16px text rows).
+
+Deliver a side-by-side check: place a real vanilla chest-GUI screenshot
+next to the mockup; if the JustQuests screen looks like it belongs in the
+same game, it passes. If it looks like a mobile game, it fails.
+
 ## 2. Hard technical constraints (cross-version: MC 1.14 → newest)
 
 Non-negotiable. The same PNGs must work unchanged from 1.14 to the latest
@@ -289,12 +337,19 @@ from the detail pane.
 ## 8. Shared widgets — full state matrix (`quest_gui.png`)
 
 ### 8.1 Buttons (80x20, 9-slice friendly — see Section 9)
-| sprite | states | palette |
+**Must look like the vanilla button** (Section 1A): gray, top highlight
+row, 2-3 gray body tones, dark bottom edge, 1px outline. NOT flat
+saturated rectangles.
+| sprite | states | look |
 |---|---|---|
-| `button` | normal, hover, disabled, pressed | gray ramp; hover adds 1px gold outline; pressed inverts bevel; disabled flat+desaturated |
-| `button.accept` | normal, hover, disabled, pressed | green ramp |
-| `button.abandon` | normal, hover, disabled, pressed | red ramp |
-| `button.claim` | normal, hover, disabled, pressed | gold ramp |
+| `button` | normal, hover, disabled, pressed | vanilla gray; hover = subtle blue-white lighten (vanilla style), not a gold box; pressed inverts bevel; disabled desaturated/flat |
+| `button.accept` | normal, hover, disabled, pressed | **vanilla gray button** — color comes from the code-drawn green label + small icon, not a green fill. Optional very light green wash only. |
+| `button.abandon` | normal, hover, disabled, pressed | vanilla gray button; red label/icon (light red wash optional) |
+| `button.claim` | normal, hover, disabled, pressed | vanilla gray button; gold label/icon (light gold wash optional) |
+
+Primary recommendation: ship ONE vanilla gray button set and let the mod
+color the **text** per action. Tinted variants are optional and must keep
+the vanilla bevel — a wash, never a solid fill.
 
 ### 8.2 Progress bar
 | sprite | size | notes |
@@ -572,6 +627,12 @@ only one (`slot`, `reward.tray`). Keep names identical across themes.
 
 ## 27. Spec changelog
 
+- **v2.1 (2026-06-18):** added Section 1A "Authentic vanilla look (TOP
+  PRIORITY)" — emulate real vanilla GUI textures (chest panel, item slot,
+  vanilla button, book GUI); buttons must be vanilla-gray with colored
+  *labels*, not flat saturated fills; muted palette; vanilla-style hover.
+  Reason: first generation looked too flat/generic; this pushes hard for
+  an authentic Minecraft look.
 - **v2 (2026-06-18):** added delivery folder structure
   (`docs/assets/JustQuests-GUI-Textures/`), pixel-coordinate wireframes,
   full state-matrix tables, 9-slice spec, concrete atlas allocation,
