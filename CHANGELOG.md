@@ -3,6 +3,37 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.1] - 2026-06-18
+
+Robustness + diagnostics update. Still command-only (GUI comes in v0.2).
+
+### Changed
+- **Storage moved to a per-world JSON file**
+  (`<world>/justquests/progress.json`) — the single source of truth and
+  the future bridge to the planned plugin edition. Replaces the v0.1
+  per-player NBT attachment; existing v0.1 progress is **migrated
+  automatically** on first login.
+- Saves are now **atomic** (temp file + move), so a crash mid-write can
+  never corrupt or lose player progress. Saving is throttled (loose).
+
+### Added
+- `/quest test` (OP) — runs a self-test battery (quest loading, quest
+  validity, codec round-trip, storage writability, store status) and
+  writes a full report including the Minecraft environment (version,
+  loaded mods, memory, OS, worlds, player data) to
+  `justquests-diagnostics.log` in the game folder.
+
+### Fixed
+- A single broken quest (unknown objective/reward type, no objectives, or
+  a non-positive count) no longer aborts loading of all quests — it is
+  logged and skipped.
+- Large item rewards are split into proper max-size stacks instead of one
+  oversized stack.
+- No more empty `{}` entries written for players without quests; saves
+  only happen when progress actually changes; null-safety hardening.
+
+[0.1.1]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.1
+
 ## [0.1.0] - 2026-06-12
 
 First public release. A lightweight, datapack-driven quest book for
