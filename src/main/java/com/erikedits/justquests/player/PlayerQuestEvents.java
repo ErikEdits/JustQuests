@@ -62,6 +62,7 @@ public class PlayerQuestEvents {
         if (data == null || data.active.isEmpty()) return;
 
         List<ResourceLocation> completing = new ArrayList<>();
+        boolean changed = false;
 
         for (Map.Entry<ResourceLocation, QuestProgress> entry : data.active.entrySet()) {
             ResourceLocation questId = entry.getKey();
@@ -76,7 +77,10 @@ public class PlayerQuestEvents {
                 if (obj.matches(picked)) {
                     int remaining = obj.requiredCount() - progress.get(i);
                     int add = Math.min(picked.getCount(), remaining);
-                    if (add > 0) progress.increment(i, add);
+                    if (add > 0) {
+                        progress.increment(i, add);
+                        changed = true;
+                    }
                 }
                 if (progress.get(i) < obj.requiredCount()) {
                     allComplete = false;
@@ -97,6 +101,10 @@ public class PlayerQuestEvents {
             serverPlayer.sendSystemMessage(Component.literal("§a✓ Quest completed: " + quest.title()));
         }
 
-        store.markDirty();
+        // Only flag a save if something actually changed (avoids saving on
+        // every unrelated item pickup).
+        if (changed) {
+            store.markDirty();
+        }
     }
 }

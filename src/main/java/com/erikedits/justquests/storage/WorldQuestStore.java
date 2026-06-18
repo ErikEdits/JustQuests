@@ -12,8 +12,10 @@ import net.minecraft.core.UUIDUtil;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.storage.LevelResource;
 
+import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -81,7 +83,16 @@ public class WorldQuestStore {
                 if (!data.isEmpty()) nonEmpty.put(id, data);
             });
             JsonElement json = PLAYERS_CODEC.encodeStart(JsonOps.INSTANCE, nonEmpty).getOrThrow();
-            Files.writeString(file, GSON.toJson(json));
+
+            // Atomic write: write a temp file then move it over the real
+            // one, so a crash mid-write can never corrupt progress.json.
+            Path tmp = file.resolveSibling("progress.json.tmp");
+            Files.writeString(tmp, GSON.toJson(json));
+            try {
+                Files.move(tmp, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+            } catch (AtomicMoveNotSupportedException ex) {
+                Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING);
+            }
             dirty = false;
         } catch (Exception e) {
             JustQuests.LOG.error("Could not write progress.json", e);
