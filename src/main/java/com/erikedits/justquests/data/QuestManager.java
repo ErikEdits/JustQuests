@@ -28,9 +28,24 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profiler) {
         Map<ResourceLocation, Quest> loaded = new HashMap<>();
-        map.forEach((id, json) -> Quest.CODEC.parse(JsonOps.INSTANCE, json)
-            .resultOrPartial(error -> JustQuests.LOG.error("Failed to parse quest {}: {}", id, error))
-            .ifPresent(quest -> loaded.put(id, quest)));
+        map.forEach((id, json) -> {
+            // Per-quest try/catch so one broken quest (e.g. an unknown
+            // objective/reward type, which the dispatch codec throws on)
+            // never aborts loading of all the others.
+            try {
+                Quest.CODEC.parse(JsonOps.INSTANCE, json)
+                    .resultOrPartial(error -> JustQuests.LOG.error("Failed to parse quest {}: {}", id, error))
+                    .ifPresent(quest -> {
+                        if (quest.objectives().isEmpty()) {
+                            JustQuests.LOG.warn("Quest {} has no objectives - skipping", id);
+                        } else {
+                            loaded.put(id, quest);
+                        }
+                    });
+            } catch (Exception e) {
+                JustQuests.LOG.error("Failed to load quest {} (invalid type or data): {}", id, e.getMessage());
+            }
+        });
         this.quests = loaded;
         JustQuests.LOG.info("Loaded {} quests", loaded.size());
     }

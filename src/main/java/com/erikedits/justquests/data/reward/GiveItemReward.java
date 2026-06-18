@@ -23,9 +23,18 @@ public record GiveItemReward(Item item, int count) implements QuestReward {
 
     @Override
     public void grant(ServerPlayer player) {
-        ItemStack stack = new ItemStack(item, count);
-        if (!player.getInventory().add(stack)) {
-            player.drop(stack, false);
+        // Split into proper max-size stacks so large rewards (e.g. from
+        // loot tables) are handed out correctly instead of as one
+        // oversized stack. Anything that doesn't fit is dropped.
+        int max = new ItemStack(item).getMaxStackSize();
+        int remaining = count;
+        while (remaining > 0) {
+            int n = Math.min(remaining, max);
+            ItemStack stack = new ItemStack(item, n);
+            if (!player.getInventory().add(stack)) {
+                player.drop(stack, false);
+            }
+            remaining -= n;
         }
     }
 
