@@ -38,6 +38,8 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
                     .ifPresent(quest -> {
                         if (quest.objectives().isEmpty()) {
                             JustQuests.LOG.warn("Quest {} has no objectives - skipping", id);
+                        } else if (quest.objectives().stream().anyMatch(o -> o.requiredCount() <= 0)) {
+                            JustQuests.LOG.warn("Quest {} has an objective with count <= 0 - skipping", id);
                         } else {
                             loaded.put(id, quest);
                         }
