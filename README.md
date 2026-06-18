@@ -57,7 +57,7 @@ Drop this in `data/yourpack/justquests/quests/first_steps.json` and it's live af
 
 ## Bundled starter quests
 
-The mod ships with a 10-quest starter line you can play out of the box (or override via datapack):
+The mod ships with a starter line you can play out of the box (or override via datapack):
 
 | Quest ID | Goal | Reward |
 |----------|------|--------|
@@ -71,6 +71,7 @@ The mod ships with a 10-quest starter line you can play out of the box (or overr
 | `justquests:deep_down` | 32 cobbled deepslate | 8 lanterns, golden apple |
 | `justquests:hot_stuff` | 4 blaze rods | 8 ender pearls, 4 magma cream |
 | `justquests:ender_seeker` | 8 ender pearls | 12 obsidian, 2 diamonds |
+| `justquests:slayer` | kill 10 zombies | 5 iron ingots |
 
 ## Building from source
 

@@ -39,7 +39,7 @@ quest, `abandon` suggests only the ones you've taken.
 
 ## 📦 Built-in quests
 
-JustQuests ships with a ready-to-play 10-quest progression so you can jump
+JustQuests ships with a ready-to-play starter progression so you can jump
 in right away.
 
 | Quest | Goal | Reward |
@@ -54,6 +54,7 @@ in right away.
 | Deep Down | 32 cobbled deepslate | 8 lanterns, golden apple |
 | Hot Stuff | 4 blaze rods | 8 ender pearls, 4 magma cream |
 | Ender Seeker | 8 ender pearls | 12 obsidian, 2 diamonds |
+| Slayer | kill 10 zombies | 5 iron ingots |
 
 > **Good to know:** objectives track items **picked up from the ground** —
 > mining blocks, harvesting crops, collecting mob drops. Crafted items go

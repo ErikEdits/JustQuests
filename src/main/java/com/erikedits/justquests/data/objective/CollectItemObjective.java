@@ -20,7 +20,7 @@ public record CollectItemObjective(Item item, int count) implements QuestObjecti
         return TYPE_ID;
     }
 
-    @Override
+    /** Type-specific match (not part of the base interface). */
     public boolean matches(ItemStack stack) {
         return stack.is(item);
     }

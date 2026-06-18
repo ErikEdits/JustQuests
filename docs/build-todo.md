@@ -57,7 +57,10 @@ Rules of thumb:
 ## Phase 2 — Content depth (v0.2 core, still command-only)
 
 **2.1 Objective types (priority order, Q13/Q41)**
-- [ ] `kill_mob`  → [ ] `place_block`  → [ ] `reach_location`
+- [x] Refactored objective tracking into `QuestProgressService` so any
+      event (not just item pickup) can advance objectives.
+- [x] `kill_mob` (via LivingDeathEvent) + bundled `slayer` example quest
+- [ ] `place_block`  → [ ] `reach_location`
 - [ ] `craft_item` (new event hook, lifts pickup-only limit)
 - [ ] `gain_advancement`, `reach_level`, `tame_animal`, `enchant_item`,
       `visit_dimension`
