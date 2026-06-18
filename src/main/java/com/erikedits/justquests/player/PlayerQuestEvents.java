@@ -3,17 +3,31 @@ package com.erikedits.justquests.player;
 import com.erikedits.justquests.JustQuests;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.objective.CollectItemObjective;
+import com.erikedits.justquests.data.objective.CraftItemObjective;
+import com.erikedits.justquests.data.objective.GainAdvancementObjective;
 import com.erikedits.justquests.data.objective.KillMobObjective;
+import com.erikedits.justquests.data.objective.PlaceBlockObjective;
+import com.erikedits.justquests.data.objective.ReachLevelObjective;
+import com.erikedits.justquests.data.objective.ReachLocationObjective;
+import com.erikedits.justquests.data.objective.TameAnimalObjective;
+import com.erikedits.justquests.data.objective.VisitDimensionObjective;
 import com.erikedits.justquests.progress.QuestProgressService;
 import com.erikedits.justquests.registry.ModAttachments;
 import com.erikedits.justquests.storage.WorldQuestStore;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.living.AnimalTameEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 public class PlayerQuestEvents {
     /**
@@ -57,9 +71,72 @@ public class PlayerQuestEvents {
     @SubscribeEvent
     public void onMobKill(LivingDeathEvent event) {
         if (event.getSource().getEntity() instanceof ServerPlayer killer) {
-            var type = event.getEntity().getType();
+            EntityType<?> type = event.getEntity().getType();
             QuestProgressService.advance(killer, obj ->
                 (obj instanceof KillMobObjective k && k.matches(type)) ? 1 : 0);
+        }
+    }
+
+    /** place_block */
+    @SubscribeEvent
+    public void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            Block block = event.getPlacedBlock().getBlock();
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof PlaceBlockObjective p && p.matches(block)) ? 1 : 0);
+        }
+    }
+
+    /** craft_item (also catches items that never fire a pickup event) */
+    @SubscribeEvent
+    public void onCraft(PlayerEvent.ItemCraftedEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            ItemStack crafted = event.getCrafting();
+            if (crafted.isEmpty()) return;
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof CraftItemObjective c && c.matches(crafted)) ? crafted.getCount() : 0);
+        }
+    }
+
+    /** tame_animal */
+    @SubscribeEvent
+    public void onTame(AnimalTameEvent event) {
+        if (event.getTamer() instanceof ServerPlayer player) {
+            EntityType<?> type = event.getAnimal().getType();
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof TameAnimalObjective t && t.matches(type)) ? 1 : 0);
+        }
+    }
+
+    /** gain_advancement */
+    @SubscribeEvent
+    public void onAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            ResourceLocation id = event.getAdvancement().id();
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof GainAdvancementObjective g && g.matches(id)) ? 1 : 0);
+        }
+    }
+
+    /** visit_dimension */
+    @SubscribeEvent
+    public void onDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            ResourceLocation to = event.getTo().location();
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof VisitDimensionObjective v && v.matches(to)) ? 1 : 0);
+        }
+    }
+
+    /** reach_location + reach_level: checked once a second per player. */
+    @SubscribeEvent
+    public void onPlayerTick(PlayerTickEvent.Post event) {
+        if (event.getEntity() instanceof ServerPlayer player && player.tickCount % 20 == 0) {
+            QuestProgressService.advance(player, obj -> {
+                if (obj instanceof ReachLocationObjective r && r.isAt(player)) return 1;
+                if (obj instanceof ReachLevelObjective l && l.reached(player)) return 1;
+                return 0;
+            });
         }
     }
 }

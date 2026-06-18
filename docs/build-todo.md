@@ -59,11 +59,17 @@ Rules of thumb:
 **2.1 Objective types (priority order, Q13/Q41)**
 - [x] Refactored objective tracking into `QuestProgressService` so any
       event (not just item pickup) can advance objectives.
-- [x] `kill_mob` (via LivingDeathEvent) + bundled `slayer` example quest
-- [ ] `place_block`  → [ ] `reach_location`
-- [ ] `craft_item` (new event hook, lifts pickup-only limit)
-- [ ] `gain_advancement`, `reach_level`, `tame_animal`, `enchant_item`,
-      `visit_dimension`
+- [x] `kill_mob` (LivingDeathEvent) + bundled `slayer` example quest
+- [x] `place_block` (BlockEvent.EntityPlaceEvent)
+- [x] `craft_item` (PlayerEvent.ItemCraftedEvent — lifts pickup-only limit)
+- [x] `reach_location`, `reach_level` (polled via PlayerTickEvent, portable)
+- [x] `tame_animal` (AnimalTameEvent)
+- [x] `gain_advancement` (AdvancementEvent.AdvancementEarnEvent)
+- [x] `visit_dimension` (PlayerChangedDimensionEvent; matches modded dims by id)
+- [ ] `enchant_item` — pending (no clean cross-version event; poll/mixin
+      later, see cross-loader-events.md)
+- Cross-loader strategy documented in
+  [cross-loader-events.md](cross-loader-events.md)
 - [ ] Tag support in item fields (`#minecraft:logs`) (Q38)
 - [ ] Optional `components`/NBT match per objective (Q39)
 - [ ] `mode: all | any` flag for multi-objective (Q40)

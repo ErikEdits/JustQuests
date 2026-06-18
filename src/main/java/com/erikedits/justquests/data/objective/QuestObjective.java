@@ -21,6 +21,13 @@ public interface QuestObjective {
         return switch (type) {
             case CollectItemObjective.TYPE_ID -> CollectItemObjective.MAP_CODEC;
             case KillMobObjective.TYPE_ID -> KillMobObjective.MAP_CODEC;
+            case PlaceBlockObjective.TYPE_ID -> PlaceBlockObjective.MAP_CODEC;
+            case CraftItemObjective.TYPE_ID -> CraftItemObjective.MAP_CODEC;
+            case TameAnimalObjective.TYPE_ID -> TameAnimalObjective.MAP_CODEC;
+            case GainAdvancementObjective.TYPE_ID -> GainAdvancementObjective.MAP_CODEC;
+            case VisitDimensionObjective.TYPE_ID -> VisitDimensionObjective.MAP_CODEC;
+            case ReachLevelObjective.TYPE_ID -> ReachLevelObjective.MAP_CODEC;
+            case ReachLocationObjective.TYPE_ID -> ReachLocationObjective.MAP_CODEC;
             default -> throw new IllegalStateException("Unknown objective type: " + type);
         };
     }
