@@ -46,7 +46,7 @@ public final class SelfTest {
         MinecraftServer server = src.getServer();
         ServerPlayer player = src.getPlayer();
 
-        out.append("======== JustQuests Self-Test — ").append(LocalDateTime.now().format(TS)).append(" ========\n");
+        out.append("======== JustQuests Self-Test - ").append(LocalDateTime.now().format(TS)).append(" ========\n");
 
         // --- Environment (Minecraft) ---
         out.append("[ENVIRONMENT]\n");
@@ -177,7 +177,7 @@ public final class SelfTest {
     }
 
     private static void check(List<String> results, int[] tally, String name, boolean pass, String detail) {
-        results.add((pass ? "[PASS] " : "[FAIL] ") + name + " — " + detail);
+        results.add((pass ? "[PASS] " : "[FAIL] ") + name + " - " + detail);
         if (pass) tally[0]++; else tally[1]++;
     }
 }
