@@ -39,12 +39,18 @@ Rules of thumb:
 - [x] One-time **migration** from the v0.1 per-player NBT attachment on
       login; skips players already in the store, never overwrites
 
-**1.3 Verify** — partial
+**1.3 Verify** — ✅ DONE (live, 2026-06-18)
 - [x] Build compiles; dev server boots clean; store loads with no errors
-      ("Loaded quest progress for 0 player(s)")
-- [ ] Full play test (needs a client): accept → progress.json appears →
-      survives restart → migration runs once. Do via dev `runClient` or
-      in the real instance with the new build.
+- [x] Live play test in the instance PASSED: accept/complete worked
+      (Green Thumb, Ender Seeker), progress.json written with correct
+      structure, migration confirmed (hot_stuff completed=0 from v0.1),
+      persistence confirmed ("Loaded quest progress for 1 player(s)" on
+      restart), `/reload` works.
+- [x] Added `/quest test` diagnostics command (OP) writing a full
+      self-test + Minecraft environment report to
+      `justquests-diagnostics.log` in the instance folder.
+
+**PHASE 1 COMPLETE.**
 
 ---
 

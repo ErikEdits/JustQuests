@@ -5,6 +5,7 @@ import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
 import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.reward.QuestReward;
+import com.erikedits.justquests.diagnostics.SelfTest;
 import com.erikedits.justquests.player.QuestProgress;
 import com.erikedits.justquests.storage.WorldQuestStore;
 import com.mojang.brigadier.CommandDispatcher;
@@ -56,7 +57,10 @@ public class QuestCommand {
                     .executes(ctx -> abandon(ctx, ResourceLocationArgument.getId(ctx, "id")))))
             .then(Commands.literal("reload")
                 .requires(src -> src.hasPermission(2))
-                .executes(QuestCommand::reload)));
+                .executes(QuestCommand::reload))
+            .then(Commands.literal("test")
+                .requires(src -> src.hasPermission(2))
+                .executes(QuestCommand::test)));
     }
 
     private static int list(CommandContext<CommandSourceStack> ctx) {
@@ -170,6 +174,12 @@ public class QuestCommand {
     private static int reload(CommandContext<CommandSourceStack> ctx) {
         ctx.getSource().sendSuccess(() ->
             Component.literal("§eUse /reload to reload quest data from datapacks."), false);
+        return 1;
+    }
+
+    private static int test(CommandContext<CommandSourceStack> ctx) {
+        String summary = SelfTest.run(ctx.getSource());
+        ctx.getSource().sendSuccess(() -> Component.literal(summary), false);
         return 1;
     }
 }
