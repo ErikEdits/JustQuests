@@ -9,6 +9,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +54,7 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
     }
 
     public Map<ResourceLocation, Quest> getQuests() {
-        return quests;
+        return Collections.unmodifiableMap(quests);
     }
 
     public Quest get(ResourceLocation id) {

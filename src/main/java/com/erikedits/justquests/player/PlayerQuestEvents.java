@@ -40,6 +40,9 @@ public class PlayerQuestEvents {
         old.active().forEach(data.active::put);
         old.completed().forEach(id -> data.completed.put(id, 0L));
         store.markDirty();
+        // Clear the old attachment so the migrated data doesn't linger in
+        // playerdata and can't be imported a second time.
+        player.removeData(ModAttachments.PLAYER_QUESTS);
         JustQuests.LOG.info("Migrated v0.1 quest data for {}", player.getGameProfile().getName());
     }
 
