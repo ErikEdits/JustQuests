@@ -5,20 +5,53 @@ No GUI bloat, no heavy dependencies — just quests and a handful of commands.
 Built as a focused, server-friendly alternative to FTB Quests and HQM for
 packs that want questing without the weight.
 
-> **Version 0.1 is command-only.** A full in-game GUI is on the way (see
-> the roadmap below). Everything here works right now on **NeoForge 1.21.1**.
+> **Still command-only for now.** A full in-game GUI is on the way (see the
+> roadmap below). Everything here works right now on **NeoForge 1.21.1**,
+> in singleplayer and on servers.
 
 ---
 
 ## ✨ What JustQuests does
 
-- **Ready to play** — comes with a built-in quest progression you can start
+- **Ready to play** — ships with a built-in quest progression you can start
   right away, no setup required.
 - **Lightweight** — tiny and fast, with no heavy dependencies.
-- **Persistent progress** — your progress is saved across sessions and kept
-  even after death.
-- **No conflicts** — being command-based, it stays out of the way of other
-  mods and UI overhauls.
+- **Make your own quests** — drop them in a simple per-world JSON file or a
+  datapack. No restart needed: the file reloads automatically as you edit it.
+- **Speaks the player's language** — quest text can be written in multiple
+  languages, and item/mob/block names show up translated for each player
+  automatically.
+- **Persistent progress** — saved per world, kept across sessions and
+  through death.
+- **Server-friendly** — runs server-side with per-world storage; stays out
+  of the way of other mods and UI overhauls.
+
+---
+
+## 🧩 Objective & reward types
+
+Quests are built from these objectives — mix and match, and choose whether a
+quest needs **all** objectives or just **any one** of them:
+
+- **collect_item** – gather items (mining, harvesting, mob drops)
+- **craft_item** – craft a given item
+- **kill_mob** – defeat entities of a type
+- **place_block** – place blocks
+- **tame_animal** – tame animals
+- **reach_level** – reach an XP level
+- **reach_location** – arrive at a position (optionally in a set dimension)
+- **visit_dimension** – enter a dimension (vanilla **or** modded, by id)
+- **gain_advancement** – earn an advancement
+
+Item objectives accept a single id (`minecraft:oak_log`), a list, or a
+**tag** (`#minecraft:logs`).
+
+Rewards:
+
+- **give_item** – hand over items
+- **loot_table** – roll a loot table for a random reward
+- **command** – run any command as the player (`{player}` is substituted) —
+  covers economy payouts, effects and more with **no** hard dependency
 
 ---
 
@@ -30,17 +63,38 @@ packs that want questing without the weight.
 | `/quest accept <id>` | Start a quest (with tab completion) |
 | `/quest progress` | Show your active quests and how far along you are |
 | `/quest abandon <id>` | Drop an active quest (suggests your active ones) |
-| `/quest reload` | *(OP)* reload quest definitions |
+| `/quest reload` | *(OP)* reload custom quests |
+| `/quest test` | *(OP)* run a self-test and write a diagnostics report |
 
 Quest ids support **tab completion** — `accept` suggests every available
 quest, `abandon` suggests only the ones you've taken.
 
 ---
 
+## ✍️ Custom quests
+
+On first launch, JustQuests writes a `custom-quests.json` file into your
+world folder (`<world>/justquests/`) with an explained example and blank
+slots to fill in. Save the file and your quests appear in-game within a few
+seconds — no restart. A custom quest overrides a datapack quest with the
+same id.
+
+Quest titles and descriptions can be a plain string **or** a per-language
+map, so a single quest can read correctly for everyone:
+
+```json
+"title": { "en_us": "Mining Trip", "de_de": "Bergbau-Ausflug" },
+"description": { "en_us": "Mine 20 iron ore.", "de_de": "Baue 20 Eisenerz ab." }
+```
+
+Each player sees their own client language, falling back to English.
+
+---
+
 ## 📦 Built-in quests
 
-JustQuests ships with a ready-to-play starter progression so you can jump
-in right away.
+JustQuests ships with a ready-to-play starter progression (English + German
+out of the box) so you can jump in right away.
 
 | Quest | Goal | Reward |
 |-------|------|--------|
@@ -55,18 +109,17 @@ in right away.
 | Hot Stuff | 4 blaze rods | 8 ender pearls, 4 magma cream |
 | Ender Seeker | 8 ender pearls | 12 obsidian, 2 diamonds |
 | Slayer | kill 10 zombies | 5 iron ingots |
-| Lumberjack | collect 32 logs (any kind) | iron axe |
+| Lumberjack | collect 32 logs (any kind, via tag) | iron axe |
 
-> **Good to know:** objectives track items **picked up from the ground** —
-> mining blocks, harvesting crops, collecting mob drops. Crafted items go
-> straight into the inventory and do not count toward a goal.
+> **Good to know:** `collect_item` counts items **picked up** (mining,
+> harvesting, mob drops). To track items the player makes, use `craft_item`.
 
 ---
 
 ## 📥 Installation
 
 1. Install **NeoForge 1.21.1** (21.1.143 or newer)
-2. Put `justquests-0.1.0.jar` into your `mods` folder
+2. Put `justquests-0.1.4.jar` into your `mods` folder
 3. Launch the game and run `/quest list`
 
 ---
@@ -75,21 +128,25 @@ in right away.
 
 - **Minecraft:** 1.21.1
 - **Loader:** NeoForge only (more loaders planned)
-- **Environment:** singleplayer
+- **Environment:** singleplayer **and** servers (runs server-side)
 
 ---
 
 ## 🗺️ Roadmap
 
-JustQuests is built step by step. Planned for upcoming versions:
+JustQuests is built step by step. Already shipped: a deep set of objective
+and reward types, item tags, quest modes & categories, per-world custom
+quests with live reload, and multi-language quest text.
 
-- **v0.2** — in-game GUI, more objective types (kill mob, place block,
-  reach location, craft item) and more reward types (XP, commands)
-- **Custom quest creation** — make and add your own quests
-- **v0.3** — quest chains and prerequisites
-- **Later** — more Minecraft versions, additional loaders (Fabric/Forge),
-  a Paper/Bukkit plugin edition, per-player language display, and an
-  optional automatic quest generator
+Planned next:
+
+- **v0.2 — in-game GUI**: a real quest book screen, claim button, choice
+  rewards and an optional HUD tracker
+- **Server & QoL**: admin commands, statistics/leaderboard, difficulty
+  settings, permission gating, completion broadcasts
+- **Automatic quest generator**: rotating, registry-aware generated quests
+- **Wider reach**: more Minecraft versions, additional loaders
+  (Fabric/Forge), and a Paper/Bukkit plugin edition
 
 Feedback shapes the priorities — bug reports and suggestions are very
 welcome on the [issue tracker](https://github.com/ErikEdits/JustQuests/issues).
