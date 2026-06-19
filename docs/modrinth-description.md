@@ -96,12 +96,19 @@ slots to fill in. Save the file and your quests appear in-game within a few
 seconds — no restart. A custom quest overrides a datapack quest with the
 same id.
 
-Quest titles and descriptions can be a plain string **or** a per-language
-map, so a single quest can read correctly for everyone:
+Quest titles and descriptions can be a plain string:
 
 ```json
-"title": { "en_us": "Mining Trip", "de_de": "Bergbau-Ausflug" },
-"description": { "en_us": "Mine 20 iron ore.", "de_de": "Baue 20 Eisenerz ab." }
+"title": "Mining Trip",
+"description": "Mine 20 iron ore."
+```
+
+…**or** a per-language map keyed by language code (`en_us`, `de_de`,
+`fr_fr`, …), so a single quest reads correctly for everyone:
+
+```json
+"title": { "en_us": "Mining Trip", "de_de": "<German title here>" },
+"description": { "en_us": "Mine 20 iron ore.", "de_de": "<German text here>" }
 ```
 
 Each player sees their own client language, falling back to English.
