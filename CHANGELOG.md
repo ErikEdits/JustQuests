@@ -3,6 +3,27 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.3] - 2026-06-19
+
+Custom quests update (Phase 4). Server owners and players can now write
+their own quests per world — still command-only; the GUI comes in v0.2.
+
+### Added
+- **Per-world custom quests.** A `<world>/justquests/custom-quests.json`
+  file lets you add quests without a datapack. Each key is the quest id
+  (a bare name becomes `justquests:<name>`, or use a full
+  `namespace:path`); keys starting with `_` are ignored.
+- **Fill-in-the-blanks template** is written automatically on first run,
+  with an explained example and blank slots. Slots with no objectives are
+  skipped silently, so you can leave blanks.
+- **Automatic live reload** — the file is watched and reloaded within a
+  few seconds of saving it; `/quest reload` also reloads it on demand and
+  now reports the total quest count.
+- **Source precedence:** a custom quest overrides a datapack quest that
+  shares the same id.
+
+[0.1.3]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.3
+
 ## [0.1.2] - 2026-06-19
 
 Content update (Phase 2). Many new objective and reward types — still
