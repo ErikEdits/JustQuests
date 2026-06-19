@@ -70,17 +70,19 @@ Rules of thumb:
       later, see cross-loader-events.md)
 - Cross-loader strategy documented in
   [cross-loader-events.md](cross-loader-events.md)
-- [ ] Tag support in item fields (`#minecraft:logs`) (Q38)
+- [x] Tag support in item fields — `item` accepts a single id, a list,
+      or a `#tag` (collect_item + craft_item), via ITEM_OR_TAG codec (Q38)
 - [ ] Optional `components`/NBT match per objective (Q39)
-- [ ] `mode: all | any` flag for multi-objective (Q40)
+- [x] `mode: all | any` flag for multi-objective (Q40)
 
 **2.2 Reward types**
-- [ ] `loot_table` reward (priority, Q29)
-- [ ] `command` reward (enables economy + anything, Q52)
+- [x] `loot_table` reward (random items from a loot table, Q29)
+- [x] `command` reward ({player} substitution, runs as @s level 4 — Q52)
 - [ ] (later) `xp`, choice rewards (Q49 — needs GUI)
 
 **2.3 Quest categories (Q3)**
-- [ ] Category field in data model (AI / custom / datapack / team)
+- [x] `category` field in the data model (default "datapack"), shown in
+      `/quest list`
 - [ ] Decide fixed vs. pack-definable (Q77 — still open)
 
 ---

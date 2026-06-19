@@ -3,6 +3,7 @@ package com.erikedits.justquests.progress;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
+import com.erikedits.justquests.data.QuestMode;
 import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.reward.QuestReward;
 import com.erikedits.justquests.player.QuestProgress;
@@ -49,6 +50,7 @@ public final class QuestProgressService {
 
             QuestProgress progress = entry.getValue();
             boolean allComplete = true;
+            boolean anyComplete = false;
 
             for (int i = 0; i < quest.objectives().size(); i++) {
                 QuestObjective obj = quest.objectives().get(i);
@@ -61,12 +63,15 @@ public final class QuestProgressService {
                         changed = true;
                     }
                 }
-                if (progress.get(i) < obj.requiredCount()) {
+                if (progress.get(i) >= obj.requiredCount()) {
+                    anyComplete = true;
+                } else {
                     allComplete = false;
                 }
             }
 
-            if (allComplete) {
+            boolean done = quest.mode() == QuestMode.ANY ? anyComplete : allComplete;
+            if (done) {
                 completing.add(entry.getKey());
             }
         }

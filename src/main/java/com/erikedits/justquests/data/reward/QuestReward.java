@@ -14,6 +14,8 @@ public interface QuestReward {
     static MapCodec<? extends QuestReward> codecForType(String type) {
         return switch (type) {
             case GiveItemReward.TYPE_ID -> GiveItemReward.MAP_CODEC;
+            case CommandReward.TYPE_ID -> CommandReward.MAP_CODEC;
+            case LootTableReward.TYPE_ID -> LootTableReward.MAP_CODEC;
             default -> throw new IllegalStateException("Unknown reward type: " + type);
         };
     }

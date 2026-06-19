@@ -3,16 +3,16 @@ package com.erikedits.justquests.data.objective;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.HolderSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-/** Craft X of a given item. */
-public record CraftItemObjective(Item item, int count) implements QuestObjective {
+/** Craft X of an item (or any item in a tag). */
+public record CraftItemObjective(HolderSet<Item> items, int count) implements QuestObjective {
     public static final String TYPE_ID = "justquests:craft_item";
 
     public static final MapCodec<CraftItemObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-        BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(CraftItemObjective::item),
+        ItemObjectives.ITEM_OR_TAG.fieldOf("item").forGetter(CraftItemObjective::items),
         Codec.INT.fieldOf("count").forGetter(CraftItemObjective::count)
     ).apply(instance, CraftItemObjective::new));
 
@@ -22,7 +22,7 @@ public record CraftItemObjective(Item item, int count) implements QuestObjective
     }
 
     public boolean matches(ItemStack stack) {
-        return stack.is(item);
+        return items.contains(stack.getItemHolder());
     }
 
     @Override
@@ -32,6 +32,6 @@ public record CraftItemObjective(Item item, int count) implements QuestObjective
 
     @Override
     public String displayName() {
-        return "Craft " + count + "x " + BuiltInRegistries.ITEM.getKey(item);
+        return "Craft " + count + "x " + ObjectiveNames.describe(items);
     }
 }

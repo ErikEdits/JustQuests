@@ -72,7 +72,8 @@ public class QuestCommand {
         }
         src.sendSuccess(() -> Component.literal("§eAvailable quests:"), false);
         quests.forEach((id, quest) -> {
-            src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title()), false);
+            src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title()
+                + " §8[" + quest.category() + "]"), false);
             if (!quest.description().isBlank()) {
                 src.sendSuccess(() -> Component.literal("  §7§o" + quest.description()), false);
             }
