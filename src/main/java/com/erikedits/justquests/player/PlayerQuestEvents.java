@@ -38,6 +38,9 @@ public class PlayerQuestEvents {
     @SubscribeEvent
     public void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        // One-time, clickable Discord welcome (0.1.5). Independent of the
+        // migration below, which may early-return.
+        com.erikedits.justquests.community.CommunityHints.onLogin(player);
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null || store.has(player.getUUID())) return;
 

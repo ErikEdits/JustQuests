@@ -1,5 +1,6 @@
 package com.erikedits.justquests.storage;
 
+import com.erikedits.justquests.community.CommunityHints;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.server.ServerStoppingEvent;
@@ -21,12 +22,14 @@ public class ServerStorageEvents {
     public void onServerStarting(ServerStartingEvent event) {
         WorldQuestStore.load(event.getServer());
         CustomQuestLoader.init(event.getServer());
+        CommunityHints.init(event.getServer());
     }
 
     @SubscribeEvent
     public void onServerStopping(ServerStoppingEvent event) {
         WorldQuestStore.unload();
         CustomQuestLoader.clear();
+        CommunityHints.clear();
     }
 
     @SubscribeEvent

@@ -13,6 +13,28 @@ Rules of thumb:
 
 ---
 
+## Version ladder (release milestones)
+
+The GUI is the big v0.2.0 jump, and it is designed from **community polls**.
+We need more Discord members before those polls are meaningful, so the
+0.1.x line keeps shipping useful, command-only releases that also grow the
+community until we are ready for the GUI.
+
+| Version | Theme | Status |
+|---------|-------|--------|
+| 0.1.0 | First release (datapack quests, commands) | ✅ shipped |
+| 0.1.1 | Robustness + diagnostics | ✅ shipped |
+| 0.1.2 | Content depth (objective/reward types, tags, modes) | ✅ shipped |
+| 0.1.3 | Per-world custom quests | ✅ shipped |
+| 0.1.4 | Localization (multi-language quest text) | ✅ shipped |
+| 0.1.5 | Community / Discord pointer (grow members for the polls) | ✅ shipped |
+| 0.1.6 | More content & QoL, no GUI needed (see Phase 9b) | ⏭️ next |
+| 0.1.7 | Polish + admin/permission groundwork | ⏭️ planned |
+| **0.2.0** | **In-game GUI** (once the polls have enough voters) | ⏭️ gated on Discord |
+| 0.3.0+ | Stats/leaderboard, generator, more loaders/versions, plugin | ⏭️ later |
+
+---
+
 ## Phase 0 — v0.1 (DONE ✅)
 
 - [x] Datapack quest loading (`collect_item` + `give_item`)
@@ -168,6 +190,39 @@ Rules of thumb:
 - [ ] Loader ports: Fabric, Forge (~3 weeks each after a feature matures)
 - [ ] **Paper/Bukkit plugin** edition (shared JSON file is the bridge;
       poll cog already specced) — own deep breakdown when reached
+
+---
+
+## Phase 9 — Community & growth (v0.1.5) — DONE (2026-06-19)
+
+Grow the Discord so the v0.2 GUI polls have enough voters. Discord:
+https://discord.gg/cMTGE9QCja
+
+- [x] One-time, clickable Discord welcome on a player's first join,
+      persisted in `<world>/justquests/seen-players.json` so it never
+      repeats. Hook: vote on the GUI + support + sneak peeks.
+- [x] `/quest discord` command (clickable invite anytime).
+- [x] Per-world `settings.json` with `discordWelcome` toggle (opt-out for
+      server owners) — first step of the Phase 5 self-managed JSON config.
+- [x] Modrinth description points to the Discord with a reason.
+- [x] `/quest test` community-hint check.
+- (only a public invite link is bundled — no tokens/webhooks)
+
+---
+
+## Phase 9b — More content & QoL toward 0.2.0 (v0.1.6+) — planned
+
+Command-only work that keeps shipping value while the Discord grows. No
+GUI required. Pulls forward the non-GUI items from Phases 2 and 5:
+
+- [ ] `enchant_item` objective (poll/mixin; see cross-loader-events.md)
+- [ ] Optional `components`/NBT match per objective (Q39)
+- [ ] Announce-flagged completion broadcast, default on (Q53)
+- [ ] `/quest stats` (personal) + groundwork for the leaderboard (Q34)
+- [ ] Admin commands: reset / view other player / list claimed (Q33)
+- [ ] Permission gating via OP + perms plugins (Q83); per-quest perm (Q55)
+- [ ] Locked-quest teaser, command-enabled (Q28)
+- [ ] Decide category: fixed vs. pack-definable (Q77)
 
 ---
 

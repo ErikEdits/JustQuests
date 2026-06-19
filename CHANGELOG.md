@@ -3,6 +3,27 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.5] - 2026-06-19
+
+Community update. The in-game GUI (v0.2) will be designed from community
+polls, so this release helps players find the Discord. Still command-only.
+
+### Added
+- **One-time Discord welcome.** The first time a player joins a world,
+  they get a single, clickable invite to the community Discord (vote on
+  the upcoming GUI, get support, see sneak peeks). It never repeats —
+  seen players are remembered in `<world>/justquests/seen-players.json`.
+- **`/quest discord`** — shows the clickable invite anytime.
+- **Per-world settings file** `<world>/justquests/settings.json`. Set
+  `"discordWelcome": false` to turn the welcome off (the file is created
+  with defaults on first run).
+- `/quest test` gained a community-hint check.
+
+### Notes
+- The Discord invite is a public link; no tokens or webhooks are bundled.
+
+[0.1.5]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.5
+
 ## [0.1.4] - 2026-06-19
 
 Localization update (Phase 7). Quests can speak the player's language —

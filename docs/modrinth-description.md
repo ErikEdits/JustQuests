@@ -11,6 +11,22 @@ packs that want questing without the weight.
 
 ---
 
+## 💬 Join the community — help shape the GUI
+
+The big **in-game GUI (v0.2)** is being designed **by the community**: its
+style, layout and features will be decided by polls on the Discord. The more
+people vote, the better the GUI everyone gets.
+
+**👉 [Join the JustQuests Discord](https://discord.gg/cMTGE9QCja)** to:
+
+- 🗳️ **Vote on the upcoming GUI** — style, layout and which features land first
+- 🛟 Get **support**, report bugs and follow update news
+- 👀 See **sneak peeks** and try **early builds** before release
+
+In-game you can run `/quest discord` anytime to get the invite.
+
+---
+
 ## ✨ What JustQuests does
 
 - **Ready to play** — ships with a built-in quest progression you can start
@@ -63,6 +79,7 @@ Rewards:
 | `/quest accept <id>` | Start a quest (with tab completion) |
 | `/quest progress` | Show your active quests and how far along you are |
 | `/quest abandon <id>` | Drop an active quest (suggests your active ones) |
+| `/quest discord` | Get the community Discord invite (vote on the GUI!) |
 | `/quest reload` | *(OP)* reload custom quests |
 | `/quest test` | *(OP)* run a self-test and write a diagnostics report |
 
@@ -119,7 +136,7 @@ out of the box) so you can jump in right away.
 ## 📥 Installation
 
 1. Install **NeoForge 1.21.1** (21.1.143 or newer)
-2. Put `justquests-0.1.4.jar` into your `mods` folder
+2. Put `justquests-0.1.5.jar` into your `mods` folder
 3. Launch the game and run `/quest list`
 
 ---
@@ -141,7 +158,8 @@ quests with live reload, and multi-language quest text.
 Planned next:
 
 - **v0.2 — in-game GUI**: a real quest book screen, claim button, choice
-  rewards and an optional HUD tracker
+  rewards and an optional HUD tracker — **designed from
+  [Discord](https://discord.gg/cMTGE9QCja) community polls**
 - **Server & QoL**: admin commands, statistics/leaderboard, difficulty
   settings, permission gating, completion broadcasts
 - **Automatic quest generator**: rotating, registry-aware generated quests

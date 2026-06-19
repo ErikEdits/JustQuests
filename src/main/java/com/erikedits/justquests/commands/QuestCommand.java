@@ -57,6 +57,7 @@ public class QuestCommand {
                 .then(Commands.argument("id", ResourceLocationArgument.id())
                     .suggests(ACTIVE_QUESTS)
                     .executes(ctx -> abandon(ctx, ResourceLocationArgument.getId(ctx, "id")))))
+            .then(Commands.literal("discord").executes(QuestCommand::discord))
             .then(Commands.literal("reload")
                 .requires(src -> src.hasPermission(2))
                 .executes(QuestCommand::reload))
@@ -201,6 +202,12 @@ public class QuestCommand {
     private static int test(CommandContext<CommandSourceStack> ctx) {
         String summary = SelfTest.run(ctx.getSource());
         ctx.getSource().sendSuccess(() -> Component.literal(summary), false);
+        return 1;
+    }
+
+    private static int discord(CommandContext<CommandSourceStack> ctx) {
+        ctx.getSource().sendSuccess(
+            com.erikedits.justquests.community.CommunityHints::discordMessage, false);
         return 1;
     }
 }

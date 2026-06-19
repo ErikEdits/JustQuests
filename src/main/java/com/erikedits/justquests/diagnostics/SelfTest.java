@@ -228,6 +228,17 @@ public final class SelfTest {
         } catch (Exception ex) { l10nOk = false; l10nMsg = ex.toString(); }
         check(results, tally, "Localized text (map + English fallback)", l10nOk, l10nMsg);
 
+        // community hint: invite set and clickable messages build (0.1.5)
+        boolean comOk = true;
+        String comMsg = "ok";
+        try {
+            comOk = com.erikedits.justquests.community.CommunityHints.INVITE.startsWith("https://")
+                && com.erikedits.justquests.community.CommunityHints.welcomeMessage() != null
+                && com.erikedits.justquests.community.CommunityHints.discordMessage() != null
+                && com.erikedits.justquests.community.CommunityHints.link() != null;
+        } catch (Exception ex) { comOk = false; comMsg = ex.toString(); }
+        check(results, tally, "Community hint (invite + messages)", comOk, comMsg);
+
         for (String r : results) out.append("  ").append(r).append("\n");
         out.append("SUMMARY: ").append(tally[0]).append(" passed, ").append(tally[1]).append(" failed\n");
         out.append("========================================================\n\n");
