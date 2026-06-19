@@ -184,4 +184,5 @@ Released under the **GNU LGPL v3**. Free to use in any modpack, no
 permission needed. Modified versions and forks must stay open source
 under the same license.
 
+**💬 Community & GUI polls:** https://discord.gg/cMTGE9QCja
 **Source & issues:** https://github.com/ErikEdits/JustQuests
