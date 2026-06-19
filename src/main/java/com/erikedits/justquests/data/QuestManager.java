@@ -20,7 +20,10 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
     // and the constructor passes GSON to super().
     public static final QuestManager INSTANCE = new QuestManager();
 
-    private Map<ResourceLocation, Quest> quests = new HashMap<>();
+    /** Quests from datapacks (reloaded on /reload). */
+    private Map<ResourceLocation, Quest> datapackQuests = new HashMap<>();
+    /** Quests from the per-world custom file. Override datapack on id clash (Q54). */
+    private Map<ResourceLocation, Quest> customQuests = new HashMap<>();
 
     private QuestManager() {
         super(GSON, DIRECTORY);
@@ -30,9 +33,6 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
     protected void apply(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profiler) {
         Map<ResourceLocation, Quest> loaded = new HashMap<>();
         map.forEach((id, json) -> {
-            // Per-quest try/catch so one broken quest (e.g. an unknown
-            // objective/reward type, which the dispatch codec throws on)
-            // never aborts loading of all the others.
             try {
                 Quest.CODEC.parse(JsonOps.INSTANCE, json)
                     .resultOrPartial(error -> JustQuests.LOG.error("Failed to parse quest {}: {}", id, error))
@@ -49,15 +49,27 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
                 JustQuests.LOG.error("Failed to load quest {} (invalid type or data): {}", id, e.getMessage());
             }
         });
-        this.quests = loaded;
+        this.datapackQuests = loaded;
         JustQuests.LOG.info("Loaded {} quests", loaded.size());
     }
 
+    /** Replaces the custom (world-file) quests. Precedence: custom > datapack. */
+    public void setCustomQuests(Map<ResourceLocation, Quest> custom) {
+        this.customQuests = custom;
+    }
+
+    /** All quests, custom overriding datapack on a shared id. */
     public Map<ResourceLocation, Quest> getQuests() {
-        return Collections.unmodifiableMap(quests);
+        if (customQuests.isEmpty()) {
+            return Collections.unmodifiableMap(datapackQuests);
+        }
+        Map<ResourceLocation, Quest> merged = new HashMap<>(datapackQuests);
+        merged.putAll(customQuests);
+        return Collections.unmodifiableMap(merged);
     }
 
     public Quest get(ResourceLocation id) {
-        return quests.get(id);
+        Quest custom = customQuests.get(id);
+        return custom != null ? custom : datapackQuests.get(id);
     }
 }

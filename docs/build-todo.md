@@ -102,12 +102,18 @@ Rules of thumb:
 
 ---
 
-## Phase 4 — Custom quests
+## Phase 4 — Custom quests — DONE (2026-06-19)
 
-- [ ] Per-world custom quest file in world folder (Q31)
-- [ ] Fill-in-the-blanks template (~400 lines, blanks skipped silently)
-- [ ] **Automatic live reload** via file watcher (Q32)
-- [ ] Source precedence: custom > datapack > generated (Q54)
+- [x] Per-world custom quest file `<world>/justquests/custom-quests.json`
+      (Q31), loaded by CustomQuestLoader on server start
+- [x] Fill-in-the-blanks template auto-written on first run (help +
+      example + blank slots; blank/no-objective slots skipped silently)
+- [x] **Automatic live reload** — file polled every ~3s, reloads on change
+      (Q32); `/quest reload` also reloads it manually
+- [x] Source precedence: custom > datapack (Q54) via QuestManager merge
+- Verified: template created, example loaded ("Loaded 1 custom quest(s)"),
+  blank slots skipped, 12 datapack + 1 custom.
+- (generated source comes with the Phase 6 AI generator)
 
 ---
 

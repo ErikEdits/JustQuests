@@ -173,8 +173,11 @@ public class QuestCommand {
     }
 
     private static int reload(CommandContext<CommandSourceStack> ctx) {
-        ctx.getSource().sendSuccess(() ->
-            Component.literal("§eUse /reload to reload quest data from datapacks."), false);
+        com.erikedits.justquests.storage.CustomQuestLoader.load();
+        int count = QuestManager.INSTANCE.getQuests().size();
+        ctx.getSource().sendSuccess(() -> Component.literal(
+            "§aReloaded custom quests. §7Total quests: " + count
+            + " §8(use /reload for datapack quests)"), false);
         return 1;
     }
 

@@ -32,6 +32,15 @@ command-only; the GUI comes in v0.2.
   can advance objectives (item pickup, mob kill, block place, craft, tame,
   advancement, dimension change; reach_level/location are polled).
 
+### Fixed
+- **Item tag parsing.** The first tag implementation used a codec that
+  needed RegistryOps, which broke parsing of a plain single item id under
+  the datapack's JsonOps (only 1 of the bundled quests loaded). Replaced
+  with a runtime matcher (`ItemStack.is`) so a single id, a list, and a
+  `#tag` all parse correctly. Verified all bundled quests load.
+- Unknown/typo'd reward types are now logged and skipped per quest
+  (same hardening as objectives) instead of being able to abort loading.
+
 ### Notes
 - `enchant_item` is not yet included (no clean cross-version event;
   planned via poll/mixin). Cross-loader strategy: see

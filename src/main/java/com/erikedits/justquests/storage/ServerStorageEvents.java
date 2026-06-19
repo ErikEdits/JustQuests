@@ -12,17 +12,21 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
  *  - save + clear on stop
  */
 public class ServerStorageEvents {
-    private static final int SAVE_INTERVAL_TICKS = 600; // 30 seconds
+    private static final int SAVE_INTERVAL_TICKS = 600;   // 30 seconds
+    private static final int CUSTOM_INTERVAL_TICKS = 60;  // 3 seconds
     private int tickCounter = 0;
+    private int customCounter = 0;
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         WorldQuestStore.load(event.getServer());
+        CustomQuestLoader.init(event.getServer());
     }
 
     @SubscribeEvent
     public void onServerStopping(ServerStoppingEvent event) {
         WorldQuestStore.unload();
+        CustomQuestLoader.clear();
     }
 
     @SubscribeEvent
@@ -33,6 +37,11 @@ public class ServerStorageEvents {
             if (store != null) {
                 store.saveIfDirty();
             }
+        }
+        // auto-reload custom quests if the file changed (Q32)
+        if (++customCounter >= CUSTOM_INTERVAL_TICKS) {
+            customCounter = 0;
+            CustomQuestLoader.tickCheck();
         }
     }
 }
