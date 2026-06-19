@@ -1,6 +1,12 @@
 {
-  "title": "Iron Harvest",
-  "description": "Mine raw iron from the depths.",
+  "title": {
+    "en_us": "Iron Harvest",
+    "de_de": "Eisenernte"
+  },
+  "description": {
+    "en_us": "Mine raw iron from the depths.",
+    "de_de": "Baue Roheisen aus der Tiefe ab."
+  },
   "objectives": [
     {
       "type": "justquests:collect_item",

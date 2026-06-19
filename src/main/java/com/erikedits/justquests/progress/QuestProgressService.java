@@ -82,7 +82,8 @@ public final class QuestProgressService {
             for (QuestReward reward : quest.rewards()) {
                 reward.grant(player);
             }
-            player.sendSystemMessage(Component.literal("§a✓ Quest completed: " + quest.title()));
+            player.sendSystemMessage(Component.literal("§a✓ Quest completed: "
+                + quest.title().get(player.clientInformation().language())));
             changed = true;
         }
 

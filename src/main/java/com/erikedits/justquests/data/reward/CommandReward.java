@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -46,5 +47,10 @@ public record CommandReward(String command) implements QuestReward {
     @Override
     public String displayName() {
         return "Run: /" + command;
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal(displayName());
     }
 }

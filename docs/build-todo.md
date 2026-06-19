@@ -144,11 +144,21 @@ Rules of thumb:
 
 ---
 
-## Phase 7 — Localization
+## Phase 7 — Localization — DONE (2026-06-19)
 
-- [ ] Per-user language via vanilla translation keys (objectives free)
-- [ ] Multi-language title/description fields, English fallback (Q21)
-- [ ] Mod's own strings English-only at launch (Q22)
+- [x] Multi-language `title`/`description` — accept a plain string OR a
+      per-language map `{"en_us": "...", "de_de": "..."}` (new
+      `LocalizedText` type), resolved from the player's client language
+      with an English fallback (Q21). Backward compatible: plain strings
+      still parse.
+- [x] Per-user language via vanilla translation keys — objective/reward
+      content (item/mob/block names) is sent as translatable components,
+      so it localizes to each client for free (objectives free).
+- [x] Mod's own connective words stay English (Q22) — only data-driven
+      text and vanilla content names translate.
+- [x] All 12 bundled quests shipped with English + German text.
+- [x] Custom-quest template documents the map form + a localized example.
+- [x] `/quest test` gains a LocalizedText check (map resolve + fallback).
 
 ---
 

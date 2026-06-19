@@ -3,6 +3,7 @@ package com.erikedits.justquests.data.objective;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
 /** Reach a given XP level. */
@@ -30,5 +31,10 @@ public record ReachLevelObjective(int level) implements QuestObjective {
     @Override
     public String displayName() {
         return "Reach level " + level;
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal(displayName());
     }
 }

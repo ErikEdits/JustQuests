@@ -2,6 +2,7 @@ package com.erikedits.justquests.data.objective;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.network.chat.Component;
 
 /**
  * Base for all objective types. Matching is type-specific (an item
@@ -36,5 +37,13 @@ public interface QuestObjective {
 
     int requiredCount();
 
+    /** Plain English, for logs and diagnostics (Q22). */
     String displayName();
+
+    /**
+     * Player-facing label. The connective words are English (Q22), but the
+     * content name (item/mob/block) is a vanilla translatable component, so
+     * it localizes to the player's client language for free (Q21).
+     */
+    Component display();
 }

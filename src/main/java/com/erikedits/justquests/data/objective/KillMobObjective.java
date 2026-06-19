@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 
 /** Kill X entities of a given type. */
@@ -33,5 +34,10 @@ public record KillMobObjective(EntityType<?> entity, int count) implements Quest
     @Override
     public String displayName() {
         return "Kill " + count + "x " + BuiltInRegistries.ENTITY_TYPE.getKey(entity);
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal("Kill " + count + "x ").append(entity.getDescription());
     }
 }

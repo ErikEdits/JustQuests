@@ -1,6 +1,7 @@
 package com.erikedits.justquests.data.objective;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +18,11 @@ import net.minecraft.world.item.ItemStack;
 public interface ItemMatcher {
     boolean matches(ItemStack stack);
 
+    /** Plain id/tag string, for logs and diagnostics. */
     String label();
+
+    /** Player-facing name; a single item localizes via its vanilla key. */
+    Component name();
 
     Codec<ItemMatcher> CODEC = Codec.STRING.xmap(ItemMatcher::parse, ItemMatcher::label);
 
@@ -38,6 +43,11 @@ public interface ItemMatcher {
         public String label() {
             return BuiltInRegistries.ITEM.getKey(item).toString();
         }
+
+        @Override
+        public Component name() {
+            return new ItemStack(item).getHoverName();
+        }
     }
 
     record Tag(TagKey<Item> tag) implements ItemMatcher {
@@ -49,6 +59,11 @@ public interface ItemMatcher {
         @Override
         public String label() {
             return "#" + tag.location();
+        }
+
+        @Override
+        public Component name() {
+            return Component.literal("#" + tag.location());
         }
     }
 }

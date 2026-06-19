@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 
 /** Tame X animals of a given type. */
@@ -32,5 +33,10 @@ public record TameAnimalObjective(EntityType<?> entity, int count) implements Qu
     @Override
     public String displayName() {
         return "Tame " + count + "x " + BuiltInRegistries.ENTITY_TYPE.getKey(entity);
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal("Tame " + count + "x ").append(entity.getDescription());
     }
 }

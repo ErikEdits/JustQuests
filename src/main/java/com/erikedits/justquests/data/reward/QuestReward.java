@@ -2,6 +2,7 @@ package com.erikedits.justquests.data.reward;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
 public interface QuestReward {
@@ -24,5 +25,9 @@ public interface QuestReward {
 
     void grant(ServerPlayer player);
 
+    /** Plain English, for logs and diagnostics (Q22). */
     String displayName();
+
+    /** Player-facing label; item rewards localize their name via vanilla keys (Q21). */
+    Component display();
 }

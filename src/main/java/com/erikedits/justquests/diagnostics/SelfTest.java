@@ -1,6 +1,7 @@
 package com.erikedits.justquests.diagnostics;
 
 import com.erikedits.justquests.JustQuests;
+import com.erikedits.justquests.data.LocalizedText;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
@@ -208,6 +209,24 @@ public final class SelfTest {
         String rewErr = parsesAll(rewSamples, false);
         check(results, tally, "All reward types parse", rewErr == null,
             rewErr == null ? rewSamples.length + " samples ok" : rewErr);
+
+        // localized title: plain string still works, per-language map resolves,
+        // and an unknown language falls back to English (Q21)
+        boolean l10nOk = true;
+        String l10nMsg = "ok";
+        try {
+            String json = "{\"title\":{\"en_us\":\"Hello\",\"de_de\":\"Hallo\"},"
+                + "\"objectives\":[{\"type\":\"justquests:reach_level\",\"level\":1}],\"rewards\":[]}";
+            Quest q = Quest.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(json)).getOrThrow();
+            boolean de = "Hallo".equals(q.title().get("de_de"));
+            boolean fallback = "Hello".equals(q.title().get("fr_fr"));   // unknown -> English
+            LocalizedText plain = LocalizedText.CODEC.parse(
+                JsonOps.INSTANCE, JsonParser.parseString("\"Hi\"")).getOrThrow();
+            boolean str = "Hi".equals(plain.get("anything"));
+            l10nOk = de && fallback && str;
+            if (!l10nOk) l10nMsg = "de=" + de + " fallback=" + fallback + " string=" + str;
+        } catch (Exception ex) { l10nOk = false; l10nMsg = ex.toString(); }
+        check(results, tally, "Localized text (map + English fallback)", l10nOk, l10nMsg);
 
         for (String r : results) out.append("  ").append(r).append("\n");
         out.append("SUMMARY: ").append(tally[0]).append(" passed, ").append(tally[1]).append(" failed\n");

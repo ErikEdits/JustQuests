@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 
 /** Place X blocks of a given type. */
@@ -32,5 +33,10 @@ public record PlaceBlockObjective(Block block, int count) implements QuestObject
     @Override
     public String displayName() {
         return "Place " + count + "x " + BuiltInRegistries.BLOCK.getKey(block);
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal("Place " + count + "x ").append(block.getName());
     }
 }

@@ -3,6 +3,7 @@ package com.erikedits.justquests.data.objective;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.phys.Vec3;
@@ -46,5 +47,10 @@ public record ReachLocationObjective(Optional<ResourceLocation> dimension, int x
     @Override
     public String displayName() {
         return "Reach (" + x + ", " + y + ", " + z + ")";
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal(displayName());
     }
 }

@@ -3,6 +3,7 @@ package com.erikedits.justquests.data.objective;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -34,5 +35,10 @@ public record CollectItemObjective(ItemMatcher item, int count) implements Quest
     @Override
     public String displayName() {
         return "Collect " + count + "x " + item.label();
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal("Collect " + count + "x ").append(item.name());
     }
 }

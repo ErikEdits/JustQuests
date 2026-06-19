@@ -1,6 +1,12 @@
 {
-  "title": "Ender Seeker",
-  "description": "Hunt endermen and collect their pearls to find the stronghold.",
+  "title": {
+    "en_us": "Ender Seeker",
+    "de_de": "Endersucher"
+  },
+  "description": {
+    "en_us": "Hunt endermen and collect their pearls to find the stronghold.",
+    "de_de": "Jage Endermen und sammle ihre Perlen, um die Festung zu finden."
+  },
   "objectives": [
     {
       "type": "justquests:collect_item",

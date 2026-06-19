@@ -1,6 +1,12 @@
 {
-  "title": "Lumberjack",
-  "description": "Chop wood of any kind.",
+  "title": {
+    "en_us": "Lumberjack",
+    "de_de": "Holzfäller"
+  },
+  "description": {
+    "en_us": "Chop wood of any kind.",
+    "de_de": "Fälle Holz jeder Art."
+  },
   "objectives": [
     {
       "type": "justquests:collect_item",

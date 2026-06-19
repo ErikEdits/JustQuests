@@ -1,6 +1,12 @@
 {
-  "title": "Deep Down",
-  "description": "Venture below Y=0 and mine the deepslate layer.",
+  "title": {
+    "en_us": "Deep Down",
+    "de_de": "Tief hinab"
+  },
+  "description": {
+    "en_us": "Venture below Y=0 and mine the deepslate layer.",
+    "de_de": "Wage dich unter Y=0 und baue die Tiefenschiefer-Schicht ab."
+  },
   "objectives": [
     {
       "type": "justquests:collect_item",

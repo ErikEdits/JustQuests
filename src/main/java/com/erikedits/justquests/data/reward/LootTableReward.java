@@ -4,6 +4,7 @@ import com.erikedits.justquests.JustQuests;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -49,5 +50,10 @@ public record LootTableReward(ResourceLocation table) implements QuestReward {
     @Override
     public String displayName() {
         return "Loot: " + table;
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal(displayName());
     }
 }

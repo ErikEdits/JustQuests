@@ -1,6 +1,12 @@
 {
-  "title": "Green Thumb",
-  "description": "Harvest wheat from your farm.",
+  "title": {
+    "en_us": "Green Thumb",
+    "de_de": "Grüner Daumen"
+  },
+  "description": {
+    "en_us": "Harvest wheat from your farm.",
+    "de_de": "Ernte Weizen von deinem Feld."
+  },
   "objectives": [
     {
       "type": "justquests:collect_item",

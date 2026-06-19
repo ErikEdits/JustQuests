@@ -3,6 +3,7 @@ package com.erikedits.justquests.data.objective;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 /** Craft X of an item (or any item in a tag). */
@@ -31,5 +32,10 @@ public record CraftItemObjective(ItemMatcher item, int count) implements QuestOb
     @Override
     public String displayName() {
         return "Craft " + count + "x " + item.label();
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal("Craft " + count + "x ").append(item.name());
     }
 }

@@ -1,5 +1,6 @@
 package com.erikedits.justquests.commands;
 
+import com.erikedits.justquests.data.LocalizedText;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
@@ -17,6 +18,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -63,8 +65,15 @@ public class QuestCommand {
                 .executes(QuestCommand::test)));
     }
 
+    /** The client language of the command source, or English for the console. */
+    private static String lang(CommandSourceStack src) {
+        ServerPlayer player = src.getPlayer();
+        return player != null ? player.clientInformation().language() : LocalizedText.DEFAULT_LANG;
+    }
+
     private static int list(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack src = ctx.getSource();
+        String lang = lang(src);
         Map<ResourceLocation, Quest> quests = QuestManager.INSTANCE.getQuests();
         if (quests.isEmpty()) {
             src.sendSuccess(() -> Component.literal("§7No quests defined."), false);
@@ -72,27 +81,35 @@ public class QuestCommand {
         }
         src.sendSuccess(() -> Component.literal("§eAvailable quests:"), false);
         quests.forEach((id, quest) -> {
-            src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title()
+            src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title().get(lang)
                 + " §8[" + quest.category() + "]"), false);
-            if (!quest.description().isBlank()) {
-                src.sendSuccess(() -> Component.literal("  §7§o" + quest.description()), false);
+            String desc = quest.description().get(lang);
+            if (!desc.isBlank()) {
+                src.sendSuccess(() -> Component.literal("  §7§o" + desc), false);
             }
 
-            String goals = quest.objectives().stream()
-                .map(QuestObjective::displayName)
-                .collect(java.util.stream.Collectors.joining("§7, §f"));
-            src.sendSuccess(() -> Component.literal("  §6Goal: §f" + goals), false);
+            MutableComponent goals = Component.literal("  §6Goal: §f");
+            java.util.List<QuestObjective> objs = quest.objectives();
+            for (int i = 0; i < objs.size(); i++) {
+                if (i > 0) goals.append(Component.literal("§7, §f"));
+                goals.append(objs.get(i).display());
+            }
+            src.sendSuccess(() -> goals, false);
 
-            String rewards = quest.rewards().stream()
-                .map(QuestReward::displayName)
-                .collect(java.util.stream.Collectors.joining("§7, §a"));
-            src.sendSuccess(() -> Component.literal("  §6Reward: §a" + rewards), false);
+            MutableComponent rewards = Component.literal("  §6Reward: §a");
+            java.util.List<QuestReward> rs = quest.rewards();
+            for (int i = 0; i < rs.size(); i++) {
+                if (i > 0) rewards.append(Component.literal("§7, §a"));
+                rewards.append(rs.get(i).display());
+            }
+            src.sendSuccess(() -> rewards, false);
         });
         return quests.size();
     }
 
     private static int progress(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
+        String lang = player.clientInformation().language();
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
 
@@ -108,7 +125,7 @@ public class QuestCommand {
             if (quest == null) continue;
 
             ctx.getSource().sendSuccess(() ->
-                Component.literal("§b" + entry.getKey() + " §7— §f" + quest.title()), false);
+                Component.literal("§b" + entry.getKey() + " §7— §f" + quest.title().get(lang)), false);
 
             QuestProgress prog = entry.getValue();
             for (int i = 0; i < quest.objectives().size(); i++) {
@@ -118,7 +135,7 @@ public class QuestCommand {
                 String bar = current >= needed ? "§a✓" : "§7" + current + "/" + needed;
                 final int idx = i;
                 ctx.getSource().sendSuccess(() ->
-                    Component.literal("  " + bar + " §f" + quest.objectives().get(idx).displayName()), false);
+                    Component.literal("  " + bar + " §f").append(quest.objectives().get(idx).display()), false);
             }
         }
         return data.active.size();
@@ -151,7 +168,7 @@ public class QuestCommand {
         data.accept(id);
         store.markDirty();
         ctx.getSource().sendSuccess(() ->
-            Component.literal("§a✓ Accepted: " + quest.title()), false);
+            Component.literal("§a✓ Accepted: " + quest.title().get(player.clientInformation().language())), false);
         return 1;
     }
 

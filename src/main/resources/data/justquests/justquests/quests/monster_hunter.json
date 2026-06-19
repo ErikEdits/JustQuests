@@ -1,6 +1,12 @@
 {
-  "title": "Monster Hunter",
-  "description": "Hunt zombies, skeletons and spiders at night and gather their drops.",
+  "title": {
+    "en_us": "Monster Hunter",
+    "de_de": "Monsterjäger"
+  },
+  "description": {
+    "en_us": "Hunt zombies, skeletons and spiders at night and gather their drops.",
+    "de_de": "Jage nachts Zombies, Skelette und Spinnen und sammle ihre Beute."
+  },
   "objectives": [
     {
       "type": "justquests:collect_item",

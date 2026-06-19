@@ -1,6 +1,12 @@
 {
-  "title": "Slayer",
-  "description": "Hunt down the undead.",
+  "title": {
+    "en_us": "Slayer",
+    "de_de": "Schlächter"
+  },
+  "description": {
+    "en_us": "Hunt down the undead.",
+    "de_de": "Erlege die Untoten."
+  },
   "objectives": [
     {
       "type": "justquests:kill_mob",

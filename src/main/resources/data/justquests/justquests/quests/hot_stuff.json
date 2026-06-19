@@ -1,6 +1,12 @@
 {
-  "title": "Hot Stuff",
-  "description": "Brave the Nether and defeat blazes for their rods.",
+  "title": {
+    "en_us": "Hot Stuff",
+    "de_de": "Heiße Sache"
+  },
+  "description": {
+    "en_us": "Brave the Nether and defeat blazes for their rods.",
+    "de_de": "Trotze dem Nether und besiege Lohen für ihre Lohenruten."
+  },
   "objectives": [
     {
       "type": "justquests:collect_item",

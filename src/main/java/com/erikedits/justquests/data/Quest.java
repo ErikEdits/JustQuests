@@ -7,11 +7,11 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.List;
 
-public record Quest(String title, String description, String category, QuestMode mode,
+public record Quest(LocalizedText title, LocalizedText description, String category, QuestMode mode,
                     List<QuestObjective> objectives, List<QuestReward> rewards) {
     public static final Codec<Quest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-        Codec.STRING.fieldOf("title").forGetter(Quest::title),
-        Codec.STRING.optionalFieldOf("description", "").forGetter(Quest::description),
+        LocalizedText.CODEC.fieldOf("title").forGetter(Quest::title),
+        LocalizedText.CODEC.optionalFieldOf("description", LocalizedText.EMPTY).forGetter(Quest::description),
         Codec.STRING.optionalFieldOf("category", "datapack").forGetter(Quest::category),
         QuestMode.CODEC.optionalFieldOf("mode", QuestMode.ALL).forGetter(Quest::mode),
         QuestObjective.CODEC.listOf().fieldOf("objectives").forGetter(Quest::objectives),

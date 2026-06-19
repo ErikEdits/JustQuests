@@ -3,6 +3,33 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.4] - 2026-06-19
+
+Localization update (Phase 7). Quests can speak the player's language —
+still command-only; the GUI comes in v0.2.
+
+### Added
+- **Multi-language quest text.** A quest's `title` and `description` can
+  now be either a plain string (as before) or a per-language map, e.g.
+  `"title": { "en_us": "Mining Trip", "de_de": "Bergbau-Ausflug" }`.
+  Each player sees their own client language, falling back to English,
+  then to any provided language. Existing string-only quests keep working.
+- **Free content translation.** Item, mob and block names shown in the
+  goal/reward lines are sent as translatable text, so they appear in each
+  player's own language automatically — no translation files needed.
+- All 12 bundled quests now ship with English **and** German text.
+- The custom-quest template documents the per-language map form and
+  includes a localized example quest.
+- `/quest test` gained a localization check (map resolution + English
+  fallback).
+
+### Notes
+- The mod's own connective words (e.g. "Collect", "Reward", command
+  feedback) remain English for now (Q22); the data-driven text and the
+  vanilla content names are what localize.
+
+[0.1.4]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.4
+
 ## [0.1.3] - 2026-06-19
 
 Custom quests update (Phase 4). Server owners and players can now write

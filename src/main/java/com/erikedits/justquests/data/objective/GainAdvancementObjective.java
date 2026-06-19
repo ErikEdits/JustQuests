@@ -2,6 +2,7 @@ package com.erikedits.justquests.data.objective;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 /** Earn a specific advancement. */
@@ -29,5 +30,10 @@ public record GainAdvancementObjective(ResourceLocation advancement) implements 
     @Override
     public String displayName() {
         return "Earn advancement " + advancement;
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal(displayName());
     }
 }

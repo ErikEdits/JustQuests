@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -41,5 +42,10 @@ public record GiveItemReward(Item item, int count) implements QuestReward {
     @Override
     public String displayName() {
         return count + "x " + BuiltInRegistries.ITEM.getKey(item);
+    }
+
+    @Override
+    public Component display() {
+        return Component.literal(count + "x ").append(new ItemStack(item).getHoverName());
     }
 }
