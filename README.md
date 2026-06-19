@@ -72,6 +72,7 @@ The mod ships with a starter line you can play out of the box (or override via d
 | `justquests:hot_stuff` | 4 blaze rods | 8 ender pearls, 4 magma cream |
 | `justquests:ender_seeker` | 8 ender pearls | 12 obsidian, 2 diamonds |
 | `justquests:slayer` | kill 10 zombies | 5 iron ingots |
+| `justquests:lumberjack` | collect 32 logs (any, via tag) | iron axe |
 
 ## Building from source
 

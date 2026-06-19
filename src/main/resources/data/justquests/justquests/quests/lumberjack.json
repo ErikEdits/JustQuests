@@ -1,0 +1,18 @@
+{
+  "title": "Lumberjack",
+  "description": "Chop wood of any kind.",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "#minecraft:logs",
+      "count": 32
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_axe",
+      "count": 1
+    }
+  ]
+}

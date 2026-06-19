@@ -10,6 +10,7 @@ import com.erikedits.justquests.player.QuestProgress;
 import com.erikedits.justquests.storage.WorldQuestStore;
 import com.mojang.serialization.JsonOps;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -77,7 +78,19 @@ public final class SelfTest {
         out.append("[MOD STATE]\n");
         Map<ResourceLocation, Quest> quests = QuestManager.INSTANCE.getQuests();
         out.append("  Quests loaded: ").append(quests.size()).append("\n");
-        out.append("  Quest ids: ").append(quests.keySet()).append("\n");
+        java.util.Set<String> objTypes = new java.util.TreeSet<>();
+        java.util.Set<String> rewTypes = new java.util.TreeSet<>();
+        quests.values().forEach(q -> {
+            q.objectives().forEach(o -> objTypes.add(o.typeId()));
+            q.rewards().forEach(r -> rewTypes.add(r.typeId()));
+        });
+        out.append("  Objective types in use: ").append(objTypes).append("\n");
+        out.append("  Reward types in use: ").append(rewTypes).append("\n");
+        out.append("  Quests (id [category/mode] obj/rew):\n");
+        quests.forEach((id, q) -> out.append("    ").append(id)
+            .append(" [").append(q.category()).append("/").append(q.mode()).append("]")
+            .append(" obj=").append(q.objectives().size())
+            .append(" rew=").append(q.rewards().size()).append("\n"));
         WorldQuestStore store = WorldQuestStore.get();
         out.append("  Store loaded: ").append(store != null ? "yes" : "no").append("\n");
         if (player != null) {
@@ -149,6 +162,53 @@ public final class SelfTest {
         check(results, tally, "World quest store loaded", store != null,
             store != null ? "ok" : "store is null");
 
+        // every loaded quest survives a Quest.CODEC round-trip (exercises
+        // all objective + reward codecs actually in use, incl. tags/mode)
+        boolean questRtOk = true;
+        String questRtMsg = "ok";
+        try {
+            for (Map.Entry<ResourceLocation, Quest> e : quests.entrySet()) {
+                Quest q = e.getValue();
+                JsonElement enc = Quest.CODEC.encodeStart(JsonOps.INSTANCE, q).getOrThrow();
+                Quest back = Quest.CODEC.parse(JsonOps.INSTANCE, enc).getOrThrow();
+                if (!back.title().equals(q.title())
+                        || back.objectives().size() != q.objectives().size()
+                        || back.rewards().size() != q.rewards().size()) {
+                    questRtOk = false;
+                    questRtMsg = e.getKey() + " mismatch";
+                    break;
+                }
+            }
+        } catch (Exception ex) { questRtOk = false; questRtMsg = ex.toString(); }
+        check(results, tally, "Quest codec round-trip (all loaded)", questRtOk, questRtMsg);
+
+        // every objective type parses from a minimal sample (incl. tag form)
+        String[][] objSamples = {
+            {"collect_item (id)", "{\"type\":\"justquests:collect_item\",\"item\":\"minecraft:stone\",\"count\":1}"},
+            {"collect_item (tag)", "{\"type\":\"justquests:collect_item\",\"item\":\"#minecraft:logs\",\"count\":1}"},
+            {"kill_mob", "{\"type\":\"justquests:kill_mob\",\"entity\":\"minecraft:zombie\",\"count\":1}"},
+            {"place_block", "{\"type\":\"justquests:place_block\",\"block\":\"minecraft:stone\",\"count\":1}"},
+            {"craft_item", "{\"type\":\"justquests:craft_item\",\"item\":\"minecraft:bread\",\"count\":1}"},
+            {"tame_animal", "{\"type\":\"justquests:tame_animal\",\"entity\":\"minecraft:wolf\",\"count\":1}"},
+            {"gain_advancement", "{\"type\":\"justquests:gain_advancement\",\"advancement\":\"minecraft:story/mine_stone\"}"},
+            {"visit_dimension", "{\"type\":\"justquests:visit_dimension\",\"dimension\":\"minecraft:the_nether\"}"},
+            {"reach_level", "{\"type\":\"justquests:reach_level\",\"level\":30}"},
+            {"reach_location", "{\"type\":\"justquests:reach_location\",\"x\":0,\"y\":64,\"z\":0}"},
+        };
+        String objErr = parsesAll(objSamples, true);
+        check(results, tally, "All objective types parse", objErr == null,
+            objErr == null ? objSamples.length + " samples ok" : objErr);
+
+        // every reward type parses from a minimal sample
+        String[][] rewSamples = {
+            {"give_item", "{\"type\":\"justquests:give_item\",\"item\":\"minecraft:bread\",\"count\":1}"},
+            {"command", "{\"type\":\"justquests:command\",\"command\":\"say hi\"}"},
+            {"loot_table", "{\"type\":\"justquests:loot_table\",\"loot_table\":\"minecraft:chests/simple_dungeon\"}"},
+        };
+        String rewErr = parsesAll(rewSamples, false);
+        check(results, tally, "All reward types parse", rewErr == null,
+            rewErr == null ? rewSamples.length + " samples ok" : rewErr);
+
         for (String r : results) out.append("  ").append(r).append("\n");
         out.append("SUMMARY: ").append(tally[0]).append(" passed, ").append(tally[1]).append(" failed\n");
         out.append("========================================================\n\n");
@@ -179,5 +239,22 @@ public final class SelfTest {
     private static void check(List<String> results, int[] tally, String name, boolean pass, String detail) {
         results.add((pass ? "[PASS] " : "[FAIL] ") + name + " - " + detail);
         if (pass) tally[0]++; else tally[1]++;
+    }
+
+    /** Parses each {label, json} sample; returns null if all parse, else the failing label+error. */
+    private static String parsesAll(String[][] samples, boolean objective) {
+        for (String[] s : samples) {
+            try {
+                JsonElement el = JsonParser.parseString(s[1]);
+                if (objective) {
+                    com.erikedits.justquests.data.objective.QuestObjective.CODEC.parse(JsonOps.INSTANCE, el).getOrThrow();
+                } else {
+                    com.erikedits.justquests.data.reward.QuestReward.CODEC.parse(JsonOps.INSTANCE, el).getOrThrow();
+                }
+            } catch (Exception ex) {
+                return s[0] + ": " + ex.getMessage();
+            }
+        }
+        return null;
     }
 }

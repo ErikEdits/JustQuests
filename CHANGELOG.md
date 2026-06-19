@@ -3,6 +3,42 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.2] - 2026-06-19
+
+Content update (Phase 2). Many new objective and reward types — still
+command-only; the GUI comes in v0.2.
+
+### Added
+- **New objective types:** `kill_mob`, `place_block`, `craft_item`,
+  `tame_animal`, `gain_advancement`, `visit_dimension`, `reach_level`,
+  `reach_location` (alongside `collect_item`). `visit_dimension` matches
+  modded dimensions by id.
+- **Item tags:** `collect_item` / `craft_item` accept a single id **or** a
+  tag (`#minecraft:logs`).
+- **Quest mode** `all | any` — finish a quest when *all* objectives are
+  done, or *any* one of them.
+- **Quest categories** (`category` field, shown in `/quest list`).
+- **New reward types:** `command` (runs a command as the player, `{player}`
+  substitution — enables economy/effects with no dependency) and
+  `loot_table` (random items from a loot table).
+- **Expanded `/quest test`:** now also round-trips every loaded quest and
+  parses a sample of every objective + reward type, and reports the
+  objective/reward types in use.
+- Bundled example quests: `slayer` (kill 10 zombies) and `lumberjack`
+  (collect 32 of any log via tag).
+
+### Changed
+- Objective tracking refactored into a loader-agnostic core so any event
+  can advance objectives (item pickup, mob kill, block place, craft, tame,
+  advancement, dimension change; reach_level/location are polled).
+
+### Notes
+- `enchant_item` is not yet included (no clean cross-version event;
+  planned via poll/mixin). Cross-loader strategy: see
+  [docs/cross-loader-events.md](docs/cross-loader-events.md).
+
+[0.1.2]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.2
+
 ## [0.1.1] - 2026-06-18
 
 Robustness + diagnostics update. Still command-only (GUI comes in v0.2).

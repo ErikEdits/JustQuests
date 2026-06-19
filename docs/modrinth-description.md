@@ -55,6 +55,7 @@ in right away.
 | Hot Stuff | 4 blaze rods | 8 ender pearls, 4 magma cream |
 | Ender Seeker | 8 ender pearls | 12 obsidian, 2 diamonds |
 | Slayer | kill 10 zombies | 5 iron ingots |
+| Lumberjack | collect 32 logs (any kind) | iron axe |
 
 > **Good to know:** objectives track items **picked up from the ground** —
 > mining blocks, harvesting crops, collecting mob drops. Crafted items go

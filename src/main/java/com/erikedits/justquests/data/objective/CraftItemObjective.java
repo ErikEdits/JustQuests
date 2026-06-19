@@ -3,16 +3,14 @@ package com.erikedits.justquests.data.objective;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.HolderSet;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 /** Craft X of an item (or any item in a tag). */
-public record CraftItemObjective(HolderSet<Item> items, int count) implements QuestObjective {
+public record CraftItemObjective(ItemMatcher item, int count) implements QuestObjective {
     public static final String TYPE_ID = "justquests:craft_item";
 
     public static final MapCodec<CraftItemObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-        ItemObjectives.ITEM_OR_TAG.fieldOf("item").forGetter(CraftItemObjective::items),
+        ItemMatcher.CODEC.fieldOf("item").forGetter(CraftItemObjective::item),
         Codec.INT.fieldOf("count").forGetter(CraftItemObjective::count)
     ).apply(instance, CraftItemObjective::new));
 
@@ -22,7 +20,7 @@ public record CraftItemObjective(HolderSet<Item> items, int count) implements Qu
     }
 
     public boolean matches(ItemStack stack) {
-        return items.contains(stack.getItemHolder());
+        return item.matches(stack);
     }
 
     @Override
@@ -32,6 +30,6 @@ public record CraftItemObjective(HolderSet<Item> items, int count) implements Qu
 
     @Override
     public String displayName() {
-        return "Craft " + count + "x " + ObjectiveNames.describe(items);
+        return "Craft " + count + "x " + item.label();
     }
 }
