@@ -1,0 +1,33 @@
+{
+  "title": {
+    "en_us": "Seasoned Miner",
+    "de_de": "Erfahrener Bergmann"
+  },
+  "description": {
+    "en_us": "Now mine 128 deepslate - you've earned it.",
+    "de_de": "Jetzt baue 128 Tiefenschiefer ab - du hast es dir verdient."
+  },
+  "category": "gathering",
+  "requires": [
+    "justquests:master_miner"
+  ],
+  "objectives": [
+    {
+      "type": "justquests:mine_block",
+      "block": "minecraft:deepslate",
+      "count": 128
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 100
+    },
+    {
+      "type": "justquests:effect",
+      "effect": "minecraft:haste",
+      "seconds": 120,
+      "amplifier": 1
+    }
+  ]
+}

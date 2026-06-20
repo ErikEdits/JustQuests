@@ -70,8 +70,15 @@ Rewards:
 
 - **give_item** – hand over items
 - **loot_table** – roll a loot table for a random reward
+- **xp** – give experience points
+- **effect** – apply a potion effect
+- **message** – send the player a message (per-language supported)
 - **command** – run any command as the player (`{player}` is substituted) —
   covers economy payouts, effects and more with **no** hard dependency
+
+**Quest logic:** quests can require other quests first (`requires` →
+chains, with a locked teaser until unlocked), and can be **repeatable**
+with an optional cooldown (e.g. daily quests).
 
 ---
 

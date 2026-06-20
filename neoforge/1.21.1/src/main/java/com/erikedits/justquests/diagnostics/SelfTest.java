@@ -209,6 +209,9 @@ public final class SelfTest {
             {"give_item", "{\"type\":\"justquests:give_item\",\"item\":\"minecraft:bread\",\"count\":1}"},
             {"command", "{\"type\":\"justquests:command\",\"command\":\"say hi\"}"},
             {"loot_table", "{\"type\":\"justquests:loot_table\",\"loot_table\":\"minecraft:chests/simple_dungeon\"}"},
+            {"xp", "{\"type\":\"justquests:xp\",\"amount\":30}"},
+            {"effect", "{\"type\":\"justquests:effect\",\"effect\":\"minecraft:regeneration\",\"seconds\":20,\"amplifier\":0}"},
+            {"message", "{\"type\":\"justquests:message\",\"message\":\"Well done!\"}"},
         };
         String rewErr = parsesAll(rewSamples, false);
         check(results, tally, "All reward types parse", rewErr == null,

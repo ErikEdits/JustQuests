@@ -3,6 +3,32 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.7] - 2026-06-20
+
+Rewards & quest logic. Quests can now chain, repeat, and hand out XP,
+effects and messages. Still command-only; the GUI comes in v0.2.
+
+### Added
+- **Quest prerequisites / chains.** A quest can list `requires` (quest ids
+  that must be completed first). Locked quests show a teaser in
+  `/quest list` and can't be accepted until their requirements are met.
+- **Repeatable quests.** Set `repeatable: true` to let a quest be taken
+  again after completion, with an optional `cooldown_hours` wait between
+  runs (e.g. daily quests).
+- **Three new reward types:**
+  - `xp` — give experience points.
+  - `effect` — apply a potion effect (`seconds`, `amplifier`).
+  - `message` — send the player a message (supports the per-language map).
+- Bundled examples: `seasoned_miner` (requires `master_miner`, gives XP +
+  Haste) and `daily_bread` (repeatable, 24h cooldown).
+- `/quest test` parses a sample of every new reward type.
+
+### Notes
+- This release also ships for **Minecraft 1.21 and 1.21.2** in addition to
+  1.21.1 (NeoForge). Pick the jar for your version.
+
+[0.1.7]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.7
+
 ## [0.1.6] - 2026-06-19
 
 More objective types. Still command-only; the GUI comes in v0.2.

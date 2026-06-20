@@ -1,0 +1,34 @@
+{
+  "title": {
+    "en_us": "Daily Bread",
+    "de_de": "Tägliches Brot"
+  },
+  "description": {
+    "en_us": "Eat 3 bread. Comes back every day.",
+    "de_de": "Iss 3 Brot. Kommt jeden Tag wieder."
+  },
+  "category": "daily",
+  "repeatable": true,
+  "cooldown_hours": 24,
+  "objectives": [
+    {
+      "type": "justquests:consume_item",
+      "item": "minecraft:bread",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:emerald",
+      "count": 1
+    },
+    {
+      "type": "justquests:message",
+      "message": {
+        "en_us": "See you tomorrow!",
+        "de_de": "Bis morgen!"
+      }
+    }
+  ]
+}

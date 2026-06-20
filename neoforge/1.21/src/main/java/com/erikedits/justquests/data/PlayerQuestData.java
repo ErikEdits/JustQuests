@@ -52,10 +52,14 @@ public class PlayerQuestData {
         return completed.containsKey(id);
     }
 
+    /**
+     * Adds the quest to active. Eligibility (already completed / not
+     * repeatable / cooldown / prerequisites) is enforced by the caller
+     * (QuestCommand.accept), which has the Quest definition; a re-accepted
+     * repeatable quest keeps its old completion timestamp until re-completed.
+     */
     public void accept(ResourceLocation id) {
-        if (!completed.containsKey(id)) {
-            active.putIfAbsent(id, new QuestProgress());
-        }
+        active.putIfAbsent(id, new QuestProgress());
     }
 
     public void abandon(ResourceLocation id) {

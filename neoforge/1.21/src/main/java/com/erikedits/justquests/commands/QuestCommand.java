@@ -75,6 +75,15 @@ public class QuestCommand {
     private static int list(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack src = ctx.getSource();
         String lang = lang(src);
+        // the caller's progress, so locked (prerequisite) quests can be teased
+        PlayerQuestData self = null;
+        ServerPlayer viewer = src.getPlayer();
+        if (viewer != null) {
+            WorldQuestStore store = WorldQuestStore.get();
+            if (store != null) self = store.peek(viewer.getUUID());
+        }
+        final PlayerQuestData data = self;
+
         Map<ResourceLocation, Quest> quests = QuestManager.INSTANCE.getQuests();
         if (quests.isEmpty()) {
             src.sendSuccess(() -> Component.literal("§7No quests defined."), false);
@@ -82,8 +91,24 @@ public class QuestCommand {
         }
         src.sendSuccess(() -> Component.literal("§eAvailable quests:"), false);
         quests.forEach((id, quest) -> {
+            // locked teaser: a prerequisite isn't completed yet (Q28)
+            ResourceLocation missing = null;
+            if (data != null) {
+                for (ResourceLocation req : quest.requires()) {
+                    if (!data.isCompleted(req)) { missing = req; break; }
+                }
+            }
+            if (missing != null) {
+                Quest reqQuest = QuestManager.INSTANCE.get(missing);
+                String reqName = reqQuest != null ? reqQuest.title().get(lang) : missing.toString();
+                src.sendSuccess(() -> Component.literal("§8" + id + " §7— §8" + quest.title().get(lang)
+                    + " §c[locked: needs " + reqName + "]"), false);
+                return; // teaser only — hide goal and reward
+            }
+
+            String repeatTag = quest.repeatable() ? " §d(repeatable)" : "";
             src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title().get(lang)
-                + " §8[" + quest.category() + "]"), false);
+                + " §8[" + quest.category() + "]" + repeatTag), false);
             String desc = quest.description().get(lang);
             if (!desc.isBlank()) {
                 src.sendSuccess(() -> Component.literal("  §7§o" + desc), false);
@@ -157,20 +182,53 @@ public class QuestCommand {
             return 0;
         }
         PlayerQuestData data = store.get(player.getUUID());
-        if (data.isCompleted(id)) {
-            ctx.getSource().sendFailure(Component.literal("§cYou already completed this quest."));
-            return 0;
-        }
+        String lang = player.clientInformation().language();
+
         if (data.isActive(id)) {
             ctx.getSource().sendFailure(Component.literal("§cQuest is already active."));
             return 0;
         }
 
+        // prerequisites must be completed first (Q28)
+        for (ResourceLocation req : quest.requires()) {
+            if (!data.isCompleted(req)) {
+                Quest reqQuest = QuestManager.INSTANCE.get(req);
+                String reqName = reqQuest != null ? reqQuest.title().get(lang) : req.toString();
+                ctx.getSource().sendFailure(Component.literal("§cLocked — finish first: §f" + reqName));
+                return 0;
+            }
+        }
+
+        // already completed: only re-acceptable if repeatable and off cooldown (Q26)
+        if (data.isCompleted(id)) {
+            if (!quest.repeatable()) {
+                ctx.getSource().sendFailure(Component.literal("§cYou already completed this quest."));
+                return 0;
+            }
+            long cooldownMs = quest.cooldownHours().orElse(0) * 3600_000L;
+            if (cooldownMs > 0) {
+                long remaining = cooldownMs - (System.currentTimeMillis() - data.completed.getOrDefault(id, 0L));
+                if (remaining > 0) {
+                    ctx.getSource().sendFailure(Component.literal(
+                        "§cOn cooldown — " + formatDuration(remaining) + " left."));
+                    return 0;
+                }
+            }
+        }
+
         data.accept(id);
         store.markDirty();
         ctx.getSource().sendSuccess(() ->
-            Component.literal("§a✓ Accepted: " + quest.title().get(player.clientInformation().language())), false);
+            Component.literal("§a✓ Accepted: " + quest.title().get(lang)), false);
         return 1;
+    }
+
+    /** Human-readable remaining time, e.g. "2h 5m" or "3m". */
+    private static String formatDuration(long ms) {
+        long totalMin = ms / 60000L;
+        long h = totalMin / 60;
+        long m = totalMin % 60;
+        return h > 0 ? h + "h " + m + "m" : Math.max(1, m) + "m";
     }
 
     private static int abandon(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {

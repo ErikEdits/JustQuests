@@ -17,6 +17,9 @@ public interface QuestReward {
             case GiveItemReward.TYPE_ID -> GiveItemReward.MAP_CODEC;
             case CommandReward.TYPE_ID -> CommandReward.MAP_CODEC;
             case LootTableReward.TYPE_ID -> LootTableReward.MAP_CODEC;
+            case XpReward.TYPE_ID -> XpReward.MAP_CODEC;
+            case EffectReward.TYPE_ID -> EffectReward.MAP_CODEC;
+            case MessageReward.TYPE_ID -> MessageReward.MAP_CODEC;
             default -> throw new IllegalStateException("Unknown reward type: " + type);
         };
     }

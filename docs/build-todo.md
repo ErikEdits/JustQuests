@@ -28,8 +28,8 @@ community until we are ready for the GUI.
 | 0.1.3 | Per-world custom quests | ✅ shipped |
 | 0.1.4 | Localization (multi-language quest text) | ✅ shipped |
 | 0.1.5 | Community / Discord pointer (grow members for the polls) | ✅ shipped |
-| 0.1.6 | More objective types (enchant, breed, mine, use…) + NBT match | ⏭️ next |
-| 0.1.7 | More rewards + quest logic (repeatable, prerequisites, chains) | ⏭️ planned |
+| 0.1.6 | More objective types (mine, breed, consume, smelt) | ✅ shipped |
+| 0.1.7 | Rewards + quest logic (xp/effect/message, prerequisites, repeatable) | ✅ shipped |
 | 0.1.8 | Categories & organization (filters, sort, pack-defined) | ⏭️ planned |
 | 0.1.9 | Server & admin QoL (admin cmds, broadcast, perms, difficulty) | ⏭️ planned |
 | 0.1.10 | Stats, update notice & feedback (sound/toast, leaderboard) | ⏭️ planned |
@@ -253,12 +253,16 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 - [ ] Optional `components`/NBT match per item objective (Q39) — deferred
       to a later release (needs a richer ItemMatcher)
 
-### Phase 9c — More rewards + quest logic (v0.1.7) — planned
-- [ ] `xp` reward, `effect` (potion) reward, `message`/title reward
-- [ ] **Repeatable quests** with cooldown (reuse the timestamped
-      completed-map / 6-day window already in the data model, Q26)
-- [ ] **Prerequisites / chains** — a quest can require other quests done
-- [ ] Locked-quest teaser, command-enabled (Q28)
+### Phase 9c — More rewards + quest logic (v0.1.7) — DONE (2026-06-20)
+- [x] `xp` reward, `effect` (potion) reward, `message` reward
+      (message supports the per-language map)
+- [x] **Repeatable quests** with optional `cooldown_hours` (reuses the
+      timestamped completed-map, Q26)
+- [x] **Prerequisites / chains** — `requires` (list of quest ids) enforced
+      on accept
+- [x] Locked-quest teaser in `/quest list` (Q28)
+- [x] Bundled examples: `seasoned_miner` (chain), `daily_bread` (repeatable)
+- [ ] `title` reward (actionbar/title) — deferred; `message` covers chat
 
 ### Phase 9d — Categories & organization (v0.1.8) — planned
 - [ ] Decide category: fixed vs. pack-definable (Q77)
