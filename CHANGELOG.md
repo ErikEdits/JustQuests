@@ -3,6 +3,28 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.6] - 2026-06-19
+
+More objective types. Still command-only; the GUI comes in v0.2.
+
+### Added
+- **Four new objective types:**
+  - `mine_block` — break blocks of a type (counts the break itself, unlike
+    `collect_item` which counts pickups).
+  - `breed_animal` — breed animals of a type.
+  - `consume_item` — eat or drink an item (or any item in a tag).
+  - `smelt_item` — take a smelted result out of a furnace (id or tag).
+- Bundled example quests for each: `master_miner`, `cattle_rancher`,
+  `hearty_meal`, `the_smelter` (English + German).
+- `/quest test` now also parses a sample of every new objective type.
+
+### Notes
+- `enchant_item` and per-objective component/NBT matching are still
+  planned — they need a mixin / a richer matcher and will land in a later
+  0.1.x release.
+
+[0.1.6]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.6
+
 ## [0.1.5] - 2026-06-19
 
 Community update. The in-game GUI (v0.2) will be designed from community

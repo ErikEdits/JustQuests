@@ -2,13 +2,17 @@ package com.erikedits.justquests.player;
 
 import com.erikedits.justquests.JustQuests;
 import com.erikedits.justquests.data.PlayerQuestData;
+import com.erikedits.justquests.data.objective.BreedAnimalObjective;
 import com.erikedits.justquests.data.objective.CollectItemObjective;
+import com.erikedits.justquests.data.objective.ConsumeItemObjective;
 import com.erikedits.justquests.data.objective.CraftItemObjective;
 import com.erikedits.justquests.data.objective.GainAdvancementObjective;
 import com.erikedits.justquests.data.objective.KillMobObjective;
+import com.erikedits.justquests.data.objective.MineBlockObjective;
 import com.erikedits.justquests.data.objective.PlaceBlockObjective;
 import com.erikedits.justquests.data.objective.ReachLevelObjective;
 import com.erikedits.justquests.data.objective.ReachLocationObjective;
+import com.erikedits.justquests.data.objective.SmeltItemObjective;
 import com.erikedits.justquests.data.objective.TameAnimalObjective;
 import com.erikedits.justquests.data.objective.VisitDimensionObjective;
 import com.erikedits.justquests.progress.QuestProgressService;
@@ -22,7 +26,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.AnimalTameEvent;
+import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -128,6 +134,48 @@ public class PlayerQuestEvents {
             ResourceLocation to = event.getTo().location();
             QuestProgressService.advance(player, obj ->
                 (obj instanceof VisitDimensionObjective v && v.matches(to)) ? 1 : 0);
+        }
+    }
+
+    /** mine_block: counts the block-break itself (distinct from collect_item). */
+    @SubscribeEvent
+    public void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer player) {
+            Block block = event.getState().getBlock();
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof MineBlockObjective m && m.matches(block)) ? 1 : 0);
+        }
+    }
+
+    /** breed_animal: matched on the species of the breeding parent. */
+    @SubscribeEvent
+    public void onBreed(BabyEntitySpawnEvent event) {
+        if (event.getCausedByPlayer() instanceof ServerPlayer player && event.getParentA() != null) {
+            EntityType<?> type = event.getParentA().getType();
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof BreedAnimalObjective b && b.matches(type)) ? 1 : 0);
+        }
+    }
+
+    /** consume_item: eating/drinking (finish using) a matching item. */
+    @SubscribeEvent
+    public void onConsume(LivingEntityUseItemEvent.Finish event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            ItemStack item = event.getItem();
+            if (item.isEmpty()) return;
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof ConsumeItemObjective c && c.matches(item)) ? 1 : 0);
+        }
+    }
+
+    /** smelt_item: taking a matching result out of a furnace. */
+    @SubscribeEvent
+    public void onSmelt(PlayerEvent.ItemSmeltedEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            ItemStack smelted = event.getSmelting();
+            if (smelted.isEmpty()) return;
+            QuestProgressService.advance(player, obj ->
+                (obj instanceof SmeltItemObjective s && s.matches(smelted)) ? smelted.getCount() : 0);
         }
     }
 

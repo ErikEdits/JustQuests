@@ -50,10 +50,14 @@ Quests are built from these objectives — mix and match, and choose whether a
 quest needs **all** objectives or just **any one** of them:
 
 - **collect_item** – gather items (mining, harvesting, mob drops)
+- **mine_block** – break blocks of a type
 - **craft_item** – craft a given item
-- **kill_mob** – defeat entities of a type
+- **smelt_item** – smelt items in a furnace
+- **consume_item** – eat or drink an item
 - **place_block** – place blocks
+- **kill_mob** – defeat entities of a type
 - **tame_animal** – tame animals
+- **breed_animal** – breed animals of a type
 - **reach_level** – reach an XP level
 - **reach_location** – arrive at a position (optionally in a set dimension)
 - **visit_dimension** – enter a dimension (vanilla **or** modded, by id)

@@ -225,12 +225,16 @@ mod visible) while the Discord grows toward enough voters for the GUI
 polls. Order is a suggestion; any can be reordered or merged. They pull
 forward the non-GUI items from Phases 2, 5, 6 and 7.
 
-### Phase 9b — More objective types (v0.1.6) — planned
-- [ ] `enchant_item` objective (poll/mixin; see cross-loader-events.md)
-- [ ] `breed_animal` objective (BabyEntitySpawnEvent)
-- [ ] `mine_block` objective (BlockEvent.BreakEvent — distinct from collect)
-- [ ] `use_item` / `consume_item` objective (right-click / finish using)
-- [ ] Optional `components`/NBT match per item objective (Q39)
+### Phase 9b — More objective types (v0.1.6) — DONE (2026-06-19)
+- [x] `mine_block` objective (BlockEvent.BreakEvent — distinct from collect)
+- [x] `breed_animal` objective (BabyEntitySpawnEvent, matched on parent type)
+- [x] `consume_item` objective (LivingEntityUseItemEvent.Finish; id or tag)
+- [x] `smelt_item` objective (PlayerEvent.ItemSmeltedEvent; id or tag)
+- [x] 4 bundled examples + `/quest test` samples for each
+- [ ] `enchant_item` objective — deferred (needs a mixin; no clean event)
+- [ ] `use_item` (raw right-click) — deferred (noisy; consume covers food/drink)
+- [ ] Optional `components`/NBT match per item objective (Q39) — deferred
+      to a later release (needs a richer ItemMatcher)
 
 ### Phase 9c — More rewards + quest logic (v0.1.7) — planned
 - [ ] `xp` reward, `effect` (potion) reward, `message`/title reward

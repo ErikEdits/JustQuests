@@ -29,6 +29,10 @@ public interface QuestObjective {
             case VisitDimensionObjective.TYPE_ID -> VisitDimensionObjective.MAP_CODEC;
             case ReachLevelObjective.TYPE_ID -> ReachLevelObjective.MAP_CODEC;
             case ReachLocationObjective.TYPE_ID -> ReachLocationObjective.MAP_CODEC;
+            case MineBlockObjective.TYPE_ID -> MineBlockObjective.MAP_CODEC;
+            case BreedAnimalObjective.TYPE_ID -> BreedAnimalObjective.MAP_CODEC;
+            case ConsumeItemObjective.TYPE_ID -> ConsumeItemObjective.MAP_CODEC;
+            case SmeltItemObjective.TYPE_ID -> SmeltItemObjective.MAP_CODEC;
             default -> throw new IllegalStateException("Unknown objective type: " + type);
         };
     }

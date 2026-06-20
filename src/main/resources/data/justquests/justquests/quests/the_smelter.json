@@ -1,0 +1,30 @@
+{
+  "title": {
+    "en_us": "The Smelter",
+    "de_de": "Der Verhütter"
+  },
+  "description": {
+    "en_us": "Smelt 16 iron ingots in a furnace.",
+    "de_de": "Verhütte 16 Eisenbarren in einem Ofen."
+  },
+  "category": "gathering",
+  "objectives": [
+    {
+      "type": "justquests:smelt_item",
+      "item": "minecraft:iron_ingot",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:blast_furnace",
+      "count": 1
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:coal",
+      "count": 16
+    }
+  ]
+}

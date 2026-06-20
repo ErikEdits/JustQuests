@@ -195,6 +195,10 @@ public final class SelfTest {
             {"visit_dimension", "{\"type\":\"justquests:visit_dimension\",\"dimension\":\"minecraft:the_nether\"}"},
             {"reach_level", "{\"type\":\"justquests:reach_level\",\"level\":30}"},
             {"reach_location", "{\"type\":\"justquests:reach_location\",\"x\":0,\"y\":64,\"z\":0}"},
+            {"mine_block", "{\"type\":\"justquests:mine_block\",\"block\":\"minecraft:stone\",\"count\":1}"},
+            {"breed_animal", "{\"type\":\"justquests:breed_animal\",\"entity\":\"minecraft:cow\",\"count\":1}"},
+            {"consume_item", "{\"type\":\"justquests:consume_item\",\"item\":\"minecraft:cooked_beef\",\"count\":1}"},
+            {"smelt_item", "{\"type\":\"justquests:smelt_item\",\"item\":\"minecraft:iron_ingot\",\"count\":1}"},
         };
         String objErr = parsesAll(objSamples, true);
         check(results, tally, "All objective types parse", objErr == null,
