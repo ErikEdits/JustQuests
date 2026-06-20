@@ -8,8 +8,10 @@ import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.reward.QuestReward;
 import com.erikedits.justquests.player.QuestProgress;
 import com.erikedits.justquests.storage.WorldQuestStore;
+import com.erikedits.justquests.storage.WorldSettings;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.ArrayList;
@@ -84,6 +86,15 @@ public final class QuestProgressService {
             }
             player.sendSystemMessage(Component.literal("§a✓ Quest completed: "
                 + quest.title().get(player.clientInformation().language())));
+            // optional server-wide announcement (Q53), default on
+            if (WorldSettings.announceCompletions()) {
+                MinecraftServer server = player.getServer();
+                if (server != null) {
+                    server.getPlayerList().broadcastSystemMessage(Component.literal(
+                        "§e" + player.getGameProfile().getName() + " §7completed §f"
+                        + quest.title().getDefault() + "§7!"), false);
+                }
+            }
             changed = true;
         }
 

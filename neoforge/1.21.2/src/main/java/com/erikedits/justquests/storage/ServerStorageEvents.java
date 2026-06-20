@@ -21,6 +21,7 @@ public class ServerStorageEvents {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         WorldQuestStore.load(event.getServer());
+        WorldSettings.load(event.getServer());   // load settings before readers
         CustomQuestLoader.init(event.getServer());
         CommunityHints.init(event.getServer());
     }
@@ -30,6 +31,7 @@ public class ServerStorageEvents {
         WorldQuestStore.unload();
         CustomQuestLoader.clear();
         CommunityHints.clear();
+        WorldSettings.reset();
     }
 
     @SubscribeEvent

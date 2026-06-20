@@ -3,6 +3,31 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.9] - 2026-06-20
+
+Server & admin tools. Still command-only; the GUI comes in v0.2.
+
+### Added
+- **Admin commands** (OP, permission level 2):
+  - `/quest admin view <player>` — see a player's active and completed
+    quests.
+  - `/quest admin reset <player>` — clear all of a player's progress.
+  - `/quest admin reset <player> <id>` — reset a single quest.
+  - `/quest admin complete <player> <id>` — force-complete a quest and
+    grant its rewards.
+- **Completion broadcast.** When a player finishes a quest, a message is
+  announced to everyone on the server. On by default; turn it off with
+  `"announceCompletions": false` in the per-world settings file.
+- **Per-world settings** are now centralized in
+  `<world>/justquests/settings.json` (`discordWelcome`,
+  `announceCompletions`), written with defaults on first run.
+
+### Notes
+- Difficulty levels and per-quest permission nodes are still planned for a
+  later 0.1.x release.
+
+[0.1.9]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.9
+
 ## [0.1.8] - 2026-06-20
 
 Categories & organization. The quest list is now sorted and filterable.

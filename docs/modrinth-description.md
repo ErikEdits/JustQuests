@@ -94,6 +94,10 @@ with an optional cooldown (e.g. daily quests).
 | `/quest discord` | Get the community Discord invite (vote on the GUI!) |
 | `/quest reload` | *(OP)* reload custom quests |
 | `/quest test` | *(OP)* run a self-test and write a diagnostics report |
+| `/quest admin view\|reset\|complete <player>` | *(OP)* manage a player's quest progress |
+
+**Server admins:** quest completions are announced to everyone by default
+(toggle in `<world>/justquests/settings.json`).
 
 Quest ids support **tab completion** — `accept` suggests every available
 quest, `abandon` suggests only the ones you've taken.

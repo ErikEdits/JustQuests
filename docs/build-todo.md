@@ -31,7 +31,7 @@ community until we are ready for the GUI.
 | 0.1.6 | More objective types (mine, breed, consume, smelt) | ✅ shipped |
 | 0.1.7 | Rewards + quest logic (xp/effect/message, prerequisites, repeatable) | ✅ shipped |
 | 0.1.8 | Categories & organization (filters, sort, pack-defined) | ✅ shipped |
-| 0.1.9 | Server & admin QoL (admin cmds, broadcast, perms, difficulty) | ⏭️ planned |
+| 0.1.9 | Server & admin (admin cmds, completion broadcast, settings) | ✅ shipped |
 | 0.1.10 | Stats, update notice & feedback (sound/toast, leaderboard) | ⏭️ planned |
 | 0.1.11 | Content & language pack (more quests + more languages) | ⏭️ planned |
 | **0.2.0** | **In-game GUI** (once the polls have enough voters) | ⏭️ gated on Discord |
@@ -273,11 +273,13 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
       survival/daily) with a progression sort order
 - [ ] Per-category icon id (reserved for the GUI, v0.2)
 
-### Phase 9e — Server & admin QoL (v0.1.9) — planned
-- [ ] Admin commands: reset / view other player / list claimed (Q33)
-- [ ] Announce-flagged completion broadcast, default on (Q53)
-- [ ] Permission gating via OP + perms plugins (Q83); per-quest perm (Q55)
-- [ ] Difficulty Easy/Normal/Hard, OP-set per world (Q8/Q9)
+### Phase 9e — Server & admin QoL (v0.1.9) — DONE (2026-06-20)
+- [x] Admin commands (OP): `/quest admin view|reset|complete <player> [id]` (Q33)
+- [x] Completion broadcast to the server, default on, toggle in settings (Q53)
+- [x] Per-world `settings.json` centralized in `WorldSettings`
+      (discordWelcome, announceCompletions) — Phase 5 self-config groundwork
+- [ ] Permission gating via perms plugins / per-quest perm (Q83/Q55) — deferred
+- [ ] Difficulty Easy/Normal/Hard (Q8/Q9) — deferred (needs count scaling)
 
 ### Phase 9f — Stats, notices & feedback (v0.1.10) — planned
 - [ ] `/quest stats` (personal) + server leaderboard (Q34)

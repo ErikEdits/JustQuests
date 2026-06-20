@@ -17,6 +17,7 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -77,7 +78,23 @@ public class QuestCommand {
                 .executes(QuestCommand::reload))
             .then(Commands.literal("test")
                 .requires(src -> src.hasPermission(2))
-                .executes(QuestCommand::test)));
+                .executes(QuestCommand::test))
+            .then(Commands.literal("admin")
+                .requires(src -> src.hasPermission(2))
+                .then(Commands.literal("view")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .executes(QuestCommand::adminView)))
+                .then(Commands.literal("reset")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .executes(QuestCommand::adminResetAll)
+                        .then(Commands.argument("id", ResourceLocationArgument.id())
+                            .suggests(AVAILABLE_QUESTS)
+                            .executes(ctx -> adminResetOne(ctx, ResourceLocationArgument.getId(ctx, "id"))))))
+                .then(Commands.literal("complete")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .then(Commands.argument("id", ResourceLocationArgument.id())
+                            .suggests(AVAILABLE_QUESTS)
+                            .executes(ctx -> adminComplete(ctx, ResourceLocationArgument.getId(ctx, "id"))))))));
     }
 
     /** The client language of the command source, or English for the console. */
@@ -322,6 +339,80 @@ public class QuestCommand {
     private static int discord(CommandContext<CommandSourceStack> ctx) {
         ctx.getSource().sendSuccess(
             com.erikedits.justquests.community.CommunityHints::discordMessage, false);
+        return 1;
+    }
+
+    // --- admin (OP, permission level 2) ---------------------------------
+
+    private static int adminView(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        CommandSourceStack src = ctx.getSource();
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(target.getUUID());
+        String name = target.getGameProfile().getName();
+        if (data == null || (data.active.isEmpty() && data.completed.isEmpty())) {
+            src.sendSuccess(() -> Component.literal("§7" + name + " has no quest progress."), false);
+            return 0;
+        }
+        src.sendSuccess(() -> Component.literal("§e" + name + " §7— active: §f" + data.active.size()
+            + " §7completed: §f" + data.completed.size()), false);
+        data.active.keySet().forEach(id -> src.sendSuccess(() -> Component.literal("  §b" + id + " §7(active)"), false));
+        data.completed.keySet().forEach(id -> src.sendSuccess(() -> Component.literal("  §a" + id + " §7(done)"), false));
+        return 1;
+    }
+
+    private static int adminResetAll(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        String name = target.getGameProfile().getName();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store != null && store.has(target.getUUID())) {
+            PlayerQuestData data = store.get(target.getUUID());
+            data.active.clear();
+            data.completed.clear();
+            data.pendingClaim.clear();
+            store.markDirty();
+        }
+        ctx.getSource().sendSuccess(() -> Component.literal("§aReset all quest progress for " + name + "."), true);
+        return 1;
+    }
+
+    private static int adminResetOne(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        String name = target.getGameProfile().getName();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store != null) {
+            PlayerQuestData data = store.peek(target.getUUID());
+            if (data != null) {
+                data.active.remove(id);
+                data.completed.remove(id);
+                store.markDirty();
+            }
+        }
+        ctx.getSource().sendSuccess(() -> Component.literal("§aReset " + id + " for " + name + "."), true);
+        return 1;
+    }
+
+    private static int adminComplete(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        CommandSourceStack src = ctx.getSource();
+        Quest quest = QuestManager.INSTANCE.get(id);
+        if (quest == null) {
+            src.sendFailure(Component.literal("§cUnknown quest: " + id));
+            return 0;
+        }
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) {
+            src.sendFailure(Component.literal("§cQuest storage is not ready yet."));
+            return 0;
+        }
+        PlayerQuestData data = store.get(target.getUUID());
+        data.complete(id);
+        for (QuestReward reward : quest.rewards()) {
+            reward.grant(target);
+        }
+        store.markDirty();
+        String name = target.getGameProfile().getName();
+        src.sendSuccess(() -> Component.literal("§aForce-completed " + id + " for " + name + " (rewards granted)."), true);
         return 1;
     }
 }

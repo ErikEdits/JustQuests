@@ -1,6 +1,7 @@
 package com.erikedits.justquests.community;
 
 import com.erikedits.justquests.JustQuests;
+import com.erikedits.justquests.storage.WorldSettings;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -26,35 +27,23 @@ import java.util.UUID;
  * <p>Shows a single, clickable welcome the first time each player joins a
  * world (persisted in {@code <world>/justquests/seen-players.json}, so it
  * never repeats), plus a {@code /quest discord} command for anytime. Server
- * owners can switch the welcome off in
- * {@code <world>/justquests/settings.json} ({@code "discordWelcome": false}).
+ * owners can switch the welcome off via {@code discordWelcome} in
+ * {@code <world>/justquests/settings.json} (see {@link WorldSettings}).
  */
 public final class CommunityHints {
     public static final String INVITE = "https://discord.gg/cMTGE9QCja";
 
     private static Path seenFile;
-    private static Path settingsFile;
     private static final Set<UUID> seen = new HashSet<>();
-    private static boolean welcomeEnabled = true;
 
     private CommunityHints() {}
 
     public static void init(MinecraftServer server) {
         Path dir = server.getWorldPath(LevelResource.ROOT).resolve("justquests");
         seenFile = dir.resolve("seen-players.json");
-        settingsFile = dir.resolve("settings.json");
         seen.clear();
-        welcomeEnabled = true;
         try {
             Files.createDirectories(dir);
-            if (Files.exists(settingsFile)) {
-                JsonElement root = JsonParser.parseString(Files.readString(settingsFile));
-                if (root.isJsonObject() && root.getAsJsonObject().has("discordWelcome")) {
-                    welcomeEnabled = root.getAsJsonObject().get("discordWelcome").getAsBoolean();
-                }
-            } else {
-                Files.writeString(settingsFile, SETTINGS_TEMPLATE);
-            }
             if (Files.exists(seenFile)) {
                 JsonElement root = JsonParser.parseString(Files.readString(seenFile));
                 if (root.isJsonArray()) {
@@ -64,13 +53,13 @@ public final class CommunityHints {
                 }
             }
         } catch (Exception e) {
-            JustQuests.LOG.error("Could not load community settings", e);
+            JustQuests.LOG.error("Could not load seen-players.json", e);
         }
     }
 
     /** Sends the one-time welcome on a player's first ever join to this world. */
     public static void onLogin(ServerPlayer player) {
-        if (!welcomeEnabled || seenFile == null) return;
+        if (!WorldSettings.discordWelcome() || seenFile == null) return;
         if (!seen.add(player.getUUID())) return;   // already welcomed before
         save();
         player.sendSystemMessage(welcomeMessage());
@@ -78,9 +67,7 @@ public final class CommunityHints {
 
     public static void clear() {
         seenFile = null;
-        settingsFile = null;
         seen.clear();
-        welcomeEnabled = true;
     }
 
     private static void save() {
@@ -118,11 +105,4 @@ public final class CommunityHints {
         m.append(link());
         return m;
     }
-
-    private static final String SETTINGS_TEMPLATE = """
-        {
-          "_help": "JustQuests per-world settings. discordWelcome: show a one-time clickable Discord invite the first time each player joins (set to false to turn it off).",
-          "discordWelcome": true
-        }
-        """;
 }
