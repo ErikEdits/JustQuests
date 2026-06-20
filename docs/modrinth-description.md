@@ -167,7 +167,7 @@ out of the box) so you can jump in right away.
 
 ## ✅ Compatibility
 
-- **Minecraft:** 1.21, 1.21.1, 1.21.2 (more versions added over time)
+- **Minecraft:** 1.21, 1.21.1, 1.21.2, 1.21.3, 1.21.4, 1.21.5 (more added over time)
 - **Loader:** NeoForge (Fabric/Forge planned)
 - **Environment:** singleplayer **and** servers (runs server-side)
 

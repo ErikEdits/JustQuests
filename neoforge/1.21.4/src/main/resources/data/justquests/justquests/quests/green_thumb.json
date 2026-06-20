@@ -1,0 +1,31 @@
+{
+  "title": {
+    "en_us": "Green Thumb",
+    "de_de": "Grüner Daumen"
+  },
+  "description": {
+    "en_us": "Harvest wheat from your farm.",
+    "de_de": "Ernte Weizen von deinem Feld."
+  },
+  "category": "farming",
+  "sort": 10,
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:wheat",
+      "count": 32
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:golden_carrot",
+      "count": 4
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bone_meal",
+      "count": 16
+    }
+  ]
+}

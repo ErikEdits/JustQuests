@@ -1,0 +1,31 @@
+{
+  "title": {
+    "en_us": "Deep Down",
+    "de_de": "Tief hinab"
+  },
+  "description": {
+    "en_us": "Venture below Y=0 and mine the deepslate layer.",
+    "de_de": "Wage dich unter Y=0 und baue die Tiefenschiefer-Schicht ab."
+  },
+  "category": "gathering",
+  "sort": 50,
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:cobbled_deepslate",
+      "count": 32
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:lantern",
+      "count": 8
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:golden_apple",
+      "count": 1
+    }
+  ]
+}

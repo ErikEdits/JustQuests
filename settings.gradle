@@ -13,7 +13,7 @@ rootProject.name = 'JustQuests'
 
 // One subproject per supported MC version, each in its own folder under
 // neoforge/<mc-version>/. More versions/loaders are added here over time.
-['1.21', '1.21.1', '1.21.2'].each { v ->
+['1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5'].each { v ->
     def name = "neoforge-${v.replace('.', '_')}"
     include name
     project(":${name}").projectDir = file("neoforge/${v}")

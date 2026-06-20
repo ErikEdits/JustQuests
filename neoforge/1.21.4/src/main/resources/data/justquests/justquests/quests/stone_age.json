@@ -1,0 +1,31 @@
+{
+  "title": {
+    "en_us": "Stone Age",
+    "de_de": "Steinzeit"
+  },
+  "description": {
+    "en_us": "Mine and collect cobblestone to build your first base.",
+    "de_de": "Baue Bruchstein ab und sammle ihn für deine erste Basis."
+  },
+  "category": "gathering",
+  "sort": 20,
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:cobblestone",
+      "count": 32
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:torch",
+      "count": 16
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:stone_pickaxe",
+      "count": 1
+    }
+  ]
+}

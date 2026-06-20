@@ -206,7 +206,15 @@ under `neoforge/<mc-version>/`, all built by one `./gradlew build`.
 - [x] NeoForge **1.21.2** (21.2.1-beta) — needed per-version fixes:
       `BuiltInRegistries.ITEM.getValue(...)` (registry `get` rename) and the
       codec-based `SimpleJsonResourceReloadListener` in `QuestManager`
-- [ ] Later MC versions (1.21.3/1.21.4/…) — add folders as desired
+- [x] NeoForge **1.21.3** (21.3.96) — same source as 1.21.2
+- [x] NeoForge **1.21.4** (21.4.157) — extra fixes: reload event renamed to
+      `AddServerReloadListenersEvent` (keyed `addListener`), and the reload
+      listener constructor now takes `FileToIdConverter`
+- [x] NeoForge **1.21.5** (21.5.97) — extra fixes: NBT getters return
+      `Optional`/`*Or` + `getAllKeys()`→`keySet()` (legacy migration code),
+      and `ClickEvent`/`HoverEvent` are sealed (use `ClickEvent.OpenUrl` /
+      `HoverEvent.ShowText`)
+- [ ] Later MC versions (1.21.6+/…) — add folders as desired
 - [ ] Loader ports: Fabric, Forge (~3 weeks each after a feature matures)
 - [ ] **Paper/Bukkit plugin** edition (shared JSON file is the bridge;
       poll cog already specced) — own deep breakdown when reached
