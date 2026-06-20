@@ -1,59 +1,25 @@
-plugins {
-    id 'java-library'
-    id 'net.neoforged.moddev' version '2.0.78'
-}
+// Root project. It builds no mod itself — each NeoForge version lives in its
+// own subproject under neoforge/<mc-version>/ with its own source and build.
+// `./gradlew build` builds every version; `./gradlew exportJars` also copies
+// the finished jars to the Desktop output folder.
 
-version = mod_version
-group = mod_group_id
+evaluationDependsOnChildren()
 
-base {
-    archivesName = mod_id
-}
+// Where the finished jars are collected (one folder per loader).
+def exportDir = file("${System.getProperty('user.home')}/Desktop/Justquests/neoforge")
 
-java {
-    toolchain.languageVersion = JavaLanguageVersion.of(21)
-}
-
-neoForge {
-    version = "${neo_version}"
-
-    runs {
-        client {
-            client()
-        }
-        server {
-            server()
-            programArgument '--nogui'
+tasks.register('exportJars', Copy) {
+    group = 'distribution'
+    description = 'Build every version and copy the finished jars to the Desktop output folder.'
+    into exportDir
+    subprojects.each { sp ->
+        dependsOn sp.tasks.named('build')
+        from(sp.layout.buildDirectory.dir('libs')) {
+            include '*.jar'
+            exclude '*-sources.jar'
         }
     }
-
-    mods {
-        "${mod_id}" {
-            sourceSet sourceSets.main
-        }
-    }
-}
-
-repositories {
-    mavenLocal()
-}
-
-tasks.named('processResources', ProcessResources).configure {
-    var replaceProperties = [
-        minecraft_version: minecraft_version,
-        minecraft_version_range: minecraft_version_range,
-        neo_version: neo_version,
-        loader_version_range: loader_version_range,
-        mod_id: mod_id,
-        mod_name: mod_name,
-        mod_license: mod_license,
-        mod_version: mod_version,
-        mod_authors: mod_authors,
-        mod_description: mod_description
-    ]
-    inputs.properties replaceProperties
-
-    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties
+    doLast {
+        println "Exported jars to: ${exportDir}"
     }
 }

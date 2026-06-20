@@ -194,10 +194,27 @@ drip of small, useful releases *is* the growth plan, not a detour from it.
 
 ## Phase 8 — Reach
 
-- [ ] MC versions: 1.20.1 first, then onward toward 1.12.x (Q17)
+**Multi-version build (IN PROGRESS, 2026-06-20).** The repo is now a Gradle
+multi-project: each MC version is its own subproject with its own source
+under `neoforge/<mc-version>/`, all built by one `./gradlew build`.
+`./gradlew exportJars` also copies the finished jars to
+`Desktop/Justquests/neoforge/`. Adding a version = new folder + one line in
+`settings.gradle`. Future loaders get sibling trees (`fabric/<ver>`, …).
+
+- [x] NeoForge **1.21** (21.0) — code compiles unchanged from 1.21.1
+- [x] NeoForge **1.21.1** (21.1) — the original target
+- [x] NeoForge **1.21.2** (21.2.1-beta) — needed per-version fixes:
+      `BuiltInRegistries.ITEM.getValue(...)` (registry `get` rename) and the
+      codec-based `SimpleJsonResourceReloadListener` in `QuestManager`
+- [ ] Later MC versions (1.21.3/1.21.4/…) — add folders as desired
 - [ ] Loader ports: Fabric, Forge (~3 weeks each after a feature matures)
 - [ ] **Paper/Bukkit plugin** edition (shared JSON file is the bridge;
       poll cog already specced) — own deep breakdown when reached
+
+> Maintenance note: each version has its own copy of the source (your
+> chosen layout), so a feature/bugfix must be applied to each version
+> folder. For shared logic that doesn't differ, copy 1.21.1 → others and
+> only patch the spots the API changed (as done for 1.21.2).
 
 ---
 

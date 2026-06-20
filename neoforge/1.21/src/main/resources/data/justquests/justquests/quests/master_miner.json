@@ -1,0 +1,25 @@
+{
+  "title": {
+    "en_us": "Master Miner",
+    "de_de": "Meisterbergmann"
+  },
+  "description": {
+    "en_us": "Mine 64 stone with your own hands.",
+    "de_de": "Baue 64 Stein mit eigenen Händen ab."
+  },
+  "category": "gathering",
+  "objectives": [
+    {
+      "type": "justquests:mine_block",
+      "block": "minecraft:stone",
+      "count": 64
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_pickaxe",
+      "count": 1
+    }
+  ]
+}

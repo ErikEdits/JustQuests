@@ -1,0 +1,65 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.78'
+}
+
+// --- per-version settings (this is the only file that differs between versions) ---
+def mcVersion = '1.21.1'
+def mcRange = '[1.21.1,1.21.2)'
+def neoVersion = '21.1.143'
+
+version = mod_version
+group = mod_group_id
+
+base {
+    // distinct name per version so every jar can sit in one output folder
+    archivesName = "${mod_name}-neoforge-${mcVersion}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+neoForge {
+    version = neoVersion
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+        minecraft_version: mcVersion,
+        minecraft_version_range: mcRange,
+        neo_version: neoVersion,
+        loader_version_range: loader_version_range,
+        mod_id: mod_id,
+        mod_name: mod_name,
+        mod_license: mod_license,
+        mod_version: mod_version,
+        mod_authors: mod_authors,
+        mod_description: mod_description
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties
+    }
+}

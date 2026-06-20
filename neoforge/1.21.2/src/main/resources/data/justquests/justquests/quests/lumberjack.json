@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en_us": "Lumberjack",
+    "de_de": "Holzfäller"
+  },
+  "description": {
+    "en_us": "Chop wood of any kind.",
+    "de_de": "Fälle Holz jeder Art."
+  },
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "#minecraft:logs",
+      "count": 32
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_axe",
+      "count": 1
+    }
+  ]
+}

@@ -146,16 +146,17 @@ out of the box) so you can jump in right away.
 
 ## 📥 Installation
 
-1. Install **NeoForge 1.21.1** (21.1.143 or newer)
-2. Put `justquests-0.1.5.jar` into your `mods` folder
+1. Install **NeoForge** for your Minecraft version (1.21, 1.21.1 or 1.21.2)
+2. Download the JustQuests jar that matches your version (e.g.
+   `JustQuests-neoforge-1.21.1-0.1.6.jar`) into your `mods` folder
 3. Launch the game and run `/quest list`
 
 ---
 
 ## ✅ Compatibility
 
-- **Minecraft:** 1.21.1
-- **Loader:** NeoForge only (more loaders planned)
+- **Minecraft:** 1.21, 1.21.1, 1.21.2 (more versions added over time)
+- **Loader:** NeoForge (Fabric/Forge planned)
 - **Environment:** singleplayer **and** servers (runs server-side)
 
 ---

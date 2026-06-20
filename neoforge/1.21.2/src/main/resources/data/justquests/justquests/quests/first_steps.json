@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en_us": "First Steps",
+    "de_de": "Erste Schritte"
+  },
+  "description": {
+    "en_us": "Gather some basic materials to get started.",
+    "de_de": "Sammle ein paar grundlegende Materialien für den Anfang."
+  },
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:oak_log",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bread",
+      "count": 4
+    }
+  ]
+}
