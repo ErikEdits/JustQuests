@@ -28,10 +28,18 @@ community until we are ready for the GUI.
 | 0.1.3 | Per-world custom quests | ✅ shipped |
 | 0.1.4 | Localization (multi-language quest text) | ✅ shipped |
 | 0.1.5 | Community / Discord pointer (grow members for the polls) | ✅ shipped |
-| 0.1.6 | More content & QoL, no GUI needed (see Phase 9b) | ⏭️ next |
-| 0.1.7 | Polish + admin/permission groundwork | ⏭️ planned |
+| 0.1.6 | More objective types (enchant, breed, mine, use…) + NBT match | ⏭️ next |
+| 0.1.7 | More rewards + quest logic (repeatable, prerequisites, chains) | ⏭️ planned |
+| 0.1.8 | Categories & organization (filters, sort, pack-defined) | ⏭️ planned |
+| 0.1.9 | Server & admin QoL (admin cmds, broadcast, perms, difficulty) | ⏭️ planned |
+| 0.1.10 | Stats, update notice & feedback (sound/toast, leaderboard) | ⏭️ planned |
+| 0.1.11 | Content & language pack (more quests + more languages) | ⏭️ planned |
 | **0.2.0** | **In-game GUI** (once the polls have enough voters) | ⏭️ gated on Discord |
-| 0.3.0+ | Stats/leaderboard, generator, more loaders/versions, plugin | ⏭️ later |
+| 0.3.0+ | Generator, more loaders/versions, Paper/Bukkit plugin | ⏭️ later |
+
+Each 0.1.x release is a Modrinth update, which puts the mod back in
+"recently updated" and funnels new players to the Discord — so a steady
+drip of small, useful releases *is* the growth plan, not a detour from it.
 
 ---
 
@@ -210,19 +218,47 @@ https://discord.gg/cMTGE9QCja
 
 ---
 
-## Phase 9b — More content & QoL toward 0.2.0 (v0.1.6+) — planned
+## The 0.1.x runway toward 0.2.0 (all command-only, no GUI)
 
-Command-only work that keeps shipping value while the Discord grows. No
-GUI required. Pulls forward the non-GUI items from Phases 2 and 5:
+Each phase below = one Modrinth release. They keep value shipping (and the
+mod visible) while the Discord grows toward enough voters for the GUI
+polls. Order is a suggestion; any can be reordered or merged. They pull
+forward the non-GUI items from Phases 2, 5, 6 and 7.
 
+### Phase 9b — More objective types (v0.1.6) — planned
 - [ ] `enchant_item` objective (poll/mixin; see cross-loader-events.md)
-- [ ] Optional `components`/NBT match per objective (Q39)
-- [ ] Announce-flagged completion broadcast, default on (Q53)
-- [ ] `/quest stats` (personal) + groundwork for the leaderboard (Q34)
-- [ ] Admin commands: reset / view other player / list claimed (Q33)
-- [ ] Permission gating via OP + perms plugins (Q83); per-quest perm (Q55)
+- [ ] `breed_animal` objective (BabyEntitySpawnEvent)
+- [ ] `mine_block` objective (BlockEvent.BreakEvent — distinct from collect)
+- [ ] `use_item` / `consume_item` objective (right-click / finish using)
+- [ ] Optional `components`/NBT match per item objective (Q39)
+
+### Phase 9c — More rewards + quest logic (v0.1.7) — planned
+- [ ] `xp` reward, `effect` (potion) reward, `message`/title reward
+- [ ] **Repeatable quests** with cooldown (reuse the timestamped
+      completed-map / 6-day window already in the data model, Q26)
+- [ ] **Prerequisites / chains** — a quest can require other quests done
 - [ ] Locked-quest teaser, command-enabled (Q28)
+
+### Phase 9d — Categories & organization (v0.1.8) — planned
 - [ ] Decide category: fixed vs. pack-definable (Q77)
+- [ ] `/quest list <category>` filter + stable sort order
+- [ ] Per-category metadata (sort weight; icon id reserved for the GUI)
+
+### Phase 9e — Server & admin QoL (v0.1.9) — planned
+- [ ] Admin commands: reset / view other player / list claimed (Q33)
+- [ ] Announce-flagged completion broadcast, default on (Q53)
+- [ ] Permission gating via OP + perms plugins (Q83); per-quest perm (Q55)
+- [ ] Difficulty Easy/Normal/Hard, OP-set per world (Q8/Q9)
+
+### Phase 9f — Stats, notices & feedback (v0.1.10) — planned
+- [ ] `/quest stats` (personal) + server leaderboard (Q34)
+- [ ] Completion **sound** + chat/actionbar toast (non-GUI part of Q12)
+- [ ] Update notice on login for OPs (Q36)
+
+### Phase 9g — Content & language pack (v0.1.11) — planned
+- [ ] A longer bundled progression (more starter quests)
+- [ ] More bundled languages for the built-in quests (e.g. fr/es)
+- [ ] An example datapack showing every objective/reward type
 
 ---
 
