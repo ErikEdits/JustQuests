@@ -7,6 +7,8 @@
     "en_us": "Mine and collect cobblestone to build your first base.",
     "de_de": "Baue Bruchstein ab und sammle ihn für deine erste Basis."
   },
+  "category": "gathering",
+  "sort": 20,
   "objectives": [
     {
       "type": "justquests:collect_item",

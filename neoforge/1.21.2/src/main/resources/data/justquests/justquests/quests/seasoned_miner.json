@@ -11,6 +11,7 @@
   "requires": [
     "justquests:master_miner"
   ],
+  "sort": 80,
   "objectives": [
     {
       "type": "justquests:mine_block",

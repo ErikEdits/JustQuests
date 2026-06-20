@@ -10,6 +10,7 @@
   "category": "daily",
   "repeatable": true,
   "cooldown_hours": 24,
+  "sort": 10,
   "objectives": [
     {
       "type": "justquests:consume_item",

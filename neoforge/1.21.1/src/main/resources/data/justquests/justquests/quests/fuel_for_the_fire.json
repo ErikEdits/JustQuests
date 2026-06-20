@@ -7,6 +7,8 @@
     "en_us": "Dig deep and gather coal to keep the furnaces burning.",
     "de_de": "Grabe tief und sammle Kohle, damit die Öfen weiterbrennen."
   },
+  "category": "gathering",
+  "sort": 30,
   "objectives": [
     {
       "type": "justquests:collect_item",

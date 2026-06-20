@@ -10,6 +10,7 @@ import com.erikedits.justquests.diagnostics.SelfTest;
 import com.erikedits.justquests.player.QuestProgress;
 import com.erikedits.justquests.storage.WorldQuestStore;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
@@ -23,7 +24,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class QuestCommand {
     private static final SuggestionProvider<CommandSourceStack> AVAILABLE_QUESTS = (ctx, builder) ->
@@ -41,13 +45,23 @@ public class QuestCommand {
         return builder.buildFuture();
     };
 
+    private static final SuggestionProvider<CommandSourceStack> CATEGORIES = (ctx, builder) -> {
+        var cats = QuestManager.INSTANCE.getQuests().values().stream()
+            .map(Quest::category).distinct().sorted().toList();
+        return SharedSuggestionProvider.suggest(cats, builder);
+    };
+
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         register(event.getDispatcher());
     }
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("quest")
-            .then(Commands.literal("list").executes(QuestCommand::list))
+            .then(Commands.literal("list").executes(ctx -> list(ctx, null))
+                .then(Commands.argument("category", StringArgumentType.word())
+                    .suggests(CATEGORIES)
+                    .executes(ctx -> list(ctx, StringArgumentType.getString(ctx, "category")))))
+            .then(Commands.literal("categories").executes(QuestCommand::categories))
             .then(Commands.literal("progress").executes(QuestCommand::progress))
             .then(Commands.literal("accept")
                 .then(Commands.argument("id", ResourceLocationArgument.id())
@@ -72,7 +86,7 @@ public class QuestCommand {
         return player != null ? player.clientInformation().language() : LocalizedText.DEFAULT_LANG;
     }
 
-    private static int list(CommandContext<CommandSourceStack> ctx) {
+    private static int list(CommandContext<CommandSourceStack> ctx, String category) {
         CommandSourceStack src = ctx.getSource();
         String lang = lang(src);
         // the caller's progress, so locked (prerequisite) quests can be teased
@@ -85,12 +99,37 @@ public class QuestCommand {
         final PlayerQuestData data = self;
 
         Map<ResourceLocation, Quest> quests = QuestManager.INSTANCE.getQuests();
-        if (quests.isEmpty()) {
-            src.sendSuccess(() -> Component.literal("§7No quests defined."), false);
+        // sorted by category, then per-quest sort weight, then id (stable order)
+        List<Map.Entry<ResourceLocation, Quest>> entries = quests.entrySet().stream()
+            .filter(e -> category == null || e.getValue().category().equalsIgnoreCase(category))
+            .sorted(Comparator
+                .comparing((Map.Entry<ResourceLocation, Quest> e) -> e.getValue().category(), String.CASE_INSENSITIVE_ORDER)
+                .thenComparingInt(e -> e.getValue().sort())
+                .thenComparing(e -> e.getKey().toString()))
+            .toList();
+
+        if (entries.isEmpty()) {
+            String msg = category == null ? "§7No quests defined."
+                : "§7No quests in category '" + category + "'. Try /quest categories.";
+            src.sendSuccess(() -> Component.literal(msg), false);
             return 0;
         }
-        src.sendSuccess(() -> Component.literal("§eAvailable quests:"), false);
-        quests.forEach((id, quest) -> {
+
+        src.sendSuccess(() -> Component.literal(category == null
+            ? "§eAvailable quests:" : "§eQuests in §f" + category + "§e:"), false);
+
+        String shownCategory = null;
+        for (Map.Entry<ResourceLocation, Quest> entry : entries) {
+            ResourceLocation id = entry.getKey();
+            Quest quest = entry.getValue();
+
+            // category header (only when listing everything, not when filtered)
+            if (category == null && !quest.category().equals(shownCategory)) {
+                shownCategory = quest.category();
+                final String cat = shownCategory;
+                src.sendSuccess(() -> Component.literal("§6§l" + cat), false);
+            }
+
             // locked teaser: a prerequisite isn't completed yet (Q28)
             ResourceLocation missing = null;
             if (data != null) {
@@ -103,19 +142,19 @@ public class QuestCommand {
                 String reqName = reqQuest != null ? reqQuest.title().get(lang) : missing.toString();
                 src.sendSuccess(() -> Component.literal("§8" + id + " §7— §8" + quest.title().get(lang)
                     + " §c[locked: needs " + reqName + "]"), false);
-                return; // teaser only — hide goal and reward
+                continue; // teaser only — hide goal and reward
             }
 
             String repeatTag = quest.repeatable() ? " §d(repeatable)" : "";
             src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title().get(lang)
-                + " §8[" + quest.category() + "]" + repeatTag), false);
+                + repeatTag), false);
             String desc = quest.description().get(lang);
             if (!desc.isBlank()) {
                 src.sendSuccess(() -> Component.literal("  §7§o" + desc), false);
             }
 
             MutableComponent goals = Component.literal("  §6Goal: §f");
-            java.util.List<QuestObjective> objs = quest.objectives();
+            List<QuestObjective> objs = quest.objectives();
             for (int i = 0; i < objs.size(); i++) {
                 if (i > 0) goals.append(Component.literal("§7, §f"));
                 goals.append(objs.get(i).display());
@@ -123,14 +162,31 @@ public class QuestCommand {
             src.sendSuccess(() -> goals, false);
 
             MutableComponent rewards = Component.literal("  §6Reward: §a");
-            java.util.List<QuestReward> rs = quest.rewards();
+            List<QuestReward> rs = quest.rewards();
             for (int i = 0; i < rs.size(); i++) {
                 if (i > 0) rewards.append(Component.literal("§7, §a"));
                 rewards.append(rs.get(i).display());
             }
             src.sendSuccess(() -> rewards, false);
-        });
-        return quests.size();
+        }
+        return entries.size();
+    }
+
+    private static int categories(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack src = ctx.getSource();
+        Map<ResourceLocation, Quest> quests = QuestManager.INSTANCE.getQuests();
+        if (quests.isEmpty()) {
+            src.sendSuccess(() -> Component.literal("§7No quests defined."), false);
+            return 0;
+        }
+        Map<String, Integer> counts = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        for (Quest q : quests.values()) {
+            counts.merge(q.category(), 1, Integer::sum);
+        }
+        src.sendSuccess(() -> Component.literal("§eCategories:"), false);
+        counts.forEach((cat, n) ->
+            src.sendSuccess(() -> Component.literal("§6" + cat + " §7(" + n + ") §8— /quest list " + cat), false));
+        return counts.size();
     }
 
     private static int progress(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {

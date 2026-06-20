@@ -8,6 +8,7 @@
     "de_de": "Iss 10 gebratene Steaks."
   },
   "category": "survival",
+  "sort": 10,
   "objectives": [
     {
       "type": "justquests:consume_item",

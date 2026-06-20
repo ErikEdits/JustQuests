@@ -7,6 +7,8 @@
     "en_us": "Mine diamonds from the deepest caves.",
     "de_de": "Baue Diamanten aus den tiefsten Höhlen ab."
   },
+  "category": "gathering",
+  "sort": 60,
   "objectives": [
     {
       "type": "justquests:collect_item",

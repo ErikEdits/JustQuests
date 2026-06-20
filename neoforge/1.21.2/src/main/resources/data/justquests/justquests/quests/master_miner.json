@@ -8,6 +8,7 @@
     "de_de": "Baue 64 Stein mit eigenen Händen ab."
   },
   "category": "gathering",
+  "sort": 70,
   "objectives": [
     {
       "type": "justquests:mine_block",

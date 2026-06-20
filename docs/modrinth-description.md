@@ -86,7 +86,8 @@ with an optional cooldown (e.g. daily quests).
 
 | Command | What it does |
 |---------|--------------|
-| `/quest list` | List all quests with their description, goal and reward |
+| `/quest list [category]` | List all quests (grouped by category), or just one category |
+| `/quest categories` | List the categories and how many quests each has |
 | `/quest accept <id>` | Start a quest (with tab completion) |
 | `/quest progress` | Show your active quests and how far along you are |
 | `/quest abandon <id>` | Drop an active quest (suggests your active ones) |

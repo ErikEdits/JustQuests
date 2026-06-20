@@ -7,6 +7,8 @@
     "en_us": "Mine raw iron from the depths.",
     "de_de": "Baue Roheisen aus der Tiefe ab."
   },
+  "category": "gathering",
+  "sort": 40,
   "objectives": [
     {
       "type": "justquests:collect_item",

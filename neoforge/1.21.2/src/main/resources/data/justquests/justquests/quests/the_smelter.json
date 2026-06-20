@@ -8,6 +8,7 @@
     "de_de": "Verhütte 16 Eisenbarren in einem Ofen."
   },
   "category": "gathering",
+  "sort": 45,
   "objectives": [
     {
       "type": "justquests:smelt_item",

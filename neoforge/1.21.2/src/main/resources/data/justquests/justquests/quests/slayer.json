@@ -7,6 +7,8 @@
     "en_us": "Hunt down the undead.",
     "de_de": "Erlege die Untoten."
   },
+  "category": "combat",
+  "sort": 20,
   "objectives": [
     {
       "type": "justquests:kill_mob",

@@ -8,6 +8,7 @@
     "de_de": "Züchte 5 Kühe, um deine Herde zu vergrößern."
   },
   "category": "farming",
+  "sort": 20,
   "objectives": [
     {
       "type": "justquests:breed_animal",

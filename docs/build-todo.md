@@ -30,7 +30,7 @@ community until we are ready for the GUI.
 | 0.1.5 | Community / Discord pointer (grow members for the polls) | ✅ shipped |
 | 0.1.6 | More objective types (mine, breed, consume, smelt) | ✅ shipped |
 | 0.1.7 | Rewards + quest logic (xp/effect/message, prerequisites, repeatable) | ✅ shipped |
-| 0.1.8 | Categories & organization (filters, sort, pack-defined) | ⏭️ planned |
+| 0.1.8 | Categories & organization (filters, sort, pack-defined) | ✅ shipped |
 | 0.1.9 | Server & admin QoL (admin cmds, broadcast, perms, difficulty) | ⏭️ planned |
 | 0.1.10 | Stats, update notice & feedback (sound/toast, leaderboard) | ⏭️ planned |
 | 0.1.11 | Content & language pack (more quests + more languages) | ⏭️ planned |
@@ -264,10 +264,14 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 - [x] Bundled examples: `seasoned_miner` (chain), `daily_bread` (repeatable)
 - [ ] `title` reward (actionbar/title) — deferred; `message` covers chat
 
-### Phase 9d — Categories & organization (v0.1.8) — planned
-- [ ] Decide category: fixed vs. pack-definable (Q77)
-- [ ] `/quest list <category>` filter + stable sort order
-- [ ] Per-category metadata (sort weight; icon id reserved for the GUI)
+### Phase 9d — Categories & organization (v0.1.8) — DONE (2026-06-20)
+- [x] Category stays **pack-definable** (free-form string field, Q77)
+- [x] `/quest list <category>` filter (tab-completed) + `/quest categories`
+- [x] Stable sort: category -> per-quest `sort` weight -> id, with a
+      category header per group in `/quest list`
+- [x] All 18 bundled quests categorized (gathering/farming/combat/
+      survival/daily) with a progression sort order
+- [ ] Per-category icon id (reserved for the GUI, v0.2)
 
 ### Phase 9e — Server & admin QoL (v0.1.9) — planned
 - [ ] Admin commands: reset / view other player / list claimed (Q33)

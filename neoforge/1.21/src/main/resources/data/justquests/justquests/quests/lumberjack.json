@@ -7,6 +7,8 @@
     "en_us": "Chop wood of any kind.",
     "de_de": "Fälle Holz jeder Art."
   },
+  "category": "gathering",
+  "sort": 90,
   "objectives": [
     {
       "type": "justquests:collect_item",

@@ -7,6 +7,8 @@
     "en_us": "Gather some basic materials to get started.",
     "de_de": "Sammle ein paar grundlegende Materialien für den Anfang."
   },
+  "category": "gathering",
+  "sort": 10,
   "objectives": [
     {
       "type": "justquests:collect_item",

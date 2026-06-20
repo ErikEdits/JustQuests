@@ -7,6 +7,8 @@
     "en_us": "Harvest wheat from your farm.",
     "de_de": "Ernte Weizen von deinem Feld."
   },
+  "category": "farming",
+  "sort": 10,
   "objectives": [
     {
       "type": "justquests:collect_item",

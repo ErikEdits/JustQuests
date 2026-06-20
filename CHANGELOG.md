@@ -3,6 +3,28 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.8] - 2026-06-20
+
+Categories & organization. The quest list is now sorted and filterable.
+Still command-only; the GUI comes in v0.2.
+
+### Added
+- **`/quest list <category>`** — filter the list to one category (with tab
+  completion for the categories that exist).
+- **`/quest categories`** — list all categories with how many quests each
+  has.
+- **Sorted quest list.** Quests are now grouped by category (with a header
+  per category) and ordered by an optional per-quest `sort` weight, then by
+  id — a stable, predictable order instead of a random one.
+- **`sort` field** on quests (integer, default 0) to control the order
+  within a category.
+
+### Changed
+- All 18 bundled quests now have proper categories (gathering, farming,
+  combat, survival, daily) and a sort order forming a sensible progression.
+
+[0.1.8]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.8
+
 ## [0.1.7] - 2026-06-20
 
 Rewards & quest logic. Quests can now chain, repeat, and hand out XP,

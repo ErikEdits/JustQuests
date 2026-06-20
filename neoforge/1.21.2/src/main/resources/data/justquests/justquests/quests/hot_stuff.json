@@ -7,6 +7,8 @@
     "en_us": "Brave the Nether and defeat blazes for their rods.",
     "de_de": "Trotze dem Nether und besiege Lohen für ihre Lohenruten."
   },
+  "category": "combat",
+  "sort": 30,
   "objectives": [
     {
       "type": "justquests:collect_item",

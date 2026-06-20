@@ -7,6 +7,8 @@
     "en_us": "Hunt zombies, skeletons and spiders at night and gather their drops.",
     "de_de": "Jage nachts Zombies, Skelette und Spinnen und sammle ihre Beute."
   },
+  "category": "combat",
+  "sort": 10,
   "objectives": [
     {
       "type": "justquests:collect_item",
