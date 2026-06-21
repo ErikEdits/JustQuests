@@ -1,0 +1,21 @@
+{
+  "title": "Example: reach_location",
+  "description": "Stand within 8 blocks of (0, 64, 0) in the overworld.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:reach_location",
+      "dimension": "minecraft:overworld",
+      "x": 0,
+      "y": 64,
+      "z": 0,
+      "radius": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:command",
+      "command": "give {player} minecraft:cookie 1"
+    }
+  ]
+}

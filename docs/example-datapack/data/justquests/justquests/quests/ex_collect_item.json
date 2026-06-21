@@ -1,0 +1,19 @@
+{
+  "title": "Example: collect_item",
+  "description": "Pick up 10 dirt from the ground (mining/harvesting/drops).",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:dirt",
+      "count": 10
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bread",
+      "count": 2
+    }
+  ]
+}

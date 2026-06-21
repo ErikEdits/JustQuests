@@ -1,0 +1,18 @@
+{
+  "title": "Example: mine_block",
+  "description": "Break 10 stone blocks (counts the break, not the pickup).",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:mine_block",
+      "block": "minecraft:stone",
+      "count": 10
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 20
+    }
+  ]
+}

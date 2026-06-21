@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "Hearty Meal",
-    "de_de": "Herzhafte Mahlzeit"
+    "de_de": "Herzhafte Mahlzeit",
+    "fr_fr": "Repas copieux",
+    "es_es": "Comida abundante"
   },
   "description": {
     "en_us": "Eat 10 cooked steaks.",
-    "de_de": "Iss 10 gebratene Steaks."
+    "de_de": "Iss 10 gebratene Steaks.",
+    "fr_fr": "Mangez 10 steaks cuits.",
+    "es_es": "Come 10 filetes cocinados."
   },
   "category": "survival",
   "sort": 10,

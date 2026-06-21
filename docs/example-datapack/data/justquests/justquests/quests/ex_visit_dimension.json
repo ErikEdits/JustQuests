@@ -1,0 +1,18 @@
+{
+  "title": "Example: visit_dimension",
+  "description": "Enter the Nether (vanilla or modded dims work by id).",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:visit_dimension",
+      "dimension": "minecraft:the_nether"
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:obsidian",
+      "count": 2
+    }
+  ]
+}

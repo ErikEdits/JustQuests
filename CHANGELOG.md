@@ -3,6 +3,26 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.12] - 2026-06-21
+
+Content & language pack. Still command-only; the GUI comes in v0.2.
+
+### Added
+- **7 new bundled quests** (now 25 total), covering the previously
+  unshowcased objective types: `home_builder` (place_block), `craftsman`
+  (craft_item), `animal_friend` (tame_animal), `into_the_nether`
+  (visit_dimension), `level_up` (reach_level), `prospector` (mine_block +
+  a `loot_table` reward), `achiever` (gain_advancement). New categories:
+  building, crafting, exploration, challenges.
+- **Two more languages.** Every bundled quest now ships in **English,
+  German, French and Spanish** (was English + German).
+- **Example datapack** in the repo
+  (`docs/example-datapack/`) — a ready-to-use datapack with one quest per
+  objective & reward type, plus item tags, `mode: any`, a prerequisite
+  chain, a repeatable quest and a multi-language quest, with a README.
+
+[0.1.12]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.12
+
 ## [0.1.11] - 2026-06-21
 
 Bug-fix & maintenance pass. Still command-only; the GUI comes in v0.2.

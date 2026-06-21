@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "Shine Bright",
-    "de_de": "Hell erstrahlen"
+    "de_de": "Hell erstrahlen",
+    "fr_fr": "Brille de mille feux",
+    "es_es": "Brilla con fuerza"
   },
   "description": {
     "en_us": "Mine diamonds from the deepest caves.",
-    "de_de": "Baue Diamanten aus den tiefsten Höhlen ab."
+    "de_de": "Baue Diamanten aus den tiefsten Höhlen ab.",
+    "fr_fr": "Minez des diamants dans les grottes les plus profondes.",
+    "es_es": "Mina diamantes en las cuevas mas profundas."
   },
   "category": "gathering",
   "sort": 60,

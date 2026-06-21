@@ -1,0 +1,19 @@
+{
+  "title": "Example: chain (step 1)",
+  "description": "Collect 5 wheat.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:wheat",
+      "count": 5
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bread",
+      "count": 3
+    }
+  ]
+}

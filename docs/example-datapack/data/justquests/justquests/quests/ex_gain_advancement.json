@@ -1,0 +1,17 @@
+{
+  "title": "Example: gain_advancement",
+  "description": "Earn the 'Stone Age' advancement.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:gain_advancement",
+      "advancement": "minecraft:story/mine_stone"
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:message",
+      "message": "Nice - your first advancement quest!"
+    }
+  ]
+}

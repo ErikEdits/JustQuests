@@ -1,0 +1,19 @@
+{
+  "title": "Example: craft_item",
+  "description": "Craft 4 sticks.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:craft_item",
+      "item": "minecraft:stick",
+      "count": 4
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:oak_planks",
+      "count": 8
+    }
+  ]
+}

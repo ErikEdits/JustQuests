@@ -1,0 +1,25 @@
+{
+  "title": "Example: mode any",
+  "description": "Do EITHER: kill 3 spiders OR collect 5 string.",
+  "category": "examples",
+  "mode": "any",
+  "objectives": [
+    {
+      "type": "justquests:kill_mob",
+      "entity": "minecraft:spider",
+      "count": 3
+    },
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:string",
+      "count": 5
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bow",
+      "count": 1
+    }
+  ]
+}

@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "Cattle Rancher",
-    "de_de": "Viehzüchter"
+    "de_de": "Viehzüchter",
+    "fr_fr": "Eleveur de betail",
+    "es_es": "Ganadero"
   },
   "description": {
     "en_us": "Breed 5 cows to grow your herd.",
-    "de_de": "Züchte 5 Kühe, um deine Herde zu vergrößern."
+    "de_de": "Züchte 5 Kühe, um deine Herde zu vergrößern.",
+    "fr_fr": "Elevez 5 vaches pour agrandir votre troupeau.",
+    "es_es": "Cria 5 vacas para agrandar tu rebano."
   },
   "category": "farming",
   "sort": 20,

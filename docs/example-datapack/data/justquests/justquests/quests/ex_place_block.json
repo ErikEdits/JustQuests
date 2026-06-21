@@ -1,0 +1,19 @@
+{
+  "title": "Example: place_block",
+  "description": "Place 16 cobblestone.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:place_block",
+      "block": "minecraft:cobblestone",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:torch",
+      "count": 8
+    }
+  ]
+}

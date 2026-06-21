@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "Seasoned Miner",
-    "de_de": "Erfahrener Bergmann"
+    "de_de": "Erfahrener Bergmann",
+    "fr_fr": "Mineur aguerri",
+    "es_es": "Minero veterano"
   },
   "description": {
     "en_us": "Now mine 128 deepslate - you've earned it.",
-    "de_de": "Jetzt baue 128 Tiefenschiefer ab - du hast es dir verdient."
+    "de_de": "Jetzt baue 128 Tiefenschiefer ab - du hast es dir verdient.",
+    "fr_fr": "Minez maintenant 128 ardoises des abimes - vous l'avez merite.",
+    "es_es": "Ahora mina 128 de pizarra profunda - te lo has ganado."
   },
   "category": "gathering",
   "requires": [

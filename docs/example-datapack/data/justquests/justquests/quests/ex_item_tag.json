@@ -1,0 +1,19 @@
+{
+  "title": "Example: item tag",
+  "description": "Collect 16 of any log (uses a #tag).",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "#minecraft:logs",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_axe",
+      "count": 1
+    }
+  ]
+}

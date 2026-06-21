@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "Daily Bread",
-    "de_de": "Tägliches Brot"
+    "de_de": "Tägliches Brot",
+    "fr_fr": "Pain quotidien",
+    "es_es": "Pan de cada dia"
   },
   "description": {
     "en_us": "Eat 3 bread. Comes back every day.",
-    "de_de": "Iss 3 Brot. Kommt jeden Tag wieder."
+    "de_de": "Iss 3 Brot. Kommt jeden Tag wieder.",
+    "fr_fr": "Mangez 3 pains. Revient chaque jour.",
+    "es_es": "Come 3 panes. Vuelve cada dia."
   },
   "category": "daily",
   "repeatable": true,

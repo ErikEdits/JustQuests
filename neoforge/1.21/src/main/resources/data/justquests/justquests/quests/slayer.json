@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "Slayer",
-    "de_de": "Schlächter"
+    "de_de": "Schlächter",
+    "fr_fr": "Tueur",
+    "es_es": "Verdugo"
   },
   "description": {
     "en_us": "Hunt down the undead.",
-    "de_de": "Erlege die Untoten."
+    "de_de": "Erlege die Untoten.",
+    "fr_fr": "Eliminez les morts-vivants.",
+    "es_es": "Acaba con los no-muertos."
   },
   "category": "combat",
   "sort": 20,

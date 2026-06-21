@@ -1,0 +1,22 @@
+{
+  "title": "Example: chain (step 2)",
+  "description": "Locked until 'chain step 1' is done; then bake 3 cakes.",
+  "category": "examples",
+  "requires": [
+    "justquests:ex_chain_1"
+  ],
+  "objectives": [
+    {
+      "type": "justquests:craft_item",
+      "item": "minecraft:cake",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:golden_apple",
+      "count": 1
+    }
+  ]
+}

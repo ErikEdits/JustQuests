@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "Iron Harvest",
-    "de_de": "Eisenernte"
+    "de_de": "Eisenernte",
+    "fr_fr": "Recolte de fer",
+    "es_es": "Cosecha de hierro"
   },
   "description": {
     "en_us": "Mine raw iron from the depths.",
-    "de_de": "Baue Roheisen aus der Tiefe ab."
+    "de_de": "Baue Roheisen aus der Tiefe ab.",
+    "fr_fr": "Minez du fer brut dans les profondeurs.",
+    "es_es": "Mina hierro en bruto en las profundidades."
   },
   "category": "gathering",
   "sort": 40,

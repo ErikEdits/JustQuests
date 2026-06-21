@@ -1,0 +1,19 @@
+{
+  "title": "Example: breed_animal",
+  "description": "Breed 3 sheep.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:breed_animal",
+      "entity": "minecraft:sheep",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:shears",
+      "count": 1
+    }
+  ]
+}

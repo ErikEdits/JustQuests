@@ -135,26 +135,30 @@ Each player sees their own client language, falling back to English.
 
 ## 📦 Built-in quests
 
-JustQuests ships with a ready-to-play starter progression (English + German
-out of the box) so you can jump in right away.
+JustQuests ships with **25 ready-to-play quests** across categories
+(gathering, farming, combat, building, crafting, exploration, challenges,
+survival, daily) — each in **English, German, French and Spanish** out of
+the box, so you can jump in right away. A sample:
 
 | Quest | Goal | Reward |
 |-------|------|--------|
 | First Steps | 16 oak logs | 4 bread |
 | Stone Age | 32 cobblestone | 16 torches, stone pickaxe |
-| Fuel for the Fire | 8 coal | 32 torches |
-| Iron Harvest | 5 raw iron | iron pickaxe, 8 bread |
-| Green Thumb | 32 wheat | 4 golden carrots, 16 bone meal |
-| Monster Hunter | 8 rotten flesh + 8 bones + 8 string | bow, 32 arrows |
-| Shine Bright | 3 diamonds | 8 XP bottles, golden apple |
-| Deep Down | 32 cobbled deepslate | 8 lanterns, golden apple |
-| Hot Stuff | 4 blaze rods | 8 ender pearls, 4 magma cream |
-| Ender Seeker | 8 ender pearls | 12 obsidian, 2 diamonds |
-| Slayer | kill 10 zombies | 5 iron ingots |
-| Lumberjack | collect 32 logs (any kind, via tag) | iron axe |
+| Master Miner | mine 64 stone | iron pickaxe |
+| Home Builder | place 64 oak planks | 16 torches |
+| Animal Friend | tame a wolf | 16 bones |
+| Into the Nether | enter the Nether | 4 obsidian |
+| Level Up | reach XP level 20 | XP + Strength |
+| Prospector | mine 3 diamond ore | mystery loot |
+| Daily Bread | eat 3 bread (repeatable, 24h) | emerald |
+| …and 16 more | | |
 
 > **Good to know:** `collect_item` counts items **picked up** (mining,
 > harvesting, mob drops). To track items the player makes, use `craft_item`.
+>
+> **Want to make your own?** A full
+> [example datapack](https://github.com/ErikEdits/JustQuests/tree/main/docs/example-datapack)
+> with one quest per objective & reward type is on GitHub.
 
 ---
 

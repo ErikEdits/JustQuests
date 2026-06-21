@@ -1,0 +1,20 @@
+{
+  "title": "Example: repeatable",
+  "description": "Eat 1 cooked chicken. Repeatable every 6 hours.",
+  "category": "examples",
+  "repeatable": true,
+  "cooldown_hours": 6,
+  "objectives": [
+    {
+      "type": "justquests:consume_item",
+      "item": "minecraft:cooked_chicken",
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:message",
+      "message": "Tasty! Come back in 6 hours."
+    }
+  ]
+}

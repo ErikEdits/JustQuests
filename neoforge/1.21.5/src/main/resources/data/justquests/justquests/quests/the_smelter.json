@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "The Smelter",
-    "de_de": "Der Verhütter"
+    "de_de": "Der Verhütter",
+    "fr_fr": "Le fondeur",
+    "es_es": "El fundidor"
   },
   "description": {
     "en_us": "Smelt 16 iron ingots in a furnace.",
-    "de_de": "Verhütte 16 Eisenbarren in einem Ofen."
+    "de_de": "Verhütte 16 Eisenbarren in einem Ofen.",
+    "fr_fr": "Fondez 16 lingots de fer dans un four.",
+    "es_es": "Funde 16 lingotes de hierro en un horno."
   },
   "category": "gathering",
   "sort": 45,

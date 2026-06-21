@@ -1,0 +1,29 @@
+{
+  "title": {
+    "en_us": "Example: multi-language",
+    "de_de": "Beispiel: mehrsprachig",
+    "fr_fr": "Exemple : multilingue",
+    "es_es": "Ejemplo: multiidioma"
+  },
+  "description": {
+    "en_us": "Mine 20 iron ore. Each player sees their own language.",
+    "de_de": "Baue 20 Eisenerz ab. Jeder Spieler sieht seine Sprache.",
+    "fr_fr": "Minez 20 minerais de fer. Chaque joueur voit sa langue.",
+    "es_es": "Mina 20 minerales de hierro. Cada jugador ve su idioma."
+  },
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:mine_block",
+      "block": "minecraft:iron_ore",
+      "count": 20
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_block",
+      "count": 2
+    }
+  ]
+}

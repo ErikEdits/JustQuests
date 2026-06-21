@@ -1,11 +1,15 @@
 {
   "title": {
     "en_us": "Monster Hunter",
-    "de_de": "Monsterjäger"
+    "de_de": "Monsterjäger",
+    "fr_fr": "Chasseur de monstres",
+    "es_es": "Cazador de monstruos"
   },
   "description": {
     "en_us": "Hunt zombies, skeletons and spiders at night and gather their drops.",
-    "de_de": "Jage nachts Zombies, Skelette und Spinnen und sammle ihre Beute."
+    "de_de": "Jage nachts Zombies, Skelette und Spinnen und sammle ihre Beute.",
+    "fr_fr": "Chassez zombies, squelettes et araignees la nuit et recuperez leur butin.",
+    "es_es": "Caza zombis, esqueletos y aranas de noche y recoge su botin."
   },
   "category": "combat",
   "sort": 10,

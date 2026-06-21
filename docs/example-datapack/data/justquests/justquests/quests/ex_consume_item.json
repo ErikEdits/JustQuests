@@ -1,0 +1,20 @@
+{
+  "title": "Example: consume_item",
+  "description": "Eat 3 apples.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:consume_item",
+      "item": "minecraft:apple",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:effect",
+      "effect": "minecraft:regeneration",
+      "seconds": 15,
+      "amplifier": 0
+    }
+  ]
+}

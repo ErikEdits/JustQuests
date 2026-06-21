@@ -34,7 +34,7 @@ community until we are ready for the GUI.
 | 0.1.9 | Server & admin (admin cmds, completion broadcast, settings) | ✅ shipped |
 | 0.1.10 | Stats & feedback (sound/toast, leaderboard) | ✅ shipped |
 | 0.1.11 | Bug-fix & maintenance (cancelled-event guards, stats cap) | ✅ shipped |
-| 0.1.12 | Content & language pack (more quests + more languages) | ⏭️ planned |
+| 0.1.12 | Content & language pack (25 quests, EN/DE/FR/ES, example datapack) | ✅ shipped |
 | **0.2.0** | **In-game GUI** (once the polls have enough voters) | ⏭️ gated on Discord |
 | 0.3.0+ | Generator, more loaders/versions, Paper/Bukkit plugin | ⏭️ later |
 
@@ -306,10 +306,12 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 > with only its own MC version, so users can freely switch versions. The
 > local `upload-modrinth.ps1` does this; old versions stay up.
 
-### Phase 9g — Content & language pack (v0.1.11) — planned
-- [ ] A longer bundled progression (more starter quests)
-- [ ] More bundled languages for the built-in quests (e.g. fr/es)
-- [ ] An example datapack showing every objective/reward type
+### Phase 9g — Content & language pack (v0.1.12) — DONE (2026-06-21)
+- [x] Longer bundled progression: 25 quests (was 18), new categories
+      building/crafting/exploration/challenges; covers every objective type
+- [x] More bundled languages: every quest in EN/DE/FR/ES (was EN/DE)
+- [x] Example datapack (`docs/example-datapack/`) with one quest per
+      objective & reward type + tag/any/chain/repeatable/multilang + README
 
 ---
 

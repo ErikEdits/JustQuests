@@ -1,0 +1,17 @@
+{
+  "title": "Example: reach_level",
+  "description": "Reach XP level 10.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:reach_level",
+      "level": 10
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 30
+    }
+  ]
+}

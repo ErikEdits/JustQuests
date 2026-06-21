@@ -1,0 +1,19 @@
+{
+  "title": "Example: smelt_item",
+  "description": "Smelt 4 iron ingots in a furnace.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:smelt_item",
+      "item": "minecraft:iron_ingot",
+      "count": 4
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:coal",
+      "count": 8
+    }
+  ]
+}

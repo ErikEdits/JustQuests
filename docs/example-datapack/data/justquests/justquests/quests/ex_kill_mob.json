@@ -1,0 +1,18 @@
+{
+  "title": "Example: kill_mob",
+  "description": "Kill 5 zombies.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:kill_mob",
+      "entity": "minecraft:zombie",
+      "count": 5
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:loot_table",
+      "loot_table": "minecraft:chests/simple_dungeon"
+    }
+  ]
+}

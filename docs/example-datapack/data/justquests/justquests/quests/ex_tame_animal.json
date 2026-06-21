@@ -1,0 +1,19 @@
+{
+  "title": "Example: tame_animal",
+  "description": "Tame a cat.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:tame_animal",
+      "entity": "minecraft:cat",
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:cod",
+      "count": 8
+    }
+  ]
+}
