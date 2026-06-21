@@ -22,6 +22,7 @@ import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
@@ -29,6 +30,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.UUID;
 
 public class QuestCommand {
     private static final SuggestionProvider<CommandSourceStack> AVAILABLE_QUESTS = (ctx, builder) ->
@@ -63,6 +65,8 @@ public class QuestCommand {
                     .suggests(CATEGORIES)
                     .executes(ctx -> list(ctx, StringArgumentType.getString(ctx, "category")))))
             .then(Commands.literal("categories").executes(QuestCommand::categories))
+            .then(Commands.literal("stats").executes(QuestCommand::stats))
+            .then(Commands.literal("leaderboard").executes(QuestCommand::leaderboard))
             .then(Commands.literal("progress").executes(QuestCommand::progress))
             .then(Commands.literal("accept")
                 .then(Commands.argument("id", ResourceLocationArgument.id())
@@ -204,6 +208,83 @@ public class QuestCommand {
         counts.forEach((cat, n) ->
             src.sendSuccess(() -> Component.literal("§6" + cat + " §7(" + n + ") §8— /quest list " + cat), false));
         return counts.size();
+    }
+
+    private static int stats(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        CommandSourceStack src = ctx.getSource();
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+
+        int total = QuestManager.INSTANCE.getQuests().size();
+        int completed = data == null ? 0 : data.completed.size();
+        int active = data == null ? 0 : data.active.size();
+        int pct = total > 0 ? (completed * 100 / total) : 0;
+
+        src.sendSuccess(() -> Component.literal("§eYour quest stats:"), false);
+        src.sendSuccess(() -> Component.literal("  §7Completed: §f" + completed + "§7/§f" + total + " §7(" + pct + "%)"), false);
+        src.sendSuccess(() -> Component.literal("  §7Active: §f" + active), false);
+
+        if (data != null && !data.completed.isEmpty()) {
+            Map<String, Integer> byCat = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+            for (ResourceLocation id : data.completed.keySet()) {
+                Quest q = QuestManager.INSTANCE.get(id);
+                if (q != null) byCat.merge(q.category(), 1, Integer::sum);
+            }
+            if (!byCat.isEmpty()) {
+                src.sendSuccess(() -> Component.literal("  §7By category:"), false);
+                byCat.forEach((c, n) -> src.sendSuccess(() -> Component.literal("    §6" + c + "§7: §f" + n), false));
+            }
+            List<Long> times = data.completed.values().stream().filter(t -> t > 0L).sorted().toList();
+            if (!times.isEmpty()) {
+                java.text.SimpleDateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                String first = fmt.format(new java.util.Date(times.get(0)));
+                String last = fmt.format(new java.util.Date(times.get(times.size() - 1)));
+                src.sendSuccess(() -> Component.literal("  §7First: §f" + first + " §7Last: §f" + last), false);
+            }
+        }
+        return 1;
+    }
+
+    private static int leaderboard(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack src = ctx.getSource();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) {
+            src.sendSuccess(() -> Component.literal("§7No quest data yet."), false);
+            return 0;
+        }
+        MinecraftServer server = src.getServer();
+        List<Map.Entry<UUID, PlayerQuestData>> top = store.allPlayers().entrySet().stream()
+            .filter(e -> !e.getValue().completed.isEmpty())
+            .sorted((a, b) -> Integer.compare(b.getValue().completed.size(), a.getValue().completed.size()))
+            .limit(10)
+            .toList();
+        if (top.isEmpty()) {
+            src.sendSuccess(() -> Component.literal("§7No completed quests yet."), false);
+            return 0;
+        }
+        src.sendSuccess(() -> Component.literal("§eQuest leaderboard (top " + top.size() + "):"), false);
+        int rank = 0;
+        for (Map.Entry<UUID, PlayerQuestData> e : top) {
+            final int r = ++rank;
+            final String name = nameFor(server, e.getKey());
+            final int n = e.getValue().completed.size();
+            src.sendSuccess(() -> Component.literal("  §6#" + r + " §f" + name + " §7— §f" + n + " §7done"), false);
+        }
+        return top.size();
+    }
+
+    /** Resolves a player's name from the profile cache / online list, else a short UUID. */
+    private static String nameFor(MinecraftServer server, UUID id) {
+        if (server != null) {
+            ServerPlayer online = server.getPlayerList().getPlayer(id);
+            if (online != null) return online.getGameProfile().getName();
+            if (server.getProfileCache() != null) {
+                var prof = server.getProfileCache().get(id);
+                if (prof.isPresent()) return prof.get().getName();
+            }
+        }
+        return id.toString().substring(0, 8);
     }
 
     private static int progress(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {

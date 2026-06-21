@@ -289,10 +289,14 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 - [ ] Permission gating via perms plugins / per-quest perm (Q83/Q55) — deferred
 - [ ] Difficulty Easy/Normal/Hard (Q8/Q9) — deferred (needs count scaling)
 
-### Phase 9f — Stats, notices & feedback (v0.1.10) — planned
-- [ ] `/quest stats` (personal) + server leaderboard (Q34)
-- [ ] Completion **sound** + chat/actionbar toast (non-GUI part of Q12)
-- [ ] Update notice on login for OPs (Q36)
+### Phase 9f — Stats, notices & feedback (v0.1.10) — DONE (2026-06-20)
+- [x] `/quest stats` (personal: %, per-category, first/last) (Q34)
+- [x] `/quest leaderboard` (server top 10, offline-name resolution) (Q34)
+- [x] Completion **sound** + action-bar toast, toggles in settings (Q12)
+- [x] Update notice for OPs / singleplayer host via NeoForge VersionChecker
+      reading Modrinth's forge_updates.json (toggle: updateNotice) (Q36)
+- [ ] FUTURE (plugin edition): auto-update on server start/restart, default
+      on, with an OP on/off notice + opt-out — see Phase 8 plugin
 
 ### Phase 9g — Content & language pack (v0.1.11) — planned
 - [ ] A longer bundled progression (more starter quests)

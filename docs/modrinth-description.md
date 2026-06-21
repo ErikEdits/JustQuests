@@ -88,6 +88,8 @@ with an optional cooldown (e.g. daily quests).
 |---------|--------------|
 | `/quest list [category]` | List all quests (grouped by category), or just one category |
 | `/quest categories` | List the categories and how many quests each has |
+| `/quest stats` | Your personal stats (completed %, per category, dates) |
+| `/quest leaderboard` | Server top 10 by quests completed |
 | `/quest accept <id>` | Start a quest (with tab completion) |
 | `/quest progress` | Show your active quests and how far along you are |
 | `/quest abandon <id>` | Drop an active quest (suggests your active ones) |

@@ -3,6 +3,29 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.10] - 2026-06-20
+
+Stats & feedback. Still command-only; the GUI comes in v0.2.
+
+### Added
+- **`/quest stats`** — your personal stats: completed/total (+%), active,
+  a per-category breakdown, and your first/last completion date.
+- **`/quest leaderboard`** — the server's top 10 players by quests
+  completed (names resolved even for offline players).
+- **Completion feedback** — a sound and an action-bar toast ("✓ <quest>")
+  when you finish a quest. Both toggle in the per-world settings file
+  (`completionSound`, `completionToast`).
+- **Update notice** — OPs and the singleplayer host get a chat message when
+  a newer version is on Modrinth (via NeoForge's built-in version checker
+  reading Modrinth's update feed). Toggle: `updateNotice`. Public feed only,
+  no tokens or data sent.
+
+### Notes
+- Planned for the future server/plugin edition: optional automatic updates
+  on server start/restart (default on), with an OP on/off notice.
+
+[0.1.10]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.10
+
 ## [0.1.9] - 2026-06-20
 
 Server & admin tools. Still command-only; the GUI comes in v0.2.

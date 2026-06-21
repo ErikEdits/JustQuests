@@ -18,13 +18,18 @@ import com.erikedits.justquests.data.objective.VisitDimensionObjective;
 import com.erikedits.justquests.progress.QuestProgressService;
 import com.erikedits.justquests.registry.ModAttachments;
 import com.erikedits.justquests.storage.WorldQuestStore;
+import com.erikedits.justquests.storage.WorldSettings;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.VersionChecker;
 import net.neoforged.neoforge.event.entity.living.AnimalTameEvent;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
@@ -47,6 +52,8 @@ public class PlayerQuestEvents {
         // One-time, clickable Discord welcome (0.1.5). Independent of the
         // migration below, which may early-return.
         com.erikedits.justquests.community.CommunityHints.onLogin(player);
+        // Outdated-version notice for OPs / the singleplayer host (0.1.10).
+        notifyIfOutdated(player);
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null || store.has(player.getUUID())) return;
 
@@ -61,6 +68,29 @@ public class PlayerQuestEvents {
         // playerdata and can't be imported a second time.
         player.removeData(ModAttachments.PLAYER_QUESTS);
         JustQuests.LOG.info("Migrated v0.1 quest data for {}", player.getGameProfile().getName());
+    }
+
+    /**
+     * Tells OPs (and the singleplayer host) when a newer version is on
+     * Modrinth. Uses NeoForge's built-in version checker, which reads the
+     * updateJSONURL (Modrinth's forge_updates.json) — a public file, no
+     * tokens. Toggle: updateNotice in settings.json (Q36).
+     */
+    private void notifyIfOutdated(ServerPlayer player) {
+        if (!WorldSettings.updateNotice()) return;
+        MinecraftServer server = player.getServer();
+        boolean canUpdate = player.hasPermissions(2) || (server != null && server.isSingleplayer());
+        if (!canUpdate) return;
+        ModList.get().getModContainerById(JustQuests.MOD_ID).ifPresent(mc -> {
+            VersionChecker.CheckResult result = VersionChecker.getResult(mc.getModInfo());
+            if (result.status() == VersionChecker.Status.OUTDATED
+                    || result.status() == VersionChecker.Status.BETA_OUTDATED) {
+                String target = result.target() != null ? result.target().toString() : "a newer version";
+                player.sendSystemMessage(Component.literal(
+                    "§e[JustQuests] §fVersion " + target + " is available. "
+                    + "§7Update via the Modrinth app or §9§nhttps://modrinth.com/mod/justquests"));
+            }
+        });
     }
 
     /** collect_item: advance objectives that match the picked-up item. */

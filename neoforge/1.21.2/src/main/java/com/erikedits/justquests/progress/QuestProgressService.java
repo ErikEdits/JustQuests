@@ -13,6 +13,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,8 +86,15 @@ public final class QuestProgressService {
             for (QuestReward reward : quest.rewards()) {
                 reward.grant(player);
             }
-            player.sendSystemMessage(Component.literal("§a✓ Quest completed: "
-                + quest.title().get(player.clientInformation().language())));
+            String questTitle = quest.title().get(player.clientInformation().language());
+            player.sendSystemMessage(Component.literal("§a✓ Quest completed: " + questTitle));
+            // completion sound + action-bar toast (Q12), each toggleable
+            if (WorldSettings.completionSound()) {
+                player.playNotifySound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.MASTER, 1.0f, 1.0f);
+            }
+            if (WorldSettings.completionToast()) {
+                player.displayClientMessage(Component.literal("§a✓ " + questTitle), true);
+            }
             // optional server-wide announcement (Q53), default on
             if (WorldSettings.announceCompletions()) {
                 MinecraftServer server = player.getServer();

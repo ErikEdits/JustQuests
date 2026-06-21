@@ -124,4 +124,9 @@ public class WorldQuestStore {
     public PlayerQuestData peek(UUID id) {
         return players.get(id);
     }
+
+    /** Read-only view of all stored players, for stats/leaderboard. */
+    public Map<UUID, PlayerQuestData> allPlayers() {
+        return java.util.Collections.unmodifiableMap(players);
+    }
 }
