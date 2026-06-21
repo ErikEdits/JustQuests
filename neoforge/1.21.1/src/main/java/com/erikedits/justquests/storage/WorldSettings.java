@@ -21,7 +21,6 @@ public final class WorldSettings {
     private static boolean announceCompletions = true;
     private static boolean completionSound = true;
     private static boolean completionToast = true;
-    private static boolean updateNotice = true;
 
     private WorldSettings() {}
 
@@ -37,7 +36,6 @@ public final class WorldSettings {
                     if (o.has("announceCompletions")) announceCompletions = o.get("announceCompletions").getAsBoolean();
                     if (o.has("completionSound")) completionSound = o.get("completionSound").getAsBoolean();
                     if (o.has("completionToast")) completionToast = o.get("completionToast").getAsBoolean();
-                    if (o.has("updateNotice")) updateNotice = o.get("updateNotice").getAsBoolean();
                 }
             } else {
                 Files.createDirectories(file.getParent());
@@ -56,24 +54,20 @@ public final class WorldSettings {
 
     public static boolean completionToast() { return completionToast; }
 
-    public static boolean updateNotice() { return updateNotice; }
-
     public static void reset() {
         discordWelcome = true;
         announceCompletions = true;
         completionSound = true;
         completionToast = true;
-        updateNotice = true;
     }
 
     private static final String TEMPLATE = """
         {
-          "_help": "JustQuests per-world settings (singleplayer + server). discordWelcome: one-time clickable Discord invite on a player's first join. announceCompletions: broadcast to everyone when a player finishes a quest. completionSound: play a sound for the player on completion. completionToast: show an action-bar toast on completion. updateNotice: tell OPs / the singleplayer host in chat when a newer version is on Modrinth.",
+          "_help": "JustQuests per-world settings (singleplayer + server). discordWelcome: one-time clickable Discord invite on a player's first join. announceCompletions: broadcast to everyone when a player finishes a quest. completionSound: play a sound for the player on completion. completionToast: show an action-bar toast on completion.",
           "discordWelcome": true,
           "announceCompletions": true,
           "completionSound": true,
-          "completionToast": true,
-          "updateNotice": true
+          "completionToast": true
         }
         """;
 }

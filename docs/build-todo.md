@@ -293,10 +293,17 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 - [x] `/quest stats` (personal: %, per-category, first/last) (Q34)
 - [x] `/quest leaderboard` (server top 10, offline-name resolution) (Q34)
 - [x] Completion **sound** + action-bar toast, toggles in settings (Q12)
-- [x] Update notice for OPs / singleplayer host via NeoForge VersionChecker
-      reading Modrinth's forge_updates.json (toggle: updateNotice) (Q36)
+- [~] Update notice (Q36) — shipped in 0.1.10, then **removed** (0.1.11):
+      it needs a bare mod version to compare, but Modrinth uploads are
+      **one version per jar** by design (`neoforge-<mc>-<modver>`, so users
+      can pick any exact version), which the checker can't compare. Dropped
+      the in-game notice; players update via the Modrinth app as usual.
 - [ ] FUTURE (plugin edition): auto-update on server start/restart, default
       on, with an OP on/off notice + opt-out — see Phase 8 plugin
+
+> Modrinth layout (decided 2026-06-21): **one version per jar**, each tagged
+> with only its own MC version, so users can freely switch versions. The
+> local `upload-modrinth.ps1` does this; old versions stay up.
 
 ### Phase 9g — Content & language pack (v0.1.11) — planned
 - [ ] A longer bundled progression (more starter quests)

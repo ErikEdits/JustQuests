@@ -10,7 +10,6 @@ displayName="${mod_name}"
 authors="${mod_authors}"
 logoFile="icon.png"
 displayURL="https://github.com/ErikEdits/JustQuests"
-updateJSONURL="https://api.modrinth.com/updates/justquests/forge_updates.json"
 description='''${mod_description}'''
 
 [[dependencies.${mod_id}]]
