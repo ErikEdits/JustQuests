@@ -3,6 +3,30 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.11] - 2026-06-21
+
+Bug-fix & maintenance pass. Still command-only; the GUI comes in v0.2.
+
+### Fixed
+- **Cancelled actions no longer advance quests.** `place_block`,
+  `mine_block`, `kill_mob`, `tame_animal` and `breed_animal` now ignore
+  events that get cancelled by claim/protection mods, anti-cheat, totems,
+  etc. (they run at lowest priority and skip cancelled events), so quests
+  only count actions that actually happened.
+- **`/quest stats` could show over 100%** when a player had completed
+  quests that are no longer loaded — the completion percentage is now
+  capped at 100%.
+- **Hardened quest completion** against a quest disappearing mid-tick (e.g.
+  a custom-quest reload): it's skipped instead of risking a crash.
+
+### Removed
+- The in-game **update notice** added in 0.1.10. Modrinth uploads are one
+  version per jar (so players can pick any exact version), which the update
+  checker can't compare — it would never fire correctly. Update via the
+  Modrinth app as usual.
+
+[0.1.11]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.1.11
+
 ## [0.1.10] - 2026-06-20
 
 Stats & feedback. Still command-only; the GUI comes in v0.2.

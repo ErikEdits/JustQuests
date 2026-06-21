@@ -82,6 +82,7 @@ public final class QuestProgressService {
 
         for (ResourceLocation questId : completing) {
             Quest quest = QuestManager.INSTANCE.get(questId);
+            if (quest == null) continue; // quest vanished mid-tick (e.g. custom reload)
             data.complete(questId);
             for (QuestReward reward : quest.rewards()) {
                 reward.grant(player);

@@ -32,8 +32,9 @@ community until we are ready for the GUI.
 | 0.1.7 | Rewards + quest logic (xp/effect/message, prerequisites, repeatable) | ✅ shipped |
 | 0.1.8 | Categories & organization (filters, sort, pack-defined) | ✅ shipped |
 | 0.1.9 | Server & admin (admin cmds, completion broadcast, settings) | ✅ shipped |
-| 0.1.10 | Stats, update notice & feedback (sound/toast, leaderboard) | ⏭️ planned |
-| 0.1.11 | Content & language pack (more quests + more languages) | ⏭️ planned |
+| 0.1.10 | Stats & feedback (sound/toast, leaderboard) | ✅ shipped |
+| 0.1.11 | Bug-fix & maintenance (cancelled-event guards, stats cap) | ✅ shipped |
+| 0.1.12 | Content & language pack (more quests + more languages) | ⏭️ planned |
 | **0.2.0** | **In-game GUI** (once the polls have enough voters) | ⏭️ gated on Discord |
 | 0.3.0+ | Generator, more loaders/versions, Paper/Bukkit plugin | ⏭️ later |
 

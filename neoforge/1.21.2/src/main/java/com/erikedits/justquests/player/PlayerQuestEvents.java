@@ -24,6 +24,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.AnimalTameEvent;
 import net.neoforged.neoforge.event.entity.living.BabyEntitySpawnEvent;
@@ -77,8 +78,9 @@ public class PlayerQuestEvents {
     }
 
     /** kill_mob: advance objectives that match the killed entity type. */
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onMobKill(LivingDeathEvent event) {
+        if (event.isCanceled()) return; // death prevented (totem, other mods)
         if (event.getSource().getEntity() instanceof ServerPlayer killer) {
             EntityType<?> type = event.getEntity().getType();
             QuestProgressService.advance(killer, obj ->
@@ -87,8 +89,9 @@ public class PlayerQuestEvents {
     }
 
     /** place_block */
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+        if (event.isCanceled()) return; // placement blocked (protection/claims)
         if (event.getEntity() instanceof ServerPlayer player) {
             Block block = event.getPlacedBlock().getBlock();
             QuestProgressService.advance(player, obj ->
@@ -108,8 +111,9 @@ public class PlayerQuestEvents {
     }
 
     /** tame_animal */
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onTame(AnimalTameEvent event) {
+        if (event.isCanceled()) return; // taming prevented
         if (event.getTamer() instanceof ServerPlayer player) {
             EntityType<?> type = event.getAnimal().getType();
             QuestProgressService.advance(player, obj ->
@@ -138,8 +142,9 @@ public class PlayerQuestEvents {
     }
 
     /** mine_block: counts the block-break itself (distinct from collect_item). */
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (event.isCanceled()) return; // break blocked (protection/claims)
         if (event.getPlayer() instanceof ServerPlayer player) {
             Block block = event.getState().getBlock();
             QuestProgressService.advance(player, obj ->
@@ -148,8 +153,9 @@ public class PlayerQuestEvents {
     }
 
     /** breed_animal: matched on the species of the breeding parent. */
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onBreed(BabyEntitySpawnEvent event) {
+        if (event.isCanceled()) return; // breeding prevented
         if (event.getCausedByPlayer() instanceof ServerPlayer player && event.getParentA() != null) {
             EntityType<?> type = event.getParentA().getType();
             QuestProgressService.advance(player, obj ->

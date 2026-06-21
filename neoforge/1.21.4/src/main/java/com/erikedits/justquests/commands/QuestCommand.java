@@ -219,7 +219,8 @@ public class QuestCommand {
         int total = QuestManager.INSTANCE.getQuests().size();
         int completed = data == null ? 0 : data.completed.size();
         int active = data == null ? 0 : data.active.size();
-        int pct = total > 0 ? (completed * 100 / total) : 0;
+        // cap at 100: a player may have completed quests that are no longer loaded
+        int pct = total > 0 ? Math.min(100, completed * 100 / total) : 0;
 
         src.sendSuccess(() -> Component.literal("§eYour quest stats:"), false);
         src.sendSuccess(() -> Component.literal("  §7Completed: §f" + completed + "§7/§f" + total + " §7(" + pct + "%)"), false);
