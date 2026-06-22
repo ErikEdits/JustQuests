@@ -215,7 +215,18 @@ under `neoforge/<mc-version>/`, all built by one `./gradlew build`.
       `Optional`/`*Or` + `getAllKeys()`→`keySet()` (legacy migration code),
       and `ClickEvent`/`HoverEvent` are sealed (use `ClickEvent.OpenUrl` /
       `HoverEvent.ShowText`)
-- [ ] Later MC versions (1.21.6+/…) — add folders as desired
+- [x] NeoForge **1.21.6, 1.21.7, 1.21.8, 1.21.9, 1.21.10** (toward 0.2.0).
+      Needed: **MDG bumped 2.0.78 → 2.0.141** (older NFRT couldn't build
+      1.21.9/1.21.10). 1.21.6 dropped `INBTSerializable` + `serverLevel()`,
+      so the dead v0.1 NBT migration was removed from 1.21.6+ and loot uses
+      `(ServerLevel) player.level()`. 1.21.10 removed `getGameProfile()`,
+      `Player.getServer()`, `getProfileCache()` → use `getName().getString()`,
+      `player.level().getServer()`, drop the profile-cache lookup (all
+      cross-version safe).
+- [~] **1.21.11** excluded for now: upstream NeoForm package is broken
+      (duplicate `mcp/client/Start.class` → empty merged jar). Folder kept;
+      re-add in settings.gradle once fixed upstream.
+- 12 → **11 NeoForge versions** building (1.21–1.21.10).
 - [ ] Loader ports: Fabric, Forge (~3 weeks each after a feature matures)
 - [ ] **Paper/Bukkit plugin** edition (shared JSON file is the bridge;
       poll cog already specced) — own deep breakdown when reached

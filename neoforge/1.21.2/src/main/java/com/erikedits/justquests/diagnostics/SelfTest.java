@@ -97,11 +97,11 @@ public final class SelfTest {
         if (player != null) {
             PlayerQuestData d = store != null ? store.peek(player.getUUID()) : null;
             if (d != null) {
-                out.append("  Requester ").append(player.getGameProfile().getName())
+                out.append("  Requester ").append(player.getName().getString())
                    .append(": active=").append(d.active.keySet())
                    .append(", completed=").append(d.completed.keySet()).append("\n");
             } else {
-                out.append("  Requester ").append(player.getGameProfile().getName()).append(": no data\n");
+                out.append("  Requester ").append(player.getName().getString()).append(": no data\n");
             }
         }
 

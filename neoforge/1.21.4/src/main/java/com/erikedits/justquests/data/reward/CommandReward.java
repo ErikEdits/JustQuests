@@ -30,9 +30,9 @@ public record CommandReward(String command) implements QuestReward {
 
     @Override
     public void grant(ServerPlayer player) {
-        MinecraftServer server = player.getServer();
+        MinecraftServer server = player.level().getServer();
         if (server == null) return;
-        String cmd = command.replace("{player}", player.getGameProfile().getName());
+        String cmd = command.replace("{player}", player.getName().getString());
         if (cmd.startsWith("/")) cmd = cmd.substring(1);
         try {
             CommandSourceStack source = player.createCommandSourceStack()

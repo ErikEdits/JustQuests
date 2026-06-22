@@ -31,7 +31,7 @@ public record LootTableReward(ResourceLocation table) implements QuestReward {
     @Override
     public void grant(ServerPlayer player) {
         try {
-            ServerLevel level = player.serverLevel();
+            ServerLevel level = (ServerLevel) player.level(); // serverLevel() removed in 1.21.6
             ResourceKey<LootTable> key = ResourceKey.create(Registries.LOOT_TABLE, table);
             LootTable lootTable = level.getServer().reloadableRegistries().getLootTable(key);
             LootParams params = new LootParams.Builder(level)

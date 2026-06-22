@@ -1,0 +1,29 @@
+{
+  "title": {
+    "en_us": "Achiever",
+    "de_de": "Erfolgsjaeger",
+    "fr_fr": "Accompli",
+    "es_es": "Triunfador"
+  },
+  "description": {
+    "en_us": "Earn the 'Acquire Hardware' advancement (smelt iron).",
+    "de_de": "Hol dir den Fortschritt 'Eisenausrüstung' (Eisen einschmelzen).",
+    "fr_fr": "Obtenez le progres Quincaillerie (fondre du fer).",
+    "es_es": "Consigue el avance Adquirir hardware (funde hierro)."
+  },
+  "category": "challenges",
+  "sort": 20,
+  "objectives": [
+    {
+      "type": "justquests:gain_advancement",
+      "advancement": "minecraft:story/smelt_iron"
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_block",
+      "count": 1
+    }
+  ]
+}

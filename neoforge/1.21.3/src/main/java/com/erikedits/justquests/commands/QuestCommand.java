@@ -275,15 +275,11 @@ public class QuestCommand {
         return top.size();
     }
 
-    /** Resolves a player's name from the profile cache / online list, else a short UUID. */
+    /** Resolves an online player's name, else a short UUID (cross-version safe). */
     private static String nameFor(MinecraftServer server, UUID id) {
         if (server != null) {
             ServerPlayer online = server.getPlayerList().getPlayer(id);
-            if (online != null) return online.getGameProfile().getName();
-            if (server.getProfileCache() != null) {
-                var prof = server.getProfileCache().get(id);
-                if (prof.isPresent()) return prof.get().getName();
-            }
+            if (online != null) return online.getName().getString();
         }
         return id.toString().substring(0, 8);
     }
@@ -431,7 +427,7 @@ public class QuestCommand {
         CommandSourceStack src = ctx.getSource();
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(target.getUUID());
-        String name = target.getGameProfile().getName();
+        String name = target.getName().getString();
         if (data == null || (data.active.isEmpty() && data.completed.isEmpty())) {
             src.sendSuccess(() -> Component.literal("§7" + name + " has no quest progress."), false);
             return 0;
@@ -445,7 +441,7 @@ public class QuestCommand {
 
     private static int adminResetAll(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
-        String name = target.getGameProfile().getName();
+        String name = target.getName().getString();
         WorldQuestStore store = WorldQuestStore.get();
         if (store != null && store.has(target.getUUID())) {
             PlayerQuestData data = store.get(target.getUUID());
@@ -460,7 +456,7 @@ public class QuestCommand {
 
     private static int adminResetOne(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
         ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
-        String name = target.getGameProfile().getName();
+        String name = target.getName().getString();
         WorldQuestStore store = WorldQuestStore.get();
         if (store != null) {
             PlayerQuestData data = store.peek(target.getUUID());
@@ -493,7 +489,7 @@ public class QuestCommand {
             reward.grant(target);
         }
         store.markDirty();
-        String name = target.getGameProfile().getName();
+        String name = target.getName().getString();
         src.sendSuccess(() -> Component.literal("§aForce-completed " + id + " for " + name + " (rewards granted)."), true);
         return 1;
     }

@@ -98,10 +98,10 @@ public final class QuestProgressService {
             }
             // optional server-wide announcement (Q53), default on
             if (WorldSettings.announceCompletions()) {
-                MinecraftServer server = player.getServer();
+                MinecraftServer server = player.level().getServer();
                 if (server != null) {
                     server.getPlayerList().broadcastSystemMessage(Component.literal(
-                        "§e" + player.getGameProfile().getName() + " §7completed §f"
+                        "§e" + player.getName().getString() + " §7completed §f"
                         + quest.title().getDefault() + "§7!"), false);
                 }
             }
