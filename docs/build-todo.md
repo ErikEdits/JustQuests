@@ -35,7 +35,8 @@ community until we are ready for the GUI.
 | 0.1.10 | Stats & feedback (sound/toast, leaderboard) | ✅ shipped |
 | 0.1.11 | Bug-fix & maintenance (cancelled-event guards, stats cap) | ✅ shipped |
 | 0.1.12 | Content & language pack (25 quests, EN/DE/FR/ES, example datapack) | ✅ shipped |
-| **0.2.0** | **In-game GUI** (once the polls have enough voters) | ⏭️ gated on Discord |
+| **0.2.0** | **In-game GUI** (interim, SP) + MC 1.21.6–1.21.10 (11 versions) | ✅ shipped |
+| 0.2.x | Final GUI from the Discord vote (3 designs) + multiplayer sync | ⏭️ next month |
 | 0.3.0+ | Generator, more loaders/versions, Paper/Bukkit plugin | ⏭️ later |
 
 Each 0.1.x release is a Modrinth update, which puts the mod back in
@@ -120,8 +121,19 @@ drip of small, useful releases *is* the growth plan, not a detour from it.
 
 ## Phase 3 — GUI (v0.2 headline)
 
+**Interim GUI shipped in 0.2.0** — a singleplayer quest book (key J): paged
+quest list, detail (description + objectives w/ live progress + rewards),
+accept/abandon buttons, vanilla-grey styling from version-stable GUI
+primitives (no blit), so one Screen works across all 11 versions. Reads
+quest data directly (SP). Client classes: `client/QuestClient` (keybind;
+note `KeyMapping` category is a String pre-1.21.9, a `Category` object in
+1.21.9+, and the `@EventBusSubscriber bus=` param is gone in 1.21.6+) and
+`client/QuestScreen`. **This is throwaway** — the real GUI comes from the vote.
+
 - [ ] Wait for Discord poll: style (Q37), opening method (Q10), book/
       button (Q11), notifications (Q12), HUD tracker (Q43)
+- [ ] Replace the interim GUI with the chosen design + **multiplayer sync**
+      (data packet: server -> client), wiring in the v2-full textures
 - [ ] Build textures from [gui-design-brief.md](gui-design-brief.md)
 - [ ] Quest list screen: grouping by category/status/custom order (Q45)
 - [ ] Per-quest icon with fallback (Q44); detail view (Q78 open)

@@ -5,9 +5,12 @@ No GUI bloat, no heavy dependencies — just quests and a handful of commands.
 Built as a focused, server-friendly alternative to FTB Quests and HQM for
 packs that want questing without the weight.
 
-> **Still command-only for now.** A full in-game GUI is on the way (see the
-> roadmap below). Everything here works right now on **NeoForge 1.21.1**,
-> in singleplayer and on servers.
+> **New in 0.2.0: an in-game quest book GUI** — press **J** to open it
+> (singleplayer for now). Plus support for **Minecraft 1.21 – 1.21.10**
+> (NeoForge), in singleplayer and on servers.
+>
+> The GUI is an early version — the final design is being chosen by a
+> community **[Discord poll](https://discord.gg/cMTGE9QCja)**. Come vote!
 
 ---
 
@@ -29,6 +32,9 @@ In-game you can run `/quest discord` anytime to get the invite.
 
 ## ✨ What JustQuests does
 
+- **In-game quest book (GUI)** — press **J** to browse quests, track
+  objective progress, and accept/claim with a click (early version,
+  singleplayer for now). Plus the full `/quest` command set.
 - **Ready to play** — ships with a built-in quest progression you can start
   right away, no setup required.
 - **Lightweight** — tiny and fast, with no heavy dependencies.
@@ -164,16 +170,16 @@ the box, so you can jump in right away. A sample:
 
 ## 📥 Installation
 
-1. Install **NeoForge** for your Minecraft version (1.21, 1.21.1 or 1.21.2)
+1. Install **NeoForge** for your Minecraft version (1.21 – 1.21.10)
 2. Download the JustQuests jar that matches your version (e.g.
-   `JustQuests-neoforge-1.21.1-0.1.6.jar`) into your `mods` folder
-3. Launch the game and run `/quest list`
+   `JustQuests-neoforge-1.21.1-0.2.0.jar`) into your `mods` folder
+3. Launch the game, press **J** for the quest book or run `/quest list`
 
 ---
 
 ## ✅ Compatibility
 
-- **Minecraft:** 1.21, 1.21.1, 1.21.2, 1.21.3, 1.21.4, 1.21.5 (more added over time)
+- **Minecraft:** 1.21 – 1.21.10 (11 versions; more added over time)
 - **Loader:** NeoForge (Fabric/Forge planned)
 - **Environment:** singleplayer **and** servers (runs server-side)
 
@@ -187,9 +193,10 @@ quests with live reload, and multi-language quest text.
 
 Planned next:
 
-- **v0.2 — in-game GUI**: a real quest book screen, claim button, choice
-  rewards and an optional HUD tracker — **designed from
-  [Discord](https://discord.gg/cMTGE9QCja) community polls**
+- **Final GUI design**: chosen from 3 mockups by a
+  [Discord](https://discord.gg/cMTGE9QCja) community vote, with the polished
+  textures, a claim button, choice rewards, an optional HUD tracker — and
+  **multiplayer** support (the current GUI is singleplayer)
 - **Server & QoL**: admin commands, statistics/leaderboard, difficulty
   settings, permission gating, completion broadcasts
 - **Automatic quest generator**: rotating, registry-aware generated quests

@@ -3,6 +3,33 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.0] - 2026-06-21
+
+The GUI update — plus a big reach expansion.
+
+### Added
+- **In-game quest book (GUI).** Press **J** to open a quest book: browse
+  quests (paged), see a quest's description, objectives with live progress,
+  and rewards, and **accept/abandon** with a click. Vanilla-grey styling.
+  - This is an **interim** GUI for singleplayer (it reads quest data
+    directly). The final design will be chosen by a community Discord poll,
+    and multiplayer sync lands with it.
+- **Five more Minecraft versions:** 1.21.6, 1.21.7, 1.21.8, 1.21.9, 1.21.10
+  (NeoForge) — JustQuests now ships for **1.21 through 1.21.10** (11
+  versions).
+
+### Changed
+- Build toolchain bumped (ModDevGradle 2.0.78 → 2.0.141) to support the
+  newer Minecraft versions.
+
+### Notes
+- 1.21.11 is not included yet: its upstream NeoForge package is currently
+  broken (produces an empty jar). It'll be added once that's fixed.
+- The GUI keybind is unbound-safe and rebindable under Controls → "Open
+  Quests".
+
+[0.2.0]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.2.0
+
 ## [0.1.12] - 2026-06-21
 
 Content & language pack. Still command-only; the GUI comes in v0.2.
