@@ -13,10 +13,17 @@ rootProject.name = 'JustQuests'
 
 // One subproject per supported MC version, each in its own folder under
 // neoforge/<mc-version>/. More versions/loaders are added here over time.
+// NOTE: NeoForge only exists from 1.20.2 up — 1.20.1 / 1.19.x / 1.18.x have
+// no NeoForge build (they would need a separate Forge/Fabric port).
+// NOTE: 1.20.2 / 1.20.3 / 1.20.5 are excluded — MDG 2.x can't consume their
+// NeoForge artifacts (1.20.2 predates the moddev-bundle metadata; 1.20.3 &
+// 1.20.5 only have -beta builds without it). Their folders are kept; re-add
+// them if buildable artifacts appear. 1.20.4 builds on Java 17.
 // NOTE: 1.21.11 is temporarily excluded — its upstream NeoForm package is
 // broken (duplicate mcp/client/Start.class -> empty merged jar). The folder
 // is kept; re-add it here once NeoForm/NeoForge fixes the artifact.
-['1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5',
+['1.20.4', '1.20.6',
+ '1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5',
  '1.21.6', '1.21.7', '1.21.8', '1.21.9', '1.21.10'].each { v ->
     def name = "neoforge-${v.replace('.', '_')}"
     include name

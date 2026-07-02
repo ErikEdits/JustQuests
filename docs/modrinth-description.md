@@ -5,9 +5,9 @@ No GUI bloat, no heavy dependencies — just quests and a handful of commands.
 Built as a focused, server-friendly alternative to FTB Quests and HQM for
 packs that want questing without the weight.
 
-> **New in 0.2.0: an in-game quest book GUI** — press **J** to open it
-> (singleplayer for now). Plus support for **Minecraft 1.21 – 1.21.10**
-> (NeoForge), in singleplayer and on servers.
+> **In-game quest book GUI** — press **J** to open it (singleplayer for now).
+> Runs on **Minecraft 1.20.4, 1.20.6 and 1.21–1.21.10** (NeoForge), in
+> singleplayer and on servers.
 >
 > The GUI is an early version — the final design is being chosen by a
 > community **[Discord poll](https://discord.gg/cMTGE9QCja)**. Come vote!
@@ -170,17 +170,18 @@ the box, so you can jump in right away. A sample:
 
 ## 📥 Installation
 
-1. Install **NeoForge** for your Minecraft version (1.21 – 1.21.10)
+1. Install **NeoForge** for your Minecraft version (1.20.4, 1.20.6 or 1.21–1.21.10)
 2. Download the JustQuests jar that matches your version (e.g.
-   `JustQuests-neoforge-1.21.1-0.2.0.jar`) into your `mods` folder
+   `JustQuests-neoforge-1.21.1-0.2.1.jar`) into your `mods` folder
 3. Launch the game, press **J** for the quest book or run `/quest list`
 
 ---
 
 ## ✅ Compatibility
 
-- **Minecraft:** 1.21 – 1.21.10 (11 versions; more added over time)
-- **Loader:** NeoForge (Fabric/Forge planned)
+- **Minecraft:** 1.20.4, 1.20.6 and 1.21–1.21.10 (13 versions; more added over time)
+- **Loader:** NeoForge (Fabric/Forge planned). *NeoForge only exists from
+  1.20.2 up — 1.20.1 / 1.19 / 1.18 would need a separate Forge/Fabric port.*
 - **Environment:** singleplayer **and** servers (runs server-side)
 
 ---

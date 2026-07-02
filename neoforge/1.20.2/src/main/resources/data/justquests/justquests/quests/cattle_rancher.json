@@ -1,0 +1,35 @@
+{
+  "title": {
+    "en_us": "Cattle Rancher",
+    "de_de": "Viehzüchter",
+    "fr_fr": "Eleveur de betail",
+    "es_es": "Ganadero"
+  },
+  "description": {
+    "en_us": "Breed 5 cows to grow your herd.",
+    "de_de": "Züchte 5 Kühe, um deine Herde zu vergrößern.",
+    "fr_fr": "Elevez 5 vaches pour agrandir votre troupeau.",
+    "es_es": "Cria 5 vacas para agrandar tu rebano."
+  },
+  "category": "farming",
+  "sort": 20,
+  "objectives": [
+    {
+      "type": "justquests:breed_animal",
+      "entity": "minecraft:cow",
+      "count": 5
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:lead",
+      "count": 2
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:hay_block",
+      "count": 8
+    }
+  ]
+}

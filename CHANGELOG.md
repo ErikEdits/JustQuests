@@ -3,6 +3,28 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.1] - 2026-07-02
+
+Older-version reach: JustQuests now runs on two 1.20.x versions.
+
+### Added
+- **Minecraft 1.20.4 and 1.20.6** (NeoForge). JustQuests now ships for
+  **1.20.4, 1.20.6 and 1.21–1.21.10** (13 versions). Same features and the
+  interim quest-book GUI (key **J**) as on 1.21.
+
+### Notes
+- **1.20.1, 1.19.x and 1.18.x are not supported** — NeoForge only exists from
+  1.20.2 upward. Those versions would require a separate Forge (or Fabric)
+  port, which isn't planned right now.
+- **1.20.2, 1.20.3 and 1.20.5 are not included** — their NeoForge artifacts
+  can't be consumed by the current build toolchain (1.20.2 predates the
+  required metadata; 1.20.3 and 1.20.5 only have beta builds without it).
+- 1.20.4 was backported to the older pre-1.20.5 APIs (DataFixerUpper,
+  tick/pickup events, potion-effect registry, loot tables). It builds on
+  **Java 17**; 1.20.6 and all 1.21.x build on Java 21.
+
+[0.2.1]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.2.1
+
 ## [0.2.0] - 2026-06-21
 
 The GUI update — plus a big reach expansion.
