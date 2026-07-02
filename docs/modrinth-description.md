@@ -1,24 +1,24 @@
 # JustQuests
 
-**A lightweight quest book for NeoForge.**
+**A lightweight quest book for NeoForge, Fabric & Forge.**
 No GUI bloat, no heavy dependencies — just quests and a handful of commands.
 Built as a focused, server-friendly alternative to FTB Quests and HQM for
 packs that want questing without the weight.
 
-> **In-game quest book GUI** — press **J** to open it (singleplayer for now).
-> Runs on **Minecraft 1.20.4, 1.20.6 and 1.21–1.21.10** (NeoForge), in
-> singleplayer and on servers.
+> **Now on three loaders** — NeoForge, Fabric and Forge — across
+> **Minecraft 1.18 – 1.21**. In-game quest book (press **J**) on 1.20.1 and
+> newer; older versions are command-only. Singleplayer **and** servers.
 >
-> The GUI is an early version — the final design is being chosen by a
+> The GUI is an early, interim version — the final design is being chosen by a
 > community **[Discord poll](https://discord.gg/cMTGE9QCja)**. Come vote!
 
 ---
 
 ## 💬 Join the community — help shape the GUI
 
-The big **in-game GUI (v0.2)** is being designed **by the community**: its
-style, layout and features will be decided by polls on the Discord. The more
-people vote, the better the GUI everyone gets.
+The big **in-game GUI** is being designed **by the community**: its style,
+layout and features will be decided by polls on the Discord. The more people
+vote, the better the GUI everyone gets.
 
 **👉 [Join the JustQuests Discord](https://discord.gg/cMTGE9QCja)** to:
 
@@ -32,9 +32,9 @@ In-game you can run `/quest discord` anytime to get the invite.
 
 ## ✨ What JustQuests does
 
-- **In-game quest book (GUI)** — press **J** to browse quests, track
-  objective progress, and accept/claim with a click (early version,
-  singleplayer for now). Plus the full `/quest` command set.
+- **In-game quest book (GUI)** — press **J** to browse quests, track objective
+  progress, and accept with a click (early/interim version, singleplayer for
+  now, on **MC 1.20.1+**). The full `/quest` command set works everywhere.
 - **Ready to play** — ships with a built-in quest progression you can start
   right away, no setup required.
 - **Lightweight** — tiny and fast, with no heavy dependencies.
@@ -42,7 +42,7 @@ In-game you can run `/quest discord` anytime to get the invite.
   datapack. No restart needed: the file reloads automatically as you edit it.
 - **Speaks the player's language** — quest text can be written in multiple
   languages, and item/mob/block names show up translated for each player
-  automatically.
+  automatically (per-player language on 1.20.2+; English on older versions).
 - **Persistent progress** — saved per world, kept across sessions and
   through death.
 - **Server-friendly** — runs server-side with per-world storage; stays out
@@ -170,19 +170,33 @@ the box, so you can jump in right away. A sample:
 
 ## 📥 Installation
 
-1. Install **NeoForge** for your Minecraft version (1.20.4, 1.20.6 or 1.21–1.21.10)
-2. Download the JustQuests jar that matches your version (e.g.
-   `JustQuests-neoforge-1.21.1-0.2.1.jar`) into your `mods` folder
-3. Launch the game, press **J** for the quest book or run `/quest list`
+1. Install your loader for your Minecraft version:
+   **NeoForge**, **Fabric** (+ **[Fabric API](https://modrinth.com/mod/fabric-api)**),
+   or **Forge**.
+2. Download the JustQuests jar that matches **your loader and version** — the
+   file name says which, e.g. `JustQuests-fabric-1.20.1-0.2.1.jar` or
+   `JustQuests-neoforge-1.21.1-0.2.1.jar` — into your `mods` folder.
+3. Launch the game, press **J** for the quest book (1.20.1+) or run
+   `/quest list`.
 
 ---
 
 ## ✅ Compatibility
 
-- **Minecraft:** 1.20.4, 1.20.6 and 1.21–1.21.10 (13 versions; more added over time)
-- **Loader:** NeoForge (Fabric/Forge planned). *NeoForge only exists from
-  1.20.2 up — 1.20.1 / 1.19 / 1.18 would need a separate Forge/Fabric port.*
+Pick the jar for your loader **and** exact Minecraft version:
+
+- **NeoForge:** 1.20.4, 1.20.6, and 1.21 – 1.21.10
+- **Fabric** *(requires Fabric API)*: 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4,
+  1.20.6, and 1.21 – 1.21.10
+- **Forge:** 1.18.2, 1.19.2, 1.19.4, 1.20.1
+
 - **Environment:** singleplayer **and** servers (runs server-side)
+- **GUI:** on 1.20.1 and newer; 1.18/1.19 are **command-only** (the full
+  `/quest` set and all quest tracking still work)
+
+*Why the gaps?* NeoForge only exists from 1.20.2 up, so 1.18–1.20.1 are
+covered by Fabric/Forge. Forge and NeoForge split at 1.20.1, so 1.20.2+ is
+served by NeoForge (and Fabric) rather than duplicating it on Forge.
 
 ---
 
@@ -190,7 +204,8 @@ the box, so you can jump in right away. A sample:
 
 JustQuests is built step by step. Already shipped: a deep set of objective
 and reward types, item tags, quest modes & categories, per-world custom
-quests with live reload, and multi-language quest text.
+quests with live reload, multi-language quest text, and now **NeoForge,
+Fabric and Forge** across 1.18–1.21.
 
 Planned next:
 
@@ -198,11 +213,9 @@ Planned next:
   [Discord](https://discord.gg/cMTGE9QCja) community vote, with the polished
   textures, a claim button, choice rewards, an optional HUD tracker — and
   **multiplayer** support (the current GUI is singleplayer)
-- **Server & QoL**: admin commands, statistics/leaderboard, difficulty
-  settings, permission gating, completion broadcasts
+- **Server & QoL**: difficulty settings and permission gating
 - **Automatic quest generator**: rotating, registry-aware generated quests
-- **Wider reach**: more Minecraft versions, additional loaders
-  (Fabric/Forge), and a Paper/Bukkit plugin edition
+- **Wider reach**: a Paper/Bukkit plugin edition
 
 Feedback shapes the priorities — bug reports and suggestions are very
 welcome on the [issue tracker](https://github.com/ErikEdits/JustQuests/issues).
