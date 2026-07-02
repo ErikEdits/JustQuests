@@ -11,13 +11,19 @@ Legend: ✅ done & building · 🚧 in progress · ⬜ todo · ❌ not possible
 | MC line | NeoForge | Fabric | Forge |
 |--------|----------|--------|-------|
 | 1.21.x | ✅ 1.21, 1.21.1–1.21.10 (not .11) | ✅ 1.21, 1.21.1–1.21.10 | ⬜ |
-| 1.20.x | ✅ 1.20.4, 1.20.6 only | ⬜ 1.20.1/1.20.4/1.20.6 … | ⬜ 1.20.1 (Forge, not NeoForge) … |
+| 1.20.x | ✅ 1.20.4, 1.20.6 only | ✅ 1.20.1, 1.20.4, 1.20.6 | ⬜ 1.20.1 (Forge, not NeoForge) … |
 | 1.19.x | ❌ (no NeoForge) | ⬜ 1.19.2, 1.19.4 | ⬜ 1.19.2, 1.19.4 |
 | 1.18.x | ❌ (no NeoForge) | ⬜ 1.18.2 | ⬜ 1.18.2 |
 
-**Next up:** Fabric 1.20.x (1.20.1 = Java 17 + pre-components + older Fabric API
-& mixin targets; 1.20.4/1.20.6 reuse their neoforge domain), then Fabric
-1.19/1.18, then the whole Forge column.
+**Next up:** Fabric 1.19.x / 1.18.x (expect the same pre-1.20.2 issues as 1.20.1
+— English-only quest text, `award(Advancement,String)`, single-arg
+`renderBackground`, plus more pre-Codec/registry shifts), then the whole Forge
+column (ForgeGradle for ≤1.20.1).
+
+**1.20.1 note:** no NeoForge baseline → derived from `neoforge/1.20.4`. Fixes:
+single-arg `renderBackground`; `getLootData().getLootTable`; **no
+`clientInformation()` before 1.20.2 → quest text is English-only on 1.20.1**;
+advancement mixin targets `award(Advancement, String)`.
 
 `./gradlew exportJars` now routes jars to `Desktop/Justquests/<loader>/`.
 
