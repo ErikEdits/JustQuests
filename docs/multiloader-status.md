@@ -12,13 +12,26 @@ Legend: ✅ done & building · 🚧 in progress · ⬜ todo · ❌ not possible
 |--------|----------|--------|-------|
 | 1.21.x | ✅ 1.21, 1.21.1–1.21.10 (not .11) | ✅ 1.21, 1.21.1–1.21.10 | ⬜ |
 | 1.20.x | ✅ 1.20.4, 1.20.6 only | ✅ 1.20.1, 1.20.4, 1.20.6 | ⬜ 1.20.1 (Forge, not NeoForge) … |
-| 1.19.x | ❌ (no NeoForge) | ⬜ 1.19.2, 1.19.4 | ⬜ 1.19.2, 1.19.4 |
-| 1.18.x | ❌ (no NeoForge) | ⬜ 1.18.2 | ⬜ 1.18.2 |
+| 1.19.x | ❌ (no NeoForge) | ✅ 1.19.2, 1.19.4 | ⬜ 1.19.2, 1.19.4 |
+| 1.18.x | ❌ (no NeoForge) | ✅ 1.18.2 | ⬜ 1.18.2 |
 
-**Next up:** Fabric 1.19.x / 1.18.x (expect the same pre-1.20.2 issues as 1.20.1
-— English-only quest text, `award(Advancement,String)`, single-arg
-`renderBackground`, plus more pre-Codec/registry shifts), then the whole Forge
-column (ForgeGradle for ≤1.20.1).
+**Fabric column COMPLETE** — 17 versions building. **Next up: the whole Forge
+column** (ForgeGradle for ≤1.20.1; NeoForge-like API for 1.20.2+).
+
+### Pre-1.20 Fabric notes
+- **Command-only** below 1.20 (no `GuiGraphics` → the throwaway J-key GUI is
+  dropped for 1.18/1.19; full `/quest` set + all events still work).
+- **English-only quest text** on 1.20.1 and older (no `ServerPlayer.clientInformation()`).
+- Domain shims: `LootParams`→`LootContext.Builder` + `LootTables.get`;
+  `entity.level()`→`getLevel()`; `sendSuccess(Supplier)`→`sendSuccess(Component)`;
+  `BuiltInRegistries`→`Registry` and `Registries.ITEM`→`Registry.ITEM_REGISTRY`
+  (pre-1.19.3); `UUIDUtil.STRING_CODEC`→inline `Codec.STRING.xmap` (pre-1.19.3).
+- **1.18.2** additionally: `Component.literal/translatable`→`new TextComponent/
+  TranslatableComponent`; `sendSystemMessage`→`sendMessage(c, NIL_UUID)`;
+  `broadcastSystemMessage`→`broadcastMessage(c, ChatType.SYSTEM, NIL_UUID)`;
+  `performPrefixedCommand`→`performCommand`; `CommandSourceStack.getPlayer()`→
+  null-safe `getEntity()` cast; command `v2`→`v1`; no `ServerLivingEntityEvents`
+  → `LivingEntity.die` mixin for kill_mob.
 
 **1.20.1 note:** no NeoForge baseline → derived from `neoforge/1.20.4`. Fixes:
 single-arg `renderBackground`; `getLootData().getLootTable`; **no
