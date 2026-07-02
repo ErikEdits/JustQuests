@@ -2,6 +2,7 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         maven { url = 'https://maven.neoforged.net/releases' }
+        maven { url = 'https://maven.fabricmc.net/' }   // Fabric Loom
     }
 }
 
@@ -28,4 +29,13 @@ rootProject.name = 'JustQuests'
     def name = "neoforge-${v.replace('.', '_')}"
     include name
     project(":${name}").projectDir = file("neoforge/${v}")
+}
+
+// --- Fabric (Loom) — being ported version by version (0.2.1+). ---
+// Standalone source tree per MC version under fabric/<mc-version>/, mirroring
+// the neoforge/ layout. Fabric uses Mojmap so the domain code is shared code.
+['1.21.1'].each { v ->
+    def name = "fabric-${v.replace('.', '_')}"
+    include name
+    project(":${name}").projectDir = file("fabric/${v}")
 }
