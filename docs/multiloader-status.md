@@ -10,13 +10,34 @@ Legend: ✅ done & building · 🚧 in progress · ⬜ todo · ❌ not possible
 
 | MC line | NeoForge | Fabric | Forge |
 |--------|----------|--------|-------|
-| 1.21.x | ✅ 1.21, 1.21.1–1.21.10 (not .11) | ✅ 1.21, 1.21.1–1.21.10 | ⬜ |
-| 1.20.x | ✅ 1.20.4, 1.20.6 only | ✅ 1.20.1, 1.20.4, 1.20.6 | ⬜ 1.20.1 (Forge, not NeoForge) … |
-| 1.19.x | ❌ (no NeoForge) | ✅ 1.19.2, 1.19.4 | ⬜ 1.19.2, 1.19.4 |
-| 1.18.x | ❌ (no NeoForge) | ✅ 1.18.2 | ⬜ 1.18.2 |
+| 1.21.x | ✅ 1.21, 1.21.1–1.21.10 (not .11) | ✅ 1.21, 1.21.1–1.21.10 | ❌ (see below) |
+| 1.20.x | ✅ 1.20.4, 1.20.6 only | ✅ 1.20.1, 1.20.4, 1.20.6 | ✅ 1.20.1 (❌ 1.20.2+) |
+| 1.19.x | ❌ (no NeoForge) | ✅ 1.19.2, 1.19.4 | ✅ 1.19.2, 1.19.4 |
+| 1.18.x | ❌ (no NeoForge) | ✅ 1.18.2 | ✅ 1.18.2 |
 
-**Fabric column COMPLETE** — 17 versions building. **Next up: the whole Forge
-column** (ForgeGradle for ≤1.20.1; NeoForge-like API for 1.20.2+).
+**Fabric column COMPLETE** — 17 versions. **Forge column as complete as it can
+be** — 4 versions (1.18.2, 1.19.2, 1.19.4, 1.20.1). Totals: NeoForge 13, Fabric
+17, Forge 4 = **34 building jars** for 0.2.1.
+
+### Modern Forge (1.20.2+ / 1.21.x) — not done, on purpose
+- MDG **legacyforge** only supports the pre-NeoForge Forge era (≤1.20.1); its
+  NFRT step fails on 1.20.4's userdev (verified). The other option, **ForgeGradle,
+  doesn't support Gradle 9.2.1** (this repo's wrapper).
+- More importantly it's **redundant**: after the 1.20.1 Forge→NeoForge split,
+  **NeoForge already covers 1.20.2, 1.20.4, 1.20.6 and 1.21–1.21.10**. Building
+  Forge there too would be duplicate, lower-audience maintenance.
+- To add it anyway would mean a separate ForgeGradle build on an older Gradle —
+  not worth it. Forge's real value (1.18–1.20.1, where NeoForge doesn't exist)
+  is fully covered.
+
+### Forge notes
+- Forge 1.20.1 forked from NeoForge at 1.20.1 → loader glue mirrors the NeoForge
+  build with `net.minecraftforge` packages; 1.20.1 has the GUI, 1.18/1.19 are
+  command-only (no GuiGraphics).
+- Built via MDG `net.neoforged.moddev.legacyforge` (Gradle-9 compatible);
+  `reobfJar` remaps to SRG for runtime.
+- Per-version Forge event shims: 1.18.2 `BlockEvent` in `event.world` (not
+  `event.level`), `AdvancementEvent` not nested (`AdvancementEarnEvent` is later).
 
 ### Pre-1.20 Fabric notes
 - **Command-only** below 1.20 (no `GuiGraphics` → the throwaway J-key GUI is
