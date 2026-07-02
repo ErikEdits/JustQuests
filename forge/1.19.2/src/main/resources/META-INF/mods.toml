@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="LGPL-3.0-only"
+issueTrackerURL="https://github.com/ErikEdits/JustQuests/issues"
+
+[[mods]]
+modId="justquests"
+version="${file.jarVersion}"
+displayName="JustQuests"
+authors="ErikEdits"
+description='''A lightweight, datapack-driven quest book for Forge.'''
+logoFile="icon.png"
+
+[[dependencies.justquests]]
+    modId="forge"
+    mandatory=true
+    versionRange="[43,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.justquests]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2,1.19.3)"
+    ordering="NONE"
+    side="BOTH"

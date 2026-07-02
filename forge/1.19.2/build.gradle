@@ -1,0 +1,39 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.141'
+}
+
+def mcVersion = '1.19.2'
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = "${mod_name}-forge-${mcVersion}"
+}
+
+legacyForge {
+    version = '1.19.2-43.5.2'
+
+    // Reobf mapping + mixin wiring for the mod's source set.
+    mods {
+        justquests {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+// Expand ${file.jarVersion} in mods.toml at build time.
+tasks.named('processResources') {
+    var replacements = [file: [jarVersion: project.version]]
+    inputs.properties(version: project.version)
+    filesMatching('META-INF/mods.toml') {
+        expand(replacements)
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}

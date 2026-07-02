@@ -1,0 +1,38 @@
+package com.erikedits.justquests.data.reward;
+
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+
+public interface QuestReward {
+    // Pre-1.20.5 DFU's dispatch takes a Codec (not a MapCodec); MapCodec.codec()
+    // keeps the same inline {"type":..., ...fields} JSON shape.
+    Codec<QuestReward> CODEC = Codec.STRING.dispatch(
+        "type",
+        QuestReward::typeId,
+        type -> codecForType(type).codec()
+    );
+
+    static MapCodec<? extends QuestReward> codecForType(String type) {
+        return switch (type) {
+            case GiveItemReward.TYPE_ID -> GiveItemReward.MAP_CODEC;
+            case CommandReward.TYPE_ID -> CommandReward.MAP_CODEC;
+            case LootTableReward.TYPE_ID -> LootTableReward.MAP_CODEC;
+            case XpReward.TYPE_ID -> XpReward.MAP_CODEC;
+            case EffectReward.TYPE_ID -> EffectReward.MAP_CODEC;
+            case MessageReward.TYPE_ID -> MessageReward.MAP_CODEC;
+            default -> throw new IllegalStateException("Unknown reward type: " + type);
+        };
+    }
+
+    String typeId();
+
+    void grant(ServerPlayer player);
+
+    /** Plain English, for logs and diagnostics (Q22). */
+    String displayName();
+
+    /** Player-facing label; item rewards localize their name via vanilla keys (Q21). */
+    Component display();
+}

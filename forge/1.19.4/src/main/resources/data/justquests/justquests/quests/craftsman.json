@@ -1,0 +1,30 @@
+{
+  "title": {
+    "en_us": "Craftsman",
+    "de_de": "Handwerker",
+    "fr_fr": "Artisan",
+    "es_es": "Artesano"
+  },
+  "description": {
+    "en_us": "Craft 8 loaves of bread.",
+    "de_de": "Stelle 8 Brote her.",
+    "fr_fr": "Fabriquez 8 pains.",
+    "es_es": "Fabrica 8 panes."
+  },
+  "category": "crafting",
+  "sort": 10,
+  "objectives": [
+    {
+      "type": "justquests:craft_item",
+      "item": "minecraft:bread",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:wheat",
+      "count": 16
+    }
+  ]
+}
