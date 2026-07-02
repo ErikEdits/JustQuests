@@ -107,8 +107,11 @@ Coverage matrix (✅ done · ❌ not possible):
 - `mod_version` stays **0.2.1** (your call). The NeoForge v0.2.1 GitHub Release
   is already published; the Fabric/Forge jars are on
   `Desktop/Justquests/{fabric,forge}/` ready to upload.
-- **Modrinth upload:** the local `upload-modrinth.ps1` needs to set the **loader
-  tag per jar** (neoforge / fabric / forge) from the filename before these can go
-  up — a small script change, not done yet.
+- **Modrinth upload:** the local `upload-modrinth.ps1` is **already multi-loader
+  ready** — it scans the `neoforge/`, `fabric/` and `forge/` folders recursively
+  and derives the loader tag + game version per jar from the filename. Just run
+  it (option 1 = dry run, option 2 = upload); already-uploaded versions are
+  skipped. (The `neoforge/` folder also still holds the old 0.2.0 jars, which is
+  fine — they're skipped if already on Modrinth.)
 
 See `docs/multiloader-status.md` for the living status + the exact porting recipe.
