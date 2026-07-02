@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "package": "com.erikedits.justquests.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AnimalBreedMixin",
+    "BlockItemPlaceMixin",
+    "FurnaceResultSlotMixin",
+    "LivingEntityConsumeMixin",
+    "LivingEntityDeathMixin",
+    "PlayerAdvancementsMixin",
+    "PlayerTakeMixin",
+    "ResultSlotMixin",
+    "TamableAnimalMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "title": {
+    "en_us": "Home Builder",
+    "de_de": "Heimwerker",
+    "fr_fr": "Batisseur",
+    "es_es": "Constructor"
+  },
+  "description": {
+    "en_us": "Place 64 oak planks to build your home.",
+    "de_de": "Platziere 64 Eichenbretter, um dein Zuhause zu bauen.",
+    "fr_fr": "Placez 64 planches de chene pour batir votre maison.",
+    "es_es": "Coloca 64 tablones de roble para construir tu hogar."
+  },
+  "category": "building",
+  "sort": 10,
+  "objectives": [
+    {
+      "type": "justquests:place_block",
+      "block": "minecraft:oak_planks",
+      "count": 64
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:torch",
+      "count": 16
+    }
+  ]
+}
