@@ -41,3 +41,10 @@ rootProject.name = 'JustQuests'
     include name
     project(":${name}").projectDir = file("fabric/${v}")
 }
+
+// --- Forge (MDG legacyforge for <=1.20.1) — being ported version by version. ---
+['1.20.1'].each { v ->
+    def name = "forge-${v.replace('.', '_')}"
+    include name
+    project(":${name}").projectDir = file("forge/${v}")
+}
