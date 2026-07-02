@@ -1,25 +1,29 @@
-// Root project. It builds no mod itself — each NeoForge version lives in its
-// own subproject under neoforge/<mc-version>/ with its own source and build.
+// Root project. It builds no mod itself — each version lives in its own
+// subproject under <loader>/<mc-version>/ with its own source and build.
 // `./gradlew build` builds every version; `./gradlew exportJars` also copies
-// the finished jars to the Desktop output folder.
+// the finished jars to the Desktop output folder, one subfolder per loader.
 
 evaluationDependsOnChildren()
 
-// Where the finished jars are collected (one folder per loader).
-def exportDir = file("${System.getProperty('user.home')}/Desktop/Justquests/neoforge")
+// Where the finished jars are collected (Desktop/Justquests/<loader>/).
+def exportBase = file("${System.getProperty('user.home')}/Desktop/Justquests")
 
 tasks.register('exportJars', Copy) {
     group = 'distribution'
     description = 'Build every version and copy the finished jars to the Desktop output folder.'
-    into exportDir
+    into exportBase
     subprojects.each { sp ->
         dependsOn sp.tasks.named('build')
+        // Subproject names are "<loader>-<mc>" (e.g. fabric-1_21_1) -> route
+        // each jar into Desktop/Justquests/<loader>/.
+        def loader = sp.name.contains('-') ? sp.name.substring(0, sp.name.indexOf('-')) : sp.name
         from(sp.layout.buildDirectory.dir('libs')) {
             include '*.jar'
             exclude '*-sources.jar'
+            into loader
         }
     }
     doLast {
-        println "Exported jars to: ${exportDir}"
+        println "Exported jars to: ${exportBase}"
     }
 }

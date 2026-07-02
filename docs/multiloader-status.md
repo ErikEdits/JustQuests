@@ -10,10 +10,16 @@ Legend: ✅ done & building · 🚧 in progress · ⬜ todo · ❌ not possible
 
 | MC line | NeoForge | Fabric | Forge |
 |--------|----------|--------|-------|
-| 1.21.x | ✅ 1.21, 1.21.1–1.21.10 (not .11) | 🚧 1.21, 1.21.1 done; 1.21.2–1.21.10 todo | ⬜ |
+| 1.21.x | ✅ 1.21, 1.21.1–1.21.10 (not .11) | ✅ 1.21, 1.21.1–1.21.10 | ⬜ |
 | 1.20.x | ✅ 1.20.4, 1.20.6 only | ⬜ 1.20.1/1.20.4/1.20.6 … | ⬜ 1.20.1 (Forge, not NeoForge) … |
 | 1.19.x | ❌ (no NeoForge) | ⬜ 1.19.2, 1.19.4 | ⬜ 1.19.2, 1.19.4 |
 | 1.18.x | ❌ (no NeoForge) | ⬜ 1.18.2 | ⬜ 1.18.2 |
+
+**Next up:** Fabric 1.20.x (1.20.1 = Java 17 + pre-components + older Fabric API
+& mixin targets; 1.20.4/1.20.6 reuse their neoforge domain), then Fabric
+1.19/1.18, then the whole Forge column.
+
+`./gradlew exportJars` now routes jars to `Desktop/Justquests/<loader>/`.
 
 Notes:
 - NeoForge only exists from 1.20.2 up, so 1.20.1 / 1.19 / 1.18 NeoForge cells are ❌.
