@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "justquests",
+  "version": "${version}",
+  "name": "JustQuests",
+  "description": "A lightweight, datapack-driven quest book.",
+  "authors": ["ErikEdits"],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/justquests",
+    "sources": "https://github.com/ErikEdits/JustQuests",
+    "issues": "https://github.com/ErikEdits/JustQuests/issues"
+  },
+  "license": "LGPL-3.0-only",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.erikedits.justquests.JustQuestsFabric"],
+    "client": ["com.erikedits.justquests.client.JustQuestsFabricClient"]
+  },
+  "mixins": [
+    "justquests.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16",
+    "minecraft": "~1.21.6",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "title": {
+    "en_us": "Iron Harvest",
+    "de_de": "Eisenernte",
+    "fr_fr": "Recolte de fer",
+    "es_es": "Cosecha de hierro"
+  },
+  "description": {
+    "en_us": "Mine raw iron from the depths.",
+    "de_de": "Baue Roheisen aus der Tiefe ab.",
+    "fr_fr": "Minez du fer brut dans les profondeurs.",
+    "es_es": "Mina hierro en bruto en las profundidades."
+  },
+  "category": "gathering",
+  "sort": 40,
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:raw_iron",
+      "count": 5
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_pickaxe",
+      "count": 1
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bread",
+      "count": 8
+    }
+  ]
+}

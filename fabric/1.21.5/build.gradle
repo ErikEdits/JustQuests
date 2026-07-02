@@ -1,0 +1,39 @@
+plugins {
+    id 'fabric-loom' version '1.11.8'
+}
+
+// --- per-version settings (the only part that differs between versions) ---
+def mcVersion = '1.21.5'
+def fabricLoader = '0.19.3'
+def fabricApi = '0.128.2+1.21.5'
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = "${mod_name}-fabric-${mcVersion}"
+}
+
+repositories {
+    maven { url = 'https://maven.fabricmc.net/' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${mcVersion}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${fabricLoader}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricApi}"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
