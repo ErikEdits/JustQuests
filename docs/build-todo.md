@@ -174,16 +174,26 @@ note `KeyMapping` category is a String pre-1.21.9, a `Category` object in
 
 ---
 
-## Phase 6 — AI quest generator (big; own deep breakdown when reached)
+## Phase 6 — quest generator (v1 procedural — IN PROGRESS)
 
-- [ ] Procedural generator (templates + weighted random + baked rules)
-- [ ] Read loaded registries for completable, modded-aware content (Q41)
-- [ ] 12h rotation per world; 6-day no-repeat via history (Q26)
-- [ ] Shared, loosely-synced set; one active quest/player; exclusive
-      claiming (Q7/Q47)
-- [ ] Amount: server-configurable / singleplayer cap (Q2)
-- [ ] Template-based descriptions; optional AI-model layer later (Q6)
-- [ ] Test phase to tune balancing/limits/expiry (Q5/Q9)
+**v1 built in the NeoForge 1.21.1 baseline (2026-07-03).** Procedural, no AI/LLM,
+zero dependencies. `generator/QuestGenerator` emits the same quest JSON the
+datapack loader understands (reuses Codec validation); `generator/GeneratedQuestStore`
+holds the per-world set + rotates it. Wired via `ServerStorageEvents`, exposed as
+category `generated`, toggled by `generatedQuests`/`generatedCount` in
+`settings.json`, rerollable with `/quest reroll` (OP).
+
+- [x] Procedural generator (curated pools + weighted random + baked count/reward rules)
+- [x] 12h rotation per world; 6-day no-repeat via timestamped history (Q26)
+- [x] Amount: singleplayer cap via `generatedCount` (server-configurable = same setting)
+- [x] Template-based English descriptions (Q6); optional AI-model layer later
+- [x] Per-world toggle; own category (Q1/Q3)
+- [ ] **Propagate to the other 33 version folders** (mechanical; pre-1.21 needs the
+      `new ResourceLocation(...)` shim in GeneratedQuestStore)
+- [ ] Read loaded registries/tags for modded-aware content (Q41) — v2 (curated pools for now)
+- [ ] Shared, loosely-synced set; one active quest/player; exclusive claiming (Q7/Q47) — needs multiplayer sync (with the GUI)
+- [ ] Test phase to tune balancing/limits/expiry + difficulty (Q5/Q9)
+- [ ] Runtime-test in-game (headless build can't verify)
 
 ---
 

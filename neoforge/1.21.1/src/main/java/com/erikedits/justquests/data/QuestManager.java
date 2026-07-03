@@ -24,6 +24,8 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
     private Map<ResourceLocation, Quest> datapackQuests = new HashMap<>();
     /** Quests from the per-world custom file. Override datapack on id clash (Q54). */
     private Map<ResourceLocation, Quest> customQuests = new HashMap<>();
+    /** Procedurally generated quests (Phase 6), rotated per world; own id namespace. */
+    private Map<ResourceLocation, Quest> generatedQuests = new HashMap<>();
 
     private QuestManager() {
         super(GSON, DIRECTORY);
@@ -58,18 +60,27 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
         this.customQuests = custom;
     }
 
-    /** All quests, custom overriding datapack on a shared id. */
+    /** Replaces the generated (rotating) quests. They use their own id namespace. */
+    public void setGeneratedQuests(Map<ResourceLocation, Quest> generated) {
+        this.generatedQuests = generated;
+    }
+
+    /** All quests: datapack, then custom (overrides on shared id), then generated. */
     public Map<ResourceLocation, Quest> getQuests() {
-        if (customQuests.isEmpty()) {
+        if (customQuests.isEmpty() && generatedQuests.isEmpty()) {
             return Collections.unmodifiableMap(datapackQuests);
         }
         Map<ResourceLocation, Quest> merged = new HashMap<>(datapackQuests);
         merged.putAll(customQuests);
+        merged.putAll(generatedQuests);
         return Collections.unmodifiableMap(merged);
     }
 
     public Quest get(ResourceLocation id) {
         Quest custom = customQuests.get(id);
-        return custom != null ? custom : datapackQuests.get(id);
+        if (custom != null) return custom;
+        Quest datapack = datapackQuests.get(id);
+        if (datapack != null) return datapack;
+        return generatedQuests.get(id);
     }
 }
