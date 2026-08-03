@@ -45,7 +45,16 @@ public class QuestScreen extends Screen {
 
     /** Draw a whole texture PNG (size natW x natH) at (x,y). */
     private void blit(GuiGraphics g, String name, int x, int y, int natW, int natH) {
-        g.blit(tex(name), x, y, 0, 0, natW, natH, natW, natH);
+        blitPart(g, name, x, y, natW, natH, natW, natH);
+    }
+
+    /**
+     * Draw the top-left w x h region of a texW x texH texture. This is the ONLY
+     * place that calls GuiGraphics.blit, so porting to another MC version only
+     * needs this one line changed (the blit signature shifts at 1.21.2/1.21.4).
+     */
+    private void blitPart(GuiGraphics g, String name, int x, int y, int w, int h, int texW, int texH) {
+        g.blit(tex(name), x, y, 0, 0, w, h, texW, texH);
     }
 
     private String lang() {
@@ -174,7 +183,7 @@ public class QuestScreen extends Screen {
             int barW = Math.min(100, dw);
             blit(g, "progress_track", dx, dy, barW, 6);
             int fillW = need > 0 ? (int) (barW * (cur / (float) need)) : 0;
-            if (fillW > 0) g.blit(tex("progress_fill"), dx, dy, 0, 0, fillW, 6, 100, 6);
+            if (fillW > 0) blitPart(g, "progress_fill", dx, dy, fillW, 6, 100, 6);
             dy += 9;
         }
         dy += 2;

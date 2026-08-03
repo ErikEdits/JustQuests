@@ -79,6 +79,11 @@ public final class SelfTest {
         out.append("[MOD STATE]\n");
         Map<ResourceLocation, Quest> quests = QuestManager.INSTANCE.getQuests();
         out.append("  Quests loaded: ").append(quests.size()).append("\n");
+        long genLive = quests.values().stream().filter(q -> "generated".equals(q.category())).count();
+        out.append("  Generated quests live: ").append(genLive)
+           .append(com.erikedits.justquests.storage.WorldSettings.generatedQuests()
+               ? " (generator enabled, cap " + com.erikedits.justquests.storage.WorldSettings.generatedCount() + ")"
+               : " (generator disabled)").append("\n");
         java.util.Set<String> objTypes = new java.util.TreeSet<>();
         java.util.Set<String> rewTypes = new java.util.TreeSet<>();
         quests.values().forEach(q -> {
@@ -127,6 +132,23 @@ public final class SelfTest {
             }
         } catch (Exception ex) { questsValid = false; questIssue = ex.toString(); }
         check(results, tally, "All quests valid", questsValid, questsValid ? "ok" : questIssue);
+
+        // generator produces parseable, valid quests (Phase 6)
+        boolean genOk;
+        String genMsg;
+        try {
+            var gen = com.erikedits.justquests.generator.QuestGenerator.generate(
+                5, java.util.Set.of(), new java.util.Random(42L), 42L);
+            int parsed = 0;
+            for (var gq : gen) {
+                var res = Quest.CODEC.parse(com.mojang.serialization.JsonOps.INSTANCE, gq.json()).result();
+                if (res.isPresent() && !res.get().objectives().isEmpty()
+                    && res.get().objectives().stream().noneMatch(o -> o.requiredCount() <= 0)) parsed++;
+            }
+            genOk = !gen.isEmpty() && parsed == gen.size();
+            genMsg = parsed + "/" + gen.size() + " generated quests parsed & valid";
+        } catch (Exception ex) { genOk = false; genMsg = ex.toString(); }
+        check(results, tally, "Generator produces valid quests", genOk, genMsg);
 
         // codec round-trip
         boolean codecOk;
