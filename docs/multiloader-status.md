@@ -120,7 +120,31 @@ server lifecycle/tick. The rest come from **mixins** in `mixin/`:
 - **Runtime** (whether each mixin actually fires) is NOT verified by the build —
   needs an in-game test per major line.
 
+## Multiplayer sync (0.2.3)
+
+Server → client quest sync so the quest book works on dedicated servers. The
+quest book now reads a client-side `ClientQuestData` cache filled by a sync
+payload (full quest list + the player's own progress) sent on join, on progress
+change, and on reload/reroll/generator rotation. Rolled out to every GUI version;
+the networking API is the most version-divergent part:
+
+| Loader / MC | Payload API | Register / send / receive |
+|---|---|---|
+| NeoForge 1.21.x | StreamCodec + `CustomPacketPayload.Type` | `RegisterPayloadHandlersEvent` → `registrar.playToClient` / `PacketDistributor.sendToPlayer` |
+| NeoForge 1.20.6 | same (but `new ResourceLocation`) | same as 1.21.x |
+| NeoForge 1.20.4 | old `write()`/`id()` payload | `RegisterPayloadHandlerEvent` + `IPayloadRegistrar.play` / `PacketDistributor.PLAYER.with(player).send` |
+| Forge 1.20.1 | plain message + `SimpleChannel` | `NetworkRegistry.newSimpleChannel` + `registerMessage(PLAY_TO_CLIENT)` / `channel.send(PacketDistributor.PLAYER.with(() -> player))` |
+| Fabric 1.20.6–1.21.10 | StreamCodec + `CustomPacketPayload.Type` (Mojmap) | `PayloadTypeRegistry.playS2C().register` / `ServerPlayNetworking.send` / `ClientPlayNetworking.registerGlobalReceiver(TYPE, …)` |
+| Fabric 1.20.1 / 1.20.4 | raw channel + `FriendlyByteBuf` | `PacketByteBufs.create()` + `ServerPlayNetworking.send(player, CHANNEL, buf)` / `ClientPlayNetworking.registerGlobalReceiver(CHANNEL, (client,handler,buf,sender) -> …)` |
+
+Covered: NeoForge 1.20.4–1.21.10 (13), Forge 1.20.1 (1), Fabric 1.20.1–1.21.10
+(14) = **28 builds**. All compile and `assemble` cleanly (34 jars total). The
+1.18/1.19 builds stay command-only (no GUI, no sync). Excluded NeoForge folders
+(1.20.2/1.20.3/1.20.5, artifact issues) were not touched — re-add + wire if their
+artifacts ever build. **Runtime LAN test still pending** (headless can't exercise
+the actual client↔server round-trip).
+
 ## Versioning
 
-`mod_version` is 0.2.1. The multi-loader jars ship in a release once enough
+`mod_version` is 0.2.3. The multi-loader jars ship in a release once enough
 targets are ready (a big enough feature that 0.3.0 would be the honest number).
