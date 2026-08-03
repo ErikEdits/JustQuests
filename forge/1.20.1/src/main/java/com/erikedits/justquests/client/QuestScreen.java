@@ -2,11 +2,9 @@ package com.erikedits.justquests.client;
 
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
-import com.erikedits.justquests.data.QuestManager;
 import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.reward.QuestReward;
 import com.erikedits.justquests.player.QuestProgress;
-import com.erikedits.justquests.storage.WorldQuestStore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -62,9 +60,8 @@ public class QuestScreen extends Screen {
     }
 
     private PlayerQuestData data() {
-        WorldQuestStore s = WorldQuestStore.get();
-        return (s != null && minecraft != null && minecraft.player != null)
-            ? s.peek(minecraft.player.getUUID()) : null;
+        // client-side synced copy (works on servers and in singleplayer)
+        return com.erikedits.justquests.network.ClientQuestData.getData();
     }
 
     @Override
@@ -72,7 +69,7 @@ public class QuestScreen extends Screen {
         left = (this.width - W) / 2;
         top = (this.height - H) / 2;
         if (quests.isEmpty()) {
-            quests.addAll(QuestManager.INSTANCE.getQuests().entrySet());
+            quests.addAll(com.erikedits.justquests.network.ClientQuestData.getQuests().entrySet());
             quests.sort(Comparator
                 .comparing((Map.Entry<ResourceLocation, Quest> e) -> e.getValue().category(), String.CASE_INSENSITIVE_ORDER)
                 .thenComparingInt(e -> e.getValue().sort())
@@ -118,7 +115,7 @@ public class QuestScreen extends Screen {
 
         // quest list
         if (quests.isEmpty()) {
-            g.drawString(this.font, Component.literal("No quests (singleplayer only for now)."),
+            g.drawString(this.font, Component.literal("No quests available yet."),
                 listX(), listY(), MUTED, false);
         } else {
             PlayerQuestData d = data();
@@ -154,7 +151,7 @@ public class QuestScreen extends Screen {
             g.drawString(this.font, Component.literal("on the left."), dx, dy + 11, MUTED, false);
             return;
         }
-        Quest q = QuestManager.INSTANCE.get(selected);
+        Quest q = com.erikedits.justquests.network.ClientQuestData.get(selected);
         if (q == null) return;
         PlayerQuestData d = data();
         QuestProgress prog = d != null ? d.active.get(selected) : null;
@@ -228,7 +225,7 @@ public class QuestScreen extends Screen {
             }
             if (selected != null && in(mx, my, actionX(), actionY(), 72, 20)) {
                 PlayerQuestData d = data();
-                Quest q = QuestManager.INSTANCE.get(selected);
+                Quest q = com.erikedits.justquests.network.ClientQuestData.get(selected);
                 boolean active = d != null && d.isActive(selected);
                 boolean completed = d != null && d.isCompleted(selected);
                 boolean repeatable = q != null && q.repeatable();
