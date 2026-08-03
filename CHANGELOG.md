@@ -3,6 +3,32 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.3] - 2026-08-03
+
+Multiplayer sync — the quest book now works on dedicated servers, not just in
+singleplayer.
+
+### Fixed
+- **Quest book empty on servers** — the book read quest data directly from the
+  server-only stores, which only worked through the integrated (singleplayer)
+  server. On a dedicated server the client had no data, so the book showed
+  "No quests (singleplayer only for now)."
+
+### Added
+- **Server → client quest sync** — the full quest list plus the player's own
+  progress are serialized (reusing the existing codecs) and sent to the client
+  on join, whenever that player's progress changes, and on quest reload/reroll
+  and generator rotation. The quest book reads this synced copy, so it works on
+  dedicated servers and still in singleplayer (the sync also fires over the
+  loopback connection). Rolled out to every GUI version (28 builds:
+  NeoForge 1.20.4–1.21.10, Forge 1.20.1, Fabric 1.20.1–1.21.10). The 1.18/1.19
+  builds stay command-only.
+- **Upload script sets the Modrinth environment** — the local uploader now
+  patches the project to Client + Server "required" (both sides) on upload, so
+  the environment no longer has to be set by hand.
+
+[0.2.3]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.2.3
+
 ## [0.2.2] - 2026-08-03
 
 Crash fix, the quest generator on every version, and a textured GUI.
