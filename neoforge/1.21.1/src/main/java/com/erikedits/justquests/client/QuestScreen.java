@@ -28,7 +28,8 @@ import java.util.Map;
 public class QuestScreen extends Screen {
     private static final int W = 248, H = 184;
     private static final int PER_PAGE = 7, ROW_W = 80, ROW_H = 18;
-    private static final int TITLE_DARK = 0x3F3F3F, TEXT = 0x2E2E2E, MUTED = 0x6A6A6A, HEAD = 0x30456A;
+    // darker text reads clearly on the light-grey panes
+    private static final int TITLE_DARK = 0x161616, TEXT = 0x282828, MUTED = 0x4C4C4C, HEAD = 0x24395C;
 
     private final List<Map.Entry<ResourceLocation, Quest>> quests = new ArrayList<>();
     private ResourceLocation selected;
@@ -72,15 +73,21 @@ public class QuestScreen extends Screen {
 
     // --- geometry helpers ---
     private int listX() { return left + 8; }
-    private int listY() { return top + 24; }
+    private int listY() { return top + 26; }
     private int rowY(int i) { return listY() + i * ROW_H; }
     private int prevX() { return left + 8; }
     private int nextX() { return left + 8 + ROW_W - 12; }
     private int navY() { return top + H - 20; }
     private int closeX() { return left + W - 20; }
     private int closeY() { return top + 6; }
-    private int detailX() { return left + 96; }
-    private int detailW() { return W - 96 - 8; }
+    private int detailX() { return left + 100; }
+    private int detailW() { return W - 100 - 8; }
+
+    /** Truncate to width with an ellipsis so titles never run past their row. */
+    private String fit(String s, int maxW) {
+        if (this.font.width(s) <= maxW) return s;
+        return this.font.plainSubstrByWidth(s, maxW - this.font.width("...")) + "...";
+    }
     private int actionX() { return detailX(); }
     private int actionY() { return top + H - 28; }
     private boolean hasPrev() { return page > 0; }
@@ -117,8 +124,9 @@ public class QuestScreen extends Screen {
                     : (d != null && d.isActive(id)) ? "active"
                     : hov ? "hover" : "available";
                 blit(g, "quest_row_" + state, listX(), ry, ROW_W, ROW_H);
-                String title = this.font.plainSubstrByWidth(e.getValue().title().get(lang()), ROW_W - 8);
-                g.drawString(this.font, title, listX() + 5, ry + 5, TEXT, false);
+                boolean hasGlyph = state.equals("completed") || state.equals("active") || state.equals("claimable");
+                String title = fit(e.getValue().title().get(lang()), ROW_W - (hasGlyph ? 18 : 8));
+                g.drawString(this.font, title, listX() + 5, ry + 5, TITLE_DARK, false);
             }
             // page arrows
             blit(g, hasPrev() ? (in(mouseX, mouseY, prevX(), navY(), 12, 12) ? "page_prev_hover" : "page_prev_normal") : "page_prev_disabled",
@@ -131,7 +139,7 @@ public class QuestScreen extends Screen {
     }
 
     private void renderDetail(GuiGraphics g, int mouseX, int mouseY) {
-        int dx = detailX(), dy = top + 24, dw = detailW();
+        int dx = detailX(), dy = top + 27, dw = detailW();
         if (selected == null) {
             g.drawString(this.font, Component.literal("Select a quest"), dx, dy, MUTED, false);
             g.drawString(this.font, Component.literal("on the left."), dx, dy + 11, MUTED, false);
