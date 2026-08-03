@@ -3,6 +3,30 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.2] - 2026-08-03
+
+Crash fix, the quest generator on every version, and a textured GUI.
+
+### Fixed
+- **Fabric startup crash** (issue #1): the `PlayerTakeMixin` (collect_item
+  pickup) targeted `take` by name only, which is ambiguous on `Player`
+  (several `take` overloads) — the mixin refmap ended up without an entry, so
+  Fabric couldn't find the target at runtime and the game crashed on launch.
+  Now the injection uses the full descriptor
+  `take(Lnet/minecraft/world/entity/Entity;I)V`, so it resolves and remaps
+  correctly on every Fabric version.
+
+### Added
+- **Procedural quest generator on all versions** — a rotating set of
+  auto-generated quests (category `generated`), 12h real-clock rotation,
+  6-day no-repeat, per-world toggle (`generatedQuests`/`generatedCount` in
+  `settings.json`), and `/quest reroll` (OP). Now present on all 34 builds.
+- **Textured quest book** — the quest book (key **J**) now renders from the
+  JustQuests v2-full texture set instead of vanilla buttons (NeoForge 1.21.1
+  first; rolling out to the other GUI versions).
+
+[0.2.2]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.2.2
+
 ## [0.2.1] - 2026-07-02
 
 Older-version reach: JustQuests now runs on two 1.20.x versions.

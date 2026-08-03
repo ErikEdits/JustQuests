@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /** collect_item: Player.take(entity, amount) fires when items are picked up. */
 @Mixin(Player.class)
 public class PlayerTakeMixin {
-    @Inject(method = "take", at = @At("HEAD"))
+    @Inject(method = "take(Lnet/minecraft/world/entity/Entity;I)V", at = @At("HEAD"))
     private void justquests$onTake(Entity entity, int amount, CallbackInfo ci) {
         if ((Object) this instanceof ServerPlayer player && entity instanceof ItemEntity item) {
             FabricQuestHooks.onItemPickup(player, item.getItem(), amount);
