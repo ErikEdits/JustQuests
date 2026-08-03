@@ -63,6 +63,12 @@ jobs:
       - name: Build all versions
         run: ./gradlew build --stacktrace
 
+      - name: Collect release jars (all loaders, no sources)
+        run: |
+          mkdir -p release-jars
+          find neoforge fabric forge -path '*/build/libs/*.jar' ! -name '*-sources.jar' -exec cp -n {} release-jars/ \;
+          echo "--- release jars ---"; ls -1 release-jars | sort
+
       - name: Extract changelog notes
         run: |
           VERSION="${{ steps.ver.outputs.version }}"
@@ -82,5 +88,5 @@ jobs:
           tag_name: ${{ steps.ver.outputs.tag }}
           name: JustQuests ${{ steps.ver.outputs.version }}
           body_path: RELEASE_NOTES.md
-          files: neoforge/**/build/libs/*.jar
+          files: release-jars/*.jar
           fail_on_unmatched_files: true
