@@ -20,6 +20,7 @@ public class JustQuests {
 
     public JustQuests(IEventBus modEventBus) {
         ModAttachments.ATTACHMENTS.register(modEventBus);
+        modEventBus.addListener(com.erikedits.justquests.network.QuestNetwork::register);
 
         NeoForge.EVENT_BUS.addListener(this::onReload);
         NeoForge.EVENT_BUS.addListener(QuestCommand::onRegisterCommands);

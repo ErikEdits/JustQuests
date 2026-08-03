@@ -47,6 +47,7 @@ public class PlayerQuestEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         // One-time, clickable Discord welcome (0.1.5).
         com.erikedits.justquests.community.CommunityHints.onLogin(player);
+        com.erikedits.justquests.network.QuestNetwork.syncPlayer(player);
         // No v0.1 NBT migration on 1.21.6+: it only ever applied to 1.21.1,
         // and NeoForge removed the attachment serialization API (INBTSerializable).
     }
