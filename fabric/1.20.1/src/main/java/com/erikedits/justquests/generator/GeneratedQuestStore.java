@@ -100,6 +100,7 @@ public final class GeneratedQuestStore {
         current = map;
         lastRefresh = now;
         QuestManager.INSTANCE.setGeneratedQuests(current);
+        com.erikedits.justquests.network.QuestNetwork.syncAll(server);
         save(jsonById);
         JustQuests.LOG.info("Generated {} quest(s); next rotation in 12h", map.size());
     }

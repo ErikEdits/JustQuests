@@ -37,6 +37,9 @@ public class JustQuestsFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // Server -> client quest sync payload (so the quest book works on servers)
+        com.erikedits.justquests.network.QuestNetwork.register();
+
         // Datapack quest reload listener
         ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(QuestManager.INSTANCE);
 
@@ -82,8 +85,10 @@ public class JustQuestsFabric implements ModInitializer {
         });
 
         // Login: one-time Discord welcome (0.1.5)
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
-            CommunityHints.onLogin(handler.player));
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            CommunityHints.onLogin(handler.player);
+            com.erikedits.justquests.network.QuestNetwork.syncPlayer(handler.player);
+        });
 
         // kill_mob
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, source) -> {

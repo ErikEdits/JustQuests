@@ -110,6 +110,7 @@ public final class QuestProgressService {
 
         if (changed) {
             store.markDirty();
+            com.erikedits.justquests.network.QuestNetwork.syncPlayer(player);
         }
     }
 }

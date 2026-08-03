@@ -17,6 +17,14 @@ public class JustQuestsFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        // Receive server -> client quest sync (pre-CustomPayload raw-buffer form).
+        net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.registerGlobalReceiver(
+            com.erikedits.justquests.network.QuestNetwork.CHANNEL,
+            (client, handler, buf, responseSender) -> {
+                String json = buf.readUtf(1048576);
+                client.execute(() -> com.erikedits.justquests.network.ClientQuestData.accept(json));
+            });
+
         openQuests = KeyBindingHelper.registerKeyBinding(new KeyMapping(
             "key.justquests.open", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_J, "key.categories.misc"));
 
