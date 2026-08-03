@@ -39,6 +39,7 @@ public class PlayerQuestEvents {
     public void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         com.erikedits.justquests.community.CommunityHints.onLogin(player);
+        com.erikedits.justquests.network.QuestNetwork.syncPlayer(player);
     }
 
     /** collect_item: advance objectives that match the picked-up item. */
