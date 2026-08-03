@@ -372,6 +372,7 @@ public class QuestCommand {
 
         data.accept(id);
         store.markDirty();
+        com.erikedits.justquests.network.QuestNetwork.syncPlayer(player);
         ctx.getSource().sendSuccess(() ->
             Component.literal("§a✓ Accepted: " + quest.title().get(lang)), false);
         return 1;
@@ -397,6 +398,7 @@ public class QuestCommand {
 
         data.abandon(id);
         store.markDirty();
+        com.erikedits.justquests.network.QuestNetwork.syncPlayer(player);
         ctx.getSource().sendSuccess(() ->
             Component.literal("§7Abandoned quest: " + id), false);
         return 1;
@@ -404,6 +406,7 @@ public class QuestCommand {
 
     private static int reload(CommandContext<CommandSourceStack> ctx) {
         com.erikedits.justquests.storage.CustomQuestLoader.load();
+        com.erikedits.justquests.network.QuestNetwork.syncAll(ctx.getSource().getServer());
         int count = QuestManager.INSTANCE.getQuests().size();
         ctx.getSource().sendSuccess(() -> Component.literal(
             "§aReloaded custom quests. §7Total quests: " + count
