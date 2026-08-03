@@ -21,6 +21,8 @@ public final class WorldSettings {
     private static boolean announceCompletions = true;
     private static boolean completionSound = true;
     private static boolean completionToast = true;
+    private static boolean generatedQuests = true;
+    private static int generatedCount = 5;
 
     private WorldSettings() {}
 
@@ -36,6 +38,8 @@ public final class WorldSettings {
                     if (o.has("announceCompletions")) announceCompletions = o.get("announceCompletions").getAsBoolean();
                     if (o.has("completionSound")) completionSound = o.get("completionSound").getAsBoolean();
                     if (o.has("completionToast")) completionToast = o.get("completionToast").getAsBoolean();
+                    if (o.has("generatedQuests")) generatedQuests = o.get("generatedQuests").getAsBoolean();
+                    if (o.has("generatedCount")) generatedCount = o.get("generatedCount").getAsInt();
                 }
             } else {
                 Files.createDirectories(file.getParent());
@@ -54,20 +58,28 @@ public final class WorldSettings {
 
     public static boolean completionToast() { return completionToast; }
 
+    public static boolean generatedQuests() { return generatedQuests; }
+
+    public static int generatedCount() { return generatedCount; }
+
     public static void reset() {
         discordWelcome = true;
         announceCompletions = true;
         completionSound = true;
         completionToast = true;
+        generatedQuests = true;
+        generatedCount = 5;
     }
 
     private static final String TEMPLATE = """
         {
-          "_help": "JustQuests per-world settings (singleplayer + server). discordWelcome: one-time clickable Discord invite on a player's first join. announceCompletions: broadcast to everyone when a player finishes a quest. completionSound: play a sound for the player on completion. completionToast: show an action-bar toast on completion.",
+          "_help": "JustQuests per-world settings (singleplayer + server). discordWelcome: one-time clickable Discord invite on a player's first join. announceCompletions: broadcast to everyone when a player finishes a quest. completionSound: play a sound for the player on completion. completionToast: show an action-bar toast on completion. generatedQuests: auto-generate a rotating set of quests every 12h (category 'generated'); set false to disable. generatedCount: how many generated quests per 12h cycle.",
           "discordWelcome": true,
           "announceCompletions": true,
           "completionSound": true,
-          "completionToast": true
+          "completionToast": true,
+          "generatedQuests": true,
+          "generatedCount": 5
         }
         """;
 }

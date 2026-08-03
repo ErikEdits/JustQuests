@@ -75,6 +75,9 @@ public class QuestCommand {
             .then(Commands.literal("reload")
                 .requires(src -> src.hasPermission(2))
                 .executes(QuestCommand::reload))
+            .then(Commands.literal("reroll")
+                .requires(src -> src.hasPermission(2))
+                .executes(QuestCommand::reroll))
             .then(Commands.literal("test")
                 .requires(src -> src.hasPermission(2))
                 .executes(QuestCommand::test))
@@ -400,6 +403,18 @@ public class QuestCommand {
         ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(
             "§aReloaded custom quests. §7Total quests: " + count
             + " §8(use /reload for datapack quests)"), false);
+        return 1;
+    }
+
+    private static int reroll(CommandContext<CommandSourceStack> ctx) {
+        int n = com.erikedits.justquests.generator.GeneratedQuestStore.reroll();
+        if (n < 0) {
+            ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(
+                "\u00a7eGenerated quests are disabled for this world \u00a77(set generatedQuests: true in settings.json)."), false);
+        } else {
+            ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(
+                "\u00a7aRerolled generated quests. \u00a77Now " + n + " in category \u00a7fgenerated\u00a77."), false);
+        }
         return 1;
     }
 

@@ -7,6 +7,7 @@ import com.erikedits.justquests.event.FabricQuestHooks;
 import com.erikedits.justquests.storage.CustomQuestLoader;
 import com.erikedits.justquests.storage.WorldQuestStore;
 import com.erikedits.justquests.storage.WorldSettings;
+import com.erikedits.justquests.generator.GeneratedQuestStore;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
@@ -29,8 +30,10 @@ import net.minecraft.server.packs.PackType;
 public class JustQuestsFabric implements ModInitializer {
     private static final int SAVE_INTERVAL_TICKS = 600;   // 30 seconds
     private static final int CUSTOM_INTERVAL_TICKS = 60;  // 3 seconds
+    private static final int GEN_INTERVAL_TICKS = 6000;   // 5 minutes (rotation check)
     private int saveCounter = 0;
     private int customCounter = 0;
+    private int genCounter = 0;
 
     @Override
     public void onInitialize() {
@@ -46,12 +49,14 @@ public class JustQuestsFabric implements ModInitializer {
             WorldQuestStore.load(server);
             WorldSettings.load(server);      // load settings before readers
             CustomQuestLoader.init(server);
+            GeneratedQuestStore.init(server);
             CommunityHints.init(server);
             JustQuests.LOG.info("JustQuests loaded (Fabric)");
         });
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
             WorldQuestStore.unload();
             CustomQuestLoader.clear();
+            GeneratedQuestStore.clear();
             CommunityHints.clear();
             WorldSettings.reset();
         });
@@ -66,6 +71,10 @@ public class JustQuestsFabric implements ModInitializer {
             if (++customCounter >= CUSTOM_INTERVAL_TICKS) {
                 customCounter = 0;
                 CustomQuestLoader.tickCheck();
+            }
+            if (++genCounter >= GEN_INTERVAL_TICKS) {
+                genCounter = 0;
+                GeneratedQuestStore.tickCheck();
             }
             for (ServerPlayer player : server.getPlayerList().getPlayers()) {
                 if (player.tickCount % 20 == 0) FabricQuestHooks.onPlayerTickReach(player);
