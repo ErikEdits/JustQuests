@@ -121,14 +121,19 @@ drip of small, useful releases *is* the growth plan, not a detour from it.
 
 ## Phase 3 — GUI (v0.2 headline)
 
-**Interim GUI shipped in 0.2.0** — a singleplayer quest book (key J): paged
-quest list, detail (description + objectives w/ live progress + rewards),
-accept/abandon buttons, vanilla-grey styling from version-stable GUI
-primitives (no blit), so one Screen works across all 11 versions. Reads
-quest data directly (SP). Client classes: `client/QuestClient` (keybind;
-note `KeyMapping` category is a String pre-1.21.9, a `Category` object in
-1.21.9+, and the `@EventBusSubscriber bus=` param is gone in 1.21.6+) and
-`client/QuestScreen`. **This is throwaway** — the real GUI comes from the vote.
+**Discord-vote gating DROPPED (2026-07-03)** — only ~5 members, not enough to
+decide. So we adopt the **v2-full texture set directly** as the GUI (no vote).
+
+**Textured GUI in baseline 1.21.1 (2026-07-03):** `client/QuestScreen` rewritten
+to render from `assets/justquests/textures/gui/` (v2-full): fixed 248x184 window,
+`quest_row` state textures, textured close/page/accept(claim)/abandon buttons,
+progress bars. No vanilla widgets — manual `blit` + `mouseClicked` hit-testing.
+Textures copied from `docs/assets/gui-2.0.0/JustQuests-GUI-v2-full`.
+**Still to do:** in-game visual check + tuning (headless can't render), then
+roll out the textured screen to the other GUI versions (1.20.1+). NOTE: `blit`
+signature differs 1.21.2+ / 1.21.4+ — the roll-out needs a per-version blit helper.
+Client classes: `client/QuestClient` (keybind; `KeyMapping` category is a String
+pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1.21.6+).
 
 - [ ] Wait for Discord poll: style (Q37), opening method (Q10), book/
       button (Q11), notifications (Q12), HUD tracker (Q43)
@@ -188,8 +193,8 @@ category `generated`, toggled by `generatedQuests`/`generatedCount` in
 - [x] Amount: singleplayer cap via `generatedCount` (server-configurable = same setting)
 - [x] Template-based English descriptions (Q6); optional AI-model layer later
 - [x] Per-world toggle; own category (Q1/Q3)
-- [ ] **Propagate to the other 33 version folders** (mechanical; pre-1.21 needs the
-      `new ResourceLocation(...)` shim in GeneratedQuestStore)
+- [x] **Propagated to all 34 version folders** (NeoForge/Fabric/Forge; pre-1.21 uses
+      the `new ResourceLocation(...)` shim; per-loader wiring + per-version /quest reroll feedback)
 - [ ] Read loaded registries/tags for modded-aware content (Q41) — v2 (curated pools for now)
 - [ ] Shared, loosely-synced set; one active quest/player; exclusive claiming (Q7/Q47) — needs multiplayer sync (with the GUI)
 - [ ] Test phase to tune balancing/limits/expiry + difficulty (Q5/Q9)
