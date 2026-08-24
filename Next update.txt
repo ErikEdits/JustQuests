@@ -1,0 +1,2 @@
+The next update is expected to be released on September 18 or, at the latest, November 3; however, we will be preparing a few items from the roadmap in the meantime.You can read all about it here https://github.com/ErikEdits/JustQuests/tree/main/docs
+or here https://github.com/ErikEdits/JustQuests/blob/main/docs/build-todo.md
