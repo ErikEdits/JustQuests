@@ -1,0 +1,2 @@
+The next update will include a few new features and functions, as well as a button to disable the main quests; however, it will take a little while, as we are currently working on an open-source video editor. her are  the questions from the community: https://github.com/ErikEdits/JustQuests/blob/main/docs/.requests/questions.md 
+and here is the schedule for the next update https://github.com/ErikEdits/JustQuests/blob/main/Next%20update.txt
