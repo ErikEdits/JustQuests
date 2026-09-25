@@ -3,6 +3,28 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.4] - 2026-09-25
+
+Server owners can now turn the built-in quests off (a community request).
+
+### Added
+- **Disable the built-in "main" quests** — a new per-world setting `mainQuests`
+  (default `true`) in `settings.json`. When off, the quests bundled with the mod
+  are hidden from `/quest list` and the quest book; your `custom-quests.json`
+  quests and the generated quests stay. Toggle it in-game with
+  **`/quest mainquests on|off`** (OP), which saves to `settings.json` and updates
+  everyone live; `/quest mainquests` shows the current state.
+- **`/quest reload` re-reads `settings.json`** too, so hand-edited settings apply
+  without a restart.
+
+### Fixed
+- **Open quest book now refreshes live** — the book cached its quest list when
+  opened, so a `/quest reload`, reroll, generator rotation or `mainquests` toggle
+  didn't show until you reopened it. It now rebuilds the list when a new sync
+  arrives.
+
+[0.2.4]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.2.4
+
 ## [0.2.3] - 2026-08-03
 
 Multiplayer sync — the quest book now works on dedicated servers, not just in

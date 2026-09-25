@@ -32,6 +32,7 @@ public class QuestScreen extends Screen {
     private final List<Map.Entry<ResourceLocation, Quest>> quests = new ArrayList<>();
     private ResourceLocation selected;
     private int page = 0, left, top;
+    private int shownVersion = -1;
 
     public QuestScreen() {
         super(Component.literal("Quests"));
@@ -68,12 +69,28 @@ public class QuestScreen extends Screen {
     protected void init() {
         left = (this.width - W) / 2;
         top = (this.height - H) / 2;
-        if (quests.isEmpty()) {
-            quests.addAll(com.erikedits.justquests.network.ClientQuestData.getQuests().entrySet());
-            quests.sort(Comparator
-                .comparing((Map.Entry<ResourceLocation, Quest> e) -> e.getValue().category(), String.CASE_INSENSITIVE_ORDER)
-                .thenComparingInt(e -> e.getValue().sort())
-                .thenComparing(e -> e.getKey().toString()));
+        refresh();
+    }
+
+    /**
+     * Rebuild the quest list from the latest sync. Called on open and every
+     * frame, but only does work when a new sync has arrived (version changed),
+     * so an open book reflects /quest reload, reroll, rotation and mainquests.
+     */
+    private void refresh() {
+        int v = com.erikedits.justquests.network.ClientQuestData.version();
+        if (v == shownVersion && !quests.isEmpty()) return;
+        shownVersion = v;
+        quests.clear();
+        quests.addAll(com.erikedits.justquests.network.ClientQuestData.getQuests().entrySet());
+        quests.sort(Comparator
+            .comparing((Map.Entry<ResourceLocation, Quest> e) -> e.getValue().category(), String.CASE_INSENSITIVE_ORDER)
+            .thenComparingInt(e -> e.getValue().sort())
+            .thenComparing(e -> e.getKey().toString()));
+        int maxPage = quests.isEmpty() ? 0 : (quests.size() - 1) / PER_PAGE;
+        if (page > maxPage) page = maxPage;
+        if (selected != null && !com.erikedits.justquests.network.ClientQuestData.getQuests().containsKey(selected)) {
+            selected = null;
         }
     }
 
@@ -105,6 +122,7 @@ public class QuestScreen extends Screen {
 
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float pt) {
+        refresh();
         this.renderBackground(g, mouseX, mouseY, pt);
         blit(g, "window", left, top, W, H);
         g.drawString(this.font, Component.literal("Quests"), left + 9, closeY() + 1, TITLE_DARK, false);

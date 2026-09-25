@@ -1,9 +1,11 @@
 1 question
 How do i disable the main quests.
-Right now there isn't a dedicated toggle for that.
 
-`settings.json` only covers announcement/display stuff (`discordWelcome`, `announceCompletions`, `completionSound`, `completionToast`) — nothing for turning the built-in quests themselves on/off.
+Answered in 0.2.4: there is now a dedicated toggle.
 
-You *can* override any built-in quest by putting a custom quest with the same id in `custom-quests.json` (custom always beats built-in on a matching id) — but that only replaces its content, it doesn't remove it from `/quest list`. An empty override gets skipped entirely too, so there's no "blank it out" trick.
+- In-game (OP): `/quest mainquests off` hides the built-in "main" quests; `/quest mainquests on` brings them back; `/quest mainquests` shows the current state. The change saves to the world's `settings.json` and updates everyone live.
+- Or edit `settings.json` directly: set `"mainQuests": false` (default `true`), then `/quest reload` (or rejoin).
 
-TL;DR: fully disabling/hiding built-in quests isn't possible yet — it's planned as part of upcoming permission/difficulty settings, just not shipped. For now the closest thing is overriding the ones you don't want with your own version.
+When off, the quests bundled with the mod are hidden from `/quest list` and the quest book. Your `custom-quests.json` quests and the generated quests are unaffected — so you can turn the built-ins off and run a pack made entirely of your own quests.
+
+(Before 0.2.4 there was no toggle; the only workaround was overriding individual built-in quests by id in `custom-quests.json`, which replaced their content but didn't remove them from the list.)

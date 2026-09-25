@@ -21,6 +21,8 @@ import java.util.Map;
 public final class ClientQuestData {
     private static Map<ResourceLocation, Quest> quests = Collections.emptyMap();
     private static PlayerQuestData progress = new PlayerQuestData();
+    /** Bumped on every accepted sync so an open quest book can rebuild its list. */
+    private static int version = 0;
 
     private ClientQuestData() {}
 
@@ -44,7 +46,11 @@ public final class ClientQuestData {
         }
         quests = q;
         progress = p;
+        version++;
     }
+
+    /** Increments whenever a new sync arrives, so the open book knows to refresh. */
+    public static int version() { return version; }
 
     public static Map<ResourceLocation, Quest> getQuests() { return quests; }
 

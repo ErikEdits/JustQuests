@@ -70,11 +70,11 @@ public class QuestManager extends SimpleJsonResourceReloadListener implements Id
 
     /** All quests, custom overriding datapack on a shared id. */
     public Map<ResourceLocation, Quest> getQuests() {
-        if (customQuests.isEmpty() && generatedQuests.isEmpty()) {
-            return Collections.unmodifiableMap(datapackQuests);
+        Map<ResourceLocation, Quest> merged = new HashMap<>();
+        if (com.erikedits.justquests.storage.WorldSettings.mainQuests()) {
+            merged.putAll(datapackQuests);
         }
-        Map<ResourceLocation, Quest> merged = new HashMap<>(datapackQuests);
-        merged.putAll(customQuests);
+        merged.putAll(customQuests);   // custom overrides datapack on a shared id
         merged.putAll(generatedQuests);
         return Collections.unmodifiableMap(merged);
     }
@@ -82,8 +82,10 @@ public class QuestManager extends SimpleJsonResourceReloadListener implements Id
     public Quest get(ResourceLocation id) {
         Quest custom = customQuests.get(id);
         if (custom != null) return custom;
-        Quest datapack = datapackQuests.get(id);
-        if (datapack != null) return datapack;
+        if (com.erikedits.justquests.storage.WorldSettings.mainQuests()) {
+            Quest datapack = datapackQuests.get(id);
+            if (datapack != null) return datapack;
+        }
         return generatedQuests.get(id);
     }
 }

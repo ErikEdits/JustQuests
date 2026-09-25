@@ -78,6 +78,11 @@ public class QuestCommand {
             .then(Commands.literal("reroll")
                 .requires(src -> src.hasPermission(2))
                 .executes(QuestCommand::reroll))
+            .then(Commands.literal("mainquests")
+                .requires(src -> src.hasPermission(2))
+                .executes(QuestCommand::mainQuestsStatus)
+                .then(Commands.literal("on").executes(ctx -> setMainQuests(ctx, true)))
+                .then(Commands.literal("off").executes(ctx -> setMainQuests(ctx, false))))
             .then(Commands.literal("test")
                 .requires(src -> src.hasPermission(2))
                 .executes(QuestCommand::test))
@@ -399,7 +404,29 @@ public class QuestCommand {
         return 1;
     }
 
+    private static int mainQuestsStatus(CommandContext<CommandSourceStack> ctx) {
+        boolean on = com.erikedits.justquests.storage.WorldSettings.mainQuests();
+        ctx.getSource().sendSuccess(() -> Component.literal(
+            "§7Main quests are currently " + (on ? "§aON" : "§cOFF")
+            + "§7. Use /quest mainquests on|off to change."), false);
+        return 1;
+    }
+
+    private static int setMainQuests(CommandContext<CommandSourceStack> ctx, boolean enabled) {
+        com.erikedits.justquests.storage.WorldSettings.setMainQuests(enabled);
+        net.minecraft.server.MinecraftServer server = ctx.getSource().getServer();
+        if (server != null) {
+            com.erikedits.justquests.storage.WorldSettings.save(server);
+            com.erikedits.justquests.network.QuestNetwork.syncAll(server);
+        }
+        ctx.getSource().sendSuccess(() -> Component.literal(
+            enabled ? "§aMain quests enabled."
+                    : "§eMain quests disabled §7(hidden from /quest list and the quest book)."), false);
+        return 1;
+    }
+
     private static int reload(CommandContext<CommandSourceStack> ctx) {
+        com.erikedits.justquests.storage.WorldSettings.load(ctx.getSource().getServer());
         com.erikedits.justquests.storage.CustomQuestLoader.load();
         com.erikedits.justquests.network.QuestNetwork.syncAll(ctx.getSource().getServer());
         int count = QuestManager.INSTANCE.getQuests().size();
