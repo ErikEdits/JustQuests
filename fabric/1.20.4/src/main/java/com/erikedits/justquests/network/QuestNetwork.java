@@ -33,10 +33,22 @@ public final class QuestNetwork {
     /** No payload type to register on this version (pre-CustomPayload API). */
     public static void register() {}
 
-    /** Send the full quest list + this player's progress to one player. */
+    /** Send the full quest list + this player's progress (join and list changes). */
     public static void syncPlayer(ServerPlayer player) {
+        send(player, true);
+    }
+
+    /**
+     * Send only this player's progress, without the quest list. Used for
+     * progress, accept and abandon: they fire often but never change the list.
+     */
+    public static void syncProgress(ServerPlayer player) {
+        send(player, false);
+    }
+
+    private static void send(ServerPlayer player, boolean full) {
         FriendlyByteBuf buf = PacketByteBufs.create();
-        buf.writeUtf(buildJson(player), 1048576);
+        buf.writeUtf(buildJson(player, full), 1048576);
         ServerPlayNetworking.send(player, CHANNEL, buf);
     }
 
@@ -46,13 +58,15 @@ public final class QuestNetwork {
         for (ServerPlayer p : server.getPlayerList().getPlayers()) syncPlayer(p);
     }
 
-    private static String buildJson(ServerPlayer player) {
+    private static String buildJson(ServerPlayer player, boolean full) {
         JsonObject root = new JsonObject();
-        JsonObject quests = new JsonObject();
-        QuestManager.INSTANCE.getQuests().forEach((id, quest) ->
-            Quest.CODEC.encodeStart(JsonOps.INSTANCE, quest).result()
-                .ifPresent(j -> quests.add(id.toString(), j)));
-        root.add("quests", quests);
+        if (full) {
+            JsonObject quests = new JsonObject();
+            QuestManager.INSTANCE.getQuests().forEach((id, quest) ->
+                Quest.CODEC.encodeStart(JsonOps.INSTANCE, quest).result()
+                    .ifPresent(j -> quests.add(id.toString(), j)));
+            root.add("quests", quests);
+        }
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store != null ? store.peek(player.getUUID()) : null;
         if (data != null) {

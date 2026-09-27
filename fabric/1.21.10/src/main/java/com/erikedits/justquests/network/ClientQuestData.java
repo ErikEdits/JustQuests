@@ -21,7 +21,7 @@ import java.util.Map;
 public final class ClientQuestData {
     private static Map<ResourceLocation, Quest> quests = Collections.emptyMap();
     private static PlayerQuestData progress = new PlayerQuestData();
-    /** Bumped on every accepted sync so an open quest book can rebuild its list. */
+    /** Bumped whenever the quest list changes, so an open quest book can rebuild it. */
     private static int version = 0;
 
     private ClientQuestData() {}
@@ -30,9 +30,11 @@ public final class ClientQuestData {
     public static void accept(String json) {
         Map<ResourceLocation, Quest> q = new LinkedHashMap<>();
         PlayerQuestData p = new PlayerQuestData();
+        boolean hasQuests = false;
         try {
             JsonObject root = JsonParser.parseString(json).getAsJsonObject();
             if (root.has("quests")) {
+                hasQuests = true;
                 for (Map.Entry<String, com.google.gson.JsonElement> e : root.getAsJsonObject("quests").entrySet()) {
                     ResourceLocation id = ResourceLocation.parse(e.getKey());
                     Quest.CODEC.parse(JsonOps.INSTANCE, e.getValue()).result().ifPresent(quest -> q.put(id, quest));
@@ -44,12 +46,22 @@ public final class ClientQuestData {
         } catch (Exception ex) {
             JustQuests.LOG.error("Failed to parse quest sync", ex);
         }
-        quests = q;
+        // A progress-only sync carries no "quests": keep the list we already have.
+        if (hasQuests) {
+            quests = q;
+            version++;
+        }
         progress = p;
+    }
+
+    /** Forget the last server's data (on disconnect), so the book never shows stale quests. */
+    public static void clear() {
+        quests = Collections.emptyMap();
+        progress = new PlayerQuestData();
         version++;
     }
 
-    /** Increments whenever a new sync arrives, so the open book knows to refresh. */
+    /** Increments whenever the quest list changes, so the open book knows to refresh. */
     public static int version() { return version; }
 
     public static Map<ResourceLocation, Quest> getQuests() { return quests; }

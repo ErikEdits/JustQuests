@@ -3,6 +3,33 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.5] - 2026-09-27
+
+Stability update — mainly a Fabric fix, plus lighter multiplayer sync.
+
+### Fixed
+- **Fabric: item-pickup mixin targeted a method that doesn't exist** — the
+  `collect_item` mixin injected into `Player.take(...)`, but `Player` never
+  declares `take()` on any supported version (it is only inherited from
+  `LivingEntity`). With the mixin config requiring every injection to find its
+  target, this could fail when the class loads. The earlier issue #1 fix only
+  made the target unambiguous; it didn't fix this. The mixin now targets
+  `LivingEntity.take(...)` (and still only counts server players picking up
+  items), on all 17 Fabric versions.
+- **Fabric 1.18.2–1.20.4: mixin compatibility level** — these versions run on
+  Java 17 but the mixin config asked for `JAVA_21`; it now uses `JAVA_17`.
+- **Quest book showed the previous server's quests** — the client cache is now
+  cleared on disconnect, so switching servers/worlds never shows stale data.
+
+### Changed
+- **Lighter multiplayer sync** — picking up, mining, crafting etc. used to resend
+  the *whole* quest list to the player on every bit of progress. Progress,
+  accept and abandon now send only the player's progress; the full list is sent
+  on join and when the list itself changes (reload, reroll, rotation,
+  `/quest mainquests`).
+
+[0.2.5]: https://github.com/ErikEdits/JustQuests/releases/tag/v0.2.5
+
 ## [0.2.4] - 2026-09-25
 
 Server owners can now turn the built-in quests off (a community request).

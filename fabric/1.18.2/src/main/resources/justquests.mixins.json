@@ -1,15 +1,15 @@
 {
   "required": true,
   "package": "com.erikedits.justquests.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AnimalBreedMixin",
     "BlockItemPlaceMixin",
     "FurnaceResultSlotMixin",
     "LivingEntityConsumeMixin",
     "LivingEntityDeathMixin",
+    "LivingEntityTakeMixin",
     "PlayerAdvancementsMixin",
-    "PlayerTakeMixin",
     "ResultSlotMixin",
     "TamableAnimalMixin"
   ],

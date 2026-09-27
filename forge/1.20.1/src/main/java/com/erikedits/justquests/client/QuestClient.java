@@ -41,5 +41,11 @@ public final class QuestClient {
                 mc.setScreen(new QuestScreen());
             }
         }
+
+        /** Forget the last server's quests on disconnect, so the book never shows stale data. */
+        @SubscribeEvent
+        static void onLoggingOut(net.minecraftforge.client.event.ClientPlayerNetworkEvent.LoggingOut event) {
+            com.erikedits.justquests.network.ClientQuestData.clear();
+        }
     }
 }
