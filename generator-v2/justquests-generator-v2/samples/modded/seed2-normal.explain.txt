@@ -1,0 +1,95 @@
+# modded | world seed 2 | NORMAL | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty normal, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla, farmersdelight, create, mekanism, twilightforest, botania], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_7  "Mystical White Petal Order"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective craft_item botania:white_petal ×32
+  effort 0.20 min/unit → 6.4 min (target 8.9, range 8–20 min)
+  tier 1 (always available), family bot_petals, profile botania
+estimated 6.4 min (quick)
+reward give_item minecraft:redstone_block ×3 (value 5.4) + xp 31 (value 2.6)  → 8.0 / budget 8.0
+state: AVAILABLE
+
+justquests:gen/1790510400_0  "Bring Dark Oak Logs"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:dark_oak_log ×64
+  effort 0.10 min/unit (×1.30 dark_forest) → 8.3 min (target 9.2, range 8–20 min)
+  tier 0 (always available), family wood, profile vanilla, hints dark_forest
+estimated 8.3 min (quick)
+reward give_item farmersdelight:hot_cocoa ×4 (value 6.4) + xp 43 (value 3.6)  → 10.0 / budget 10.0
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Dig Zinc Ore"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective mine_block create:zinc_ore ×12
+  effort 0.80 min/unit → 9.6 min (target 10.9, range 8–20 min)
+  tier 1 (always available), family create_zinc, profile create, tool iron, hints caves
+estimated 9.6 min (quick)
+reward give_item mekanism:ingot_tin ×10 (value 8.5) + xp 36 (value 3.0)  → 11.5 / budget 11.5
+rejected alternatives: collect_item create:zinc_ore (drops raw zinc, needs Silk Touch); craft_item create:zinc_block (tier 1 above NORMAL cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Cat Nursery"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective breed_animal minecraft:cat ×4
+  effort 2.00 min/unit (×1.20 village) → 9.6 min (target 16.7, range 8–20 min)
+  tier 0 (always available), family pets, profile vanilla, hints village
+estimated 9.6 min (quick)
+reward give_item create:experience_nugget ×29 (value 8.7) + xp 34 (value 2.8)  → 11.5 / budget 11.5
+rejected alternatives: tame_animal minecraft:ocelot (ocelots only trust players; not a TamableAnimal)
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Dig Deepslate Lead Ore"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective mine_block mekanism:deepslate_lead_ore ×12
+  effort 0.90 min/unit (×1.10 deep) → 11.9 min (target 13.5, range 8–20 min)
+  tier 1 (always available), family mek_lead, profile mekanism, tool stone, hints caves/deep
+estimated 11.9 min (quick)
+reward give_item minecraft:prismarine_crystals ×5 (value 7.5) + effect minecraft:night_vision 540s (value 3.6) + xp 38 (value 3.2)  → 14.3 / budget 14.3
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Frog Herd"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective breed_animal minecraft:frog ×4
+  effort 2.50 min/unit (×1.30 swamp) → 13.0 min (target 12.6, range 8–20 min)
+  tier 1 (always available), family wild_animals, profile vanilla, hints swamp
+estimated 13.0 min
+reward give_item minecraft:cooked_porkchop ×16 (value 8.0) + xp 90 (value 7.5)  → 15.5 / budget 15.6
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Flower Market"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:azure_bluet ×24
+  effort 0.20 min/unit → 4.8 min (target 16.2, range 8–20 min)
+  tier 0 (always available), family flowers, profile vanilla
+objective collect_item minecraft:allium ×16
+  effort 0.35 min/unit (×1.40 flower_forest) → 7.8 min (target 16.2, range 8–20 min)
+  tier 0 (always available), family flowers, profile vanilla, hints flower_forest
+theme florist
+estimated 12.6 min
+reward give_item mekanism:raw_osmium ×18 (value 12.6) + xp 49 (value 4.1)  → 16.7 / budget 16.7
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Smelt Venison Steaks"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item twilightforest:cooked_venison ×8
+  effort 1.00 min/unit → 8.0 min (target 14.7, range 8–20 min)
+  tier 2 (always available), family tf_game, profile twilightforest, twilightforest:twilight_forest
+travel overhead 5.0 min
+estimated 13.0 min
+reward give_item minecraft:prismarine_crystals ×8 (value 12.0) + xp 43 (value 3.6)  → 15.6 / budget 15.6
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Seafood Order"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective craft_item farmersdelight:salmon_roll ×6
+  effort 1.60 min/unit → 9.6 min (target 19.2, range 8–20 min)
+  tier 1 (always available), family fd_seafood, profile farmersdelight
+objective smelt_item farmersdelight:cooked_cod_slice ×16
+  effort 0.60 min/unit → 9.6 min (target 19.2, range 8–20 min)
+  tier 0 (always available), family fd_seafood, profile farmersdelight, tool fishing_rod, hints cook
+combo within family fd_seafood
+estimated 19.2 min
+reward give_item mekanism:basic_control_circuit ×5 (value 20.0) + xp 65 (value 5.4)  → 25.4 / budget 25.3
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Husk Patrol"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:husk ×16
+  effort 1.00 min/unit (×1.30 desert) → 20.8 min (target 19.7, range 8–20 min)
+  tier 0 (always available), family undead, profile vanilla, hints desert/night
+estimated 20.8 min
+reward give_item farmersdelight:sweet_berry_cookie ×32 (value 4.8) + give_item minecraft:emerald ×6 (value 15.0) + xp 60 (value 5.0)  → 24.8 / budget 25.0
+state: AVAILABLE
+

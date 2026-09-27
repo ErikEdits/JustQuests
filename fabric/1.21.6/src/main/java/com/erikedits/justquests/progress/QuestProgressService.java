@@ -87,6 +87,7 @@ public final class QuestProgressService {
             for (QuestReward reward : quest.rewards()) {
                 reward.grant(player);
             }
+            com.erikedits.justquests.generator.GenV2.completed(questId, player.getUUID());
             String questTitle = quest.title().get(player.clientInformation().language());
             player.sendSystemMessage(Component.literal("§a✓ Quest completed: " + questTitle));
             // completion sound + action-bar toast (Q12), each toggleable

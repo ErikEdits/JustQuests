@@ -1,0 +1,318 @@
+{
+  "justquests:gen/1790510400_7": {
+    "title": "Place Deepslate Tiles",
+    "description": "Build with 64 deepslate tiles. Found deep underground.",
+    "category": "generated",
+    "sort": 11,
+    "objectives": [
+      {
+        "type": "justquests:place_block",
+        "block": "minecraft:deepslate_tiles",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:slime_ball",
+        "count": 8
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:slow_falling",
+        "seconds": 300,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 48
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Lush Caves",
+    "description": "Something grows underground: break 48 moss blocks and eat 8 glow berries. Look in lush caves.",
+    "category": "generated",
+    "sort": 14,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:moss_block",
+        "count": 48
+      },
+      {
+        "type": "justquests:consume_item",
+        "item": "minecraft:glow_berries",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:tnt",
+        "count": 4
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/abandoned_mineshaft"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 65
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Cooked Cod Kitchen",
+    "description": "Cook 16 cod. Use a fishing rod.",
+    "category": "generated",
+    "sort": 14,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:cooked_cod",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:white_wool",
+        "count": 32
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:leather",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 85
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Popped Chorus Fruit Heat",
+    "description": "Smelt 40 popped chorus fruit. Grows on the outer End islands. Found in the End.",
+    "category": "generated",
+    "sort": 18,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:popped_chorus_fruit",
+        "count": 40
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 85
+      }
+    ]
+  },
+  "justquests:gen/1790510400_0": {
+    "title": "Mine Ancient Debris",
+    "description": "Mine an ancient debris. Needs a diamond pickaxe. Rare, so take your time. Found in the Nether.",
+    "category": "generated",
+    "sort": 19,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:ancient_debris",
+        "count": 1
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:prismarine_crystals",
+        "count": 8
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 85
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Lighthouse Keeper",
+    "description": "Light up the paths before dark: pick up 40 coal and craft 128 torches. Mine coal ore. Found in caves. Coal or charcoal on a stick.",
+    "category": "generated",
+    "sort": 19,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:coal",
+        "count": 40
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:torch",
+        "count": 128
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cooked_salmon",
+        "count": 16
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/simple_dungeon"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 105
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Nether Ranch Job",
+    "description": "Breed 2 hoglins and breed 3 striders. Hoglins breed with crimson fungus; they fight back. Found in crimson forests. Found in the Nether.",
+    "category": "generated",
+    "sort": 22,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:hoglin",
+        "count": 2
+      },
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:strider",
+        "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
+        "count": 16
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:night_vision",
+        "seconds": 600,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 150
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Ranch Hand",
+    "description": "The ranch needs a hand: breed 12 sheep and breed 10 cows. Sheep breed with wheat. Cows breed with wheat. Common in plains.",
+    "category": "generated",
+    "sort": 22,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:sheep",
+        "count": 12
+      },
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:cow",
+        "count": 10
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cooked_salmon",
+        "count": 16
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:gold_ingot",
+        "count": 10
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 105
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Guardian Bounty",
+    "description": "Hunt 6 guardians. Needs an iron pickaxe or better. Found at ocean monuments.",
+    "category": "generated",
+    "sort": 24,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:guardian",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:lapis_block",
+        "count": 4
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:conduit_power",
+        "seconds": 300,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 310
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Silent Depths",
+    "description": "Descend into the deep dark: mine 8 sculk sensors and mine 3 deepslate diamond ore. Found in the deep dark. Needs an iron pickaxe or better.",
+    "category": "generated",
+    "sort": 32,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:sculk_sensor",
+        "count": 8
+      },
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_diamond_ore",
+        "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:hay_block",
+        "count": 8
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:gold_ingot",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 245
+      }
+    ]
+  }
+}

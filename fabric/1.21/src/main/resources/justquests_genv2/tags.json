@@ -1,0 +1,112 @@
+{
+  "format": 1,
+  "notes": "Concept -> candidate tag ids in preference order; the first tag with members on the running build wins. Conventions differ: forge:ingots/iron (Forge <=1.20.1), c:iron_ingots (older Fabric), c:ingots/iron (newer Fabric/NeoForge).",
+  "concepts": {
+    "logs": {
+      "kind": "item",
+      "candidates": [
+        "minecraft:logs"
+      ],
+      "name": "log",
+      "plural": "logs"
+    },
+    "wool": {
+      "kind": "item",
+      "candidates": [
+        "minecraft:wool"
+      ],
+      "name": "wool",
+      "plural": "wool"
+    },
+    "beds": {
+      "kind": "item",
+      "candidates": [
+        "minecraft:beds"
+      ],
+      "name": "bed",
+      "plural": "beds"
+    },
+    "small_flowers": {
+      "kind": "item",
+      "candidates": [
+        "minecraft:small_flowers"
+      ],
+      "name": "flower",
+      "plural": "flowers"
+    },
+    "iron_ingots": {
+      "kind": "item",
+      "candidates": [
+        "c:ingots/iron",
+        "c:iron_ingots",
+        "forge:ingots/iron"
+      ],
+      "name": "iron ingot",
+      "plural": "iron ingots"
+    },
+    "zinc_ingots": {
+      "kind": "item",
+      "candidates": [
+        "c:ingots/zinc",
+        "c:zinc_ingots",
+        "forge:ingots/zinc"
+      ],
+      "name": "zinc ingot",
+      "plural": "zinc ingots"
+    },
+    "wool_carpets": {
+      "kind": "item",
+      "candidates": [
+        "minecraft:wool_carpets",
+        "minecraft:carpets"
+      ],
+      "name": "carpet",
+      "plural": "carpets"
+    },
+    "fishes": {
+      "kind": "item",
+      "candidates": [
+        "minecraft:fishes"
+      ],
+      "name": "fish",
+      "plural": "fish"
+    },
+    "tomatoes": {
+      "kind": "item",
+      "candidates": [
+        "c:crops/tomato",
+        "c:tomatoes",
+        "forge:crops/tomato"
+      ],
+      "name": "tomato",
+      "plural": "tomatoes"
+    },
+    "osmium_ingots": {
+      "kind": "item",
+      "candidates": [
+        "c:ingots/osmium",
+        "forge:ingots/osmium"
+      ],
+      "name": "osmium ingot",
+      "plural": "osmium ingots"
+    },
+    "tin_ingots": {
+      "kind": "item",
+      "candidates": [
+        "c:ingots/tin",
+        "forge:ingots/tin"
+      ],
+      "name": "tin ingot",
+      "plural": "tin ingots"
+    },
+    "lead_ingots": {
+      "kind": "item",
+      "candidates": [
+        "c:ingots/lead",
+        "forge:ingots/lead"
+      ],
+      "name": "lead ingot",
+      "plural": "lead ingots"
+    }
+  }
+}

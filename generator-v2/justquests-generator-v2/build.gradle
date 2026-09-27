@@ -1,0 +1,97 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.erikedits.justquests'
+version = '2.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    // Build with whatever JDK runs Gradle (17+), but emit Java 17 bytecode
+    // and link only against the Java 17 API.
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:all,-serial,-processing']
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.encoding = 'UTF-8'
+    (options as StandardJavadocDocletOptions).addBooleanOption('Xdoclint:all,-missing', true)
+}
+
+dependencies {
+    // Minecraft ships Gson at runtime; the core only compiles against it.
+    compileOnly 'com.google.code.gson:gson:2.8.8'
+
+    testImplementation 'com.google.code.gson:gson:2.8.8'
+    testImplementation platform('org.junit:junit-bom:5.10.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+    maxHeapSize = '1g'
+    // diagnostics only: ./gradlew test -Dprobe=true --tests '*RelaxationProbe*'
+    systemProperty 'probe', System.getProperty('probe', 'false')
+    testLogging {
+        events 'failed'
+        exceptionFormat 'full'
+    }
+}
+
+// Regenerates samples/ (vanilla + modded sets with explain output).
+tasks.register('samples', JavaExec) {
+    group = 'documentation'
+    description = 'Writes example generated sets to samples/.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.erikedits.justquests.generator.v2.SampleWriter'
+    args project.file('samples').absolutePath
+}
+
+// Writes samples/catalog-report.md (every target with minutes, counts and difficulties).
+tasks.register('catalogReport', JavaExec) {
+    group = 'documentation'
+    description = 'Writes samples/catalog-report.md.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.erikedits.justquests.generator.v2.CatalogReport'
+    args project.file('samples/catalog-report.md').absolutePath
+}
+
+// Writes samples/simulation/ (14 simulated days per difficulty with stats).
+tasks.register('simulate', JavaExec) {
+    group = 'documentation'
+    description = 'Writes samples/simulation/<difficulty>.md.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.erikedits.justquests.generator.v2.Simulation'
+    args project.file('samples/simulation').absolutePath
+}
+
+// Packs the deliverable ZIP (project sources, docs, samples) into build/dist.
+tasks.register('deliverableZip', Zip) {
+    group = 'distribution'
+    description = 'Builds justquests-generator-v2.zip.'
+    archiveFileName = 'justquests-generator-v2.zip'
+    destinationDirectory = layout.buildDirectory.dir('dist')
+    into('justquests-generator-v2') {
+        from(projectDir) {
+            exclude 'build/**', '.gradle/**', 'PROGRESS.md', '**/*.class', '.idea/**', 'out/**'
+        }
+    }
+    // the data scripts sit next to the project, so their relative paths work in the unpacked ZIP too
+    def toolsDir = file('../tools')
+    if (toolsDir.isDirectory()) {
+        into('tools') {
+            from(toolsDir) {
+                exclude '__pycache__/**', '*.pyc'
+            }
+        }
+    }
+}

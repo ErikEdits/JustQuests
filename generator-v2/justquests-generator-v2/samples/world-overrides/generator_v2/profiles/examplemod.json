@@ -1,0 +1,36 @@
+{
+  "format": 1,
+  "id": "examplemod",
+  "name": "Example Mod",
+  "requiresMod": ["examplemod"],
+  "minecraft": {"min": "1.20.1"},
+  "dimensions": [
+    {"id": "examplemod:crystal_caves", "advancement": "examplemod:enter_caves", "share": 0.25, "day": 20, "tier": 3}
+  ],
+  "entries": [
+    {
+      "key": "ex_ruby", "family": "ex_gems", "tier": 2, "tool": "iron", "hints": ["deep"],
+      "exclusions": ["collect_item examplemod:ruby_ore (drops rubies)"],
+      "targets": [
+        {"type": "mine_block", "id": "examplemod:ruby_ore", "alt": ["examplemod:ore_ruby"], "effort": 1.5, "min": 2, "max": 16},
+        {"type": "collect_item", "id": "examplemod:ruby", "effort": 1.5, "min": 2, "max": 16, "hint": "Ruby ore drops rubies."},
+        {"type": "craft_item", "id": "examplemod:ruby_block", "name": "Block of Ruby", "plural": "Blocks of Ruby",
+         "effort": 13.5, "min": 1, "max": 1, "minDifficulty": "hard"}
+      ]
+    },
+    {
+      "key": "ex_glow_bats", "family": "ex_mobs", "tier": 3, "dimension": "examplemod:crystal_caves",
+      "requires": ["dim:examplemod:crystal_caves"],
+      "targets": [{"type": "kill_mob", "id": "examplemod:glow_bat", "effort": 1.2, "min": 4, "max": 16}]
+    }
+  ],
+  "rewards": {
+    "items": [{"id": "examplemod:ruby", "value": 3.0, "tier": 2, "max": 8, "family": "ex_gems"}]
+  },
+  "themes": [
+    {"key": "ex_jeweler", "names": ["Jeweler's Order"], "descriptions": ["The jeweler needs stones: {list}."],
+     "minDifficulty": "normal",
+     "slots": [{"types": ["mine_block"], "keys": ["ex_ruby"]},
+               {"types": ["collect_item", "mine_block"], "keys": ["diamond"], "profiles": ["vanilla"]}]}
+  ]
+}

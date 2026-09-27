@@ -1,0 +1,110 @@
+# mc-1.18.2 | world seed 2 | HARD | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty hard, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.18.2 (forge)
+
+justquests:gen/1790510400_0  "Ice Excavation"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:ice ×48
+  effort 0.12 min/unit (×1.30 snowy) → 7.5 min (target 17.0, range 15–35 min)
+  tier 0 (always available), family snow, profile vanilla, hints snowy
+estimated 7.5 min (quick)
+reward give_item minecraft:honey_bottle ×8 (value 9.6) + xp 100 (value 8.3)  → 17.9 / budget 18.0
+rejected alternatives: collect_item minecraft:snowball (max count takes only 2.5 min)
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Treasure Hunter"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:deepslate_lapis_ore ×6
+  effort 1.20 min/unit (×1.10 deep) → 7.9 min (target 16.6, range 15–35 min)
+  tier 2 (always available), family gems, profile vanilla, tool stone, hints deep
+objective mine_block minecraft:crying_obsidian ×3
+  effort 2.00 min/unit (×1.40 ruined_portal) → 8.4 min (target 16.6, range 15–35 min)
+  tier 2 (always available), family obsidian, profile vanilla, tool diamond, hints ruined_portal
+theme treasure_hunter
+estimated 16.3 min (quick)
+reward give_item minecraft:experience_bottle ×16 (value 19.2) + xp 95 (value 7.9)  → 27.1 / budget 26.9
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Cave Spider Hunt"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:cave_spider ×8
+  effort 1.50 min/unit (×1.30 mineshaft) → 15.6 min (target 16.5, range 15–35 min)
+  tier 1 (always available), family arthropods, profile vanilla, hints mineshaft
+estimated 15.6 min (quick)
+reward give_item minecraft:golden_carrot ×12 (value 18.0) + xp 65 (value 5.4)  → 23.4 / budget 23.4
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Base Camp"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective collect_item #minecraft:logs ×96
+  effort 0.09 min/unit → 8.6 min (target 17.2, range 15–35 min)
+  tier 0 (always available), family wood, profile vanilla
+objective craft_item minecraft:torch ×128
+  effort 0.07 min/unit → 9.0 min (target 17.2, range 15–35 min)
+  tier 0 (always available), family lighting, profile vanilla
+theme camp_setup
+estimated 17.6 min (quick)
+reward give_item minecraft:rabbit_foot ×2 (value 8.0) + give_item minecraft:gold_ingot ×11 (value 14.3) + xp 80 (value 6.7)  → 29.0 / budget 29.0
+rejected alternatives: place_block minecraft:torch (wall torches are a different block id)
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Bake Sale"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:honey_block ×2
+  effort 4.50 min/unit (×1.20 bees) → 10.8 min (target 31.8, range 15–35 min)
+  tier 0 (always available), family baking, profile vanilla, hints bees
+objective collect_item minecraft:apple ×4
+  effort 2.00 min/unit → 8.0 min (target 31.8, range 15–35 min)
+  tier 0 (always available), family fruit, profile vanilla
+theme bake_sale
+estimated 18.8 min (quick)
+reward give_item minecraft:iron_block ×2 (value 10.8) + effect minecraft:haste 480s (value 6.4) + xp 165 (value 13.8)  → 31.0 / budget 31.0
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Smelt Popped Chorus Fruit"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item minecraft:popped_chorus_fruit ×48
+  effort 0.25 min/unit (×1.30 outer_islands) → 15.6 min (target 26.2, range 15–35 min)
+  tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family end_plants, profile vanilla, hints outer_islands, minecraft:the_end
+travel overhead 5.0 min
+estimated 20.6 min (quick)
+reward give_item minecraft:ender_pearl ×8 (value 20.0) + xp 130 (value 10.8)  → 30.8 / budget 30.9
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Undead Duty"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:skeleton ×12
+  effort 0.90 min/unit → 10.8 min (target 27.8, range 15–35 min)
+  tier 0 (always available), family undead, profile vanilla, hints night
+objective kill_mob minecraft:phantom ×4
+  effort 3.00 min/unit → 12.0 min (target 27.8, range 15–35 min)
+  tier 1 (always available), family undead, profile vanilla, hints night
+combo within family undead
+estimated 22.8 min
+reward give_item minecraft:gold_ingot ×16 (value 20.8) + loot_table minecraft:chests/jungle_temple (value 9.0) + xp 95 (value 7.9)  → 37.7 / budget 37.6
+rejected alternatives: hint: phantoms only spawn after three nights without sleep
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Metal Duty"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:raw_copper ×96
+  effort 0.10 min/unit → 9.6 min (target 29.6, range 15–35 min)
+  tier 1 (always available), family metals, profile vanilla, tool stone, hints caves
+objective collect_item minecraft:raw_gold ×16
+  effort 1.20 min/unit (×1.10 deep) → 21.1 min (target 29.6, range 15–35 min)
+  tier 2 (always available), family metals, profile vanilla, tool iron, hints deep
+combo within family metals
+estimated 30.7 min
+reward give_item minecraft:blaze_powder ×16 (value 14.4) + loot_table minecraft:chests/village/village_weaponsmith (value 7.0) + xp 350 (value 29.2)  → 50.6 / budget 50.7
+rejected alternatives: collect_item minecraft:gold_ore (drops raw_gold, needs Silk Touch)
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Breed Mooshrooms"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective breed_animal minecraft:mooshroom ×2
+  effort 5.00 min/unit (×2.00 mushroom_fields ×1.60 rare) → 32.0 min (target 32.4, range 15–35 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints mushroom_fields/rare
+estimated 32.0 min
+reward give_item minecraft:emerald ×14 (value 35.0) + xp 155 (value 12.9)  → 47.9 / budget 48.0
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Ancient Debris Breaker"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:ancient_debris ×2
+  effort 10.00 min/unit (×1.60 rare) → 32.0 min (target 29.4, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_ores, profile vanilla, tool diamond, hints rare, minecraft:the_nether
+travel overhead 3.0 min
+estimated 35.0 min
+reward give_item minecraft:redstone_block ×4 (value 7.2) + give_item minecraft:ender_eye ×4 (value 16.0) + xp 350 (value 29.2)  → 52.4 / budget 52.5
+state: AVAILABLE
+

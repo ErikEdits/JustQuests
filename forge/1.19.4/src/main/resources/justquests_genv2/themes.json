@@ -1,0 +1,1452 @@
+{
+  "format": 1,
+  "themes": [
+    {
+      "key": "blacksmith_order",
+      "names": [
+        "Blacksmith's Order",
+        "Forge Work",
+        "Smithy Supply"
+      ],
+      "descriptions": [
+        "The smithy needs help: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "keys": [
+            "iron",
+            "copper",
+            "gold"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "families": [
+            "iron_tools",
+            "iron_works"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "harvest_festival",
+      "names": [
+        "Harvest Festival",
+        "Harvest Time",
+        "Bumper Crop"
+      ],
+      "descriptions": [
+        "Bring in the harvest: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "crops"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "crops"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "fruit"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "monster_patrol",
+      "names": [
+        "Monster Patrol",
+        "Night Watch",
+        "Undead Purge"
+      ],
+      "descriptions": [
+        "Keep the roads safe: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "kill_mob"
+          ],
+          "families": [
+            "undead"
+          ]
+        },
+        {
+          "types": [
+            "kill_mob"
+          ],
+          "families": [
+            "undead",
+            "arthropods"
+          ]
+        },
+        {
+          "types": [
+            "kill_mob"
+          ],
+          "families": [
+            "monsters",
+            "arthropods"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "ranch_hand",
+      "names": [
+        "Ranch Hand",
+        "Farmyard Chores",
+        "Barn Duty"
+      ],
+      "descriptions": [
+        "The ranch needs a hand: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "breed_animal"
+          ],
+          "families": [
+            "livestock",
+            "wool"
+          ]
+        },
+        {
+          "types": [
+            "breed_animal"
+          ],
+          "families": [
+            "livestock",
+            "wool"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "nether_expedition",
+      "names": [
+        "Nether Expedition",
+        "Into the Fire",
+        "Fortress Raid"
+      ],
+      "descriptions": [
+        "Bring back treasures from the Nether: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "families": [
+            "nether_ores"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "kill_mob"
+          ],
+          "families": [
+            "nether_mobs"
+          ]
+        },
+        {
+          "types": [
+            "visit_dimension"
+          ],
+          "keys": [
+            "nether_trip"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "mining_expedition",
+      "names": [
+        "Mining Expedition",
+        "Deep Dig",
+        "Cave Survey"
+      ],
+      "descriptions": [
+        "Head underground: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "families": [
+            "metals",
+            "coal",
+            "gems",
+            "redstone"
+          ]
+        },
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "families": [
+            "metals",
+            "coal",
+            "gems",
+            "redstone",
+            "stone"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "lumberjack",
+      "names": [
+        "Lumberjack",
+        "Timber!",
+        "Woodcutter"
+      ],
+      "descriptions": [
+        "The sawmill is waiting: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "families": [
+            "wood"
+          ]
+        },
+        {
+          "types": [
+            "place_block",
+            "craft_item"
+          ],
+          "families": [
+            "forestry",
+            "woodwork"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ocean_voyage",
+      "names": [
+        "Ocean Voyage",
+        "Sea Harvest",
+        "Tidal Work"
+      ],
+      "descriptions": [
+        "Head out to sea: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "ocean",
+            "fishing"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "smelt_item",
+            "kill_mob"
+          ],
+          "families": [
+            "ocean",
+            "fishing"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "camp_cook",
+      "names": [
+        "Camp Cook",
+        "Campfire Dinner",
+        "Supper Time"
+      ],
+      "descriptions": [
+        "Feed the camp: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "families": [
+            "livestock",
+            "wool",
+            "fishing"
+          ]
+        },
+        {
+          "types": [
+            "consume_item"
+          ],
+          "families": [
+            "livestock",
+            "crops",
+            "baking",
+            "fishing"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "builders_order",
+      "names": [
+        "Builder's Order",
+        "Construction Job",
+        "Masonry Work"
+      ],
+      "descriptions": [
+        "The builders need material: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "smelt_item",
+            "craft_item"
+          ],
+          "families": [
+            "stone",
+            "stonework",
+            "glass"
+          ]
+        },
+        {
+          "types": [
+            "place_block"
+          ],
+          "families": [
+            "stonework",
+            "glass",
+            "stone",
+            "woodwork"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "desert_trek",
+      "names": [
+        "Desert Trek",
+        "Sand and Sun"
+      ],
+      "descriptions": [
+        "Brave the desert: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "mine_block",
+            "smelt_item"
+          ],
+          "keys": [
+            "sand",
+            "sandstone",
+            "cactus"
+          ]
+        },
+        {
+          "types": [
+            "kill_mob"
+          ],
+          "keys": [
+            "husks"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "end_expedition",
+      "names": [
+        "End Expedition",
+        "Beyond the Void"
+      ],
+      "descriptions": [
+        "Explore the End: {list}."
+      ],
+      "minDifficulty": "hard",
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "families": [
+            "end_blocks",
+            "end_plants"
+          ]
+        },
+        {
+          "types": [
+            "kill_mob",
+            "collect_item"
+          ],
+          "families": [
+            "end_mobs"
+          ]
+        },
+        {
+          "types": [
+            "visit_dimension"
+          ],
+          "keys": [
+            "end_trip"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "beekeeper",
+      "names": [
+        "Beekeeper",
+        "Busy Bees"
+      ],
+      "descriptions": [
+        "Tend the hives: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "breed_animal"
+          ],
+          "keys": [
+            "bees"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "consume_item",
+            "craft_item"
+          ],
+          "keys": [
+            "bees",
+            "flowers"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "winter_prep",
+      "names": [
+        "Winter Prep",
+        "Cold Snap",
+        "Snowbound"
+      ],
+      "descriptions": [
+        "Get ready for the cold: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "craft_item",
+            "mine_block"
+          ],
+          "families": [
+            "snow"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "breed_animal"
+          ],
+          "families": [
+            "wool"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tool_upgrade",
+      "names": [
+        "Tool Upgrade",
+        "Iron Age",
+        "Better Tools"
+      ],
+      "descriptions": [
+        "Time for better tools: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "smelt_item",
+            "collect_item"
+          ],
+          "keys": [
+            "iron"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "families": [
+            "iron_tools",
+            "iron_armor"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "railway_builder",
+      "names": [
+        "Railway Builder",
+        "Rail Line",
+        "Track Crew"
+      ],
+      "descriptions": [
+        "Lay down a new line: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "iron_works",
+            "transport"
+          ]
+        },
+        {
+          "types": [
+            "place_block"
+          ],
+          "keys": [
+            "iron_works"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "redstone_workshop",
+      "names": [
+        "Redstone Workshop",
+        "Circuit Builder"
+      ],
+      "descriptions": [
+        "Wire up the workshop: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "keys": [
+            "redstone",
+            "deep_redstone"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "redstone_parts",
+            "redstone_gadgets"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "enchanters_study",
+      "names": [
+        "Enchanter's Study",
+        "Arcane Library"
+      ],
+      "descriptions": [
+        "The enchanter needs supplies: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "mine_block"
+          ],
+          "keys": [
+            "lapis",
+            "deep_lapis"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "library"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "night_hunter",
+      "names": [
+        "Night Hunter",
+        "Moonlit Hunt",
+        "After Dark"
+      ],
+      "descriptions": [
+        "When the sun sets: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "kill_mob"
+          ],
+          "families": [
+            "arthropods",
+            "monsters"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "arthropods",
+            "monsters",
+            "undead"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fishermans_day",
+      "names": [
+        "Fisherman's Day",
+        "Catch of the Day",
+        "Gone Fishing"
+      ],
+      "descriptions": [
+        "A day by the water: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "fishing"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item",
+            "consume_item"
+          ],
+          "families": [
+            "fishing"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "florist",
+      "names": [
+        "Florist",
+        "Flower Market",
+        "Bouquet"
+      ],
+      "descriptions": [
+        "Fresh flowers for the market: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "flowers"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "flowers"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "families": [
+            "dyes"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "village_fair",
+      "names": [
+        "Village Fair",
+        "Market Fair",
+        "Harvest Market"
+      ],
+      "descriptions": [
+        "The fair opens soon: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "families": [
+            "baking"
+          ]
+        },
+        {
+          "types": [
+            "breed_animal"
+          ],
+          "families": [
+            "livestock",
+            "wool"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "stonemason",
+      "names": [
+        "Stonemason",
+        "Masonry Job",
+        "Stone Works"
+      ],
+      "descriptions": [
+        "The stonemason needs help: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "families": [
+            "stone"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "place_block",
+            "smelt_item"
+          ],
+          "families": [
+            "stonework"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "deep_dark_delve",
+      "names": [
+        "Deep Dark Delve",
+        "Silent Depths"
+      ],
+      "descriptions": [
+        "Descend into the deep dark: {list}."
+      ],
+      "minDifficulty": "hard",
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "families": [
+            "deep_dark"
+          ]
+        },
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "deep_coal",
+            "deep_copper",
+            "deep_lapis",
+            "deep_redstone",
+            "diamond"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "brewers_supplies",
+      "names": [
+        "Brewer's Supplies",
+        "Potion Ingredients"
+      ],
+      "descriptions": [
+        "The brewer needs Nether goods: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "nether_wart"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "craft_item",
+            "kill_mob"
+          ],
+          "keys": [
+            "blazes",
+            "magma_cubes",
+            "nether_masonry"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "leatherworker",
+      "names": [
+        "Leatherworker",
+        "Tannery Order"
+      ],
+      "descriptions": [
+        "The tannery is busy: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "breed_animal"
+          ],
+          "keys": [
+            "cows",
+            "rabbits"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "leather_armor",
+            "library",
+            "decor"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "copper_age",
+      "names": [
+        "Copper Age",
+        "Copper Works"
+      ],
+      "descriptions": [
+        "Copper everywhere: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item",
+            "smelt_item"
+          ],
+          "keys": [
+            "copper",
+            "deep_copper"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "place_block"
+          ],
+          "keys": [
+            "copper_blocks",
+            "copper_works"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "nether_builder",
+      "names": [
+        "Nether Builder",
+        "Fortress Mason"
+      ],
+      "descriptions": [
+        "Build like the piglins: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "families": [
+            "nether_blocks"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "smelt_item"
+          ],
+          "keys": [
+            "nether_masonry",
+            "netherrack"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "stable_hand",
+      "names": [
+        "Stable Hand",
+        "Horse Ranch"
+      ],
+      "descriptions": [
+        "The stable needs work: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "breed_animal"
+          ],
+          "keys": [
+            "horses",
+            "llamas",
+            "camels"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "wheat",
+            "transport"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "library_project",
+      "names": [
+        "Library Project",
+        "Bookworm"
+      ],
+      "descriptions": [
+        "The librarian needs books: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "craft_item"
+          ],
+          "keys": [
+            "sugar_cane"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "library"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "lamplighter",
+      "names": [
+        "Lamplighter",
+        "Lighthouse Keeper",
+        "Bright Nights"
+      ],
+      "descriptions": [
+        "Light up the paths before dark: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "keys": [
+            "coal"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "place_block"
+          ],
+          "families": [
+            "lighting"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "glassblower",
+      "names": [
+        "Glassblower",
+        "Glass Works",
+        "Clear View"
+      ],
+      "descriptions": [
+        "The glassblower is out of sand: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "mine_block"
+          ],
+          "keys": [
+            "sand"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item",
+            "craft_item",
+            "place_block"
+          ],
+          "keys": [
+            "glass",
+            "glass_more"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "potter",
+      "names": [
+        "Potter's Wheel",
+        "Clay Works",
+        "Kiln Day"
+      ],
+      "descriptions": [
+        "The potter's kiln is waiting: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "mine_block"
+          ],
+          "keys": [
+            "clay",
+            "clay_blocks"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item",
+            "craft_item",
+            "place_block"
+          ],
+          "keys": [
+            "bricks",
+            "terracotta_art"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "pet_shop",
+      "names": [
+        "Pet Shop",
+        "Animal Friends",
+        "Critter Care"
+      ],
+      "descriptions": [
+        "The pet shop needs new friends: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "tame_animal",
+            "breed_animal"
+          ],
+          "families": [
+            "pets"
+          ]
+        },
+        {
+          "types": [
+            "breed_animal"
+          ],
+          "families": [
+            "wild_animals"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "mushroom_forager",
+      "names": [
+        "Mushroom Forager",
+        "Fungus Hunt",
+        "Spore Season"
+      ],
+      "descriptions": [
+        "The cook wants mushrooms: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "consume_item"
+          ],
+          "keys": [
+            "mushrooms"
+          ]
+        },
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "mushroom_blocks"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "cave_garden",
+      "names": [
+        "Cave Garden",
+        "Lush Caves",
+        "Green Below"
+      ],
+      "descriptions": [
+        "Something grows underground: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "moss"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "consume_item"
+          ],
+          "keys": [
+            "glow_berries"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "rock_collector",
+      "names": [
+        "Rock Collector",
+        "Quarry Master",
+        "Stone Survey"
+      ],
+      "descriptions": [
+        "The geologist wants samples: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "andesite",
+            "granite",
+            "diorite"
+          ]
+        },
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "tuff",
+            "calcite",
+            "dripstone",
+            "deepslate"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "diamond_smith",
+      "names": [
+        "Diamond Smith",
+        "Master Smith",
+        "Sparkling Gear"
+      ],
+      "descriptions": [
+        "Only the best will do: {list}."
+      ],
+      "minDifficulty": "hard",
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "keys": [
+            "diamond"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "families": [
+            "diamond_gear"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bake_sale",
+      "names": [
+        "Bake Sale",
+        "Sweet Tooth",
+        "Market Stall"
+      ],
+      "descriptions": [
+        "The village bake sale needs you: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item",
+            "consume_item"
+          ],
+          "keys": [
+            "baking",
+            "food_crafts"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "fruit"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "nether_gardener",
+      "names": [
+        "Nether Gardener",
+        "Fungal Grove",
+        "Crimson Harvest"
+      ],
+      "descriptions": [
+        "Even the Nether has a garden: {list}."
+      ],
+      "minDifficulty": "hard",
+      "slots": [
+        {
+          "types": [
+            "collect_item",
+            "mine_block"
+          ],
+          "families": [
+            "nether_plants"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "mine_block"
+          ],
+          "families": [
+            "nether_plants"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "camp_setup",
+      "names": [
+        "Camp Setup",
+        "Base Camp",
+        "Night Camp"
+      ],
+      "descriptions": [
+        "Set up camp before nightfall: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "keys": [
+            "logs_any",
+            "oak_wood",
+            "birch_wood",
+            "spruce_wood"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "campfires",
+            "torches"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "workshop_setup",
+      "names": [
+        "Workshop Setup",
+        "New Workshop",
+        "Crafting Corner"
+      ],
+      "descriptions": [
+        "Every village needs a workshop: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "workstations"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "workstations"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "workstations",
+            "storage",
+            "furnaces"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "adventurers_kit",
+      "names": [
+        "Adventurer's Kit",
+        "Ready to Roam",
+        "Travel Gear"
+      ],
+      "descriptions": [
+        "Pack for the road: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "iron_tools",
+            "gear_misc"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "iron_armor",
+            "leather_armor",
+            "transport"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "treasure_hunter",
+      "names": [
+        "Treasure Hunter",
+        "Deep Riches",
+        "Gem Seeker"
+      ],
+      "descriptions": [
+        "Riches lie deep underground: {list}."
+      ],
+      "minDifficulty": "hard",
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "families": [
+            "gems"
+          ]
+        },
+        {
+          "types": [
+            "mine_block"
+          ],
+          "families": [
+            "obsidian"
+          ]
+        }
+      ]
+    }
+  ]
+}

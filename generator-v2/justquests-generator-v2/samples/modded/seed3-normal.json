@@ -1,0 +1,259 @@
+{
+  "justquests:gen/1790510400_3": {
+    "title": "Earthworks Chores",
+    "description": "Smelt 32 bricks and make 8 packed mud. Smelt clay balls. Look along rivers. Mud and wheat. Look in mangrove swamps.",
+    "category": "generated",
+    "sort": 7,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:brick",
+        "count": 32
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:packed_mud",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:linear_chassis",
+        "count": 11
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 29
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Grilled Salmon Lunch",
+    "description": "Eat 3 grilled salmon.",
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:consume_item",
+        "item": "farmersdelight:grilled_salmon",
+        "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:honeycomb",
+        "count": 7
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 28
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Repeater Request",
+    "description": "Make 8 repeaters.",
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:repeater",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:honeycomb",
+        "count": 7
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 31
+      }
+    ]
+  },
+  "justquests:gen/1790510400_0": {
+    "title": "Liveroot Delivery",
+    "description": "Collect 8 liveroot. Liveroot grows in the root tangles underground; break it without Silk Touch. Found in the Twilight Forest.",
+    "category": "generated",
+    "sort": 9,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "twilightforest:liveroot",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "twilightforest:cooked_venison",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 30
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Bone Meal Crafting",
+    "description": "Craft 64 bone meal. One bone makes three bone meal.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:bone_meal",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:amethyst_shard",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 70
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Deepslate Diamond Ore Dig",
+    "description": "Mine 2 deepslate diamond ore. Needs an iron pickaxe or better. Found deep underground.",
+    "category": "generated",
+    "sort": 11,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_diamond_ore",
+        "count": 2
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cookie",
+        "count": 32
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:iron_ingot",
+        "count": 10
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 40
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Coal Duty",
+    "description": "Break 8 deepslate coal ore and collect 24 coal. Found deep underground. Mine coal ore. Found in caves.",
+    "category": "generated",
+    "sort": 11,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_coal_ore",
+        "count": 8
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:coal",
+        "count": 24
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
+        "count": 9
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 49
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Make Livingwood Planks",
+    "description": "Make 16 livingwood planks. A Pure Daisy turns logs placed around it into livingwood.",
+    "category": "generated",
+    "sort": 16,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "botania:livingwood_planks",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "mekanism:ingot_osmium",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 60
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Tin Ingot Supply",
+    "description": "Smelt 24 tin ingots. Smelt raw tin in a furnace. Needs a stone pickaxe or better. Found in caves.",
+    "category": "generated",
+    "sort": 18,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "mekanism:ingot_tin",
+        "count": 24
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:obsidian",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 65
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Zinc Ore Shift",
+    "description": "Break 24 zinc ore. Needs an iron pickaxe or better. Found in caves.",
+    "category": "generated",
+    "sort": 19,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "create:zinc_ore",
+        "count": 24
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:hamburger",
+        "count": 6
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 90
+      }
+    ]
+  }
+}

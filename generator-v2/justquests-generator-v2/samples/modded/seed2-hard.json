@@ -1,0 +1,283 @@
+{
+  "justquests:gen/1790510400_0": {
+    "title": "Moss Block Excavation",
+    "description": "Mine 48 moss blocks. Look in lush caves.",
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:moss_block",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:brass_ingot",
+        "count": 7
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 48
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Hostile Wolf Watch",
+    "description": "Defeat 8 hostile wolves. Found in the Twilight Forest.",
+    "category": "generated",
+    "sort": 13,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "twilightforest:hostile_wolf",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:diamond",
+        "count": 3
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 55
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Lead Duty",
+    "description": "Mine 8 deepslate lead ore and collect 8 raw lead. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
+    "category": "generated",
+    "sort": 14,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "mekanism:deepslate_lead_ore",
+        "count": 8
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "mekanism:raw_lead",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:phantom_membrane",
+        "count": 4
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/village/village_weaponsmith"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 55
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Cook Cooked Bacon",
+    "description": "Cook 32 bacon. Cut porkchops on a cutting board, then cook. Use a Farmer's Delight knife.",
+    "category": "generated",
+    "sort": 16,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "farmersdelight:cooked_bacon",
+        "count": 32
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:bacon_sandwich",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 115
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Make Livingwood Planks",
+    "description": "Make 16 livingwood planks. A Pure Daisy turns logs placed around it into livingwood.",
+    "category": "generated",
+    "sort": 16,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "botania:livingwood_planks",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:fried_rice",
+        "count": 4
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:jukebox",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 105
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Nether Mining Duty",
+    "description": "Pick up 32 glowstone dust and pick up 64 gold nuggets. Found in the Nether. Nether gold ore drops gold nuggets.",
+    "category": "generated",
+    "sort": 17,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:glowstone_dust",
+        "count": 32
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:gold_nugget",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:andesite_alloy_block",
+        "count": 4
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:coal",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 95
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Rose Quartz Crafting",
+    "description": "Craft 16 rose quartz. Nether quartz and eight redstone dust.",
+    "category": "generated",
+    "sort": 19,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "create:rose_quartz",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:diamond",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 105
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Wildlife Errand",
+    "description": "Pick up 8 raw rabbit and breed 2 axolotls. Look in deserts. Axolotls breed with a bucket of tropical fish. Look in lush caves.",
+    "category": "generated",
+    "sort": 20,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:rabbit",
+        "count": 8
+      },
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:axolotl",
+        "count": 2
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "botania:manasteel_ingot",
+        "count": 7
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 105
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Stop the Endermen",
+    "description": "Defeat 8 endermen. They spawn at night and in dark caves.",
+    "category": "generated",
+    "sort": 20,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:enderman",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:quartz",
+        "count": 32
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/simple_dungeon"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 150
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Hunt the Magma Cubes",
+    "description": "Slay 16 magma cubes. Found in basalt deltas. Found in the Nether.",
+    "category": "generated",
+    "sort": 22,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:magma_cube",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "botania:mana_pearl",
+        "count": 2
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:tomato",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 220
+      }
+    ]
+  }
+}

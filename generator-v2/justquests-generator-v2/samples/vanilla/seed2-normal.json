@@ -1,0 +1,263 @@
+{
+  "justquests:gen/1790510400_0": {
+    "title": "Bring Dark Oak Logs",
+    "description": "Gather 64 dark oak logs. Dark forests have plenty.",
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:dark_oak_log",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:honeycomb",
+        "count": 7
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 36
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Craft Iron Blocks",
+    "description": "Make 2 iron blocks. Nine iron ingots.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:iron_block",
+        "count": 2
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:prismarine_crystals",
+        "count": 6
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 36
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Dig Deepslate Coal Ore",
+    "description": "Break 16 deepslate coal ore. Found deep underground.",
+    "category": "generated",
+    "sort": 11,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_coal_ore",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:iron_ingot",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 37
+      },
+      {
+        "type": "justquests:message",
+        "message": "The village thanks you!"
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Scaffolding Batch",
+    "description": "Craft 64 scaffolding. Bamboo and string. Look in jungles.",
+    "category": "generated",
+    "sort": 11,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:scaffolding",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:pumpkin_pie",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 60
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Cooked Salmon Order",
+    "description": "Cook 8 salmon. Use a fishing rod.",
+    "category": "generated",
+    "sort": 12,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:cooked_salmon",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cooked_beef",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 75
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Slime Trouble",
+    "description": "Defeat 6 slimes. Look in swamps.",
+    "category": "generated",
+    "sort": 12,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:slime",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:diamond",
+        "count": 2
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 48
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Village Fair",
+    "description": "The fair opens soon: make 64 cookies and breed 8 sheep. Wheat and cocoa beans. Sheep breed with wheat.",
+    "category": "generated",
+    "sort": 14,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:cookie",
+        "count": 64
+      },
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:sheep",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
+        "count": 12
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 55
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Deepslate Redstone Ore Breaker",
+    "description": "Break 16 deepslate redstone ore. Needs an iron pickaxe or better. Found deep underground.",
+    "category": "generated",
+    "sort": 16,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_redstone_ore",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cooked_salmon",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 55
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Sea Harvest",
+    "description": "Head out to sea: pick up 4 prismarine shards and hunt 2 guardians. Needs an iron pickaxe or better. Found at ocean monuments.",
+    "category": "generated",
+    "sort": 18,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:prismarine_shard",
+        "count": 4
+      },
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:guardian",
+        "count": 2
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:ghast_tear",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 85
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "More Camels",
+    "description": "Breed 3 camels. Camels breed with cactus. Look in deserts. Villages often have them.",
+    "category": "generated",
+    "sort": 19,
+    "objectives": [
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:camel",
+        "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:bread",
+        "count": 16
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:tnt",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 65
+      }
+    ]
+  }
+}

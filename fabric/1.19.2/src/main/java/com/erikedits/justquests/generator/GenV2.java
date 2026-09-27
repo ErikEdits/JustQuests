@@ -1,0 +1,330 @@
+package com.erikedits.justquests.generator;
+
+import com.erikedits.justquests.JustQuests;
+import com.erikedits.justquests.data.PlayerQuestData;
+import com.erikedits.justquests.data.Quest;
+import com.erikedits.justquests.data.QuestManager;
+import com.erikedits.justquests.generator.v2.QuestGeneratorV2;
+import com.erikedits.justquests.generator.v2.api.ClaimResult;
+import com.erikedits.justquests.generator.v2.api.ClaimState;
+import com.erikedits.justquests.generator.v2.api.Difficulty;
+import com.erikedits.justquests.generator.v2.api.ExpiredClaim;
+import com.erikedits.justquests.generator.v2.api.GeneratorConfig;
+import com.erikedits.justquests.generator.v2.api.RotationResult;
+import com.erikedits.justquests.generator.v2.api.StartResult;
+import com.erikedits.justquests.storage.WorldQuestStore;
+import com.erikedits.justquests.storage.WorldSettings;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.mojang.serialization.JsonOps;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+
+/**
+ * Glue between this build (fabric 1.19.2) and the generator v2 core (core INTEGRATION.md
+ * sections 3-4). Holds the one generator of the running server; everything runs on the server
+ * thread. Failures are logged and never take the server down: without a generator, generated
+ * quests are simply absent.
+ */
+public final class GenV2 {
+    private static MinecraftServer server;
+    private static QuestGeneratorV2 gen;
+
+    private GenV2() {}
+
+    public static QuestGeneratorV2 get() { return gen; }
+
+    /** Server start, after WorldQuestStore, WorldSettings and CustomQuestLoader are loaded. */
+    public static void start(MinecraftServer srv) {
+        try {
+            server = srv;
+            gen = new QuestGeneratorV2(new GenV2Host(srv), configFromSettings());
+            Map<String, Set<UUID>> active = new HashMap<>();
+            WorldQuestStore store = WorldQuestStore.get();
+            if (store != null) {
+                store.allPlayers().forEach((uuid, data) -> data.active.keySet().forEach(id -> {
+                    if (gen.isGenerated(id.toString())) active.computeIfAbsent(id.toString(), k -> new HashSet<>()).add(uuid);
+                }));
+            }
+            StartResult r = gen.startWithHolders(active);
+            removeFromPlayers(r.deadQuestIds());
+            applyExpired(r.releasedClaims());
+            registerServed();
+        } catch (RuntimeException e) {
+            JustQuests.LOG.error("[GenV2] the quest generator failed to start; generated quests are off", e);
+            gen = null;
+        }
+    }
+
+    /** Every 6000 ticks (5 minutes). Rotates when a cycle boundary passed. */
+    public static void tick() {
+        if (gen == null) return;
+        try {
+            RotationResult r = gen.tick();
+            applyExpired(r.expiredClaims());
+            if (r.changed()) registerServed();
+        } catch (RuntimeException e) {
+            JustQuests.LOG.error("[GenV2] generator tick failed", e);
+        }
+    }
+
+    /** Server stop. */
+    public static void stop() {
+        try {
+            if (gen != null) gen.stop();
+        } catch (RuntimeException e) {
+            JustQuests.LOG.error("[GenV2] generator stop failed", e);
+        }
+        gen = null;
+        server = null;
+    }
+
+    /** After /quest reload and every settings change. */
+    public static void reloadConfig() {
+        if (gen == null) return;
+        boolean wasEnabled = gen.config().enabled();
+        long rev = gen.servedRevision();
+        gen.updateConfig(configFromSettings());
+        if (wasEnabled != gen.config().enabled() || rev != gen.servedRevision()) registerServed();
+    }
+
+    /** OP reroll. @return -1 if generated quests are disabled, else how many are offered now */
+    public static int reroll() {
+        if (gen == null || !gen.config().enabled()) return -1;
+        gen.reroll();
+        registerServed();
+        return gen.servedQuests().size();
+    }
+
+    /** Claim before accepting. @return null to proceed, otherwise the message for the player */
+    public static String claim(ResourceLocation id, UUID player) {
+        if (gen == null) return null;
+        ClaimResult r = gen.tryClaim(id.toString(), player);
+        return r.proceed() ? null : r.denyMessage();
+    }
+
+    /** The player abandoned the quest (or an admin reset it). */
+    public static void abandoned(ResourceLocation id, UUID player) {
+        if (gen == null || !gen.isGenerated(id.toString())) return;
+        long rev = gen.servedRevision();
+        gen.onAbandon(id.toString(), player);
+        if (rev != gen.servedRevision()) registerServed();
+    }
+
+    /** The player completed the quest (rewards already granted). */
+    public static void completed(ResourceLocation id, UUID player) {
+        if (gen != null && gen.isGenerated(id.toString())) gen.onComplete(id.toString(), player);
+    }
+
+    /** Admin reset of a player's data. */
+    public static void releaseAllFor(UUID player) {
+        if (gen == null) return;
+        long rev = gen.servedRevision();
+        gen.releaseAllFor(player);
+        if (rev != gen.servedRevision()) registerServed();
+    }
+
+    /** /quest generator release: free a claim and take the quest from its holder. */
+    public static String forceRelease(ResourceLocation id) {
+        if (gen == null) return "§cThe quest generator is not running.";
+        if (!gen.isGenerated(id.toString())) return "§c" + id + " is not a generated quest.";
+        Optional<UUID> former = gen.forceRelease(id.toString());
+        if (former.isEmpty()) return "§7" + id + " was not claimed by anyone.";
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store != null) {
+            PlayerQuestData data = store.peek(former.get());
+            if (data != null) {
+                data.abandon(id);
+                store.markDirty();
+            }
+        }
+        ServerPlayer p = server == null ? null : server.getPlayerList().getPlayer(former.get());
+        if (p != null) {
+            notify(p, "§eAn operator released your generated quest: §f" + title(id));
+            syncPlayer(p);
+        }
+        registerServed();
+        return "§aReleased " + id + ".";
+    }
+
+    public static List<String> servedIds() {
+        return gen == null ? List.of() : new ArrayList<>(gen.servedQuests().keySet());
+    }
+
+    public static String status() {
+        return gen == null ? "§cThe quest generator is not running." : gen.status();
+    }
+
+    public static String statsText() {
+        return gen == null ? "§cThe quest generator is not running." : gen.stats().toText();
+    }
+
+    public static String explain(ResourceLocation id) {
+        return gen == null ? "§cThe quest generator is not running." : gen.explain(id.toString());
+    }
+
+    /** /quest generator preview: the next cycle, nothing changes. */
+    public static String preview(int count) {
+        if (gen == null) return "§cThe quest generator is not running.";
+        List<JsonObject> quests = gen.preview(count);
+        StringBuilder sb = new StringBuilder("§7Preview of the next cycle (" + quests.size() + " quests, nothing changes):");
+        for (JsonObject q : quests) {
+            sb.append("\n§f").append(text(q.get("title"))).append(" §8- §7").append(objectives(q));
+        }
+        return sb.toString();
+    }
+
+    /** /quest test: running, served == registered, claims match player data. Empty = healthy. */
+    public static List<String> selfTest() {
+        List<String> problems = new ArrayList<>();
+        if (gen == null) {
+            problems.add("generator not running");
+            return problems;
+        }
+        problems.addAll(gen.selfTest());
+        Set<String> served = new LinkedHashSet<>(gen.servedQuests().keySet());
+        Set<String> registered = new LinkedHashSet<>();
+        QuestManager.INSTANCE.getQuests().keySet().forEach(id -> {
+            if (gen.isGenerated(id.toString())) registered.add(id.toString());
+        });
+        if (!registered.equals(served)) {
+            problems.add("registered generated quests (" + registered.size() + ") differ from the served set (" + served.size() + ")");
+        }
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store != null) {
+            gen.claims().forEach((id, view) -> {
+                if (view.state() != ClaimState.CLAIMED) return;
+                ResourceLocation rl = ResourceLocation.tryParse(id);
+                for (UUID holder : gen.holders(id)) {
+                    PlayerQuestData d = store.peek(holder);
+                    if (rl == null || d == null || !d.active.containsKey(rl)) {
+                        problems.add("claim " + id + " is held by a player who does not have it active");
+                    }
+                }
+            });
+        }
+        return problems;
+    }
+
+    public static String selfTestSummary() {
+        if (gen == null) return "generator not running";
+        long claimed = gen.claims().values().stream().filter(v -> v.state() == ClaimState.CLAIMED).count();
+        return gen.servedQuests().size() + " served, " + claimed + " claimed, difficulty "
+            + gen.config().difficulty().settingsValue();
+    }
+
+    // ------------------------------------------------------------------ helpers
+
+    /** Parse servedQuests() with the mod's codec, hand them to the QuestManager, sync clients. */
+    public static void registerServed() {
+        Map<ResourceLocation, Quest> map = new LinkedHashMap<>();
+        if (gen != null) {
+            gen.servedQuests().forEach((id, json) -> {
+                ResourceLocation rl = ResourceLocation.tryParse(id);
+                if (rl != null) Quest.CODEC.parse(JsonOps.INSTANCE, json).result().ifPresent(q -> map.put(rl, q));
+            });
+        }
+        QuestManager.INSTANCE.setGeneratedQuests(map);
+        syncAll();
+    }
+
+    private static void applyExpired(List<ExpiredClaim> expired) {
+        WorldQuestStore store = WorldQuestStore.get();
+        if (expired == null || expired.isEmpty() || store == null) return;
+        for (ExpiredClaim e : expired) {
+            ResourceLocation id = ResourceLocation.tryParse(e.questId());
+            PlayerQuestData data = store.peek(e.holder());
+            if (data != null && id != null) data.abandon(id);
+            ServerPlayer p = server == null ? null : server.getPlayerList().getPlayer(e.holder());
+            if (p != null) {
+                notify(p, "§eYour generated quest expired and was released: §f" + title(id));
+                syncPlayer(p);
+            }
+        }
+        store.markDirty();
+    }
+
+    private static void removeFromPlayers(List<String> ids) {
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null || ids == null || ids.isEmpty()) return;
+        for (String s : ids) {
+            ResourceLocation id = ResourceLocation.tryParse(s);
+            if (id != null) store.allPlayers().values().forEach(d -> d.abandon(id));
+        }
+        store.markDirty();
+        JustQuests.LOG.info("[GenV2] removed " + ids.size() + " generated quest(s) that no longer exist from player data");
+    }
+
+    private static String title(ResourceLocation id) {
+        Quest q = id == null ? null : QuestManager.INSTANCE.get(id);
+        return q == null ? String.valueOf(id) : q.title().getDefault();
+    }
+
+    private static String text(JsonElement e) {
+        if (e == null || e.isJsonNull()) return "?";
+        if (e.isJsonPrimitive()) return e.getAsString();
+        if (e.isJsonObject() && e.getAsJsonObject().has("en_us")) return e.getAsJsonObject().get("en_us").getAsString();
+        return e.toString();
+    }
+
+    private static String objectives(JsonObject q) {
+        List<String> parts = new ArrayList<>();
+        if (q.has("objectives") && q.get("objectives").isJsonArray()) {
+            for (JsonElement el : q.getAsJsonArray("objectives")) {
+                if (!el.isJsonObject()) continue;
+                JsonObject o = el.getAsJsonObject();
+                String type = o.has("type") ? o.get("type").getAsString().replace("justquests:", "") : "?";
+                String target = o.has("item") ? o.get("item").getAsString()
+                    : o.has("block") ? o.get("block").getAsString()
+                    : o.has("entity") ? o.get("entity").getAsString()
+                    : o.has("dimension") ? o.get("dimension").getAsString() : "";
+                String count = o.has("count") ? " x" + o.get("count").getAsInt() : "";
+                parts.add(type + " " + target + count);
+            }
+        }
+        return String.join(", ", parts);
+    }
+
+    /** settings.json -> GeneratorConfig (the core clamps and logs out-of-range values). */
+    public static GeneratorConfig configFromSettings() {
+        return GeneratorConfig.builder()
+            .enabled(WorldSettings.generatedQuests())
+            .questsPerCycle(WorldSettings.generatedCount())
+            .difficulty(Difficulty.parse(WorldSettings.difficulty()).orElse(Difficulty.NORMAL))
+            .exclusiveClaims(WorldSettings.generatorExclusiveClaims())
+            .oneActivePerPlayer(WorldSettings.generatorOneActivePerPlayer())
+            .releaseOnAbandon(WorldSettings.generatorReleaseOnAbandon())
+            .claimExpiryHours(WorldSettings.generatorClaimExpiryHours())
+            .cycleHours(WorldSettings.generatorCycleHours())
+            .cycleAnchorHour(WorldSettings.generatorCycleAnchorHour())
+            .moddedShare(WorldSettings.generatorModdedShare())
+            .disabledProfiles(new LinkedHashSet<>(WorldSettings.generatorDisabledProfiles()))
+            .adaptiveBalancing(WorldSettings.generatorAdaptiveBalancing())
+            .statsEnabled(WorldSettings.generatorStats())
+            .build();
+    }
+
+    private static void notify(ServerPlayer p, String msg) {
+        p.sendSystemMessage(net.minecraft.network.chat.Component.literal(msg));
+    }
+
+    private static void syncAll() {
+        // command-only build: no client sync
+    }
+
+    private static void syncPlayer(ServerPlayer p) {
+        // command-only build: no client sync
+    }
+}

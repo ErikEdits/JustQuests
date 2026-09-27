@@ -1,0 +1,86 @@
+# modded | world seed 2 | EASY | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty easy, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla, farmersdelight, create, mekanism, twilightforest, botania], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_0  "Jungle Log Collector"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:jungle_log ×32
+  effort 0.10 min/unit (×1.40 jungle) → 4.5 min (target 4.6, range 4–10 min)
+  tier 0 (always available), family wood, profile vanilla, hints jungle
+estimated 4.5 min (quick)
+reward give_item minecraft:honey_bottle ×3 (value 3.6) + xp 11 (value 0.9)  → 4.5 / budget 4.5
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Tatami Crafting"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective craft_item farmersdelight:tatami ×8
+  effort 0.80 min/unit → 6.4 min (target 8.8, range 4–10 min)
+  tier 0 (always available), family fd_straw, profile farmersdelight, tool knife
+estimated 6.4 min
+reward give_item mekanism:raw_osmium ×7 (value 4.9) + xp 18 (value 1.5)  → 6.4 / budget 6.4
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Drowned Watch"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:drowned ×4
+  effort 1.20 min/unit (×1.20 ocean) → 5.8 min (target 4.3, range 4–10 min)
+  tier 0 (always available), family undead, profile vanilla, hints ocean/night
+estimated 5.8 min (quick)
+reward give_item create:linear_chassis ×7 (value 4.2) + xp 19 (value 1.6) + message  → 5.8 / budget 5.8
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Hot Osmium Ingots"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item mekanism:ingot_osmium ×8
+  effort 0.75 min/unit → 6.0 min (target 7.6, range 4–10 min)
+  tier 1 (always available), family mek_osmium, profile mekanism, tool stone, hints caves
+estimated 6.0 min
+reward give_item farmersdelight:hot_cocoa ×3 (value 4.8) + xp 14 (value 1.2)  → 6.0 / budget 6.0
+rejected alternatives: collect_item mekanism:osmium_ore (drops raw osmium, needs Silk Touch); craft_item mekanism:block_osmium (tier 1 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Pumpkin Pie Break"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective consume_item minecraft:pumpkin_pie ×3
+  effort 1.90 min/unit → 5.7 min (target 5.9, range 4–10 min)
+  tier 0 (always available), family fruit, profile vanilla, hints plains
+estimated 5.7 min (quick)
+reward give_item farmersdelight:fried_rice ×2 (value 4.8) + xp 11 (value 0.9) + message  → 5.7 / budget 5.7
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Mystical Purple Flower Run"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective collect_item botania:purple_mystical_flower ×16
+  effort 0.35 min/unit → 5.6 min (target 6.8, range 4–10 min)
+  tier 0 (always available), family bot_flowers, profile botania
+estimated 5.6 min (quick)
+reward give_item farmersdelight:fried_rice ×2 (value 4.8) + xp 10 (value 0.8)  → 5.6 / budget 5.6
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Brown Mushroom Block Shift"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:brown_mushroom_block ×32
+  effort 0.15 min/unit (×1.30 dark_forest) → 6.2 min (target 5.5, range 4–10 min)
+  tier 0 (always available), family mushrooms, profile vanilla, hints dark_forest
+estimated 6.2 min
+reward give_item minecraft:glow_ink_sac ×5 (value 5.0) + xp 15 (value 1.3)  → 6.3 / budget 6.2
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Furnace: Smooth Red Sandstone"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item minecraft:smooth_red_sandstone ×16
+  effort 0.35 min/unit (×1.60 badlands) → 9.0 min (target 9.0, range 4–10 min)
+  tier 0 (always available), family sand, profile vanilla, hints badlands
+estimated 9.0 min
+reward give_item create:andesite_alloy_block ×2 (value 6.4) + xp 31 (value 2.6)  → 9.0 / budget 9.0
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Zinc Ore Quarry"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective mine_block create:zinc_ore ×12
+  effort 0.80 min/unit → 9.6 min (target 8.9, range 4–10 min)
+  tier 1 (always available), family create_zinc, profile create, tool iron, hints caves
+estimated 9.6 min
+reward give_item create:bar_of_chocolate ×2 (value 6.0) + xp 43 (value 3.6)  → 9.6 / budget 9.6
+rejected alternatives: collect_item create:zinc_ore (drops raw zinc, needs Silk Touch); craft_item create:zinc_block (tier 1 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Camel Farm"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective breed_animal minecraft:camel ×2
+  effort 4.00 min/unit (×1.30 desert ×1.20 village) → 12.5 min (target 9.9, range 4–10 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints desert/village
+estimated 12.5 min
+reward give_item minecraft:glass ×32 (value 3.2) + give_item minecraft:string ×15 (value 6.0) + xp 39 (value 3.3)  → 12.5 / budget 12.5
+state: AVAILABLE
+

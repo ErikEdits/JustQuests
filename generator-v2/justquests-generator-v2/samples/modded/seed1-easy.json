@@ -1,0 +1,246 @@
+{
+  "justquests:gen/1790510400_6": {
+    "title": "Gather Beetroot Seeds",
+    "description": "Collect 24 beetroot seeds. Villages often have them.",
+    "category": "generated",
+    "sort": 4,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:beetroot_seeds",
+        "count": 24
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:cogwheel",
+        "count": 13
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 13
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Craft Safety Nets",
+    "description": "Craft 6 safety nets. Made from rope. Use a Farmer's Delight knife.",
+    "category": "generated",
+    "sort": 5,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "farmersdelight:safety_net",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
+        "count": 3
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 22
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Steak Tasting",
+    "description": "Eat 4 steak. Common in plains.",
+    "category": "generated",
+    "sort": 5,
+    "objectives": [
+      {
+        "type": "justquests:consume_item",
+        "item": "minecraft:cooked_beef",
+        "count": 4
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cooked_salmon",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 17
+      }
+    ]
+  },
+  "justquests:gen/1790510400_0": {
+    "title": "Copper Grate Request",
+    "description": "Craft 4 copper grates.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:copper_grate",
+        "count": 4
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cake",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 31
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Smelt Tin Ingots",
+    "description": "Smelt 8 tin ingots. Smelt raw tin in a furnace. Needs a stone pickaxe or better. Found in caves.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "mekanism:ingot_tin",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:rice",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 26
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Craft Andesite Alloy Blocks",
+    "description": "Make 2 andesite alloy blocks. Nine andesite alloy.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "create:andesite_alloy_block",
+        "count": 2
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:diamond",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 14
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Mystical Blue Flower Delivery",
+    "description": "Gather 16 mystical blue flowers. Mystical flowers grow in forests, plains and meadows.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "botania:blue_mystical_flower",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:apple_pie",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 31
+      },
+      {
+        "type": "justquests:message",
+        "message": "The quest board has a new hero."
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Cooked Cod Supper",
+    "description": "Eat 4 cooked cod. Use a fishing rod.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:consume_item",
+        "item": "minecraft:cooked_cod",
+        "count": 4
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "mekanism:fluorite_gem",
+        "count": 13
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 17
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Break Mangrove Logs",
+    "description": "Break 48 mangrove logs. Look in mangrove swamps.",
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:mangrove_log",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "mekanism:ingot_lead",
+        "count": 6
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 18
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Amethyst Shard Pickup",
+    "description": "Pick up 16 amethyst shards. Break amethyst clusters. Look inside amethyst geodes.",
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:amethyst_shard",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:large_cogwheel",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 20
+      }
+    ]
+  }
+}

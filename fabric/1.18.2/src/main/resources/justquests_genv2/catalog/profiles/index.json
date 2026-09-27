@@ -1,0 +1,10 @@
+{
+  "format": 1,
+  "profiles": [
+    "farmersdelight.json",
+    "create.json",
+    "mekanism.json",
+    "twilightforest.json",
+    "botania.json"
+  ]
+}

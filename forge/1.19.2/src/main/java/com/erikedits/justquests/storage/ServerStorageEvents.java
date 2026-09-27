@@ -1,7 +1,6 @@
 package com.erikedits.justquests.storage;
 
 import com.erikedits.justquests.community.CommunityHints;
-import com.erikedits.justquests.generator.GeneratedQuestStore;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.event.server.ServerStoppingEvent;
@@ -26,7 +25,7 @@ public class ServerStorageEvents {
         WorldQuestStore.load(event.getServer());
         WorldSettings.load(event.getServer());
         CustomQuestLoader.init(event.getServer());
-        GeneratedQuestStore.init(event.getServer());
+        com.erikedits.justquests.generator.GenV2.start(event.getServer());
         CommunityHints.init(event.getServer());
     }
 
@@ -34,7 +33,7 @@ public class ServerStorageEvents {
     public void onServerStopping(ServerStoppingEvent event) {
         WorldQuestStore.unload();
         CustomQuestLoader.clear();
-        GeneratedQuestStore.clear();
+        com.erikedits.justquests.generator.GenV2.stop();
         CommunityHints.clear();
         WorldSettings.reset();
     }
@@ -55,7 +54,7 @@ public class ServerStorageEvents {
         }
         if (++genCounter >= GEN_INTERVAL_TICKS) {
             genCounter = 0;
-            GeneratedQuestStore.tickCheck();
+            com.erikedits.justquests.generator.GenV2.tick();
         }
     }
 }

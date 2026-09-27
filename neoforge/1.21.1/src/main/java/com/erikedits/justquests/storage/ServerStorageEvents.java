@@ -1,7 +1,6 @@
 package com.erikedits.justquests.storage;
 
 import com.erikedits.justquests.community.CommunityHints;
-import com.erikedits.justquests.generator.GeneratedQuestStore;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.server.ServerStoppingEvent;
@@ -26,7 +25,7 @@ public class ServerStorageEvents {
         WorldQuestStore.load(event.getServer());
         WorldSettings.load(event.getServer());   // load settings before readers
         CustomQuestLoader.init(event.getServer());
-        GeneratedQuestStore.init(event.getServer());  // after settings + custom
+        com.erikedits.justquests.generator.GenV2.start(event.getServer());  // after settings + custom
         CommunityHints.init(event.getServer());
     }
 
@@ -34,7 +33,7 @@ public class ServerStorageEvents {
     public void onServerStopping(ServerStoppingEvent event) {
         WorldQuestStore.unload();
         CustomQuestLoader.clear();
-        GeneratedQuestStore.clear();
+        com.erikedits.justquests.generator.GenV2.stop();
         CommunityHints.clear();
         WorldSettings.reset();
     }
@@ -56,7 +55,7 @@ public class ServerStorageEvents {
         // rotate generated quests when a 12h real-clock cycle has passed
         if (++genCounter >= GEN_INTERVAL_TICKS) {
             genCounter = 0;
-            GeneratedQuestStore.tickCheck();
+            com.erikedits.justquests.generator.GenV2.tick();
         }
     }
 }

@@ -1,0 +1,85 @@
+# mc-1.18.2 | world seed 3 | EASY | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty easy, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.18.2 (forge)
+
+justquests:gen/1790510400_5  "Rail Commission"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:rail ×16
+  effort 0.25 min/unit → 4.0 min (target 4.3, range 4–10 min)
+  tier 1 (always available), family iron_works, profile vanilla
+estimated 4.0 min (quick)
+reward give_item minecraft:paper ×25 (value 3.0) + xp 12 (value 1.0)  → 4.0 / budget 4.0
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Seagrass Haul"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:seagrass ×32
+  effort 0.10 min/unit (×1.20 ocean) → 3.8 min (target 4.3, range 4–10 min)
+  tier 0 (always available), family plants, profile vanilla, tool shears, hints ocean
+estimated 3.8 min (quick)
+reward give_item minecraft:cake ×1 (value 3.0) + xp 10 (value 0.8)  → 3.8 / budget 3.8
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Cobblestone Project"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective place_block minecraft:cobblestone ×96
+  effort 0.05 min/unit → 4.8 min (target 5.2, range 4–10 min)
+  tier 0 (always available), family stone, profile vanilla, tool wood
+estimated 4.8 min (quick)
+reward give_item minecraft:cookie ×30 (value 3.6) + xp 14 (value 1.2)  → 4.8 / budget 4.8
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Iron Block Assembly"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:iron_block ×1
+  effort 5.00 min/unit → 5.0 min (target 6.3, range 4–10 min)
+  tier 1 (always available), family storage_blocks, profile vanilla
+estimated 5.0 min (quick)
+reward give_item minecraft:bread ×8 (value 3.6) + xp 17 (value 1.4)  → 5.0 / budget 5.0
+rejected alternatives: craft_item minecraft:lapis_block (tier 2 above EASY cap); craft_item minecraft:redstone_block (tier 2 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Deepslate Copper Ore Dig"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective mine_block minecraft:deepslate_copper_ore ×12
+  effort 0.40 min/unit (×1.10 deep) → 5.3 min (target 5.5, range 4–10 min)
+  tier 1 (always available), family metals, profile vanilla, tool stone, hints deep
+estimated 5.3 min (quick)
+reward give_item minecraft:bookshelf ×1 (value 4.5) + xp 9 (value 0.8)  → 5.3 / budget 5.3
+state: AVAILABLE
+
+justquests:gen/1790510400_0  "Raw Salmon Run"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:salmon ×4
+  effort 1.40 min/unit → 5.6 min (target 5.5, range 4–10 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod
+estimated 5.6 min (quick)
+reward give_item minecraft:iron_ingot ×7 (value 4.2) + xp 17 (value 1.4)  → 5.6 / budget 5.6
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Beetroot Run"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:beetroot ×24
+  effort 0.20 min/unit (×1.20 village) → 5.8 min (target 5.3, range 4–10 min)
+  tier 0 (always available), family crops, profile vanilla, hints village/farm
+estimated 5.8 min (quick)
+reward give_item minecraft:amethyst_shard ×12 (value 4.2) + xp 19 (value 1.6)  → 5.8 / budget 5.8
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Creeper Bounty"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective kill_mob minecraft:creeper ×8
+  effort 1.00 min/unit → 8.0 min (target 8.0, range 4–10 min)
+  tier 0 (always available), family monsters, profile vanilla, hints night
+estimated 8.0 min
+reward give_item minecraft:amethyst_shard ×16 (value 5.6) + xp 29 (value 2.4) + message  → 8.0 / budget 8.0
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Raw Porkchop Supply"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:porkchop ×32
+  effort 0.30 min/unit → 9.6 min (target 8.8, range 4–10 min)
+  tier 0 (always available), family livestock, profile vanilla
+estimated 9.6 min
+reward give_item minecraft:experience_bottle ×6 (value 7.2) + xp 29 (value 2.4)  → 9.6 / budget 9.6
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Cave Spider Trouble"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective kill_mob minecraft:cave_spider ×5
+  effort 1.50 min/unit (×1.30 mineshaft) → 9.8 min (target 8.8, range 4–10 min)
+  tier 1 (always available), family arthropods, profile vanilla, hints mineshaft
+estimated 9.8 min
+reward give_item minecraft:redstone_block ×4 (value 7.2) + xp 31 (value 2.6)  → 9.8 / budget 9.8
+state: AVAILABLE
+

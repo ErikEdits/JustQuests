@@ -1,0 +1,8 @@
+{
+  "difficulties": {
+    "EASY": {"targetMinutes": [3, 8]},
+    "HARD": {"claimExpiryHours": 48}
+  },
+  "setRules": {"themeChance": 0.6, "maxPerModShare": 0.4},
+  "progression": {"netherUnlockDay": 14}
+}

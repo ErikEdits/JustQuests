@@ -1,0 +1,591 @@
+{
+  "format": 1,
+  "id": "mekanism",
+  "name": "Mekanism",
+  "requiresMod": [
+    "mekanism"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "mek_osmium",
+      "family": "mek_osmium",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "stone",
+      "hints": [
+        "caves"
+      ],
+      "exclusions": [
+        "collect_item mekanism:osmium_ore (drops raw osmium, needs Silk Touch)"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "mekanism:osmium_ore",
+          "effort": 0.7,
+          "min": 4,
+          "max": 24
+        },
+        {
+          "type": "mine_block",
+          "id": "mekanism:deepslate_osmium_ore",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24,
+          "hints": [
+            "deep"
+          ]
+        },
+        {
+          "type": "collect_item",
+          "id": "mekanism:raw_osmium",
+          "effort": 0.7,
+          "min": 4,
+          "max": 24,
+          "hint": "Osmium ore drops raw osmium."
+        },
+        {
+          "type": "smelt_item",
+          "id": "mekanism:ingot_osmium",
+          "tag": "osmium_ingots",
+          "effort": 0.75,
+          "min": 4,
+          "max": 32,
+          "name": "Osmium Ingot",
+          "hint": "Smelt raw osmium in a furnace."
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:block_osmium",
+          "effort": 6.8,
+          "min": 1,
+          "max": 2,
+          "name": "Block of Osmium",
+          "plural": "Blocks of Osmium",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "mek_tin",
+      "family": "mek_tin",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "stone",
+      "hints": [
+        "caves"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "mekanism:tin_ore",
+          "effort": 0.7,
+          "min": 4,
+          "max": 24
+        },
+        {
+          "type": "mine_block",
+          "id": "mekanism:deepslate_tin_ore",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24,
+          "hints": [
+            "deep"
+          ]
+        },
+        {
+          "type": "collect_item",
+          "id": "mekanism:raw_tin",
+          "effort": 0.7,
+          "min": 4,
+          "max": 24,
+          "hint": "Tin ore drops raw tin."
+        },
+        {
+          "type": "smelt_item",
+          "id": "mekanism:ingot_tin",
+          "tag": "tin_ingots",
+          "effort": 0.75,
+          "min": 4,
+          "max": 32,
+          "name": "Tin Ingot",
+          "hint": "Smelt raw tin in a furnace."
+        }
+      ]
+    },
+    {
+      "key": "mek_lead",
+      "family": "mek_lead",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "stone",
+      "hints": [
+        "caves"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "mekanism:lead_ore",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24
+        },
+        {
+          "type": "mine_block",
+          "id": "mekanism:deepslate_lead_ore",
+          "effort": 0.9,
+          "min": 4,
+          "max": 24,
+          "hints": [
+            "deep"
+          ]
+        },
+        {
+          "type": "collect_item",
+          "id": "mekanism:raw_lead",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24,
+          "name": "Raw Lead",
+          "plural": "Raw Lead",
+          "hint": "Lead ore drops raw lead."
+        },
+        {
+          "type": "smelt_item",
+          "id": "mekanism:ingot_lead",
+          "tag": "lead_ingots",
+          "effort": 0.85,
+          "min": 4,
+          "max": 32,
+          "name": "Lead Ingot",
+          "hint": "Smelt raw lead in a furnace."
+        }
+      ]
+    },
+    {
+      "key": "mek_uranium",
+      "family": "mek_uranium",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "stone",
+      "hints": [
+        "caves"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "mekanism:uranium_ore",
+          "effort": 1.1,
+          "min": 2,
+          "max": 16
+        },
+        {
+          "type": "mine_block",
+          "id": "mekanism:deepslate_uranium_ore",
+          "effort": 1.2,
+          "min": 2,
+          "max": 16,
+          "hints": [
+            "deep"
+          ]
+        },
+        {
+          "type": "smelt_item",
+          "id": "mekanism:ingot_uranium",
+          "effort": 1.2,
+          "min": 2,
+          "max": 16,
+          "name": "Uranium Ingot",
+          "hint": "Smelt raw uranium in a furnace.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "mek_fluorite",
+      "family": "mek_fluorite",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "stone",
+      "hints": [
+        "caves"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "mekanism:fluorite_ore",
+          "effort": 0.9,
+          "min": 2,
+          "max": 16
+        },
+        {
+          "type": "mine_block",
+          "id": "mekanism:deepslate_fluorite_ore",
+          "effort": 1.0,
+          "min": 2,
+          "max": 16,
+          "hints": [
+            "deep"
+          ]
+        },
+        {
+          "type": "collect_item",
+          "id": "mekanism:fluorite_gem",
+          "effort": 0.32,
+          "min": 8,
+          "max": 48,
+          "name": "Fluorite",
+          "plural": "Fluorite",
+          "hint": "Fluorite ore drops two to four gems."
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:block_fluorite",
+          "effort": 3.2,
+          "min": 1,
+          "max": 2,
+          "name": "Block of Fluorite",
+          "plural": "Blocks of Fluorite",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "mek_salt",
+      "family": "mek_salt",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "wood",
+      "hints": [
+        "river"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "mekanism:block_salt",
+          "effort": 0.35,
+          "min": 4,
+          "max": 24,
+          "name": "Salt Block",
+          "hint": "Salt forms in small patches under shallow water, like clay."
+        },
+        {
+          "type": "collect_item",
+          "id": "mekanism:salt",
+          "effort": 0.1,
+          "min": 8,
+          "max": 48,
+          "name": "Salt",
+          "plural": "Salt",
+          "hint": "Salt blocks drop salt.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "mek_gear",
+      "family": "mek_gear",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "mekanism:metallurgic_infuser",
+          "effort": 5.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Iron, osmium, redstone and two furnaces: the first Mekanism machine."
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:gauge_dropper",
+          "effort": 2.5,
+          "min": 1,
+          "max": 2,
+          "hint": "An osmium ingot over five glass panes."
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:canteen",
+          "effort": 3.4,
+          "min": 1,
+          "max": 1,
+          "hint": "Four tin ingots around a bowl."
+        }
+      ]
+    },
+    {
+      "key": "mek_radiation",
+      "family": "mek_radiation",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "mekanism:dosimeter",
+          "effort": 3.6,
+          "min": 1,
+          "max": 1,
+          "hint": "Four lead ingots around redstone."
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:hazmat_mask",
+          "effort": 4.5,
+          "min": 1,
+          "max": 1,
+          "hint": "Five lead ingots and orange dye."
+        }
+      ]
+    },
+    {
+      "key": "mek_machines",
+      "family": "mek_machines",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "exclusions": [
+        "craft_item mekanism:ingot_steel (grid recipe only converts nuggets and blocks)",
+        "craft_item mekanism:basic_control_circuit (made in the metallurgic infuser, not a grid)",
+        "craft_item mekanism:crusher (needs lava buckets and a circuit; kept out to stay short)"
+      ],
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "mekanism:steel_casing",
+          "effort": 22.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Steel comes from the metallurgic infuser: infuse iron with carbon twice.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:enrichment_chamber",
+          "effort": 34.0,
+          "min": 1,
+          "max": 1,
+          "hint": "A steel casing, basic alloys and a basic control circuit.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:energized_smelter",
+          "effort": 34.0,
+          "min": 1,
+          "max": 1,
+          "hint": "A steel casing, basic alloys, glass and a basic control circuit.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:configurator",
+          "effort": 16.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Iron, an osmium ingot and a steel ingot.",
+          "minDifficulty": "hard"
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "mekanism:ingot_osmium",
+        "value": 0.9,
+        "tier": 1,
+        "max": 32,
+        "family": "mek_osmium"
+      },
+      {
+        "id": "mekanism:ingot_tin",
+        "value": 0.85,
+        "tier": 1,
+        "max": 32,
+        "family": "mek_tin"
+      },
+      {
+        "id": "mekanism:ingot_lead",
+        "value": 0.95,
+        "tier": 1,
+        "max": 32,
+        "family": "mek_lead"
+      },
+      {
+        "id": "mekanism:raw_osmium",
+        "value": 0.7,
+        "tier": 1,
+        "max": 32,
+        "family": "mek_osmium"
+      },
+      {
+        "id": "mekanism:fluorite_gem",
+        "value": 0.35,
+        "tier": 1,
+        "max": 32,
+        "family": "mek_fluorite"
+      },
+      {
+        "id": "mekanism:salt",
+        "value": 0.12,
+        "tier": 0,
+        "max": 32,
+        "family": "mek_salt"
+      },
+      {
+        "id": "mekanism:ingot_steel",
+        "value": 3.0,
+        "tier": 2,
+        "max": 16,
+        "family": "mek_machines"
+      },
+      {
+        "id": "mekanism:alloy_infused",
+        "value": 3.5,
+        "tier": 2,
+        "max": 8,
+        "family": "mek_machines"
+      },
+      {
+        "id": "mekanism:basic_control_circuit",
+        "value": 4.0,
+        "tier": 2,
+        "max": 8,
+        "family": "mek_machines"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "mek_osmium_rush",
+      "names": [
+        "Osmium Rush",
+        "Blue Metal",
+        "Osmium Supply"
+      ],
+      "descriptions": [
+        "Every Mekanism machine needs osmium: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "keys": [
+            "mek_osmium"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "keys": [
+            "mek_osmium"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "mek_first_machine",
+      "names": [
+        "First Machine",
+        "Infuser Build",
+        "Tech Start"
+      ],
+      "descriptions": [
+        "Get the workshop going: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "keys": [
+            "mek_osmium"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "mek_gear"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "mek_metal_survey",
+      "names": [
+        "Metal Survey",
+        "Ore Survey",
+        "New Metals"
+      ],
+      "descriptions": [
+        "Chart the new ores underground: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "mek_tin",
+            "mek_lead"
+          ]
+        },
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "mek_osmium",
+            "mek_fluorite",
+            "mek_uranium"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "mek_radiation_safety",
+      "names": [
+        "Radiation Safety",
+        "Hazmat Prep",
+        "Lead Shielding"
+      ],
+      "descriptions": [
+        "Before anything glows, be ready: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "smelt_item",
+            "collect_item"
+          ],
+          "keys": [
+            "mek_lead"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "mek_radiation"
+          ]
+        }
+      ]
+    }
+  ]
+}

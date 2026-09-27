@@ -1,0 +1,85 @@
+# vanilla | world seed 2 | EASY | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty easy, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_0  "Jungle Log Collector"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:jungle_log ×32
+  effort 0.10 min/unit (×1.40 jungle) → 4.5 min (target 4.6, range 4–10 min)
+  tier 0 (always available), family wood, profile vanilla, hints jungle
+estimated 4.5 min (quick)
+reward give_item minecraft:iron_ingot ×6 (value 3.6) + xp 11 (value 0.9)  → 4.5 / budget 4.5
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Cooked Salmon Break"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective consume_item minecraft:cooked_salmon ×2
+  effort 2.00 min/unit → 4.0 min (target 4.2, range 4–10 min)
+  tier 0 (always available), family cooking, profile vanilla
+estimated 4.0 min (quick)
+reward give_item minecraft:pumpkin_pie ×3 (value 3.0) + xp 12 (value 1.0)  → 4.0 / budget 4.0
+rejected alternatives: consume_item minecraft:golden_apple (tier 2 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Skeleton Watch"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:skeleton ×5
+  effort 0.90 min/unit → 4.5 min (target 4.3, range 4–10 min)
+  tier 0 (always available), family undead, profile vanilla, hints night
+estimated 4.5 min (quick)
+reward give_item minecraft:redstone_block ×2 (value 3.6) + xp 11 (value 0.9) + message  → 4.5 / budget 4.5
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Feather Supply"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:feather ×16
+  effort 0.30 min/unit → 4.8 min (target 5.6, range 4–10 min)
+  tier 0 (always available), family livestock, profile vanilla
+estimated 4.8 min (quick)
+reward give_item minecraft:lapis_lazuli ×18 (value 3.6) + xp 14 (value 1.2)  → 4.8 / budget 4.8
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Apple Lunch"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective consume_item minecraft:apple ×2
+  effort 2.40 min/unit → 4.8 min (target 5.5, range 4–10 min)
+  tier 0 (always available), family fruit, profile vanilla
+estimated 4.8 min (quick)
+reward give_item minecraft:glow_berries ×14 (value 3.5) + xp 16 (value 1.3)  → 4.8 / budget 4.8
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Birch Sapling Project"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective place_block minecraft:birch_sapling ×32
+  effort 0.18 min/unit → 5.8 min (target 5.4, range 4–10 min)
+  tier 0 (always available), family forestry, profile vanilla
+estimated 5.8 min (quick)
+reward give_item minecraft:experience_bottle ×4 (value 4.8) + xp 12 (value 1.0)  → 5.8 / budget 5.8
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Clay Quarry"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:clay ×24
+  effort 0.30 min/unit → 7.2 min (target 7.2, range 4–10 min)
+  tier 0 (always available), family soil, profile vanilla, hints river
+estimated 7.2 min
+reward give_item minecraft:bread ×12 (value 5.4) + xp 22 (value 1.8)  → 7.2 / budget 7.2
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Stone Bricks Batch"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:stone_bricks ×64
+  effort 0.13 min/unit → 8.3 min (target 8.9, range 4–10 min)
+  tier 0 (always available), family stonework, profile vanilla
+estimated 8.3 min
+reward give_item minecraft:bookshelf ×1 (value 4.5) + xp 46 (value 3.8)  → 8.3 / budget 8.3
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Snow Block Design"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective place_block minecraft:snow_block ×40
+  effort 0.17 min/unit (×1.30 snowy) → 8.8 min (target 9.3, range 4–10 min)
+  tier 0 (always available), family snow, profile vanilla, hints snowy
+estimated 8.8 min
+reward give_item minecraft:slime_ball ×4 (value 6.0) + xp 34 (value 2.8)  → 8.8 / budget 8.8
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Dried Kelp Block Batch"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:dried_kelp_block ×8
+  effort 1.00 min/unit (×1.20 ocean) → 9.6 min (target 8.8, range 4–10 min)
+  tier 0 (always available), family baking, profile vanilla, hints ocean
+estimated 9.6 min
+reward give_item minecraft:music_disc_cat ×1 (value 6.0) + xp 43 (value 3.6)  → 9.6 / budget 9.6
+state: AVAILABLE
+

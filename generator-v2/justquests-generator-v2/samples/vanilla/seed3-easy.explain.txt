@@ -1,0 +1,85 @@
+# vanilla | world seed 3 | EASY | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty easy, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_2  "Packed Ice Dig"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective mine_block minecraft:packed_ice ×10
+  effort 0.20 min/unit (×1.30 snowy ×1.60 rare) → 4.2 min (target 4.3, range 4–10 min)
+  tier 0 (always available), family snow, profile vanilla, hints snowy/rare
+estimated 4.2 min (quick)
+reward give_item minecraft:gold_ingot ×2 (value 2.6) + xp 19 (value 1.6)  → 4.2 / budget 4.2
+state: AVAILABLE
+
+justquests:gen/1790510400_0  "Cook Cooked Cod"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective smelt_item minecraft:cooked_cod ×6
+  effort 0.90 min/unit → 5.4 min (target 5.5, range 4–10 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod, hints cook
+estimated 5.4 min (quick)
+reward give_item minecraft:iron_ingot ×7 (value 4.2) + xp 14 (value 1.2)  → 5.4 / budget 5.4
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Oxeye Daisy Collector"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:oxeye_daisy ×24
+  effort 0.20 min/unit → 4.8 min (target 7.8, range 4–10 min)
+  tier 0 (always available), family flowers, profile vanilla
+estimated 4.8 min (quick)
+reward give_item minecraft:redstone ×18 (value 3.6) + xp 14 (value 1.2)  → 4.8 / budget 4.8
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Pumpkin Pie Snack"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective consume_item minecraft:pumpkin_pie ×3
+  effort 1.90 min/unit → 5.7 min (target 4.7, range 4–10 min)
+  tier 0 (always available), family fruit, profile vanilla, hints plains
+estimated 5.7 min (quick)
+reward give_item minecraft:paper ×32 (value 3.8) + xp 22 (value 1.8)  → 5.7 / budget 5.7
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Bring Brown Mushrooms"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:brown_mushroom ×16
+  effort 0.30 min/unit (×1.30 dark_forest) → 6.2 min (target 5.7, range 4–10 min)
+  tier 0 (always available), family mushrooms, profile vanilla, hints dark_forest
+estimated 6.2 min
+reward give_item minecraft:cake ×1 (value 3.0) + xp 39 (value 3.3)  → 6.3 / budget 6.2
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Make Tripwire Hooks"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:tripwire_hook ×8
+  effort 0.80 min/unit → 6.4 min (target 8.5, range 4–10 min)
+  tier 1 (always available), family redstone, profile vanilla
+estimated 6.4 min
+reward give_item minecraft:bucket ×1 (value 1.6) + give_item minecraft:ender_pearl ×1 (value 2.5) + xp 28 (value 2.3)  → 6.4 / budget 6.4
+rejected alternatives: craft_item minecraft:redstone_torch (tier 2 above EASY cap); craft_item minecraft:repeater (tier 2 above EASY cap); craft_item minecraft:dispenser (tier 2 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Frog Ranch"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective breed_animal minecraft:frog ×2
+  effort 2.50 min/unit (×1.30 swamp) → 6.5 min (target 6.8, range 4–10 min)
+  tier 1 (always available), family wild_animals, profile vanilla, hints swamp
+estimated 6.5 min
+reward give_item minecraft:coal_block ×2 (value 4.6) + xp 23 (value 1.9)  → 6.5 / budget 6.5
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Bookshelf Crafter"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:bookshelf ×2
+  effort 4.50 min/unit → 9.0 min (target 8.1, range 4–10 min)
+  tier 0 (always available), family library, profile vanilla
+estimated 9.0 min
+reward give_item minecraft:cooked_salmon ×8 (value 7.2) + xp 22 (value 1.8) + message  → 9.0 / budget 9.0
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Mud Bricks Project"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective place_block minecraft:mud_bricks ×20
+  effort 0.32 min/unit (×1.50 mangrove_swamp) → 9.6 min (target 9.9, range 4–10 min)
+  tier 0 (always available), family soil, profile vanilla, hints mangrove_swamp
+estimated 9.6 min
+reward give_item minecraft:coal_block ×3 (value 6.9) + xp 32 (value 2.7)  → 9.6 / budget 9.6
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Zombie Patrol"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective kill_mob minecraft:zombie ×16
+  effort 0.70 min/unit → 11.2 min (target 9.8, range 4–10 min)
+  tier 0 (always available), family undead, profile vanilla, hints night
+estimated 11.2 min
+reward give_item minecraft:honeycomb ×8 (value 8.0) + xp 38 (value 3.2)  → 11.2 / budget 11.2
+state: AVAILABLE
+

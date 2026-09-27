@@ -71,3 +71,7 @@ $RECYCLE.BIN/
 secrets.properties
 modrinth.token
 curseforge.token
+
+# Python
+__pycache__/
+*.pyc

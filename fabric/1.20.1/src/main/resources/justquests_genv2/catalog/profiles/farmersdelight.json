@@ -1,0 +1,1849 @@
+{
+  "format": 1,
+  "id": "farmersdelight",
+  "name": "Farmer's Delight",
+  "requiresMod": [
+    "farmersdelight"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "fd_cabbage",
+      "family": "fd_crops",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "farm"
+      ],
+      "exclusions": [
+        "craft_item farmersdelight:carrot_crate/potato_crate/beetroot_crate (recipes depend on the FD config option vanilla_crates_enabled)"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "farmersdelight:cabbage",
+          "effort": 0.15,
+          "min": 8,
+          "max": 48,
+          "hint": "Cabbage seeds come from wild cabbages on beaches."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:cabbage_crate",
+          "effort": 1.5,
+          "min": 1,
+          "max": 6,
+          "hint": "Nine cabbages fill a crate."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:cabbage",
+          "effort": 0.35,
+          "min": 4,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "key": "fd_tomato",
+      "family": "fd_crops",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "farm"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "farmersdelight:tomato",
+          "effort": 0.15,
+          "min": 8,
+          "max": 48,
+          "hint": "Tomato seeds come from wild tomatoes in warm, dry biomes."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:tomato_crate",
+          "effort": 1.5,
+          "min": 1,
+          "max": 6,
+          "hint": "Nine tomatoes fill a crate."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:tomato",
+          "effort": 0.3,
+          "min": 4,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "key": "fd_onion",
+      "family": "fd_crops",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "farm"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "farmersdelight:onion",
+          "effort": 0.15,
+          "min": 8,
+          "max": 48,
+          "hint": "Onions come from wild onions; replant them."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:onion_crate",
+          "effort": 1.5,
+          "min": 1,
+          "max": 6,
+          "hint": "Nine onions fill a crate."
+        }
+      ]
+    },
+    {
+      "key": "fd_rice",
+      "family": "fd_crops",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "swamp"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "farmersdelight:rice_panicle",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "hint": "Grow rice in shallow water."
+        },
+        {
+          "type": "collect_item",
+          "id": "farmersdelight:rice",
+          "effort": 0.15,
+          "min": 8,
+          "max": 48,
+          "hint": "Wild rice grows in swamps and jungles."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:rice_bale",
+          "effort": 1.9,
+          "min": 1,
+          "max": 4,
+          "hint": "Nine rice panicles make a bale."
+        }
+      ]
+    },
+    {
+      "key": "fd_wild",
+      "family": "fd_wild",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "notes": "Wild crops generate naturally (biome modifiers); breaking them counts once per plant.",
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "farmersdelight:wild_cabbages",
+          "effort": 0.6,
+          "min": 2,
+          "max": 12,
+          "hints": [
+            "beach"
+          ],
+          "hint": "Wild cabbages grow on beaches."
+        },
+        {
+          "type": "mine_block",
+          "id": "farmersdelight:wild_beetroots",
+          "effort": 0.6,
+          "min": 2,
+          "max": 12,
+          "hints": [
+            "beach"
+          ],
+          "hint": "Wild beetroots grow on beaches."
+        },
+        {
+          "type": "mine_block",
+          "id": "farmersdelight:wild_tomatoes",
+          "effort": 0.6,
+          "min": 2,
+          "max": 12,
+          "hints": [
+            "savanna"
+          ],
+          "hint": "Wild tomatoes grow in warm, dry biomes."
+        },
+        {
+          "type": "mine_block",
+          "id": "farmersdelight:wild_onions",
+          "effort": 0.5,
+          "min": 2,
+          "max": 12,
+          "hint": "Wild onions grow in most overworld biomes."
+        },
+        {
+          "type": "mine_block",
+          "id": "farmersdelight:wild_carrots",
+          "effort": 0.5,
+          "min": 2,
+          "max": 12,
+          "hint": "Wild carrots grow in most overworld biomes."
+        },
+        {
+          "type": "mine_block",
+          "id": "farmersdelight:wild_potatoes",
+          "effort": 0.5,
+          "min": 2,
+          "max": 12,
+          "hint": "Wild potatoes grow in most overworld biomes."
+        },
+        {
+          "type": "mine_block",
+          "id": "farmersdelight:wild_rice",
+          "effort": 0.6,
+          "min": 2,
+          "max": 12,
+          "hints": [
+            "swamp"
+          ],
+          "hint": "Wild rice grows in swamps and jungles."
+        }
+      ]
+    },
+    {
+      "key": "fd_straw",
+      "family": "fd_straw",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "knife",
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "farmersdelight:straw",
+          "effort": 0.12,
+          "min": 8,
+          "max": 48,
+          "hint": "Cut grass or ripe wheat with a knife."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:rope",
+          "effort": 0.08,
+          "min": 8,
+          "max": 64,
+          "hint": "Two straw make four rope."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:canvas",
+          "effort": 0.5,
+          "min": 2,
+          "max": 12,
+          "hint": "Four straw make a canvas."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:straw_bale",
+          "effort": 1.1,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "type": "place_block",
+          "id": "farmersdelight:rope",
+          "effort": 0.1,
+          "min": 8,
+          "max": 48,
+          "hint": "Hang rope down a cliff or well."
+        }
+      ]
+    },
+    {
+      "key": "fd_knives",
+      "family": "fd_tools",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:iron_knife",
+          "effort": 0.7,
+          "min": 1,
+          "max": 2,
+          "tier": 1
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:diamond_knife",
+          "effort": 5.5,
+          "min": 1,
+          "max": 1,
+          "tier": 2,
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "fd_kitchen",
+      "family": "fd_kitchen",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:cutting_board",
+          "effort": 0.4,
+          "min": 1,
+          "max": 3,
+          "tier": 0
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:cooking_pot",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Five iron ingots, bricks, a wooden shovel and water."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:skillet",
+          "effort": 2.4,
+          "min": 1,
+          "max": 1
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:stove",
+          "effort": 2.2,
+          "min": 1,
+          "max": 1,
+          "hint": "Bricks, a campfire and iron."
+        }
+      ]
+    },
+    {
+      "key": "fd_cabinets",
+      "family": "fd_furniture",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:oak_cabinet",
+          "effort": 0.9,
+          "min": 1,
+          "max": 6,
+          "hint": "Oak slabs and trapdoors."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:spruce_cabinet",
+          "effort": 0.9,
+          "min": 1,
+          "max": 6,
+          "hint": "Spruce slabs and trapdoors."
+        },
+        {
+          "type": "place_block",
+          "id": "farmersdelight:oak_cabinet",
+          "effort": 0.95,
+          "min": 1,
+          "max": 6
+        }
+      ]
+    },
+    {
+      "key": "fd_butchery",
+      "family": "fd_butchery",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "knife",
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "farmersdelight:ham",
+          "effort": 1.3,
+          "min": 1,
+          "max": 8,
+          "hint": "Pigs killed with a knife drop ham.",
+          "stack": 64
+        },
+        {
+          "type": "smelt_item",
+          "id": "farmersdelight:smoked_ham",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Smoke ham in a smoker."
+        },
+        {
+          "type": "smelt_item",
+          "id": "farmersdelight:cooked_bacon",
+          "effort": 0.5,
+          "min": 4,
+          "max": 32,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Cut porkchops on a cutting board, then cook."
+        },
+        {
+          "type": "smelt_item",
+          "id": "farmersdelight:beef_patty",
+          "effort": 0.5,
+          "min": 4,
+          "max": 24,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Mince beef on a cutting board, then cook."
+        },
+        {
+          "type": "smelt_item",
+          "id": "farmersdelight:cooked_chicken_cuts",
+          "effort": 0.45,
+          "min": 4,
+          "max": 32,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Cut chicken on a cutting board, then cook."
+        },
+        {
+          "type": "smelt_item",
+          "id": "farmersdelight:cooked_mutton_chops",
+          "effort": 0.5,
+          "min": 4,
+          "max": 32,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Cut mutton on a cutting board, then cook."
+        }
+      ]
+    },
+    {
+      "key": "fd_fish",
+      "family": "fd_seafood",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "fishing_rod",
+      "targets": [
+        {
+          "type": "smelt_item",
+          "id": "farmersdelight:cooked_cod_slice",
+          "effort": 0.6,
+          "min": 4,
+          "max": 24,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Slice cod on a cutting board, then cook."
+        },
+        {
+          "type": "smelt_item",
+          "id": "farmersdelight:cooked_salmon_slice",
+          "effort": 0.9,
+          "min": 4,
+          "max": 16,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Slice salmon on a cutting board, then cook."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:kelp_roll",
+          "effort": 1.5,
+          "min": 1,
+          "max": 6,
+          "hint": "Rice, kelp and a carrot."
+        }
+      ]
+    },
+    {
+      "key": "fd_breakfast",
+      "family": "fd_breakfast",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "smelt_item",
+          "id": "farmersdelight:fried_egg",
+          "effort": 0.8,
+          "min": 2,
+          "max": 16,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Cook eggs in a furnace or skillet.",
+          "stack": 64
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:egg_sandwich",
+          "effort": 1.8,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:bacon_and_eggs",
+          "effort": 2.4,
+          "min": 1,
+          "max": 4,
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "key": "fd_sandwiches",
+      "family": "fd_meals",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:hamburger",
+          "effort": 2.6,
+          "min": 1,
+          "max": 6,
+          "hint": "Bread, a beef patty, cabbage, tomato and onion."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:bacon_sandwich",
+          "effort": 1.7,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:chicken_sandwich",
+          "effort": 1.7,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:mutton_wrap",
+          "effort": 1.9,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:hamburger",
+          "effort": 2.7,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:bacon_sandwich",
+          "effort": 1.8,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "key": "fd_salads",
+      "family": "fd_salads",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:fruit_salad",
+          "effort": 1.3,
+          "min": 1,
+          "max": 6,
+          "hint": "Apple, melon, berries and a pumpkin slice."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:mixed_salad",
+          "effort": 1.3,
+          "min": 1,
+          "max": 6,
+          "hint": "Cabbage, tomato and beetroot in a bowl."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:fruit_salad",
+          "effort": 1.4,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:mixed_salad",
+          "effort": 1.4,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:nether_salad",
+          "effort": 1.6,
+          "min": 1,
+          "max": 4,
+          "tier": 3,
+          "hint": "Crimson and warped fungi in a bowl."
+        }
+      ]
+    },
+    {
+      "key": "fd_sweets",
+      "family": "fd_sweets",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:sweet_berry_cookie",
+          "effort": 0.12,
+          "min": 8,
+          "max": 64,
+          "hints": [
+            "taiga"
+          ]
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:honey_cookie",
+          "effort": 0.15,
+          "min": 8,
+          "max": 64,
+          "hints": [
+            "bees"
+          ]
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:sweet_berry_cookie",
+          "effort": 0.3,
+          "min": 4,
+          "max": 16
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:apple_pie",
+          "effort": 3.0,
+          "min": 1,
+          "max": 3,
+          "hint": "Needs a pie crust, apples and sugar."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:sweet_berry_cheesecake",
+          "effort": 2.8,
+          "min": 1,
+          "max": 3
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:melon_popsicle",
+          "effort": 0.8,
+          "min": 2,
+          "max": 8,
+          "hint": "Melon slices, ice and a stick."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:melon_popsicle",
+          "effort": 0.9,
+          "min": 2,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "key": "fd_stews",
+      "family": "fd_stews",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "exclusions": [
+        "craft_item farmersdelight:beef_stew (Cooking Pot output is not a crafting grid)"
+      ],
+      "targets": [
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:beef_stew",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:chicken_soup",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:vegetable_soup",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:fish_stew",
+          "effort": 2.6,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:pumpkin_soup",
+          "effort": 2.4,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:baked_cod_stew",
+          "effort": 2.6,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:noodle_soup",
+          "effort": 2.8,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:onion_soup",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        }
+      ]
+    },
+    {
+      "key": "fd_plates",
+      "family": "fd_plates",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:fried_rice",
+          "effort": 2.4,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:pasta_with_meatballs",
+          "effort": 3.2,
+          "min": 1,
+          "max": 3,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:ratatouille",
+          "effort": 2.8,
+          "min": 1,
+          "max": 3,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:mushroom_rice",
+          "effort": 2.4,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:cabbage_rolls",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:dumplings",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:squid_ink_pasta",
+          "effort": 3.2,
+          "min": 1,
+          "max": 3,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:cooked_rice",
+          "effort": 1.4,
+          "min": 1,
+          "max": 6,
+          "hint": "Cook rice in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:steak_and_potatoes",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:roasted_mutton_chops",
+          "effort": 2.4,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:grilled_salmon",
+          "effort": 2.6,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:steak_and_potatoes",
+          "effort": 2.1,
+          "min": 1,
+          "max": 4,
+          "hint": "Steak, a baked potato, onion and cooked rice."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:stuffed_potato",
+          "effort": 1.8,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "key": "fd_drinks",
+      "family": "fd_drinks",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:apple_cider",
+          "effort": 1.6,
+          "min": 1,
+          "max": 4,
+          "hints": [
+            "drink"
+          ],
+          "hint": "Brew it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:hot_cocoa",
+          "effort": 1.6,
+          "min": 1,
+          "max": 4,
+          "hints": [
+            "drink"
+          ],
+          "hint": "Brew it in a Cooking Pot."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:glow_berry_custard",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Cook it in a Cooking Pot."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:melon_juice",
+          "effort": 0.8,
+          "min": 1,
+          "max": 6,
+          "hint": "Melon slices, sugar and a glass bottle."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:melon_juice",
+          "effort": 0.9,
+          "min": 1,
+          "max": 6,
+          "hints": [
+            "drink"
+          ]
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:milk_bottle",
+          "effort": 0.2,
+          "min": 4,
+          "max": 16,
+          "hint": "Pour a milk bucket into glass bottles.",
+          "stack": 16
+        }
+      ]
+    },
+    {
+      "key": "fd_feasts",
+      "family": "fd_feasts",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:roast_chicken_block",
+          "effort": 5.0,
+          "min": 1,
+          "max": 1,
+          "hint": "A feast to share.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:shepherds_pie_block",
+          "effort": 6.0,
+          "min": 1,
+          "max": 1,
+          "hint": "A feast to share.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:honey_glazed_ham_block",
+          "effort": 7.0,
+          "min": 1,
+          "max": 1,
+          "hint": "A feast to share.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:rice_roll_medley_block",
+          "effort": 5.5,
+          "min": 1,
+          "max": 1,
+          "hint": "A feast to share.",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "fd_bakery",
+      "family": "baking",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "notes": "Baking bread from dough only exists with Farmer's Delight, so this smelt target lives in the profile.",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:wheat_dough",
+          "effort": 0.2,
+          "min": 6,
+          "max": 48,
+          "hint": "Wheat with an egg or water."
+        },
+        {
+          "type": "smelt_item",
+          "id": "minecraft:bread",
+          "effort": 0.35,
+          "min": 4,
+          "max": 32,
+          "hints": [
+            "cook"
+          ],
+          "hint": "Bake wheat dough in a furnace."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:pie_crust",
+          "effort": 0.5,
+          "min": 2,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "key": "fd_compost",
+      "family": "fd_soil",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:organic_compost",
+          "effort": 2.4,
+          "min": 1,
+          "max": 4,
+          "hint": "Dirt, rotten flesh, straw and bone meal."
+        }
+      ]
+    },
+    {
+      "key": "fd_rolls",
+      "family": "fd_seafood",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:salmon_roll",
+          "effort": 1.6,
+          "min": 1,
+          "max": 6,
+          "hint": "Salmon slices and cooked rice."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:cod_roll",
+          "effort": 1.3,
+          "min": 1,
+          "max": 6,
+          "hint": "Cod slices and cooked rice."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:kelp_roll_slice",
+          "effort": 0.6,
+          "min": 2,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "key": "fd_snacks",
+      "family": "fd_snacks",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:barbecue_stick",
+          "effort": 1.2,
+          "min": 1,
+          "max": 6,
+          "hint": "Tomato, onion and meat on a stick."
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:barbecue_stick",
+          "effort": 1.4,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:honey_cookie",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "hints": [
+            "bees"
+          ]
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:egg_sandwich",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:chicken_sandwich",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:mutton_wrap",
+          "effort": 2.2,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:stuffed_potato",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "key": "fd_feast_servings",
+      "family": "fd_feasts",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:roast_chicken",
+          "effort": 5.5,
+          "min": 1,
+          "max": 2,
+          "hint": "Place a roast chicken and serve it into a bowl.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:shepherds_pie",
+          "effort": 6.5,
+          "min": 1,
+          "max": 2,
+          "hint": "Place a shepherd's pie and serve it into a bowl.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "consume_item",
+          "id": "farmersdelight:honey_glazed_ham",
+          "effort": 7.5,
+          "min": 1,
+          "max": 2,
+          "hint": "Place a glazed ham and serve it into a bowl.",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "fd_baskets",
+      "family": "fd_furniture",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:wooden_basket",
+          "effort": 0.5,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:bamboo_basket",
+          "effort": 0.6,
+          "min": 1,
+          "max": 4,
+          "hints": [
+            "jungle"
+          ]
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:birch_cabinet",
+          "effort": 0.9,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:jungle_cabinet",
+          "effort": 1.0,
+          "min": 1,
+          "max": 6,
+          "hints": [
+            "jungle"
+          ]
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:acacia_cabinet",
+          "effort": 1.0,
+          "min": 1,
+          "max": 6,
+          "hints": [
+            "savanna"
+          ]
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:dark_oak_cabinet",
+          "effort": 1.0,
+          "min": 1,
+          "max": 6,
+          "hints": [
+            "dark_forest"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_straw_crafts",
+      "family": "fd_straw",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "knife",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:safety_net",
+          "effort": 0.9,
+          "min": 1,
+          "max": 6,
+          "hint": "Made from rope."
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:canvas_rug",
+          "effort": 0.6,
+          "min": 2,
+          "max": 8
+        },
+        {
+          "type": "craft_item",
+          "id": "farmersdelight:tatami",
+          "effort": 0.8,
+          "min": 2,
+          "max": 8
+        },
+        {
+          "type": "place_block",
+          "id": "farmersdelight:straw_bale",
+          "effort": 1.15,
+          "min": 1,
+          "max": 6
+        }
+      ]
+    },
+    {
+      "key": "fd_compost_place",
+      "family": "fd_soil",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "place_block",
+          "id": "farmersdelight:organic_compost",
+          "effort": 2.5,
+          "min": 1,
+          "max": 4,
+          "hint": "It slowly turns into rich soil."
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "farmersdelight:tomato",
+        "value": 0.15,
+        "tier": 0,
+        "max": 32,
+        "family": "fd_crops"
+      },
+      {
+        "id": "farmersdelight:cabbage",
+        "value": 0.15,
+        "tier": 0,
+        "max": 32,
+        "family": "fd_crops"
+      },
+      {
+        "id": "farmersdelight:onion",
+        "value": 0.15,
+        "tier": 0,
+        "max": 32,
+        "family": "fd_crops"
+      },
+      {
+        "id": "farmersdelight:rice",
+        "value": 0.12,
+        "tier": 0,
+        "max": 32,
+        "family": "fd_crops"
+      },
+      {
+        "id": "farmersdelight:rope",
+        "value": 0.08,
+        "tier": 0,
+        "max": 32,
+        "family": "fd_straw"
+      },
+      {
+        "id": "farmersdelight:flint_knife",
+        "value": 0.6,
+        "tier": 0,
+        "max": 1,
+        "stack": 1,
+        "family": "fd_tools"
+      },
+      {
+        "id": "farmersdelight:iron_knife",
+        "value": 1.0,
+        "tier": 1,
+        "max": 1,
+        "stack": 1,
+        "family": "fd_tools"
+      },
+      {
+        "id": "farmersdelight:hamburger",
+        "value": 2.6,
+        "tier": 1,
+        "max": 6,
+        "family": "fd_meals"
+      },
+      {
+        "id": "farmersdelight:bacon_sandwich",
+        "value": 1.8,
+        "tier": 1,
+        "max": 8,
+        "family": "fd_meals"
+      },
+      {
+        "id": "farmersdelight:sweet_berry_cookie",
+        "value": 0.15,
+        "tier": 0,
+        "max": 32,
+        "family": "fd_sweets"
+      },
+      {
+        "id": "farmersdelight:honey_cookie",
+        "value": 0.2,
+        "tier": 0,
+        "max": 32,
+        "family": "fd_sweets"
+      },
+      {
+        "id": "farmersdelight:apple_pie",
+        "value": 3.0,
+        "tier": 1,
+        "max": 2,
+        "family": "fd_sweets"
+      },
+      {
+        "id": "farmersdelight:beef_stew",
+        "value": 2.2,
+        "tier": 1,
+        "max": 4,
+        "stack": 16,
+        "family": "fd_stews"
+      },
+      {
+        "id": "farmersdelight:fried_rice",
+        "value": 2.4,
+        "tier": 1,
+        "max": 4,
+        "stack": 16,
+        "family": "fd_plates"
+      },
+      {
+        "id": "farmersdelight:hot_cocoa",
+        "value": 1.6,
+        "tier": 1,
+        "max": 4,
+        "stack": 16,
+        "family": "fd_drinks"
+      },
+      {
+        "id": "farmersdelight:cooking_pot",
+        "value": 5.0,
+        "tier": 1,
+        "max": 1,
+        "family": "fd_kitchen"
+      },
+      {
+        "id": "farmersdelight:carrot_crate",
+        "value": 1.5,
+        "tier": 0,
+        "max": 4,
+        "family": "fd_crops"
+      },
+      {
+        "id": "farmersdelight:rope",
+        "value": 0.08,
+        "tier": 0,
+        "max": 32,
+        "family": "fd_straw"
+      },
+      {
+        "id": "farmersdelight:barbecue_stick",
+        "value": 1.3,
+        "tier": 0,
+        "max": 8,
+        "family": "fd_snacks"
+      },
+      {
+        "id": "farmersdelight:honey_glazed_ham",
+        "value": 7.0,
+        "tier": 1,
+        "max": 2,
+        "stack": 16,
+        "family": "fd_feasts",
+        "minDifficulty": "hard"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "fd_farmers_market",
+      "names": [
+        "Farmer's Market",
+        "Market Day",
+        "Fresh Produce"
+      ],
+      "descriptions": [
+        "The market needs fresh produce: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "fd_cabbage",
+            "fd_tomato",
+            "fd_onion",
+            "fd_rice"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "fd_cabbage",
+            "fd_tomato",
+            "fd_onion",
+            "fd_rice"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "crops"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "fd_harvest_festival",
+      "names": [
+        "Harvest Festival",
+        "Harvest Time"
+      ],
+      "descriptions": [
+        "Bring in the harvest! {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "crops"
+          ],
+          "profiles": [
+            "vanilla"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "fd_crops"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_chefs_special",
+      "names": [
+        "Chef's Special",
+        "Kitchen Rush",
+        "Dinner Service"
+      ],
+      "descriptions": [
+        "Tonight's menu: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "families": [
+            "fd_meals",
+            "fd_salads",
+            "fd_breakfast"
+          ]
+        },
+        {
+          "types": [
+            "consume_item"
+          ],
+          "families": [
+            "fd_stews",
+            "fd_plates",
+            "fd_drinks"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_butcher",
+      "names": [
+        "Butcher's Order",
+        "Meat Market"
+      ],
+      "descriptions": [
+        "The butcher needs help: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "fd_butchery",
+            "cows",
+            "pigs"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "keys": [
+            "fd_butchery"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_kitchen_setup",
+      "names": [
+        "Kitchen Setup",
+        "New Kitchen"
+      ],
+      "descriptions": [
+        "Every cook needs tools: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "fd_kitchen"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "place_block"
+          ],
+          "keys": [
+            "fd_knives",
+            "fd_kitchen",
+            "fd_cabinets"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_wild_forager",
+      "names": [
+        "Wild Forager",
+        "Forager's Walk"
+      ],
+      "descriptions": [
+        "Search the wilds: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "fd_wild"
+          ]
+        },
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "fd_wild"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "fd_straw"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "fd_village_bakery",
+      "names": [
+        "Village Bakery",
+        "Fresh Bread"
+      ],
+      "descriptions": [
+        "The bakery is short-handed: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "fd_bakery"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "keys": [
+            "fd_bakery"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "baking",
+            "fd_sweets"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "fd_breakfast_club",
+      "names": [
+        "Breakfast Club",
+        "Morning Menu"
+      ],
+      "descriptions": [
+        "Breakfast is served: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "keys": [
+            "fd_breakfast",
+            "fd_butchery"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "consume_item"
+          ],
+          "keys": [
+            "fd_breakfast",
+            "fd_snacks"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_picnic",
+      "names": [
+        "Picnic Basket",
+        "Picnic Day"
+      ],
+      "descriptions": [
+        "Pack the picnic basket: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "families": [
+            "fd_salads",
+            "fd_snacks"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "families": [
+            "fd_sweets"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_rope_maker",
+      "names": [
+        "Rope Maker",
+        "Straw Work"
+      ],
+      "descriptions": [
+        "Twist straw into something useful: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "fd_straw"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "place_block"
+          ],
+          "keys": [
+            "fd_straw",
+            "fd_straw_crafts"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_crate_stock",
+      "names": [
+        "Crate Stock",
+        "Pantry Stock"
+      ],
+      "descriptions": [
+        "Fill the pantry: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "fd_cabbage",
+            "fd_tomato",
+            "fd_onion"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "fd_cabbage",
+            "fd_tomato",
+            "fd_onion",
+            "fd_rice"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fd_fishmonger",
+      "names": [
+        "Fishmonger",
+        "Fish Market"
+      ],
+      "descriptions": [
+        "The fishmonger needs stock: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "families": [
+            "fishing"
+          ],
+          "profiles": [
+            "vanilla"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item",
+            "craft_item"
+          ],
+          "keys": [
+            "fd_fish",
+            "fd_rolls"
+          ]
+        }
+      ]
+    }
+  ]
+}

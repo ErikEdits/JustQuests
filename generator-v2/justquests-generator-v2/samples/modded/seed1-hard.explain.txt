@@ -1,0 +1,112 @@
+# modded | world seed 1 | HARD | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty hard, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla, farmersdelight, create, mekanism, twilightforest, botania], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_7  "Engineer Duty"  (HARD, cycle 1790510400, seed 0x2897…)
+objective craft_item create:super_glue ×2
+  effort 3.00 min/unit → 6.0 min (target 24.0, range 15–35 min)
+  tier 2 (always available), family create_tools, profile create
+objective craft_item create:fluid_tank ×2
+  effort 3.50 min/unit → 7.0 min (target 24.0, range 15–35 min)
+  tier 2 (always available), family create_tools, profile create
+combo within family create_tools
+estimated 13.0 min (quick)
+reward give_item minecraft:slime_ball ×8 (value 12.0) + xp 115 (value 9.6)  → 21.6 / budget 21.5
+rejected alternatives: craft_item create:wrench (max count takes only 3.5 min); craft_item create:goggles (max count takes only 3.0 min)
+state: AVAILABLE
+
+justquests:gen/1790510400_0  "Mine Nether Gold Ore"  (HARD, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:nether_gold_ore ×32
+  effort 0.35 min/unit → 11.2 min (target 15.9, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_ores, profile vanilla, tool wood, minecraft:the_nether
+travel overhead 3.0 min
+estimated 14.2 min (quick)
+reward give_item farmersdelight:fried_rice ×4 (value 9.6) + effect minecraft:jump_boost 300s (value 1.5) + xp 120 (value 10.0)  → 21.1 / budget 21.3
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Mana Pool Crafting"  (HARD, cycle 1790510400, seed 0x2897…)
+objective craft_item botania:mana_pool ×1
+  effort 16.00 min/unit → 16.0 min (target 24.9, range 15–35 min)
+  tier 2 (always available), family bot_mana, profile botania
+estimated 16.0 min (quick)
+reward give_item minecraft:experience_bottle ×15 (value 18.0) + xp 70 (value 5.8)  → 23.8 / budget 24.0
+rejected alternatives: craft_item botania:mana_spreader (its grid recipe varies between versions)
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Furnace: Uranium Ingot"  (HARD, cycle 1790510400, seed 0x2897…)
+objective smelt_item mekanism:ingot_uranium ×16
+  effort 1.20 min/unit → 19.2 min (target 26.5, range 15–35 min)
+  tier 2 (always available), family mek_uranium, profile mekanism, tool stone, hints caves
+estimated 19.2 min (quick)
+reward give_item farmersdelight:barbecue_stick ×8 (value 10.4) + effect minecraft:luck 600s (value 3.0) + xp 185 (value 15.4)  → 28.8 / budget 28.8
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Spider Job"  (HARD, cycle 1790510400, seed 0x2897…)
+objective kill_mob minecraft:spider ×12
+  effort 0.80 min/unit → 9.6 min (target 21.3, range 15–35 min)
+  tier 0 (always available), family arthropods, profile vanilla, hints night
+objective kill_mob minecraft:silverfish ×5
+  effort 1.50 min/unit (×1.30 mountains) → 9.8 min (target 21.3, range 15–35 min)
+  tier 1 (always available), family arthropods, profile vanilla, hints mountains
+combo within family arthropods
+estimated 19.4 min (quick)
+reward give_item mekanism:ingot_lead ×25 (value 23.8) + xp 100 (value 8.3)  → 32.1 / budget 31.9
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Kitchen Rush"  (HARD, cycle 1790510400, seed 0x2897…)
+objective craft_item farmersdelight:bacon_sandwich ×6
+  effort 1.70 min/unit → 10.2 min (target 28.3, range 15–35 min)
+  tier 1 (always available), family fd_meals, profile farmersdelight
+objective consume_item farmersdelight:fried_rice ×4
+  effort 2.40 min/unit → 9.6 min (target 28.3, range 15–35 min)
+  tier 1 (always available), family fd_plates, profile farmersdelight
+theme fd_chefs_special
+estimated 19.8 min (quick)
+reward give_item minecraft:hay_block ×8 (value 11.2) + give_item mekanism:ingot_osmium ×15 (value 13.5) + xp 95 (value 7.9)  → 32.6 / budget 32.7
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Sand Duty"  (HARD, cycle 1790510400, seed 0x2897…)
+objective smelt_item minecraft:smooth_red_sandstone ×24
+  effort 0.35 min/unit (×1.60 badlands) → 13.4 min (target 25.9, range 15–35 min)
+  tier 0 (always available), family sand, profile vanilla, hints badlands
+objective mine_block minecraft:sand ×128
+  effort 0.04 min/unit (×1.20 beach) → 6.1 min (target 25.9, range 15–35 min)
+  tier 0 (always available), family sand, profile vanilla, hints beach
+combo within family sand
+estimated 19.6 min (quick)
+reward give_item minecraft:slime_ball ×8 (value 12.0) + give_item minecraft:baked_potato ×32 (value 8.0) + xp 150 (value 12.5)  → 32.5 / budget 32.3
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Dig Lapis Ore"  (HARD, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:lapis_ore ×16
+  effort 1.20 min/unit (×1.10 deep) → 21.1 min (target 28.7, range 15–35 min)
+  tier 2 (always available), family gems, profile vanilla, tool stone, hints deep
+estimated 21.1 min (quick)
+reward give_item mekanism:raw_osmium ×31 (value 21.7) + effect minecraft:invisibility 300s (value 2.5) + xp 90 (value 7.5)  → 31.7 / budget 31.7
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Fisherman's Day"  (HARD, cycle 1790510400, seed 0x2897…)
+objective collect_item minecraft:cod ×24
+  effort 0.80 min/unit → 19.2 min (target 34.7, range 15–35 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod
+objective smelt_item minecraft:cooked_salmon ×8
+  effort 1.50 min/unit → 12.0 min (target 34.7, range 15–35 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod, hints cook
+theme fishermans_day
+estimated 31.2 min
+reward give_item minecraft:cooked_chicken ×16 (value 8.0) + loot_table minecraft:chests/jungle_temple (value 9.0) + xp 415 (value 34.6)  → 51.6 / budget 51.5
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Boss Errand"  (HARD, cycle 1790510400, seed 0x2897…)
+objective collect_item twilightforest:naga_scale ×6
+  effort 2.60 min/unit → 15.6 min (target 16.3, range 15–35 min)
+  tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family tf_bosses, profile twilightforest, twilightforest:twilight_forest
+objective kill_mob twilightforest:naga ×1
+  effort 18.00 min/unit → 18.0 min (target 16.3, range 15–35 min)
+  tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family tf_bosses, profile twilightforest, twilightforest:twilight_forest
+travel overhead 5.0 min
+combo within family tf_bosses
+estimated 38.6 min
+reward give_item mekanism:ingot_tin ×32 (value 27.2) + xp 395 (value 32.9) + message  → 60.1 / budget 60.0
+state: AVAILABLE
+

@@ -1,0 +1,93 @@
+# vanilla | world seed 2 | NORMAL | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty normal, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_0  "Bring Dark Oak Logs"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:dark_oak_log ×64
+  effort 0.10 min/unit (×1.30 dark_forest) → 8.3 min (target 9.2, range 8–20 min)
+  tier 0 (always available), family wood, profile vanilla, hints dark_forest
+estimated 8.3 min (quick)
+reward give_item minecraft:honeycomb ×7 (value 7.0) + xp 36 (value 3.0)  → 10.0 / budget 10.0
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Craft Iron Blocks"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:iron_block ×2
+  effort 5.00 min/unit → 10.0 min (target 11.4, range 8–20 min)
+  tier 1 (always available), family storage_blocks, profile vanilla
+estimated 10.0 min (quick)
+reward give_item minecraft:prismarine_crystals ×6 (value 9.0) + xp 36 (value 3.0)  → 12.0 / budget 12.0
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Dig Deepslate Coal Ore"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:deepslate_coal_ore ×16
+  effort 0.60 min/unit (×1.10 deep) → 10.6 min (target 11.5, range 8–20 min)
+  tier 1 (always available), family coal, profile vanilla, tool wood, hints deep
+estimated 10.6 min (quick)
+reward give_item minecraft:iron_ingot ×16 (value 9.6) + xp 37 (value 3.1) + message  → 12.7 / budget 12.7
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Scaffolding Batch"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:scaffolding ×64
+  effort 0.12 min/unit (×1.40 jungle) → 10.8 min (target 17.6, range 8–20 min)
+  tier 0 (always available), family plants, profile vanilla, hints jungle
+estimated 10.8 min (quick)
+reward give_item minecraft:pumpkin_pie ×8 (value 8.0) + xp 60 (value 5.0)  → 13.0 / budget 12.9
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Cooked Salmon Order"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item minecraft:cooked_salmon ×8
+  effort 1.50 min/unit → 12.0 min (target 16.5, range 8–20 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod, hints cook
+estimated 12.0 min
+reward give_item minecraft:cooked_beef ×16 (value 8.0) + xp 75 (value 6.3)  → 14.3 / budget 14.4
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Slime Trouble"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:slime ×6
+  effort 1.50 min/unit (×1.30 swamp) → 11.7 min (target 11.6, range 8–20 min)
+  tier 1 (always available), family monsters, profile vanilla, hints swamp
+estimated 11.7 min (quick)
+reward give_item minecraft:diamond ×2 (value 10.0) + xp 48 (value 4.0)  → 14.0 / budget 14.0
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Village Fair"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:cookie ×64
+  effort 0.10 min/unit → 6.4 min (target 19.2, range 8–20 min)
+  tier 0 (always available), family baking, profile vanilla
+objective breed_animal minecraft:sheep ×8
+  effort 1.00 min/unit → 8.0 min (target 19.2, range 8–20 min)
+  tier 0 (always available), family wool, profile vanilla
+theme village_fair
+estimated 14.4 min
+reward give_item minecraft:experience_bottle ×12 (value 14.4) + xp 55 (value 4.6)  → 19.0 / budget 19.0
+rejected alternatives: consume_item minecraft:cake (cake is eaten as a placed block, not a use action)
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Deepslate Redstone Ore Breaker"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:deepslate_redstone_ore ×16
+  effort 0.90 min/unit (×1.10 deep) → 15.8 min (target 15.6, range 8–20 min)
+  tier 2 (always available), family redstone, profile vanilla, tool iron, hints deep
+estimated 15.8 min
+reward give_item minecraft:cooked_salmon ×16 (value 14.4) + xp 55 (value 4.6)  → 19.0 / budget 19.0
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Sea Harvest"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:prismarine_shard ×4
+  effort 1.50 min/unit (×1.60 monument) → 9.6 min (target 12.9, range 8–20 min)
+  tier 2 (always available), family ocean, profile vanilla, tool iron, hints monument
+objective kill_mob minecraft:guardian ×2
+  effort 2.50 min/unit (×1.60 monument) → 8.0 min (target 12.9, range 8–20 min)
+  tier 2 (always available), family ocean, profile vanilla, tool iron, hints monument
+theme ocean_voyage
+estimated 17.6 min
+reward give_item minecraft:ghast_tear ×4 (value 16.0) + xp 85 (value 7.1)  → 23.1 / budget 23.2
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "More Camels"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective breed_animal minecraft:camel ×3
+  effort 4.00 min/unit (×1.30 desert ×1.20 village) → 18.7 min (target 19.9, range 8–20 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints desert/village
+estimated 18.7 min
+reward give_item minecraft:bread ×16 (value 7.2) + give_item minecraft:tnt ×4 (value 10.0) + xp 65 (value 5.4)  → 22.6 / budget 22.5
+state: AVAILABLE
+

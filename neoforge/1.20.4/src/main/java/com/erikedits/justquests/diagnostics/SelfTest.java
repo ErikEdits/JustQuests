@@ -133,22 +133,15 @@ public final class SelfTest {
         } catch (Exception ex) { questsValid = false; questIssue = ex.toString(); }
         check(results, tally, "All quests valid", questsValid, questsValid ? "ok" : questIssue);
 
-        // generator produces parseable, valid quests (Phase 6)
+        // generator v2: running, served set valid and registered, claims match player data
         boolean genOk;
         String genMsg;
         try {
-            var gen = com.erikedits.justquests.generator.QuestGenerator.generate(
-                5, java.util.Set.of(), new java.util.Random(42L), 42L);
-            int parsed = 0;
-            for (var gq : gen) {
-                var res = Quest.CODEC.parse(com.mojang.serialization.JsonOps.INSTANCE, gq.json()).result();
-                if (res.isPresent() && !res.get().objectives().isEmpty()
-                    && res.get().objectives().stream().noneMatch(o -> o.requiredCount() <= 0)) parsed++;
-            }
-            genOk = !gen.isEmpty() && parsed == gen.size();
-            genMsg = parsed + "/" + gen.size() + " generated quests parsed & valid";
+            java.util.List<String> genProblems = com.erikedits.justquests.generator.GenV2.selfTest();
+            genOk = genProblems.isEmpty();
+            genMsg = genOk ? com.erikedits.justquests.generator.GenV2.selfTestSummary() : String.join("; ", genProblems);
         } catch (Exception ex) { genOk = false; genMsg = ex.toString(); }
-        check(results, tally, "Generator produces valid quests", genOk, genMsg);
+        check(results, tally, "Generator v2 healthy", genOk, genMsg);
 
         // codec round-trip
         boolean codecOk;

@@ -1,0 +1,307 @@
+{
+  "justquests:gen/1790510400_0": {
+    "title": "Mine Nether Gold Ore",
+    "description": "Mine 32 Nether gold ore. Found in the Nether.",
+    "category": "generated",
+    "sort": 14,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:nether_gold_ore",
+        "count": 32
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:ghast_tear",
+        "count": 4
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:jump_boost",
+        "seconds": 300,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 46
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Fox Farm",
+    "description": "Breed 3 foxes. Sneak up on foxes with sweet berries. Look in taigas.",
+    "category": "generated",
+    "sort": 14,
+    "objectives": [
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:fox",
+        "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:iron_block",
+        "count": 2
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/jungle_temple"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 22
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Gold Ore Quarry",
+    "description": "Mine 12 gold ore. Needs an iron pickaxe or better. Found deep underground.",
+    "category": "generated",
+    "sort": 16,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:gold_ore",
+        "count": 12
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:clock",
+        "count": 1
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:sea_lantern",
+        "count": 2
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 95
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Supper Time",
+    "description": "Feed the camp: cook 24 chicken and eat 6 steak. Cook raw chicken. Common in plains.",
+    "category": "generated",
+    "sort": 17,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:cooked_chicken",
+        "count": 24
+      },
+      {
+        "type": "justquests:consume_item",
+        "item": "minecraft:cooked_beef",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:slime_ball",
+        "count": 8
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:arrow",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 135
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Lumber Order",
+    "description": "Mine 64 cherry logs and gather 64 jungle logs. Look in cherry groves. Look in jungles.",
+    "category": "generated",
+    "sort": 19,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:cherry_log",
+        "count": 64
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:jungle_log",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:leather",
+        "count": 16
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:phantom_membrane",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 145
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Potion Ingredients",
+    "description": "The brewer needs Nether goods: collect 24 Nether wart and craft 64 polished blackstone. Found in Nether fortresses. Found in the Nether.",
+    "category": "generated",
+    "sort": 22,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:nether_wart",
+        "count": 24
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:polished_blackstone",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:gold_ingot",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 180
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Stonemason",
+    "description": "The stonemason needs help: pick up 32 pointed dripstones and build with 16 bricks. Look in dripstone caves.",
+    "category": "generated",
+    "sort": 24,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:pointed_dripstone",
+        "count": 32
+      },
+      {
+        "type": "justquests:place_block",
+        "block": "minecraft:bricks",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:ender_pearl",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 225
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Mushroom Supplies",
+    "description": "Mine 48 brown mushroom blocks and gather 32 red mushrooms. Dark forests have plenty.",
+    "category": "generated",
+    "sort": 24,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:brown_mushroom_block",
+        "count": 48
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:red_mushroom",
+        "count": 32
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:iron_ingot",
+        "count": 24
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/village/village_weaponsmith"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 215
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Wither Skeleton Bounty",
+    "description": "Slay 6 wither skeletons. Found in Nether fortresses. Found in the Nether.",
+    "category": "generated",
+    "sort": 26,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:wither_skeleton",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:ender_pearl",
+        "count": 8
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:luck",
+        "seconds": 600,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 200
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Slime Hunt",
+    "description": "Slay 16 slimes. Look in swamps.",
+    "category": "generated",
+    "sort": 31,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:slime",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald_block",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 290
+      }
+    ]
+  }
+}

@@ -87,6 +87,7 @@ public final class QuestProgressService {
             for (QuestReward reward : quest.rewards()) {
                 reward.grant(player);
             }
+            com.erikedits.justquests.generator.GenV2.completed(questId, player.getUUID());
             String questTitle = quest.title().get(com.erikedits.justquests.data.LocalizedText.DEFAULT_LANG);
             player.sendMessage(new net.minecraft.network.chat.TextComponent("§a✓ Quest completed: " + questTitle), net.minecraft.Util.NIL_UUID);
             // completion sound + action-bar toast (Q12), each toggleable

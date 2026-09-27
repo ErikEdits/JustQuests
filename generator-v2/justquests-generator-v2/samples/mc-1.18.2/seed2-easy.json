@@ -1,0 +1,242 @@
+{
+  "justquests:gen/1790510400_0": {
+    "title": "Jungle Log Quarry",
+    "description": "Mine 32 jungle logs. Look in jungles.",
+    "category": "generated",
+    "sort": 4,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:jungle_log",
+        "count": 32
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:iron_ingot",
+        "count": 6
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 11
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Deepslate Iron Ore Dig",
+    "description": "Break 6 deepslate iron ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
+    "category": "generated",
+    "sort": 4,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_iron_ore",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:apple",
+        "count": 7
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 14
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Coal Stockpile",
+    "description": "Pick up 16 coal. Mine coal ore. Found in caves.",
+    "category": "generated",
+    "sort": 4,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:coal",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:paper",
+        "count": 25
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 12
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Bring Clay Balls",
+    "description": "Gather 64 clay balls. Dig clay in rivers and swamps. Look along rivers.",
+    "category": "generated",
+    "sort": 5,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:clay_ball",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cooked_porkchop",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 13
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Trapped Chest Crafter",
+    "description": "Make 8 trapped chests.",
+    "category": "generated",
+    "sort": 5,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:trapped_chest",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:honeycomb",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 10
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Stone Bricks Design",
+    "description": "Place 32 stone bricks.",
+    "category": "generated",
+    "sort": 5,
+    "objectives": [
+      {
+        "type": "justquests:place_block",
+        "block": "minecraft:stone_bricks",
+        "count": 32
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:book",
+        "count": 3
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 14
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Furnace: Deepslate",
+    "description": "Smelt 48 deepslate. Smelt cobbled deepslate. Found deep underground.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:deepslate",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cooked_beef",
+        "count": 10
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 16
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Stop the Drowned",
+    "description": "Hunt 5 drowned. Look in and near oceans. They spawn at night and in dark caves.",
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:drowned",
+        "count": 5
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:leather",
+        "count": 13
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 24
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Fermented Spider Eye Request",
+    "description": "Make 5 fermented spider eyes. Spider eye, sugar and a brown mushroom.",
+    "category": "generated",
+    "sort": 9,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:fermented_spider_eye",
+        "count": 5
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:redstone",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 31
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Leather Pickup",
+    "description": "Pick up 24 leather. Common in plains.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:leather",
+        "count": 24
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:bread",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 29
+      }
+    ]
+  }
+}

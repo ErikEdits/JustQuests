@@ -1,0 +1,277 @@
+{
+  "justquests:gen/1790510400_9": {
+    "title": "Sand Job",
+    "description": "Smelt 8 smooth red sandstone and pick up 40 red sand. Look in badlands.",
+    "category": "generated",
+    "sort": 8,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:smooth_red_sandstone",
+        "count": 8
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:red_sand",
+        "count": 40
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:redstone",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 55
+      }
+    ]
+  },
+  "justquests:gen/1790510400_0": {
+    "title": "Dig Deepslate Copper Ore",
+    "description": "Mine 20 deepslate copper ore. Needs a stone pickaxe or better. Found deep underground.",
+    "category": "generated",
+    "sort": 9,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_copper_ore",
+        "count": 20
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:glistering_melon_slice",
+        "count": 5
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 37
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Wild Cabbages Shift",
+    "description": "Mine 12 wild cabbages. Wild cabbages grow on beaches. Look along beaches.",
+    "category": "generated",
+    "sort": 9,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "farmersdelight:wild_cabbages",
+        "count": 12
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:hamburger",
+        "count": 3
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 31
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Wand of the Forest Job",
+    "description": "Make a wand of the forest. A livingwood twig and two petals; livingwood comes from a Pure Daisy.",
+    "category": "generated",
+    "sort": 9,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "botania:twig_wand",
+        "count": 1
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:copper_ingot",
+        "count": 32
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:oak_sapling",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 43
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Decorator Order",
+    "description": "Make 4 beds and make 40 white carpets. Three wool and three planks. Any bed counts. Two wool make three carpets.",
+    "category": "generated",
+    "sort": 10,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "#minecraft:beds",
+        "count": 4
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:white_carpet",
+        "count": 40
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:zinc_block",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 65
+      },
+      {
+        "type": "justquests:message",
+        "message": "The traders are impressed."
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Witch Watch",
+    "description": "Defeat a witch. Look in swamps. Rare, so take your time.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:witch",
+        "count": 1
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "mekanism:ingot_osmium",
+        "count": 10
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 42
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Rabbit Nursery",
+    "description": "Breed 4 rabbits. Rabbits breed with carrots or dandelions. Look in deserts.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:rabbit",
+        "count": 4
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:arrow",
+        "count": 32
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cookie",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 46
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Andesite Casing Design",
+    "description": "Build with 16 andesite casings. Use andesite alloy on stripped logs to make casings.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:place_block",
+        "block": "create:andesite_casing",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:honeyed_apple",
+        "count": 3
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 30
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Venison Steak Supper",
+    "description": "Eat 6 venison steaks. Found in the Twilight Forest.",
+    "category": "generated",
+    "sort": 12,
+    "objectives": [
+      {
+        "type": "justquests:consume_item",
+        "item": "twilightforest:cooked_venison",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:hamburger",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 42
+      },
+      {
+        "type": "justquests:message",
+        "message": "Another job well done."
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Tin Ingot Batch",
+    "description": "Smelt 24 tin ingots. Smelt raw tin in a furnace. Needs a stone pickaxe or better. Found in caves.",
+    "category": "generated",
+    "sort": 18,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "mekanism:ingot_tin",
+        "count": 24
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:campfire",
+        "count": 4
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:saddle",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 165
+      }
+    ]
+  }
+}

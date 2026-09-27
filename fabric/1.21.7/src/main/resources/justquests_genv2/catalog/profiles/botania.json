@@ -1,0 +1,326 @@
+{
+  "format": 1,
+  "id": "botania",
+  "name": "Botania",
+  "requiresMod": [
+    "botania"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "bot_flowers",
+      "family": "bot_flowers",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "botania:white_mystical_flower",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "name": "Mystical White Flower",
+          "hint": "Mystical flowers grow in forests, plains and meadows."
+        },
+        {
+          "type": "collect_item",
+          "id": "botania:red_mystical_flower",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "name": "Mystical Red Flower",
+          "hint": "Mystical flowers grow in forests, plains and meadows."
+        },
+        {
+          "type": "collect_item",
+          "id": "botania:yellow_mystical_flower",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "name": "Mystical Yellow Flower",
+          "hint": "Mystical flowers grow in forests, plains and meadows."
+        },
+        {
+          "type": "collect_item",
+          "id": "botania:blue_mystical_flower",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "name": "Mystical Blue Flower",
+          "hint": "Mystical flowers grow in forests, plains and meadows."
+        },
+        {
+          "type": "collect_item",
+          "id": "botania:purple_mystical_flower",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "name": "Mystical Purple Flower",
+          "hint": "Mystical flowers grow in forests, plains and meadows."
+        },
+        {
+          "type": "collect_item",
+          "id": "botania:pink_mystical_flower",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "name": "Mystical Pink Flower",
+          "hint": "Mystical flowers grow in forests, plains and meadows."
+        }
+      ]
+    },
+    {
+      "key": "bot_petals",
+      "family": "bot_petals",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "botania:white_petal",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Mystical White Petal",
+          "hint": "One mystical flower makes two petals."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:red_petal",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Mystical Red Petal",
+          "hint": "One mystical flower makes two petals."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:yellow_petal",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Mystical Yellow Petal",
+          "hint": "One mystical flower makes two petals."
+        }
+      ]
+    },
+    {
+      "key": "bot_start",
+      "family": "bot_start",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "botania:lexicon",
+          "effort": 1.6,
+          "min": 1,
+          "max": 1,
+          "name": "Lexica Botania",
+          "plural": "Lexica Botania",
+          "hint": "A book and any sapling."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:apothecary_default",
+          "effort": 2.6,
+          "min": 1,
+          "max": 1,
+          "name": "Petal Apothecary",
+          "hint": "Cobblestone around a mystical petal."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:flower_bag",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "name": "Flower Pouch",
+          "hint": "Six wool and a mystical petal.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "bot_mushrooms",
+      "family": "bot_mushrooms",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "caves"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "botania:white_mushroom",
+          "effort": 0.7,
+          "min": 2,
+          "max": 8,
+          "name": "White Shimmering Mushroom",
+          "hint": "Shimmering mushrooms glow in caves."
+        },
+        {
+          "type": "collect_item",
+          "id": "botania:red_mushroom",
+          "effort": 0.7,
+          "min": 2,
+          "max": 8,
+          "name": "Red Shimmering Mushroom",
+          "hint": "Shimmering mushrooms glow in caves."
+        }
+      ]
+    },
+    {
+      "key": "bot_livingwood",
+      "family": "bot_livingwood",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "exclusions": [
+        "collect_item botania:livingwood_log (a Pure Daisy converts logs in place; nothing is picked up)"
+      ],
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "botania:livingwood_planks",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "hint": "A Pure Daisy turns logs placed around it into livingwood."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:twig_wand",
+          "effort": 9.0,
+          "min": 1,
+          "max": 1,
+          "name": "Wand of the Forest",
+          "plural": "Wands of the Forest",
+          "hint": "A livingwood twig and two petals; livingwood comes from a Pure Daisy."
+        }
+      ]
+    },
+    {
+      "key": "bot_mana",
+      "family": "bot_mana",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "exclusions": [
+        "craft_item botania:mana_spreader (its grid recipe varies between versions)"
+      ],
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "botania:mana_pool",
+          "effort": 16.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Five livingrock; a Pure Daisy turns stone into livingrock.",
+          "minDifficulty": "hard"
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "botania:fertilizer",
+        "value": 0.6,
+        "tier": 1,
+        "max": 16,
+        "family": "bot_flowers"
+      },
+      {
+        "id": "botania:white_petal",
+        "value": 0.2,
+        "tier": 1,
+        "max": 32,
+        "family": "bot_petals"
+      },
+      {
+        "id": "botania:manasteel_ingot",
+        "value": 3.5,
+        "tier": 2,
+        "max": 8,
+        "family": "bot_mana"
+      },
+      {
+        "id": "botania:mana_pearl",
+        "value": 5.0,
+        "tier": 3,
+        "max": 2,
+        "family": "bot_mana"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "bot_first_steps",
+      "names": [
+        "Botanist's Start",
+        "Garden Magic",
+        "Flower Power"
+      ],
+      "descriptions": [
+        "Every botanist starts in a meadow: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "bot_flowers"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "bot_start",
+            "bot_petals"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bot_florist",
+      "names": [
+        "Florist",
+        "Bouquet",
+        "Petal Picker"
+      ],
+      "descriptions": [
+        "The florist wants colour: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "bot_flowers"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "craft_item"
+          ],
+          "keys": [
+            "bot_flowers",
+            "bot_petals"
+          ]
+        }
+      ]
+    }
+  ]
+}

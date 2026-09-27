@@ -1,0 +1,87 @@
+# mc-1.18.2 | world seed 2 | EASY | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty easy, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.18.2 (forge)
+
+justquests:gen/1790510400_0  "Jungle Log Quarry"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:jungle_log ×32
+  effort 0.10 min/unit (×1.40 jungle) → 4.5 min (target 4.6, range 4–10 min)
+  tier 0 (always available), family wood, profile vanilla, hints jungle
+estimated 4.5 min (quick)
+reward give_item minecraft:iron_ingot ×6 (value 3.6) + xp 11 (value 0.9)  → 4.5 / budget 4.5
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Deepslate Iron Ore Dig"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:deepslate_iron_ore ×6
+  effort 0.60 min/unit (×1.10 deep) → 4.0 min (target 4.0, range 4–10 min)
+  tier 1 (always available), family metals, profile vanilla, tool stone, hints caves/deep
+estimated 4.0 min (quick)
+reward give_item minecraft:apple ×7 (value 2.8) + xp 14 (value 1.2)  → 4.0 / budget 4.0
+rejected alternatives: collect_item minecraft:iron_ore (drops raw_iron, needs Silk Touch)
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Coal Stockpile"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:coal ×16
+  effort 0.25 min/unit → 4.0 min (target 4.6, range 4–10 min)
+  tier 0 (always available), family coal, profile vanilla, tool wood, hints caves
+estimated 4.0 min (quick)
+reward give_item minecraft:paper ×25 (value 3.0) + xp 12 (value 1.0)  → 4.0 / budget 4.0
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Bring Clay Balls"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:clay_ball ×64
+  effort 0.08 min/unit → 5.1 min (target 5.0, range 4–10 min)
+  tier 0 (always available), family soil, profile vanilla, hints river
+estimated 5.1 min (quick)
+reward give_item minecraft:cooked_porkchop ×8 (value 4.0) + xp 13 (value 1.1)  → 5.1 / budget 5.1
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Trapped Chest Crafter"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:trapped_chest ×8
+  effort 0.60 min/unit → 4.8 min (target 5.7, range 4–10 min)
+  tier 0 (always available), family woodwork, profile vanilla
+estimated 4.8 min (quick)
+reward give_item minecraft:honeycomb ×4 (value 4.0) + xp 10 (value 0.8)  → 4.8 / budget 4.8
+rejected alternatives: craft_item minecraft:ender_chest (tier 3 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Stone Bricks Design"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective place_block minecraft:stone_bricks ×32
+  effort 0.15 min/unit → 4.8 min (target 4.8, range 4–10 min)
+  tier 0 (always available), family stonework, profile vanilla
+estimated 4.8 min (quick)
+reward give_item minecraft:book ×3 (value 3.6) + xp 14 (value 1.2)  → 4.8 / budget 4.8
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Furnace: Deepslate"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item minecraft:deepslate ×48
+  effort 0.12 min/unit (×1.10 deep) → 6.3 min (target 7.2, range 4–10 min)
+  tier 1 (always available), family stone, profile vanilla, tool wood, hints deep
+estimated 6.3 min
+reward give_item minecraft:cooked_beef ×10 (value 5.0) + xp 16 (value 1.3)  → 6.3 / budget 6.3
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Stop the Drowned"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:drowned ×5
+  effort 1.20 min/unit (×1.20 ocean) → 7.2 min (target 6.5, range 4–10 min)
+  tier 0 (always available), family undead, profile vanilla, hints ocean/night
+estimated 7.2 min
+reward give_item minecraft:leather ×13 (value 5.2) + xp 24 (value 2.0)  → 7.2 / budget 7.2
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Fermented Spider Eye Request"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:fermented_spider_eye ×5
+  effort 1.80 min/unit → 9.0 min (target 8.5, range 4–10 min)
+  tier 0 (always available), family brewing, profile vanilla
+estimated 9.0 min
+reward give_item minecraft:redstone ×32 (value 6.4) + xp 31 (value 2.6)  → 9.0 / budget 9.0
+rejected alternatives: craft_item minecraft:glistering_melon_slice (tier 2 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Leather Pickup"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:leather ×24
+  effort 0.40 min/unit → 9.6 min (target 9.8, range 4–10 min)
+  tier 0 (always available), family livestock, profile vanilla, hints plains
+estimated 9.6 min
+reward give_item minecraft:bread ×16 (value 7.2) + xp 29 (value 2.4)  → 9.6 / budget 9.6
+state: AVAILABLE
+

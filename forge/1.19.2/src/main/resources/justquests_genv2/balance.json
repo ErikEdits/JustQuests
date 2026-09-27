@@ -1,0 +1,244 @@
+{
+  "format": 1,
+  "notes": "All tunables. World overrides: <world>/justquests/generator_v2/balance.json is deep-merged over this file.",
+  "difficulties": {
+    "EASY": {
+      "targetMinutes": [
+        4,
+        10
+      ],
+      "maxTier": 1,
+      "objectiveWeights": [
+        100,
+        0,
+        0
+      ],
+      "rewardRate": 1.0,
+      "budgetClamp": [
+        3,
+        15
+      ],
+      "dimensionTravel": false,
+      "effectChance": 0.0,
+      "lootTableChance": 0.0,
+      "messageChance": 0.1,
+      "claimExpiryHours": 0,
+      "tierWeights": [
+        1.0,
+        0.7,
+        0,
+        0,
+        0
+      ],
+      "typeWeights": {
+        "place_block": 1.5,
+        "tame_animal": 0.5
+      }
+    },
+    "NORMAL": {
+      "targetMinutes": [
+        8,
+        20
+      ],
+      "maxTier": 2,
+      "objectiveWeights": [
+        75,
+        25,
+        0
+      ],
+      "rewardRate": 1.2,
+      "budgetClamp": [
+        8,
+        30
+      ],
+      "dimensionTravel": true,
+      "effectChance": 0.05,
+      "lootTableChance": 0.03,
+      "messageChance": 0.08,
+      "claimExpiryHours": 0,
+      "tierWeights": [
+        0.7,
+        1.0,
+        0.8,
+        0.8,
+        0.6
+      ],
+      "typeWeights": {}
+    },
+    "HARD": {
+      "targetMinutes": [
+        15,
+        35
+      ],
+      "maxTier": 4,
+      "objectiveWeights": [
+        50,
+        35,
+        15
+      ],
+      "rewardRate": 1.5,
+      "budgetClamp": [
+        18,
+        60
+      ],
+      "dimensionTravel": true,
+      "effectChance": 0.2,
+      "lootTableChance": 0.15,
+      "messageChance": 0.05,
+      "claimExpiryHours": 0,
+      "tierWeights": [
+        0.35,
+        0.8,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "typeWeights": {
+        "place_block": 0.4
+      }
+    }
+  },
+  "typeWeights": {
+    "collect_item": 1.0,
+    "mine_block": 1.0,
+    "craft_item": 1.0,
+    "smelt_item": 0.8,
+    "kill_mob": 1.0,
+    "breed_animal": 0.6,
+    "tame_animal": 0.25,
+    "consume_item": 0.6,
+    "place_block": 0.35,
+    "visit_dimension": 0.15
+  },
+  "hintMultipliers": {
+    "desert": 1.3,
+    "swamp": 1.3,
+    "jungle": 1.4,
+    "taiga": 1.2,
+    "snowy": 1.3,
+    "ocean": 1.2,
+    "beach": 1.2,
+    "savanna": 1.2,
+    "badlands": 1.6,
+    "mountains": 1.3,
+    "flower_forest": 1.4,
+    "dark_forest": 1.3,
+    "mushroom_fields": 2.0,
+    "lush_caves": 1.4,
+    "dripstone_caves": 1.3,
+    "cherry_grove": 1.5,
+    "mangrove_swamp": 1.5,
+    "pale_garden": 1.6,
+    "geode": 1.3,
+    "village": 1.2,
+    "rare": 1.6,
+    "fortress": 1.3,
+    "bastion": 1.5,
+    "crimson_forest": 1.2,
+    "warped_forest": 1.2,
+    "soul_sand_valley": 1.2,
+    "basalt_deltas": 1.2,
+    "end_city": 1.5,
+    "outer_islands": 1.3,
+    "mineshaft": 1.3,
+    "outpost": 1.3,
+    "monument": 1.6,
+    "trial_chambers": 1.5,
+    "deep": 1.1,
+    "bees": 1.2,
+    "layers": 1.3,
+    "warm_ocean": 1.4,
+    "ruined_portal": 1.4,
+    "deep_dark": 1.6
+  },
+  "dimensionOverheadMinutes": {
+    "minecraft:the_nether": 3.0,
+    "minecraft:the_end": 5.0,
+    "modded": 5.0
+  },
+  "toolLevels": {
+    "none": 0,
+    "wood": 0,
+    "fishing_rod": 0,
+    "knife": 0,
+    "shovel": 0,
+    "stone": 1,
+    "shears": 1,
+    "iron": 2,
+    "diamond": 3,
+    "silk_touch": 3,
+    "netherite": 4
+  },
+  "toolPenaltyPerLevel": 0.15,
+  "multiObjective": {
+    "effortFactor": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "rewardPremium": [
+      1.0,
+      1.1,
+      1.2
+    ]
+  },
+  "rewards": {
+    "itemShare": 0.75,
+    "xpPointsPerValue": 12,
+    "minXp": 5,
+    "maxXp": 500,
+    "tolerance": 0.2
+  },
+  "progression": {
+    "netherUnlockShare": 0.25,
+    "netherUnlockDay": 10,
+    "netherAdvancement": "minecraft:story/enter_the_nether",
+    "endUnlockShare": 0.25,
+    "endUnlockDay": 40,
+    "endAdvancements": [
+      "minecraft:story/enter_the_end",
+      "minecraft:end/root"
+    ],
+    "earlyWorld": [
+      {
+        "maxDay": 2,
+        "tierWeights": [
+          1.0,
+          0.6,
+          0.15,
+          0.05,
+          0.05
+        ]
+      },
+      {
+        "maxDay": 6,
+        "tierWeights": [
+          1.0,
+          1.0,
+          0.6,
+          0.5,
+          0.3
+        ]
+      }
+    ]
+  },
+  "setRules": {
+    "minDistinctTypes": 3,
+    "maxTypeShare": 0.4,
+    "requireQuick": true,
+    "quickFraction": 0.3333,
+    "minPerActiveModAt": 5,
+    "maxPerModShare": 0.5,
+    "typeRepeatPenalty": 0.45,
+    "themeChance": 0.85,
+    "maxAttemptsPerSlot": 40,
+    "rangeSlack": 0.25,
+    "minTargetFraction": 0.5
+  },
+  "calibration": {
+    "minSamples": 5,
+    "minMultiplier": 0.5,
+    "maxMultiplier": 2.0,
+    "maxStepPerCycle": 0.1
+  }
+}

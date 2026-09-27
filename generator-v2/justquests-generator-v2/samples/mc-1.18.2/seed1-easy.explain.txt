@@ -1,0 +1,86 @@
+# mc-1.18.2 | world seed 1 | EASY | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty easy, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.18.2 (forge)
+
+justquests:gen/1790510400_0  "Deepslate Copper Ore Miner"  (EASY, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:deepslate_copper_ore ×10
+  effort 0.40 min/unit (×1.10 deep) → 4.4 min (target 4.7, range 4–10 min)
+  tier 1 (always available), family metals, profile vanilla, tool stone, hints deep
+estimated 4.4 min (quick)
+reward give_item minecraft:arrow ×22 (value 3.3) + xp 13 (value 1.1)  → 4.4 / budget 4.4
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Craft Spyglasses"  (EASY, cycle 1790510400, seed 0x2897…)
+objective craft_item minecraft:spyglass ×2
+  effort 2.00 min/unit → 4.0 min (target 6.4, range 4–10 min)
+  tier 1 (always available), family copper_works, profile vanilla
+estimated 4.0 min (quick)
+reward give_item minecraft:ender_pearl ×1 (value 2.5) + xp 18 (value 1.5)  → 4.0 / budget 4.0
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Birch Log Breaker"  (EASY, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:birch_log ×48
+  effort 0.10 min/unit → 4.8 min (target 5.0, range 4–10 min)
+  tier 0 (always available), family wood, profile vanilla
+estimated 4.8 min (quick)
+reward give_item minecraft:slime_ball ×2 (value 3.0) + xp 22 (value 1.8) + message  → 4.8 / budget 4.8
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Fermented Spider Eye Workshop"  (EASY, cycle 1790510400, seed 0x2897…)
+objective craft_item minecraft:fermented_spider_eye ×3
+  effort 1.80 min/unit → 5.4 min (target 6.2, range 4–10 min)
+  tier 0 (always available), family brewing, profile vanilla
+estimated 5.4 min (quick)
+reward give_item minecraft:glass ×32 (value 3.2) + xp 26 (value 2.2)  → 5.4 / budget 5.4
+rejected alternatives: craft_item minecraft:glistering_melon_slice (tier 2 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Cobbled Deepslate Run"  (EASY, cycle 1790510400, seed 0x2897…)
+objective collect_item minecraft:cobbled_deepslate ×64
+  effort 0.08 min/unit (×1.10 deep) → 5.6 min (target 6.0, range 4–10 min)
+  tier 1 (always available), family stone, profile vanilla, tool wood, hints deep
+estimated 5.6 min (quick)
+reward give_item minecraft:nautilus_shell ×1 (value 5.0) + xp 8 (value 0.7)  → 5.7 / budget 5.6
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Smelt Glass"  (EASY, cycle 1790510400, seed 0x2897…)
+objective smelt_item minecraft:glass ×64
+  effort 0.10 min/unit → 6.4 min (target 5.7, range 4–10 min)
+  tier 0 (always available), family glass, profile vanilla
+estimated 6.4 min
+reward give_item minecraft:white_wool ×19 (value 4.8) + xp 20 (value 1.7)  → 6.4 / budget 6.4
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Flint Haul"  (EASY, cycle 1790510400, seed 0x2897…)
+objective collect_item minecraft:flint ×16
+  effort 0.40 min/unit → 6.4 min (target 5.6, range 4–10 min)
+  tier 0 (always available), family soil, profile vanilla
+estimated 6.4 min
+reward give_item minecraft:amethyst_shard ×14 (value 4.9) + xp 18 (value 1.5)  → 6.4 / budget 6.4
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Hopper Order"  (EASY, cycle 1790510400, seed 0x2897…)
+objective craft_item minecraft:hopper ×2
+  effort 3.50 min/unit → 7.0 min (target 5.8, range 4–10 min)
+  tier 1 (always available), family iron_works, profile vanilla
+estimated 7.0 min
+reward give_item minecraft:hay_block ×4 (value 5.6) + xp 17 (value 1.4)  → 7.0 / budget 7.0
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Coal Ore Shift"  (EASY, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:coal_ore ×32
+  effort 0.25 min/unit → 8.0 min (target 8.1, range 4–10 min)
+  tier 0 (always available), family coal, profile vanilla, tool wood, hints caves
+estimated 8.0 min
+reward give_item minecraft:leather ×15 (value 6.0) + xp 24 (value 2.0) + message  → 8.0 / budget 8.0
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "More Llamas"  (EASY, cycle 1790510400, seed 0x2897…)
+objective breed_animal minecraft:llama ×3
+  effort 2.50 min/unit (×1.20 savanna) → 9.0 min (target 8.0, range 4–10 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints savanna
+estimated 9.0 min
+reward give_item minecraft:redstone ×32 (value 6.4) + xp 31 (value 2.6)  → 9.0 / budget 9.0
+rejected alternatives: tame_animal minecraft:llama (not counted on Fabric)
+state: AVAILABLE
+

@@ -1,0 +1,101 @@
+# modded | world seed 2 | HARD | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty hard, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla, farmersdelight, create, mekanism, twilightforest, botania], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_0  "Moss Block Excavation"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:moss_block ×48
+  effort 0.12 min/unit (×1.40 lush_caves) → 8.1 min (target 17.0, range 15–35 min)
+  tier 1 (always available), family lush, profile vanilla, hints lush_caves
+estimated 8.1 min (quick)
+reward give_item create:brass_ingot ×7 (value 14.0) + xp 48 (value 4.0)  → 18.0 / budget 18.0
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Hostile Wolf Watch"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob twilightforest:hostile_wolf ×8
+  effort 1.00 min/unit → 8.0 min (target 23.2, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family tf_monsters, profile twilightforest, twilightforest:twilight_forest
+travel overhead 5.0 min
+estimated 13.0 min (quick)
+reward give_item minecraft:diamond ×3 (value 15.0) + xp 55 (value 4.6)  → 19.6 / budget 19.5
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Lead Duty"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective mine_block mekanism:deepslate_lead_ore ×8
+  effort 0.90 min/unit (×1.10 deep) → 7.9 min (target 15.8, range 15–35 min)
+  tier 1 (always available), family mek_lead, profile mekanism, tool stone, hints caves/deep
+objective collect_item mekanism:raw_lead ×8
+  effort 0.80 min/unit → 6.4 min (target 15.8, range 15–35 min)
+  tier 1 (always available), family mek_lead, profile mekanism, tool stone, hints caves
+combo within family mek_lead
+estimated 14.3 min (quick)
+reward give_item minecraft:phantom_membrane ×4 (value 12.0) + loot_table minecraft:chests/village/village_weaponsmith (value 7.0) + xp 55 (value 4.6)  → 23.6 / budget 23.6
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Cook Cooked Bacon"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item farmersdelight:cooked_bacon ×32
+  effort 0.50 min/unit → 16.0 min (target 16.6, range 15–35 min)
+  tier 0 (always available), family fd_butchery, profile farmersdelight, tool knife, hints cook
+estimated 16.0 min (quick)
+reward give_item farmersdelight:bacon_sandwich ×8 (value 14.4) + xp 115 (value 9.6)  → 24.0 / budget 24.0
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Make Livingwood Planks"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective craft_item botania:livingwood_planks ×16
+  effort 1.00 min/unit → 16.0 min (target 17.6, range 15–35 min)
+  tier 2 (always available), family bot_livingwood, profile botania
+estimated 16.0 min (quick)
+reward give_item farmersdelight:fried_rice ×4 (value 9.6) + give_item minecraft:jukebox ×1 (value 5.5) + xp 105 (value 8.8)  → 23.9 / budget 24.0
+rejected alternatives: collect_item botania:livingwood_log (a Pure Daisy converts logs in place; nothing is picked up)
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Nether Mining Duty"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:glowstone_dust ×32
+  effort 0.25 min/unit → 8.0 min (target 18.0, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_ores, profile vanilla, minecraft:the_nether
+objective collect_item minecraft:gold_nugget ×64
+  effort 0.10 min/unit → 6.4 min (target 18.0, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_ores, profile vanilla, minecraft:the_nether
+travel overhead 3.0 min
+combo within family nether_ores
+estimated 17.4 min (quick)
+reward give_item create:andesite_alloy_block ×4 (value 12.8) + give_item minecraft:coal ×32 (value 8.0) + xp 95 (value 7.9)  → 28.7 / budget 28.7
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Rose Quartz Crafting"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective craft_item create:rose_quartz ×16
+  effort 1.20 min/unit → 19.2 min (target 25.0, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family create_quartz, profile create
+estimated 19.2 min (quick)
+reward give_item minecraft:diamond ×4 (value 20.0) + xp 105 (value 8.8)  → 28.8 / budget 28.8
+rejected alternatives: craft_item create:polished_rose_quartz (sandpaper polishing is not crafting)
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Wildlife Errand"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:rabbit ×8
+  effort 1.00 min/unit (×1.30 desert) → 10.4 min (target 16.6, range 15–35 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints desert
+objective breed_animal minecraft:axolotl ×2
+  effort 3.50 min/unit (×1.40 lush_caves) → 9.8 min (target 16.6, range 15–35 min)
+  tier 1 (always available), family wild_animals, profile vanilla, hints lush_caves
+combo within family wild_animals
+estimated 20.2 min (quick)
+reward give_item botania:manasteel_ingot ×7 (value 24.5) + xp 105 (value 8.8)  → 33.3 / budget 33.3
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Stop the Endermen"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:enderman ×8
+  effort 2.50 min/unit → 20.0 min (target 24.2, range 15–35 min)
+  tier 2 (always available), family monsters, profile vanilla, hints night
+estimated 20.0 min (quick)
+reward give_item minecraft:quartz ×32 (value 9.6) + loot_table minecraft:chests/simple_dungeon (value 8.0) + xp 150 (value 12.5)  → 30.1 / budget 30.0
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Hunt the Magma Cubes"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:magma_cube ×16
+  effort 1.00 min/unit (×1.20 basalt_deltas) → 19.2 min (target 22.0, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_mobs, profile vanilla, hints basalt_deltas, minecraft:the_nether
+travel overhead 3.0 min
+estimated 22.2 min
+reward give_item botania:mana_pearl ×2 (value 10.0) + give_item farmersdelight:tomato ×32 (value 4.8) + xp 220 (value 18.3)  → 33.1 / budget 33.3
+state: AVAILABLE
+

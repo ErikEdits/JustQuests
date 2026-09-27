@@ -7,7 +7,6 @@ import com.erikedits.justquests.event.FabricQuestHooks;
 import com.erikedits.justquests.storage.CustomQuestLoader;
 import com.erikedits.justquests.storage.WorldQuestStore;
 import com.erikedits.justquests.storage.WorldSettings;
-import com.erikedits.justquests.generator.GeneratedQuestStore;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
@@ -49,14 +48,15 @@ public class JustQuestsFabric implements ModInitializer {
             WorldQuestStore.load(server);
             WorldSettings.load(server);      // load settings before readers
             CustomQuestLoader.init(server);
-            GeneratedQuestStore.init(server);
             CommunityHints.init(server);
             JustQuests.LOG.info("JustQuests loaded (Fabric)");
         });
+        // generator v2 needs the loaded worlds (seed, overworld, tags) -> SERVER_STARTED, not STARTING
+        ServerLifecycleEvents.SERVER_STARTED.register(com.erikedits.justquests.generator.GenV2::start);
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
             WorldQuestStore.unload();
             CustomQuestLoader.clear();
-            GeneratedQuestStore.clear();
+            com.erikedits.justquests.generator.GenV2.stop();
             CommunityHints.clear();
             WorldSettings.reset();
         });
@@ -74,7 +74,7 @@ public class JustQuestsFabric implements ModInitializer {
             }
             if (++genCounter >= GEN_INTERVAL_TICKS) {
                 genCounter = 0;
-                GeneratedQuestStore.tickCheck();
+                com.erikedits.justquests.generator.GenV2.tick();
             }
             for (ServerPlayer player : server.getPlayerList().getPlayers()) {
                 if (player.tickCount % 20 == 0) FabricQuestHooks.onPlayerTickReach(player);

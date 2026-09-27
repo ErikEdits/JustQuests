@@ -1,0 +1,100 @@
+# mc-1.18.2 | world seed 3 | NORMAL | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty normal, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.18.2 (forge)
+
+justquests:gen/1790510400_8  "Place White Carpets"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective place_block minecraft:white_carpet ×48
+  effort 0.18 min/unit → 8.6 min (target 13.3, range 8–20 min)
+  tier 0 (always available), family decor, profile vanilla
+estimated 8.6 min (quick)
+reward give_item minecraft:iron_ingot ×13 (value 7.8) + xp 31 (value 2.6)  → 10.4 / budget 10.4
+rejected alternatives: craft_item minecraft:chiseled_bookshelf (released in 1.20, running 1.18.2); craft_item minecraft:decorated_pot (released in 1.20, running 1.18.2)
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Harvest Festival"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:wheat ×40
+  effort 0.15 min/unit → 6.0 min (target 10.2, range 8–20 min)
+  tier 0 (always available), family crops, profile vanilla, hints farm
+objective collect_item minecraft:beetroot ×16
+  effort 0.20 min/unit (×1.20 village) → 3.8 min (target 10.2, range 8–20 min)
+  tier 0 (always available), family crops, profile vanilla, hints village/farm
+theme harvest_festival
+estimated 9.8 min (quick)
+reward give_item minecraft:cooked_beef ×16 (value 8.0) + xp 60 (value 5.0)  → 13.0 / budget 13.0
+rejected alternatives: mine_block minecraft:wheat (breaking crops at any stage counts)
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Craft Deepslate Tiles"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:deepslate_tiles ×64
+  effort 0.14 min/unit (×1.10 deep) → 9.9 min (target 10.1, range 8–20 min)
+  tier 1 (always available), family stonework, profile vanilla, hints deep
+estimated 9.9 min (quick)
+reward give_item minecraft:lapis_lazuli ×32 (value 6.4) + effect minecraft:slow_falling 300s (value 2.0) + xp 41 (value 3.4)  → 11.8 / budget 11.8
+state: AVAILABLE
+
+justquests:gen/1790510400_0  "Zombie Watch"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective kill_mob minecraft:zombie ×16
+  effort 0.70 min/unit → 11.2 min (target 10.9, range 8–20 min)
+  tier 0 (always available), family undead, profile vanilla, hints night
+estimated 11.2 min (quick)
+reward give_item minecraft:coal_block ×4 (value 9.2) + xp 50 (value 4.2)  → 13.4 / budget 13.4
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "TNT Crafting"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:tnt ×4
+  effort 3.00 min/unit → 12.0 min (target 14.5, range 8–20 min)
+  tier 0 (always available), family monsters, profile vanilla, hints night
+estimated 12.0 min
+reward give_item minecraft:leather ×12 (value 4.8) + loot_table minecraft:chests/simple_dungeon (value 8.0) + xp 19 (value 1.6)  → 14.4 / budget 14.4
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Llama Family"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective breed_animal minecraft:llama ×5
+  effort 2.50 min/unit (×1.20 savanna) → 15.0 min (target 14.2, range 8–20 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints savanna
+estimated 15.0 min
+reward give_item minecraft:cooked_beef ×16 (value 8.0) + give_item minecraft:pumpkin_pie ×6 (value 6.0) + xp 48 (value 4.0)  → 18.0 / budget 18.0
+rejected alternatives: tame_animal minecraft:llama (not counted on Fabric)
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Gold Ore Shift"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective mine_block minecraft:gold_ore ×12
+  effort 1.20 min/unit (×1.10 deep) → 15.8 min (target 17.0, range 8–20 min)
+  tier 2 (always available), family metals, profile vanilla, tool iron, hints deep
+estimated 15.8 min
+reward give_item minecraft:bread ×16 (value 7.2) + effect minecraft:dolphins_grace 300s (value 2.0) + xp 120 (value 10.0)  → 19.2 / budget 19.0
+rejected alternatives: collect_item minecraft:gold_ore (drops raw_gold, needs Silk Touch)
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Break Prismarine"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective mine_block minecraft:prismarine ×32
+  effort 0.35 min/unit (×1.60 monument) → 17.9 min (target 17.4, range 8–20 min)
+  tier 2 (always available), family ocean, profile vanilla, tool iron, hints monument
+estimated 17.9 min
+reward give_item minecraft:blaze_rod ×8 (value 14.4) + xp 85 (value 7.1)  → 21.5 / budget 21.5
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Circuit Builder"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:redstone ×48
+  effort 0.20 min/unit (×1.10 deep) → 10.6 min (target 19.2, range 8–20 min)
+  tier 2 (always available), family redstone, profile vanilla, tool iron, hints deep
+objective craft_item minecraft:piston ×8
+  effort 1.20 min/unit → 9.6 min (target 19.2, range 8–20 min)
+  tier 2 (always available), family redstone, profile vanilla
+theme redstone_workshop
+estimated 20.2 min
+reward give_item minecraft:obsidian ×16 (value 16.0) + xp 125 (value 10.4)  → 26.4 / budget 26.6
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Spider Supplies"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective kill_mob minecraft:cave_spider ×5
+  effort 1.50 min/unit (×1.30 mineshaft) → 9.8 min (target 18.6, range 8–20 min)
+  tier 1 (always available), family arthropods, profile vanilla, hints mineshaft
+objective collect_item minecraft:string ×24
+  effort 0.50 min/unit → 12.0 min (target 18.6, range 8–20 min)
+  tier 0 (always available), family arthropods, profile vanilla, hints night
+combo within family arthropods
+estimated 21.8 min
+reward give_item minecraft:cooked_salmon ×16 (value 14.4) + xp 170 (value 14.2) + message  → 28.6 / budget 28.7
+state: AVAILABLE
+

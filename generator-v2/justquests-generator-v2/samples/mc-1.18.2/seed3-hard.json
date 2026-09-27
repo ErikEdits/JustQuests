@@ -1,0 +1,314 @@
+{
+  "justquests:gen/1790510400_5": {
+    "title": "Forestry Order",
+    "description": "Place 32 spruce saplings and place 16 acacia saplings. Look in taigas. Look in savannas.",
+    "category": "generated",
+    "sort": 12,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:place_block",
+        "block": "minecraft:spruce_sapling",
+        "count": 32
+      },
+      {
+        "type": "justquests:place_block",
+        "block": "minecraft:acacia_sapling",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:hay_block",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 115
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Supper Time",
+    "description": "Feed the camp: cook 24 porkchop and eat 8 baked potatoes. Cook raw porkchops. Villages often have them. Grow them on a farm.",
+    "category": "generated",
+    "sort": 17,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:cooked_porkchop",
+        "count": 24
+      },
+      {
+        "type": "justquests:consume_item",
+        "item": "minecraft:baked_potato",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:iron_ingot",
+        "count": 24
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:slow_falling",
+        "seconds": 300,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 135
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Hoglin Menace",
+    "description": "Slay 6 hoglins. Found in crimson forests. Found in the Nether.",
+    "category": "generated",
+    "sort": 17,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:hoglin",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 6
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:water_breathing",
+        "seconds": 600,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 75
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Redstone Workshop",
+    "description": "Wire up the workshop: break 12 deepslate redstone ore and make a clock. Needs an iron pickaxe or better. Found deep underground.",
+    "category": "generated",
+    "sort": 17,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_redstone_ore",
+        "count": 12
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:clock",
+        "count": 1
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 95
+      }
+    ]
+  },
+  "justquests:gen/1790510400_0": {
+    "title": "Mine Ancient Debris",
+    "description": "Mine an ancient debris. Needs a diamond pickaxe. Rare, so take your time. Found in the Nether.",
+    "category": "generated",
+    "sort": 19,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:ancient_debris",
+        "count": 1
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:prismarine_crystals",
+        "count": 8
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 85
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Busy Bees",
+    "description": "Tend the hives: breed 6 bees and make 6 candles. Bees breed with flowers. Needs bees and flowers.",
+    "category": "generated",
+    "sort": 19,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:bee",
+        "count": 6
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:candle",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 10
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 85
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Mine Iron Ore",
+    "description": "Mine 48 iron ore. Needs a stone pickaxe or better. Found in caves.",
+    "category": "generated",
+    "sort": 24,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:iron_ore",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 11
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 100
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Stop the Guardians",
+    "description": "Slay 8 guardians. Needs an iron pickaxe or better. Found at ocean monuments.",
+    "category": "generated",
+    "sort": 32,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:guardian",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:redstone_block",
+        "count": 4
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 12
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 130
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Gem Duty",
+    "description": "Mine 12 lapis ore and collect 3 diamonds. Found deep underground. Dig deep, around y=-58. Needs an iron pickaxe or better.",
+    "category": "generated",
+    "sort": 32,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:lapis_ore",
+        "count": 12
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:diamond",
+        "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:ender_pearl",
+        "count": 8
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:glistering_melon_slice",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 255
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Beyond the Void",
+    "description": "Explore the End: gather 64 chorus fruit, defeat 3 shulkers and enter the End. Grows on the outer End islands. Found in the End.",
+    "category": "generated",
+    "sort": 35,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:chorus_fruit",
+        "count": 64
+      },
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:shulker",
+        "count": 3
+      },
+      {
+        "type": "justquests:visit_dimension",
+        "dimension": "minecraft:the_end"
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:tnt",
+        "count": 4
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 370
+      }
+    ]
+  }
+}

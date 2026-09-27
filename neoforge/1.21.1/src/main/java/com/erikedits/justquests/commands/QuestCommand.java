@@ -88,6 +88,29 @@ public class QuestCommand {
                 .executes(QuestCommand::mainQuestsStatus)
                 .then(Commands.literal("on").executes(ctx -> setMainQuests(ctx, true)))
                 .then(Commands.literal("off").executes(ctx -> setMainQuests(ctx, false))))
+            .then(Commands.literal("difficulty")
+                .requires(src -> src.hasPermission(2))
+                .executes(QuestCommand::difficultyShow)
+                .then(Commands.literal("easy").executes(ctx -> difficultySet(ctx, "easy")))
+                .then(Commands.literal("normal").executes(ctx -> difficultySet(ctx, "normal")))
+                .then(Commands.literal("hard").executes(ctx -> difficultySet(ctx, "hard"))))
+            .then(Commands.literal("generator")
+                .requires(src -> src.hasPermission(2))
+                .then(Commands.literal("status").executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.status())))
+                .then(Commands.literal("stats").executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.statsText())))
+                .then(Commands.literal("preview")
+                    .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.preview(5)))
+                    .then(Commands.argument("count", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1, 20))
+                        .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.preview(
+                            com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "count"))))))
+                .then(Commands.literal("explain")
+                    .then(Commands.argument("id", ResourceLocationArgument.id())
+                        .suggests((c, b) -> net.minecraft.commands.SharedSuggestionProvider.suggest(com.erikedits.justquests.generator.GenV2.servedIds(), b))
+                        .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.explain(ResourceLocationArgument.getId(ctx, "id"))))))
+                .then(Commands.literal("release")
+                    .then(Commands.argument("id", ResourceLocationArgument.id())
+                        .suggests((c, b) -> net.minecraft.commands.SharedSuggestionProvider.suggest(com.erikedits.justquests.generator.GenV2.servedIds(), b))
+                        .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.forceRelease(ResourceLocationArgument.getId(ctx, "id")))))))
             .then(Commands.literal("test")
                 .requires(src -> src.hasPermission(2))
                 .executes(QuestCommand::test))
@@ -375,6 +398,11 @@ public class QuestCommand {
             }
         }
 
+        String denied = com.erikedits.justquests.generator.GenV2.claim(id, player.getUUID());
+        if (denied != null) {
+            genFail(ctx.getSource(), "§c" + denied);
+            return 0;
+        }
         data.accept(id);
         store.markDirty();
         com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
@@ -403,9 +431,38 @@ public class QuestCommand {
 
         data.abandon(id);
         store.markDirty();
+        com.erikedits.justquests.generator.GenV2.abandoned(id, player.getUUID());
         com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
         ctx.getSource().sendSuccess(() ->
             Component.literal("§7Abandoned quest: " + id), false);
+        return 1;
+    }
+
+    private static void genSay(CommandSourceStack src, String msg) {
+        src.sendSuccess(() -> Component.literal(msg), false);
+    }
+
+    private static void genFail(CommandSourceStack src, String msg) {
+        src.sendFailure(Component.literal(msg));
+    }
+
+    private static int difficultyShow(CommandContext<CommandSourceStack> ctx) {
+        genSay(ctx.getSource(), "§7Generated-quest difficulty: §f" + com.erikedits.justquests.storage.WorldSettings.difficulty()
+            + "§7. Change it with /quest difficulty easy|normal|hard.");
+        return 1;
+    }
+
+    private static int difficultySet(CommandContext<CommandSourceStack> ctx, String value) {
+        com.erikedits.justquests.storage.WorldSettings.setDifficulty(value);
+        net.minecraft.server.MinecraftServer server = ctx.getSource().getServer();
+        if (server != null) com.erikedits.justquests.storage.WorldSettings.save(server);
+        com.erikedits.justquests.generator.GenV2.reloadConfig();
+        genSay(ctx.getSource(), "§aDifficulty set to " + value + " §7- applies from the next rotation or /quest reroll.");
+        return 1;
+    }
+
+    private static int generatorLines(CommandContext<CommandSourceStack> ctx, String text) {
+        for (String line : text.split("\n")) genSay(ctx.getSource(), line.startsWith("§") ? line : "§7" + line);
         return 1;
     }
 
@@ -432,6 +489,7 @@ public class QuestCommand {
 
     private static int reload(CommandContext<CommandSourceStack> ctx) {
         com.erikedits.justquests.storage.WorldSettings.load(ctx.getSource().getServer());
+        com.erikedits.justquests.generator.GenV2.reloadConfig();
         com.erikedits.justquests.storage.CustomQuestLoader.load();
         com.erikedits.justquests.network.QuestNetwork.syncAll(ctx.getSource().getServer());
         int count = QuestManager.INSTANCE.getQuests().size();
@@ -442,7 +500,7 @@ public class QuestCommand {
     }
 
     private static int reroll(CommandContext<CommandSourceStack> ctx) {
-        int n = com.erikedits.justquests.generator.GeneratedQuestStore.reroll();
+        int n = com.erikedits.justquests.generator.GenV2.reroll();
         if (n < 0) {
             ctx.getSource().sendSuccess(() -> Component.literal(
                 "§eGenerated quests are disabled for this world §7(set generatedQuests: true in settings.json)."), false);
@@ -491,6 +549,7 @@ public class QuestCommand {
         WorldQuestStore store = WorldQuestStore.get();
         if (store != null && store.has(target.getUUID())) {
             PlayerQuestData data = store.get(target.getUUID());
+            com.erikedits.justquests.generator.GenV2.releaseAllFor(target.getUUID());
             data.active.clear();
             data.completed.clear();
             data.pendingClaim.clear();
@@ -507,6 +566,7 @@ public class QuestCommand {
         if (store != null) {
             PlayerQuestData data = store.peek(target.getUUID());
             if (data != null) {
+                if (data.isActive(id)) com.erikedits.justquests.generator.GenV2.abandoned(id, target.getUUID());
                 data.active.remove(id);
                 data.completed.remove(id);
                 store.markDirty();
@@ -534,6 +594,7 @@ public class QuestCommand {
         for (QuestReward reward : quest.rewards()) {
             reward.grant(target);
         }
+        com.erikedits.justquests.generator.GenV2.completed(id, target.getUUID());
         store.markDirty();
         String name = target.getName().getString();
         src.sendSuccess(() -> Component.literal("§aForce-completed " + id + " for " + name + " (rewards granted)."), true);

@@ -1,0 +1,93 @@
+# vanilla | world seed 1 | NORMAL | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty normal, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_0  "Dig Deepslate Copper Ore"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:deepslate_copper_ore ×20
+  effort 0.40 min/unit (×1.10 deep) → 8.8 min (target 9.4, range 8–20 min)
+  tier 1 (always available), family metals, profile vanilla, tool stone, hints deep
+estimated 8.8 min (quick)
+reward give_item minecraft:golden_carrot ×5 (value 7.5) + xp 37 (value 3.1)  → 10.6 / budget 10.6
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Decorate: Hay Block"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective place_block minecraft:hay_block ×6
+  effort 1.45 min/unit → 8.7 min (target 9.3, range 8–20 min)
+  tier 0 (always available), family crops, profile vanilla, hints farm
+estimated 8.7 min (quick)
+reward give_item minecraft:bookshelf ×2 (value 9.0) + xp 17 (value 1.4)  → 10.4 / budget 10.4
+rejected alternatives: mine_block minecraft:wheat (breaking crops at any stage counts)
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Florist"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective collect_item minecraft:peony ×16
+  effort 0.35 min/unit → 5.6 min (target 16.0, range 8–20 min)
+  tier 0 (always available), family flowers, profile vanilla
+objective collect_item minecraft:poppy ×32
+  effort 0.10 min/unit → 3.2 min (target 16.0, range 8–20 min)
+  tier 0 (always available), family flowers, profile vanilla
+theme florist
+estimated 8.8 min (quick)
+reward give_item minecraft:glow_berries ×16 (value 4.0) + give_item minecraft:phantom_membrane ×2 (value 6.0) + xp 19 (value 1.6)  → 11.6 / budget 11.6
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Rail Batch"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective craft_item minecraft:rail ×40
+  effort 0.25 min/unit → 10.0 min (target 10.8, range 8–20 min)
+  tier 1 (always available), family iron_works, profile vanilla
+estimated 10.0 min (quick)
+reward give_item minecraft:cooked_porkchop ×16 (value 8.0) + xp 48 (value 4.0)  → 12.0 / budget 12.0
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Wool Run"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective collect_item #minecraft:wool ×48
+  effort 0.25 min/unit → 12.0 min (target 11.0, range 8–20 min)
+  tier 0 (always available), family wool, profile vanilla, tool shears
+estimated 12.0 min
+reward give_item minecraft:gold_ingot ×8 (value 10.4) + xp 48 (value 4.0)  → 14.4 / budget 14.4
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Skeleton Watch"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective kill_mob minecraft:skeleton ×16
+  effort 0.90 min/unit → 14.4 min (target 15.6, range 8–20 min)
+  tier 0 (always available), family undead, profile vanilla, hints night
+estimated 14.4 min
+reward give_item minecraft:gold_ingot ×10 (value 13.0) + xp 50 (value 4.2) + message  → 17.2 / budget 17.3
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Hot Cooked Cod"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective smelt_item minecraft:cooked_cod ×16
+  effort 0.90 min/unit → 14.4 min (target 13.2, range 8–20 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod, hints cook
+estimated 14.4 min
+reward give_item minecraft:iron_ingot ×19 (value 11.4) + effect minecraft:dolphins_grace 300s (value 2.0) + xp 47 (value 3.9)  → 17.3 / budget 17.3
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Place Bricks"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective place_block minecraft:bricks ×16
+  effort 0.95 min/unit → 15.2 min (target 15.2, range 8–20 min)
+  tier 0 (always available), family stonework, profile vanilla
+estimated 15.2 min
+reward give_item minecraft:phantom_membrane ×4 (value 12.0) + xp 75 (value 6.3)  → 18.3 / budget 18.2
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Lumber Order"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:cherry_log ×64
+  effort 0.10 min/unit (×1.50 cherry_grove) → 9.6 min (target 18.3, range 8–20 min)
+  tier 0 (always available), family wood, profile vanilla, hints cherry_grove
+objective mine_block minecraft:acacia_log ×64
+  effort 0.10 min/unit (×1.20 savanna) → 7.7 min (target 18.3, range 8–20 min)
+  tier 0 (always available), family wood, profile vanilla, hints savanna
+combo within family wood
+estimated 17.3 min
+reward give_item minecraft:bone_meal ×32 (value 3.2) + give_item minecraft:phantom_membrane ×4 (value 12.0) + xp 90 (value 7.5)  → 22.7 / budget 22.8
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Ocelot Ranch"  (NORMAL, cycle 1790510400, seed 0x2897…)
+objective breed_animal minecraft:ocelot ×3
+  effort 4.00 min/unit (×1.40 jungle) → 16.8 min (target 18.5, range 8–20 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints jungle
+estimated 16.8 min
+reward give_item minecraft:white_wool ×32 (value 8.0) + give_item minecraft:honey_bottle ×6 (value 7.2) + xp 60 (value 5.0)  → 20.2 / budget 20.2
+state: AVAILABLE
+

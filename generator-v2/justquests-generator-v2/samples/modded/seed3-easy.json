@@ -1,0 +1,246 @@
+{
+  "justquests:gen/1790510400_7": {
+    "title": "Hot Cooked Bacon",
+    "description": "Cook 8 bacon. Cut porkchops on a cutting board, then cook. Use a Farmer's Delight knife.",
+    "category": "generated",
+    "sort": 4,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "farmersdelight:cooked_bacon",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:copper_ingot",
+        "count": 20
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 12
+      }
+    ]
+  },
+  "justquests:gen/1790510400_0": {
+    "title": "Mystical Purple Flower Run",
+    "description": "Pick up 16 mystical purple flowers. Mystical flowers grow in forests, plains and meadows.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "botania:purple_mystical_flower",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:lead",
+        "count": 2
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 24
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Jungle Log Shift",
+    "description": "Break 40 jungle logs. Look in jungles.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:jungle_log",
+        "count": 40
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:coal",
+        "count": 17
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 16
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Raw Lead Gathering",
+    "description": "Collect 8 raw lead. Lead ore drops raw lead. Needs a stone pickaxe or better. Found in caves.",
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "mekanism:raw_lead",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:lantern",
+        "count": 6
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 19
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Cooked Mutton Feast",
+    "description": "Eat 6 cooked mutton.",
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:consume_item",
+        "item": "minecraft:cooked_mutton",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:copper_ingot",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 29
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Scoria Breaker",
+    "description": "Break 64 scoria. Found in thick stone layers underground.",
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "create:scoria",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:coal_block",
+        "count": 2
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 35
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Stone Bricks Design",
+    "description": "Build with 48 stone bricks.",
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:place_block",
+        "block": "minecraft:stone_bricks",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:bookshelf",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 32
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Cave Spider Bounty",
+    "description": "Slay 4 cave spiders. Found in abandoned mineshafts.",
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:cave_spider",
+        "count": 4
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:onion",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 36
+      },
+      {
+        "type": "justquests:message",
+        "message": "Well done, adventurer."
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Coal Block Workshop",
+    "description": "Make 4 coal blocks.",
+    "category": "generated",
+    "sort": 9,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:coal_block",
+        "count": 4
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:gold_ingot",
+        "count": 5
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 32
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "TNT Request",
+    "description": "Make 3 TNT. Five gunpowder and four sand. They spawn at night and in dark caves.",
+    "category": "generated",
+    "sort": 9,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:tnt",
+        "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "botania:white_petal",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 31
+      }
+    ]
+  }
+}

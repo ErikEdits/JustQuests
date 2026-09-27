@@ -1,0 +1,109 @@
+# vanilla | world seed 1 | HARD | 10 quests | day 30, Nether and End unlocked
+
+Generator v2: enabled, difficulty hard, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.21.1 (neoforge)
+
+justquests:gen/1790510400_0  "Mine Nether Gold Ore"  (HARD, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:nether_gold_ore ×32
+  effort 0.35 min/unit → 11.2 min (target 15.9, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_ores, profile vanilla, tool wood, minecraft:the_nether
+travel overhead 3.0 min
+estimated 14.2 min (quick)
+reward give_item minecraft:ghast_tear ×4 (value 16.0) + effect minecraft:jump_boost 300s (value 1.5) + xp 46 (value 3.8)  → 21.3 / budget 21.3
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Fox Farm"  (HARD, cycle 1790510400, seed 0x2897…)
+objective breed_animal minecraft:fox ×3
+  effort 4.00 min/unit (×1.20 taiga) → 14.4 min (target 16.5, range 15–35 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints taiga
+estimated 14.4 min (quick)
+reward give_item minecraft:iron_block ×2 (value 10.8) + loot_table minecraft:chests/jungle_temple (value 9.0) + xp 22 (value 1.8)  → 21.6 / budget 21.6
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Gold Ore Quarry"  (HARD, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:gold_ore ×12
+  effort 1.20 min/unit (×1.10 deep) → 15.8 min (target 16.5, range 15–35 min)
+  tier 2 (always available), family metals, profile vanilla, tool iron, hints deep
+estimated 15.8 min (quick)
+reward give_item minecraft:clock ×1 (value 5.0) + give_item minecraft:sea_lantern ×2 (value 11.0) + xp 95 (value 7.9)  → 23.9 / budget 23.8
+rejected alternatives: collect_item minecraft:gold_ore (drops raw_gold, needs Silk Touch)
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Supper Time"  (HARD, cycle 1790510400, seed 0x2897…)
+objective smelt_item minecraft:cooked_chicken ×24
+  effort 0.40 min/unit → 9.6 min (target 22.4, range 15–35 min)
+  tier 0 (always available), family livestock, profile vanilla, hints cook
+objective consume_item minecraft:cooked_beef ×6
+  effort 1.25 min/unit → 7.5 min (target 22.4, range 15–35 min)
+  tier 0 (always available), family livestock, profile vanilla, hints plains
+theme camp_cook
+estimated 17.1 min (quick)
+reward give_item minecraft:slime_ball ×8 (value 12.0) + give_item minecraft:arrow ×32 (value 4.8) + xp 135 (value 11.3)  → 28.1 / budget 28.2
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Lumber Order"  (HARD, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:cherry_log ×64
+  effort 0.10 min/unit (×1.50 cherry_grove) → 9.6 min (target 32.1, range 15–35 min)
+  tier 0 (always available), family wood, profile vanilla, hints cherry_grove
+objective collect_item minecraft:jungle_log ×64
+  effort 0.10 min/unit (×1.40 jungle) → 9.0 min (target 32.1, range 15–35 min)
+  tier 0 (always available), family wood, profile vanilla, hints jungle
+combo within family wood
+estimated 18.6 min (quick)
+reward give_item minecraft:leather ×16 (value 6.4) + give_item minecraft:phantom_membrane ×4 (value 12.0) + xp 145 (value 12.1)  → 30.5 / budget 30.6
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Potion Ingredients"  (HARD, cycle 1790510400, seed 0x2897…)
+objective collect_item minecraft:nether_wart ×24
+  effort 0.40 min/unit (×1.30 fortress) → 12.5 min (target 27.8, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_plants, profile vanilla, hints fortress, minecraft:the_nether
+objective craft_item minecraft:polished_blackstone ×64
+  effort 0.08 min/unit (×1.20 basalt_deltas) → 6.1 min (target 27.8, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_crafts, profile vanilla, hints basalt_deltas, minecraft:the_nether
+travel overhead 3.0 min
+theme brewers_supplies
+estimated 21.6 min (quick)
+reward give_item minecraft:gold_ingot ×16 (value 20.8) + xp 180 (value 15.0)  → 35.8 / budget 35.7
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Stonemason"  (HARD, cycle 1790510400, seed 0x2897…)
+objective collect_item minecraft:pointed_dripstone ×32
+  effort 0.20 min/unit (×1.30 dripstone_caves) → 8.3 min (target 28.3, range 15–35 min)
+  tier 1 (always available), family stone, profile vanilla, hints dripstone_caves
+objective place_block minecraft:bricks ×16
+  effort 0.95 min/unit → 15.2 min (target 28.3, range 15–35 min)
+  tier 0 (always available), family stonework, profile vanilla
+theme stonemason
+estimated 23.5 min
+reward give_item minecraft:ender_pearl ×8 (value 20.0) + xp 225 (value 18.8)  → 38.8 / budget 38.8
+rejected alternatives: craft_item minecraft:flower_pot (max count takes only 3.2 min)
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Mushroom Supplies"  (HARD, cycle 1790510400, seed 0x2897…)
+objective mine_block minecraft:brown_mushroom_block ×48
+  effort 0.15 min/unit (×1.30 dark_forest) → 9.4 min (target 27.0, range 15–35 min)
+  tier 0 (always available), family mushrooms, profile vanilla, hints dark_forest
+objective collect_item minecraft:red_mushroom ×32
+  effort 0.35 min/unit (×1.30 dark_forest) → 14.6 min (target 27.0, range 15–35 min)
+  tier 0 (always available), family mushrooms, profile vanilla, hints dark_forest
+combo within family mushrooms
+estimated 23.9 min
+reward give_item minecraft:iron_ingot ×24 (value 14.4) + loot_table minecraft:chests/village/village_weaponsmith (value 7.0) + xp 215 (value 17.9)  → 39.3 / budget 39.5
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Wither Skeleton Bounty"  (HARD, cycle 1790510400, seed 0x2897…)
+objective kill_mob minecraft:wither_skeleton ×6
+  effort 3.00 min/unit (×1.30 fortress) → 23.4 min (target 26.5, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_mobs, profile vanilla, hints fortress, minecraft:the_nether
+travel overhead 3.0 min
+estimated 26.4 min
+reward give_item minecraft:ender_pearl ×8 (value 20.0) + effect minecraft:luck 600s (value 3.0) + xp 200 (value 16.7)  → 39.7 / budget 39.6
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Slime Hunt"  (HARD, cycle 1790510400, seed 0x2897…)
+objective kill_mob minecraft:slime ×16
+  effort 1.50 min/unit (×1.30 swamp) → 31.2 min (target 33.2, range 15–35 min)
+  tier 1 (always available), family monsters, profile vanilla, hints swamp
+estimated 31.2 min
+reward give_item minecraft:emerald_block ×1 (value 22.5) + xp 290 (value 24.2)  → 46.7 / budget 46.8
+state: AVAILABLE
+
