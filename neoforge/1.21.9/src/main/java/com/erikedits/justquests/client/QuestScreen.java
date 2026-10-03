@@ -342,6 +342,10 @@ public class QuestScreen extends Screen {
                 + (missing.size() > 1 ? " +" + (missing.size() - 1) : "");
         } else if (wait > 0) {
             note = "Again in " + duration(wait);
+        } else if (st == Status.COMPLETED) {
+            // rewards are paid out the moment a quest completes (a claim button comes with 0.4.0)
+            note = "✓ Rewards received";
+            noteColor = GOOD;
         }
         if (note != null) {
             g.drawString(this.font, fit(note, dw), dx, dy, noteColor, false);
@@ -359,9 +363,10 @@ public class QuestScreen extends Screen {
         g.drawString(this.font, Component.literal("Objectives"), dx, dy, HEAD, false);
         dy += 11;
         List<QuestObjective> objs = q.objectives();
+        boolean finished = st == Status.COMPLETED;
         for (int i = 0; i < objs.size() && dy < actionY() - 12; i++) {
             int need = objs.get(i).requiredCount();
-            int cur = prog != null ? Math.min(prog.get(i), need) : 0;
+            int cur = finished ? need : prog != null ? Math.min(prog.get(i), need) : 0;
             boolean done = cur >= need;
             g.drawString(this.font, fit((done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString(), dw),
                 dx, dy, done ? GOOD : TEXT, false);

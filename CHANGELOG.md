@@ -27,6 +27,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 - The quest book window is 32 pixels wider so titles fit next to the icons.
 - Goal lines read "5/8 Mine Iron Ore" instead of "5/8 Mine 8x Iron Ore"; tags read "any logs".
 - Book and HUD options are saved in `config/justquests-client.json`.
+- A completed quest shows its goals as done and "Rewards received" (rewards are still paid out
+  the moment a quest completes; a claim button is planned for 0.4.0). It used to show 0/x.
 
 ## [0.3.3] - 2026-10-04
 
