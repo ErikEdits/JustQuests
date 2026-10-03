@@ -33,6 +33,8 @@ public interface QuestObjective {
             case BreedAnimalObjective.TYPE_ID -> BreedAnimalObjective.MAP_CODEC;
             case ConsumeItemObjective.TYPE_ID -> ConsumeItemObjective.MAP_CODEC;
             case SmeltItemObjective.TYPE_ID -> SmeltItemObjective.MAP_CODEC;
+            case EnchantItemObjective.TYPE_ID -> EnchantItemObjective.MAP_CODEC;
+            case UseItemObjective.TYPE_ID -> UseItemObjective.MAP_CODEC;
             default -> throw new IllegalStateException("Unknown objective type: " + type);
         };
     }

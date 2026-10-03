@@ -1,0 +1,18 @@
+{
+  "title": "Example: use_item",
+  "description": "Throw 8 snowballs. Only uses that do something count, not every right-click.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:use_item",
+      "item": "minecraft:snowball",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 20
+    }
+  ]
+}

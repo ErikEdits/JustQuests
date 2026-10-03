@@ -30,4 +30,4 @@ adapter (`generator/GenV2Host.java`, `generator/GenV2.java`).
 - The mod ids in the five profiles were researched without access to Modrinth; every id is
   existence-checked at runtime, so a wrong id only means fewer quests for that mod.
 - The in-game behaviour (claims, rotation, progression unlocks) is covered by the core's tests and
-  simulation, not yet by a play test on every loader.
+  simulation, and was play-tested on every loader and version (October 2026).

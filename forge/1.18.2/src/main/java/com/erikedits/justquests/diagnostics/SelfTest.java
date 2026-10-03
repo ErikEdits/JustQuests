@@ -214,6 +214,9 @@ public final class SelfTest {
             {"breed_animal", "{\"type\":\"justquests:breed_animal\",\"entity\":\"minecraft:cow\",\"count\":1}"},
             {"consume_item", "{\"type\":\"justquests:consume_item\",\"item\":\"minecraft:cooked_beef\",\"count\":1}"},
             {"smelt_item", "{\"type\":\"justquests:smelt_item\",\"item\":\"minecraft:iron_ingot\",\"count\":1}"},
+            {"enchant_item", "{\"type\":\"justquests:enchant_item\",\"count\":1}"},
+            {"use_item", "{\"type\":\"justquests:use_item\",\"item\":\"minecraft:snowball\",\"count\":1}"},
+            {"collect_item (filter)", "{\"type\":\"justquests:collect_item\",\"item\":{\"id\":\"minecraft:diamond_sword\",\"enchantments\":{\"minecraft:sharpness\":2},\"name\":\"Excalibur\"},\"count\":1}"},
         };
         String objErr = parsesAll(objSamples, true);
         check(results, tally, "All objective types parse", objErr == null,
@@ -227,6 +230,7 @@ public final class SelfTest {
             {"xp", "{\"type\":\"justquests:xp\",\"amount\":30}"},
             {"effect", "{\"type\":\"justquests:effect\",\"effect\":\"minecraft:regeneration\",\"seconds\":20,\"amplifier\":0}"},
             {"message", "{\"type\":\"justquests:message\",\"message\":\"Well done!\"}"},
+            {"title", "{\"type\":\"justquests:title\",\"title\":\"Well done!\",\"subtitle\":\"Quest complete\"}"},
         };
         String rewErr = parsesAll(rewSamples, false);
         check(results, tally, "All reward types parse", rewErr == null,

@@ -34,6 +34,7 @@ public class ServerStorageEvents {
         WorldQuestStore.unload();
         CustomQuestLoader.clear();
         com.erikedits.justquests.generator.GenV2.stop();
+        com.erikedits.justquests.progress.StatObjectives.clear();
         CommunityHints.clear();
         WorldSettings.reset();
     }

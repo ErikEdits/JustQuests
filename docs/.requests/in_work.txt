@@ -1,2 +1,3 @@
-The next update will include a few new features and functions, as well as a button to disable the main quests; however, it will take a little while, as we are currently working on an open-source video editor. her are  the questions from the community: https://github.com/ErikEdits/JustQuests/blob/main/docs/.requests/questions.md 
-and here is the schedule for the next update https://github.com/ErikEdits/JustQuests/blob/main/Next%20update.txt
+The next update (0.3.2) adds two new quest goals - enchant items at an enchanting table and use items (throw, place, apply, look through...) - plus item filters (for example "a sword with Sharpness II"), a big on-screen title as a reward, and a cleanup of old code. JustQuests is also coming to CurseForge.
+Questions from the community: https://github.com/ErikEdits/JustQuests/blob/main/docs/.requests/questions.md
+Roadmap: https://github.com/ErikEdits/JustQuests/blob/main/docs/build-todo.md

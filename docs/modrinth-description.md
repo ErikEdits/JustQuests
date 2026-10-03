@@ -60,6 +60,8 @@ quest needs **all** objectives or just **any one** of them:
 - **craft_item** – craft a given item
 - **smelt_item** – smelt items in a furnace
 - **consume_item** – eat or drink an item
+- **enchant_item** – enchant items at an enchanting table
+- **use_item** – use an item (throw, place, apply, look through…) — only uses that do something count
 - **place_block** – place blocks
 - **kill_mob** – defeat entities of a type
 - **tame_animal** – tame animals
@@ -69,8 +71,9 @@ quest needs **all** objectives or just **any one** of them:
 - **visit_dimension** – enter a dimension (vanilla **or** modded, by id)
 - **gain_advancement** – earn an advancement
 
-Item objectives accept a single id (`minecraft:oak_log`), a list, or a
-**tag** (`#minecraft:logs`).
+Item objectives accept a single id (`minecraft:oak_log`) or a **tag**
+(`#minecraft:logs`), optionally narrowed by **enchantments**, **potion** or
+**custom name** — the same JSON on every Minecraft version.
 
 Rewards:
 
@@ -79,6 +82,7 @@ Rewards:
 - **xp** – give experience points
 - **effect** – apply a potion effect
 - **message** – send the player a message (per-language supported)
+- **title** – a big on-screen title with optional subtitle
 - **command** – run any command as the player (`{player}` is substituted) —
   covers economy payouts, effects and more with **no** hard dependency
 

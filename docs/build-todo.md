@@ -36,8 +36,14 @@ community until we are ready for the GUI.
 | 0.1.11 | Bug-fix & maintenance (cancelled-event guards, stats cap) | ✅ shipped |
 | 0.1.12 | Content & language pack (25 quests, EN/DE/FR/ES, example datapack) | ✅ shipped |
 | **0.2.0** | **In-game GUI** (interim, SP) + MC 1.21.6–1.21.10 (11 versions) | ✅ shipped |
-| 0.2.x | Final GUI from the Discord vote (3 designs) + multiplayer sync | ⏭️ next month |
-| 0.3.0+ | Generator, more loaders/versions, Paper/Bukkit plugin | ⏭️ later |
+| 0.2.1–0.2.2 | Textured GUI everywhere, Fabric + Forge ports (34 builds) | ✅ shipped |
+| 0.2.3 | Multiplayer sync (quest book works on servers) | ✅ shipped |
+| 0.2.4 | Toggle to hide the built-in main quests (`/quest mainquests`) | ✅ shipped |
+| 0.2.5 | Stability (Fabric pickup mixin, lighter sync, cache cleared on disconnect) | ✅ shipped |
+| **0.3.0** | **Generator v2** (modded content, claims, difficulty, progression) | ✅ shipped |
+| 0.3.1 | Claims shown in the quest book; GUI text fix for 1.21.6+ | ✅ shipped |
+| 0.3.2 | `enchant_item`, `use_item`, item filters, `title` reward, v1 generator removed, CurseForge | 🔨 in work |
+| 0.4.0 | Claim button + choice rewards (changes the completion flow) | ⏭️ later |
 
 Each 0.1.x release is a Modrinth update, which puts the mod back in
 "recently updated" and funnels new players to the Discord — so a steady
@@ -53,7 +59,7 @@ drip of small, useful releases *is* the growth plan, not a detour from it.
 
 ---
 
-## Phase 1 — Storage foundation ⚠️ (do first) — IN PROGRESS
+## Phase 1 — Storage foundation ⚠️ (do first) — DONE
 
 **1.1 Data model** ✅
 - [x] `PlayerQuestData` (active map, pendingClaim [reserved, Q48],
@@ -98,24 +104,26 @@ drip of small, useful releases *is* the growth plan, not a detour from it.
 - [x] `tame_animal` (AnimalTameEvent)
 - [x] `gain_advancement` (AdvancementEvent.AdvancementEarnEvent)
 - [x] `visit_dimension` (PlayerChangedDimensionEvent; matches modded dims by id)
-- [ ] `enchant_item` — pending (no clean cross-version event; poll/mixin
-      later, see cross-loader-events.md)
+- [x] `enchant_item` (0.3.2) — counts the vanilla "Items Enchanted" statistic
+      (enchanting table only), no mixin; optional `item` filter
 - Cross-loader strategy documented in
   [cross-loader-events.md](cross-loader-events.md)
 - [x] Tag support in item fields — `item` accepts a single id, a list,
       or a `#tag` (collect_item + craft_item), via ITEM_OR_TAG codec (Q38)
-- [ ] Optional `components`/NBT match per objective (Q39)
+- [x] Item filters (Q39, 0.3.2) — `item` may be `{"id", "enchantments", "potion", "name"}`;
+      one JSON for every version (NBT before 1.20.5, components after)
 - [x] `mode: all | any` flag for multi-objective (Q40)
 
 **2.2 Reward types**
 - [x] `loot_table` reward (random items from a loot table, Q29)
 - [x] `command` reward ({player} substitution, runs as @s level 4 — Q52)
-- [ ] (later) `xp`, choice rewards (Q49 — needs GUI)
+- [x] `xp` reward (0.1.7)
+- [ ] Choice rewards (Q49 — needs GUI, planned for 0.4.0)
 
 **2.3 Quest categories (Q3)**
 - [x] `category` field in the data model (default "datapack"), shown in
       `/quest list`
-- [ ] Decide fixed vs. pack-definable (Q77 — still open)
+- [x] Pack-definable free-form category (Q77, decided in 0.1.8)
 
 ---
 
@@ -129,17 +137,15 @@ to render from `assets/justquests/textures/gui/` (v2-full): fixed 248x184 window
 `quest_row` state textures, textured close/page/accept(claim)/abandon buttons,
 progress bars. No vanilla widgets — manual `blit` + `mouseClicked` hit-testing.
 Textures copied from `docs/assets/gui-2.0.0/JustQuests-GUI-v2-full`.
-**Still to do:** in-game visual check + tuning (headless can't render), then
-roll out the textured screen to the other GUI versions (1.20.1+). NOTE: `blit`
+Since rolled out to every GUI version (1.20.1+) and checked in-game. NOTE: `blit`
 signature differs 1.21.2+ / 1.21.4+ — the roll-out needs a per-version blit helper.
 Client classes: `client/QuestClient` (keybind; `KeyMapping` category is a String
 pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1.21.6+).
 
-- [ ] Wait for Discord poll: style (Q37), opening method (Q10), book/
-      button (Q11), notifications (Q12), HUD tracker (Q43)
-- [ ] Replace the interim GUI with the chosen design + **multiplayer sync**
-      (data packet: server -> client), wiring in the v2-full textures
-- [ ] Build textures from [gui-design-brief.md](gui-design-brief.md)
+- [x] ~~Wait for Discord poll~~ — dropped, v2-full textures adopted directly
+- [x] Textured screen rolled out to every GUI build (1.20.1+, 0.2.1)
+- [x] **Multiplayer sync** (server -> client payload, 0.2.3; lighter in 0.2.5)
+- [x] Generated-quest claims in the book ("Taken by X", 0.3.1)
 - [ ] Quest list screen: grouping by category/status/custom order (Q45)
 - [ ] Per-quest icon with fallback (Q44); detail view (Q78 open)
 - [ ] Search box that auto-appears at high quest counts (Q46)
@@ -167,19 +173,20 @@ pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1
 
 ## Phase 5 — Server & QoL
 
-- [ ] Admin commands: reset / view other / list claimed (Q33)
-- [ ] Statistics + server leaderboard (Q34); in-game view (Q58 open)
-- [ ] Difficulty Easy/Normal/Hard, OP-set per world (Q8/Q9)
+- [x] Admin commands: reset / view other (Q33, 0.1.9); claimed generated
+      quests via `/quest generator status|release` (0.3.0)
+- [x] Statistics + server leaderboard (Q34, 0.1.10); in-game view (Q58 open)
+- [x] Difficulty Easy/Normal/Hard, OP-set per world (Q8/Q9, 0.3.0)
 - [ ] Permission gating via OP + LuckPerms/perm plugins (Q83); per-quest
       permission (Q55 open)
-- [ ] Self-managed JSON config (Q35)
-- [ ] Update notice; optional plugin auto-update w/ safeguards (Q36)
-- [ ] Locked-quest teaser, command-enabled (Q28)
-- [ ] Announce-flagged completion broadcast, default on (Q53)
+- [x] Self-managed JSON config — per-world `settings.json` (Q35)
+- [~] Update notice (Q36) — tried in 0.1.10, removed in 0.1.11 (see 9f)
+- [x] Locked-quest teaser, command-enabled (Q28, 0.1.7)
+- [x] Announce-flagged completion broadcast, default on (Q53, 0.1.9)
 
 ---
 
-## Phase 6 — quest generator (v1 procedural — IN PROGRESS)
+## Phase 6 — quest generator (v1 0.2.x → **v2 in 0.3.0** — DONE)
 
 **v1 built in the NeoForge 1.21.1 baseline (2026-07-03).** Procedural, no AI/LLM,
 zero dependencies. `generator/QuestGenerator` emits the same quest JSON the
@@ -195,10 +202,18 @@ category `generated`, toggled by `generatedQuests`/`generatedCount` in
 - [x] Per-world toggle; own category (Q1/Q3)
 - [x] **Propagated to all 34 version folders** (NeoForge/Fabric/Forge; pre-1.21 uses
       the `new ResourceLocation(...)` shim; per-loader wiring + per-version /quest reroll feedback)
-- [ ] Read loaded registries/tags for modded-aware content (Q41) — v2 (curated pools for now)
-- [ ] Shared, loosely-synced set; one active quest/player; exclusive claiming (Q7/Q47) — needs multiplayer sync (with the GUI)
-- [ ] Test phase to tune balancing/limits/expiry + difficulty (Q5/Q9)
-- [ ] Runtime-test in-game (headless build can't verify)
+- [x] **Generator v2 (0.3.0)** — version-neutral core in `generator-v2/`, copied into all
+      34 builds; spec: [generator-v2-spec.md](generator-v2-spec.md)
+- [x] Read loaded registries/tags for modded-aware content (Q41) — five mod profiles
+      (Farmer's Delight, Create, Mekanism, Twilight Forest, Botania)
+- [x] Shared set; one active quest/player; exclusive claiming (Q7/Q47), shown in the book (0.3.1)
+- [ ] Test phase to tune balancing/limits/expiry + difficulty (Q5/Q9) — anonymous stats
+      are collected; adaptive balancing is off by default
+- [x] Runtime-tested in-game on every loader (2026-10)
+- [x] v1 classes (`QuestGenerator`, `GeneratedQuestStore`) removed in 0.3.2; worlds keep
+      their old `generated.json`, which v2 migrates on first start
+- [ ] Next: thicker Botania / Mekanism / Twilight Forest profiles, tags for
+      `mine_block`/`kill_mob`, stonecutter recipes, more mod profiles
 
 ---
 
@@ -254,7 +269,9 @@ under `neoforge/<mc-version>/`, all built by one `./gradlew build`.
       (duplicate `mcp/client/Start.class` → empty merged jar). Folder kept;
       re-add in settings.gradle once fixed upstream.
 - 12 → **11 NeoForge versions** building (1.21–1.21.10).
-- [ ] Loader ports: Fabric, Forge (~3 weeks each after a feature matures)
+- [x] Loader ports: Fabric 1.18.2–1.21.10 (17), Forge 1.18.2–1.20.1 (4) — 34 builds
+      with NeoForge 1.20.4–1.21.10 (13)
+- [ ] **CurseForge** listing (0.3.2: local create sheet + upload script)
 - [ ] **Paper/Bukkit plugin** edition (shared JSON file is the bridge;
       poll cog already specced) — own deep breakdown when reached
 
@@ -295,10 +312,10 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 - [x] `consume_item` objective (LivingEntityUseItemEvent.Finish; id or tag)
 - [x] `smelt_item` objective (PlayerEvent.ItemSmeltedEvent; id or tag)
 - [x] 4 bundled examples + `/quest test` samples for each
-- [ ] `enchant_item` objective — deferred (needs a mixin; no clean event)
-- [ ] `use_item` (raw right-click) — deferred (noisy; consume covers food/drink)
-- [ ] Optional `components`/NBT match per item objective (Q39) — deferred
-      to a later release (needs a richer ItemMatcher)
+- [x] `enchant_item` objective — done in 0.3.2 via vanilla statistics (no mixin)
+- [x] `use_item` — done in 0.3.2: the vanilla "Times Used" statistic, so only
+      uses that did something count (not every right-click)
+- [x] Item filters per item objective (Q39) — done in 0.3.2
 
 ### Phase 9c — More rewards + quest logic (v0.1.7) — DONE (2026-06-20)
 - [x] `xp` reward, `effect` (potion) reward, `message` reward
@@ -309,7 +326,7 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
       on accept
 - [x] Locked-quest teaser in `/quest list` (Q28)
 - [x] Bundled examples: `seasoned_miner` (chain), `daily_bread` (repeatable)
-- [ ] `title` reward (actionbar/title) — deferred; `message` covers chat
+- [x] `title` reward — done in 0.3.2 (title + optional subtitle and timings)
 
 ### Phase 9d — Categories & organization (v0.1.8) — DONE (2026-06-20)
 - [x] Category stays **pack-definable** (free-form string field, Q77)
@@ -326,7 +343,7 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 - [x] Per-world `settings.json` centralized in `WorldSettings`
       (discordWelcome, announceCompletions) — Phase 5 self-config groundwork
 - [ ] Permission gating via perms plugins / per-quest perm (Q83/Q55) — deferred
-- [ ] Difficulty Easy/Normal/Hard (Q8/Q9) — deferred (needs count scaling)
+- [x] Difficulty Easy/Normal/Hard (Q8/Q9) — done in 0.3.0 (generator)
 
 ### Phase 9f — Stats, notices & feedback (v0.1.10) — DONE (2026-06-20)
 - [x] `/quest stats` (personal: %, per-category, first/last) (Q34)
@@ -355,7 +372,8 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 
 ## Cross-cutting (apply throughout)
 
-- [ ] Everything server-side-safe; no webhooks/tokens in the mod jar
-- [ ] CI stays green; docs-only commits skip builds
-- [ ] Modrinth + CurseForge publish per release (auto-publish later)
+- [x] Everything server-side-safe; no webhooks/tokens in the mod jar
+- [x] CI builds all 34 jars on every push; a `v*` tag publishes the GitHub release
+- [x] Modrinth publish per release (local `upload-modrinth.ps1`, one version per jar)
+- [ ] CurseForge publish per release (local `upload-curseforge.ps1`, from 0.3.2)
 - [ ] Back up to USB after each work session

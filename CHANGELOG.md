@@ -3,6 +3,28 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.2] - 2026-10-04
+
+### Added
+- **New goal `enchant_item`:** enchant items at an enchanting table, optionally a specific item
+  (`"item": "#minecraft:swords"`). An anvil does not count.
+- **New goal `use_item`:** use an item a number of times: throw snowballs or ender pearls, apply
+  bone meal, look through a spyglass, light a fire, place blocks, mine with a tool. Only uses
+  that actually do something count, so spamming right-click does nothing.
+- **Item filters:** item goals can ask for more than the item. Write `item` as an object with
+  `enchantments` (minimum levels), `potion` or `name` (an anvil name), for example
+  `{"id": "minecraft:potion", "potion": "minecraft:swiftness"}`. The same quest file works on
+  every Minecraft version.
+- **New reward `title`:** a big on-screen title with an optional subtitle and timing
+  (`fade_in`, `stay`, `fade_out`), translatable like the other quest texts.
+- Example quests for all of it in the example datapack.
+
+### Changed
+- The two new goals count Minecraft's own statistics ("Items Enchanted", "Times Used"), so
+  they behave the same on NeoForge, Fabric and Forge.
+- Removed the old (v1) quest generator code, unused since 0.3.0. Worlds keep their old
+  generated-quest file, which the new generator still reads once.
+
 ## [0.3.1] - 2026-10-03
 
 ### Added

@@ -22,7 +22,7 @@ Objectives (one each):
 `ex_collect_item`, `ex_mine_block`, `ex_craft_item`, `ex_smelt_item`,
 `ex_consume_item`, `ex_place_block`, `ex_kill_mob`, `ex_tame_animal`,
 `ex_breed_animal`, `ex_gain_advancement`, `ex_visit_dimension`,
-`ex_reach_level`, `ex_reach_location`.
+`ex_reach_level`, `ex_reach_location`, `ex_enchant_item`, `ex_use_item`.
 
 Features:
 - `ex_item_tag` — item field as a `#tag`.
@@ -30,9 +30,11 @@ Features:
 - `ex_chain_1` + `ex_chain_2` — `requires` (a locked chain).
 - `ex_repeatable` — `repeatable` + `cooldown_hours`.
 - `ex_multilang` — `title`/`description` as a per-language map.
+- `ex_item_filter` — `item` as an object with `potion` / `enchantments`
+  (also `name` for an anvil name). Filters work on every version.
 
 Reward types shown across the examples: `give_item`, `xp`, `effect`,
-`message`, `loot_table`, and `command` (`ex_reach_location` runs
+`message`, `loot_table`, `title`, and `command` (`ex_reach_location` runs
 `give {player} minecraft:cookie 1`).
 
 ## Notes

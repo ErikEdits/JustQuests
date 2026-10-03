@@ -60,6 +60,7 @@ public class JustQuestsFabric implements ModInitializer {
             WorldQuestStore.unload();
             CustomQuestLoader.clear();
             com.erikedits.justquests.generator.GenV2.stop();
+            com.erikedits.justquests.progress.StatObjectives.clear();
             CommunityHints.clear();
             WorldSettings.reset();
         });
@@ -80,6 +81,7 @@ public class JustQuestsFabric implements ModInitializer {
                 com.erikedits.justquests.generator.GenV2.tick();
             }
             for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+                com.erikedits.justquests.progress.StatObjectives.tick(player);   // use_item, enchant_item
                 if (player.tickCount % 20 == 0) FabricQuestHooks.onPlayerTickReach(player);
             }
         });

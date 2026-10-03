@@ -190,6 +190,7 @@ public class PlayerQuestEvents {
     /** reach_location + reach_level: checked once a second per player. */
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent.Post event) {
+        if (event.getEntity() instanceof ServerPlayer sp) com.erikedits.justquests.progress.StatObjectives.tick(sp);   // use_item, enchant_item (every tick)
         if (event.getEntity() instanceof ServerPlayer player && player.tickCount % 20 == 0) {
             QuestProgressService.advance(player, obj -> {
                 if (obj instanceof ReachLocationObjective r && r.isAt(player)) return 1;

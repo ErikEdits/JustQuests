@@ -161,6 +161,7 @@ public class PlayerQuestEvents {
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
+        if (event.player instanceof ServerPlayer sp) com.erikedits.justquests.progress.StatObjectives.tick(sp);   // use_item, enchant_item (every tick)
         if (event.player instanceof ServerPlayer player && player.tickCount % 20 == 0) {
             QuestProgressService.advance(player, obj -> {
                 if (obj instanceof ReachLocationObjective r && r.isAt(player)) return 1;

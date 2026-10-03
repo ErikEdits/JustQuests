@@ -1,0 +1,23 @@
+{
+  "title": "Example: enchant_item",
+  "description": "Enchant 2 items at an enchanting table (an anvil does not count).",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:enchant_item",
+      "count": 2
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:lapis_lazuli",
+      "count": 16
+    },
+    {
+      "type": "justquests:title",
+      "title": "Enchanter!",
+      "subtitle": "Example quest complete"
+    }
+  ]
+}

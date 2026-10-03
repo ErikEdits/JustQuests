@@ -1,0 +1,31 @@
+{
+  "title": "Example: item filters",
+  "description": "Drink a Potion of Swiftness, and enchant a sword that gets Sharpness.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:consume_item",
+      "item": { "id": "minecraft:potion", "potion": "minecraft:swiftness" },
+      "count": 1
+    },
+    {
+      "type": "justquests:enchant_item",
+      "item": { "id": "#minecraft:swords", "enchantments": { "minecraft:sharpness": 1 } },
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:diamond",
+      "count": 2
+    },
+    {
+      "type": "justquests:title",
+      "title": { "en_us": "Sharp and swift!", "de_de": "Scharf und schnell!" },
+      "fade_in": 5,
+      "stay": 40,
+      "fade_out": 10
+    }
+  ]
+}
