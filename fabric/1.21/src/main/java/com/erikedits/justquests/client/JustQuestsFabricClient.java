@@ -8,12 +8,13 @@ import net.minecraft.client.KeyMapping;
 import org.lwjgl.glfw.GLFW;
 
 /**
- * Fabric client entry point: registers the quest-book keybind (default J) and
- * opens the shared {@link QuestScreen}. Singleplayer for now (the screen reads
- * quest data directly) — same interim GUI as the NeoForge build.
+ * Fabric client entry point: receives the quest sync, registers the quest book key
+ * (default J) and the HUD tracker key (H), opens {@link QuestScreen} and draws
+ * {@link QuestHud}.
  */
 public class JustQuestsFabricClient implements ClientModInitializer {
     private static KeyMapping openQuests;
+    private static KeyMapping toggleHud;
 
     @Override
     public void onInitializeClient() {
@@ -29,6 +30,11 @@ public class JustQuestsFabricClient implements ClientModInitializer {
 
         openQuests = KeyBindingHelper.registerKeyBinding(new KeyMapping(
             "key.justquests.open", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_J, "key.categories.misc"));
+        toggleHud = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+            "key.justquests.hud", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "key.categories.misc"));
+
+        // Quest tracker on top of the in-game HUD.
+        net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback.EVENT.register((graphics, tick) -> QuestHud.render(graphics));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openQuests.consumeClick()) {
@@ -36,6 +42,7 @@ public class JustQuestsFabricClient implements ClientModInitializer {
                     client.setScreen(new QuestScreen());
                 }
             }
+            while (toggleHud.consumeClick()) QuestHud.toggle();
         });
     }
 }

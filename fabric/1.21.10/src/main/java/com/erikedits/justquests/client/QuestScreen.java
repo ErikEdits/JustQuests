@@ -4,6 +4,7 @@ import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.reward.QuestReward;
+import com.erikedits.justquests.network.ClientQuestData;
 import com.erikedits.justquests.player.QuestProgress;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -13,27 +14,51 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
- * Interim quest-book screen (v0.2), rendered from the JustQuests v2-full
- * texture set (no vanilla widgets — manual blit + click hit-testing so the
- * look is fully custom). Reads quest data directly (singleplayer) and runs
- * /quest accept|abandon for actions. Textures live in
- * assets/justquests/textures/gui/. Fixed 248x184 window.
+ * The quest book, rendered from the JustQuests v2-full pixel textures (no vanilla widgets — manual
+ * blit + click hit-testing so the look is fully custom). Left: the quest list, grouped by category or
+ * by status, one item icon per quest. Right: the selected quest, or the player's stats. Reads the
+ * synced {@link ClientQuestData} and runs /quest accept|abandon for actions. Textures live in
+ * assets/justquests/textures/gui/. Fixed 280x184 window.
  */
 public class QuestScreen extends Screen {
-    private static final int W = 248, H = 184;
-    private static final int PER_PAGE = 7, ROW_W = 80, ROW_H = 18;
+    private static final int W = 280, H = 184;
+    private static final int ROWS = 6, ROW_W = 112, ROW_H = 18;
     // darker text reads clearly on the light-grey panes; full alpha, since 1.21.6+ skips text with alpha 0
     private static final int TITLE_DARK = 0xFF161616, TEXT = 0xFF282828, MUTED = 0xFF4C4C4C, HEAD = 0xFF24395C,
-        GOOD = 0xFF2E7D32;
+        GOOD = 0xFF2E7D32, WHITE = 0xFFFFFFFF, LIGHT = 0xFFC6C6C6;
 
-    private final List<Map.Entry<ResourceLocation, Quest>> quests = new ArrayList<>();
+    /** Where a quest stands for this player; also the order of the status groups. */
+    private enum Status {
+        ACTIVE("Active", "glyph_exclamation"), AVAILABLE("Available", "glyph_star"),
+        LOCKED("Locked", "glyph_lock"), COMPLETED("Completed", "glyph_check");
+
+        final String label, icon;
+
+        Status(String label, String icon) {
+            this.label = label;
+            this.icon = icon;
+        }
+    }
+
+    /** One line of the list: a group header, a quest, or an empty spacer. */
+    private record Entry(String header, String icon, String count, ResourceLocation id, Quest quest) {
+        static final Entry SPACER = new Entry(null, null, null, null, null);
+
+        boolean isHeader() { return header != null; }
+        boolean isQuest() { return id != null; }
+    }
+
+    private final List<Entry> entries = new ArrayList<>();
     private ResourceLocation selected;
+    private boolean showStats;
     private int page = 0, left, top;
-    private int shownVersion = -1;
+    private int shownSync = -1;
 
     public QuestScreen() {
         super(Component.literal("Quests"));
@@ -63,59 +88,134 @@ public class QuestScreen extends Screen {
 
     private PlayerQuestData data() {
         // client-side synced copy (works on servers and in singleplayer)
-        return com.erikedits.justquests.network.ClientQuestData.getData();
+        return ClientQuestData.getData();
     }
 
     @Override
     protected void init() {
+        ClientSettings.load();
         left = (this.width - W) / 2;
         top = (this.height - H) / 2;
         refresh();
     }
 
     /**
-     * Rebuild the quest list from the latest sync. Called on open and every
-     * frame, but only does work when a new sync has arrived (version changed),
-     * so an open book reflects /quest reload, reroll, rotation and mainquests.
+     * Rebuild the list from the latest sync. Called on open and every frame, but only does work when
+     * a sync has arrived since (progress moves quests between the status groups, so every sync counts).
      */
     private void refresh() {
-        int v = com.erikedits.justquests.network.ClientQuestData.version();
-        if (v == shownVersion && !quests.isEmpty()) return;
-        shownVersion = v;
-        quests.clear();
-        quests.addAll(com.erikedits.justquests.network.ClientQuestData.getQuests().entrySet());
-        quests.sort(Comparator
+        int s = ClientQuestData.syncCount();
+        if (s == shownSync) return;
+        shownSync = s;
+        rebuild();
+    }
+
+    private void rebuild() {
+        entries.clear();
+        Map<ResourceLocation, Quest> all = ClientQuestData.getQuests();
+        if (selected != null && !all.containsKey(selected)) selected = null;
+        List<Map.Entry<ResourceLocation, Quest>> sorted = new ArrayList<>(all.entrySet());
+        sorted.sort(Comparator
             .comparing((Map.Entry<ResourceLocation, Quest> e) -> e.getValue().category(), String.CASE_INSENSITIVE_ORDER)
             .thenComparingInt(e -> e.getValue().sort())
             .thenComparing(e -> e.getKey().toString()));
-        int maxPage = quests.isEmpty() ? 0 : (quests.size() - 1) / PER_PAGE;
-        if (page > maxPage) page = maxPage;
-        if (selected != null && !com.erikedits.justquests.network.ClientQuestData.getQuests().containsKey(selected)) {
-            selected = null;
+
+        // group key -> quests; status groups keep the enum order, categories the sorted order
+        Map<String, List<Map.Entry<ResourceLocation, Quest>>> groups = new LinkedHashMap<>();
+        if (ClientSettings.byStatus) {
+            for (Status st : Status.values()) groups.put(st.name(), new ArrayList<>());
         }
+        Map<String, int[]> perCategory = new LinkedHashMap<>();   // category -> {done, total}
+        for (Map.Entry<ResourceLocation, Quest> e : sorted) {
+            Status st = status(e.getKey(), e.getValue());
+            int[] c = perCategory.computeIfAbsent(e.getValue().category(), k -> new int[2]);
+            c[1]++;
+            if (data().isCompleted(e.getKey())) c[0]++;
+            if (ClientSettings.hideCompleted && st == Status.COMPLETED) continue;
+            String key = ClientSettings.byStatus ? st.name() : e.getValue().category();
+            groups.computeIfAbsent(key, k -> new ArrayList<>()).add(e);
+        }
+        for (Map.Entry<String, List<Map.Entry<ResourceLocation, Quest>>> group : groups.entrySet()) {
+            if (group.getValue().isEmpty()) continue;
+            Entry header;
+            if (ClientSettings.byStatus) {
+                Status st = Status.valueOf(group.getKey());
+                header = new Entry(st.label, st.icon, String.valueOf(group.getValue().size()), null, null);
+            } else {
+                int[] c = perCategory.get(group.getKey());
+                header = new Entry(QuestIcons.categoryName(group.getKey()), QuestIcons.categoryIcon(group.getKey()),
+                    c[0] + "/" + c[1], null, null);
+            }
+            // never leave a header alone on the last line of a page
+            if (entries.size() % ROWS == ROWS - 1) entries.add(Entry.SPACER);
+            entries.add(header);
+            for (Map.Entry<ResourceLocation, Quest> e : group.getValue()) {
+                entries.add(new Entry(null, null, null, e.getKey(), e.getValue()));
+            }
+        }
+        if (page > pages() - 1) page = Math.max(0, pages() - 1);
+    }
+
+    private int pages() {
+        return Math.max(1, (entries.size() + ROWS - 1) / ROWS);
+    }
+
+    // --- quest state ---
+    private Status status(ResourceLocation id, Quest q) {
+        PlayerQuestData d = data();
+        if (d.isActive(id)) return Status.ACTIVE;
+        if (takenByOther(id)) return Status.LOCKED;
+        if (d.isCompleted(id) && (!q.repeatable() || cooldownLeft(id, q) > 0)) return Status.COMPLETED;
+        if (!missing(q).isEmpty()) return Status.LOCKED;
+        return Status.AVAILABLE;
+    }
+
+    /** Milliseconds until a repeatable quest can be taken again (0 = now). */
+    private long cooldownLeft(ResourceLocation id, Quest q) {
+        Long done = data().completed.get(id);
+        if (done == null || q.cooldownHours().isEmpty()) return 0;
+        return Math.max(0, done + q.cooldownHours().get() * 3_600_000L - System.currentTimeMillis());
+    }
+
+    /** Required quests the player has not completed yet. */
+    private List<ResourceLocation> missing(Quest q) {
+        List<ResourceLocation> out = new ArrayList<>();
+        for (ResourceLocation req : q.requires()) if (!data().isCompleted(req)) out.add(req);
+        return out;
+    }
+
+    /** A generated quest another player holds (or finished) under exclusive claims. */
+    private static boolean takenByOther(ResourceLocation id) {
+        ClientQuestData.Claim c = ClientQuestData.claim(id);
+        return c != null && !c.mine();
     }
 
     // --- geometry helpers ---
-    private int listX() { return left + 8; }
-    private int listY() { return top + 26; }
-    private int rowY(int i) { return listY() + i * ROW_H; }
+    private int listX() { return left + 7; }
+    private int rowY(int i) { return top + 44 + i * ROW_H; }
+    private int sortX() { return left + 7; }
+    private int filterX() { return left + 25; }
+    private int toolY() { return top + 22; }
     private int prevX() { return left + 8; }
     private int nextX() { return left + 8 + ROW_W - 12; }
     private int navY() { return top + H - 20; }
     private int closeX() { return left + W - 20; }
     private int closeY() { return top + 6; }
-    private int detailX() { return left + 100; }
-    private int detailW() { return W - 100 - 8; }
+    private int statsX() { return left + W - 52; }
+    private int hudX() { return left + W - 36; }
+    private int barY() { return top + 3; }
+    private int detailX() { return left + 137; }
+    private int detailW() { return W - 137 - 9; }
+    private int actionX() { return detailX(); }
+    private int actionY() { return top + H - 28; }
+    private boolean hasPrev() { return page > 0; }
+    private boolean hasNext() { return page < pages() - 1; }
 
     /** Truncate to width with an ellipsis so titles never run past their row. */
     private String fit(String s, int maxW) {
         if (this.font.width(s) <= maxW) return s;
         return this.font.plainSubstrByWidth(s, maxW - this.font.width("...")) + "...";
     }
-    private int actionX() { return detailX(); }
-    private int actionY() { return top + H - 28; }
-    private boolean hasPrev() { return page > 0; }
-    private boolean hasNext() { return (page + 1) * PER_PAGE < quests.size(); }
 
     private static boolean in(double mx, double my, int x, int y, int w, int h) {
         return mx >= x && mx < x + w && my >= y && my < y + h;
@@ -128,82 +228,143 @@ public class QuestScreen extends Screen {
         blit(g, "window", left, top, W, H);
         g.drawString(this.font, Component.literal("Quests"), left + 9, closeY() + 1, TITLE_DARK, false);
 
-        // close button
+        // title-bar buttons: stats page, HUD on/off, close
+        blit(g, showStats ? "button_stats_on" : in(mouseX, mouseY, statsX(), barY(), 14, 14) ? "button_stats_hover" : "button_stats_normal",
+            statsX(), barY(), 14, 14);
+        blit(g, ClientSettings.hud ? "button_hud_on" : in(mouseX, mouseY, hudX(), barY(), 14, 14) ? "button_hud_hover" : "button_hud_normal",
+            hudX(), barY(), 14, 14);
         blit(g, in(mouseX, mouseY, closeX(), closeY(), 11, 11) ? "button_close_hover" : "button_close_normal",
             closeX(), closeY(), 11, 11);
 
-        // quest list
-        if (quests.isEmpty()) {
-            g.drawString(this.font, Component.literal("No quests available yet."),
-                listX(), listY(), MUTED, false);
-        } else {
-            PlayerQuestData d = data();
-            int start = page * PER_PAGE;
-            for (int i = 0; i < PER_PAGE && start + i < quests.size(); i++) {
-                Map.Entry<ResourceLocation, Quest> e = quests.get(start + i);
-                ResourceLocation id = e.getKey();
-                int ry = rowY(i);
-                boolean hov = in(mouseX, mouseY, listX(), ry, ROW_W, ROW_H);
-                String state = id.equals(selected) ? "selected"
-                    : (d != null && d.isCompleted(id)) ? "completed"
-                    : (d != null && d.isActive(id)) ? "active"
-                    : takenByOther(id) ? "locked"
-                    : hov ? "hover" : "available";
-                blit(g, "quest_row_" + state, listX(), ry, ROW_W, ROW_H);
-                boolean hasGlyph = state.equals("completed") || state.equals("active") || state.equals("claimable")
-                    || state.equals("locked");
-                String title = fit(e.getValue().title().get(lang()), ROW_W - (hasGlyph ? 18 : 8));
-                g.drawString(this.font, title, listX() + 5, ry + 5, state.equals("locked") ? MUTED : TITLE_DARK, false);
-            }
-            // page arrows
-            blit(g, hasPrev() ? (in(mouseX, mouseY, prevX(), navY(), 12, 12) ? "page_prev_hover" : "page_prev_normal") : "page_prev_disabled",
-                prevX(), navY(), 12, 12);
-            blit(g, hasNext() ? (in(mouseX, mouseY, nextX(), navY(), 12, 12) ? "page_next_hover" : "page_next_normal") : "page_next_disabled",
-                nextX(), navY(), 12, 12);
-        }
+        // list tools: grouping and filter; the label names what the hovered button does
+        boolean overSort = in(mouseX, mouseY, sortX(), toolY(), 16, 16);
+        boolean overFilter = in(mouseX, mouseY, filterX(), toolY(), 16, 16);
+        blit(g, overSort ? "button_sort_hover" : "button_sort_normal", sortX(), toolY(), 16, 16);
+        blit(g, ClientSettings.hideCompleted ? "button_filter_on" : overFilter ? "button_filter_hover" : "button_filter_normal",
+            filterX(), toolY(), 16, 16);
+        String tool = overSort ? (ClientSettings.byStatus ? "Category view" : "Status view")
+            : overFilter ? (ClientSettings.hideCompleted ? "Show done" : "Hide done")
+            : ClientSettings.byStatus ? "By status" : "By category";
+        g.drawString(this.font, fit(tool, ROW_W - 40), left + 46, toolY() + 4, TEXT, false);
 
-        renderDetail(g, mouseX, mouseY);
+        if (entries.isEmpty()) {
+            g.drawString(this.font, Component.literal(ClientQuestData.getQuests().isEmpty() ? "No quests available yet." : "Nothing to show."),
+                listX() + 2, rowY(0) + 2, LIGHT, false);
+        } else {
+            int start = page * ROWS;
+            for (int i = 0; i < ROWS && start + i < entries.size(); i++) {
+                Entry e = entries.get(start + i);
+                if (e.isHeader()) renderHeader(g, e, rowY(i));
+                else if (e.isQuest()) renderRow(g, e, rowY(i), in(mouseX, mouseY, listX(), rowY(i), ROW_W, ROW_H));
+            }
+        }
+        // page arrows and number
+        blit(g, hasPrev() ? (in(mouseX, mouseY, prevX(), navY(), 12, 12) ? "page_prev_hover" : "page_prev_normal") : "page_prev_disabled",
+            prevX(), navY(), 12, 12);
+        blit(g, hasNext() ? (in(mouseX, mouseY, nextX(), navY(), 12, 12) ? "page_next_hover" : "page_next_normal") : "page_next_disabled",
+            nextX(), navY(), 12, 12);
+        String pg = (page + 1) + "/" + pages();
+        g.drawString(this.font, pg, left + 8 + ROW_W / 2 - this.font.width(pg) / 2, navY() + 2, TEXT, false);
+
+        if (showStats) renderStats(g, mouseX, mouseY);
+        else renderDetail(g, mouseX, mouseY);
+    }
+
+    private void renderHeader(GuiGraphics g, Entry e, int y) {
+        int x = listX();
+        blit(g, e.icon(), x + 1, y, 16, 16);
+        g.drawString(this.font, fit(e.header(), ROW_W - 50), x + 20, y + 4, WHITE, true);
+        g.drawString(this.font, e.count(), x + ROW_W - 3 - this.font.width(e.count()), y + 4, LIGHT, true);
+        g.fill(x, y + 16, x + ROW_W, y + 17, 0xFF555555);
+    }
+
+    private void renderRow(GuiGraphics g, Entry e, int y, boolean hover) {
+        int x = listX();
+        ResourceLocation id = e.id();
+        Quest q = e.quest();
+        Status st = status(id, q);
+        boolean sel = id.equals(selected);
+        boolean cooldown = st == Status.COMPLETED && q.repeatable();
+        String state = sel ? "selected"
+            : st == Status.ACTIVE ? "active"
+            : st == Status.LOCKED ? "locked"
+            : st == Status.COMPLETED && !cooldown ? "completed"
+            : hover ? "hover" : "available";
+        blit(g, "quest_row_" + state, x, y, ROW_W, ROW_H);
+        // completed and locked rows have their glyph in the texture; the others get one drawn on top
+        String glyph = cooldown ? "glyph_clock"
+            : st == Status.AVAILABLE && q.repeatable() ? "glyph_repeat"
+            : sel && st == Status.COMPLETED ? "glyph_check"
+            : sel && st == Status.LOCKED ? "glyph_lock" : null;
+        if (glyph != null) blit(g, glyph, x + ROW_W - 18, y + 1, 16, 16);
+        boolean hasGlyph = glyph != null || state.equals("completed") || state.equals("locked");
+        g.renderItem(QuestIcons.of(id, q), x + 3, y + 1);
+        String title = fit(q.title().get(lang()), ROW_W - 23 - (hasGlyph ? 18 : 4));
+        g.drawString(this.font, title, x + 22, y + 5, st == Status.LOCKED ? MUTED : TITLE_DARK, false);
     }
 
     private void renderDetail(GuiGraphics g, int mouseX, int mouseY) {
-        int dx = detailX(), dy = top + 27, dw = detailW();
+        int dx = detailX(), dy = top + 24, dw = detailW();
         if (selected == null) {
             g.drawString(this.font, Component.literal("Select a quest"), dx, dy, MUTED, false);
             g.drawString(this.font, Component.literal("on the left."), dx, dy + 11, MUTED, false);
             return;
         }
-        Quest q = com.erikedits.justquests.network.ClientQuestData.get(selected);
+        Quest q = ClientQuestData.get(selected);
         if (q == null) return;
         PlayerQuestData d = data();
-        QuestProgress prog = d != null ? d.active.get(selected) : null;
+        QuestProgress prog = d.active.get(selected);
+        Status st = status(selected, q);
 
-        for (var line : this.font.split(Component.literal(q.title().get(lang())), dw)) {
-            g.drawString(this.font, line, dx, dy, TITLE_DARK, false); dy += 10;
+        // icon + title (wraps next to the icon)
+        g.renderItem(QuestIcons.of(selected, q), dx, dy);
+        var titleLines = this.font.split(Component.literal(q.title().get(lang())), dw - 20);
+        int ty = titleLines.size() == 1 ? dy + 4 : dy;
+        for (var line : titleLines) {
+            g.drawString(this.font, line, dx + 20, ty, TITLE_DARK, false);
+            ty += 10;
         }
-        dy += 2;
-        // generated quest under exclusive claims: who holds it
-        com.erikedits.justquests.network.ClientQuestData.Claim claim = com.erikedits.justquests.network.ClientQuestData.claim(selected);
+        dy = Math.max(dy + 19, ty + 2);
+
+        // why it cannot be taken right now
+        ClientQuestData.Claim claim = ClientQuestData.claim(selected);
+        List<ResourceLocation> missing = missing(q);
+        long wait = st == Status.COMPLETED && q.repeatable() ? cooldownLeft(selected, q) : 0;
+        String note = null;
+        int noteColor = MUTED;
         if (claim != null && !(claim.mine() && claim.completed())) {
             String who = claim.by().isEmpty() ? "another player" : claim.by();
-            String line = claim.mine() ? "Reserved for you" : (claim.completed() ? "Completed by " : "Taken by ") + who;
-            g.drawString(this.font, fit(line, dw), dx, dy, claim.mine() ? GOOD : MUTED, false);
+            note = claim.mine() ? "Reserved for you" : (claim.completed() ? "Completed by " : "Taken by ") + who;
+            if (claim.mine()) noteColor = GOOD;
+        } else if (st == Status.LOCKED && !missing.isEmpty()) {
+            Quest req = ClientQuestData.get(missing.get(0));
+            note = "Needs: " + (req != null ? req.title().get(lang()) : missing.get(0).getPath())
+                + (missing.size() > 1 ? " +" + (missing.size() - 1) : "");
+        } else if (wait > 0) {
+            note = "Again in " + duration(wait);
+        }
+        if (note != null) {
+            g.drawString(this.font, fit(note, dw), dx, dy, noteColor, false);
             dy += 11;
         }
+
         String desc = q.description().get(lang());
         if (!desc.isBlank()) {
             for (var line : this.font.split(Component.literal(desc), dw)) {
-                g.drawString(this.font, line, dx, dy, MUTED, false); dy += 9;
+                g.drawString(this.font, line, dx, dy, MUTED, false);
+                dy += 9;
             }
         }
         dy += 3;
-        g.drawString(this.font, Component.literal("Objectives"), dx, dy, HEAD, false); dy += 11;
+        g.drawString(this.font, Component.literal("Objectives"), dx, dy, HEAD, false);
+        dy += 11;
         List<QuestObjective> objs = q.objectives();
         for (int i = 0; i < objs.size() && dy < actionY() - 12; i++) {
             int need = objs.get(i).requiredCount();
             int cur = prog != null ? Math.min(prog.get(i), need) : 0;
             boolean done = cur >= need;
-            g.drawString(this.font, this.font.plainSubstrByWidth((done ? "✓ " : cur + "/" + need + " ")
-                + objs.get(i).display().getString(), dw), dx, dy, done ? GOOD : TEXT, false);
+            g.drawString(this.font, fit((done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString(), dw),
+                dx, dy, done ? GOOD : TEXT, false);
             dy += 10;
             // progress bar
             int barW = Math.min(100, dw);
@@ -214,30 +375,97 @@ public class QuestScreen extends Screen {
         }
         dy += 2;
         if (dy < actionY() - 10) {
-            g.drawString(this.font, Component.literal("Rewards"), dx, dy, HEAD, false); dy += 11;
+            g.drawString(this.font, Component.literal("Rewards"), dx, dy, HEAD, false);
+            dy += 11;
             for (QuestReward r : q.rewards()) {
                 if (dy >= actionY() - 2) break;
-                g.drawString(this.font, this.font.plainSubstrByWidth(r.display().getString(), dw), dx, dy, TEXT, false);
+                g.drawString(this.font, fit(r.display().getString(), dw), dx, dy, TEXT, false);
                 dy += 10;
             }
         }
 
         // accept / abandon button
-        boolean active = d != null && d.isActive(selected);
-        boolean completed = d != null && d.isCompleted(selected);
-        boolean repeatable = q.repeatable();
-        if (active) {
+        if (st == Status.ACTIVE) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_abandon_hover" : "button_abandon_normal",
                 actionX(), actionY(), 72, 20);
             g.drawString(this.font, Component.literal("Abandon"), actionX() + 16, actionY() + 6, TEXT, false);
-        } else if (takenByOther(selected)) {
-            blit(g, "button_claim_disabled", actionX(), actionY(), 72, 20);
-            g.drawString(this.font, Component.literal("Taken"), actionX() + 22, actionY() + 6, MUTED, false);
-        } else if (!completed || repeatable) {
+        } else if (st == Status.AVAILABLE) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_claim_hover" : "button_claim_normal",
                 actionX(), actionY(), 72, 20);
             g.drawString(this.font, Component.literal("Accept"), actionX() + 20, actionY() + 6, TEXT, false);
+        } else if (st == Status.LOCKED || wait > 0) {
+            String label = takenByOther(selected) ? "Taken" : wait > 0 ? "Wait" : "Locked";
+            blit(g, "button_claim_disabled", actionX(), actionY(), 72, 20);
+            g.drawString(this.font, Component.literal(label), actionX() + 36 - this.font.width(label) / 2, actionY() + 6, MUTED, false);
         }
+    }
+
+    /** The stats page: totals, per-category progress (hover an icon for its name), dates and server rank. */
+    private void renderStats(GuiGraphics g, int mouseX, int mouseY) {
+        int dx = detailX(), dy = top + 24, dw = detailW();
+        PlayerQuestData d = data();
+        Map<ResourceLocation, Quest> all = ClientQuestData.getQuests();
+        int total = all.size();
+        int done = (int) all.keySet().stream().filter(d::isCompleted).count();
+        int pct = total > 0 ? done * 100 / total : 0;
+
+        g.drawString(this.font, Component.literal("Your stats"), dx, dy, TITLE_DARK, false);
+        dy += 13;
+        g.drawString(this.font, fit("Completed " + done + "/" + total + " (" + pct + "%)", dw), dx, dy, TEXT, false);
+        dy += 10;
+        blit(g, "progress_track", dx, dy, 100, 6);
+        if (total > 0 && done > 0) blitPart(g, "progress_fill", dx, dy, Math.max(1, 100 * done / total), 6, 100, 6);
+        dy += 9;
+        ClientQuestData.Rank rank = ClientQuestData.rank();
+        String line = "Active: " + d.active.size() + (rank != null ? "   Rank #" + rank.pos() + " of " + rank.of() : "");
+        g.drawString(this.font, fit(line, dw), dx, dy, TEXT, false);
+        dy += 12;
+
+        // per-category grid: icon + done/total, three to a row
+        Map<String, int[]> cats = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        all.forEach((id, q) -> {
+            int[] c = cats.computeIfAbsent(q.category(), k -> new int[2]);
+            c[1]++;
+            if (d.isCompleted(id)) c[0]++;
+        });
+        int headY = dy;
+        dy += 11;
+        String hovered = null;
+        int col = 0, cellW = dw / 3, shown = 0, maxCells = 12;
+        for (Map.Entry<String, int[]> c : cats.entrySet()) {
+            if (shown == maxCells - 1 && cats.size() > maxCells) {
+                g.drawString(this.font, "+" + (cats.size() - shown), dx + col * cellW + 4, dy + 4, MUTED, false);
+                break;
+            }
+            int cx = dx + col * cellW;
+            blit(g, QuestIcons.categoryIcon(c.getKey()), cx, dy, 16, 16);
+            g.drawString(this.font, c.getValue()[0] + "/" + c.getValue()[1], cx + 18, dy + 4,
+                c.getValue()[0] == c.getValue()[1] ? GOOD : TEXT, false);
+            if (in(mouseX, mouseY, cx, dy, cellW, 16)) hovered = QuestIcons.categoryName(c.getKey());
+            shown++;
+            if (++col == 3) {
+                col = 0;
+                dy += 17;
+            }
+        }
+        if (col != 0) dy += 17;
+        g.drawString(this.font, fit(hovered != null ? "By category: " + hovered : "By category", dw), dx, headY, HEAD, false);
+
+        // first and last completion
+        List<Long> times = d.completed.values().stream().filter(t -> t > 0L).sorted().toList();
+        if (!times.isEmpty()) {
+            java.text.SimpleDateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            dy += 2;
+            g.drawString(this.font, "First " + fmt.format(new java.util.Date(times.get(0))), dx, dy, MUTED, false);
+            dy += 9;
+            g.drawString(this.font, "Last  " + fmt.format(new java.util.Date(times.get(times.size() - 1))), dx, dy, MUTED, false);
+        }
+    }
+
+    private static String duration(long ms) {
+        long minutes = (ms + 59_999) / 60_000;
+        long h = minutes / 60, m = minutes % 60;
+        return h > 0 ? h + "h " + m + "m" : m + "m";
     }
 
     @Override
@@ -247,35 +475,47 @@ public class QuestScreen extends Screen {
         int button = event.button();
         if (button == 0) {
             if (in(mx, my, closeX(), closeY(), 11, 11)) { onClose(); return true; }
-            if (!quests.isEmpty()) {
-                if (hasPrev() && in(mx, my, prevX(), navY(), 12, 12)) { page--; return true; }
-                if (hasNext() && in(mx, my, nextX(), navY(), 12, 12)) { page++; return true; }
-                int start = page * PER_PAGE;
-                for (int i = 0; i < PER_PAGE && start + i < quests.size(); i++) {
-                    if (in(mx, my, listX(), rowY(i), ROW_W, ROW_H)) {
-                        selected = quests.get(start + i).getKey();
-                        return true;
-                    }
+            if (in(mx, my, statsX(), barY(), 14, 14)) { showStats = !showStats; return true; }
+            if (in(mx, my, hudX(), barY(), 14, 14)) {
+                ClientSettings.hud = !ClientSettings.hud;
+                ClientSettings.save();
+                return true;
+            }
+            if (in(mx, my, sortX(), toolY(), 16, 16)) {
+                ClientSettings.byStatus = !ClientSettings.byStatus;
+                ClientSettings.save();
+                page = 0;
+                rebuild();
+                return true;
+            }
+            if (in(mx, my, filterX(), toolY(), 16, 16)) {
+                ClientSettings.hideCompleted = !ClientSettings.hideCompleted;
+                ClientSettings.save();
+                rebuild();
+                return true;
+            }
+            if (hasPrev() && in(mx, my, prevX(), navY(), 12, 12)) { page--; return true; }
+            if (hasNext() && in(mx, my, nextX(), navY(), 12, 12)) { page++; return true; }
+            int start = page * ROWS;
+            for (int i = 0; i < ROWS && start + i < entries.size(); i++) {
+                Entry e = entries.get(start + i);
+                if (e.isQuest() && in(mx, my, listX(), rowY(i), ROW_W, ROW_H)) {
+                    selected = e.id();
+                    showStats = false;
+                    return true;
                 }
             }
-            if (selected != null && in(mx, my, actionX(), actionY(), 72, 20)) {
-                PlayerQuestData d = data();
-                Quest q = com.erikedits.justquests.network.ClientQuestData.get(selected);
-                boolean active = d != null && d.isActive(selected);
-                boolean completed = d != null && d.isCompleted(selected);
-                boolean repeatable = q != null && q.repeatable();
-                if (active) send("quest abandon " + selected);
-                else if ((!completed || repeatable) && !takenByOther(selected)) send("quest accept " + selected);
+            if (!showStats && selected != null && in(mx, my, actionX(), actionY(), 72, 20)) {
+                Quest q = ClientQuestData.get(selected);
+                if (q != null) {
+                    Status st = status(selected, q);
+                    if (st == Status.ACTIVE) send("quest abandon " + selected);
+                    else if (st == Status.AVAILABLE) send("quest accept " + selected);
+                }
                 return true;
             }
         }
         return super.mouseClicked(event, doubleClick);
-    }
-
-    /** A generated quest another player holds (or finished) under exclusive claims. */
-    private static boolean takenByOther(ResourceLocation id) {
-        com.erikedits.justquests.network.ClientQuestData.Claim c = com.erikedits.justquests.network.ClientQuestData.claim(id);
-        return c != null && !c.mine();
     }
 
     private void send(String cmd) {

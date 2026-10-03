@@ -11,7 +11,8 @@ import java.util.Optional;
 
 public record Quest(LocalizedText title, LocalizedText description, String category, QuestMode mode,
                     List<ResourceLocation> requires, boolean repeatable, Optional<Integer> cooldownHours,
-                    int sort, List<QuestObjective> objectives, List<QuestReward> rewards) {
+                    int sort, List<QuestObjective> objectives, List<QuestReward> rewards,
+                    Optional<ResourceLocation> icon) {
     public static final Codec<Quest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         LocalizedText.CODEC.fieldOf("title").forGetter(Quest::title),
         LocalizedText.CODEC.optionalFieldOf("description", LocalizedText.EMPTY).forGetter(Quest::description),
@@ -25,6 +26,8 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         // ordering within a category in /quest list (lower = first); default 0
         Codec.INT.optionalFieldOf("sort", 0).forGetter(Quest::sort),
         QuestObjective.CODEC.listOf().fieldOf("objectives").forGetter(Quest::objectives),
-        QuestReward.CODEC.listOf().fieldOf("rewards").forGetter(Quest::rewards)
+        QuestReward.CODEC.listOf().fieldOf("rewards").forGetter(Quest::rewards),
+        // item shown in the quest book and the HUD; picked from the first objective when absent
+        ResourceLocation.CODEC.optionalFieldOf("icon").forGetter(Quest::icon)
     ).apply(instance, Quest::new));
 }

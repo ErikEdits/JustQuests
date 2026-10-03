@@ -1,0 +1,20 @@
+{
+  "title": "Example: custom icon",
+  "description": "Gather wheat for a cake. The quest book shows a cake instead of the wheat from the goal.",
+  "category": "examples",
+  "icon": "minecraft:cake",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:wheat",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:sugar",
+      "count": 2
+    }
+  ]
+}

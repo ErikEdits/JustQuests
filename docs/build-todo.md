@@ -44,6 +44,7 @@ community until we are ready for the GUI.
 | 0.3.1 | Claims shown in the quest book; GUI text fix for 1.21.6+ | ✅ shipped |
 | 0.3.2 | `enchant_item`, `use_item`, item filters, `title` reward, v1 generator removed, CurseForge | ✅ shipped |
 | 0.3.3 | Block/mob tags, stonecutter counts as crafting, generator uses enchant/use/potions/tags | ✅ shipped |
+| 0.3.4 | HUD tracker, quest book grouped by category/status, pixel icons, stats page | ✅ done |
 | 0.4.0 | Translations (EN, DE, JA, FR, ES; picked from the player's language), claim button, choice rewards | ⏭️ later |
 
 Each 0.1.x release is a Modrinth update, which puts the mod back in
@@ -147,13 +148,13 @@ pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1
 - [x] Textured screen rolled out to every GUI build (1.20.1+, 0.2.1)
 - [x] **Multiplayer sync** (server -> client payload, 0.2.3; lighter in 0.2.5)
 - [x] Generated-quest claims in the book ("Taken by X", 0.3.1)
-- [ ] Quest list screen: grouping by category/status/custom order (Q45)
-- [ ] Per-quest icon with fallback (Q44); detail view (Q78 open)
+- [x] Quest list screen: grouping by category or status, hide completed (Q45, 0.3.4)
+- [x] Per-quest icon with fallback (Q44, 0.3.4: `icon` field, else from the first objective); detail view (Q78 open)
 - [ ] Search box that auto-appears at high quest counts (Q46)
 - [ ] **Claim button** + completed-pending state (Q48)
 - [ ] **Choice reward** picker (Q49)
-- [ ] Category + state icons (Q3)
-- [ ] Optional HUD tracker overlay, toggleable (Q43)
+- [x] Category + state icons (Q3, 0.3.4)
+- [x] Optional HUD tracker overlay, toggleable (Q43, 0.3.4: key H, `config/justquests-client.json`)
 
 ---
 
@@ -176,7 +177,7 @@ pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1
 
 - [x] Admin commands: reset / view other (Q33, 0.1.9); claimed generated
       quests via `/quest generator status|release` (0.3.0)
-- [x] Statistics + server leaderboard (Q34, 0.1.10); in-game view (Q58 open)
+- [x] Statistics + server leaderboard (Q34, 0.1.10); in-game view (Q58, stats page in the book, 0.3.4)
 - [x] Difficulty Easy/Normal/Hard, OP-set per world (Q8/Q9, 0.3.0)
 - [ ] Permission gating via OP + LuckPerms/perm plugins (Q83); per-quest
       permission (Q55 open)
@@ -337,7 +338,7 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
       category header per group in `/quest list`
 - [x] All 18 bundled quests categorized (gathering/farming/combat/
       survival/daily) with a progression sort order
-- [ ] Per-category icon id (reserved for the GUI, v0.2)
+- [x] Category icons in the book (0.3.4; known categories have a pixel icon, others a gear)
 
 ### Phase 9e — Server & admin QoL (v0.1.9) — DONE (2026-06-20)
 - [x] Admin commands (OP): `/quest admin view|reset|complete <player> [id]` (Q33)

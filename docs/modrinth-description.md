@@ -33,8 +33,11 @@ In-game you can run `/quest discord` anytime to get the invite.
 ## ✨ What JustQuests does
 
 - **In-game quest book (GUI)** — press **J** to browse quests, track objective
-  progress, and accept with a click (early/interim version, singleplayer for
-  now, on **MC 1.20.1+**). The full `/quest` command set works everywhere.
+  progress, and accept with a click (**MC 1.20.1+**, singleplayer and servers).
+  Grouped by category or status, a pixel icon for every quest, and a stats
+  page. The full `/quest` command set works everywhere.
+- **Quest tracker** — your active quests and their goals in a corner of the
+  screen; press **H** to turn it on or off.
 - **Ready to play** — ships with a built-in quest progression you can start
   right away, no setup required.
 - **Lightweight** — tiny and fast, with no heavy dependencies.

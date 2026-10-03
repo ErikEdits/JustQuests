@@ -31,6 +31,7 @@ Features:
 - `ex_chain_1` + `ex_chain_2` — `requires` (a locked chain).
 - `ex_repeatable` — `repeatable` + `cooldown_hours`.
 - `ex_multilang` — `title`/`description` as a per-language map.
+- `ex_icon` — `icon`: the item the quest book shows (default: from the first goal).
 - `ex_item_filter` — `item` as an object with `potion` / `enchantments`
   (also `name` for an anvil name). Filters work on every version.
 

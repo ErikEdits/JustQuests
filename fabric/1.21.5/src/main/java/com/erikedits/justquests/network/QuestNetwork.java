@@ -69,6 +69,8 @@ public final class QuestNetwork {
                 .ifPresent(j -> root.add("progress", j));
         }
         root.add("claims", com.erikedits.justquests.generator.GenV2.claimsJson(player.getUUID()));
+        JsonObject rank = QuestRank.json(player.getUUID());
+        if (rank != null) root.add("rank", rank);
         return GSON.toJson(root);
     }
 }

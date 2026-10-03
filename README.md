@@ -8,12 +8,15 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.3.3** — see the [changelog](CHANGELOG.md).
+Current version: **0.3.4** — see the [changelog](CHANGELOG.md).
 
 ## Features
 
 - **Quest book** — press **J** to browse quests, follow progress bars and accept or abandon with a
-  click (Minecraft 1.20.1 and newer). Works in singleplayer and on servers.
+  click (Minecraft 1.20.1 and newer). Grouped by category or by status, a pixel icon for every
+  quest, and a stats page. Works in singleplayer and on servers.
+- **Quest tracker** — your active quests and their goals in a corner of the screen; **H** turns
+  it on or off.
 - **Ready to play** — 25 built-in quests in English, German, French and Spanish. Server owners can
   hide them with `/quest mainquests off`.
 - **Generated quests** — a fresh board every 12 hours (00:00 and 12:00 by default), sized to a
@@ -49,7 +52,7 @@ Install the mod on the server **and** the clients (both are required).
 2. Download the jar for **your loader and exact version** from
    [Modrinth](https://modrinth.com/mod/justquests) or the
    [GitHub releases](https://github.com/ErikEdits/JustQuests/releases) — the file name says which,
-   e.g. `JustQuests-fabric-1.21.1-0.3.3.jar` — and put it into `mods/`.
+   e.g. `JustQuests-fabric-1.21.1-0.3.4.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
 ## Commands
@@ -100,6 +103,7 @@ with the same id.
 
 **Quest fields:** `title` (required), `description`, `category` (default `datapack`), `sort`,
 `mode` (`all` or `any`), `requires` (list of quest ids), `repeatable`, `cooldown_hours`,
+`icon` (an item id for the quest book; taken from the first objective when left out),
 `objectives`, `rewards`. `title` and `description` can be a string or a per-language map
 (`{"en_us": "...", "de_de": "..."}`); players see their own language with English as fallback.
 
@@ -155,6 +159,10 @@ type, plus tags, filters, chains, repeatable and multi-language quests.
 
 Each world has `<world>/justquests/settings.json` (with a `_help` text inside). Change it and run
 `/quest reload`.
+
+Each player's own book and tracker options live in `config/justquests-client.json`: `hud`
+(tracker on/off), `hudCorner` (`top_left`, `top_right`, `bottom_left`, `bottom_right`), `hudMax`
+(quests shown, 1–5), `byStatus` and `hideCompleted` (also set by the book's buttons).
 
 | Key | Default | Meaning |
 |---|---|---|

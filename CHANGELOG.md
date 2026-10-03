@@ -3,6 +3,31 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.4] - 2026-10-04
+
+### Added
+- **Quest tracker (HUD):** your active quests and their goals in a small panel in the top-left
+  corner, newest first, up to three. Toggle it with **H** (rebindable in Controls) or the new
+  button in the quest book. Hidden with F1, F3 and while a menu is open.
+- **Sorted quest book:** the list is grouped under headers, either by category ("Combat 1/3")
+  or by status (Active, Available, Locked, Completed). A button switches between the two, another
+  hides completed quests. Page number between the arrows.
+- **Pixel icons:** every quest shows an item icon, in the list and next to its title. It is taken
+  from the first goal (the item or block, a spawn egg for mobs, a compass for places and so on),
+  or set with the new optional quest field `"icon": "minecraft:diamond_sword"`. Categories and
+  states got their own pixel icons in the style of the book.
+- **Stats page:** a button in the title bar shows your progress in the book: completed and
+  active quests, every category with its count, your first and last completion and, on servers,
+  your place on the leaderboard.
+
+### Changed
+- Locked quests are now marked in the book: if a quest needs another one first it shows a lock,
+  "Needs: <quest>" and a disabled button. Repeatable quests on cooldown show a clock and when
+  they are available again.
+- The quest book window is 32 pixels wider so titles fit next to the icons.
+- Goal lines read "5/8 Mine Iron Ore" instead of "5/8 Mine 8x Iron Ore"; tags read "any logs".
+- Book and HUD options are saved in `config/justquests-client.json`.
+
 ## [0.3.3] - 2026-10-04
 
 ### Added
