@@ -8,7 +8,7 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.3.2** — see the [changelog](CHANGELOG.md).
+Current version: **0.3.3** — see the [changelog](CHANGELOG.md).
 
 ## Features
 
@@ -17,7 +17,8 @@ Current version: **0.3.2** — see the [changelog](CHANGELOG.md).
 - **Ready to play** — 25 built-in quests in English, German, French and Spanish. Server owners can
   hide them with `/quest mainquests off`.
 - **Generated quests** — a fresh board every 12 hours (00:00 and 12:00 by default), sized to a
-  sensible amount of play time and paid with fitting rewards. Supports content from
+  sensible amount of play time and paid with fitting rewards: gather, mine, craft, hunt, enchant,
+  throw, brew and more. Supports content from
   **Farmer's Delight, Create, Mekanism, The Twilight Forest and Botania** when installed, three
   difficulty levels, and Nether/End quests once players have been there.
 - **First come, first served** — on servers a generated quest someone accepted is taken; the book
@@ -48,7 +49,7 @@ Install the mod on the server **and** the clients (both are required).
 2. Download the jar for **your loader and exact version** from
    [Modrinth](https://modrinth.com/mod/justquests) or the
    [GitHub releases](https://github.com/ErikEdits/JustQuests/releases) — the file name says which,
-   e.g. `JustQuests-fabric-1.21.1-0.3.2.jar` — and put it into `mods/`.
+   e.g. `JustQuests-fabric-1.21.1-0.3.3.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
 ## Commands
@@ -107,7 +108,7 @@ with the same id.
 | Type | Fields | Counts when the player… |
 |---|---|---|
 | `justquests:collect_item` | `item`, `count` | picks the item up (mining, harvest, mob drops) |
-| `justquests:craft_item` | `item`, `count` | crafts it |
+| `justquests:craft_item` | `item`, `count` | crafts it (crafting table, inventory or stonecutter) |
 | `justquests:smelt_item` | `item`, `count` | takes it out of a furnace |
 | `justquests:consume_item` | `item`, `count` | eats or drinks it |
 | `justquests:enchant_item` | `item` (optional), `count` | enchants an item at an enchanting table |
@@ -128,6 +129,8 @@ with the same id.
 "item": { "id": "minecraft:potion", "potion": "minecraft:swiftness" }
 "item": { "id": "#minecraft:swords", "enchantments": { "minecraft:sharpness": 2 }, "name": "Excalibur" }
 ```
+
+`block` and `entity` take an id or a tag as well (`#minecraft:logs`, `#minecraft:skeletons`).
 
 `enchantments` are minimum levels, `name` is an anvil name. The same JSON works on every version.
 Filters are checked on the item the event is about, so they are most useful for `consume_item`,

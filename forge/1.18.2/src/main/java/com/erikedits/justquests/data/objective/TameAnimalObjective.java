@@ -8,11 +8,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 
 /** Tame X animals of a given type. */
-public record TameAnimalObjective(EntityType<?> entity, int count) implements QuestObjective {
+public record TameAnimalObjective(EntityMatcher entity, int count) implements QuestObjective {
     public static final String TYPE_ID = "justquests:tame_animal";
 
     public static final MapCodec<TameAnimalObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-        Registry.ENTITY_TYPE.byNameCodec().fieldOf("entity").forGetter(TameAnimalObjective::entity),
+        EntityMatcher.CODEC.fieldOf("entity").forGetter(TameAnimalObjective::entity),
         Codec.INT.fieldOf("count").forGetter(TameAnimalObjective::count)
     ).apply(instance, TameAnimalObjective::new));
 
@@ -22,7 +22,7 @@ public record TameAnimalObjective(EntityType<?> entity, int count) implements Qu
     }
 
     public boolean matches(EntityType<?> type) {
-        return type == this.entity;
+        return entity.matches(type);
     }
 
     @Override
@@ -32,11 +32,11 @@ public record TameAnimalObjective(EntityType<?> entity, int count) implements Qu
 
     @Override
     public String displayName() {
-        return "Tame " + count + "x " + Registry.ENTITY_TYPE.getKey(entity);
+        return "Tame " + count + "x " + entity.label();
     }
 
     @Override
     public Component display() {
-        return new net.minecraft.network.chat.TextComponent("Tame " + count + "x ").append(entity.getDescription());
+        return new net.minecraft.network.chat.TextComponent("Tame " + count + "x ").append(entity.name());
     }
 }

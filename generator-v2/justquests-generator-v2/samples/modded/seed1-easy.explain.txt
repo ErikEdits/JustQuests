@@ -2,12 +2,12 @@
 
 Generator v2: enabled, difficulty easy, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla, farmersdelight, create, mekanism, twilightforest, botania], Minecraft 1.21.1 (neoforge)
 
-justquests:gen/1790510400_6  "Gather Beetroot Seeds"  (EASY, cycle 1790510400, seed 0x2897…)
-objective collect_item minecraft:beetroot_seeds ×24
-  effort 0.15 min/unit (×1.20 village) → 4.3 min (target 4.3, range 4–10 min)
-  tier 0 (always available), family crops, profile vanilla, hints village
-estimated 4.3 min (quick)
-reward give_item create:cogwheel ×13 (value 3.3) + xp 13 (value 1.1)  → 4.3 / budget 4.3
+justquests:gen/1790510400_0  "Smooth Stone Slab Job"  (EASY, cycle 1790510400, seed 0x2897…)
+objective craft_item minecraft:smooth_stone_slab ×40
+  effort 0.12 min/unit → 4.8 min (target 4.7, range 4–10 min)
+  tier 0 (always available), family stonework, profile vanilla
+estimated 4.8 min (quick)
+reward give_item minecraft:string ×9 (value 3.6) + xp 14 (value 1.2)  → 4.8 / budget 4.8
 state: AVAILABLE
 
 justquests:gen/1790510400_2  "Craft Safety Nets"  (EASY, cycle 1790510400, seed 0x2897…)
@@ -18,20 +18,20 @@ estimated 5.4 min (quick)
 reward give_item minecraft:experience_bottle ×3 (value 3.6) + xp 22 (value 1.8)  → 5.4 / budget 5.4
 state: AVAILABLE
 
-justquests:gen/1790510400_3  "Steak Tasting"  (EASY, cycle 1790510400, seed 0x2897…)
-objective consume_item minecraft:cooked_beef ×4
-  effort 1.25 min/unit → 5.0 min (target 5.2, range 4–10 min)
-  tier 0 (always available), family livestock, profile vanilla, hints plains
-estimated 5.0 min (quick)
-reward give_item minecraft:cooked_salmon ×4 (value 3.6) + xp 17 (value 1.4)  → 5.0 / budget 5.0
+justquests:gen/1790510400_3  "Feather Bundle"  (EASY, cycle 1790510400, seed 0x2897…)
+objective collect_item minecraft:feather ×16
+  effort 0.30 min/unit → 4.8 min (target 5.2, range 4–10 min)
+  tier 0 (always available), family livestock, profile vanilla
+estimated 4.8 min (quick)
+reward give_item minecraft:cooked_salmon ×4 (value 3.6) + xp 14 (value 1.2)  → 4.8 / budget 4.8
 state: AVAILABLE
 
-justquests:gen/1790510400_0  "Copper Grate Request"  (EASY, cycle 1790510400, seed 0x2897…)
-objective craft_item minecraft:copper_grate ×4
-  effort 1.40 min/unit → 5.6 min (target 4.7, range 4–10 min)
-  tier 1 (always available), family copper_works, profile vanilla
-estimated 5.6 min (quick)
-reward give_item minecraft:cake ×1 (value 3.0) + xp 31 (value 2.6)  → 5.6 / budget 5.6
+justquests:gen/1790510400_5  "Mushroom Stew Snack"  (EASY, cycle 1790510400, seed 0x2897…)
+objective consume_item minecraft:mushroom_stew ×3
+  effort 1.40 min/unit (×1.30 dark_forest) → 5.5 min (target 4.8, range 4–10 min)
+  tier 0 (always available), family mushrooms, profile vanilla, hints dark_forest
+estimated 5.5 min (quick)
+reward give_item minecraft:glow_berries ×16 (value 4.0) + xp 18 (value 1.5) + message  → 5.5 / budget 5.5
 state: AVAILABLE
 
 justquests:gen/1790510400_1  "Smelt Tin Ingots"  (EASY, cycle 1790510400, seed 0x2897…)
@@ -39,15 +39,15 @@ objective smelt_item mekanism:ingot_tin ×8
   effort 0.75 min/unit → 6.0 min (target 7.8, range 4–10 min)
   tier 1 (always available), family mek_tin, profile mekanism, tool stone, hints caves
 estimated 6.0 min
-reward give_item farmersdelight:rice ×32 (value 3.8) + xp 26 (value 2.2)  → 6.0 / budget 6.0
+reward give_item farmersdelight:onion ×30 (value 4.5) + xp 18 (value 1.5)  → 6.0 / budget 6.0
 state: AVAILABLE
 
-justquests:gen/1790510400_7  "Craft Andesite Alloy Blocks"  (EASY, cycle 1790510400, seed 0x2897…)
-objective craft_item create:andesite_alloy_block ×2
-  effort 3.10 min/unit → 6.2 min (target 4.7, range 4–10 min)
+justquests:gen/1790510400_7  "Place Andesite Casings"  (EASY, cycle 1790510400, seed 0x2897…)
+objective place_block create:andesite_casing ×10
+  effort 0.60 min/unit → 6.0 min (target 5.8, range 4–10 min)
   tier 1 (always available), family create_alloy, profile create
-estimated 6.2 min
-reward give_item minecraft:diamond ×1 (value 5.0) + xp 14 (value 1.2)  → 6.2 / budget 6.2
+estimated 6.0 min
+reward give_item minecraft:lantern ×6 (value 4.8) + xp 14 (value 1.2)  → 6.0 / budget 6.0
 state: AVAILABLE
 
 justquests:gen/1790510400_8  "Mystical Blue Flower Delivery"  (EASY, cycle 1790510400, seed 0x2897…)
@@ -58,27 +58,28 @@ estimated 5.6 min (quick)
 reward give_item farmersdelight:apple_pie ×1 (value 3.0) + xp 31 (value 2.6) + message  → 5.6 / budget 5.6
 state: AVAILABLE
 
-justquests:gen/1790510400_9  "Cooked Cod Supper"  (EASY, cycle 1790510400, seed 0x2897…)
-objective consume_item minecraft:cooked_cod ×4
-  effort 1.50 min/unit → 6.0 min (target 6.7, range 4–10 min)
-  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod
-estimated 6.0 min
-reward give_item mekanism:fluorite_gem ×13 (value 4.6) + xp 17 (value 1.4)  → 6.0 / budget 6.0
+justquests:gen/1790510400_9  "Bring Rabbit Hides"  (EASY, cycle 1790510400, seed 0x2897…)
+objective collect_item minecraft:rabbit_hide ×5
+  effort 1.00 min/unit (×1.30 desert) → 6.5 min (target 6.7, range 4–10 min)
+  tier 0 (always available), family wild_animals, profile vanilla, hints desert
+estimated 6.5 min
+reward give_item mekanism:fluorite_gem ×14 (value 4.9) + xp 19 (value 1.6)  → 6.5 / budget 6.5
 state: AVAILABLE
 
-justquests:gen/1790510400_4  "Break Mangrove Logs"  (EASY, cycle 1790510400, seed 0x2897…)
-objective mine_block minecraft:mangrove_log ×48
-  effort 0.10 min/unit (×1.50 mangrove_swamp) → 7.2 min (target 6.8, range 4–10 min)
-  tier 0 (always available), family wood, profile vanilla, hints mangrove_swamp
-estimated 7.2 min
-reward give_item mekanism:ingot_lead ×6 (value 5.7) + xp 18 (value 1.5)  → 7.2 / budget 7.2
+justquests:gen/1790510400_4  "Hay Block Crafter"  (EASY, cycle 1790510400, seed 0x2897…)
+objective craft_item minecraft:hay_block ×6
+  effort 1.40 min/unit → 8.4 min (target 9.4, range 4–10 min)
+  tier 0 (always available), family crops, profile vanilla, hints farm
+estimated 8.4 min
+reward give_item minecraft:cooked_beef ×13 (value 6.5) + xp 23 (value 1.9)  → 8.4 / budget 8.4
+rejected alternatives: mine_block minecraft:wheat (breaking crops at any stage counts)
 state: AVAILABLE
 
-justquests:gen/1790510400_5  "Amethyst Shard Pickup"  (EASY, cycle 1790510400, seed 0x2897…)
-objective collect_item minecraft:amethyst_shard ×16
-  effort 0.35 min/unit (×1.30 geode) → 7.3 min (target 7.0, range 4–10 min)
-  tier 1 (always available), family amethyst, profile vanilla, tool wood, hints geode
-estimated 7.3 min
-reward give_item create:large_cogwheel ×16 (value 5.6) + xp 20 (value 1.7)  → 7.3 / budget 7.3
+justquests:gen/1790510400_6  "Rabbit Stew Workshop"  (EASY, cycle 1790510400, seed 0x2897…)
+objective craft_item minecraft:rabbit_stew ×2
+  effort 3.00 min/unit (×1.30 desert) → 7.8 min (target 6.2, range 4–10 min)
+  tier 0 (always available), family baking, profile vanilla, hints desert
+estimated 7.8 min
+reward give_item botania:fertilizer ×10 (value 6.0) + xp 22 (value 1.8)  → 7.8 / budget 7.8
 state: AVAILABLE
 

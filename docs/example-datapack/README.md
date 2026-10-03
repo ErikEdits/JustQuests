@@ -26,6 +26,7 @@ Objectives (one each):
 
 Features:
 - `ex_item_tag` — item field as a `#tag`.
+- `ex_block_mob_tags` — `#tag` for a block and a mob goal.
 - `ex_mode_any` — finish on **any** objective (`"mode": "any"`).
 - `ex_chain_1` + `ex_chain_2` — `requires` (a locked chain).
 - `ex_repeatable` — `repeatable` + `cooldown_hours`.

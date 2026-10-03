@@ -75,9 +75,6 @@
       "hints": [
         "layers"
       ],
-      "exclusions": [
-        "craft_item create:cut_limestone (made on a stonecutter, which does not count as crafting)"
-      ],
       "targets": [
         {
           "type": "mine_block",
@@ -175,6 +172,65 @@
           "min": 16,
           "max": 64,
           "hint": "Cut crimsite on a stonecutter, then build."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_limestone",
+          "effort": 0.11,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut limestone on a stonecutter."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_asurine",
+          "effort": 0.11,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut asurine on a stonecutter."
+        }
+      ]
+    },
+    {
+      "key": "create_cut_stone",
+      "family": "create_masonry",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "wood",
+      "notes": "Stonecutter outputs count as crafting since mod 0.3.3.",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:cut_granite",
+          "effort": 0.07,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut granite on a stonecutter."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_diorite",
+          "effort": 0.07,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut diorite on a stonecutter."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_andesite",
+          "effort": 0.07,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut andesite on a stonecutter."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_tuff",
+          "effort": 0.08,
+          "min": 16,
+          "max": 64,
+          "tier": 1,
+          "hint": "Cut tuff on a stonecutter."
         }
       ]
     },

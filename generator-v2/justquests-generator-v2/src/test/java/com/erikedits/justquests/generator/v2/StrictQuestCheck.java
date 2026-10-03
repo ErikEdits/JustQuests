@@ -15,11 +15,13 @@ import java.util.regex.Pattern;
  */
 final class StrictQuestCheck {
     private static final Pattern ID = Pattern.compile("[a-z0-9_.-]+:[a-z0-9_./-]+");
-    private static final Map<String, String> OBJECTIVE_FIELD = Map.of(
-        "justquests:collect_item", "item", "justquests:mine_block", "block", "justquests:craft_item", "item",
-        "justquests:smelt_item", "item", "justquests:kill_mob", "entity", "justquests:breed_animal", "entity",
-        "justquests:tame_animal", "entity", "justquests:consume_item", "item", "justquests:place_block", "block",
-        "justquests:visit_dimension", "dimension");
+    private static final Map<String, String> OBJECTIVE_FIELD = Map.ofEntries(
+        Map.entry("justquests:collect_item", "item"), Map.entry("justquests:mine_block", "block"),
+        Map.entry("justquests:craft_item", "item"), Map.entry("justquests:smelt_item", "item"),
+        Map.entry("justquests:kill_mob", "entity"), Map.entry("justquests:breed_animal", "entity"),
+        Map.entry("justquests:tame_animal", "entity"), Map.entry("justquests:consume_item", "item"),
+        Map.entry("justquests:place_block", "block"), Map.entry("justquests:visit_dimension", "dimension"),
+        Map.entry("justquests:enchant_item", "item"), Map.entry("justquests:use_item", "item"));
     private static final Set<String> QUEST_KEYS = Set.of("title", "description", "category", "mode", "sort",
         "objectives", "rewards");
     private static final Map<String, Set<String>> REWARD_KEYS = Map.of(
@@ -78,6 +80,19 @@ final class StrictQuestCheck {
                     }
                 }
                 String target = s(o, field);
+                if (target == null && field.equals("item") && o.has(field) && o.get(field).isJsonObject()) {
+                    JsonObject f = o.getAsJsonObject(field);   // item filter object
+                    for (String k : f.keySet()) {
+                        if (!k.equals("id") && !k.equals("potion")) {
+                            p.add("item filter key " + k);
+                        }
+                    }
+                    String potion = s(f, "potion");
+                    if (f.has("potion") && (potion == null || !ID.matcher(potion).matches())) {
+                        p.add("bad potion " + f.get("potion"));
+                    }
+                    target = s(f, "id");
+                }
                 if (target == null) {
                     p.add("missing " + field);
                 } else if (target.startsWith("#")) {

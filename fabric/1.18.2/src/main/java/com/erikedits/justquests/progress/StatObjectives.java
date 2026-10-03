@@ -3,6 +3,7 @@ package com.erikedits.justquests.progress;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
+import com.erikedits.justquests.data.objective.CraftItemObjective;
 import com.erikedits.justquests.data.objective.EnchantItemObjective;
 import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.objective.UseItemObjective;
@@ -11,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.inventory.EnchantmentMenu;
+import net.minecraft.world.inventory.StonecutterMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -27,9 +29,16 @@ import java.util.UUID;
  * enchanted item can still be read from the table for an item filter. Only the change since the
  * last poll counts; a statistic is baselined the first time an active quest needs it, and
  * forgotten as soon as none does.
+ *
+ * <p>craft_item is counted by the crafting events, which don't fire for the stonecutter. While a
+ * stonecutter is open its results are read from the "Times Crafted" statistic instead; that
+ * menu is the only thing that can raise it then.
  */
 public final class StatObjectives {
     private static final Object ENCHANT = new Object();
+
+    /** Key for an item's "Times Crafted" statistic (watched only while a stonecutter is open). */
+    private record Crafted(Item item) {}
     private static final Map<UUID, Map<Object, Integer>> SEEN = new HashMap<>();
 
     private StatObjectives() {}
@@ -37,8 +46,9 @@ public final class StatObjectives {
     /** Every server tick, per player. */
     public static void tick(ServerPlayer player) {
         boolean enchanting = player.containerMenu instanceof EnchantmentMenu;
+        boolean cutting = player.containerMenu instanceof StonecutterMenu;
         boolean full = player.tickCount % 20 == 0;
-        if (!enchanting && !full) return;
+        if (!enchanting && !cutting && !full) return;
 
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
@@ -50,6 +60,9 @@ public final class StatObjectives {
                 for (QuestObjective obj : quest.objectives()) {
                     if (obj instanceof EnchantItemObjective) watched.add(ENCHANT);
                     else if (obj instanceof UseItemObjective u) watched.addAll(u.item().items());
+                    else if (cutting && obj instanceof CraftItemObjective c) {
+                        for (Item item : c.item().items()) watched.add(new Crafted(item));
+                    }
                 }
             }
         }
@@ -62,13 +75,13 @@ public final class StatObjectives {
         Map<Object, Integer> next = new HashMap<>();
         Map<Object, Integer> gained = new HashMap<>();
         for (Object key : watched) {
-            if (key != ENCHANT && !full) {   // item statistics only once a second
+            if (key instanceof Item && !full) {   // "used" statistics only once a second
                 Integer old = seen.get(key);
                 if (old != null) next.put(key, old);
                 continue;
             }
-            int now = player.getStats().getValue(key == ENCHANT
-                ? Stats.CUSTOM.get(Stats.ENCHANT_ITEM) : Stats.ITEM_USED.get((Item) key));
+            int now = player.getStats().getValue(key == ENCHANT ? Stats.CUSTOM.get(Stats.ENCHANT_ITEM)
+                : key instanceof Crafted c ? Stats.ITEM_CRAFTED.get(c.item()) : Stats.ITEM_USED.get((Item) key));
             Integer old = seen.get(key);
             next.put(key, now);
             if (old != null && now > old) gained.put(key, now - old);
@@ -84,6 +97,13 @@ public final class StatObjectives {
             if (obj instanceof UseItemObjective u) {
                 int sum = 0;
                 for (Item item : u.item().items()) sum += gained.getOrDefault(item, 0);
+                return sum;
+            }
+            if (obj instanceof CraftItemObjective c) {
+                int sum = 0;
+                for (Item item : c.item().items()) {
+                    if (c.matches(new ItemStack(item))) sum += gained.getOrDefault(new Crafted(item), 0);
+                }
                 return sum;
             }
             return 0;

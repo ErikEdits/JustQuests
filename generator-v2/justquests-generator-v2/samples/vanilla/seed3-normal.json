@@ -1,68 +1,68 @@
 {
-  "justquests:gen/1790510400_5": {
-    "title": "Apple Feast",
-    "description": "Eat 3 apples.",
+  "justquests:gen/1790510400_8": {
+    "title": "Parrot Companion",
+    "description": "Tame a parrot. Tame parrots with seeds. Look in jungles.",
     "category": "generated",
-    "sort": 7,
+    "sort": 8,
     "objectives": [
       {
-        "type": "justquests:consume_item",
-        "item": "minecraft:apple",
-        "count": 3
+        "type": "justquests:tame_animal",
+        "entity": "minecraft:parrot",
+        "count": 1
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:redstone",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 44
+      }
+    ]
+  },
+  "justquests:gen/1790510400_0": {
+    "title": "Throw Eggs",
+    "description": "Throw 16 eggs. Chickens lay eggs. Grow them on a farm.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:use_item",
+        "item": "minecraft:egg",
+        "count": 16
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
         "item": "minecraft:iron_ingot",
-        "count": 11
+        "count": 14
       },
       {
         "type": "justquests:xp",
-        "amount": 24
+        "amount": 37
       }
     ]
   },
-  "justquests:gen/1790510400_9": {
-    "title": "Masonry Supplies",
-    "description": "Make 64 polished granite and smelt 24 cracked stone bricks. Smelt stone bricks.",
+  "justquests:gen/1790510400_3": {
+    "title": "Gardening Job",
+    "description": "Pick up 32 seagrass and craft 64 paper. Use shears. Look in and near oceans. Three sugar cane make three paper. Look along rivers.",
     "category": "generated",
-    "sort": 9,
+    "sort": 10,
     "mode": "all",
     "objectives": [
       {
+        "type": "justquests:collect_item",
+        "item": "minecraft:seagrass",
+        "count": 32
+      },
+      {
         "type": "justquests:craft_item",
-        "item": "minecraft:polished_granite",
+        "item": "minecraft:paper",
         "count": 64
-      },
-      {
-        "type": "justquests:smelt_item",
-        "item": "minecraft:cracked_stone_bricks",
-        "count": 24
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:book",
-        "count": 8
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 32
-      }
-    ]
-  },
-  "justquests:gen/1790510400_0": {
-    "title": "Skeleton Watch",
-    "description": "Hunt 12 skeletons. They spawn at night and in dark caves.",
-    "category": "generated",
-    "sort": 11,
-    "objectives": [
-      {
-        "type": "justquests:kill_mob",
-        "entity": "minecraft:skeleton",
-        "count": 12
       }
     ],
     "rewards": [
@@ -73,26 +73,74 @@
       },
       {
         "type": "justquests:xp",
-        "amount": 45
+        "amount": 50
       }
     ]
   },
-  "justquests:gen/1790510400_8": {
-    "title": "Terracotta Supply",
-    "description": "Smelt 32 terracotta. Smelt clay blocks. Look along rivers.",
+  "justquests:gen/1790510400_5": {
+    "title": "Pumpkin Run",
+    "description": "Gather 24 pumpkins. Common in plains.",
     "category": "generated",
-    "sort": 11,
+    "sort": 10,
     "objectives": [
       {
-        "type": "justquests:smelt_item",
-        "item": "minecraft:terracotta",
+        "type": "justquests:collect_item",
+        "item": "minecraft:pumpkin",
+        "count": 24
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:honeycomb",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 42
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Raw Beef Bundle",
+    "description": "Pick up 32 raw beef. Common in plains.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:beef",
         "count": 32
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:book",
+        "item": "minecraft:glow_ink_sac",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 42
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Ocelot Breeder",
+    "description": "Breed 2 ocelots. Ocelots breed with raw cod or salmon. Look in jungles.",
+    "category": "generated",
+    "sort": 11,
+    "objectives": [
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:ocelot",
+        "count": 2
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
         "count": 8
       },
       {
@@ -101,142 +149,46 @@
       }
     ]
   },
-  "justquests:gen/1790510400_1": {
-    "title": "Ender Pearl Pickup",
-    "description": "Gather 4 ender pearls. They spawn at night and in dark caves.",
+  "justquests:gen/1790510400_9": {
+    "title": "Camp Setup",
+    "description": "Set up camp before nightfall: mine 64 birch logs and make 128 torches. Coal or charcoal on a stick.",
     "category": "generated",
-    "sort": 12,
-    "objectives": [
-      {
-        "type": "justquests:collect_item",
-        "item": "minecraft:ender_pearl",
-        "count": 4
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:cake",
-        "count": 1
-      },
-      {
-        "type": "justquests:loot_table",
-        "loot_table": "minecraft:chests/simple_dungeon"
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 41
-      }
-    ]
-  },
-  "justquests:gen/1790510400_4": {
-    "title": "Gold Ore Miner",
-    "description": "Break 10 gold ore. Needs an iron pickaxe or better. Found deep underground.",
-    "category": "generated",
-    "sort": 13,
-    "objectives": [
-      {
-        "type": "justquests:mine_block",
-        "block": "minecraft:gold_ore",
-        "count": 10
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:cooked_chicken",
-        "count": 16
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 95
-      },
-      {
-        "type": "justquests:message",
-        "message": "The village thanks you!"
-      }
-    ]
-  },
-  "justquests:gen/1790510400_6": {
-    "title": "Packed Ice Shift",
-    "description": "Mine 32 packed ice. Look in snowy biomes. Rare, so take your time.",
-    "category": "generated",
-    "sort": 13,
-    "objectives": [
-      {
-        "type": "justquests:mine_block",
-        "block": "minecraft:packed_ice",
-        "count": 32
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:cookie",
-        "count": 32
-      },
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:iron_block",
-        "count": 2
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 16
-      }
-    ]
-  },
-  "justquests:gen/1790510400_2": {
-    "title": "Market Fair",
-    "description": "The fair opens soon: make 2 rabbit stew and breed 6 pigs. Look in deserts. Pigs breed with carrots, potatoes or beetroots.",
-    "category": "generated",
-    "sort": 14,
+    "sort": 15,
     "mode": "all",
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:rabbit_stew",
-        "count": 2
+        "type": "justquests:mine_block",
+        "block": "minecraft:birch_log",
+        "count": 64
       },
       {
-        "type": "justquests:breed_animal",
-        "entity": "minecraft:pig",
-        "count": 6
+        "type": "justquests:craft_item",
+        "item": "minecraft:torch",
+        "count": 128
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:lead",
-        "count": 2
-      },
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:arrow",
-        "count": 32
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 120
-      }
-    ]
-  },
-  "justquests:gen/1790510400_3": {
-    "title": "Horse Ranch",
-    "description": "The stable needs work: breed 2 horses and craft 4 hay blocks. Horses breed with golden carrots or apples. Common in plains.",
-    "category": "generated",
-    "sort": 14,
-    "mode": "all",
-    "objectives": [
-      {
-        "type": "justquests:breed_animal",
-        "entity": "minecraft:horse",
-        "count": 2
-      },
-      {
-        "type": "justquests:craft_item",
         "item": "minecraft:hay_block",
-        "count": 4
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 110
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": "Deepslate Coal Ore Dig",
+    "description": "Break 24 deepslate coal ore. Found deep underground.",
+    "category": "generated",
+    "sort": 16,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:deepslate_coal_ore",
+        "count": 24
       }
     ],
     "rewards": [
@@ -246,38 +198,62 @@
         "count": 2
       },
       {
-        "type": "justquests:effect",
-        "effect": "minecraft:luck",
-        "seconds": 600,
-        "amplifier": 0
-      },
-      {
         "type": "justquests:xp",
-        "amount": 47
+        "amount": 95
       }
     ]
   },
-  "justquests:gen/1790510400_7": {
-    "title": "Diamond Run",
-    "description": "Gather 4 diamonds. Dig deep, around y=-58. Needs an iron pickaxe or better. Found deep underground.",
+  "justquests:gen/1790510400_2": {
+    "title": "Blacksmith's Order",
+    "description": "The smithy needs help: smelt 64 copper ingots and craft 32 iron bars. Smelt raw copper in a furnace. Needs a stone pickaxe or better.",
     "category": "generated",
-    "sort": 22,
+    "sort": 16,
+    "mode": "all",
     "objectives": [
       {
-        "type": "justquests:collect_item",
-        "item": "minecraft:diamond",
-        "count": 4
+        "type": "justquests:smelt_item",
+        "item": "minecraft:copper_ingot",
+        "count": 64
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:iron_bars",
+        "count": 32
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:bookshelf",
-        "count": 4
+        "item": "minecraft:experience_bottle",
+        "count": 13
       },
       {
         "type": "justquests:xp",
-        "amount": 100
+        "amount": 70
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Silverfish Bounty",
+    "description": "Defeat 8 silverfish. They hide in infested stone in mountains and strongholds. Look in the mountains.",
+    "category": "generated",
+    "sort": 16,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:silverfish",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 6
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 45
       }
     ]
   }

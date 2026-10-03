@@ -25,9 +25,11 @@ import java.util.List;
  * @param tamable    catalog flag for {@code tame_animal}
  * @param note       free-text note (explain/MODS)
  * @param since      first Minecraft release with this target, or null (entry value applies)
+ * @param potion     optional potion id for item objectives: the quest asks for
+ *                   {@code {"id": <id>, "potion": <potion>}} (for example a Potion of Swiftness)
  */
 public record TargetDef(ObjectiveType type, String id, List<String> alts, String tagConcept, double effort,
                         int min, int max, double weight, int tier, String tool, List<String> hints, String name,
                         String plural, String hint, int stack, String dimension, int minDifficulty,
-                        boolean tamable, String note, String since) {
+                        boolean tamable, String note, String since, String potion) {
 }

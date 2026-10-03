@@ -114,10 +114,25 @@ public final class SchemaCheck {
             }
         }
         String target = str(o, t.field());
+        JsonElement filter = o.get(t.field());
+        if (target == null && filter != null && filter.isJsonObject() && t.itemBased()) {
+            // item filter object: {"id": ..., "potion": ...}
+            JsonObject f = filter.getAsJsonObject();
+            for (String k : f.keySet()) {
+                if (!k.equals("id") && !k.equals("potion")) {
+                    p.add("unknown item filter key " + k);
+                }
+            }
+            target = str(f, "id");
+            String potion = str(f, "potion");
+            if (f.has("potion") && (potion == null || !Ids.isValid(potion))) {
+                p.add("bad potion " + f.get("potion"));
+            }
+        }
         if (target == null) {
             p.add(t.shortName() + " missing " + t.field());
         } else if (target.startsWith("#")) {
-            if (!t.itemBased() || caps == null || !caps.supportsTag(t.typeId())) {
+            if (!t.taggable() || caps == null || !caps.supportsTag(t.typeId())) {
                 p.add("tag not allowed for " + t.shortName());
             } else if (!Ids.isValidTag(target)) {
                 p.add("bad tag " + target);

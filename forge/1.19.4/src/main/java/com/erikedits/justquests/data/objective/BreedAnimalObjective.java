@@ -8,11 +8,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 
 /** Breed X animals of a given type. */
-public record BreedAnimalObjective(EntityType<?> entity, int count) implements QuestObjective {
+public record BreedAnimalObjective(EntityMatcher entity, int count) implements QuestObjective {
     public static final String TYPE_ID = "justquests:breed_animal";
 
     public static final MapCodec<BreedAnimalObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-        BuiltInRegistries.ENTITY_TYPE.byNameCodec().fieldOf("entity").forGetter(BreedAnimalObjective::entity),
+        EntityMatcher.CODEC.fieldOf("entity").forGetter(BreedAnimalObjective::entity),
         Codec.INT.fieldOf("count").forGetter(BreedAnimalObjective::count)
     ).apply(instance, BreedAnimalObjective::new));
 
@@ -22,7 +22,7 @@ public record BreedAnimalObjective(EntityType<?> entity, int count) implements Q
     }
 
     public boolean matches(EntityType<?> type) {
-        return type == this.entity;
+        return entity.matches(type);
     }
 
     @Override
@@ -32,11 +32,11 @@ public record BreedAnimalObjective(EntityType<?> entity, int count) implements Q
 
     @Override
     public String displayName() {
-        return "Breed " + count + "x " + BuiltInRegistries.ENTITY_TYPE.getKey(entity);
+        return "Breed " + count + "x " + entity.label();
     }
 
     @Override
     public Component display() {
-        return Component.literal("Breed " + count + "x ").append(entity.getDescription());
+        return Component.literal("Breed " + count + "x ").append(entity.name());
     }
 }

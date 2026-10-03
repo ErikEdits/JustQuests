@@ -3,6 +3,24 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.3] - 2026-10-04
+
+### Added
+- **Tags for block and mob goals:** `mine_block`, `place_block`, `kill_mob`, `tame_animal` and
+  `breed_animal` accept a tag as well as an id, e.g. `"block": "#minecraft:logs"` or
+  `"entity": "#minecraft:skeletons"`.
+- **The stonecutter counts as crafting:** `craft_item` now also counts items taken out of a
+  stonecutter.
+- **More variety in generated quests:**
+  - enchanting: "Enchant 3 books", "Enchant an iron sword"
+  - using items: throw snowballs, eggs or ender pearls, use bone meal, launch fireworks
+  - brewing (Hard, after the Nether): drink a Potion of Swiftness, Night Vision, Fire Resistance,
+    Strength or Water Breathing
+  - any kind counts: "Mine 32 logs" (any log), "Defeat 10 skeletons" (strays, wither skeletons
+    and bogged too)
+  - stonecutter crafts: stone brick stairs, chiseled stone bricks, cut copper, and with Create the
+    cut granite, diorite, andesite, tuff, limestone and asurine
+
 ## [0.3.2] - 2026-10-04
 
 ### Added

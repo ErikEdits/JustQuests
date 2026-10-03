@@ -57,7 +57,9 @@ public final class TestSupport {
     public static String objectiveTarget(JsonObject objective) {
         for (String f : new String[]{"item", "block", "entity", "dimension"}) {
             if (objective.has(f)) {
-                return objective.get(f).getAsString();
+                // an item filter object ({"id": ..., "potion": ...}) targets its id
+                return objective.get(f).isJsonObject() ? objective.getAsJsonObject(f).get("id").getAsString()
+                    : objective.get(f).getAsString();
             }
         }
         return null;

@@ -2,117 +2,121 @@
 
 Generator v2: enabled, difficulty hard, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.18.2 (forge)
 
-justquests:gen/1790510400_5  "Forestry Order"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective place_block minecraft:spruce_sapling ×32
-  effort 0.20 min/unit (×1.20 taiga) → 7.7 min (target 22.5, range 15–35 min)
-  tier 0 (always available), family forestry, profile vanilla, hints taiga
-objective place_block minecraft:acacia_sapling ×16
-  effort 0.25 min/unit (×1.20 savanna) → 4.8 min (target 22.5, range 15–35 min)
-  tier 0 (always available), family forestry, profile vanilla, hints savanna
-combo within family forestry
-estimated 12.5 min (quick)
-reward give_item minecraft:hay_block ×8 (value 11.2) + xp 115 (value 9.6)  → 20.8 / budget 20.6
-rejected alternatives: place_block minecraft:cherry_sapling (released in 1.20, running 1.18.2)
-state: AVAILABLE
-
-justquests:gen/1790510400_3  "Supper Time"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective smelt_item minecraft:cooked_porkchop ×24
-  effort 0.40 min/unit → 9.6 min (target 24.4, range 15–35 min)
-  tier 0 (always available), family livestock, profile vanilla, hints cook
-objective consume_item minecraft:baked_potato ×8
-  effort 0.75 min/unit (×1.20 village) → 7.2 min (target 24.4, range 15–35 min)
-  tier 0 (always available), family crops, profile vanilla, hints village/farm
-theme camp_cook
-estimated 16.8 min (quick)
-reward give_item minecraft:iron_ingot ×24 (value 14.4) + effect minecraft:slow_falling 300s (value 2.0) + xp 135 (value 11.3)  → 27.7 / budget 27.7
-state: AVAILABLE
-
-justquests:gen/1790510400_6  "Hoglin Menace"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective kill_mob minecraft:hoglin ×6
-  effort 2.00 min/unit (×1.20 crimson_forest) → 14.4 min (target 22.9, range 15–35 min)
-  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_mobs, profile vanilla, hints crimson_forest, minecraft:the_nether
+justquests:gen/1790510400_6  "Mine Glowstones"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective mine_block minecraft:glowstone ×32
+  effort 0.30 min/unit → 9.6 min (target 18.5, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_blocks, profile vanilla, minecraft:the_nether
 travel overhead 3.0 min
-estimated 17.4 min (quick)
-reward give_item minecraft:emerald ×6 (value 15.0) + effect minecraft:water_breathing 600s (value 5.0) + xp 75 (value 6.3)  → 26.3 / budget 26.1
+estimated 12.6 min (quick)
+reward give_item minecraft:obsidian ×13 (value 13.0) + effect minecraft:slow_falling 300s (value 2.0) + xp 47 (value 3.9)  → 18.9 / budget 18.9
 state: AVAILABLE
 
-justquests:gen/1790510400_8  "Redstone Workshop"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective mine_block minecraft:deepslate_redstone_ore ×12
-  effort 0.90 min/unit (×1.10 deep) → 11.9 min (target 22.3, range 15–35 min)
-  tier 2 (always available), family redstone, profile vanilla, tool iron, hints deep
-objective craft_item minecraft:clock ×1
-  effort 5.00 min/unit → 5.0 min (target 22.3, range 15–35 min)
-  tier 2 (always available), family redstone, profile vanilla
-theme redstone_workshop
-estimated 16.9 min (quick)
-reward give_item minecraft:emerald ×8 (value 20.0) + xp 95 (value 7.9)  → 27.9 / budget 27.9
-rejected alternatives: craft_item minecraft:compass (max count takes only 2.4 min)
+justquests:gen/1790510400_8  "Fisherman's Day"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:cod ×8
+  effort 0.80 min/unit → 6.4 min (target 19.2, range 15–35 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod
+objective consume_item minecraft:cooked_cod ×6
+  effort 1.50 min/unit → 9.0 min (target 19.2, range 15–35 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod
+theme fishermans_day
+estimated 15.4 min (quick)
+reward give_item minecraft:iron_ingot ×24 (value 14.4) + effect minecraft:conduit_power 300s (value 3.0) + xp 95 (value 7.9)  → 25.3 / budget 25.4
 state: AVAILABLE
 
-justquests:gen/1790510400_0  "Mine Ancient Debris"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective mine_block minecraft:ancient_debris ×1
-  effort 10.00 min/unit (×1.60 rare) → 16.0 min (target 19.8, range 15–35 min)
-  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_ores, profile vanilla, tool diamond, hints rare, minecraft:the_nether
+justquests:gen/1790510400_0  "Blaze Rod Delivery"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:blaze_rod ×8
+  effort 1.30 min/unit (×1.30 fortress) → 13.5 min (target 19.8, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_mobs, profile vanilla, hints fortress, minecraft:the_nether
 travel overhead 3.0 min
-estimated 19.0 min (quick)
-reward give_item minecraft:prismarine_crystals ×8 (value 12.0) + give_item minecraft:experience_bottle ×8 (value 9.6) + xp 85 (value 7.1)  → 28.7 / budget 28.5
+estimated 16.5 min (quick)
+reward give_item minecraft:prismarine_crystals ×8 (value 12.0) + xp 155 (value 12.9)  → 24.9 / budget 24.8
 state: AVAILABLE
 
-justquests:gen/1790510400_4  "Busy Bees"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective breed_animal minecraft:bee ×6
-  effort 1.50 min/unit (×1.20 bees) → 10.8 min (target 20.4, range 15–35 min)
-  tier 0 (always available), family bees, profile vanilla, hints bees
-objective craft_item minecraft:candle ×6
-  effort 1.20 min/unit (×1.20 bees) → 8.6 min (target 20.4, range 15–35 min)
-  tier 0 (always available), family bees, profile vanilla, hints bees
-theme beekeeper
-estimated 19.4 min (quick)
-reward give_item minecraft:emerald ×10 (value 25.0) + xp 85 (value 7.1)  → 32.1 / budget 32.1
+justquests:gen/1790510400_7  "Popped Chorus Fruit Supply"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective smelt_item minecraft:popped_chorus_fruit ×40
+  effort 0.25 min/unit (×1.30 outer_islands) → 13.0 min (target 18.0, range 15–35 min)
+  tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family end_plants, profile vanilla, hints outer_islands, minecraft:the_end
+travel overhead 5.0 min
+estimated 18.0 min (quick)
+reward give_item minecraft:gold_block ×1 (value 11.7) + give_item minecraft:white_wool ×32 (value 8.0) + xp 90 (value 7.5)  → 27.2 / budget 27.0
 state: AVAILABLE
 
-justquests:gen/1790510400_1  "Mine Iron Ore"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective mine_block minecraft:iron_ore ×48
-  effort 0.50 min/unit → 24.0 min (target 33.3, range 15–35 min)
-  tier 1 (always available), family metals, profile vanilla, tool stone, hints caves
+justquests:gen/1790510400_9  "Desert Trek"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective mine_block minecraft:sandstone ×64
+  effort 0.06 min/unit (×1.30 desert) → 5.0 min (target 28.0, range 15–35 min)
+  tier 0 (always available), family sand, profile vanilla, tool wood, hints desert
+objective kill_mob minecraft:husk ×10
+  effort 1.00 min/unit (×1.30 desert) → 13.0 min (target 28.0, range 15–35 min)
+  tier 0 (always available), family undead, profile vanilla, hints desert/night
+theme desert_trek
+estimated 18.0 min (quick)
+reward give_item minecraft:slime_ball ×8 (value 12.0) + loot_table minecraft:chests/village/village_weaponsmith (value 7.0) + xp 130 (value 10.8)  → 29.8 / budget 29.7
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Fungus Hunt"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:brown_mushroom ×32
+  effort 0.30 min/unit (×1.30 dark_forest) → 12.5 min (target 33.4, range 15–35 min)
+  tier 0 (always available), family mushrooms, profile vanilla, hints dark_forest
+objective mine_block minecraft:red_mushroom_block ×48
+  effort 0.15 min/unit (×1.30 dark_forest) → 9.4 min (target 33.4, range 15–35 min)
+  tier 0 (always available), family mushrooms, profile vanilla, hints dark_forest
+theme mushroom_forager
+estimated 21.8 min
+reward give_item minecraft:experience_bottle ×16 (value 19.2) + xp 200 (value 16.7)  → 35.9 / budget 36.0
+state: AVAILABLE
+
+justquests:gen/1790510400_1  "Builder's Order"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:bricks ×16
+  effort 0.90 min/unit → 14.4 min (target 26.3, range 15–35 min)
+  tier 0 (always available), family stonework, profile vanilla
+objective place_block minecraft:stone_bricks ×64
+  effort 0.15 min/unit → 9.6 min (target 26.3, range 15–35 min)
+  tier 0 (always available), family stonework, profile vanilla
+theme builders_order
 estimated 24.0 min
-reward give_item minecraft:emerald ×11 (value 27.5) + xp 100 (value 8.3)  → 35.8 / budget 36.0
-rejected alternatives: collect_item minecraft:iron_ore (drops raw_iron, needs Silk Touch)
+reward give_item minecraft:mushroom_stew ×1 (value 2.0) + give_item minecraft:baked_potato ×32 (value 8.0) + xp 355 (value 29.6)  → 39.6 / budget 39.6
+rejected alternatives: craft_item minecraft:flower_pot (max count takes only 3.2 min)
 state: AVAILABLE
 
-justquests:gen/1790510400_7  "Stop the Guardians"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective kill_mob minecraft:guardian ×8
-  effort 2.50 min/unit (×1.60 monument) → 32.0 min (target 29.8, range 15–35 min)
-  tier 2 (always available), family ocean, profile vanilla, tool iron, hints monument
-estimated 32.0 min
-reward give_item minecraft:redstone_block ×4 (value 7.2) + give_item minecraft:emerald ×12 (value 30.0) + xp 130 (value 10.8)  → 48.0 / budget 48.0
-state: AVAILABLE
-
-justquests:gen/1790510400_9  "Gem Duty"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective mine_block minecraft:lapis_ore ×12
-  effort 1.20 min/unit (×1.10 deep) → 15.8 min (target 29.0, range 15–35 min)
-  tier 2 (always available), family gems, profile vanilla, tool stone, hints deep
-objective collect_item minecraft:diamond ×3
-  effort 5.00 min/unit (×1.10 deep) → 16.5 min (target 29.0, range 15–35 min)
-  tier 2 (always available), family gems, profile vanilla, tool iron, hints deep
-combo within family gems
-estimated 32.3 min
-reward give_item minecraft:ender_pearl ×8 (value 20.0) + give_item minecraft:glistering_melon_slice ×8 (value 12.0) + xp 255 (value 21.3)  → 53.3 / budget 53.4
-rejected alternatives: mine_block minecraft:diamond_ore (rare above y=0; deepslate variant used)
+justquests:gen/1790510400_5  "Brewer Errand"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective consume_item minecraft:potion ×2
+  effort 5.00 min/unit (×1.20 ocean) → 12.0 min (target 30.9, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family brewing, profile vanilla, hints ocean/drink
+objective craft_item minecraft:glistering_melon_slice ×8
+  effort 1.50 min/unit → 12.0 min (target 30.9, range 15–35 min)
+  tier 2 (always available), family brewing, profile vanilla
+combo within family brewing
+estimated 24.0 min
+reward give_item minecraft:book ×8 (value 9.6) + give_item minecraft:slime_ball ×8 (value 12.0) + xp 215 (value 17.9)  → 39.5 / budget 39.6
+rejected alternatives: craft_item minecraft:glass_bottle (max count takes only 2.9 min)
 state: AVAILABLE
 
 justquests:gen/1790510400_2  "Beyond the Void"  (HARD, cycle 1790510400, seed 0xEE71…)
-objective collect_item minecraft:chorus_fruit ×64
-  effort 0.15 min/unit (×1.30 outer_islands) → 12.5 min (target 32.7, range 15–35 min)
-  tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family end_plants, profile vanilla, hints outer_islands, minecraft:the_end
+objective mine_block minecraft:end_stone ×128
+  effort 0.04 min/unit → 5.1 min (target 29.3, range 15–35 min)
+  tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family end_blocks, profile vanilla, tool wood, minecraft:the_end
 objective kill_mob minecraft:shulker ×3
-  effort 2.50 min/unit (×1.50 end_city) → 11.3 min (target 32.7, range 15–35 min)
+  effort 2.50 min/unit (×1.50 end_city) → 11.3 min (target 29.3, range 15–35 min)
   tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family end_mobs, profile vanilla, hints end_city, minecraft:the_end
 objective visit_dimension minecraft:the_end
-  effort 6.00 min/unit → 6.0 min (target 32.7, range 15–35 min)
+  effort 6.00 min/unit → 6.0 min (target 29.3, range 15–35 min)
   tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family end_travel, profile vanilla, minecraft:the_end
 travel overhead 5.0 min
 theme end_expedition
-estimated 34.7 min
-reward give_item minecraft:tnt ×4 (value 10.0) + give_item minecraft:experience_bottle ×16 (value 19.2) + xp 370 (value 30.8)  → 60.0 / budget 60.0
+estimated 27.4 min
+reward give_item minecraft:redstone_block ×4 (value 7.2) + effect minecraft:speed 480s (value 4.8) + xp 445 (value 37.1)  → 49.1 / budget 49.3
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Potion Ingredients"  (HARD, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:nether_wart ×24
+  effort 0.40 min/unit (×1.30 fortress) → 12.5 min (target 31.8, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_plants, profile vanilla, hints fortress, minecraft:the_nether
+objective craft_item minecraft:red_nether_bricks ×16
+  effort 1.00 min/unit → 16.0 min (target 31.8, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family nether_crafts, profile vanilla, minecraft:the_nether
+travel overhead 3.0 min
+theme brewers_supplies
+estimated 31.5 min
+reward give_item minecraft:sea_lantern ×2 (value 11.0) + give_item minecraft:diamond ×6 (value 30.0) + xp 130 (value 10.8)  → 51.8 / budget 51.9
 state: AVAILABLE
 

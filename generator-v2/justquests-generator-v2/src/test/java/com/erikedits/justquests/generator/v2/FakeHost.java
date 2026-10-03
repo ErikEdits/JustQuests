@@ -297,11 +297,13 @@ public final class FakeHost implements GeneratorHost {
             "justquests:mine_block", "justquests:craft_item", "justquests:smelt_item", "justquests:kill_mob",
             "justquests:breed_animal", "justquests:tame_animal", "justquests:consume_item", "justquests:place_block",
             "justquests:visit_dimension", "justquests:gain_advancement", "justquests:reach_level",
-            "justquests:reach_location"));
+            "justquests:reach_location", "justquests:enchant_item", "justquests:use_item"));
         public final Set<String> rewardTypes = new LinkedHashSet<>(List.of("justquests:give_item", "justquests:xp",
             "justquests:effect", "justquests:loot_table", "justquests:message", "justquests:command"));
         public final Set<String> tagTypes = new HashSet<>(Set.of("justquests:collect_item", "justquests:craft_item",
-            "justquests:smelt_item", "justquests:consume_item"));
+            "justquests:smelt_item", "justquests:consume_item", "justquests:enchant_item", "justquests:use_item",
+            "justquests:mine_block", "justquests:place_block", "justquests:kill_mob", "justquests:breed_animal",
+            "justquests:tame_animal"));
 
         @Override
         public boolean supportsTag(String objectiveType) {

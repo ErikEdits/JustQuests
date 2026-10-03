@@ -19,7 +19,11 @@ public enum ObjectiveType {
     TAME_ANIMAL("tame_animal", "entity", ContentKind.ENTITY, true),
     CONSUME_ITEM("consume_item", "item", ContentKind.ITEM, true),
     PLACE_BLOCK("place_block", "block", ContentKind.BLOCK, true),
-    VISIT_DIMENSION("visit_dimension", "dimension", ContentKind.DIMENSION, false);
+    VISIT_DIMENSION("visit_dimension", "dimension", ContentKind.DIMENSION, false),
+    /** Enchanting-table enchants; the target is the enchanted RESULT (books become enchanted_book). */
+    ENCHANT_ITEM("enchant_item", "item", ContentKind.ITEM, true),
+    /** Uses that did something (vanilla "Times Used"): throwables, bone meal, rockets. */
+    USE_ITEM("use_item", "item", ContentKind.ITEM, true);
 
     /** Types that must never be emitted. */
     public static final Set<String> FORBIDDEN = Set.of("gain_advancement", "reach_level", "reach_location");
@@ -60,9 +64,17 @@ public enum ObjectiveType {
         return counted;
     }
 
-    /** Item-valued objectives may take tags if the host allows it. */
+    /** Item-valued objectives (stack sizes, item filters such as {@code potion}). */
     public boolean itemBased() {
         return kind == ContentKind.ITEM;
+    }
+
+    /**
+     * Item, block and entity objectives may take a tag of their own kind if the host allows it
+     * ({@code HostCapabilities.supportsTag}); dimensions never.
+     */
+    public boolean taggable() {
+        return kind != ContentKind.DIMENSION;
     }
 
     /** Accepts {@code collect_item}, {@code justquests:collect_item} or enum names; null if unknown. */

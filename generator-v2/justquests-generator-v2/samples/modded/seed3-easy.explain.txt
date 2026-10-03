@@ -2,12 +2,37 @@
 
 Generator v2: enabled, difficulty easy, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla, farmersdelight, create, mekanism, twilightforest, botania], Minecraft 1.21.1 (neoforge)
 
-justquests:gen/1790510400_7  "Hot Cooked Bacon"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective smelt_item farmersdelight:cooked_bacon ×8
-  effort 0.50 min/unit → 4.0 min (target 4.1, range 4–10 min)
-  tier 0 (always available), family fd_butchery, profile farmersdelight, tool knife, hints cook
-estimated 4.0 min (quick)
-reward give_item minecraft:copper_ingot ×20 (value 3.0) + xp 12 (value 1.0)  → 4.0 / budget 4.0
+justquests:gen/1790510400_4  "Gather Logs"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective collect_item #minecraft:logs ×48
+  effort 0.09 min/unit → 4.3 min (target 4.2, range 4–10 min)
+  tier 0 (always available), family wood, profile vanilla
+estimated 4.3 min (quick)
+reward give_item farmersdelight:bacon_sandwich ×2 (value 3.6) + xp 9 (value 0.8)  → 4.4 / budget 4.3
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Dig Deepslate Tin Ore"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective mine_block mekanism:deepslate_tin_ore ×5
+  effort 0.80 min/unit (×1.10 deep) → 4.4 min (target 4.5, range 4–10 min)
+  tier 1 (always available), family mek_tin, profile mekanism, tool stone, hints caves/deep
+estimated 4.4 min (quick)
+reward give_item farmersdelight:carrot_crate ×2 (value 3.0) + xp 17 (value 1.4)  → 4.4 / budget 4.4
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Make Lecterns"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:lectern ×1
+  effort 5.00 min/unit → 5.0 min (target 9.1, range 4–10 min)
+  tier 0 (always available), family workstations, profile vanilla
+estimated 5.0 min (quick)
+reward give_item minecraft:hay_block ×3 (value 4.2) + xp 10 (value 0.8)  → 5.0 / budget 5.0
+rejected alternatives: craft_item minecraft:anvil (tier 1 above EASY cap); craft_item minecraft:enchanting_table (tier 2 above EASY cap); craft_item minecraft:brewing_stand (tier 3 above EASY cap)
+state: AVAILABLE
+
+justquests:gen/1790510400_3  "Andesite Miner"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective mine_block minecraft:andesite ×96
+  effort 0.05 min/unit → 4.8 min (target 7.0, range 4–10 min)
+  tier 0 (always available), family stone, profile vanilla, tool wood
+estimated 4.8 min (quick)
+reward give_item minecraft:bread ×8 (value 3.6) + xp 14 (value 1.2)  → 4.8 / budget 4.8
 state: AVAILABLE
 
 justquests:gen/1790510400_0  "Mystical Purple Flower Run"  (EASY, cycle 1790510400, seed 0xEE71…)
@@ -18,70 +43,44 @@ estimated 5.6 min (quick)
 reward give_item minecraft:lead ×2 (value 3.6) + xp 24 (value 2.0)  → 5.6 / budget 5.6
 state: AVAILABLE
 
-justquests:gen/1790510400_4  "Jungle Log Shift"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective mine_block minecraft:jungle_log ×40
-  effort 0.10 min/unit (×1.40 jungle) → 5.6 min (target 5.6, range 4–10 min)
-  tier 0 (always available), family wood, profile vanilla, hints jungle
-estimated 5.6 min (quick)
-reward give_item minecraft:coal ×17 (value 4.3) + xp 16 (value 1.3)  → 5.6 / budget 5.6
-state: AVAILABLE
-
-justquests:gen/1790510400_6  "Raw Lead Gathering"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective collect_item mekanism:raw_lead ×8
-  effort 0.80 min/unit → 6.4 min (target 7.7, range 4–10 min)
-  tier 1 (always available), family mek_lead, profile mekanism, tool stone, hints caves
+justquests:gen/1790510400_1  "Lantern Crafter"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:lantern ×8
+  effort 0.80 min/unit → 6.4 min (target 8.0, range 4–10 min)
+  tier 1 (always available), family lighting, profile vanilla
 estimated 6.4 min
-reward give_item minecraft:lantern ×6 (value 4.8) + xp 19 (value 1.6)  → 6.4 / budget 6.4
+reward give_item farmersdelight:onion ×32 (value 4.8) + xp 19 (value 1.6) + message  → 6.4 / budget 6.4
 state: AVAILABLE
 
-justquests:gen/1790510400_2  "Cooked Mutton Feast"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective consume_item minecraft:cooked_mutton ×6
-  effort 1.20 min/unit → 7.2 min (target 9.1, range 4–10 min)
-  tier 0 (always available), family cooking, profile vanilla
-estimated 7.2 min
-reward give_item minecraft:copper_ingot ×32 (value 4.8) + xp 29 (value 2.4)  → 7.2 / budget 7.2
-rejected alternatives: consume_item minecraft:golden_apple (tier 2 above EASY cap)
+justquests:gen/1790510400_7  "Vegetable Soup Snack"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective consume_item farmersdelight:vegetable_soup ×3
+  effort 2.20 min/unit → 6.6 min (target 5.4, range 4–10 min)
+  tier 1 (always available), family fd_stews, profile farmersdelight
+estimated 6.6 min
+reward give_item minecraft:iron_ingot ×8 (value 4.8) + xp 22 (value 1.8)  → 6.6 / budget 6.6
+rejected alternatives: craft_item farmersdelight:beef_stew (Cooking Pot output is not a crafting grid)
 state: AVAILABLE
 
-justquests:gen/1790510400_5  "Scoria Breaker"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective mine_block create:scoria ×64
-  effort 0.09 min/unit (×1.30 layers) → 7.5 min (target 9.3, range 4–10 min)
-  tier 1 (always available), family create_stone, profile create, tool wood, hints layers
+justquests:gen/1790510400_9  "Cut Copper Request"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:cut_copper ×5
+  effort 1.40 min/unit → 7.0 min (target 7.1, range 4–10 min)
+  tier 1 (always available), family copper_works, profile vanilla
+estimated 7.0 min
+reward give_item minecraft:cooked_porkchop ×11 (value 5.5) + xp 18 (value 1.5)  → 7.0 / budget 7.0
+state: AVAILABLE
+
+justquests:gen/1790510400_5  "Polished Cut Veridium Builder"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective place_block create:polished_cut_veridium ×40
+  effort 0.16 min/unit (×1.30 layers) → 8.3 min (target 8.4, range 4–10 min)
+  tier 1 (always available), family create_masonry, profile create, hints layers
+estimated 8.3 min
+reward give_item farmersdelight:bacon_sandwich ×3 (value 5.4) + xp 35 (value 2.9) + message  → 8.3 / budget 8.3
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Cooked Salmon Order"  (EASY, cycle 1790510400, seed 0xEE71…)
+objective smelt_item minecraft:cooked_salmon ×5
+  effort 1.50 min/unit → 7.5 min (target 7.4, range 4–10 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod, hints cook
 estimated 7.5 min
-reward give_item minecraft:coal_block ×2 (value 4.6) + xp 35 (value 2.9)  → 7.5 / budget 7.5
-rejected alternatives: craft_item create:cut_limestone (made on a stonecutter, which does not count as crafting)
-state: AVAILABLE
-
-justquests:gen/1790510400_9  "Stone Bricks Design"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective place_block minecraft:stone_bricks ×48
-  effort 0.15 min/unit → 7.2 min (target 7.9, range 4–10 min)
-  tier 0 (always available), family stonework, profile vanilla
-estimated 7.2 min
-reward give_item minecraft:bookshelf ×1 (value 4.5) + xp 32 (value 2.7)  → 7.2 / budget 7.2
-state: AVAILABLE
-
-justquests:gen/1790510400_1  "Cave Spider Bounty"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective kill_mob minecraft:cave_spider ×4
-  effort 1.50 min/unit (×1.30 mineshaft) → 7.8 min (target 8.0, range 4–10 min)
-  tier 1 (always available), family arthropods, profile vanilla, hints mineshaft
-estimated 7.8 min
-reward give_item farmersdelight:onion ×32 (value 4.8) + xp 36 (value 3.0) + message  → 7.8 / budget 7.8
-state: AVAILABLE
-
-justquests:gen/1790510400_3  "Coal Block Workshop"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective craft_item minecraft:coal_block ×4
-  effort 2.30 min/unit → 9.2 min (target 8.6, range 4–10 min)
-  tier 0 (always available), family storage_blocks, profile vanilla
-estimated 9.2 min
-reward give_item minecraft:gold_ingot ×5 (value 6.5) + xp 32 (value 2.7)  → 9.2 / budget 9.2
-rejected alternatives: craft_item minecraft:lapis_block (tier 2 above EASY cap); craft_item minecraft:redstone_block (tier 2 above EASY cap)
-state: AVAILABLE
-
-justquests:gen/1790510400_8  "TNT Request"  (EASY, cycle 1790510400, seed 0xEE71…)
-objective craft_item minecraft:tnt ×3
-  effort 3.00 min/unit → 9.0 min (target 9.1, range 4–10 min)
-  tier 0 (always available), family monsters, profile vanilla, hints night
-estimated 9.0 min
-reward give_item botania:white_petal ×32 (value 6.4) + xp 31 (value 2.6)  → 9.0 / budget 9.0
+reward give_item minecraft:cooked_porkchop ×11 (value 5.5) + xp 24 (value 2.0)  → 7.5 / budget 7.5
 state: AVAILABLE
 

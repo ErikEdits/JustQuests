@@ -22,8 +22,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /** §16.17 — the bundled data is internally consistent (checked on the raw JSON, not through the loader). */
 class CatalogIntegrityTest {
     private static final Set<String> TYPES = Set.of("collect_item", "mine_block", "craft_item", "smelt_item", "kill_mob",
-        "breed_animal", "tame_animal", "consume_item", "place_block", "visit_dimension");
-    private static final Set<String> ITEM_TYPES = Set.of("collect_item", "craft_item", "smelt_item", "consume_item");
+        "breed_animal", "tame_animal", "consume_item", "place_block", "visit_dimension", "enchant_item", "use_item");
+    private static final Set<String> ITEM_TYPES = Set.of("collect_item", "craft_item", "smelt_item", "consume_item",
+        "enchant_item", "use_item");
+    private static final Set<String> BLOCK_TYPES = Set.of("mine_block", "place_block");
+    private static final Set<String> ENTITY_TYPES = Set.of("kill_mob", "breed_animal", "tame_animal");
     private static final Pattern ID = Pattern.compile("[a-z0-9_.-]+:[a-z0-9_./-]+");
     private static final Pattern PLACEHOLDER = Pattern.compile("\\{([A-Za-z_]+)}");
 
@@ -111,8 +114,15 @@ class CatalogIntegrityTest {
                         }
                     }
                     String tag = Json.str(t, "tag", null);
-                    if (tag != null && (!tags.has(tag) || !ITEM_TYPES.contains(type))) {
+                    String kind = ITEM_TYPES.contains(type) ? "item" : BLOCK_TYPES.contains(type) ? "block"
+                        : ENTITY_TYPES.contains(type) ? "entity" : null;
+                    if (tag != null && (!tags.has(tag) || kind == null
+                        || !kind.equals(Json.str(Json.obj(tags, tag), "kind", "item")))) {
                         problems.add(tw + " bad tag " + tag);
+                    }
+                    String potion = Json.str(t, "potion", null);
+                    if (potion != null && (!ITEM_TYPES.contains(type) || !ID.matcher(potion).matches())) {
+                        problems.add(tw + " bad potion " + potion);
                     }
                     if (type.equals("tame_animal") && !Json.bool(t, "tamable", false)) {
                         problems.add(tw + " tame target not flagged tamable");

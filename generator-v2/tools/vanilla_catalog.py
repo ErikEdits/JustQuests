@@ -16,6 +16,7 @@ ENTRIES = [
     # ------------------------------------------------------------ wood
     E("logs_any", "wood", 0, [
         T("collect_item", "minecraft:oak_log", 0.09, 16, 96, tag="logs", hint="Chop any kind of tree."),
+        T("mine_block", "minecraft:oak_log", 0.09, 16, 96, tag="logs_block", hint="Chop any kind of tree."),
     ], notes="Uses the item tag #minecraft:logs where the build allows tags; falls back to oak logs."),
     wood("oak_wood", "minecraft:oak_log"),
     wood("birch_wood", "minecraft:birch_log"),
@@ -308,7 +309,7 @@ ENTRIES = [
         T("collect_item", "minecraft:rotten_flesh", 0.5, 8, 32),
     ], hints=["night"]),
     E("skeletons", "undead", 0, [
-        T("kill_mob", "minecraft:skeleton", 0.9, 4, 20),
+        T("kill_mob", "minecraft:skeleton", 0.9, 4, 20, tag="skeletons"),
         T("collect_item", "minecraft:bone", 0.6, 8, 32),
         T("collect_item", "minecraft:arrow", 0.6, 8, 32, hint="Skeletons drop arrows."),
     ], hints=["night"]),

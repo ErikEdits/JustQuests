@@ -1,20 +1,140 @@
 {
-  "justquests:gen/1790510400_9": {
-    "title": "Sand Job",
-    "description": "Smelt 8 smooth red sandstone and pick up 40 red sand. Look in badlands.",
+  "justquests:gen/1790510400_4": {
+    "title": "Mystical White Petal Assembly",
+    "description": "Make 32 mystical white petals. One mystical flower makes two petals.",
     "category": "generated",
-    "sort": 8,
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "botania:white_petal",
+        "count": 32
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:prismarine_crystals",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 24
+      }
+    ]
+  },
+  "justquests:gen/1790510400_0": {
+    "title": "Craft Deepslate Tiles",
+    "description": "Craft 64 deepslate tiles. Found deep underground.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:deepslate_tiles",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:sea_lantern",
+        "count": 2
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 10
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Prismarine Shard Haul",
+    "description": "Collect 4 prismarine shards. Needs an iron pickaxe or better. Found at ocean monuments.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:prismarine_shard",
+        "count": 4
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "mekanism:ingot_steel",
+        "count": 3
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 30
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Coal Ore Shift",
+    "description": "Break 40 coal ore. Found in caves.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:coal_ore",
+        "count": 40
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:andesite_alloy",
+        "count": 26
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 35
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Cogwheel Batch",
+    "description": "Make 48 cogwheels. A shaft and wooden planks.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "create:cogwheel",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:leather",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 60
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Decorator Order",
+    "description": "Place 48 white carpets and craft 4 beds. Three wool and three planks. Any bed counts.",
+    "category": "generated",
+    "sort": 13,
     "mode": "all",
     "objectives": [
       {
-        "type": "justquests:smelt_item",
-        "item": "minecraft:smooth_red_sandstone",
-        "count": 8
+        "type": "justquests:place_block",
+        "block": "minecraft:white_carpet",
+        "count": 48
       },
       {
-        "type": "justquests:collect_item",
-        "item": "minecraft:red_sand",
-        "count": 40
+        "type": "justquests:craft_item",
+        "item": "#minecraft:beds",
+        "count": 4
       }
     ],
     "rewards": [
@@ -24,212 +144,87 @@
         "count": 32
       },
       {
-        "type": "justquests:xp",
-        "amount": 55
-      }
-    ]
-  },
-  "justquests:gen/1790510400_0": {
-    "title": "Dig Deepslate Copper Ore",
-    "description": "Mine 20 deepslate copper ore. Needs a stone pickaxe or better. Found deep underground.",
-    "category": "generated",
-    "sort": 9,
-    "objectives": [
-      {
-        "type": "justquests:mine_block",
-        "block": "minecraft:deepslate_copper_ore",
-        "count": 20
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:glistering_melon_slice",
-        "count": 5
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/abandoned_mineshaft"
       },
       {
         "type": "justquests:xp",
-        "amount": 37
+        "amount": 39
       }
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Wild Cabbages Shift",
-    "description": "Mine 12 wild cabbages. Wild cabbages grow on beaches. Look along beaches.",
+    "title": "Cooked Chicken Cuts Order",
+    "description": "Cook 32 chicken cuts. Cut chicken on a cutting board, then cook. Use a Farmer's Delight knife.",
     "category": "generated",
-    "sort": 9,
+    "sort": 14,
     "objectives": [
       {
-        "type": "justquests:mine_block",
-        "block": "farmersdelight:wild_cabbages",
-        "count": 12
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "farmersdelight:hamburger",
-        "count": 3
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 31
-      }
-    ]
-  },
-  "justquests:gen/1790510400_4": {
-    "title": "Wand of the Forest Job",
-    "description": "Make a wand of the forest. A livingwood twig and two petals; livingwood comes from a Pure Daisy.",
-    "category": "generated",
-    "sort": 9,
-    "objectives": [
-      {
-        "type": "justquests:craft_item",
-        "item": "botania:twig_wand",
-        "count": 1
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:copper_ingot",
+        "type": "justquests:smelt_item",
+        "item": "farmersdelight:cooked_chicken_cuts",
         "count": 32
-      },
+      }
+    ],
+    "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:oak_sapling",
-        "count": 16
+        "item": "minecraft:gold_ingot",
+        "count": 10
       },
       {
         "type": "justquests:xp",
-        "amount": 43
+        "amount": 50
       }
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Decorator Order",
-    "description": "Make 4 beds and make 40 white carpets. Three wool and three planks. Any bed counts. Two wool make three carpets.",
+    "title": "Beekeeper",
+    "description": "Tend the hives: collect 5 honeycombs and pick up 16 lily of the valleys. Shear a full bee nest. Use shears. Needs bees and flowers.",
     "category": "generated",
-    "sort": 10,
+    "sort": 14,
     "mode": "all",
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "#minecraft:beds",
-        "count": 4
+        "type": "justquests:collect_item",
+        "item": "minecraft:honeycomb",
+        "count": 5
       },
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:white_carpet",
-        "count": 40
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "create:zinc_block",
-        "count": 1
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 65
-      },
-      {
-        "type": "justquests:message",
-        "message": "The traders are impressed."
-      }
-    ]
-  },
-  "justquests:gen/1790510400_5": {
-    "title": "Witch Watch",
-    "description": "Defeat a witch. Look in swamps. Rare, so take your time.",
-    "category": "generated",
-    "sort": 10,
-    "objectives": [
-      {
-        "type": "justquests:kill_mob",
-        "entity": "minecraft:witch",
-        "count": 1
+        "type": "justquests:collect_item",
+        "item": "minecraft:lily_of_the_valley",
+        "count": 16
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
         "item": "mekanism:ingot_osmium",
-        "count": 10
+        "count": 15
       },
       {
         "type": "justquests:xp",
-        "amount": 42
+        "amount": 55
       }
     ]
   },
-  "justquests:gen/1790510400_6": {
-    "title": "Rabbit Nursery",
-    "description": "Breed 4 rabbits. Rabbits breed with carrots or dandelions. Look in deserts.",
+  "justquests:gen/1790510400_1": {
+    "title": "Dig Deepslate Lead Ore",
+    "description": "Break 16 deepslate lead ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
     "category": "generated",
-    "sort": 10,
+    "sort": 16,
     "objectives": [
       {
-        "type": "justquests:breed_animal",
-        "entity": "minecraft:rabbit",
-        "count": 4
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:arrow",
-        "count": 32
-      },
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:cookie",
-        "count": 32
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 46
-      }
-    ]
-  },
-  "justquests:gen/1790510400_7": {
-    "title": "Andesite Casing Design",
-    "description": "Build with 16 andesite casings. Use andesite alloy on stripped logs to make casings.",
-    "category": "generated",
-    "sort": 10,
-    "objectives": [
-      {
-        "type": "justquests:place_block",
-        "block": "create:andesite_casing",
+        "type": "justquests:mine_block",
+        "block": "mekanism:deepslate_lead_ore",
         "count": 16
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "create:honeyed_apple",
-        "count": 3
+        "item": "farmersdelight:rope",
+        "count": 32
       },
-      {
-        "type": "justquests:xp",
-        "amount": 30
-      }
-    ]
-  },
-  "justquests:gen/1790510400_8": {
-    "title": "Venison Steak Supper",
-    "description": "Eat 6 venison steaks. Found in the Twilight Forest.",
-    "category": "generated",
-    "sort": 12,
-    "objectives": [
-      {
-        "type": "justquests:consume_item",
-        "item": "twilightforest:cooked_venison",
-        "count": 6
-      }
-    ],
-    "rewards": [
       {
         "type": "justquests:give_item",
         "item": "farmersdelight:hamburger",
@@ -237,40 +232,36 @@
       },
       {
         "type": "justquests:xp",
-        "amount": 42
-      },
-      {
-        "type": "justquests:message",
-        "message": "Another job well done."
+        "amount": 75
       }
     ]
   },
-  "justquests:gen/1790510400_1": {
-    "title": "Tin Ingot Batch",
-    "description": "Smelt 24 tin ingots. Smelt raw tin in a furnace. Needs a stone pickaxe or better. Found in caves.",
+  "justquests:gen/1790510400_8": {
+    "title": "Breed Deer",
+    "description": "Breed 5 deer. Deer breed with wheat. Found in the Twilight Forest.",
     "category": "generated",
-    "sort": 18,
+    "sort": 16,
     "objectives": [
       {
-        "type": "justquests:smelt_item",
-        "item": "mekanism:ingot_tin",
-        "count": 24
+        "type": "justquests:breed_animal",
+        "entity": "twilightforest:deer",
+        "count": 5
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:campfire",
-        "count": 4
+        "item": "minecraft:amethyst_shard",
+        "count": 16
       },
       {
         "type": "justquests:give_item",
-        "item": "minecraft:saddle",
-        "count": 1
+        "item": "farmersdelight:beef_stew",
+        "count": 4
       },
       {
         "type": "justquests:xp",
-        "amount": 165
+        "amount": 60
       }
     ]
   }

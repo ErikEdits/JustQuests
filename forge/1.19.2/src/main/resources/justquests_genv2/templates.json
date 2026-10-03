@@ -110,6 +110,21 @@
       "Into {Dimension}",
       "Gateway to {Dimension}",
       "{Dimension} Expedition"
+    ],
+    "enchant_item": [
+      "{Name} Enchanter",
+      "Enchanted {Names}",
+      "Arcane {Name}",
+      "{Name} Enchantment",
+      "Spellbound {Names}",
+      "Magic {Name}"
+    ],
+    "use_item": [
+      "{Name} Practice",
+      "Use {Names}",
+      "{Name} Drill",
+      "Handy {Names}",
+      "{Name} Training"
     ]
   },
   "phrases": {
@@ -143,6 +158,12 @@
     "consume_item": [
       "Eat {count} {names}"
     ],
+    "enchant_item": [
+      "Enchant {count} {names}"
+    ],
+    "use_item": [
+      "Use {count} {names}"
+    ],
     "place_block": [
       "Place {count} {names}",
       "Build with {count} {names}"
@@ -153,6 +174,27 @@
     ]
   },
   "variants": {
+    "throw": {
+      "phrases": [
+        "Throw {count} {names}"
+      ],
+      "titles": [
+        "{Name} Toss",
+        "Throw {Names}",
+        "{Name} Volley",
+        "{Name} Pitch"
+      ]
+    },
+    "launch": {
+      "phrases": [
+        "Launch {count} {names}"
+      ],
+      "titles": [
+        "{Name} Show",
+        "Launch {Names}",
+        "Sky {Names}"
+      ]
+    },
     "drink": {
       "phrases": [
         "Drink {count} {names}"
@@ -288,6 +330,8 @@
     "workstations": "Workshop",
     "transport": "Transport",
     "brewing": "Brewer",
+    "enchanting": "Enchanting",
+    "use_items": "Field Work",
     "exploration": "Explorer",
     "nether_animals": "Nether Ranch",
     "nether_crafts": "Nether Mason",

@@ -1,25 +1,25 @@
 {
   "justquests:gen/1790510400_0": {
-    "title": "Ice Excavation",
-    "description": "Mine 48 ice. Look in snowy biomes.",
+    "title": "Coal Ore Excavation",
+    "description": "Mine 64 coal ore. Found in caves.",
     "category": "generated",
-    "sort": 7,
+    "sort": 16,
     "objectives": [
       {
         "type": "justquests:mine_block",
-        "block": "minecraft:ice",
-        "count": 48
+        "block": "minecraft:coal_ore",
+        "count": 64
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:honey_bottle",
-        "count": 8
+        "item": "minecraft:cooked_salmon",
+        "count": 16
       },
       {
         "type": "justquests:xp",
-        "amount": 100
+        "amount": 115
       }
     ]
   },
@@ -53,62 +53,39 @@
       }
     ]
   },
-  "justquests:gen/1790510400_6": {
-    "title": "Cave Spider Hunt",
-    "description": "Defeat 8 cave spiders. Found in abandoned mineshafts.",
-    "category": "generated",
-    "sort": 16,
-    "objectives": [
-      {
-        "type": "justquests:kill_mob",
-        "entity": "minecraft:cave_spider",
-        "count": 8
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:golden_carrot",
-        "count": 12
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 65
-      }
-    ]
-  },
   "justquests:gen/1790510400_5": {
-    "title": "Base Camp",
-    "description": "Set up camp before nightfall: pick up 96 logs and make 128 torches. Chop any kind of tree. Any log counts. Coal or charcoal on a stick.",
+    "title": "Harvest Time",
+    "description": "Bring in the harvest: collect 32 beetroot seeds and collect 64 carrots. Villages often have them. Grow them on a farm.",
     "category": "generated",
-    "sort": 18,
+    "sort": 17,
     "mode": "all",
     "objectives": [
       {
         "type": "justquests:collect_item",
-        "item": "#minecraft:logs",
-        "count": 96
+        "item": "minecraft:beetroot_seeds",
+        "count": 32
       },
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:torch",
-        "count": 128
+        "type": "justquests:collect_item",
+        "item": "minecraft:carrot",
+        "count": 64
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:rabbit_foot",
-        "count": 2
+        "item": "minecraft:experience_bottle",
+        "count": 14
       },
       {
-        "type": "justquests:give_item",
-        "item": "minecraft:gold_ingot",
-        "count": 11
+        "type": "justquests:effect",
+        "effect": "minecraft:fire_resistance",
+        "seconds": 480,
+        "amplifier": 0
       },
       {
         "type": "justquests:xp",
-        "amount": 80
+        "amount": 75
       }
     ]
   },
@@ -148,16 +125,133 @@
       }
     ]
   },
-  "justquests:gen/1790510400_7": {
-    "title": "Smelt Popped Chorus Fruit",
-    "description": "Smelt 48 popped chorus fruit. Grows on the outer End islands. Found in the End.",
+  "justquests:gen/1790510400_4": {
+    "title": "Snowbound",
+    "description": "Get ready for the cold: break 48 ice and pick up 48 wool. Look in snowy biomes. Shear sheep. Any wool counts. Use shears.",
     "category": "generated",
-    "sort": 21,
+    "sort": 19,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:ice",
+        "count": 48
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "#minecraft:wool",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:pumpkin_pie",
+        "count": 8
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/jungle_temple"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 180
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Stray Patrol",
+    "description": "Slay 12 strays. Look in snowy biomes. They spawn at night and in dark caves.",
+    "category": "generated",
+    "sort": 19,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:stray",
+        "count": 12
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 95
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": "Piglin Watch",
+    "description": "Defeat 12 piglins. Piglins attack players without gold armor. Found in crimson forests. Found in the Nether.",
+    "category": "generated",
+    "sort": 23,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:piglin",
+        "count": 12
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:powered_rail",
+        "count": 12
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:conduit_power",
+        "seconds": 300,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 150
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": "Craft Powered Rails",
+    "description": "Make 16 powered rails. Gold ingots, a stick and redstone.",
+    "category": "generated",
+    "sort": 26,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:powered_rail",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:iron_ingot",
+        "count": 24
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:paper",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 240
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Hot Sponges",
+    "description": "Smelt 4 sponges. Dry wet sponges from ocean monuments. Found at ocean monuments.",
+    "category": "generated",
+    "sort": 26,
     "objectives": [
       {
         "type": "justquests:smelt_item",
-        "item": "minecraft:popped_chorus_fruit",
-        "count": 48
+        "item": "minecraft:sponge",
+        "count": 4
       }
     ],
     "rewards": [
@@ -168,55 +262,21 @@
       },
       {
         "type": "justquests:xp",
-        "amount": 130
-      }
-    ]
-  },
-  "justquests:gen/1790510400_4": {
-    "title": "Undead Duty",
-    "description": "Slay 12 skeletons and defeat 4 phantoms. They spawn at night and in dark caves.",
-    "category": "generated",
-    "sort": 23,
-    "mode": "all",
-    "objectives": [
-      {
-        "type": "justquests:kill_mob",
-        "entity": "minecraft:skeleton",
-        "count": 12
-      },
-      {
-        "type": "justquests:kill_mob",
-        "entity": "minecraft:phantom",
-        "count": 4
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:gold_ingot",
-        "count": 16
-      },
-      {
-        "type": "justquests:loot_table",
-        "loot_table": "minecraft:chests/jungle_temple"
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 95
+        "amount": 220
       }
     ]
   },
   "justquests:gen/1790510400_2": {
     "title": "Metal Duty",
-    "description": "Collect 96 raw copper and collect 16 raw gold. Copper ore drops raw copper. Found in caves. Gold ore drops raw gold. Found deep underground.",
+    "description": "Collect 32 raw iron and collect 16 raw gold. Iron ore drops raw iron. Found in caves. Gold ore drops raw gold. Found deep underground.",
     "category": "generated",
-    "sort": 31,
+    "sort": 37,
     "mode": "all",
     "objectives": [
       {
         "type": "justquests:collect_item",
-        "item": "minecraft:raw_copper",
-        "count": 96
+        "item": "minecraft:raw_iron",
+        "count": 32
       },
       {
         "type": "justquests:collect_item",
@@ -227,8 +287,8 @@
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:blaze_powder",
-        "count": 16
+        "item": "minecraft:powered_rail",
+        "count": 12
       },
       {
         "type": "justquests:loot_table",
@@ -236,60 +296,7 @@
       },
       {
         "type": "justquests:xp",
-        "amount": 350
-      }
-    ]
-  },
-  "justquests:gen/1790510400_9": {
-    "title": "Breed Mooshrooms",
-    "description": "Breed 2 mooshrooms. Mooshrooms breed with wheat. Look on mushroom islands. Rare, so take your time.",
-    "category": "generated",
-    "sort": 32,
-    "objectives": [
-      {
-        "type": "justquests:breed_animal",
-        "entity": "minecraft:mooshroom",
-        "count": 2
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:emerald",
-        "count": 14
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 155
-      }
-    ]
-  },
-  "justquests:gen/1790510400_8": {
-    "title": "Ancient Debris Breaker",
-    "description": "Mine 2 ancient debris. Needs a diamond pickaxe. Rare, so take your time. Found in the Nether.",
-    "category": "generated",
-    "sort": 35,
-    "objectives": [
-      {
-        "type": "justquests:mine_block",
-        "block": "minecraft:ancient_debris",
-        "count": 2
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:redstone_block",
-        "count": 4
-      },
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:ender_eye",
-        "count": 4
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 350
+        "amount": 405
       }
     ]
   }

@@ -534,7 +534,9 @@ public final class Core {
         Set<String> targets = new LinkedHashSet<>();
         for (JsonObject o : Json.objects(r.json, "objectives")) {
             for (String f : new String[]{"item", "block", "entity", "dimension"}) {
-                String v = Json.str(o, f, null);
+                // an item filter object ({"id": ..., "potion": ...}) counts by its id
+                String v = o.has(f) && o.get(f).isJsonObject() ? Json.str(o.getAsJsonObject(f), "id", null)
+                    : Json.str(o, f, null);
                 if (v != null) {
                     targets.add(v);
                 }

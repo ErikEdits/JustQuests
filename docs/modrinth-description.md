@@ -57,7 +57,7 @@ quest needs **all** objectives or just **any one** of them:
 
 - **collect_item** – gather items (mining, harvesting, mob drops)
 - **mine_block** – break blocks of a type
-- **craft_item** – craft a given item
+- **craft_item** – craft a given item (crafting table or stonecutter)
 - **smelt_item** – smelt items in a furnace
 - **consume_item** – eat or drink an item
 - **enchant_item** – enchant items at an enchanting table
@@ -71,8 +71,8 @@ quest needs **all** objectives or just **any one** of them:
 - **visit_dimension** – enter a dimension (vanilla **or** modded, by id)
 - **gain_advancement** – earn an advancement
 
-Item objectives accept a single id (`minecraft:oak_log`) or a **tag**
-(`#minecraft:logs`), optionally narrowed by **enchantments**, **potion** or
+Item, block and mob objectives accept a single id (`minecraft:oak_log`) or a **tag**
+(`#minecraft:logs`); item objectives can also be narrowed by **enchantments**, **potion** or
 **custom name** — the same JSON on every Minecraft version.
 
 Rewards:

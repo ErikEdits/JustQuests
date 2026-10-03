@@ -352,11 +352,14 @@ public final class GenV2Host implements GeneratorHost {
 
     private static final class Caps implements HostCapabilities {
         private static final Set<String> TAGGABLE = Set.of("justquests:collect_item", "justquests:craft_item",
-            "justquests:smelt_item", "justquests:consume_item");
+            "justquests:smelt_item", "justquests:consume_item", "justquests:enchant_item", "justquests:use_item",
+            "justquests:mine_block", "justquests:place_block", "justquests:kill_mob", "justquests:tame_animal",
+            "justquests:breed_animal");
         private static final Set<String> OBJECTIVES = Set.of("justquests:collect_item", "justquests:kill_mob",
             "justquests:place_block", "justquests:craft_item", "justquests:tame_animal", "justquests:gain_advancement",
             "justquests:visit_dimension", "justquests:reach_level", "justquests:reach_location", "justquests:mine_block",
-            "justquests:breed_animal", "justquests:consume_item", "justquests:smelt_item");
+            "justquests:breed_animal", "justquests:consume_item", "justquests:smelt_item", "justquests:enchant_item",
+            "justquests:use_item");
         private static final Set<String> REWARDS = Set.of("justquests:give_item", "justquests:xp", "justquests:effect",
             "justquests:loot_table", "justquests:message", "justquests:command");
 

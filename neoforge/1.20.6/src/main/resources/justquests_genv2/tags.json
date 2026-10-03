@@ -10,6 +10,22 @@
       "name": "log",
       "plural": "logs"
     },
+    "logs_block": {
+      "kind": "block",
+      "candidates": [
+        "minecraft:logs"
+      ],
+      "name": "log",
+      "plural": "logs"
+    },
+    "skeletons": {
+      "kind": "entity",
+      "candidates": [
+        "minecraft:skeletons"
+      ],
+      "name": "skeleton",
+      "plural": "skeletons"
+    },
     "wool": {
       "kind": "item",
       "candidates": [

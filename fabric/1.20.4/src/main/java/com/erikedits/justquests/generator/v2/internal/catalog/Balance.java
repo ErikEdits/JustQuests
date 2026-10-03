@@ -210,8 +210,8 @@ public final class Balance {
         levels.put(Difficulty.HARD, level(15, 35, 4, new double[]{50, 35, 15}, 1.5, 18, 60, true, 0.20, 0.15, 0.05,
             new double[]{0.35, 0.8, 1.0, 1.0, 1.0}));
         String[] types = {"collect_item", "mine_block", "craft_item", "smelt_item", "kill_mob", "breed_animal",
-            "tame_animal", "consume_item", "place_block", "visit_dimension"};
-        double[] w = {1.0, 1.0, 1.0, 0.8, 1.0, 0.6, 0.25, 0.6, 0.35, 0.15};
+            "tame_animal", "consume_item", "place_block", "visit_dimension", "enchant_item", "use_item"};
+        double[] w = {1.0, 1.0, 1.0, 0.8, 1.0, 0.6, 0.25, 0.6, 0.35, 0.15, 0.8, 1.0};
         for (int i = 0; i < types.length; i++) {
             typeWeights.put(types[i], w[i]);
         }

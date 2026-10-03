@@ -43,9 +43,9 @@ public record Candidate(String profile, EntryDef entry, TargetDef def, Objective
         return baseEffort * multiplier;
     }
 
-    /** Signature part: {@code type:target}. */
+    /** Signature part: {@code type:target}, plus {@code {potion}} for a potion filter. */
     public String signaturePart() {
-        return type.shortName() + ":" + target;
+        return type.shortName() + ":" + target + (def.potion() != null ? "{" + def.potion() + "}" : "");
     }
 
     public boolean modded() {

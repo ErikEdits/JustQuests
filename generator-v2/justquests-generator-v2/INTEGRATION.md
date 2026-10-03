@@ -166,11 +166,12 @@ generated quest (≤ 25 per rotation).
 
 | Method | Today's answer |
 |---|---|
-| `supportsTag(type)` | `true` for `justquests:collect_item`, `craft_item`, `smelt_item`, `consume_item`; `false` otherwise. |
-| `objectiveTypes()` | the 13 ids of `QuestObjective.codecForType` (the core ignores the forbidden three). |
+| `supportsTag(type)` | `true` for every item, block and entity objective (`collect_item`, `craft_item`, `smelt_item`, `consume_item`, `enchant_item`, `use_item`, `mine_block`, `place_block`, `kill_mob`, `tame_animal`, `breed_animal`; mod 0.3.3+); `false` for `visit_dimension`. |
+| `objectiveTypes()` | the 15 ids of `QuestObjective.codecForType` (the core ignores the forbidden three). |
 | `rewardTypes()` | the 6 reward ids (`command` is listed by the mod but never emitted by the core). |
 
-If a future build adds tag support to `mine_block`/`kill_mob`, only this method changes.
+Block and entity tags (`#minecraft:logs`, `#minecraft:skeletons`) need mod 0.3.3+; an older build
+reports only the item types and the core falls back to the plain ids.
 
 ### 2.7 `GenLog`
 
@@ -458,7 +459,7 @@ Not required for v2; each unlocks more generator content with a data-only change
   report it in `HostCapabilities.supportsTag`; the catalog can then use tags there too.
 - **Split large `give_item` counts** above the stack size into several stacks — the core would then
   allow counts above `maxStackSize` for rewards (currently capped).
-- **Stonecutter / smithing hooks** (`craft_item` for stonecutter results) would make Create's cut
+- ~~**Stonecutter hook**~~ — done in mod 0.3.3: `craft_item` counts stonecutter results, so Create's cut
   stone and many decoration blocks craft targets.
 - **`claimState` in the sync packet** (§6).
 - **Per-objective progress for `mode: any`** (not used by the generator today).

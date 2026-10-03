@@ -1,36 +1,60 @@
 {
   "justquests:gen/1790510400_3": {
-    "title": "Sand Errand",
-    "description": "Craft 16 red sandstone and gather 64 red sand. Four red sand. Look in badlands.",
+    "title": "Glassblower",
+    "description": "The glassblower is out of sand: collect 128 sand and smelt 64 glass. Dig sand with a shovel. Look along beaches. Smelt sand in a furnace.",
     "category": "generated",
-    "sort": 14,
+    "sort": 13,
     "mode": "all",
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:red_sandstone",
-        "count": 16
+        "type": "justquests:collect_item",
+        "item": "minecraft:sand",
+        "count": 128
       },
       {
-        "type": "justquests:collect_item",
-        "item": "minecraft:red_sand",
+        "type": "justquests:smelt_item",
+        "item": "minecraft:glass",
         "count": 64
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:coal_block",
-        "count": 4
+        "item": "minecraft:cooked_beef",
+        "count": 16
       },
       {
         "type": "justquests:give_item",
-        "item": "minecraft:pumpkin_pie",
-        "count": 8
+        "item": "minecraft:white_wool",
+        "count": 30
       },
       {
         "type": "justquests:xp",
-        "amount": 65
+        "amount": 60
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": "Redstone Dust Bundle",
+    "description": "Gather 64 redstone dust. Redstone ore drops dust. Needs an iron pickaxe or better. Found deep underground.",
+    "category": "generated",
+    "sort": 14,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:redstone",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:nautilus_shell",
+        "count": 2
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 135
       }
     ]
   },
@@ -70,22 +94,22 @@
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "Mine Deepslate Redstone Ore",
-    "description": "Mine 16 deepslate redstone ore. Needs an iron pickaxe or better. Found deep underground.",
+    "title": "Hoglin Herd",
+    "description": "Breed 3 hoglins. Hoglins breed with crimson fungus; they fight back. Found in crimson forests. Found in the Nether.",
     "category": "generated",
-    "sort": 16,
+    "sort": 17,
     "objectives": [
       {
-        "type": "justquests:mine_block",
-        "block": "minecraft:deepslate_redstone_ore",
-        "count": 16
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:hoglin",
+        "count": 3
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:quartz",
-        "count": 32
+        "item": "minecraft:blaze_rod",
+        "count": 7
       },
       {
         "type": "justquests:loot_table",
@@ -93,90 +117,27 @@
       },
       {
         "type": "justquests:xp",
-        "amount": 60
+        "amount": 55
       }
     ]
   },
-  "justquests:gen/1790510400_4": {
-    "title": "Make Enchanting Tables",
-    "description": "Make an enchanting table.",
+  "justquests:gen/1790510400_1": {
+    "title": "Mine Nether Quartz Ore",
+    "description": "Mine 48 Nether quartz ore. Found in the Nether.",
     "category": "generated",
-    "sort": 16,
+    "sort": 17,
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:enchanting_table",
-        "count": 1
+        "type": "justquests:mine_block",
+        "block": "minecraft:nether_quartz_ore",
+        "count": 48
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:phantom_membrane",
-        "count": 4
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 145
-      }
-    ]
-  },
-  "justquests:gen/1790510400_6": {
-    "title": "Hot Cooked Chicken",
-    "description": "Cook 40 chicken. Cook raw chicken.",
-    "category": "generated",
-    "sort": 16,
-    "objectives": [
-      {
-        "type": "justquests:smelt_item",
-        "item": "minecraft:cooked_chicken",
-        "count": 40
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:iron_block",
-        "count": 2
-      },
-      {
-        "type": "justquests:loot_table",
-        "loot_table": "minecraft:chests/jungle_temple"
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 50
-      }
-    ]
-  },
-  "justquests:gen/1790510400_7": {
-    "title": "Ironworks Chores",
-    "description": "Make 2 hoppers and place 12 iron chains.",
-    "category": "generated",
-    "sort": 16,
-    "mode": "all",
-    "objectives": [
-      {
-        "type": "justquests:craft_item",
-        "item": "minecraft:hopper",
-        "count": 2
-      },
-      {
-        "type": "justquests:place_block",
-        "block": "minecraft:iron_chain",
-        "count": 12
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:copper_ingot",
-        "count": 32
-      },
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:gold_block",
-        "count": 1
+        "item": "minecraft:obsidian",
+        "count": 16
       },
       {
         "type": "justquests:xp",
@@ -184,9 +145,37 @@
       }
     ]
   },
+  "justquests:gen/1790510400_6": {
+    "title": "Prismarine Breaker",
+    "description": "Mine 32 prismarine. Needs an iron pickaxe or better. Found at ocean monuments.",
+    "category": "generated",
+    "sort": 18,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:prismarine",
+        "count": 32
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:string",
+        "count": 16
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/abandoned_mineshaft"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 160
+      }
+    ]
+  },
   "justquests:gen/1790510400_9": {
     "title": "Busy Bees",
-    "description": "Tend the hives: breed 5 bees and drink 4 honey bottles. Bees breed with flowers. Needs bees and flowers. Use a glass bottle on a full hive.",
+    "description": "Tend the hives: breed 5 bees and make 6 candles. Bees breed with flowers. Needs bees and flowers.",
     "category": "generated",
     "sort": 18,
     "mode": "all",
@@ -197,9 +186,9 @@
         "count": 5
       },
       {
-        "type": "justquests:consume_item",
-        "item": "minecraft:honey_bottle",
-        "count": 4
+        "type": "justquests:craft_item",
+        "item": "minecraft:candle",
+        "count": 6
       }
     ],
     "rewards": [
@@ -219,26 +208,67 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Deepslate Iron Ore Dig",
-    "description": "Break 32 deepslate iron ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
+    "title": "Copper Age",
+    "description": "Copper everywhere: gather 96 raw copper and craft 8 copper blocks. Copper ore drops raw copper. Needs a stone pickaxe or better.",
     "category": "generated",
-    "sort": 21,
+    "sort": 20,
+    "mode": "all",
     "objectives": [
       {
-        "type": "justquests:mine_block",
-        "block": "minecraft:deepslate_iron_ore",
-        "count": 32
+        "type": "justquests:collect_item",
+        "item": "minecraft:raw_copper",
+        "count": 96
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:copper_block",
+        "count": 8
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:bookshelf",
-        "count": 4
+        "item": "minecraft:baked_potato",
+        "count": 32
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:powered_rail",
+        "count": 10
       },
       {
         "type": "justquests:xp",
-        "amount": 165
+        "amount": 110
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Wildlife Order",
+    "description": "Eat 4 cooked rabbit and breed 3 ocelots. Look in deserts. Ocelots breed with raw cod or salmon. Look in jungles.",
+    "category": "generated",
+    "sort": 25,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:consume_item",
+        "item": "minecraft:cooked_rabbit",
+        "count": 4
+      },
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:ocelot",
+        "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:emerald",
+        "count": 12
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 135
       }
     ]
   },
@@ -275,30 +305,6 @@
       {
         "type": "justquests:xp",
         "amount": 385
-      }
-    ]
-  },
-  "justquests:gen/1790510400_1": {
-    "title": "Stop the Shulkers",
-    "description": "Defeat 6 shulkers. Found in End cities. Found in the End.",
-    "category": "generated",
-    "sort": 28,
-    "objectives": [
-      {
-        "type": "justquests:kill_mob",
-        "entity": "minecraft:shulker",
-        "count": 6
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:ender_pearl",
-        "count": 8
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 255
       }
     ]
   }

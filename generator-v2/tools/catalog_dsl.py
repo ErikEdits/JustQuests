@@ -14,7 +14,7 @@ def T(type, id=None, effort=None, min=1, max=16, **kw):
         t["min"] = min
         t["max"] = max
     for k in ("alt", "tier", "tool", "hints", "name", "plural", "hint", "stack", "dimension", "minDifficulty",
-              "tamable", "note", "weight", "since"):
+              "tamable", "note", "weight", "since", "potion"):
         if k in kw:
             t[k] = kw.pop(k)
     assert not kw, kw

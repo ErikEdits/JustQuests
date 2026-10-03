@@ -2,32 +2,16 @@
 
 Generator v2: enabled, difficulty normal, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla, farmersdelight, create, mekanism, twilightforest, botania], Minecraft 1.21.1 (neoforge)
 
-justquests:gen/1790510400_3  "Earthworks Chores"  (NORMAL, cycle 1790510400, seed 0xEE71…)
-objective smelt_item minecraft:brick ×32
-  effort 0.12 min/unit → 3.8 min (target 8.5, range 8–20 min)
-  tier 0 (always available), family soil, profile vanilla, hints river
-objective craft_item minecraft:packed_mud ×8
-  effort 0.25 min/unit (×1.50 mangrove_swamp) → 3.0 min (target 8.5, range 8–20 min)
-  tier 0 (always available), family soil, profile vanilla, hints mangrove_swamp
-combo within family soil
-estimated 6.8 min (quick)
-reward give_item create:linear_chassis ×11 (value 6.6) + xp 29 (value 2.4)  → 9.0 / budget 9.0
-state: AVAILABLE
-
-justquests:gen/1790510400_7  "Grilled Salmon Lunch"  (NORMAL, cycle 1790510400, seed 0xEE71…)
-objective consume_item farmersdelight:grilled_salmon ×3
-  effort 2.60 min/unit → 7.8 min (target 8.3, range 8–20 min)
-  tier 1 (always available), family fd_plates, profile farmersdelight
-estimated 7.8 min (quick)
-reward give_item minecraft:honeycomb ×7 (value 7.0) + xp 28 (value 2.3)  → 9.3 / budget 9.4
-state: AVAILABLE
-
-justquests:gen/1790510400_8  "Repeater Request"  (NORMAL, cycle 1790510400, seed 0xEE71…)
-objective craft_item minecraft:repeater ×8
-  effort 1.00 min/unit → 8.0 min (target 13.3, range 8–20 min)
-  tier 2 (always available), family redstone, profile vanilla
-estimated 8.0 min (quick)
-reward give_item minecraft:honeycomb ×7 (value 7.0) + xp 31 (value 2.6)  → 9.6 / budget 9.6
+justquests:gen/1790510400_3  "Lumber Chores"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective mine_block minecraft:oak_log ×40
+  effort 0.09 min/unit → 3.6 min (target 8.0, range 8–20 min)
+  tier 0 (always available), family wood, profile vanilla
+objective mine_block minecraft:cherry_log ×24
+  effort 0.10 min/unit (×1.50 cherry_grove) → 3.6 min (target 8.0, range 8–20 min)
+  tier 0 (always available), family wood, profile vanilla, hints cherry_grove
+combo within family wood
+estimated 7.2 min (quick)
+reward give_item minecraft:cooked_chicken ×14 (value 7.0) + xp 30 (value 2.5)  → 9.5 / budget 9.5
 state: AVAILABLE
 
 justquests:gen/1790510400_0  "Liveroot Delivery"  (NORMAL, cycle 1790510400, seed 0xEE71…)
@@ -39,58 +23,73 @@ estimated 9.4 min (quick)
 reward give_item twilightforest:cooked_venison ×8 (value 8.8) + xp 30 (value 2.5)  → 11.3 / budget 11.3
 state: AVAILABLE
 
-justquests:gen/1790510400_4  "Bone Meal Crafting"  (NORMAL, cycle 1790510400, seed 0xEE71…)
-objective craft_item minecraft:bone_meal ×64
-  effort 0.15 min/unit → 9.6 min (target 15.5, range 8–20 min)
-  tier 0 (always available), family dyes, profile vanilla
+justquests:gen/1790510400_1  "Wheat Bundle"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective collect_item minecraft:wheat ×64
+  effort 0.15 min/unit → 9.6 min (target 10.5, range 8–20 min)
+  tier 0 (always available), family crops, profile vanilla, hints farm
 estimated 9.6 min (quick)
-reward give_item minecraft:amethyst_shard ×16 (value 5.6) + xp 70 (value 5.8)  → 11.4 / budget 11.5
+reward give_item minecraft:string ×16 (value 6.4) + xp 60 (value 5.0)  → 11.4 / budget 11.5
+rejected alternatives: mine_block minecraft:wheat (breaking crops at any stage counts)
 state: AVAILABLE
 
-justquests:gen/1790510400_1  "Deepslate Diamond Ore Dig"  (NORMAL, cycle 1790510400, seed 0xEE71…)
-objective mine_block minecraft:deepslate_diamond_ore ×2
-  effort 5.00 min/unit (×1.10 deep) → 11.0 min (target 10.5, range 8–20 min)
-  tier 2 (always available), family gems, profile vanilla, tool iron, hints deep
-estimated 11.0 min (quick)
-reward give_item minecraft:cookie ×32 (value 3.8) + give_item minecraft:iron_ingot ×10 (value 6.0) + xp 40 (value 3.3)  → 13.2 / budget 13.2
-rejected alternatives: mine_block minecraft:diamond_ore (rare above y=0; deepslate variant used)
+justquests:gen/1790510400_5  "Andesite Alloy Block Project"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective place_block create:andesite_alloy_block ×3
+  effort 3.20 min/unit → 9.6 min (target 8.1, range 8–20 min)
+  tier 1 (always available), family create_alloy, profile create
+estimated 9.6 min (quick)
+reward give_item minecraft:slime_ball ×6 (value 9.0) + xp 30 (value 2.5)  → 11.5 / budget 11.5
 state: AVAILABLE
 
-justquests:gen/1790510400_2  "Coal Duty"  (NORMAL, cycle 1790510400, seed 0xEE71…)
-objective mine_block minecraft:deepslate_coal_ore ×8
-  effort 0.60 min/unit (×1.10 deep) → 5.3 min (target 11.2, range 8–20 min)
-  tier 1 (always available), family coal, profile vanilla, tool wood, hints deep
-objective collect_item minecraft:coal ×24
-  effort 0.25 min/unit → 6.0 min (target 11.2, range 8–20 min)
-  tier 0 (always available), family coal, profile vanilla, tool wood, hints caves
-combo within family coal
-estimated 11.3 min (quick)
-reward give_item minecraft:experience_bottle ×9 (value 10.8) + xp 49 (value 4.1)  → 14.9 / budget 14.9
+justquests:gen/1790510400_8  "Ender Pearl Toss"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective use_item minecraft:ender_pearl ×4
+  effort 2.50 min/unit → 10.0 min (target 12.6, range 8–20 min)
+  tier 2 (always available), family use_items, profile vanilla, hints night/throw
+estimated 10.0 min (quick)
+reward give_item farmersdelight:hot_cocoa ×4 (value 6.4) + xp 65 (value 5.4)  → 11.8 / budget 12.0
+state: AVAILABLE
+
+justquests:gen/1790510400_7  "Mutton Wrap Order"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective craft_item farmersdelight:mutton_wrap ×6
+  effort 1.90 min/unit → 11.4 min (target 12.3, range 8–20 min)
+  tier 1 (always available), family fd_meals, profile farmersdelight
+estimated 11.4 min (quick)
+reward give_item minecraft:lapis_lazuli ×32 (value 6.4) + xp 85 (value 7.1) + message  → 13.5 / budget 13.7
+state: AVAILABLE
+
+justquests:gen/1790510400_2  "Ranch Duty"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective breed_animal minecraft:chicken ×8
+  effort 0.80 min/unit → 6.4 min (target 11.5, range 8–20 min)
+  tier 0 (always available), family livestock, profile vanilla
+objective smelt_item minecraft:cooked_beef ×16
+  effort 0.40 min/unit → 6.4 min (target 11.5, range 8–20 min)
+  tier 0 (always available), family livestock, profile vanilla, hints plains/cook
+combo within family livestock
+estimated 12.8 min
+reward give_item minecraft:experience_bottle ×11 (value 13.2) + xp 44 (value 3.7)  → 16.9 / budget 16.9
+state: AVAILABLE
+
+justquests:gen/1790510400_6  "Raw Lead Haul"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective collect_item mekanism:raw_lead ×16
+  effort 0.80 min/unit → 12.8 min (target 12.7, range 8–20 min)
+  tier 1 (always available), family mek_lead, profile mekanism, tool stone, hints caves
+estimated 12.8 min
+reward give_item minecraft:golden_carrot ×8 (value 12.0) + xp 40 (value 3.3)  → 15.3 / budget 15.4
 state: AVAILABLE
 
 justquests:gen/1790510400_9  "Make Livingwood Planks"  (NORMAL, cycle 1790510400, seed 0xEE71…)
 objective craft_item botania:livingwood_planks ×16
-  effort 1.00 min/unit → 16.0 min (target 18.9, range 8–20 min)
+  effort 1.00 min/unit → 16.0 min (target 13.8, range 8–20 min)
   tier 2 (always available), family bot_livingwood, profile botania
 estimated 16.0 min
-reward give_item mekanism:ingot_osmium ×16 (value 14.4) + xp 60 (value 5.0)  → 19.4 / budget 19.2
+reward give_item minecraft:cooked_porkchop ×16 (value 8.0) + give_item minecraft:honey_bottle ×5 (value 6.0) + xp 60 (value 5.0)  → 19.0 / budget 19.2
 rejected alternatives: collect_item botania:livingwood_log (a Pure Daisy converts logs in place; nothing is picked up)
 state: AVAILABLE
 
-justquests:gen/1790510400_6  "Tin Ingot Supply"  (NORMAL, cycle 1790510400, seed 0xEE71…)
-objective smelt_item mekanism:ingot_tin ×24
-  effort 0.75 min/unit → 18.0 min (target 14.8, range 8–20 min)
-  tier 1 (always available), family mek_tin, profile mekanism, tool stone, hints caves
-estimated 18.0 min
-reward give_item minecraft:obsidian ×16 (value 16.0) + xp 65 (value 5.4)  → 21.4 / budget 21.6
-state: AVAILABLE
-
-justquests:gen/1790510400_5  "Zinc Ore Shift"  (NORMAL, cycle 1790510400, seed 0xEE71…)
-objective mine_block create:zinc_ore ×24
-  effort 0.80 min/unit → 19.2 min (target 18.8, range 8–20 min)
-  tier 1 (always available), family create_zinc, profile create, tool iron, hints caves
-estimated 19.2 min
-reward give_item farmersdelight:hamburger ×6 (value 15.6) + xp 90 (value 7.5)  → 23.1 / budget 23.0
-rejected alternatives: collect_item create:zinc_ore (drops raw zinc, needs Silk Touch); craft_item create:zinc_block (tier 1 above NORMAL cap)
+justquests:gen/1790510400_4  "Craft Copper Grates"  (NORMAL, cycle 1790510400, seed 0xEE71…)
+objective craft_item minecraft:copper_grate ×16
+  effort 1.40 min/unit → 22.4 min (target 19.1, range 8–20 min)
+  tier 1 (always available), family copper_works, profile vanilla
+estimated 22.4 min
+reward give_item create:zinc_ingot ×22 (value 19.8) + xp 85 (value 7.1)  → 26.9 / budget 26.9
 state: AVAILABLE
 

@@ -1,25 +1,25 @@
 {
-  "justquests:gen/1790510400_6": {
-    "title": "Gather Beetroot Seeds",
-    "description": "Collect 24 beetroot seeds. Villages often have them.",
+  "justquests:gen/1790510400_0": {
+    "title": "Smooth Stone Slab Job",
+    "description": "Craft 40 smooth stone slabs. Three smooth stone make six slabs.",
     "category": "generated",
-    "sort": 4,
+    "sort": 5,
     "objectives": [
       {
-        "type": "justquests:collect_item",
-        "item": "minecraft:beetroot_seeds",
-        "count": 24
+        "type": "justquests:craft_item",
+        "item": "minecraft:smooth_stone_slab",
+        "count": 40
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "create:cogwheel",
-        "count": 13
+        "item": "minecraft:string",
+        "count": 9
       },
       {
         "type": "justquests:xp",
-        "amount": 13
+        "amount": 14
       }
     ]
   },
@@ -48,15 +48,15 @@
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Steak Tasting",
-    "description": "Eat 4 steak. Common in plains.",
+    "title": "Feather Bundle",
+    "description": "Collect 16 feathers.",
     "category": "generated",
     "sort": 5,
     "objectives": [
       {
-        "type": "justquests:consume_item",
-        "item": "minecraft:cooked_beef",
-        "count": 4
+        "type": "justquests:collect_item",
+        "item": "minecraft:feather",
+        "count": 16
       }
     ],
     "rewards": [
@@ -67,31 +67,35 @@
       },
       {
         "type": "justquests:xp",
-        "amount": 17
+        "amount": 14
       }
     ]
   },
-  "justquests:gen/1790510400_0": {
-    "title": "Copper Grate Request",
-    "description": "Craft 4 copper grates.",
+  "justquests:gen/1790510400_5": {
+    "title": "Mushroom Stew Snack",
+    "description": "Eat 3 mushroom stew. A bowl with a red and a brown mushroom. Dark forests have plenty.",
     "category": "generated",
-    "sort": 6,
+    "sort": 5,
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:copper_grate",
-        "count": 4
+        "type": "justquests:consume_item",
+        "item": "minecraft:mushroom_stew",
+        "count": 3
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:cake",
-        "count": 1
+        "item": "minecraft:glow_berries",
+        "count": 16
       },
       {
         "type": "justquests:xp",
-        "amount": 31
+        "amount": 18
+      },
+      {
+        "type": "justquests:message",
+        "message": "Someone will write songs about this."
       }
     ]
   },
@@ -110,32 +114,32 @@
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "farmersdelight:rice",
-        "count": 32
+        "item": "farmersdelight:onion",
+        "count": 30
       },
       {
         "type": "justquests:xp",
-        "amount": 26
+        "amount": 18
       }
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Craft Andesite Alloy Blocks",
-    "description": "Make 2 andesite alloy blocks. Nine andesite alloy.",
+    "title": "Place Andesite Casings",
+    "description": "Build with 10 andesite casings. Use andesite alloy on stripped logs to make casings.",
     "category": "generated",
     "sort": 6,
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "create:andesite_alloy_block",
-        "count": 2
+        "type": "justquests:place_block",
+        "block": "create:andesite_casing",
+        "count": 10
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:diamond",
-        "count": 1
+        "item": "minecraft:lantern",
+        "count": 6
       },
       {
         "type": "justquests:xp",
@@ -172,74 +176,74 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Cooked Cod Supper",
-    "description": "Eat 4 cooked cod. Use a fishing rod.",
+    "title": "Bring Rabbit Hides",
+    "description": "Pick up 5 rabbit hides. Look in deserts.",
     "category": "generated",
-    "sort": 6,
+    "sort": 7,
     "objectives": [
       {
-        "type": "justquests:consume_item",
-        "item": "minecraft:cooked_cod",
-        "count": 4
+        "type": "justquests:collect_item",
+        "item": "minecraft:rabbit_hide",
+        "count": 5
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
         "item": "mekanism:fluorite_gem",
-        "count": 13
+        "count": 14
       },
       {
         "type": "justquests:xp",
-        "amount": 17
+        "amount": 19
       }
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Break Mangrove Logs",
-    "description": "Break 48 mangrove logs. Look in mangrove swamps.",
+    "title": "Hay Block Crafter",
+    "description": "Make 6 hay blocks. Nine wheat make a hay bale. Grow them on a farm.",
     "category": "generated",
-    "sort": 7,
+    "sort": 8,
     "objectives": [
       {
-        "type": "justquests:mine_block",
-        "block": "minecraft:mangrove_log",
-        "count": 48
+        "type": "justquests:craft_item",
+        "item": "minecraft:hay_block",
+        "count": 6
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "mekanism:ingot_lead",
-        "count": 6
+        "item": "minecraft:cooked_beef",
+        "count": 13
       },
       {
         "type": "justquests:xp",
-        "amount": 18
+        "amount": 23
       }
     ]
   },
-  "justquests:gen/1790510400_5": {
-    "title": "Amethyst Shard Pickup",
-    "description": "Pick up 16 amethyst shards. Break amethyst clusters. Look inside amethyst geodes.",
+  "justquests:gen/1790510400_6": {
+    "title": "Rabbit Stew Workshop",
+    "description": "Make 2 rabbit stew. Look in deserts.",
     "category": "generated",
-    "sort": 7,
+    "sort": 8,
     "objectives": [
       {
-        "type": "justquests:collect_item",
-        "item": "minecraft:amethyst_shard",
-        "count": 16
+        "type": "justquests:craft_item",
+        "item": "minecraft:rabbit_stew",
+        "count": 2
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "create:large_cogwheel",
-        "count": 16
+        "item": "botania:fertilizer",
+        "count": 10
       },
       {
         "type": "justquests:xp",
-        "amount": 20
+        "amount": 22
       }
     ]
   }

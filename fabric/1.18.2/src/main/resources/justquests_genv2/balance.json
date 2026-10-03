@@ -108,7 +108,9 @@
     "tame_animal": 0.25,
     "consume_item": 0.6,
     "place_block": 0.35,
-    "visit_dimension": 0.15
+    "visit_dimension": 0.15,
+    "enchant_item": 0.8,
+    "use_item": 1.0
   },
   "hintMultipliers": {
     "desert": 1.3,

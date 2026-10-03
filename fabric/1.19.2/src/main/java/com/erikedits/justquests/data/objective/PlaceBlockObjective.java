@@ -8,11 +8,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 
 /** Place X blocks of a given type. */
-public record PlaceBlockObjective(Block block, int count) implements QuestObjective {
+public record PlaceBlockObjective(BlockMatcher block, int count) implements QuestObjective {
     public static final String TYPE_ID = "justquests:place_block";
 
     public static final MapCodec<PlaceBlockObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-        Registry.BLOCK.byNameCodec().fieldOf("block").forGetter(PlaceBlockObjective::block),
+        BlockMatcher.CODEC.fieldOf("block").forGetter(PlaceBlockObjective::block),
         Codec.INT.fieldOf("count").forGetter(PlaceBlockObjective::count)
     ).apply(instance, PlaceBlockObjective::new));
 
@@ -22,7 +22,7 @@ public record PlaceBlockObjective(Block block, int count) implements QuestObject
     }
 
     public boolean matches(Block b) {
-        return b == this.block;
+        return block.matches(b);
     }
 
     @Override
@@ -32,11 +32,11 @@ public record PlaceBlockObjective(Block block, int count) implements QuestObject
 
     @Override
     public String displayName() {
-        return "Place " + count + "x " + Registry.BLOCK.getKey(block);
+        return "Place " + count + "x " + block.label();
     }
 
     @Override
     public Component display() {
-        return Component.literal("Place " + count + "x ").append(block.getName());
+        return Component.literal("Place " + count + "x ").append(block.name());
     }
 }

@@ -42,8 +42,9 @@ community until we are ready for the GUI.
 | 0.2.5 | Stability (Fabric pickup mixin, lighter sync, cache cleared on disconnect) | ✅ shipped |
 | **0.3.0** | **Generator v2** (modded content, claims, difficulty, progression) | ✅ shipped |
 | 0.3.1 | Claims shown in the quest book; GUI text fix for 1.21.6+ | ✅ shipped |
-| 0.3.2 | `enchant_item`, `use_item`, item filters, `title` reward, v1 generator removed, CurseForge | 🔨 in work |
-| 0.4.0 | Claim button + choice rewards (changes the completion flow) | ⏭️ later |
+| 0.3.2 | `enchant_item`, `use_item`, item filters, `title` reward, v1 generator removed, CurseForge | ✅ shipped |
+| 0.3.3 | Block/mob tags, stonecutter counts as crafting, generator uses enchant/use/potions/tags | ✅ shipped |
+| 0.4.0 | Translations (EN, DE, JA, FR, ES; picked from the player's language), claim button, choice rewards | ⏭️ later |
 
 Each 0.1.x release is a Modrinth update, which puts the mod back in
 "recently updated" and funnels new players to the Discord — so a steady
@@ -212,8 +213,9 @@ category `generated`, toggled by `generatedQuests`/`generatedCount` in
 - [x] Runtime-tested in-game on every loader (2026-10)
 - [x] v1 classes (`QuestGenerator`, `GeneratedQuestStore`) removed in 0.3.2; worlds keep
       their old `generated.json`, which v2 migrates on first start
-- [ ] Next: thicker Botania / Mekanism / Twilight Forest profiles, tags for
-      `mine_block`/`kill_mob`, stonecutter recipes, more mod profiles
+- [x] Tags for `mine_block`/`kill_mob` targets, stonecutter craft targets, enchant/use/potion
+      quests (0.3.3)
+- [ ] Next: thicker Botania / Mekanism / Twilight Forest profiles, more mod profiles
 
 ---
 

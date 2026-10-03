@@ -1,13 +1,13 @@
 {
   "justquests:gen/1790510400_0": {
-    "title": "Jungle Log Collector",
-    "description": "Gather 32 jungle logs. Look in jungles.",
+    "title": "Jungle Log Quarry",
+    "description": "Mine 32 jungle logs. Look in jungles.",
     "category": "generated",
     "sort": 4,
     "objectives": [
       {
-        "type": "justquests:collect_item",
-        "item": "minecraft:jungle_log",
+        "type": "justquests:mine_block",
+        "block": "minecraft:jungle_log",
         "count": 32
       }
     ],
@@ -23,99 +23,23 @@
       }
     ]
   },
-  "justquests:gen/1790510400_7": {
-    "title": "Cooked Salmon Break",
-    "description": "Eat 2 cooked salmon.",
-    "category": "generated",
-    "sort": 4,
-    "objectives": [
-      {
-        "type": "justquests:consume_item",
-        "item": "minecraft:cooked_salmon",
-        "count": 2
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:pumpkin_pie",
-        "count": 3
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 12
-      }
-    ]
-  },
-  "justquests:gen/1790510400_2": {
-    "title": "Skeleton Watch",
-    "description": "Slay 5 skeletons. They spawn at night and in dark caves.",
+  "justquests:gen/1790510400_1": {
+    "title": "Furnace: Brick",
+    "description": "Smelt 40 bricks. Smelt clay balls. Look along rivers.",
     "category": "generated",
     "sort": 5,
     "objectives": [
       {
-        "type": "justquests:kill_mob",
-        "entity": "minecraft:skeleton",
-        "count": 5
+        "type": "justquests:smelt_item",
+        "item": "minecraft:brick",
+        "count": 40
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:redstone_block",
-        "count": 2
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 11
-      },
-      {
-        "type": "justquests:message",
-        "message": "Good work. Rest a while."
-      }
-    ]
-  },
-  "justquests:gen/1790510400_5": {
-    "title": "Feather Supply",
-    "description": "Gather 16 feathers.",
-    "category": "generated",
-    "sort": 5,
-    "objectives": [
-      {
-        "type": "justquests:collect_item",
-        "item": "minecraft:feather",
-        "count": 16
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:lapis_lazuli",
-        "count": 18
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 14
-      }
-    ]
-  },
-  "justquests:gen/1790510400_9": {
-    "title": "Apple Lunch",
-    "description": "Eat 2 apples.",
-    "category": "generated",
-    "sort": 5,
-    "objectives": [
-      {
-        "type": "justquests:consume_item",
-        "item": "minecraft:apple",
-        "count": 2
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:glow_berries",
-        "count": 14
+        "item": "minecraft:cooked_porkchop",
+        "count": 7
       },
       {
         "type": "justquests:xp",
@@ -123,47 +47,71 @@
       }
     ]
   },
-  "justquests:gen/1790510400_8": {
-    "title": "Birch Sapling Project",
-    "description": "Place 32 birch saplings. Plant saplings to regrow the forest.",
+  "justquests:gen/1790510400_9": {
+    "title": "Craft Coal Blocks",
+    "description": "Make 2 coal blocks.",
     "category": "generated",
-    "sort": 6,
+    "sort": 5,
     "objectives": [
       {
-        "type": "justquests:place_block",
-        "block": "minecraft:birch_sapling",
-        "count": 32
+        "type": "justquests:craft_item",
+        "item": "minecraft:coal_block",
+        "count": 2
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:experience_bottle",
-        "count": 4
+        "item": "minecraft:amethyst_shard",
+        "count": 10
       },
       {
         "type": "justquests:xp",
-        "amount": 12
+        "amount": 13
       }
     ]
   },
-  "justquests:gen/1790510400_6": {
-    "title": "Clay Quarry",
-    "description": "Mine 24 clay. Look along rivers.",
+  "justquests:gen/1790510400_4": {
+    "title": "Snowball Toss",
+    "description": "Throw 64 snowballs. Shovel snow and throw the snowballs. Look in snowy biomes.",
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:use_item",
+        "item": "minecraft:snowball",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:lapis_lazuli",
+        "count": 25
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 20
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": "Deepslate Iron Ore Dig",
+    "description": "Break 10 deepslate iron ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
     "category": "generated",
     "sort": 7,
     "objectives": [
       {
         "type": "justquests:mine_block",
-        "block": "minecraft:clay",
-        "count": 24
+        "block": "minecraft:deepslate_iron_ore",
+        "count": 10
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:bread",
-        "count": 12
+        "item": "minecraft:arrow",
+        "count": 32
       },
       {
         "type": "justquests:xp",
@@ -171,63 +119,15 @@
       }
     ]
   },
-  "justquests:gen/1790510400_3": {
-    "title": "Stone Bricks Batch",
-    "description": "Make 64 stone bricks. Craft from smelted stone.",
+  "justquests:gen/1790510400_6": {
+    "title": "Baked Potato Feast",
+    "description": "Eat 8 baked potatoes. Villages often have them. Grow them on a farm.",
     "category": "generated",
-    "sort": 8,
+    "sort": 7,
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:stone_bricks",
-        "count": 64
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:bookshelf",
-        "count": 1
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 46
-      }
-    ]
-  },
-  "justquests:gen/1790510400_4": {
-    "title": "Snow Block Design",
-    "description": "Place 40 snow blocks. Look in snowy biomes.",
-    "category": "generated",
-    "sort": 9,
-    "objectives": [
-      {
-        "type": "justquests:place_block",
-        "block": "minecraft:snow_block",
-        "count": 40
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:slime_ball",
-        "count": 4
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 34
-      }
-    ]
-  },
-  "justquests:gen/1790510400_1": {
-    "title": "Dried Kelp Block Batch",
-    "description": "Craft 8 dried kelp blocks. Look in and near oceans.",
-    "category": "generated",
-    "sort": 10,
-    "objectives": [
-      {
-        "type": "justquests:craft_item",
-        "item": "minecraft:dried_kelp_block",
+        "type": "justquests:consume_item",
+        "item": "minecraft:baked_potato",
         "count": 8
       }
     ],
@@ -239,7 +139,103 @@
       },
       {
         "type": "justquests:xp",
-        "amount": 43
+        "amount": 14
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": "Raw Rabbit Delivery",
+    "description": "Collect 6 raw rabbit. Look in deserts.",
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:rabbit",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:music_disc_cat",
+        "count": 1
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 22
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": "Rabbit Stew Crafter",
+    "description": "Make 2 rabbit stew. Look in deserts.",
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:rabbit_stew",
+        "count": 2
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:lead",
+        "count": 2
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 50
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": "Stone Bricks Builder",
+    "description": "Place 64 stone bricks.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:place_block",
+        "block": "minecraft:stone_bricks",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:coal_block",
+        "count": 3
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 32
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": "Cook Cooked Chicken",
+    "description": "Cook 24 chicken. Cook raw chicken.",
+    "category": "generated",
+    "sort": 10,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:cooked_chicken",
+        "count": 24
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:arrow",
+        "count": 32
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 60
       }
     ]
   }

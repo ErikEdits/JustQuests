@@ -322,9 +322,14 @@ public final class CatalogLoader {
             warn(where + ": unknown tag concept " + tag + "; tag ignored");
             tag = null;
         }
-        if (tag != null && !type.itemBased()) {
-            warn(where + ": tags are only allowed on item objectives; tag ignored");
+        if (tag != null && (!type.taggable() || tags.get(tag).kind() != type.kind())) {
+            warn(where + ": tag concept " + tag + " is not a " + type.kind() + " tag; tag ignored");
             tag = null;
+        }
+        String potion = Json.str(t, "potion", null);
+        if (potion != null && (!type.itemBased() || !Ids.isValid(potion))) {
+            warn(where + ": potion filter " + potion + " needs an item objective and a valid id; ignored");
+            potion = null;
         }
         if (!Ids.isValid(id) && tag == null) {
             warn(where + ": bad or missing id " + id + "; target skipped");
@@ -360,7 +365,7 @@ public final class CatalogLoader {
             Math.max(0.0, Json.dbl(t, "weight", 1.0)), tierOverride, Json.str(t, "tool", null),
             lower(Json.strings(t, "hints")), Json.str(t, "name", null), Json.str(t, "plural", null),
             Json.str(t, "hint", null), Json.integer(t, "stack", 0), Ids.isValid(dim) ? dim : null, minDifficulty,
-            Json.bool(t, "tamable", false), Json.str(t, "note", null), Json.str(t, "since", null));
+            Json.bool(t, "tamable", false), Json.str(t, "note", null), Json.str(t, "since", null), potion);
     }
 
     // ------------------------------------------------------------------ rewards & themes

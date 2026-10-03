@@ -2,17 +2,12 @@
 
 Generator v2: enabled, difficulty normal, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla], Minecraft 1.18.2 (forge)
 
-justquests:gen/1790510400_1  "Fletcher Order"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective craft_item minecraft:crossbow ×2
-  effort 2.20 min/unit → 4.4 min (target 8.9, range 8–20 min)
-  tier 1 (always available), family archery, profile vanilla
-objective craft_item minecraft:fishing_rod ×3
-  effort 1.00 min/unit → 3.0 min (target 8.9, range 8–20 min)
-  tier 0 (always available), family archery, profile vanilla
-combo within family archery
-estimated 7.4 min (quick)
-reward give_item minecraft:rabbit_foot ×2 (value 8.0) + xp 21 (value 1.8)  → 9.8 / budget 9.8
-rejected alternatives: craft_item minecraft:spectral_arrow (tier 3 above NORMAL cap)
+justquests:gen/1790510400_1  "Snowball Pitch"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective use_item minecraft:snowball ×64
+  effort 0.08 min/unit (×1.30 snowy) → 6.7 min (target 8.9, range 8–20 min)
+  tier 0 (always available), family use_items, profile vanilla, hints snowy/throw
+estimated 6.7 min (quick)
+reward give_item minecraft:apple ×8 (value 3.2) + give_item minecraft:redstone ×14 (value 2.8) + xp 24 (value 2.0)  → 8.0 / budget 8.0
 state: AVAILABLE
 
 justquests:gen/1790510400_0  "Mine Dark Oak Logs"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
@@ -23,73 +18,71 @@ estimated 8.3 min (quick)
 reward give_item minecraft:honeycomb ×7 (value 7.0) + xp 36 (value 3.0)  → 10.0 / budget 10.0
 state: AVAILABLE
 
-justquests:gen/1790510400_2  "Glow Ink Sac Stockpile"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective collect_item minecraft:glow_ink_sac ×8
-  effort 1.00 min/unit (×1.20 ocean) → 9.6 min (target 17.1, range 8–20 min)
-  tier 1 (always available), family ocean, profile vanilla, hints ocean
-estimated 9.6 min (quick)
-reward give_item minecraft:golden_apple ×1 (value 9.0) + xp 30 (value 2.5)  → 11.5 / budget 11.5
+justquests:gen/1790510400_3  "Black Dye Order"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:black_dye ×16
+  effort 0.50 min/unit → 8.0 min (target 8.4, range 8–20 min)
+  tier 0 (always available), family dyes, profile vanilla
+estimated 8.0 min (quick)
+reward give_item minecraft:glow_ink_sac ×7 (value 7.0) + xp 31 (value 2.6)  → 9.6 / budget 9.6
 state: AVAILABLE
 
-justquests:gen/1790510400_3  "Copper Block Assembly"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective craft_item minecraft:copper_block ×8
-  effort 1.30 min/unit → 10.4 min (target 18.1, range 8–20 min)
-  tier 1 (always available), family copper_works, profile vanilla
-estimated 10.4 min (quick)
-reward give_item minecraft:clock ×1 (value 5.0) + give_item minecraft:lead ×2 (value 3.6) + xp 47 (value 3.9)  → 12.5 / budget 12.5
-rejected alternatives: craft_item minecraft:copper_grate (released in 1.21, running 1.18.2); craft_item minecraft:copper_door (released in 1.21, running 1.18.2)
+justquests:gen/1790510400_8  "Hot Bricks"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item minecraft:brick ×64
+  effort 0.12 min/unit → 7.7 min (target 9.2, range 8–20 min)
+  tier 0 (always available), family soil, profile vanilla, hints river
+estimated 7.7 min (quick)
+reward give_item minecraft:cooked_salmon ×8 (value 7.2) + xp 24 (value 2.0)  → 9.2 / budget 9.2
 state: AVAILABLE
 
-justquests:gen/1790510400_8  "Cook Cooked Rabbit"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective smelt_item minecraft:cooked_rabbit ×8
-  effort 1.10 min/unit (×1.30 desert) → 11.4 min (target 17.4, range 8–20 min)
-  tier 0 (always available), family wild_animals, profile vanilla, hints desert/cook
-estimated 11.4 min (quick)
-reward give_item minecraft:white_wool ×32 (value 8.0) + xp 70 (value 5.8)  → 13.8 / budget 13.7
+justquests:gen/1790510400_2  "Blast Furnace Batch"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:blast_furnace ×3
+  effort 3.00 min/unit → 9.0 min (target 8.6, range 8–20 min)
+  tier 1 (always available), family stonework, profile vanilla
+estimated 9.0 min (quick)
+reward give_item minecraft:sugar ×32 (value 3.2) + effect minecraft:speed 270s (value 2.7) + xp 60 (value 5.0)  → 10.9 / budget 10.8
 state: AVAILABLE
 
-justquests:gen/1790510400_9  "Place Snow Blocks"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective place_block minecraft:snow_block ×48
-  effort 0.17 min/unit (×1.30 snowy) → 10.6 min (target 14.8, range 8–20 min)
+justquests:gen/1790510400_5  "Baked Potato Order"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item minecraft:baked_potato ×48
+  effort 0.20 min/unit (×1.20 village) → 11.5 min (target 11.8, range 8–20 min)
+  tier 0 (always available), family crops, profile vanilla, hints village/farm/cook
+estimated 11.5 min (quick)
+reward give_item minecraft:cooked_porkchop ×15 (value 7.5) + effect minecraft:haste 270s (value 3.6) + xp 33 (value 2.8)  → 13.9 / budget 13.8
+state: AVAILABLE
+
+justquests:gen/1790510400_9  "Dig Redstone Ore"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:redstone_ore ×12
+  effort 0.90 min/unit (×1.10 deep) → 11.9 min (target 13.0, range 8–20 min)
+  tier 2 (always available), family redstone, profile vanilla, tool iron, hints deep
+estimated 11.9 min (quick)
+reward give_item minecraft:gold_ingot ×8 (value 10.4) + xp 46 (value 3.8)  → 14.2 / budget 14.3
+state: AVAILABLE
+
+justquests:gen/1790510400_4  "Winter Prep"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective mine_block minecraft:ice ×48
+  effort 0.12 min/unit (×1.30 snowy) → 7.5 min (target 16.9, range 8–20 min)
   tier 0 (always available), family snow, profile vanilla, hints snowy
-estimated 10.6 min (quick)
-reward give_item minecraft:white_wool ×32 (value 8.0) + xp 55 (value 4.6)  → 12.6 / budget 12.7
+objective breed_animal minecraft:sheep ×8
+  effort 1.00 min/unit → 8.0 min (target 16.9, range 8–20 min)
+  tier 0 (always available), family wool, profile vanilla
+theme winter_prep
+estimated 15.5 min
+reward give_item minecraft:iron_ingot ×24 (value 14.4) + xp 75 (value 6.3)  → 20.7 / budget 20.4
 state: AVAILABLE
 
-justquests:gen/1790510400_5  "Pillager Watch"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective kill_mob minecraft:pillager ×4
-  effort 2.50 min/unit (×1.30 outpost) → 13.0 min (target 14.0, range 8–20 min)
-  tier 1 (always available), family illagers, profile vanilla, hints outpost
-estimated 13.0 min
-reward give_item minecraft:redstone ×32 (value 6.4) + effect minecraft:dolphins_grace 300s (value 2.0) + xp 85 (value 7.1)  → 15.5 / budget 15.6
+justquests:gen/1790510400_6  "Drowned Trouble"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective kill_mob minecraft:drowned ×12
+  effort 1.20 min/unit (×1.20 ocean) → 17.3 min (target 18.8, range 8–20 min)
+  tier 0 (always available), family undead, profile vanilla, hints ocean/night
+estimated 17.3 min
+reward give_item minecraft:emerald ×6 (value 15.0) + xp 70 (value 5.8)  → 20.8 / budget 20.7
 state: AVAILABLE
 
-justquests:gen/1790510400_4  "Ranch Job"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective collect_item minecraft:porkchop ×24
-  effort 0.30 min/unit → 7.2 min (target 13.7, range 8–20 min)
-  tier 0 (always available), family livestock, profile vanilla
-objective collect_item minecraft:leather ×16
-  effort 0.40 min/unit → 6.4 min (target 13.7, range 8–20 min)
-  tier 0 (always available), family livestock, profile vanilla, hints plains
-combo within family livestock
-estimated 13.6 min
-reward give_item minecraft:experience_bottle ×11 (value 13.2) + xp 55 (value 4.6)  → 17.8 / budget 18.0
-state: AVAILABLE
-
-justquests:gen/1790510400_6  "Gunpowder Delivery"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective collect_item minecraft:gunpowder ×16
-  effort 1.00 min/unit → 16.0 min (target 14.6, range 8–20 min)
-  tier 0 (always available), family monsters, profile vanilla, hints night
-estimated 16.0 min
-reward give_item minecraft:honey_bottle ×8 (value 9.6) + xp 115 (value 9.6)  → 19.2 / budget 19.2
-state: AVAILABLE
-
-justquests:gen/1790510400_7  "Mine Iron Ore"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective mine_block minecraft:iron_ore ×32
-  effort 0.50 min/unit → 16.0 min (target 17.7, range 8–20 min)
-  tier 1 (always available), family metals, profile vanilla, tool stone, hints caves
-estimated 16.0 min
-reward give_item minecraft:powered_rail ×9 (value 14.4) + xp 60 (value 5.0)  → 19.4 / budget 19.2
-rejected alternatives: collect_item minecraft:iron_ore (drops raw_iron, needs Silk Touch)
+justquests:gen/1790510400_7  "Raw Salmon Pickup"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective collect_item minecraft:salmon ×16
+  effort 1.40 min/unit → 22.4 min (target 16.5, range 8–20 min)
+  tier 0 (always available), family fishing, profile vanilla, tool fishing_rod
+estimated 22.4 min
+reward give_item minecraft:cooked_porkchop ×16 (value 8.0) + give_item minecraft:glass ×32 (value 3.2) + xp 190 (value 15.8)  → 27.0 / budget 26.9
 state: AVAILABLE
 

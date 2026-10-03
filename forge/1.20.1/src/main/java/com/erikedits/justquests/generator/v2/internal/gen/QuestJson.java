@@ -23,7 +23,16 @@ public final class QuestJson {
         for (QuestDraft.Objective o : d.objectives) {
             JsonObject j = new JsonObject();
             j.addProperty("type", o.c().type().typeId());
-            j.addProperty(o.c().type().field(), o.c().target());
+            String potion = o.c().def().potion();
+            if (potion != null) {
+                // item filter object (mod 0.3.2+): {"id": "minecraft:potion", "potion": "minecraft:swiftness"}
+                JsonObject item = new JsonObject();
+                item.addProperty("id", o.c().target());
+                item.addProperty("potion", potion);
+                j.add(o.c().type().field(), item);
+            } else {
+                j.addProperty(o.c().type().field(), o.c().target());
+            }
             if (o.c().type().counted()) {
                 j.addProperty("count", o.count());
             }

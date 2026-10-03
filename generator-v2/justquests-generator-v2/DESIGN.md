@@ -271,7 +271,8 @@ source of truth and can be edited directly.
   "weight": 1.0,                      // optional selection weight
   "targets": [
     {
-      "type": "smelt_item",           // one of the ten generator types (short names)
+      "type": "smelt_item",           // one of the twelve generator types (short names)
+      "potion": "minecraft:swiftness", // optional, item types: the quest asks for {"id", "potion"}
       "id": "minecraft:iron_ingot",   // block for mine/place, DROP item for collect, OUTPUT for smelt …
       "alt": ["minecraft:chain"],     // optional renamed/versioned ids, tried in order
       "tag": "iron_ingots",           // optional tag concept (tags.json), item types only
@@ -359,8 +360,8 @@ Rules that keep a profile safe:
 
 - Every id is existence-checked at runtime; missing ids are skipped silently (counted as
   `3_missing_id`), so one file serves all mod versions and loaders.
-- Only use hooks that fire on all three loaders (§7 of the spec): no `craft_item` for machine,
-  stonecutter or smithing outputs; `collect_item` only for real item-entity drops; `tame_animal` only
+- Only use hooks that fire on all three loaders (§7 of the spec): no `craft_item` for machine or
+  smithing outputs (stonecutter outputs count since mod 0.3.3); `collect_item` only for real item-entity drops; `tame_animal` only
   for `TamableAnimal` subclasses (`"tamable": true`); `consume_item` for food cooked in modded
   machines.
 - Families should be mod-prefixed (`ex_gems`), so the family rule and reward exclusion work.

@@ -19,6 +19,15 @@
           "min": 16,
           "max": 96,
           "hint": "Chop any kind of tree."
+        },
+        {
+          "type": "mine_block",
+          "id": "minecraft:oak_log",
+          "tag": "logs_block",
+          "effort": 0.09,
+          "min": 16,
+          "max": 96,
+          "hint": "Chop any kind of tree."
         }
       ]
     },
@@ -2384,6 +2393,7 @@
         {
           "type": "kill_mob",
           "id": "minecraft:skeleton",
+          "tag": "skeletons",
           "effort": 0.9,
           "min": 4,
           "max": 20
@@ -5796,6 +5806,266 @@
           "min": 1,
           "max": 6,
           "tier": 0
+        }
+      ]
+    },
+    {
+      "key": "stonecutting",
+      "family": "stonework",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "wood",
+      "notes": "The stonecutter counts as crafting since mod 0.3.3.",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "minecraft:stone_brick_stairs",
+          "effort": 0.12,
+          "min": 16,
+          "max": 64,
+          "hint": "A stonecutter makes them one for one."
+        },
+        {
+          "type": "craft_item",
+          "id": "minecraft:chiseled_stone_bricks",
+          "effort": 0.14,
+          "min": 8,
+          "max": 48,
+          "hint": "Use a stonecutter on stone."
+        },
+        {
+          "type": "craft_item",
+          "id": "minecraft:cut_copper",
+          "effort": 0.3,
+          "min": 8,
+          "max": 32,
+          "tier": 1,
+          "tool": "stone",
+          "hint": "Cut copper blocks on a stonecutter.",
+          "since": "1.17"
+        }
+      ]
+    },
+    {
+      "key": "enchanting",
+      "family": "enchanting",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "iron",
+      "notes": "The target is the enchanted result, so books are enchanted_book. Anvils do not count.",
+      "weight": 2.5,
+      "targets": [
+        {
+          "type": "enchant_item",
+          "id": "minecraft:enchanted_book",
+          "effort": 3.5,
+          "min": 1,
+          "max": 5,
+          "name": "Book",
+          "plural": "Books",
+          "hint": "Enchant books on an enchanting table; any enchantment counts.",
+          "stack": 1
+        },
+        {
+          "type": "enchant_item",
+          "id": "minecraft:iron_pickaxe",
+          "effort": 3.0,
+          "min": 1,
+          "max": 3,
+          "hint": "Any enchantment counts.",
+          "stack": 1
+        },
+        {
+          "type": "enchant_item",
+          "id": "minecraft:iron_sword",
+          "effort": 3.0,
+          "min": 1,
+          "max": 3,
+          "hint": "Any enchantment counts.",
+          "stack": 1
+        },
+        {
+          "type": "enchant_item",
+          "id": "minecraft:bow",
+          "effort": 3.5,
+          "min": 1,
+          "max": 3,
+          "hint": "Any enchantment counts.",
+          "stack": 1
+        },
+        {
+          "type": "enchant_item",
+          "id": "minecraft:diamond_sword",
+          "effort": 6.0,
+          "min": 1,
+          "max": 2,
+          "hint": "Any enchantment counts.",
+          "stack": 1,
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "use_items",
+      "family": "use_items",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "notes": "use_item counts the vanilla Times Used statistic: only uses that do something.",
+      "weight": 2.5,
+      "targets": [
+        {
+          "type": "use_item",
+          "id": "minecraft:snowball",
+          "effort": 0.08,
+          "min": 16,
+          "max": 64,
+          "hints": [
+            "snowy",
+            "throw"
+          ],
+          "hint": "Shovel snow and throw the snowballs.",
+          "stack": 16
+        },
+        {
+          "type": "use_item",
+          "id": "minecraft:egg",
+          "effort": 0.6,
+          "min": 4,
+          "max": 16,
+          "hints": [
+            "farm",
+            "throw"
+          ],
+          "hint": "Chickens lay eggs.",
+          "stack": 16
+        },
+        {
+          "type": "use_item",
+          "id": "minecraft:ender_pearl",
+          "effort": 2.5,
+          "min": 2,
+          "max": 8,
+          "tier": 2,
+          "hints": [
+            "night",
+            "throw"
+          ],
+          "hint": "Endermen drop ender pearls.",
+          "stack": 16
+        },
+        {
+          "type": "use_item",
+          "id": "minecraft:bone_meal",
+          "effort": 0.15,
+          "min": 8,
+          "max": 48,
+          "hints": [
+            "night"
+          ],
+          "hint": "Use bone meal on crops or grass."
+        },
+        {
+          "type": "use_item",
+          "id": "minecraft:firework_rocket",
+          "effort": 0.5,
+          "min": 3,
+          "max": 16,
+          "tier": 1,
+          "hints": [
+            "launch"
+          ],
+          "hint": "Craft rockets from paper and gunpowder."
+        }
+      ]
+    },
+    {
+      "key": "potions",
+      "family": "brewing",
+      "tier": 3,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "requires": [
+        "nether"
+      ],
+      "notes": "Needs a brewing stand (blaze rod) and nether wart.",
+      "weight": 2.0,
+      "targets": [
+        {
+          "type": "consume_item",
+          "id": "minecraft:potion",
+          "effort": 4.0,
+          "min": 1,
+          "max": 3,
+          "hints": [
+            "drink"
+          ],
+          "name": "Potion of Swiftness",
+          "plural": "Potions of Swiftness",
+          "hint": "Brew an Awkward Potion with sugar.",
+          "stack": 1,
+          "potion": "minecraft:swiftness"
+        },
+        {
+          "type": "consume_item",
+          "id": "minecraft:potion",
+          "effort": 4.0,
+          "min": 1,
+          "max": 3,
+          "hints": [
+            "drink"
+          ],
+          "name": "Potion of Night Vision",
+          "plural": "Potions of Night Vision",
+          "hint": "Brew an Awkward Potion with a golden carrot.",
+          "stack": 1,
+          "potion": "minecraft:night_vision"
+        },
+        {
+          "type": "consume_item",
+          "id": "minecraft:potion",
+          "effort": 4.5,
+          "min": 1,
+          "max": 3,
+          "hints": [
+            "drink"
+          ],
+          "name": "Potion of Fire Resistance",
+          "plural": "Potions of Fire Resistance",
+          "hint": "Brew an Awkward Potion with magma cream.",
+          "stack": 1,
+          "potion": "minecraft:fire_resistance"
+        },
+        {
+          "type": "consume_item",
+          "id": "minecraft:potion",
+          "effort": 4.5,
+          "min": 1,
+          "max": 3,
+          "hints": [
+            "drink"
+          ],
+          "name": "Potion of Strength",
+          "plural": "Potions of Strength",
+          "hint": "Brew an Awkward Potion with blaze powder.",
+          "stack": 1,
+          "potion": "minecraft:strength"
+        },
+        {
+          "type": "consume_item",
+          "id": "minecraft:potion",
+          "effort": 5.0,
+          "min": 1,
+          "max": 2,
+          "hints": [
+            "ocean",
+            "drink"
+          ],
+          "name": "Potion of Water Breathing",
+          "plural": "Potions of Water Breathing",
+          "hint": "Brew an Awkward Potion with a pufferfish.",
+          "stack": 1,
+          "potion": "minecraft:water_breathing"
         }
       ]
     }
