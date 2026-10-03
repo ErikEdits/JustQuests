@@ -3,6 +3,22 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.1] - 2026-10-03
+
+### Added
+- **See who took a generated quest.** In the quest book, a generated quest another player already
+  accepted is greyed out with a lock and says *Taken by Steve* (or *Completed by Steve*); its
+  button shows *Taken* instead of *Accept*. Your own one says *Reserved for you*. The book updates
+  for everyone the moment someone accepts, abandons or finishes a quest.
+- `/quest list` marks generated quests with `[yours]`, `[taken by Steve]` or `[completed by Steve]`,
+  and trying to accept a taken quest now names the player who has it.
+
+### Fixed
+- **Quest book text on 1.21.6 - 1.21.10.** Minecraft 1.21.6 stopped drawing text without an
+  opacity value, which made the titles, descriptions and buttons in the quest book invisible.
+- The admin commands `/quest admin reset` and `/quest admin complete` now refresh the player's open
+  quest book right away.
+
 ## [0.3.0] - 2026-09-27
 
 Generated quests 2.0 — the quest generator was rebuilt from scratch.

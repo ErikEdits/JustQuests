@@ -193,8 +193,9 @@ public class QuestCommand {
             }
 
             String repeatTag = quest.repeatable() ? " §d(repeatable)" : "";
+            String claimTag = viewer == null ? "" : com.erikedits.justquests.generator.GenV2.claimTag(id, viewer.getUUID());
             src.sendSuccess(new net.minecraft.network.chat.TextComponent("§b" + id + " §7— §f" + quest.title().get(lang)
-                + repeatTag), false);
+                + repeatTag + claimTag), false);
             String desc = quest.description().get(lang);
             if (!desc.isBlank()) {
                 src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §7§o" + desc), false);

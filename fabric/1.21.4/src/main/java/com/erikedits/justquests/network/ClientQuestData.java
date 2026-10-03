@@ -23,6 +23,11 @@ public final class ClientQuestData {
     private static PlayerQuestData progress = new PlayerQuestData();
     /** Bumped whenever the quest list changes, so an open quest book can rebuild it. */
     private static int version = 0;
+    /** Generated quests held under exclusive claims (from GenV2.claimsJson); free ones are absent. */
+    private static Map<ResourceLocation, Claim> claims = Collections.emptyMap();
+
+    /** A claim: the holder's name ("" if unknown), whether it is this player, whether it is done. */
+    public record Claim(String by, boolean mine, boolean completed) {}
 
     private ClientQuestData() {}
 
@@ -30,6 +35,7 @@ public final class ClientQuestData {
     public static void accept(String json) {
         Map<ResourceLocation, Quest> q = new LinkedHashMap<>();
         PlayerQuestData p = new PlayerQuestData();
+        Map<ResourceLocation, Claim> c = new LinkedHashMap<>();
         boolean hasQuests = false;
         try {
             JsonObject root = JsonParser.parseString(json).getAsJsonObject();
@@ -43,6 +49,14 @@ public final class ClientQuestData {
             if (root.has("progress")) {
                 p = PlayerQuestData.CODEC.parse(JsonOps.INSTANCE, root.get("progress")).result().orElseGet(PlayerQuestData::new);
             }
+            if (root.has("claims")) {
+                for (Map.Entry<String, com.google.gson.JsonElement> e : root.getAsJsonObject("claims").entrySet()) {
+                    JsonObject o = e.getValue().getAsJsonObject();
+                    c.put(ResourceLocation.parse(e.getKey()), new Claim(o.has("by") ? o.get("by").getAsString() : "",
+                        o.has("mine") && o.get("mine").getAsBoolean(),
+                        o.has("state") && "completed".equals(o.get("state").getAsString())));
+                }
+            }
         } catch (Exception ex) {
             JustQuests.LOG.error("Failed to parse quest sync", ex);
         }
@@ -52,12 +66,14 @@ public final class ClientQuestData {
             version++;
         }
         progress = p;
+        claims = c;
     }
 
     /** Forget the last server's data (on disconnect), so the book never shows stale quests. */
     public static void clear() {
         quests = Collections.emptyMap();
         progress = new PlayerQuestData();
+        claims = Collections.emptyMap();
         version++;
     }
 
@@ -69,4 +85,7 @@ public final class ClientQuestData {
     public static Quest get(ResourceLocation id) { return quests.get(id); }
 
     public static PlayerQuestData getData() { return progress; }
+
+    /** The claim on a generated quest, or null if it is free (or claims are not exclusive). */
+    public static Claim claim(ResourceLocation id) { return claims.get(id); }
 }

@@ -68,6 +68,7 @@ public final class QuestNetwork {
             PlayerQuestData.CODEC.encodeStart(JsonOps.INSTANCE, data).result()
                 .ifPresent(j -> root.add("progress", j));
         }
+        root.add("claims", com.erikedits.justquests.generator.GenV2.claimsJson(player.getUUID()));
         return GSON.toJson(root);
     }
 }

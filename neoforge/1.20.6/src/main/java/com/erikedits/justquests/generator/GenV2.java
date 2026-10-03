@@ -7,6 +7,7 @@ import com.erikedits.justquests.data.QuestManager;
 import com.erikedits.justquests.generator.v2.QuestGeneratorV2;
 import com.erikedits.justquests.generator.v2.api.ClaimResult;
 import com.erikedits.justquests.generator.v2.api.ClaimState;
+import com.erikedits.justquests.generator.v2.api.ClaimView;
 import com.erikedits.justquests.generator.v2.api.Difficulty;
 import com.erikedits.justquests.generator.v2.api.ExpiredClaim;
 import com.erikedits.justquests.generator.v2.api.GeneratorConfig;
@@ -95,9 +96,11 @@ public final class GenV2 {
     public static void reloadConfig() {
         if (gen == null) return;
         boolean wasEnabled = gen.config().enabled();
+        boolean wasExclusive = gen.config().exclusiveClaims();
         long rev = gen.servedRevision();
         gen.updateConfig(configFromSettings());
         if (wasEnabled != gen.config().enabled() || rev != gen.servedRevision()) registerServed();
+        else if (wasExclusive != gen.config().exclusiveClaims()) syncClaims(null);
     }
 
     /** OP reroll. @return -1 if generated quests are disabled, else how many are offered now */
@@ -112,6 +115,11 @@ public final class GenV2 {
     public static String claim(ResourceLocation id, UUID player) {
         if (gen == null) return null;
         ClaimResult r = gen.tryClaim(id.toString(), player);
+        if (r == ClaimResult.OK) syncClaims(player);   // the other quest books now show it as taken
+        if (r == ClaimResult.CLAIMED_BY_OTHER) {
+            String name = playerName(gen.claim(id.toString()).holder());
+            if (name != null) return name + " already took this quest.";
+        }
         return r.proceed() ? null : r.denyMessage();
     }
 
@@ -121,11 +129,14 @@ public final class GenV2 {
         long rev = gen.servedRevision();
         gen.onAbandon(id.toString(), player);
         if (rev != gen.servedRevision()) registerServed();
+        else syncClaims(player);
     }
 
     /** The player completed the quest (rewards already granted). */
     public static void completed(ResourceLocation id, UUID player) {
-        if (gen != null && gen.isGenerated(id.toString())) gen.onComplete(id.toString(), player);
+        if (gen == null || !gen.isGenerated(id.toString())) return;
+        gen.onComplete(id.toString(), player);
+        syncClaims(player);
     }
 
     /** Admin reset of a player's data. */
@@ -134,6 +145,7 @@ public final class GenV2 {
         long rev = gen.servedRevision();
         gen.releaseAllFor(player);
         if (rev != gen.servedRevision()) registerServed();
+        else syncClaims(player);
     }
 
     /** /quest generator release: free a claim and take the quest from its holder. */
@@ -225,6 +237,37 @@ public final class GenV2 {
             + gen.config().difficulty().settingsValue();
     }
 
+    /**
+     * Claims for the quest book (exclusive claims only): quest id -> {"state": "claimed" or
+     * "completed", "mine": true if {@code viewer} holds it, "by": the holder's name if known}.
+     * Free quests are left out.
+     */
+    public static JsonObject claimsJson(UUID viewer) {
+        JsonObject out = new JsonObject();
+        if (gen == null || !gen.config().exclusiveClaims()) return out;
+        gen.claims().forEach((id, view) -> {
+            if (view.state() == ClaimState.AVAILABLE || view.holder() == null) return;
+            JsonObject c = new JsonObject();
+            c.addProperty("state", view.state() == ClaimState.COMPLETED ? "completed" : "claimed");
+            c.addProperty("mine", view.holder().equals(viewer));
+            String name = playerName(view.holder());
+            if (name != null) c.addProperty("by", name);
+            out.add(id, c);
+        });
+        return out;
+    }
+
+    /** /quest list suffix: " [yours]", " [taken by X]", " [completed by X]" or "" (free or not generated). */
+    public static String claimTag(ResourceLocation id, UUID viewer) {
+        if (gen == null || !gen.config().exclusiveClaims() || !gen.isGenerated(id.toString())) return "";
+        ClaimView view = gen.claim(id.toString());
+        if (view.state() == ClaimState.AVAILABLE || view.holder() == null) return "";
+        if (view.holder().equals(viewer)) return view.state() == ClaimState.CLAIMED ? " §a[yours]" : "";
+        String name = playerName(view.holder());
+        String who = name != null ? name : "another player";
+        return view.state() == ClaimState.COMPLETED ? " §8[completed by " + who + "]" : " §8[taken by " + who + "]";
+    }
+
     // ------------------------------------------------------------------ helpers
 
     /** Parse servedQuests() with the mod's codec, hand them to the QuestManager, sync clients. */
@@ -248,12 +291,10 @@ public final class GenV2 {
             PlayerQuestData data = store.peek(e.holder());
             if (data != null && id != null) data.abandon(id);
             ServerPlayer p = server == null ? null : server.getPlayerList().getPlayer(e.holder());
-            if (p != null) {
-                notify(p, "§eYour generated quest expired and was released: §f" + title(id));
-                syncPlayer(p);
-            }
+            if (p != null) notify(p, "§eYour generated quest expired and was released: §f" + title(id));
         }
         store.markDirty();
+        syncClaims(null);   // the holders' progress and everyone's claims changed
     }
 
     private static void removeFromPlayers(List<String> ids) {
@@ -314,6 +355,23 @@ public final class GenV2 {
             .adaptiveBalancing(WorldSettings.generatorAdaptiveBalancing())
             .statsEnabled(WorldSettings.generatorStats())
             .build();
+    }
+
+    /** A player's name: online, else from the server's name cache; null if unknown. */
+    private static String playerName(UUID id) {
+        if (server == null || id == null) return null;
+        ServerPlayer p = server.getPlayerList().getPlayer(id);
+        if (p != null) return p.getName().getString();
+        net.minecraft.server.players.GameProfileCache cache = server.getProfileCache();
+        return cache == null ? null : cache.get(id).map(profile -> profile.getName()).orElse(null);
+    }
+
+    /** Claims changed: resend progress (it carries the claims) to everyone online except {@code except}. */
+    private static void syncClaims(UUID except) {
+        if (server == null) return;
+        for (ServerPlayer p : server.getPlayerList().getPlayers()) {
+            if (!p.getUUID().equals(except)) syncPlayer(p);
+        }
     }
 
     private static void notify(ServerPlayer p, String msg) {

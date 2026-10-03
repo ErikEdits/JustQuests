@@ -198,8 +198,9 @@ public class QuestCommand {
             }
 
             String repeatTag = quest.repeatable() ? " §d(repeatable)" : "";
+            String claimTag = viewer == null ? "" : com.erikedits.justquests.generator.GenV2.claimTag(id, viewer.getUUID());
             src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title().get(lang)
-                + repeatTag), false);
+                + repeatTag + claimTag), false);
             String desc = quest.description().get(lang);
             if (!desc.isBlank()) {
                 src.sendSuccess(() -> Component.literal("  §7§o" + desc), false);
@@ -555,6 +556,7 @@ public class QuestCommand {
             data.pendingClaim.clear();
             store.markDirty();
         }
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(target);
         ctx.getSource().sendSuccess(() -> Component.literal("§aReset all quest progress for " + name + "."), true);
         return 1;
     }
@@ -572,6 +574,7 @@ public class QuestCommand {
                 store.markDirty();
             }
         }
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(target);
         ctx.getSource().sendSuccess(() -> Component.literal("§aReset " + id + " for " + name + "."), true);
         return 1;
     }
@@ -597,6 +600,7 @@ public class QuestCommand {
         com.erikedits.justquests.generator.GenV2.completed(id, target.getUUID());
         store.markDirty();
         String name = target.getName().getString();
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(target);
         src.sendSuccess(() -> Component.literal("§aForce-completed " + id + " for " + name + " (rewards granted)."), true);
         return 1;
     }

@@ -26,8 +26,9 @@ import java.util.Map;
 public class QuestScreen extends Screen {
     private static final int W = 248, H = 184;
     private static final int PER_PAGE = 7, ROW_W = 80, ROW_H = 18;
-    // darker text reads clearly on the light-grey panes
-    private static final int TITLE_DARK = 0x161616, TEXT = 0x282828, MUTED = 0x4C4C4C, HEAD = 0x24395C;
+    // darker text reads clearly on the light-grey panes; full alpha, since 1.21.6+ skips text with alpha 0
+    private static final int TITLE_DARK = 0xFF161616, TEXT = 0xFF282828, MUTED = 0xFF4C4C4C, HEAD = 0xFF24395C,
+        GOOD = 0xFF2E7D32;
 
     private final List<Map.Entry<ResourceLocation, Quest>> quests = new ArrayList<>();
     private ResourceLocation selected;
@@ -145,11 +146,13 @@ public class QuestScreen extends Screen {
                 String state = id.equals(selected) ? "selected"
                     : (d != null && d.isCompleted(id)) ? "completed"
                     : (d != null && d.isActive(id)) ? "active"
+                    : takenByOther(id) ? "locked"
                     : hov ? "hover" : "available";
                 blit(g, "quest_row_" + state, listX(), ry, ROW_W, ROW_H);
-                boolean hasGlyph = state.equals("completed") || state.equals("active") || state.equals("claimable");
+                boolean hasGlyph = state.equals("completed") || state.equals("active") || state.equals("claimable")
+                    || state.equals("locked");
                 String title = fit(e.getValue().title().get(lang()), ROW_W - (hasGlyph ? 18 : 8));
-                g.drawString(this.font, title, listX() + 5, ry + 5, TITLE_DARK, false);
+                g.drawString(this.font, title, listX() + 5, ry + 5, state.equals("locked") ? MUTED : TITLE_DARK, false);
             }
             // page arrows
             blit(g, hasPrev() ? (in(mouseX, mouseY, prevX(), navY(), 12, 12) ? "page_prev_hover" : "page_prev_normal") : "page_prev_disabled",
@@ -177,6 +180,14 @@ public class QuestScreen extends Screen {
             g.drawString(this.font, line, dx, dy, TITLE_DARK, false); dy += 10;
         }
         dy += 2;
+        // generated quest under exclusive claims: who holds it
+        com.erikedits.justquests.network.ClientQuestData.Claim claim = com.erikedits.justquests.network.ClientQuestData.claim(selected);
+        if (claim != null && !(claim.mine() && claim.completed())) {
+            String who = claim.by().isEmpty() ? "another player" : claim.by();
+            String line = claim.mine() ? "Reserved for you" : (claim.completed() ? "Completed by " : "Taken by ") + who;
+            g.drawString(this.font, fit(line, dw), dx, dy, claim.mine() ? GOOD : MUTED, false);
+            dy += 11;
+        }
         String desc = q.description().get(lang());
         if (!desc.isBlank()) {
             for (var line : this.font.split(Component.literal(desc), dw)) {
@@ -191,7 +202,7 @@ public class QuestScreen extends Screen {
             int cur = prog != null ? Math.min(prog.get(i), need) : 0;
             boolean done = cur >= need;
             g.drawString(this.font, this.font.plainSubstrByWidth((done ? "✓ " : cur + "/" + need + " ")
-                + objs.get(i).display().getString(), dw), dx, dy, done ? 0x2E7D32 : TEXT, false);
+                + objs.get(i).display().getString(), dw), dx, dy, done ? GOOD : TEXT, false);
             dy += 10;
             // progress bar
             int barW = Math.min(100, dw);
@@ -218,6 +229,9 @@ public class QuestScreen extends Screen {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_abandon_hover" : "button_abandon_normal",
                 actionX(), actionY(), 72, 20);
             g.drawString(this.font, Component.literal("Abandon"), actionX() + 16, actionY() + 6, TEXT, false);
+        } else if (takenByOther(selected)) {
+            blit(g, "button_claim_disabled", actionX(), actionY(), 72, 20);
+            g.drawString(this.font, Component.literal("Taken"), actionX() + 22, actionY() + 6, MUTED, false);
         } else if (!completed || repeatable) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_claim_hover" : "button_claim_normal",
                 actionX(), actionY(), 72, 20);
@@ -247,11 +261,17 @@ public class QuestScreen extends Screen {
                 boolean completed = d != null && d.isCompleted(selected);
                 boolean repeatable = q != null && q.repeatable();
                 if (active) send("quest abandon " + selected);
-                else if (!completed || repeatable) send("quest accept " + selected);
+                else if ((!completed || repeatable) && !takenByOther(selected)) send("quest accept " + selected);
                 return true;
             }
         }
         return super.mouseClicked(mx, my, button);
+    }
+
+    /** A generated quest another player holds (or finished) under exclusive claims. */
+    private static boolean takenByOther(ResourceLocation id) {
+        com.erikedits.justquests.network.ClientQuestData.Claim c = com.erikedits.justquests.network.ClientQuestData.claim(id);
+        return c != null && !c.mine();
     }
 
     private void send(String cmd) {

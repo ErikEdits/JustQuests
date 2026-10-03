@@ -193,8 +193,9 @@ public class QuestCommand {
             }
 
             String repeatTag = quest.repeatable() ? " §d(repeatable)" : "";
+            String claimTag = viewer == null ? "" : com.erikedits.justquests.generator.GenV2.claimTag(id, viewer.getUUID());
             src.sendSuccess(Component.literal("§b" + id + " §7— §f" + quest.title().get(lang)
-                + repeatTag), false);
+                + repeatTag + claimTag), false);
             String desc = quest.description().get(lang);
             if (!desc.isBlank()) {
                 src.sendSuccess(Component.literal("  §7§o" + desc), false);
