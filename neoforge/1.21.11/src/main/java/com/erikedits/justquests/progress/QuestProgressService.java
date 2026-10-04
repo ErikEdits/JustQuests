@@ -6,6 +6,7 @@ import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
 import com.erikedits.justquests.data.QuestMode;
 import com.erikedits.justquests.data.objective.QuestObjective;
+import com.erikedits.justquests.data.reward.ChoiceReward;
 import com.erikedits.justquests.data.reward.QuestReward;
 import com.erikedits.justquests.player.QuestProgress;
 import com.erikedits.justquests.storage.WorldQuestStore;
@@ -116,32 +117,40 @@ public final class QuestProgressService {
     /**
      * Marks a quest finished for the player. With claimRewards on (the default) its rewards wait in
      * pendingClaim for the quest book's Claim button or /quest claim; otherwise they are granted now.
+     * Quests with a choice reward always wait, since the player has to pick.
      *
      * @return true when the rewards wait to be claimed
      */
     public static boolean finish(ServerPlayer player, PlayerQuestData data, Identifier id, Quest quest) {
         data.complete(id);
         com.erikedits.justquests.generator.GenV2.completed(id, player.getUUID());
-        if (WorldSettings.claimRewards()) {
+        if (WorldSettings.claimRewards() || ChoiceReward.of(quest) != null) {
             data.pendingClaim.put(id, System.currentTimeMillis());
             return true;
         }
-        grant(player, quest);
+        grant(player, quest, -1);
         return false;
     }
 
     /** Pays out a finished quest's waiting rewards; false if none wait (or the quest was removed since). */
     public static boolean claim(ServerPlayer player, PlayerQuestData data, Identifier id) {
+        return claim(player, data, id, -1);
+    }
+
+    /** As {@link #claim(ServerPlayer, PlayerQuestData, Identifier)}, with the picked option (0-based) of a choice. */
+    public static boolean claim(ServerPlayer player, PlayerQuestData data, Identifier id, int pick) {
         if (data.pendingClaim.remove(id) == null) return false;
         Quest quest = QuestManager.INSTANCE.get(id);
         if (quest == null) return false;
-        grant(player, quest);
+        grant(player, quest, pick);
         return true;
     }
 
-    private static void grant(ServerPlayer player, Quest quest) {
+    private static void grant(ServerPlayer player, Quest quest, int pick) {
+        ChoiceReward choice = ChoiceReward.of(quest);
         for (QuestReward reward : quest.rewards()) {
-            reward.grant(player);
+            if (reward == choice) choice.grant(player, pick);
+            else reward.grant(player);
         }
     }
 

@@ -1,0 +1,26 @@
+{
+  "title": "Example: choose a reward",
+  "description": "Mine some stone, then pick one of three rewards when you claim it.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:mine_block",
+      "block": "minecraft:stone",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 20
+    },
+    {
+      "type": "justquests:choice",
+      "options": [
+        { "type": "justquests:give_item", "item": "minecraft:iron_pickaxe", "count": 1 },
+        { "type": "justquests:give_item", "item": "minecraft:torch", "count": 32 },
+        { "type": "justquests:effect", "effect": "minecraft:haste", "seconds": 120, "amplifier": 1 }
+      ]
+    }
+  ]
+}

@@ -233,6 +233,7 @@ public final class SelfTest {
             {"effect", "{\"type\":\"justquests:effect\",\"effect\":\"minecraft:regeneration\",\"seconds\":20,\"amplifier\":0}"},
             {"message", "{\"type\":\"justquests:message\",\"message\":\"Well done!\"}"},
             {"title", "{\"type\":\"justquests:title\",\"title\":\"Well done!\",\"subtitle\":\"Quest complete\"}"},
+            {"choice", "{\"type\":\"justquests:choice\",\"options\":[{\"type\":\"justquests:xp\",\"amount\":10},{\"type\":\"justquests:give_item\",\"item\":\"minecraft:bread\",\"count\":1}]}"},
         };
         String rewErr = parsesAll(rewSamples, false);
         check(results, tally, "All reward types parse", rewErr == null,

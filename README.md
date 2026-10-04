@@ -27,7 +27,7 @@ Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
 - **First come, first served** — on servers a generated quest someone accepted is taken; the book
   shows *Taken by Steve* or *Reserved for you*.
 - **Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads
-  by itself while you edit it. 15 objective types, 7 reward types, item tags and item filters.
+  by itself while you edit it. 15 objective types, 8 reward types, item tags and item filters.
 - **Speaks the player's language** — quest text can be a per-language map; item, block and mob
   names are translated by the game.
 - **Quest logic** — prerequisites (`requires`), repeatable quests with cooldowns, "all" or "any"
@@ -152,6 +152,7 @@ Filters are checked on the item the event is about, so they are most useful for 
 | `justquests:message` | `message` (string or per-language map) |
 | `justquests:title` | `title`, `subtitle` (optional), `fade_in` (10), `stay` (70), `fade_out` (20) — ticks |
 | `justquests:command` | `command`, run for the player; `{player}` is replaced by the name |
+| `justquests:choice` | `options`: a list of rewards; the player picks one when claiming (one choice per quest) |
 
 A complete [example datapack](docs/example-datapack) has one quest for every objective and reward
 type, plus tags, filters, chains, repeatable and multi-language quests.

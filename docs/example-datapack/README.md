@@ -32,11 +32,12 @@ Features:
 - `ex_repeatable` — `repeatable` + `cooldown_hours`.
 - `ex_multilang` — `title`/`description` as a per-language map.
 - `ex_icon` — `icon`: the item the quest book shows (default: from the first goal).
+- `ex_choice` — a `choice` reward: the player picks one of three rewards when claiming.
 - `ex_item_filter` — `item` as an object with `potion` / `enchantments`
   (also `name` for an anvil name). Filters work on every version.
 
 Reward types shown across the examples: `give_item`, `xp`, `effect`,
-`message`, `loot_table`, `title`, and `command` (`ex_reach_location` runs
+`message`, `loot_table`, `title`, `choice`, and `command` (`ex_reach_location` runs
 `give {player} minecraft:cookie 1`).
 
 ## Notes

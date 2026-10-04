@@ -15,6 +15,10 @@ Built step by step; test builds go to a local folder until the release.
   mark them too. On Minecraft 1.18–1.19 (no quest book) the chat button and the command do it.
   Server owners who prefer the old way set `"claimRewards": false` in `settings.json`; then
   rewards arrive the moment a quest is finished, as before.
+- **Choice rewards** (`justquests:choice`): a quest can offer several rewards of which the player
+  picks one when claiming: in the quest book by clicking an option, in chat with the `[1]` `[2]`
+  buttons, or with `/quest claim <id> <number>`. Quests with a choice always wait to be claimed.
+  The example datapack has `ex_choice`.
 - `settings.json` gets new options added by itself, so owners see them without deleting the file.
 
 ### Changed

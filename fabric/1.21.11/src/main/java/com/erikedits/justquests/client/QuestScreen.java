@@ -3,6 +3,7 @@ package com.erikedits.justquests.client;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.objective.QuestObjective;
+import com.erikedits.justquests.data.reward.ChoiceReward;
 import com.erikedits.justquests.data.reward.QuestReward;
 import com.erikedits.justquests.network.ClientQuestData;
 import com.erikedits.justquests.player.QuestProgress;
@@ -67,6 +68,10 @@ public class QuestScreen extends Screen {
     private int shownSync = -1;
     private EditBox search;
     private String query = "";
+    /** The picked option of the selected quest's choice reward (-1 = none yet). */
+    private int pick = -1;
+    /** Where the choice options were drawn this frame: x, y, w, h, option index. */
+    private final List<int[]> optionHits = new ArrayList<>();
 
     public QuestScreen() {
         super(Component.translatable("justquests.book.title"));
@@ -366,6 +371,7 @@ public class QuestScreen extends Screen {
     }
 
     private void renderDetail(GuiGraphics g, int mouseX, int mouseY) {
+        optionHits.clear();
         int dx = detailX(), dy = top + 24, dw = detailW();
         if (selected == null) {
             g.drawString(this.font, Component.translatable("justquests.book.select_1"), dx, dy, MUTED, false);
@@ -444,13 +450,28 @@ public class QuestScreen extends Screen {
             dy += 9;
         }
         dy += 2;
+        ChoiceReward choice = ChoiceReward.of(q);
         if (dy < actionY() - 10) {
             g.drawString(this.font, Component.translatable("justquests.book.rewards"), dx, dy, HEAD, false);
             dy += 11;
             for (QuestReward r : q.rewards()) {
                 if (dy >= actionY() - 2) break;
-                g.drawString(this.font, fit(r.display().getString(), dw), dx, dy, TEXT, false);
+                if (r != choice) {
+                    g.drawString(this.font, fit(r.display().getString(), dw), dx, dy, TEXT, false);
+                    dy += 10;
+                    continue;
+                }
+                // a choice: one line per option; while the rewards wait, a click picks one
+                g.drawString(this.font, Component.translatable("justquests.book.choose_one"), dx, dy, MUTED, false);
                 dy += 10;
+                for (int i = 0; i < choice.options().size() && dy < actionY() - 2; i++) {
+                    boolean open = st == Status.CLAIM, picked = open && i == pick;
+                    radio(g, dx + 1, dy, picked, open && in(mouseX, mouseY, dx, dy - 1, dw, 10));
+                    g.drawString(this.font, fit(choice.options().get(i).display().getString(), dw - 11), dx + 11, dy,
+                        picked ? GOOD : TEXT, false);
+                    if (open) optionHits.add(new int[] {dx, dy - 1, dw, 10, i});
+                    dy += 10;
+                }
             }
         }
 
@@ -464,6 +485,9 @@ public class QuestScreen extends Screen {
             blit(g, pinned ? "button_pin_on" : in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? "button_pin_hover" : "button_pin_normal",
                 pinX(), actionY(), 20, 20);
             if (pinned) g.drawString(this.font, Component.translatable("justquests.book.pinned"), pinX() + 23, actionY() + 6, GOOD, false);
+        } else if (st == Status.CLAIM && choice != null && pick < 0) {
+            blit(g, "button_claim_disabled", actionX(), actionY(), 72, 20);
+            centered(g, I18n.get("justquests.book.pick"), actionX() + 36, actionY() + 6, MUTED);
         } else if (st == Status.CLAIM) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_claim_hover" : "button_claim_normal",
                 actionX(), actionY(), 72, 20);
@@ -477,6 +501,13 @@ public class QuestScreen extends Screen {
             blit(g, "button_claim_disabled", actionX(), actionY(), 72, 20);
             centered(g, label, actionX() + 36, actionY() + 6, MUTED);
         }
+    }
+
+    /** A small pixel radio box in front of a choice option. */
+    private static void radio(GuiGraphics g, int x, int y, boolean on, boolean hover) {
+        g.fill(x, y, x + 7, y + 7, 0xFF373737);
+        g.fill(x + 1, y + 1, x + 6, y + 6, hover ? WHITE : 0xFFE0E0E0);
+        if (on) g.fill(x + 2, y + 2, x + 5, y + 5, GOOD);
     }
 
     /** The stats page: totals, per-category progress (hover an icon for its name), dates and server rank. */
@@ -589,9 +620,15 @@ public class QuestScreen extends Screen {
             for (int i = 0; i < ROWS && start + i < entries.size(); i++) {
                 Entry e = entries.get(start + i);
                 if (e.isQuest() && in(mx, my, listX(), rowY(i), ROW_W, ROW_H)) {
+                    if (!e.id().equals(selected)) pick = -1;
                     selected = e.id();
                     showStats = false;
                     return true;
+                }
+            }
+            if (!showStats && selected != null) {
+                for (int[] h : optionHits) {
+                    if (in(mx, my, h[0], h[1], h[2], h[3])) { pick = h[4]; return true; }
                 }
             }
             if (!showStats && selected != null && data().isActive(selected) && in(mx, my, pinX(), actionY(), 20, 20)) {
@@ -604,7 +641,8 @@ public class QuestScreen extends Screen {
                     Status st = status(selected, q);
                     if (st == Status.ACTIVE) send("quest abandon " + selected);
                     else if (st == Status.AVAILABLE) send("quest accept " + selected);
-                    else if (st == Status.CLAIM) send("quest claim " + selected);
+                    else if (st == Status.CLAIM && ChoiceReward.of(q) == null) send("quest claim " + selected);
+                    else if (st == Status.CLAIM && pick >= 0) send("quest claim " + selected + " " + (pick + 1));
                 }
                 return true;
             }

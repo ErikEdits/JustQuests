@@ -121,7 +121,7 @@ drip of small, useful releases *is* the growth plan, not a detour from it.
 - [x] `loot_table` reward (random items from a loot table, Q29)
 - [x] `command` reward ({player} substitution, runs as @s level 4 — Q52)
 - [x] `xp` reward (0.1.7)
-- [ ] Choice rewards (Q49 — needs GUI, planned for 0.4.0)
+- [x] Choice rewards (Q49, 0.4.0: `justquests:choice`)
 
 **2.3 Quest categories (Q3)**
 - [x] `category` field in the data model (default "datapack"), shown in
@@ -153,7 +153,7 @@ pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1
 - [x] Per-quest icon with fallback (Q44, 0.3.4: `icon` field, else from the first objective); detail view (Q78 open)
 - [x] Search box that auto-appears at high quest counts (Q46, 0.3.5: from 15 quests; title, category, goals)
 - [x] **Claim button** + completed-pending state (Q48, 0.4.0: default on, `claimRewards` in settings.json, `/quest claim [id]`)
-- [ ] **Choice reward** picker (Q49)
+- [x] **Choice reward** picker (Q49, 0.4.0: `justquests:choice`, picked in the book or with `/quest claim <id> <n>`)
 - [x] Category + state icons (Q3, 0.3.4)
 - [x] Optional HUD tracker overlay, toggleable (Q43, 0.3.4: key H, `config/justquests-client.json`)
 

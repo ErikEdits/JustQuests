@@ -88,7 +88,10 @@ public class QuestCommand {
                 .executes(QuestCommand::claimAll)
                 .then(Commands.argument("id", ResourceLocationArgument.id())
                     .suggests(CLAIMABLE_QUESTS)
-                    .executes(ctx -> claim(ctx, ResourceLocationArgument.getId(ctx, "id")))))
+                    .executes(ctx -> claim(ctx, ResourceLocationArgument.getId(ctx, "id"), 0))
+                    .then(Commands.argument("reward", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1))
+                        .executes(ctx -> claim(ctx, ResourceLocationArgument.getId(ctx, "id"),
+                            com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "reward"))))))
             .then(Commands.literal("discord").executes(QuestCommand::discord))
             .then(Commands.literal("reload")
                 .requires(src -> src.hasPermission(2))
@@ -456,43 +459,71 @@ public class QuestCommand {
         src.sendSuccess(Component.literal(msg), false);
     }
 
-    private static int claim(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
+    /** /quest claim <id> [n]: n picks the reward of a quest with a choice (1 = first option). */
+    private static int claim(CommandContext<CommandSourceStack> ctx, ResourceLocation id, int pick) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
         Quest quest = QuestManager.INSTANCE.get(id);
-        if (data == null || quest == null || !com.erikedits.justquests.progress.QuestProgressService.claim(player, data, id)) {
+        if (data == null || quest == null || !data.isClaimable(id)) {
             ctx.getSource().sendFailure(Msg.tr("justquests.rewards.nothing"));
             return 0;
         }
+        String lang = lang(ctx.getSource());
+        com.erikedits.justquests.data.reward.ChoiceReward choice = com.erikedits.justquests.data.reward.ChoiceReward.of(quest);
+        if (choice != null && (pick < 1 || pick > choice.options().size())) {
+            showChoice(ctx.getSource(), id, quest.title().get(lang), choice);
+            return 0;
+        }
+        com.erikedits.justquests.progress.QuestProgressService.claim(player, data, id, pick - 1);
         store.markDirty();
-        say(ctx.getSource(), Msg.tr("justquests.rewards.claimed", quest.title().get(lang(ctx.getSource()))));
+        say(ctx.getSource(), Msg.tr("justquests.rewards.claimed", quest.title().get(lang)));
         return 1;
     }
 
-    /** /quest claim without an id: every waiting reward at once. */
+    /** /quest claim without an id: every waiting reward at once; quests with a choice ask for the pick. */
     private static int claimAll(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        String lang = lang(ctx.getSource());
         int n = 0;
         String last = "";
+        java.util.List<ResourceLocation> choose = new java.util.ArrayList<>();
         if (data != null && !data.pendingClaim.isEmpty()) {
             for (ResourceLocation id : new java.util.ArrayList<>(data.pendingClaim.keySet())) {
                 Quest quest = QuestManager.INSTANCE.get(id);
-                if (com.erikedits.justquests.progress.QuestProgressService.claim(player, data, id)) {
+                if (quest != null && com.erikedits.justquests.data.reward.ChoiceReward.of(quest) != null) {
+                    choose.add(id);
+                } else if (com.erikedits.justquests.progress.QuestProgressService.claim(player, data, id)) {
                     n++;
-                    last = quest.title().get(lang(ctx.getSource()));
+                    last = quest.title().get(lang);
                 }
             }
             store.markDirty();
         }
-        if (n == 0) {
+        if (n > 0) {
+            say(ctx.getSource(), n == 1 ? Msg.tr("justquests.rewards.claimed", last) : Msg.tr("justquests.rewards.claimed_all", n));
+        }
+        for (ResourceLocation id : choose) {
+            Quest quest = QuestManager.INSTANCE.get(id);
+            showChoice(ctx.getSource(), id, quest.title().get(lang), com.erikedits.justquests.data.reward.ChoiceReward.of(quest));
+        }
+        if (n == 0 && choose.isEmpty()) {
             ctx.getSource().sendFailure(Msg.tr("justquests.rewards.none"));
             return 0;
         }
-        say(ctx.getSource(), n == 1 ? Msg.tr("justquests.rewards.claimed", last) : Msg.tr("justquests.rewards.claimed_all", n));
         return n;
+    }
+
+    /** "Choose your reward for X:" and one clickable line per option. */
+    private static void showChoice(CommandSourceStack src, ResourceLocation id, String title,
+                                   com.erikedits.justquests.data.reward.ChoiceReward choice) {
+        say(src, Msg.tr("justquests.rewards.pick", title));
+        for (int i = 0; i < choice.options().size(); i++) {
+            say(src, Msg.button(Msg.tr("justquests.rewards.option", i + 1, choice.options().get(i).display()),
+                "/quest claim " + id + " " + (i + 1), Msg.tr("justquests.rewards.option_hover")));
+        }
     }
 
     /** "Rewards ready: <quest> [Claim rewards]" for every finished quest whose rewards wait. */
