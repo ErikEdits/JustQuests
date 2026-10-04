@@ -2,14 +2,16 @@
   "title": {
     "en_us": "Master Miner",
     "de_de": "Meisterbergmann",
-    "fr_fr": "Maitre mineur",
-    "es_es": "Minero maestro"
+    "fr_fr": "Maître mineur",
+    "es_es": "Minero maestro",
+    "ja_jp": "採掘の達人"
   },
   "description": {
     "en_us": "Mine 64 stone with your own hands.",
     "de_de": "Baue 64 Stein mit eigenen Händen ab.",
     "fr_fr": "Minez 64 blocs de pierre de vos propres mains.",
-    "es_es": "Mina 64 de piedra con tus propias manos."
+    "es_es": "Mina 64 bloques de piedra con tus propias manos.",
+    "ja_jp": "自分の手で石を64個掘ろう。"
   },
   "category": "gathering",
   "sort": 70,

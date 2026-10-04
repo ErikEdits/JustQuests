@@ -3,13 +3,15 @@
     "en_us": "Hearty Meal",
     "de_de": "Herzhafte Mahlzeit",
     "fr_fr": "Repas copieux",
-    "es_es": "Comida abundante"
+    "es_es": "Comida abundante",
+    "ja_jp": "ボリューム満点の食事"
   },
   "description": {
     "en_us": "Eat 10 cooked steaks.",
     "de_de": "Iss 10 gebratene Steaks.",
-    "fr_fr": "Mangez 10 steaks cuits.",
-    "es_es": "Come 10 filetes cocinados."
+    "fr_fr": "Mangez 10 steaks.",
+    "es_es": "Come 10 filetes asados.",
+    "ja_jp": "ステーキを10枚食べよう。"
   },
   "category": "survival",
   "sort": 10,

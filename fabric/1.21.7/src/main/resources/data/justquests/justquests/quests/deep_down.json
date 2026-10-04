@@ -3,13 +3,15 @@
     "en_us": "Deep Down",
     "de_de": "Tief hinab",
     "fr_fr": "Tout au fond",
-    "es_es": "En lo profundo"
+    "es_es": "En lo profundo",
+    "ja_jp": "深みへ"
   },
   "description": {
     "en_us": "Venture below Y=0 and mine the deepslate layer.",
     "de_de": "Wage dich unter Y=0 und baue die Tiefenschiefer-Schicht ab.",
-    "fr_fr": "Descendez sous Y=0 et minez la couche d'ardoise des abimes.",
-    "es_es": "Baja por debajo de Y=0 y mina la capa de pizarra profunda."
+    "fr_fr": "Descendez sous Y=0 et minez la couche d'ardoise des abîmes.",
+    "es_es": "Baja por debajo de Y=0 y mina la capa de pizarra profunda.",
+    "ja_jp": "Y=0より下に降りて、深層岩の層を掘ろう。"
   },
   "category": "gathering",
   "sort": 50,

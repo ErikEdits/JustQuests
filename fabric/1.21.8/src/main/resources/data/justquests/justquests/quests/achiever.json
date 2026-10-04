@@ -1,15 +1,17 @@
 {
   "title": {
     "en_us": "Achiever",
-    "de_de": "Erfolgsjaeger",
+    "de_de": "Erfolgsjäger",
     "fr_fr": "Accompli",
-    "es_es": "Triunfador"
+    "es_es": "Triunfador",
+    "ja_jp": "達成者"
   },
   "description": {
     "en_us": "Earn the 'Acquire Hardware' advancement (smelt iron).",
-    "de_de": "Hol dir den Fortschritt 'Eisenausrüstung' (Eisen einschmelzen).",
-    "fr_fr": "Obtenez le progres Quincaillerie (fondre du fer).",
-    "es_es": "Consigue el avance Adquirir hardware (funde hierro)."
+    "de_de": "Hol dir den Fortschritt „Metallurgie“ (Eisen verhütten).",
+    "fr_fr": "Obtenez le progrès « L'âge du fer » (faites fondre du fer).",
+    "es_es": "Consigue el progreso «La Edad de Hierro» (funde hierro).",
+    "ja_jp": "進捗「金属を手に入れる」を達成しよう（鉄を製錬する）。"
   },
   "category": "challenges",
   "sort": 20,

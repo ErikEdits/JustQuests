@@ -2,14 +2,16 @@
   "title": {
     "en_us": "Hot Stuff",
     "de_de": "Heiße Sache",
-    "fr_fr": "Ca chauffe",
-    "es_es": "Cosa caliente"
+    "fr_fr": "Ça chauffe",
+    "es_es": "Al rojo vivo",
+    "ja_jp": "灼熱の試練"
   },
   "description": {
     "en_us": "Brave the Nether and defeat blazes for their rods.",
     "de_de": "Trotze dem Nether und besiege Lohen für ihre Lohenruten.",
-    "fr_fr": "Bravez le Nether et vainquez des blazes pour leurs batons.",
-    "es_es": "Enfrentate al Nether y derrota blazes por sus varas."
+    "fr_fr": "Bravez le Nether et vainquez des Blazes pour leurs bâtons.",
+    "es_es": "Enfréntate al Nether y derrota blazes para conseguir sus varas.",
+    "ja_jp": "ネザーに挑み、ブレイズを倒してブレイズロッドを手に入れよう。"
   },
   "category": "combat",
   "sort": 30,

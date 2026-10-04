@@ -3,13 +3,15 @@
     "en_us": "First Steps",
     "de_de": "Erste Schritte",
     "fr_fr": "Premiers pas",
-    "es_es": "Primeros pasos"
+    "es_es": "Primeros pasos",
+    "ja_jp": "はじめの一歩"
   },
   "description": {
     "en_us": "Gather some basic materials to get started.",
     "de_de": "Sammle ein paar grundlegende Materialien für den Anfang.",
-    "fr_fr": "Rassemblez quelques materiaux de base pour commencer.",
-    "es_es": "Reune algunos materiales basicos para empezar."
+    "fr_fr": "Rassemblez quelques matériaux de base pour commencer.",
+    "es_es": "Reúne algunos materiales básicos para empezar.",
+    "ja_jp": "まずは基本的な素材を集めよう。"
   },
   "category": "gathering",
   "sort": 10,

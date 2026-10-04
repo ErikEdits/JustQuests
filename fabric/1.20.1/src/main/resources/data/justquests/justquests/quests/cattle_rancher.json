@@ -2,14 +2,16 @@
   "title": {
     "en_us": "Cattle Rancher",
     "de_de": "Viehzüchter",
-    "fr_fr": "Eleveur de betail",
-    "es_es": "Ganadero"
+    "fr_fr": "Éleveur de bétail",
+    "es_es": "Ganadero",
+    "ja_jp": "牧場主"
   },
   "description": {
     "en_us": "Breed 5 cows to grow your herd.",
     "de_de": "Züchte 5 Kühe, um deine Herde zu vergrößern.",
-    "fr_fr": "Elevez 5 vaches pour agrandir votre troupeau.",
-    "es_es": "Cria 5 vacas para agrandar tu rebano."
+    "fr_fr": "Élevez 5 vaches pour agrandir votre troupeau.",
+    "es_es": "Cría 5 vacas para agrandar tu rebaño.",
+    "ja_jp": "ウシを5頭繁殖させて群れを増やそう。"
   },
   "category": "farming",
   "sort": 20,

@@ -2,14 +2,16 @@
   "title": {
     "en_us": "Iron Harvest",
     "de_de": "Eisenernte",
-    "fr_fr": "Recolte de fer",
-    "es_es": "Cosecha de hierro"
+    "fr_fr": "Récolte de fer",
+    "es_es": "Cosecha de hierro",
+    "ja_jp": "鉄の収穫"
   },
   "description": {
     "en_us": "Mine raw iron from the depths.",
     "de_de": "Baue Roheisen aus der Tiefe ab.",
     "fr_fr": "Minez du fer brut dans les profondeurs.",
-    "es_es": "Mina hierro en bruto en las profundidades."
+    "es_es": "Mina hierro en bruto en las profundidades.",
+    "ja_jp": "地下深くで鉄の原石を掘ろう。"
   },
   "category": "gathering",
   "sort": 40,

@@ -3,13 +3,15 @@
     "en_us": "Slayer",
     "de_de": "Schlächter",
     "fr_fr": "Tueur",
-    "es_es": "Verdugo"
+    "es_es": "Verdugo",
+    "ja_jp": "討伐者"
   },
   "description": {
     "en_us": "Hunt down the undead.",
     "de_de": "Erlege die Untoten.",
-    "fr_fr": "Eliminez les morts-vivants.",
-    "es_es": "Acaba con los no-muertos."
+    "fr_fr": "Éliminez les morts-vivants.",
+    "es_es": "Acaba con los no muertos.",
+    "ja_jp": "アンデッドを討伐しよう。"
   },
   "category": "combat",
   "sort": 20,

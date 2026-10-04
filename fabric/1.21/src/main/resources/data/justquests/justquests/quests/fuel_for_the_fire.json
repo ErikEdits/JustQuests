@@ -3,13 +3,15 @@
     "en_us": "Fuel for the Fire",
     "de_de": "Brennstoff fürs Feuer",
     "fr_fr": "Du combustible pour le feu",
-    "es_es": "Combustible para el fuego"
+    "es_es": "Combustible para el fuego",
+    "ja_jp": "炉にくべる燃料"
   },
   "description": {
     "en_us": "Dig deep and gather coal to keep the furnaces burning.",
     "de_de": "Grabe tief und sammle Kohle, damit die Öfen weiterbrennen.",
-    "fr_fr": "Creusez profond et recoltez du charbon pour alimenter les fours.",
-    "es_es": "Cava hondo y reune carbon para mantener los hornos encendidos."
+    "fr_fr": "Creusez profond et récoltez du charbon pour alimenter les fourneaux.",
+    "es_es": "Cava hondo y reúne carbón para mantener los hornos encendidos.",
+    "ja_jp": "深く掘って石炭を集め、かまどの火を絶やさないようにしよう。"
   },
   "category": "gathering",
   "sort": 30,

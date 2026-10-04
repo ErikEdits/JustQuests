@@ -2,14 +2,16 @@
   "title": {
     "en_us": "Level Up",
     "de_de": "Level-Aufstieg",
-    "fr_fr": "Montee de niveau",
-    "es_es": "Subir de nivel"
+    "fr_fr": "Montée de niveau",
+    "es_es": "Subir de nivel",
+    "ja_jp": "レベルアップ"
   },
   "description": {
     "en_us": "Reach experience level 20.",
     "de_de": "Erreiche Erfahrungsstufe 20.",
-    "fr_fr": "Atteignez le niveau d'experience 20.",
-    "es_es": "Alcanza el nivel de experiencia 20."
+    "fr_fr": "Atteignez le niveau d'expérience 20.",
+    "es_es": "Alcanza el nivel de experiencia 20.",
+    "ja_jp": "経験値レベル20に到達しよう。"
   },
   "category": "challenges",
   "sort": 10,
