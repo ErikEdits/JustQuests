@@ -270,7 +270,8 @@ under `neoforge/<mc-version>/`, all built by one `./gradlew build`.
       `player.level().getServer()`, drop the profile-cache lookup (all
       cross-version safe).
 - [x] **1.21.11** (0.3.5): the NeoForm package was fixed upstream; NeoForge 21.11.45 builds with MDG
-      2.0.141, Fabric needs Loom 1.14.10 (the other Fabric builds stay on 1.11.8). Mojang renamed
+      2.0.141, Fabric needs Loom 1.14.10 — so every Fabric build moved to 1.14.10 (two Loom versions in
+      one build break remapJar). Loom 1.14 remaps mixin targets inside the classes instead of a refmap. Mojang renamed
       `ResourceLocation` to `Identifier`, `ResourceKey.location()` to `identifier()`, commands use
       `PermissionSet`s and `playNotifySound` is gone. (Excluded until then: the upstream NeoForm
       package was broken, a duplicate `mcp/client/Start.class` gave an empty merged jar.)
