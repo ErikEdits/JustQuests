@@ -1,0 +1,12 @@
+name: JustQuests
+version: '${version}'
+main: com.erikedits.justquests.plugin.JustQuestsPlugin
+api-version: '${api_version}'
+author: ${mod_authors}
+description: A lightweight, datapack-driven quest book. Chest-menu quest book, boss-bar tracker, vanilla clients.
+website: https://github.com/ErikEdits/JustQuests
+commands:
+  quest:
+    description: Opens the quest book; /quest help lists the subcommands.
+    usage: /<command> [subcommand]
+    aliases: [quests, jq]

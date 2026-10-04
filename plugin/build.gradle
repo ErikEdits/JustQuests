@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+}
+
+// --- the server plugin: one jar on the plain Spigot API, runs on Spigot, Paper and Purpur ---
+// Compiled against the oldest supported API (1.21) so it never calls anything newer.
+def apiVersion = '1.21'
+def spigotApi = '1.21-R0.1-SNAPSHOT'
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = "${mod_name}-plugin-${apiVersion}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }   // bungeecord-chat
+}
+
+dependencies {
+    // The server provides the API (with Gson and the BungeeCord chat components) at runtime.
+    compileOnly "org.spigotmc:spigot-api:${spigotApi}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+    options.compilerArgs += ['-Xlint:deprecation']
+}
+
+// The shared language files and the bundled quests come from the mod, so they never drift apart.
+def bundledQuests = file('../fabric/1.21.11/src/main/resources/data/justquests/justquests/quests')
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [version: mod_version, api_version: apiVersion, mod_authors: mod_authors]
+    inputs.properties replaceProperties
+    filesMatching('plugin.yml') {
+        expand replaceProperties
+    }
+    from(rootProject.file('lang')) {
+        into 'lang'
+    }
+    from(bundledQuests) {
+        into 'quests'
+    }
+}

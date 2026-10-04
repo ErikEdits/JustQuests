@@ -1,0 +1,61 @@
+{
+  "_help": "Add your own quests here (or put one quest per file into the quests folder next to this file; its id is justquests:<file name>). Each key is the quest id (a bare name becomes justquests:<name>, or use a full namespace:path). Keys starting with _ are ignored. Slots with no objectives are skipped, so you can leave blank slots. Custom quests override datapack quests with the same id. The file reloads automatically when you save it. Objective types: collect_item, kill_mob, place_block, mine_block, craft_item, smelt_item, consume_item, enchant_item, use_item, tame_animal, breed_animal, gain_advancement, visit_dimension, reach_level, reach_location. Reward types: give_item, command, loot_table, xp, effect, message, title, choice. A quest may also set requires (a list of quest ids that must be completed first), repeatable (true/false), cooldown_hours (wait time before a repeatable quest can be taken again) and icon (an item id shown in the quest book; picked from the first goal when left out). Item fields accept an id, a #tag, or an object like {\"id\": \"minecraft:diamond_sword\", \"enchantments\": {\"minecraft:sharpness\": 2}} (also \"potion\" and \"name\"). Block and mob fields accept an id or a #tag. craft_item also counts the stonecutter. title and description can be a plain string OR a per-language map like {\"en_us\": \"...\", \"de_de\": \"...\"} - each player sees their own language, with English as fallback. Item, mob and block names in the goal line are translated automatically. See https://github.com/ErikEdits/JustQuests",
+  "example_quest": {
+    "title": "My First Custom Quest",
+    "description": "Gather 10 dirt, get a diamond.",
+    "category": "custom",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:dirt",
+        "count": 10
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:diamond",
+        "count": 1
+      }
+    ]
+  },
+  "example_multilang": {
+    "title": {
+      "en_us": "Mining Trip",
+      "de_de": "Bergbau-Ausflug"
+    },
+    "description": {
+      "en_us": "Mine 20 iron ore.",
+      "de_de": "Baue 20 Eisenerz ab."
+    },
+    "category": "custom",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:raw_iron",
+        "count": 20
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:iron_block",
+        "count": 2
+      }
+    ]
+  },
+  "blank_slot_1": {
+    "title": "",
+    "description": "",
+    "category": "custom",
+    "objectives": [],
+    "rewards": []
+  },
+  "blank_slot_2": {
+    "title": "",
+    "description": "",
+    "category": "custom",
+    "objectives": [],
+    "rewards": []
+  }
+}

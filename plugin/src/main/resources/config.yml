@@ -1,0 +1,30 @@
+# JustQuests settings. The options carry the same names as the mod's settings.json.
+# /quest reload reads this file again.
+
+# A one-time, clickable invite to the JustQuests community Discord on a player's first join.
+discordWelcome: true
+# Tell everyone when a player finishes a quest.
+announceCompletions: true
+# Play a sound for the player when they finish a quest.
+completionSound: true
+# Show a short message above the hotbar when a player finishes a quest.
+completionToast: true
+# Finished quests wait until the player claims their rewards (Claim button in the quest book, or
+# /quest claim). false pays rewards out the moment a quest is finished. Quests with a reward
+# choice always wait, since the player has to pick.
+claimRewards: true
+# The quests that come with JustQuests (and quests from datapacks). false hides them; custom and
+# generated quests stay. Also /quest mainquests on|off.
+mainQuests: true
+
+questBook:
+  # Give every player a quest book on their first join. Right-click it to open the quests.
+  giveOnFirstJoin: true
+
+bossbar:
+  # Show the pinned quest in a boss bar. Players can hide it for themselves in the quest book.
+  enabled: true
+  # PINK, BLUE, RED, GREEN, YELLOW, PURPLE or WHITE
+  color: YELLOW
+  # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12 or SEGMENTED_20
+  style: SEGMENTED_10

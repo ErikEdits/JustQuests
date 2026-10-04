@@ -52,3 +52,7 @@ rootProject.name = 'JustQuests'
     include name
     project(":${name}").projectDir = file("forge/${v}")
 }
+
+// --- Server plugin (0.4.0+): one jar on the plain Spigot API for Spigot, Paper and
+// Purpur. It has no Minecraft code to remap, so it is a plain Java project. ---
+include 'plugin'

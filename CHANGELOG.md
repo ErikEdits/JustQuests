@@ -8,6 +8,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Built step by step; test builds go to a local folder until the release.
 
 ### Added
+- **Server plugin for Spigot, Paper and Purpur** (1.21 – 1.21.11, one jar on the plain Spigot
+  API): players join with a vanilla client. The quest book is a chest menu (opened with the
+  quest book item new players get, or `/quest`, `/quests`, `/jq`), the quest tracker a boss bar.
+  It reads the same quests as the mod (built-in, datapacks, `custom-quests.json`, one file per
+  quest in `plugins/JustQuests/quests/`), has all objective and reward types, claiming, reward
+  choices, the commands and permission nodes, and the five languages; item, block and mob names
+  are translated by each player's game. A world played with the mod keeps its progress and
+  custom quests when it moves to a plugin server.
 - **Minecraft 26.1 – 26.3:** Fabric builds for 26.1, 26.1.1, 26.1.2, 26.2 and 26.3, and NeoForge
   builds for 26.1.2 and 26.2 (NeoForge 26.3 follows once it leaves beta). JustQuests now has 43
   builds. Minecraft 26.x needs Java 25.

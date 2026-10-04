@@ -1,6 +1,6 @@
 # JustQuests
 
-**A lightweight quest book for NeoForge, Fabric and Forge.** No GUI bloat, no heavy
+**A lightweight quest book for NeoForge, Fabric and Forge - and a plugin for Spigot, Paper and Purpur.** No GUI bloat, no heavy
 dependencies — datapack-driven quests, an in-game quest book, a rotating board of generated
 quests and a handful of commands. A focused, server-friendly alternative to FTB Quests and HQM.
 
@@ -46,9 +46,11 @@ Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
 | NeoForge | 1.20.4, 1.20.6, 1.21 – 1.21.11, 26.1.2, 26.2 | yes |
 | Fabric (needs [Fabric API](https://modrinth.com/mod/fabric-api)) | 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4, 1.20.6, 1.21 – 1.21.11, 26.1 – 26.3 | 1.20.1 and newer |
 | Forge | 1.18.2, 1.19.2, 1.19.4, 1.20.1 | 1.20.1 |
+| Spigot / Paper / Purpur (server plugin) | 1.21 – 1.21.11 | chest menu |
 
 On 1.18 and 1.19 JustQuests is command-only; quests, tracking and rewards work the same.
-Install the mod on the server **and** the clients (both are required).
+Install the mod on the server **and** the clients (both are required). The plugin is
+server-only - see [Server plugin](#server-plugin-spigot-paper-purpur).
 
 ## Installation
 
@@ -58,6 +60,47 @@ Install the mod on the server **and** the clients (both are required).
    [GitHub releases](https://github.com/ErikEdits/JustQuests/releases) — the file name says which,
    e.g. `JustQuests-fabric-1.21.1-0.3.5.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
+
+## Server plugin (Spigot, Paper, Purpur)
+
+JustQuests also comes as a plugin for Spigot, Paper and Purpur 1.21 – 1.21.11
+(`JustQuests-plugin-1.21-<version>.jar`, one jar for all of them). Players join with a plain
+vanilla client - nothing to install on their side.
+
+1. Put the jar into the server's `plugins/` folder and start the server.
+2. New players get a **quest book**; right-click it (or type `/quest`, `/quests` or `/jq`) to open
+   the quests. `/quest book` gives a new one.
+
+What is the same as the mod: the 25 built-in quests, the quest format (datapack quests in the
+world's `datapacks/` folder work unchanged), all 15 objective and 8 reward types, claiming and
+reward choices, prerequisites, repeatable quests, the commands, the permission nodes, and the five
+languages - each player reads their own game language, and item, block and mob names are
+translated by their game.
+
+What is different without a client mod:
+
+- The **quest book is a chest menu**: the start page has your stats, the quests by status
+  (rewards ready, active, available, locked, completed) and by category; a click opens a quest with
+  its goals, rewards and the Accept / Abandon / Claim button. A reward choice is picked by clicking
+  the option. Shift-click in a list accepts a quest right away.
+- The **quest tracker is a boss bar** with the pinned quest (or the first active one) and its
+  progress. Pin a quest in its page or with `/quest track <id>`; `/quest bossbar` or the button on
+  the start page hides it for you.
+- Progress shows above the hotbar ("Mine 16x Stone (12/16)").
+- The quest generator is not in the plugin yet.
+
+Files in `plugins/JustQuests/`:
+
+| File | What it is |
+|---|---|
+| `config.yml` | the settings (the same names as the mod's `settings.json`), plus the quest book and boss bar options |
+| `custom-quests.json` | your own quests in the mod's format; reloads by itself when saved |
+| `quests/` | your own quests, one per file (`quests/my_quest.json` becomes `justquests:my_quest`) |
+| `players/<uuid>.json` | each player's progress |
+
+**Moving a world from the mod to a plugin server:** on its first start the plugin takes over the
+progress (`<world>/justquests/progress.json`) and the custom quests of the main world, so a world
+played in singleplayer with the mod keeps its quests on the server.
 
 ## Commands
 
@@ -201,6 +244,8 @@ With LuckPerms (or another permission mod) every command has a node:
 | `justquests.admin.<name>` — `reload`, `reroll`, `mainquests`, `difficulty`, `generator`, `test`, `admin` | operators (level 2) |
 | the `permission` of a quest, e.g. `myserver.vip` | operators (level 2) |
 
+The plugin adds `open`, `track`, `bossbar` and `book` to the player nodes; its operator
+commands so far are `reload`, `mainquests`, `test` and `admin`.
 `justquests.admin.*` gives all operator commands. A quest with a `permission` is hidden from
 `/quest list`, the quest book and tab completion for players without the node. NeoForge and Forge
 learn the quest nodes at server start, so a node added to a quest while the server runs works
@@ -215,18 +260,21 @@ Needs JDK 17, JDK 21 and JDK 25 (Gradle picks the right one per Minecraft versio
 git clone https://github.com/ErikEdits/JustQuests.git
 cd JustQuests
 ./gradlew :neoforge-1_21_1:build      # one version
-./gradlew build                       # all 43 builds (slow the first time)
+./gradlew :plugin:build              # the server plugin
+./gradlew build                       # all 43 mod builds and the plugin (slow the first time)
 ```
 
-Jars end up in `<loader>/<version>/build/libs/`. GitHub Actions builds all 43 on every push and
+Jars end up in `<loader>/<version>/build/libs/` (the plugin in `plugin/build/libs/`). GitHub
+Actions builds everything on every push and
 publishes a release with every jar for each `v*` tag.
 
 ### Project layout
 
 ```
-neoforge/<version>/   14 NeoForge builds   ─┐
-fabric/<version>/     18 Fabric builds      ├─ one source tree per Minecraft version
+neoforge/<version>/   16 NeoForge builds   ─┐
+fabric/<version>/     23 Fabric builds      ├─ one source tree per Minecraft version
 forge/<version>/       4 Forge builds      ─┘
+plugin/               the Spigot/Paper/Purpur plugin (plain Spigot API, one jar for 1.21.x)
 generator-v2/         the quest generator core (Java 17, own tests), copied into every build
                       by scripts/sync_generator_v2.py
 docs/                 example datapack, design notes, roadmap (build-todo.md)

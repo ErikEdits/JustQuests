@@ -67,7 +67,7 @@ jobs:
       - name: Collect release jars (all loaders, no sources)
         run: |
           mkdir -p release-jars
-          find neoforge fabric forge -path '*/build/libs/*.jar' ! -name '*-sources.jar' -exec cp -n {} release-jars/ \;
+          find neoforge fabric forge plugin -path '*/build/libs/*.jar' ! -name '*-sources.jar' -exec cp -n {} release-jars/ \;
           echo "--- release jars ---"; ls -1 release-jars | sort
 
       - name: Extract changelog notes
