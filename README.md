@@ -87,7 +87,30 @@ What is different without a client mod:
   progress. Pin a quest in its page or with `/quest track <id>`; `/quest bossbar` or the button on
   the start page hides it for you.
 - Progress shows above the hotbar ("Mine 16x Stone (12/16)").
-- The quest generator is not in the plugin yet.
+
+**The server generator.** The plugin has the quest generator too, built out for servers:
+
+- **The board** (first come, first served) grows with the server: `baseQuests` plus one quest per
+  `perPlayers` players who played in the last 7 days, up to `maxQuests`.
+- **Personal quests:** every player gets their own quests each day (3 by default), which only they
+  see and nobody can take from them. They follow the player's own progress - Nether quests only
+  once *they* have been to the Nether.
+- **Weekly quests:** harder, longer quests (about one to three hours) for everyone, new each week;
+  each player can do each one once. Valuable loot on top (enchanted books on hard).
+- **Server goal:** one goal per week that everyone works on together, for example "mine 1,000 copper
+  ore", sized by the players of the last 7 days. Every matching action counts by itself; 25, 50, 75
+  and 100 % are announced in chat, and everyone who helped gets the same reward (also when they
+  were offline at the time). `/quest goal` shows how far it is.
+- **Better rewards:** generated quests offer a choice of up to three rewards of about the same value;
+  a lucky bonus now and then (a list in `config.yml`); a personal streak pays up to 50 % more for
+  days in a row with a personal quest done; a reward multiplier; and money through an economy plugin
+  when you set its command (`generator.rewards.money.command`, e.g. `eco give {player} {amount}`).
+  Your own quests can pay money too: `{"type": "justquests:money", "amount": 25}` (plugin only).
+
+The quest book's start page has buttons for the personal quests, the weekly quests and the server
+goal. Operators have `/quest reroll`, `/quest difficulty` and `/quest generator status|stats|preview|explain|release`.
+Everything is set in the `generator:` section of `config.yml`; the state lives in
+`plugins/JustQuests/generator/`.
 
 Files in `plugins/JustQuests/`:
 
@@ -97,10 +120,11 @@ Files in `plugins/JustQuests/`:
 | `custom-quests.json` | your own quests in the mod's format; reloads by itself when saved |
 | `quests/` | your own quests, one per file (`quests/my_quest.json` becomes `justquests:my_quest`) |
 | `players/<uuid>.json` | each player's progress |
+| `generator/` | the generator's state: board, personal and weekly quests, server goal |
 
 **Moving a world from the mod to a plugin server:** on its first start the plugin takes over the
-progress (`<world>/justquests/progress.json`) and the custom quests of the main world, so a world
-played in singleplayer with the mod keeps its quests on the server.
+progress (`<world>/justquests/progress.json`), the custom quests and the generator's board of the
+main world, so a world played in singleplayer with the mod keeps its quests on the server.
 
 ## Commands
 
@@ -244,8 +268,8 @@ With LuckPerms (or another permission mod) every command has a node:
 | `justquests.admin.<name>` — `reload`, `reroll`, `mainquests`, `difficulty`, `generator`, `test`, `admin` | operators (level 2) |
 | the `permission` of a quest, e.g. `myserver.vip` | operators (level 2) |
 
-The plugin adds `open`, `track`, `bossbar` and `book` to the player nodes; its operator
-commands so far are `reload`, `mainquests`, `test` and `admin`.
+The plugin adds `open`, `track`, `bossbar`, `book` and `goal` to the player nodes; its operator
+commands are `reload`, `reroll`, `mainquests`, `difficulty`, `generator`, `test` and `admin`.
 `justquests.admin.*` gives all operator commands. A quest with a `permission` is hidden from
 `/quest list`, the quest book and tab completion for players without the node. NeoForge and Forge
 learn the quest nodes at server start, so a node added to a quest while the server runs works

@@ -4,6 +4,7 @@ import com.erikedits.justquests.plugin.book.QuestBook;
 import com.erikedits.justquests.plugin.command.QuestCommand;
 import com.erikedits.justquests.plugin.data.PlayerData;
 import com.erikedits.justquests.plugin.data.PlayerStore;
+import com.erikedits.justquests.plugin.gen.PluginGenerator;
 import com.erikedits.justquests.plugin.gui.Menu;
 import com.erikedits.justquests.plugin.gui.MenuListener;
 import com.erikedits.justquests.plugin.progress.GeneratedQuests;
@@ -54,6 +55,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     private QuestBook book;
     private Community community;
     private GeneratedQuests generated = GeneratedQuests.NONE;
+    private PluginGenerator generator;
     private final Set<UUID> hideCompleted = new HashSet<>();
 
     @Override
@@ -76,6 +78,9 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         tracker = new Tracker(this);
         book = new QuestBook(this);
         community = new Community(this, data.resolve("seen-players.json"));
+        generator = new PluginGenerator(this, data.resolve("generator"));
+        generated = generator;
+        generator.start(modWorld);
         registerPermissions();
 
         PluginManager pm = getServer().getPluginManager();
@@ -100,6 +105,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
             }
         }, 100L, 100L);
         getServer().getScheduler().runTaskTimer(this, () -> store.saveDirty(), 1200L, 1200L);
+        getServer().getScheduler().runTaskTimer(this, generator::tick, 1200L, 1200L);
         for (Player p : Bukkit.getOnlinePlayers()) tracker.update(p);   // after /reload
     }
 
@@ -109,6 +115,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
             if (p.getOpenInventory().getTopInventory().getHolder() instanceof Menu) p.closeInventory();
         }
         if (tracker != null) tracker.clear();
+        if (generator != null) generator.stop();
         if (store != null) store.saveDirty();
     }
 
@@ -149,6 +156,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         reloadConfig();
         settings.read(getConfig());
         quests.reloadCustom();
+        generator.reloadConfig();
         registerPermissions();
         tracker.updateAll();
         return quests.all().size();
@@ -164,6 +172,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         community.onJoin(e.getPlayer());
+        generator.onJoin(e.getPlayer());
         tracker.update(e.getPlayer());
     }
 
@@ -189,7 +198,8 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
 
     /** Whether the player may see and take the quest; quests without a permission are open to all. */
     public boolean canSee(Player player, Quest quest) {
-        return quest.permission() == null || allowed(player, quest.permission(), true);
+        return generated.visible(quest.id(), player.getUniqueId())
+            && (quest.permission() == null || allowed(player, quest.permission(), true));
     }
 
     public Collection<Quest> visibleQuests(Player player) {
@@ -244,5 +254,13 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
 
     public GeneratedQuests generated() { return generated; }
 
-    public void setGenerated(GeneratedQuests g) { generated = g == null ? GeneratedQuests.NONE : g; }
+    public PluginGenerator generator() { return generator; }
+
+    /** /quest difficulty: saved in config.yml, used from the next board, weekly set and personal day. */
+    public void setDifficulty(String value) {
+        settings.difficulty = value;
+        getConfig().set("generator.difficulty", value);
+        saveConfig();
+        generator.reloadConfig();
+    }
 }

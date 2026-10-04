@@ -35,6 +35,15 @@ tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ['-Xlint:deprecation']
 }
 
+// The quest generator core (generator-v2: Java 17, Gson only) is compiled in from its own project.
+def generatorCore = file('../generator-v2/justquests-generator-v2/src/main')
+sourceSets {
+    main {
+        java.srcDir(new File(generatorCore, 'java'))
+        resources.srcDir(new File(generatorCore, 'resources'))
+    }
+}
+
 // The shared language files and the bundled quests come from the mod, so they never drift apart.
 def bundledQuests = file('../fabric/1.21.11/src/main/resources/data/justquests/justquests/quests')
 

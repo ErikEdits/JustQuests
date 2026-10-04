@@ -35,16 +35,49 @@ public final class MainMenu extends Menu {
     @Override
     protected void render() {
         frame();
+        plugin.generator().ensurePersonal(player);
         PlayerData data = plugin.store().peek(player.getUniqueId());
         Collection<Quest> quests = plugin.visibleQuests(player);
         Map<QuestStatus, Integer> byStatus = new EnumMap<>(QuestStatus.class);
         Map<String, List<Quest>> byCategory = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        List<Quest> personal = new ArrayList<>();
+        List<Quest> weekly = new ArrayList<>();
         for (Quest q : quests) {
             byStatus.merge(QuestStatus.of(plugin, player.getUniqueId(), data, q), 1, Integer::sum);
-            byCategory.computeIfAbsent(q.category(), k -> new ArrayList<>()).add(q);
+            if (q.category().equals("personal")) personal.add(q);
+            else if (q.category().equals("weekly")) weekly.add(q);
+            else byCategory.computeIfAbsent(q.category(), k -> new ArrayList<>()).add(q);
         }
 
         set(4, stats(data, quests.size()));
+        if (plugin.settings().personal && plugin.generator().running()) {
+            List<BaseComponent> lore = new ArrayList<>();
+            lore.add(tr("justquests.plugin.gui.personal_lore"));
+            lore.add(tr("justquests.plugin.gui.done_of", done(data, personal), personal.size()));
+            BaseComponent streak = plugin.generator().streakLine(lang, player.getUniqueId());
+            if (streak != null) lore.add(streak);
+            lore.add(Text.lit(""));
+            lore.add(tr("justquests.plugin.gui.click_open"));
+            set(2, item(Material.CLOCK, Math.max(1, personal.size()), Text.lit("§b" + plugin.categoryName(lang, "personal")), lore,
+                    hasWork(data, personal)),
+                click -> go(new QuestListMenu(plugin, player, QuestListMenu.Filter.category("personal"), 0)));
+        }
+        if (plugin.settings().weekly && plugin.generator().running()) {
+            List<BaseComponent> lore = new ArrayList<>();
+            lore.add(tr("justquests.plugin.gui.weekly_lore"));
+            lore.add(tr("justquests.plugin.gui.done_of", done(data, weekly), weekly.size()));
+            lore.add(Text.lit(""));
+            lore.add(tr("justquests.plugin.gui.click_open"));
+            set(3, item(Material.NETHER_STAR, Math.max(1, weekly.size()), Text.lit("§d" + plugin.categoryName(lang, "weekly")), lore,
+                    false),
+                click -> go(new QuestListMenu(plugin, player, QuestListMenu.Filter.category("weekly"), 0)));
+        }
+        if (plugin.generator().goalActive()) {
+            List<BaseComponent> lore = new ArrayList<>(plugin.generator().goalLines(lang, player.getUniqueId()));
+            set(5, item(plugin.generator().goalIcon(), 1, Text.lit("§6" + legacy("justquests.plugin.goal.title")
+                    + " §7(" + plugin.generator().goalPercent() + "%)"), lore, plugin.generator().goalDone()),
+                click -> plugin.generator().goalLines(lang, player.getUniqueId()).forEach(l -> player.spigot().sendMessage(l)));
+        }
 
         int slot = 10;
         for (QuestStatus s : new QuestStatus[]{QuestStatus.CLAIM, QuestStatus.ACTIVE, QuestStatus.AVAILABLE, QuestStatus.LOCKED, QuestStatus.COMPLETED}) {
@@ -98,6 +131,22 @@ public final class MainMenu extends Menu {
         set(49, item(Material.BARRIER, tr("justquests.plugin.gui.close"), List.of()), click -> player.closeInventory());
     }
 
+    private static int done(PlayerData data, List<Quest> list) {
+        int n = 0;
+        for (Quest q : list) {
+            if (data != null && (data.isCompleted(q.id()) || data.isClaimable(q.id()))) n++;
+        }
+        return n;
+    }
+
+    /** Something to take or to claim among the quests. */
+    private static boolean hasWork(PlayerData data, List<Quest> list) {
+        for (Quest q : list) {
+            if (data == null || data.isClaimable(q.id()) || (!data.isActive(q.id()) && !data.isCompleted(q.id()))) return true;
+        }
+        return false;
+    }
+
     private org.bukkit.inventory.ItemStack stats(PlayerData data, int total) {
         int completed = data == null ? 0 : data.completed.size();
         int active = data == null ? 0 : data.active.size();
@@ -107,6 +156,8 @@ public final class MainMenu extends Menu {
         lore.add(Text.lit("§7" + legacy("justquests.book.stats.active", active)));
         int[] rank = plugin.rank(player.getUniqueId());
         if (rank != null) lore.add(Text.lit("§7" + legacy("justquests.book.stats.rank", rank[0], rank[1])));
+        BaseComponent streak = plugin.generator().streakLine(lang, player.getUniqueId());
+        if (streak != null) lore.add(streak);
         return item(Material.KNOWLEDGE_BOOK, 1, Text.lit("§e" + legacy("justquests.book.stats.title")), lore, false);
     }
 }

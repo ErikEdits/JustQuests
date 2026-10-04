@@ -65,6 +65,7 @@ public sealed interface Reward {
                 o.has("fade_in") ? o.get("fade_in").getAsInt() : 10,
                 o.has("stay") ? o.get("stay").getAsInt() : 70,
                 o.has("fade_out") ? o.get("fade_out").getAsInt() : 20);
+            case "justquests:money" -> new Money(o.get("amount").getAsInt());
             case "justquests:choice" -> {
                 List<Reward> options = new ArrayList<>();
                 for (JsonElement e : o.getAsJsonArray("options")) options.add(parse(e.getAsJsonObject()));
@@ -142,6 +143,26 @@ public sealed interface Reward {
         public String label() { return "Loot: " + table; }
         public BaseComponent display(String lang) { return Text.tr(lang, "justquests.reward.loot", Text.pretty(table)); }
         public Material icon() { return Material.CHEST; }
+    }
+
+    /** Money through the server's economy plugin (see {@link Economy}); the plugin's own reward type. */
+    record Money(int amount) implements Reward {
+        public String typeId() { return "justquests:money"; }
+
+        public void grant(Player player) {
+            String cmd = Economy.command(player.getName(), amount);
+            if (cmd == null) return;
+            try {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
+            } catch (RuntimeException e) {
+                LOG.log(Level.SEVERE, "Money reward failed: /" + cmd, e);
+            }
+        }
+
+        public String label() { return amount + " money"; }
+        public BaseComponent display(String lang) { return Text.tr(lang, "justquests.plugin.reward.money", amount, Economy.name()); }
+        public Material icon() { return Material.GOLD_NUGGET; }
+        public int iconCount() { return Math.max(1, Math.min(64, amount)); }
     }
 
     record Xp(int amount) implements Reward {

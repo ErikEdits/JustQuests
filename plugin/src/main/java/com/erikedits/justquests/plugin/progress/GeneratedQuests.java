@@ -1,13 +1,15 @@
 package com.erikedits.justquests.plugin.progress;
 
+import com.erikedits.justquests.plugin.quest.Quest;
 import net.md_5.bungee.api.chat.BaseComponent;
+import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
 /**
- * What the quest generator has to say about its quests (who took one, whether it can still be
- * taken). Quests that are not generated pass through untouched; {@link #NONE} is used while the
- * generator is off.
+ * What the quest generator has to say about its quests (who took one, who may see it, bonuses) and
+ * the events it listens to. Quests that are not generated pass through untouched; {@link #NONE} is
+ * used while the generator is off.
  */
 public interface GeneratedQuests {
     GeneratedQuests NONE = new GeneratedQuests() {};
@@ -35,6 +37,17 @@ public interface GeneratedQuests {
     default boolean takenByOther(String id, UUID viewer) {
         return false;
     }
+
+    /** Whether the viewer may see the quest at all (personal quests are their owner's only). */
+    default boolean visible(String id, UUID viewer) {
+        return true;
+    }
+
+    /** After a quest's rewards were paid: extras such as the lucky bonus. */
+    default void bonus(Player player, Quest quest) {}
+
+    /** Every game event that can move quests forward (for the server goal). */
+    default void progress(Player player, ProgressService.Test test) {}
 
     default void releaseAll(UUID player) {}
 }

@@ -63,6 +63,12 @@ final class SelfTest {
             components = false;
             out.add("§e  Menu items use plain text (the server did not take component text); names show in English.");
         }
+        if (plugin.settings().generator) {
+            List<String> gen = plugin.generator().selfTest();
+            for (String g : gen) out.add("§c  Generator: " + g);
+            problems += gen.size();
+            if (gen.isEmpty()) out.add("§7  Generator: §aOK");
+        }
         int missing = 0;
         for (String lang : Lang.CODES) missing += Lang.missing(lang);
         out.add("§7  Quests: §f" + quests + "§7, items built: §f" + items

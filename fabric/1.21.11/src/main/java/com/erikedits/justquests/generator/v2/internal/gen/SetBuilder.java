@@ -458,7 +458,7 @@ public final class SetBuilder {
         }
         double per = c.effortPerUnit();
         double raw = Math.max(0.0, minutes) / per;
-        int count = NiceNumbers.round(raw, c.min(), c.max(), c.stack());
+        int count = NiceNumbers.round(raw, c.min(), c.max(), c.stack(), balance.countCapScale != 1.0);
         return new QuestDraft.Objective(c, count, count * per);
     }
 

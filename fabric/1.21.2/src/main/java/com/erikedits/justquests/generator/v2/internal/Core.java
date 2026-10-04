@@ -7,13 +7,17 @@ import com.erikedits.justquests.generator.v2.api.ContentKind;
 import com.erikedits.justquests.generator.v2.api.Difficulty;
 import com.erikedits.justquests.generator.v2.api.ExpiredClaim;
 import com.erikedits.justquests.generator.v2.api.GenLog;
+import com.erikedits.justquests.generator.v2.api.GeneratedQuest;
 import com.erikedits.justquests.generator.v2.api.GeneratorConfig;
 import com.erikedits.justquests.generator.v2.api.GeneratorHost;
 import com.erikedits.justquests.generator.v2.api.HostCapabilities;
+import com.erikedits.justquests.generator.v2.api.RewardOptions;
 import com.erikedits.justquests.generator.v2.api.RotationResult;
+import com.erikedits.justquests.generator.v2.api.SetRequest;
 import com.erikedits.justquests.generator.v2.api.StartResult;
 import com.erikedits.justquests.generator.v2.api.StatsSummary;
 import com.erikedits.justquests.generator.v2.api.ValidationResult;
+import com.erikedits.justquests.generator.v2.api.WorldContext;
 import com.erikedits.justquests.generator.v2.internal.catalog.Catalog;
 import com.erikedits.justquests.generator.v2.internal.catalog.CatalogLoader;
 import com.erikedits.justquests.generator.v2.internal.catalog.ProfileDef;
@@ -74,6 +78,7 @@ public final class Core {
     private RotationResult noneResult = RotationResult.none(0);
     private V1Migration.V1Data v1Data;
     private final Set<String> warnedOnce = new HashSet<>();
+    private RewardOptions rewardOptions = RewardOptions.STANDARD;
 
     public Core(GeneratorHost host, GeneratorConfig config) {
         this.host = host;
@@ -467,7 +472,44 @@ public final class Core {
     private Generation.Result generate(int n, List<SetBuilder.Kept> kept, long cycleId, long seed, Progression progression,
                                        Set<String> historySigs, int firstIndex) {
         return Generation.run(catalog, host, config, progression, state.calibration, historySigs, kept, n, cycleId, seed,
-            firstIndex);
+            firstIndex, rewardOptions);
+    }
+
+    /** Reward extras for the quests generated from now on. */
+    public void setRewardOptions(RewardOptions options) {
+        rewardOptions = options == null ? RewardOptions.STANDARD : options;
+    }
+
+    public RewardOptions rewardOptions() {
+        return rewardOptions;
+    }
+
+    /** A stand-alone set (see {@link SetRequest}): nothing is stored, claimed or counted in the stats. */
+    public List<GeneratedQuest> generateSet(SetRequest req) {
+        List<GeneratedQuest> out = new ArrayList<>();
+        if (!started || stopped || catalog == null) {
+            return out;
+        }
+        Catalog cat = catalog.withBalance(catalog.balance.scaled(req.difficulty(), req.minutesScale(), req.budgetScale(),
+            req.singleObjective(), req.dayUnlocks(), req.excludedTypes()));
+        GeneratorConfig cfg = config.toBuilder().difficulty(req.difficulty()).build().sanitized(null);
+        WorldContext world = req.world() != null ? req.world() : host.world();
+        Progression progression = new Progression();
+        List<ProfileDef> active = new CandidateResolver(cat, host.content(), host.capabilities(), log, req.difficulty(),
+            progression, Map.of(), cfg.disabledProfiles()).activeProfiles();
+        progression.update(world, cat.balance, active);
+        Generation.Result run = Generation.run(cat, host, cfg, progression, state.calibration, new HashSet<>(req.history()),
+            List.of(), req.count(), 0L, req.seed(), 0, rewardOptions);
+        for (QuestDraft d : run.drafts()) {
+            out.add(new GeneratedQuest(d.json.deepCopy(), d.signature(), d.estMinutes, d.rewardValue));
+        }
+        return out;
+    }
+
+    /** Reward value of a quest on the board; 0 if unknown. */
+    public double rewardValue(String questId) {
+        QuestRecord r = started ? state.find(questId) : null;
+        return r == null ? 0.0 : r.rewardValue;
     }
 
     /** Generates and stores quests for the current cycle; returns the new ids. */

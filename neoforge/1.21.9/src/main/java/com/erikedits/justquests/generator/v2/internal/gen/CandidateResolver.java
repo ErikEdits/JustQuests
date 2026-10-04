@@ -300,7 +300,7 @@ public final class CandidateResolver {
         String plural = t.plural() != null ? t.plural() : English.plural(name, type.kind() == ContentKind.ENTITY);
         double weight = e.weight() * t.weight();
         Candidate c = new Candidate(p.id(), e, t, type, target, isTag, tier, e.family(), dimension, tool,
-            List.copyOf(hints), t.effort(), mult, note.toString().trim(), overhead, t.min(), t.max(), stack, name, plural,
+            List.copyOf(hints), t.effort(), mult, note.toString().trim(), overhead, t.min(), cap(t.max()), stack, name, plural,
             weight, tagNoun);
         // effort range feasibility for this difficulty
         double hi = level.maxMinutes * (1.0 + catalog.balance.rangeSlack);
@@ -558,5 +558,11 @@ public final class CandidateResolver {
             s.add(p.id());
         }
         return s;
+    }
+
+    /** A target's maximum count, raised for scaled sets (see {@link Balance#countCapScale}). */
+    private int cap(int max) {
+        double s = catalog.balance.countCapScale;
+        return s == 1.0 ? max : (int) Math.min(1_000_000L, Math.round(max * s));
     }
 }

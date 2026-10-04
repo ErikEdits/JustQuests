@@ -2,6 +2,7 @@ package com.erikedits.justquests.generator.v2.internal;
 
 import com.erikedits.justquests.generator.v2.api.GeneratorConfig;
 import com.erikedits.justquests.generator.v2.api.GeneratorHost;
+import com.erikedits.justquests.generator.v2.api.RewardOptions;
 import com.erikedits.justquests.generator.v2.internal.catalog.Catalog;
 import com.erikedits.justquests.generator.v2.internal.gen.CandidateResolver;
 import com.erikedits.justquests.generator.v2.internal.gen.Progression;
@@ -54,6 +55,14 @@ public final class Generation {
     public static Result run(Catalog catalog, GeneratorHost host, GeneratorConfig config, Progression progression,
                              Map<String, Double> calibration, Set<String> history, List<SetBuilder.Kept> kept, int n,
                              long cycleId, long seed, int firstIndex) {
+        return run(catalog, host, config, progression, calibration, history, kept, n, cycleId, seed, firstIndex,
+            RewardOptions.STANDARD);
+    }
+
+    /** As {@link #run(Catalog, GeneratorHost, GeneratorConfig, Progression, Map, Set, List, int, long, long, int)}, with reward options. */
+    public static Result run(Catalog catalog, GeneratorHost host, GeneratorConfig config, Progression progression,
+                             Map<String, Double> calibration, Set<String> history, List<SetBuilder.Kept> kept, int n,
+                             long cycleId, long seed, int firstIndex, RewardOptions rewardOptions) {
         Map<String, Double> cal = config.adaptiveBalancing() ? calibration : Map.of();
         CandidateResolver resolver = new CandidateResolver(catalog, host.content(), host.capabilities(), host.log(),
             config.difficulty(), progression, cal, config.disabledProfiles());
@@ -71,7 +80,7 @@ public final class Generation {
                 } catch (RuntimeException e) {
                     return -1;
                 }
-            }, rewardTypes);
+            }, rewardTypes, rewardOptions);
         TextBuilder text = new TextBuilder(catalog.templates, catalog.messages, catalog.languages);
         SetBuilder.Validator validator = (draft, json, ordinal) ->
             host.validator().validate(Ids.GEN_PREFIX + cycleId + "_" + (firstIndex + ordinal), json.deepCopy());

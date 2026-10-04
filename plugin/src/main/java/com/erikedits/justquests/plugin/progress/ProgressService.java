@@ -41,6 +41,7 @@ public final class ProgressService {
     }
 
     public void advance(Player player, Test test) {
+        plugin.generated().progress(player, test);
         PlayerData data = plugin.store().peek(player.getUniqueId());
         if (data == null || data.active.isEmpty()) return;
         String lang = Lang.of(player);
@@ -145,6 +146,7 @@ public final class ProgressService {
             if (r == choice) choice.grant(player, pick);
             else r.grant(player);
         }
+        plugin.generated().bonus(player, quest);
     }
 
     /** A clickable [Claim rewards] that runs /quest claim for the quest. */

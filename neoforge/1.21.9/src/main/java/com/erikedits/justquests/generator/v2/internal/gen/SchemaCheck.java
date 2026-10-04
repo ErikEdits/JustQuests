@@ -24,7 +24,7 @@ public final class SchemaCheck {
         "objectives", "rewards");
     private static final Pattern LANGUAGE = Pattern.compile("[a-z]{2,3}_[a-z]{2,4}");
     private static final Set<String> REWARD_TYPES = Set.of("justquests:give_item", "justquests:xp",
-        "justquests:effect", "justquests:loot_table", "justquests:message");
+        "justquests:effect", "justquests:loot_table", "justquests:message", "justquests:choice");
 
     private SchemaCheck() {
     }
@@ -173,7 +173,8 @@ public final class SchemaCheck {
             "justquests:xp", Set.of("type", "amount"),
             "justquests:effect", Set.of("type", "effect", "seconds", "amplifier"),
             "justquests:loot_table", Set.of("type", "loot_table"),
-            "justquests:message", Set.of("type", "message"));
+            "justquests:message", Set.of("type", "message"),
+            "justquests:choice", Set.of("type", "options"));
         for (String k : o.keySet()) {
             if (!keys.get(type).contains(k)) {
                 p.add("unknown reward key " + k);
@@ -201,6 +202,20 @@ public final class SchemaCheck {
             case "justquests:loot_table":
                 if (!Ids.isValid(str(o, "loot_table"))) {
                     p.add("loot_table needs an id");
+                }
+                break;
+            case "justquests:choice":
+                if (!o.has("options") || !o.get("options").isJsonArray()
+                    || o.getAsJsonArray("options").size() < 2 || o.getAsJsonArray("options").size() > 3) {
+                    p.add("choice needs 2 or 3 options");
+                    break;
+                }
+                for (JsonElement option : o.getAsJsonArray("options")) {
+                    if (option.isJsonObject() && "justquests:choice".equals(str(option.getAsJsonObject(), "type"))) {
+                        p.add("choice inside a choice");
+                    } else {
+                        checkReward(option, p);
+                    }
                 }
                 break;
             default:

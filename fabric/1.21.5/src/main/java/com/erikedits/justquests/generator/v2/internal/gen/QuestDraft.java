@@ -33,6 +33,8 @@ public final class QuestDraft {
 
     public final List<Objective> objectives = new ArrayList<>();
     public final List<Reward> rewards = new ArrayList<>();
+    /** Options of the {@code choice} reward in {@link #rewards} (empty without a choice). */
+    public final List<Reward> choice = new ArrayList<>();
     public final List<String> explain = new ArrayList<>();
     public String title;
     public String description;

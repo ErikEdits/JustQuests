@@ -7,6 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
@@ -84,6 +85,12 @@ public final class Balance {
     public int maxAttemptsPerSlot = 40;
     public double rangeSlack = 0.25;
     public double minTargetFraction = 0.5;
+    /** Multiplies the catalog's maximum objective counts (scaled sets only; 1 = unchanged). */
+    public double countCapScale = 1.0;
+    /** Multiplies the reward caps: item counts and XP (scaled sets only; 1 = unchanged). */
+    public double rewardCapScale = 1.0;
+    /** The JSON this balance was read from (null: the built-in defaults). */
+    private JsonObject source;
 
     /** Parses balance JSON; missing values keep their defaults. */
     public static Balance parse(JsonObject root) {
@@ -175,6 +182,7 @@ public final class Balance {
             b.calibrationMax = Json.dbl(cal, "maxMultiplier", b.calibrationMax);
             b.calibrationMaxStep = Json.dbl(cal, "maxStepPerCycle", b.calibrationMaxStep);
         }
+        b.source = root;
         b.sanitize();
         return b;
     }
@@ -270,6 +278,35 @@ public final class Balance {
 
     public Level level(Difficulty d) {
         return levels.get(d);
+    }
+
+    /**
+     * A copy for sets outside the rotating board ({@code SetRequest}): the {@code d} level aims at
+     * {@code minutesScale} times the play time at {@code budgetScale} times the reward rate, and the
+     * count and reward caps grow along, so long quests can still be sized and paid.
+     */
+    public Balance scaled(Difficulty d, double minutesScale, double budgetScale, boolean singleObjective,
+                          boolean dayUnlocks, Collection<String> excludedTypes) {
+        Balance b = parse(source);
+        Level l = b.levels.get(d);
+        l.minMinutes *= minutesScale;
+        l.maxMinutes *= minutesScale;
+        l.budgetMin *= minutesScale * budgetScale;
+        l.budgetMax *= minutesScale * budgetScale;
+        l.rewardRate *= budgetScale;
+        if (singleObjective) {
+            l.objectiveWeights = new double[]{100, 0, 0};
+        }
+        for (String type : excludedTypes) {
+            l.typeWeights.put(type, 0.0);
+        }
+        if (!dayUnlocks) {
+            b.netherUnlockDay = 0;
+            b.endUnlockDay = 0;
+        }
+        b.countCapScale = Math.max(1.0, minutesScale);
+        b.rewardCapScale = Math.max(1.0, minutesScale * budgetScale);
+        return b;
     }
 
     public double typeWeight(Difficulty d, ObjectiveType t) {

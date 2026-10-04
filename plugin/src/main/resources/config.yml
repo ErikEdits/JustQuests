@@ -28,3 +28,73 @@ bossbar:
   color: YELLOW
   # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12 or SEGMENTED_20
   style: SEGMENTED_10
+
+# The quest generator: a shared board everyone picks from, personal daily quests, weekly quests and a
+# weekly server goal. Generated quests come in the five languages, like the built-in ones.
+generator:
+  enabled: true
+  # easy, normal or hard (also /quest difficulty)
+  difficulty: normal
+  board:
+    # The shared board: a quest one player takes is gone for the others (first come, first served).
+    baseQuests: 5
+    # one more quest per this many players who played in the last 7 days
+    perPlayers: 3
+    maxQuests: 20
+    # new board every this many hours, the first at this local hour
+    cycleHours: 12
+    cycleAnchorHour: 0
+    exclusiveClaims: true
+    # a player may hold only one unfinished board quest at a time
+    oneActivePerPlayer: true
+    # an abandoned board quest goes back on the board
+    releaseOnAbandon: true
+    # take a board quest back from its holder after this many hours (0 = never)
+    claimExpiryHours: 0
+  personal:
+    # Every player gets their own quests each day, which only they see.
+    enabled: true
+    quests: 3
+    # local hour of the daily renewal
+    resetHour: 0
+  weekly:
+    # Harder, longer quests for everyone, new each week; each player can do each one once.
+    enabled: true
+    quests: 4
+    # MONDAY ... SUNDAY and the local hour of the weekly renewal
+    day: MONDAY
+    hour: 0
+  serverGoal:
+    # One goal per week that everyone works on together; everyone who helped gets the reward.
+    enabled: true
+    # how much play the goal asks per player who played in the last 7 days
+    minutesPerPlayer: 60
+  rewards:
+    # Generated quests offer a choice of up to three rewards of about the same value.
+    choice: true
+    # Multiplies all generated rewards (0.1 - 10).
+    multiplier: 1.0
+    # Chance (0 - 1) of a lucky bonus on top when claiming a generated quest: "item count weight".
+    luckyChance: 0.08
+    lucky:
+      - "minecraft:diamond 2 30"
+      - "minecraft:emerald 8 30"
+      - "minecraft:golden_apple 2 25"
+      - "minecraft:experience_bottle 16 25"
+      - "minecraft:name_tag 1 10"
+      - "minecraft:totem_of_undying 1 3"
+      - "minecraft:enchanted_golden_apple 1 2"
+    # Personal quests pay this much more per day in a row with a personal quest done, up to streakMax.
+    streakBonus: 0.1
+    streakMax: 0.5
+    money:
+      # Pays money through an economy plugin, e.g. "eco give {player} {amount}" (EssentialsX).
+      # Empty: no money. The amount is the quest's reward value times perValue.
+      command: ""
+      perValue: 1.0
+      # shown in the quest book, e.g. "25 Coins"
+      name: "Coins"
+  # anonymous statistics in plugins/JustQuests/generator/generator_v2_stats.json
+  stats: true
+  # let the generator tune its time estimates from how long quests really take
+  adaptiveBalancing: false

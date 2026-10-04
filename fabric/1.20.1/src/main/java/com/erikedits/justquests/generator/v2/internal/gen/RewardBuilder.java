@@ -2,6 +2,7 @@ package com.erikedits.justquests.generator.v2.internal.gen;
 
 import com.erikedits.justquests.generator.v2.api.ContentKind;
 import com.erikedits.justquests.generator.v2.api.Difficulty;
+import com.erikedits.justquests.generator.v2.api.RewardOptions;
 import com.erikedits.justquests.generator.v2.internal.catalog.Balance;
 import com.erikedits.justquests.generator.v2.internal.catalog.Catalog;
 import com.erikedits.justquests.generator.v2.internal.catalog.RewardDefs;
@@ -28,10 +29,19 @@ public final class RewardBuilder {
     private final BiPredicate<ContentKind, String> exists;
     private final ToIntFunction<String> hostStackSize;
     private final Set<String> rewardTypes;
+    private final RewardOptions options;
+    /** Multiplies item and XP caps: the balance's (scaled sets) times the reward scale. */
+    private final double capScale;
 
     public RewardBuilder(Catalog catalog, Difficulty difficulty, Set<String> activeProfiles,
                          BiPredicate<ContentKind, String> exists, ToIntFunction<String> hostStackSize,
                          Set<String> rewardTypes) {
+        this(catalog, difficulty, activeProfiles, exists, hostStackSize, rewardTypes, RewardOptions.STANDARD);
+    }
+
+    public RewardBuilder(Catalog catalog, Difficulty difficulty, Set<String> activeProfiles,
+                         BiPredicate<ContentKind, String> exists, ToIntFunction<String> hostStackSize,
+                         Set<String> rewardTypes, RewardOptions options) {
         this.catalog = catalog;
         this.balance = catalog.balance;
         this.level = balance.level(difficulty);
@@ -40,12 +50,18 @@ public final class RewardBuilder {
         this.exists = exists;
         this.hostStackSize = hostStackSize;
         this.rewardTypes = rewardTypes;
+        this.options = options == null ? RewardOptions.STANDARD : options;
+        this.capScale = balance.rewardCapScale * this.options.scale();
     }
 
     /** Budget for a quest of the given estimated minutes and objective count. */
     public double budget(double estMinutes, int objectives) {
         double premium = balance.multiRewardPremium[Math.max(0, Math.min(2, objectives - 1))];
         double b = estMinutes * level.rewardRate * premium;
+        if (options.scale() != 1.0) {
+            b *= options.scale();
+            return Math.max(level.budgetMin * options.scale(), Math.min(level.budgetMax * options.scale(), b));
+        }
         return Math.max(level.budgetMin, Math.min(level.budgetMax, b));
     }
 
@@ -99,8 +115,59 @@ public final class RewardBuilder {
             && rng.chance(level.messageChance)) {
             d.rewards.add(new QuestDraft.Reward("message", null, 0, 0, rng.pick(catalog.messages), 0.0));
         }
+        if (options.choice()) {
+            offerChoice(d, rng);
+        }
         d.rewardValue = d.totalRewardValue();
         return !d.rewards.isEmpty() && within(d.rewardValue, budget);
+    }
+
+    /**
+     * Turns the first item reward into a choice of up to three options of about its value: that
+     * item, another item, and a loot table or an effect. Nothing changes when fewer than two options
+     * can be found.
+     */
+    private void offerChoice(QuestDraft d, Rng rng) {
+        int i = indexOf(d, "give_item");
+        if (i < 0 || !allowed("justquests:choice")) {
+            return;
+        }
+        QuestDraft.Reward first = d.rewards.get(i);
+        double value = first.value();
+        List<QuestDraft.Reward> options = new ArrayList<>();
+        options.add(first);
+        Set<String> exclude = new java.util.HashSet<>(d.targets());
+        for (QuestDraft.Reward r : d.rewards) {
+            if (r.id() != null) {
+                exclude.add(r.id());
+            }
+        }
+        QuestDraft.Reward second = pickItem(value, d.families(), exclude, first.id(), d.tier(), rng);
+        if (second != null) {
+            options.add(second);
+        }
+        boolean hasLoot = indexOf(d, "loot_table") >= 0;
+        RewardDefs.Loot loot = !hasLoot && allowed("justquests:loot_table") ? pickLoot(value / 0.6, d.tier(), rng) : null;
+        if (loot != null) {
+            options.add(new QuestDraft.Reward("loot_table", loot.id(), 1, 0, null, loot.value()));
+        } else if (indexOf(d, "effect") < 0 && allowed("justquests:effect")) {
+            QuestDraft.Reward eff = pickEffect(value, rng);
+            if (eff != null) {
+                options.add(eff);
+            }
+        }
+        if (options.size() < 2) {
+            return;
+        }
+        d.choice.clear();
+        d.choice.addAll(options);
+        d.rewards.set(i, new QuestDraft.Reward("choice", null, options.size(), 0, null, value));
+    }
+
+    /** An item's count cap: its catalog maximum and stack size, raised by {@link #capScale}. */
+    private int capOf(RewardDefs.Item it, String id) {
+        int cap = Math.max(1, Math.min(it.max(), stackOf(it, id)));
+        return capScale == 1.0 ? cap : Math.max(1, (int) Math.min(100_000L, Math.round(cap * capScale)));
     }
 
     private boolean allowed(String rewardType) {
@@ -110,7 +177,8 @@ public final class RewardBuilder {
     private int xpFor(double value) {
         double pts = Math.max(0, value) * balance.xpPointsPerValue;
         int rounded = pts >= 50 ? (int) (Math.round(pts / 5.0) * 5) : (int) Math.round(pts);
-        return Math.max(balance.minXp, Math.min(balance.maxXp, rounded));
+        int max = capScale == 1.0 ? balance.maxXp : (int) Math.min(1_000_000L, Math.round(balance.maxXp * capScale));
+        return Math.max(balance.minXp, Math.min(max, rounded));
     }
 
     private boolean within(double value, double budget) {
@@ -188,7 +256,7 @@ public final class RewardBuilder {
     private int maxCount(String id) {
         for (RewardDefs.Item it : catalog.items) {
             if (it.id().equals(id) || it.alts().contains(id)) {
-                return Math.max(1, Math.min(it.max(), stackOf(it, id)));
+                return capOf(it, id);
             }
         }
         return 1;
@@ -233,7 +301,7 @@ public final class RewardBuilder {
             if (it.value() > itemBudget * (1 + balance.rewardTolerance)) {
                 continue;
             }
-            int cap = Math.max(1, Math.min(it.max(), stackOf(it, id)));
+            int cap = capOf(it, id);
             // capacity: share of the item budget this reward can carry (1 = fully)
             double fit = Math.min(1.0, cap * it.value() / itemBudget);
             fit = fit * fit;
@@ -254,7 +322,7 @@ public final class RewardBuilder {
         }
         RewardDefs.Item it = ok.get(choice);
         String id = resolved.get(choice);
-        int cap = Math.max(1, Math.min(it.max(), stackOf(it, id)));
+        int cap = capOf(it, id);
         int count = (int) Math.max(1, Math.min(cap, Math.round(itemBudget / it.value())));
         return new QuestDraft.Reward("give_item", id, count, 0, null, count * it.value());
     }

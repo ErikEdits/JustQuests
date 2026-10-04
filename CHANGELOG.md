@@ -14,8 +14,13 @@ Built step by step; test builds go to a local folder until the release.
   It reads the same quests as the mod (built-in, datapacks, `custom-quests.json`, one file per
   quest in `plugins/JustQuests/quests/`), has all objective and reward types, claiming, reward
   choices, the commands and permission nodes, and the five languages; item, block and mob names
-  are translated by each player's game. A world played with the mod keeps its progress and
-  custom quests when it moves to a plugin server.
+  are translated by each player's game. A world played with the mod keeps its progress, custom
+  quests and generated board when it moves to a plugin server.
+- **The server generator** (plugin): the board of generated quests grows with the players of the
+  last 7 days; every player gets personal daily quests; harder weekly quests for everyone; a
+  weekly server goal everyone works on together, with the same reward for every helper; and
+  better rewards: a choice of three, a lucky bonus, a streak bonus for personal quests, loot on
+  weekly quests and goals, a reward multiplier, and money through an economy plugin's command.
 - **Minecraft 26.1 – 26.3:** Fabric builds for 26.1, 26.1.1, 26.1.2, 26.2 and 26.3, and NeoForge
   builds for 26.1.2 and 26.2 (NeoForge 26.3 follows once it leaves beta). JustQuests now has 43
   builds. Minecraft 26.x needs Java 25.

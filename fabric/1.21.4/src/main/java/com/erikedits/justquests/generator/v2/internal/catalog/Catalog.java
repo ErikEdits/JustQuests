@@ -21,6 +21,12 @@ public final class Catalog {
     /** Extra languages for generated quest text (lang/*.json); may be empty. */
     public final List<Localization> languages;
 
+    /** The same catalog with another balance (scaled sets, see {@link Balance#scaled}). */
+    public Catalog withBalance(Balance other) {
+        return new Catalog(profiles, items, effects, loot, messages, themes, tags, templates, other, loadWarnings,
+            languages);
+    }
+
     public Catalog(List<ProfileDef> profiles, List<RewardDefs.Item> items, List<RewardDefs.Effect> effects,
                    List<RewardDefs.Loot> loot, List<String> messages, List<ThemeDef> themes,
                    Map<String, TagConcept> tags, Templates templates, Balance balance, List<String> loadWarnings) {

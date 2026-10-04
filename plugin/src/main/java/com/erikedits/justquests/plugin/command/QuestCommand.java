@@ -38,8 +38,8 @@ import java.util.stream.Collectors;
  */
 public final class QuestCommand implements TabExecutor {
     public static final List<String> PLAYER = List.of("open", "list", "categories", "stats", "leaderboard", "progress",
-        "accept", "abandon", "claim", "track", "bossbar", "book", "discord");
-    public static final List<String> ADMIN = List.of("reload", "mainquests", "test", "admin");
+        "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "discord");
+    public static final List<String> ADMIN = List.of("reload", "reroll", "mainquests", "difficulty", "generator", "test", "admin");
 
     private final JustQuestsPlugin plugin;
 
@@ -97,7 +97,25 @@ public final class QuestCommand implements TabExecutor {
                 say(p, d.bossbar ? "justquests.plugin.bossbar.on" : "justquests.plugin.bossbar.off");
             });
             case "book" -> withPlayer(sender, p -> say(p, plugin.book().give(p) ? "justquests.plugin.book.given" : "justquests.plugin.book.has"));
+            case "goal" -> {
+                if (!plugin.generator().goalActive()) say(sender, "justquests.plugin.goal.none");
+                else plugin.generator().goalLines(Lang.of(sender), sender instanceof Player p ? p.getUniqueId() : null).forEach(l -> say(sender, l));
+            }
             case "discord" -> say(sender, Community.discord(Lang.of(sender)));
+            case "reroll" -> {
+                int n = plugin.generator().reroll();
+                if (n < 0) say(sender, "justquests.plugin.reroll.disabled");
+                else say(sender, "justquests.reroll.done", n);
+            }
+            case "difficulty" -> {
+                if (rest.length == 0 || !List.of("easy", "normal", "hard").contains(rest[0].toLowerCase(Locale.ROOT))) {
+                    say(sender, "justquests.difficulty.show", plugin.settings().difficulty);
+                } else {
+                    plugin.setDifficulty(rest[0].toLowerCase(Locale.ROOT));
+                    say(sender, "justquests.difficulty.set", plugin.settings().difficulty);
+                }
+            }
+            case "generator" -> generator(sender, label, rest);
             case "reload" -> {
                 int n = plugin.reload();
                 say(sender, "justquests.plugin.reload.done", n);
@@ -366,6 +384,23 @@ public final class QuestCommand implements TabExecutor {
 
     // --- operator subcommands -----------------------------------------------------------------
 
+    private void generator(CommandSender src, String label, String[] rest) {
+        String sub = rest.length == 0 ? "status" : rest[0].toLowerCase(Locale.ROOT);
+        String text = switch (sub) {
+            case "status" -> plugin.generator().status();
+            case "stats" -> plugin.generator().stats();
+            case "preview" -> plugin.generator().preview(rest.length > 1 ? Math.max(1, Math.min(20, parseInt(rest[1]))) : 5);
+            case "explain" -> rest.length > 1 ? plugin.generator().explain(id(rest[1])) : null;
+            case "release" -> rest.length > 1 ? plugin.generator().release(id(rest[1])) : null;
+            default -> null;
+        };
+        if (text == null) {
+            say(src, "justquests.plugin.usage", "/" + label + " generator status|stats|preview [n]|explain <id>|release <id>");
+            return;
+        }
+        for (String line : text.split("\n")) say(src, Text.lit(line.startsWith("§") ? line : "§7" + line));
+    }
+
     private void mainQuests(CommandSender src, String[] rest) {
         String lang = Lang.of(src);
         if (rest.length == 0) {
@@ -469,9 +504,13 @@ public final class QuestCommand implements TabExecutor {
                     case "claim" -> { if (data != null) out.addAll(data.pendingClaim.keySet()); }
                     case "list" -> plugin.quests().all().values().stream().map(Quest::category).distinct().sorted().forEach(out::add);
                     case "mainquests", "bossbar" -> out.addAll(List.of("on", "off"));
+                    case "difficulty" -> out.addAll(List.of("easy", "normal", "hard"));
+                    case "generator" -> out.addAll(List.of("status", "stats", "preview", "explain", "release"));
                     case "admin" -> { if (plugin.allowed(sender, "justquests.admin.admin", true)) out.addAll(List.of("view", "reset", "complete")); }
                     default -> { }
                 }
+            } else if (sub.equals("generator") && args.length == 3 && List.of("explain", "release").contains(args[1].toLowerCase(Locale.ROOT))) {
+                out.addAll(plugin.generator().boardIds());
             } else if (sub.equals("admin") && args.length == 3) {
                 for (Player online : Bukkit.getOnlinePlayers()) out.add(online.getName());
             } else if (sub.equals("admin") && args.length == 4) {

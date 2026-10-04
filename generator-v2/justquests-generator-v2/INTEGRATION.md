@@ -478,6 +478,19 @@ Not required for v2; each unlocks more generator content with a data-only change
 - v1 ids use epoch **milliseconds** (13 digits), v2 ids epoch **seconds** (10 digits) — they can
   never collide.
 
+## 9a. Server extras (used by the server plugin, off in the mod)
+
+- `setRewardOptions(new RewardOptions(choice, scale))`: `choice` turns the first item reward into a
+  `justquests:choice` of up to three options of about its value (needs the host to list
+  `justquests:choice` in its reward types); `scale` multiplies every reward budget and the reward
+  caps. `RewardOptions.STANDARD` (the default) changes nothing.
+- `generateSet(SetRequest)`: a set outside the board for hosts with boards of their own (personal,
+  weekly, server-goal quests). Nothing is stored, claimed or counted. A request can scale the play
+  time (`minutesScale`; counts and caps grow along) and the rewards (`budgetScale`), ask for one
+  objective, leave objective types out, pass the history to avoid, and pass its own `WorldContext`
+  with `dayUnlocks = false` so only that context's advancements unlock the Nether and the End.
+- `rewardValue(questId)`: value of a board quest's rewards (for money rewards).
+
 ## 10. Checklist per build
 
 - [ ] core + resources copied (identical to this project)

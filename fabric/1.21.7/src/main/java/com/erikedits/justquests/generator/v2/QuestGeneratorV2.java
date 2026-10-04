@@ -2,9 +2,12 @@ package com.erikedits.justquests.generator.v2;
 
 import com.erikedits.justquests.generator.v2.api.ClaimResult;
 import com.erikedits.justquests.generator.v2.api.ClaimView;
+import com.erikedits.justquests.generator.v2.api.GeneratedQuest;
 import com.erikedits.justquests.generator.v2.api.GeneratorConfig;
 import com.erikedits.justquests.generator.v2.api.GeneratorHost;
+import com.erikedits.justquests.generator.v2.api.RewardOptions;
 import com.erikedits.justquests.generator.v2.api.RotationResult;
+import com.erikedits.justquests.generator.v2.api.SetRequest;
 import com.erikedits.justquests.generator.v2.api.StartResult;
 import com.erikedits.justquests.generator.v2.api.StatsSummary;
 import com.erikedits.justquests.generator.v2.internal.Core;
@@ -128,6 +131,42 @@ public final class QuestGeneratorV2 {
             core.updateConfig(config);
             return null;
         }, () -> null);
+    }
+
+    /**
+     * Reward extras (a choice of rewards, a reward scale) for the quests generated from now on. The
+     * mod keeps {@link RewardOptions#STANDARD}, which changes nothing.
+     *
+     * @param options the options (null = standard)
+     */
+    public void setRewardOptions(RewardOptions options) {
+        guard("setRewardOptions", () -> {
+            core.setRewardOptions(options);
+            return null;
+        }, () -> null);
+    }
+
+    /**
+     * Generates a set outside the rotating board (personal, weekly or server-goal quests of a host
+     * with boards of its own). Nothing is stored, claimed or counted; call after {@link #start}.
+     *
+     * @param request what to generate (not null)
+     * @return the quests (possibly fewer than requested if the content pool is small; empty before start)
+     */
+    public List<GeneratedQuest> generateSet(SetRequest request) {
+        Objects.requireNonNull(request, "request");
+        return guard("generateSet", () -> core.generateSet(request), List::of);
+    }
+
+    /**
+     * Reward value of a quest on the board (value units, about one minute of play each).
+     *
+     * @param questId quest id (not null)
+     * @return the value, 0 for unknown quests
+     */
+    public double rewardValue(String questId) {
+        Objects.requireNonNull(questId, "questId");
+        return guard("rewardValue", () -> core.rewardValue(questId), () -> 0.0);
     }
 
     /**
