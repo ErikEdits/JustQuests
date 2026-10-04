@@ -43,8 +43,8 @@ Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
 
 | Loader | Minecraft | Quest book |
 |---|---|---|
-| NeoForge | 1.20.4, 1.20.6, 1.21 – 1.21.11 | yes |
-| Fabric (needs [Fabric API](https://modrinth.com/mod/fabric-api)) | 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4, 1.20.6, 1.21 – 1.21.11 | 1.20.1 and newer |
+| NeoForge | 1.20.4, 1.20.6, 1.21 – 1.21.11, 26.1.2, 26.2 | yes |
+| Fabric (needs [Fabric API](https://modrinth.com/mod/fabric-api)) | 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4, 1.20.6, 1.21 – 1.21.11, 26.1 – 26.3 | 1.20.1 and newer |
 | Forge | 1.18.2, 1.19.2, 1.19.4, 1.20.1 | 1.20.1 |
 
 On 1.18 and 1.19 JustQuests is command-only; quests, tracking and rewards work the same.
@@ -209,16 +209,16 @@ after the next restart (Fabric needs no restart). The Fabric builds bundle
 
 ## Building from source
 
-Needs JDK 17 and JDK 21 (Gradle picks the right one per Minecraft version).
+Needs JDK 17, JDK 21 and JDK 25 (Gradle picks the right one per Minecraft version; 26.x builds on 25).
 
 ```bash
 git clone https://github.com/ErikEdits/JustQuests.git
 cd JustQuests
 ./gradlew :neoforge-1_21_1:build      # one version
-./gradlew build                       # all 36 builds (slow the first time)
+./gradlew build                       # all 43 builds (slow the first time)
 ```
 
-Jars end up in `<loader>/<version>/build/libs/`. GitHub Actions builds all 36 on every push and
+Jars end up in `<loader>/<version>/build/libs/`. GitHub Actions builds all 43 on every push and
 publishes a release with every jar for each `v*` tag.
 
 ### Project layout

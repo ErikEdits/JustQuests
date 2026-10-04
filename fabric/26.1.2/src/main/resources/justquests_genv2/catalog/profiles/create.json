@@ -1,0 +1,1263 @@
+{
+  "format": 1,
+  "id": "create",
+  "name": "Create",
+  "requiresMod": [
+    "create"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "create_zinc",
+      "family": "create_zinc",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "iron",
+      "hints": [
+        "caves"
+      ],
+      "exclusions": [
+        "collect_item create:zinc_ore (drops raw zinc, needs Silk Touch)"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "create:zinc_ore",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24
+        },
+        {
+          "type": "mine_block",
+          "id": "create:deepslate_zinc_ore",
+          "effort": 0.9,
+          "min": 4,
+          "max": 24,
+          "hints": [
+            "deep"
+          ]
+        },
+        {
+          "type": "collect_item",
+          "id": "create:raw_zinc",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24,
+          "hint": "Zinc ore drops raw zinc."
+        },
+        {
+          "type": "smelt_item",
+          "id": "create:zinc_ingot",
+          "tag": "zinc_ingots",
+          "effort": 0.85,
+          "min": 4,
+          "max": 32,
+          "hint": "Smelt raw zinc in a furnace."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:zinc_block",
+          "effort": 7.5,
+          "min": 1,
+          "max": 2,
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "create_layers",
+      "family": "create_stone",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "wood",
+      "hints": [
+        "layers"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "create:asurine",
+          "effort": 0.09,
+          "min": 16,
+          "max": 64
+        },
+        {
+          "type": "mine_block",
+          "id": "create:crimsite",
+          "effort": 0.09,
+          "min": 16,
+          "max": 64
+        },
+        {
+          "type": "mine_block",
+          "id": "create:ochrum",
+          "effort": 0.09,
+          "min": 16,
+          "max": 64
+        },
+        {
+          "type": "mine_block",
+          "id": "create:veridium",
+          "effort": 0.09,
+          "min": 16,
+          "max": 64
+        },
+        {
+          "type": "mine_block",
+          "id": "create:limestone",
+          "effort": 0.09,
+          "min": 16,
+          "max": 64
+        },
+        {
+          "type": "mine_block",
+          "id": "create:scoria",
+          "effort": 0.09,
+          "min": 16,
+          "max": 64
+        }
+      ]
+    },
+    {
+      "key": "create_scorchia",
+      "family": "create_stone",
+      "tier": 3,
+      "dimension": "minecraft:the_nether",
+      "tool": "wood",
+      "hints": [
+        "layers"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "create:scorchia",
+          "effort": 0.09,
+          "min": 16,
+          "max": 64
+        }
+      ]
+    },
+    {
+      "key": "create_masonry",
+      "family": "create_masonry",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "layers"
+      ],
+      "targets": [
+        {
+          "type": "place_block",
+          "id": "create:cut_limestone",
+          "effort": 0.14,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut limestone on a stonecutter, then build."
+        },
+        {
+          "type": "place_block",
+          "id": "create:cut_asurine",
+          "effort": 0.14,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut asurine on a stonecutter, then build."
+        },
+        {
+          "type": "place_block",
+          "id": "create:cut_crimsite",
+          "effort": 0.14,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut crimsite on a stonecutter, then build."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_limestone",
+          "effort": 0.11,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut limestone on a stonecutter."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_asurine",
+          "effort": 0.11,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut asurine on a stonecutter."
+        }
+      ]
+    },
+    {
+      "key": "create_cut_stone",
+      "family": "create_masonry",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "wood",
+      "notes": "Stonecutter outputs count as crafting since mod 0.3.3.",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:cut_granite",
+          "effort": 0.07,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut granite on a stonecutter."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_diorite",
+          "effort": 0.07,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut diorite on a stonecutter."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_andesite",
+          "effort": 0.07,
+          "min": 16,
+          "max": 64,
+          "hint": "Cut andesite on a stonecutter."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cut_tuff",
+          "effort": 0.08,
+          "min": 16,
+          "max": 64,
+          "tier": 1,
+          "hint": "Cut tuff on a stonecutter."
+        }
+      ]
+    },
+    {
+      "key": "create_alloy",
+      "family": "create_alloy",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:andesite_alloy",
+          "effort": 0.35,
+          "min": 8,
+          "max": 48,
+          "hint": "Two andesite and two iron nuggets."
+        },
+        {
+          "type": "place_block",
+          "id": "create:andesite_casing",
+          "effort": 0.6,
+          "min": 4,
+          "max": 16,
+          "hint": "Use andesite alloy on stripped logs to make casings."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:basin",
+          "effort": 1.8,
+          "min": 1,
+          "max": 4,
+          "hint": "Five andesite alloy."
+        }
+      ]
+    },
+    {
+      "key": "create_kinetics",
+      "family": "create_kinetics",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:shaft",
+          "effort": 0.06,
+          "min": 16,
+          "max": 64,
+          "hint": "Two andesite alloy make eight shafts."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cogwheel",
+          "effort": 0.2,
+          "min": 8,
+          "max": 48,
+          "hint": "A shaft and wooden planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:large_cogwheel",
+          "effort": 0.3,
+          "min": 4,
+          "max": 24
+        },
+        {
+          "type": "craft_item",
+          "id": "create:hand_crank",
+          "effort": 0.5,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "craft_item",
+          "id": "create:gearbox",
+          "effort": 1.8,
+          "min": 1,
+          "max": 4,
+          "hint": "Four cogwheels and an andesite casing."
+        },
+        {
+          "type": "place_block",
+          "id": "create:shaft",
+          "effort": 0.08,
+          "min": 16,
+          "max": 64
+        },
+        {
+          "type": "place_block",
+          "id": "create:cogwheel",
+          "effort": 0.25,
+          "min": 8,
+          "max": 32
+        }
+      ]
+    },
+    {
+      "key": "create_power",
+      "family": "create_power",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:water_wheel",
+          "effort": 1.0,
+          "min": 1,
+          "max": 4,
+          "hint": "A shaft surrounded by planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:large_water_wheel",
+          "effort": 3.0,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "type": "craft_item",
+          "id": "create:white_sail",
+          "effort": 0.6,
+          "min": 2,
+          "max": 12,
+          "hint": "Andesite alloy, sticks and wool."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:millstone",
+          "effort": 2.0,
+          "min": 1,
+          "max": 2,
+          "hint": "A cogwheel, stone and an andesite casing."
+        }
+      ]
+    },
+    {
+      "key": "create_logistics",
+      "family": "create_logistics",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:belt_connector",
+          "effort": 0.7,
+          "min": 2,
+          "max": 8,
+          "hint": "Six dried kelp."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:andesite_funnel",
+          "effort": 0.5,
+          "min": 2,
+          "max": 12,
+          "hint": "Andesite alloy and dried kelp."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:andesite_tunnel",
+          "effort": 0.8,
+          "min": 2,
+          "max": 8
+        },
+        {
+          "type": "craft_item",
+          "id": "create:depot",
+          "effort": 1.2,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "key": "create_machines",
+      "family": "create_machines",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "exclusions": [
+        "craft_item create:crushing_wheel (mechanical crafter only, not counted)"
+      ],
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:mechanical_press",
+          "effort": 6.0,
+          "min": 1,
+          "max": 1,
+          "hint": "An iron block, a shaft and an andesite casing.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:mechanical_drill",
+          "effort": 3.5,
+          "min": 1,
+          "max": 2,
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:mechanical_mixer",
+          "effort": 5.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Needs a whisk made from iron sheets.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:encased_fan",
+          "effort": 4.0,
+          "min": 1,
+          "max": 2,
+          "hint": "Needs a propeller made from iron sheets.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:mechanical_saw",
+          "effort": 4.0,
+          "min": 1,
+          "max": 1,
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "create_tools",
+      "family": "create_tools",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:wrench",
+          "effort": 3.5,
+          "min": 1,
+          "max": 1,
+          "hint": "Needs golden sheets from a press.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:goggles",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Needs a golden sheet from a press.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:super_glue",
+          "effort": 3.0,
+          "min": 1,
+          "max": 2,
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "create_seats",
+      "family": "create_decor",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:white_seat",
+          "effort": 0.4,
+          "min": 1,
+          "max": 8,
+          "hint": "White wool on a wooden slab."
+        },
+        {
+          "type": "place_block",
+          "id": "create:white_seat",
+          "effort": 0.45,
+          "min": 1,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "key": "create_sweets",
+      "family": "create_sweets",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "exclusions": [
+        "craft_item create:bar_of_chocolate (made by mixing and compacting, not a crafting grid)"
+      ],
+      "targets": [
+        {
+          "type": "consume_item",
+          "id": "create:bar_of_chocolate",
+          "effort": 4.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Made with a mixer and a press.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "consume_item",
+          "id": "create:honeyed_apple",
+          "effort": 4.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Fill apples with honey using a spout.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "consume_item",
+          "id": "create:builders_tea",
+          "effort": 4.5,
+          "min": 1,
+          "max": 3,
+          "hints": [
+            "drink"
+          ],
+          "hint": "Brewed by a mixer, bottled by a spout.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "consume_item",
+          "id": "create:sweet_roll",
+          "effort": 4.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Fill bread with milk using a spout.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "consume_item",
+          "id": "create:chocolate_glazed_berries",
+          "effort": 4.0,
+          "min": 1,
+          "max": 4,
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "create_rose_quartz",
+      "family": "create_quartz",
+      "tier": 3,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "requires": [
+        "nether"
+      ],
+      "exclusions": [
+        "craft_item create:polished_rose_quartz (sandpaper polishing is not crafting)"
+      ],
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:rose_quartz",
+          "effort": 1.2,
+          "min": 2,
+          "max": 16,
+          "hint": "Nether quartz and eight redstone dust."
+        }
+      ]
+    },
+    {
+      "key": "create_contraptions",
+      "family": "create_contraptions",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:linear_chassis",
+          "effort": 0.6,
+          "min": 2,
+          "max": 12,
+          "hint": "Andesite alloy and logs."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:radial_chassis",
+          "effort": 0.6,
+          "min": 2,
+          "max": 12
+        },
+        {
+          "type": "craft_item",
+          "id": "create:mechanical_bearing",
+          "effort": 1.8,
+          "min": 1,
+          "max": 3
+        },
+        {
+          "type": "craft_item",
+          "id": "create:windmill_bearing",
+          "effort": 2.2,
+          "min": 1,
+          "max": 2
+        },
+        {
+          "type": "craft_item",
+          "id": "create:piston_extension_pole",
+          "effort": 0.3,
+          "min": 4,
+          "max": 16,
+          "hint": "Andesite alloy and planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "create:mechanical_piston",
+          "effort": 3.2,
+          "min": 1,
+          "max": 2,
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:sticker",
+          "effort": 1.4,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "place_block",
+          "id": "create:linear_chassis",
+          "effort": 0.65,
+          "min": 2,
+          "max": 12
+        }
+      ]
+    },
+    {
+      "key": "create_small_parts",
+      "family": "create_kinetics",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:encased_chain_drive",
+          "effort": 1.2,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "type": "craft_item",
+          "id": "create:turntable",
+          "effort": 0.5,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "type": "craft_item",
+          "id": "create:wooden_bracket",
+          "effort": 0.3,
+          "min": 2,
+          "max": 12
+        },
+        {
+          "type": "craft_item",
+          "id": "create:cart_assembler",
+          "effort": 1.8,
+          "min": 1,
+          "max": 3
+        }
+      ]
+    },
+    {
+      "key": "create_alloy_blocks",
+      "family": "create_alloy",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:andesite_alloy_block",
+          "effort": 3.1,
+          "min": 1,
+          "max": 4,
+          "hint": "Nine andesite alloy."
+        },
+        {
+          "type": "place_block",
+          "id": "create:andesite_alloy_block",
+          "effort": 3.2,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "key": "create_gadgets",
+      "family": "create_tools",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "create:cuckoo_clock",
+          "effort": 5.5,
+          "min": 1,
+          "max": 1,
+          "hint": "A clock in an andesite casing.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:item_vault",
+          "effort": 4.0,
+          "min": 1,
+          "max": 2,
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:fluid_tank",
+          "effort": 3.5,
+          "min": 1,
+          "max": 2,
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "create:empty_blaze_burner",
+          "effort": 4.5,
+          "min": 1,
+          "max": 1,
+          "tier": 3,
+          "hint": "Iron sheets and netherrack.",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "create_polished",
+      "family": "create_masonry",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "layers"
+      ],
+      "targets": [
+        {
+          "type": "place_block",
+          "id": "create:polished_cut_limestone",
+          "effort": 0.16,
+          "min": 16,
+          "max": 64,
+          "hint": "Polish limestone on a stonecutter, then build."
+        },
+        {
+          "type": "place_block",
+          "id": "create:polished_cut_ochrum",
+          "effort": 0.16,
+          "min": 16,
+          "max": 64
+        },
+        {
+          "type": "place_block",
+          "id": "create:polished_cut_veridium",
+          "effort": 0.16,
+          "min": 16,
+          "max": 64
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "create:andesite_alloy",
+        "value": 0.35,
+        "tier": 1,
+        "max": 32,
+        "family": "create_alloy"
+      },
+      {
+        "id": "create:zinc_ingot",
+        "value": 0.9,
+        "tier": 1,
+        "max": 32,
+        "family": "create_zinc"
+      },
+      {
+        "id": "create:shaft",
+        "value": 0.08,
+        "tier": 1,
+        "max": 32,
+        "family": "create_kinetics"
+      },
+      {
+        "id": "create:cogwheel",
+        "value": 0.25,
+        "tier": 1,
+        "max": 32,
+        "family": "create_kinetics"
+      },
+      {
+        "id": "create:large_cogwheel",
+        "value": 0.35,
+        "tier": 1,
+        "max": 16,
+        "family": "create_kinetics"
+      },
+      {
+        "id": "create:belt_connector",
+        "value": 0.7,
+        "tier": 1,
+        "max": 16,
+        "family": "create_logistics"
+      },
+      {
+        "id": "create:experience_nugget",
+        "value": 0.3,
+        "tier": 1,
+        "max": 32,
+        "family": "create_misc"
+      },
+      {
+        "id": "create:brass_ingot",
+        "value": 2.0,
+        "tier": 2,
+        "max": 16,
+        "family": "create_brass"
+      },
+      {
+        "id": "create:super_glue",
+        "value": 3.0,
+        "tier": 2,
+        "max": 1,
+        "stack": 1,
+        "family": "create_tools"
+      },
+      {
+        "id": "create:wrench",
+        "value": 3.5,
+        "tier": 2,
+        "max": 1,
+        "stack": 1,
+        "family": "create_tools"
+      },
+      {
+        "id": "create:goggles",
+        "value": 3.0,
+        "tier": 2,
+        "max": 1,
+        "stack": 1,
+        "family": "create_tools"
+      },
+      {
+        "id": "create:builders_tea",
+        "value": 4.0,
+        "tier": 2,
+        "max": 4,
+        "stack": 16,
+        "family": "create_sweets"
+      },
+      {
+        "id": "create:bar_of_chocolate",
+        "value": 3.0,
+        "tier": 2,
+        "max": 8,
+        "family": "create_sweets"
+      },
+      {
+        "id": "create:honeyed_apple",
+        "value": 3.0,
+        "tier": 2,
+        "max": 8,
+        "family": "create_sweets"
+      },
+      {
+        "id": "create:linear_chassis",
+        "value": 0.6,
+        "tier": 1,
+        "max": 16,
+        "family": "create_contraptions"
+      },
+      {
+        "id": "create:andesite_alloy_block",
+        "value": 3.2,
+        "tier": 1,
+        "max": 4,
+        "family": "create_alloy"
+      },
+      {
+        "id": "create:zinc_block",
+        "value": 7.6,
+        "tier": 1,
+        "max": 2,
+        "family": "create_zinc",
+        "minDifficulty": "normal"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "create_zinc_rush",
+      "names": [
+        "Zinc Rush",
+        "Zinc Supply",
+        "Zinc Prospector"
+      ],
+      "descriptions": [
+        "The workshop runs on zinc: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "mine_block",
+            "collect_item"
+          ],
+          "keys": [
+            "create_zinc"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "keys": [
+            "create_zinc"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "create_first_steps",
+      "names": [
+        "Engineer's Start",
+        "First Contraption",
+        "Gear Up"
+      ],
+      "descriptions": [
+        "Every machine starts small: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_alloy"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_kinetics"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_power"
+          ],
+          "optional": true
+        }
+      ]
+    },
+    {
+      "key": "create_water_mill",
+      "names": [
+        "Water Mill",
+        "Mill Works"
+      ],
+      "descriptions": [
+        "Build a mill by the river: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_power"
+          ]
+        },
+        {
+          "types": [
+            "place_block"
+          ],
+          "keys": [
+            "create_kinetics",
+            "create_alloy"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "create_stone_layers",
+      "names": [
+        "Stone Layers",
+        "Deep Layers",
+        "Rock Survey"
+      ],
+      "descriptions": [
+        "Survey the stone layers underground: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "create_layers"
+          ]
+        },
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "create_layers"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "create_metalworks",
+      "names": [
+        "Metalworks",
+        "Iron and Zinc",
+        "Foundry Order"
+      ],
+      "descriptions": [
+        "The foundry needs metal: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "smelt_item"
+          ],
+          "keys": [
+            "iron",
+            "copper"
+          ],
+          "profiles": [
+            "vanilla"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item",
+            "collect_item"
+          ],
+          "keys": [
+            "create_zinc"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "create_logistics_line",
+      "names": [
+        "Logistics Line",
+        "Conveyor Setup"
+      ],
+      "descriptions": [
+        "Move items automatically: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_logistics"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_logistics",
+            "create_kinetics"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "create_contraption_crew",
+      "names": [
+        "Contraption Crew",
+        "Moving Parts"
+      ],
+      "descriptions": [
+        "Build something that moves: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_contraptions"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "place_block"
+          ],
+          "keys": [
+            "create_contraptions",
+            "create_small_parts"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "create_masonry_works",
+      "names": [
+        "Layered Masonry",
+        "Stone Workshop"
+      ],
+      "descriptions": [
+        "Decorate with Create stone: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "create_layers"
+          ]
+        },
+        {
+          "types": [
+            "place_block"
+          ],
+          "keys": [
+            "create_masonry",
+            "create_polished"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "create_andesite_age",
+      "names": [
+        "Andesite Age",
+        "Alloy Foundry"
+      ],
+      "descriptions": [
+        "Everything starts with andesite: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "andesite"
+          ],
+          "profiles": [
+            "vanilla"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_alloy",
+            "create_alloy_blocks"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "create_engineers_kit",
+      "names": [
+        "Engineer's Kit",
+        "Workshop Tools"
+      ],
+      "descriptions": [
+        "Every engineer needs gear: {list}."
+      ],
+      "minDifficulty": "hard",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_tools",
+            "create_gadgets"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "create_machines"
+          ]
+        }
+      ]
+    }
+  ]
+}

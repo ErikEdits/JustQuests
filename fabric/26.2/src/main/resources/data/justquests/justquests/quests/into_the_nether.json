@@ -1,0 +1,31 @@
+{
+  "title": {
+    "en_us": "Into the Nether",
+    "de_de": "Ab in den Nether",
+    "fr_fr": "Dans le Nether",
+    "es_es": "Al Nether",
+    "ja_jp": "ネザーへ"
+  },
+  "description": {
+    "en_us": "Step through a Nether portal.",
+    "de_de": "Tritt durch ein Netherportal.",
+    "fr_fr": "Franchissez un portail du Nether.",
+    "es_es": "Cruza un portal del Nether.",
+    "ja_jp": "ネザーポータルをくぐろう。"
+  },
+  "category": "exploration",
+  "sort": 10,
+  "objectives": [
+    {
+      "type": "justquests:visit_dimension",
+      "dimension": "minecraft:the_nether"
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:obsidian",
+      "count": 4
+    }
+  ]
+}

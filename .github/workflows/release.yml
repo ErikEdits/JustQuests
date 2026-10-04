@@ -44,7 +44,7 @@ jobs:
           fi
 
       - name: Set up JDK 17 and 21
-        # 1.20.4 builds on Java 17, everything else on Java 21. setup-java
+        # 1.20.4 builds on Java 17, 26.x on Java 25, everything else on Java 21. setup-java
         # exposes both as JAVA_HOME_17_X64 / JAVA_HOME_21_X64, which Gradle
         # picks up via org.gradle.java.installations.fromEnv (gradle.properties).
         uses: actions/setup-java@v4
@@ -52,6 +52,7 @@ jobs:
           distribution: temurin
           java-version: |
             17
+            25
             21
 
       - name: Setup Gradle

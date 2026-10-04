@@ -1,0 +1,640 @@
+{
+  "format": 1,
+  "id": "twilightforest",
+  "name": "The Twilight Forest",
+  "requiresMod": [
+    "twilightforest"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "dimensions": [
+    {
+      "id": "twilightforest:twilight_forest",
+      "advancement": "twilightforest:root",
+      "share": 0.25,
+      "day": 12,
+      "tier": 2
+    }
+  ],
+  "entries": [
+    {
+      "key": "tf_trip",
+      "family": "tf_travel",
+      "tier": 2,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "visit_dimension",
+          "id": "twilightforest:twilight_forest",
+          "effort": 4.0,
+          "hint": "Throw a diamond into a two-by-two pool of water ringed with flowers or grass."
+        }
+      ]
+    },
+    {
+      "key": "tf_wood",
+      "family": "tf_wood",
+      "tier": 2,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "twilightforest:twilight_oak_log",
+          "effort": 0.12,
+          "min": 16,
+          "max": 64
+        },
+        {
+          "type": "mine_block",
+          "id": "twilightforest:canopy_log",
+          "effort": 0.14,
+          "min": 16,
+          "max": 64,
+          "name": "Canopy Tree Log"
+        },
+        {
+          "type": "mine_block",
+          "id": "twilightforest:dark_log",
+          "effort": 0.22,
+          "min": 8,
+          "max": 32,
+          "name": "Darkwood Log",
+          "hint": "Darkwood grows in the gloomy Dark Forest."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:twilight_oak_planks",
+          "effort": 0.035,
+          "min": 16,
+          "max": 64,
+          "hint": "One twilight oak log makes four planks."
+        },
+        {
+          "type": "mine_block",
+          "id": "twilightforest:mangrove_log",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "hint": "Twilight mangroves stand in the swamps."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:canopy_planks",
+          "effort": 0.04,
+          "min": 16,
+          "max": 64,
+          "hint": "One canopy log makes four planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:dark_planks",
+          "effort": 0.06,
+          "min": 16,
+          "max": 48,
+          "name": "Darkwood Planks",
+          "plural": "Darkwood Planks",
+          "hint": "One darkwood log makes four planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:twilight_oak_boat",
+          "effort": 1.2,
+          "min": 1,
+          "max": 2,
+          "hint": "Five twilight oak planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:canopy_bookshelf",
+          "effort": 3.2,
+          "min": 1,
+          "max": 4,
+          "hint": "Six canopy planks and three books.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "tf_forage",
+      "family": "tf_forage",
+      "tier": 2,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "twilightforest:torchberries",
+          "effort": 0.45,
+          "min": 4,
+          "max": 16,
+          "hint": "Ripe torchberries hang from cave ceilings in the Twilight Forest."
+        },
+        {
+          "type": "collect_item",
+          "id": "twilightforest:liveroot",
+          "effort": 0.55,
+          "min": 4,
+          "max": 16,
+          "hint": "Liveroot grows in the root tangles underground; break it without Silk Touch."
+        },
+        {
+          "type": "collect_item",
+          "id": "twilightforest:raven_feather",
+          "effort": 0.9,
+          "min": 2,
+          "max": 8,
+          "hint": "Forest ravens drop feathers."
+        },
+        {
+          "type": "collect_item",
+          "id": "twilightforest:mushgloom",
+          "effort": 0.6,
+          "min": 4,
+          "max": 16,
+          "hint": "Mushglooms glow in the Mushroom Forest."
+        }
+      ]
+    },
+    {
+      "key": "tf_game",
+      "family": "tf_game",
+      "tier": 2,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "twilightforest:raw_venison",
+          "effort": 0.9,
+          "min": 2,
+          "max": 12,
+          "hint": "Deer drop venison."
+        },
+        {
+          "type": "smelt_item",
+          "id": "twilightforest:cooked_venison",
+          "effort": 1.0,
+          "min": 2,
+          "max": 12,
+          "name": "Venison Steak",
+          "plural": "Venison Steaks",
+          "hint": "Cook raw venison in a furnace, smoker or campfire."
+        },
+        {
+          "type": "consume_item",
+          "id": "twilightforest:cooked_venison",
+          "effort": 1.1,
+          "min": 2,
+          "max": 6,
+          "name": "Venison Steak",
+          "plural": "Venison Steaks",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "tf_ranch",
+      "family": "tf_ranch",
+      "tier": 2,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "breed_animal",
+          "id": "twilightforest:deer",
+          "effort": 2.2,
+          "min": 2,
+          "max": 6,
+          "hint": "Deer breed with wheat."
+        },
+        {
+          "type": "breed_animal",
+          "id": "twilightforest:boar",
+          "effort": 2.0,
+          "min": 2,
+          "max": 6,
+          "hint": "Boars breed like pigs: carrots, potatoes or beetroots."
+        },
+        {
+          "type": "breed_animal",
+          "id": "twilightforest:bighorn_sheep",
+          "effort": 2.0,
+          "min": 2,
+          "max": 6,
+          "hint": "Bighorn sheep breed with wheat."
+        }
+      ]
+    },
+    {
+      "key": "tf_monsters",
+      "family": "tf_monsters",
+      "tier": 3,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:kobold",
+          "effort": 0.8,
+          "min": 4,
+          "max": 12,
+          "hint": "Kobolds roam the Twilight Forest in packs."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:redcap",
+          "effort": 1.0,
+          "min": 4,
+          "max": 12,
+          "hint": "Redcaps lurk around the hollow hills."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:skeleton_druid",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Skeleton druids haunt the swamps and forests."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:hostile_wolf",
+          "effort": 1.0,
+          "min": 2,
+          "max": 8
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:hedge_spider",
+          "effort": 1.0,
+          "min": 2,
+          "max": 8,
+          "hint": "Hedge spiders hide in hedge mazes."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:swarm_spider",
+          "effort": 0.6,
+          "min": 4,
+          "max": 16,
+          "hint": "Swarm spiders pour out of hedge mazes."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:slime_beetle",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Slime beetles crawl through the Twilight Forest at night."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:fire_beetle",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Fire beetles crawl through the Twilight Forest at night."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:pinch_beetle",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Pinch beetles crawl through the Twilight Forest at night."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:minotaur",
+          "effort": 2.4,
+          "min": 1,
+          "max": 4,
+          "hint": "Minotaurs guard the labyrinths below the swamp.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "tf_bosses",
+      "family": "tf_bosses",
+      "tier": 4,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "weight": 0.6,
+      "targets": [
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:naga",
+          "effort": 18.0,
+          "min": 1,
+          "max": 1,
+          "hint": "The Naga coils in a stone courtyard in the forest.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "collect_item",
+          "id": "twilightforest:naga_scale",
+          "effort": 2.6,
+          "min": 6,
+          "max": 12,
+          "hint": "Dropped by the Naga.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:lich",
+          "effort": 32.0,
+          "min": 1,
+          "max": 1,
+          "hint": "The Lich rules the tallest tower.",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "tf_meef",
+      "family": "tf_game",
+      "tier": 3,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "twilightforest:raw_meef",
+          "effort": 2.0,
+          "min": 2,
+          "max": 8,
+          "plural": "Raw Meef",
+          "hint": "Minotaurs in the labyrinths drop meef."
+        },
+        {
+          "type": "smelt_item",
+          "id": "twilightforest:cooked_meef",
+          "effort": 2.1,
+          "min": 2,
+          "max": 8,
+          "name": "Meef Steak",
+          "hint": "Cook raw meef in a furnace, smoker or campfire.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "tf_ironwood",
+      "family": "tf_ironwood",
+      "tier": 3,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "twilightforest:raw_ironwood",
+          "effort": 1.6,
+          "min": 2,
+          "max": 8,
+          "hint": "Liveroot, raw iron and a gold nugget."
+        },
+        {
+          "type": "smelt_item",
+          "id": "twilightforest:ironwood_ingot",
+          "effort": 1.8,
+          "min": 2,
+          "max": 8,
+          "hint": "Smelt raw ironwood in a furnace.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "tf_maps",
+      "family": "tf_maps",
+      "tier": 3,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "twilightforest:magic_map_focus",
+          "effort": 3.0,
+          "min": 1,
+          "max": 2,
+          "hint": "A raven feather, torchberries and glowstone dust."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:magic_map",
+          "effort": 4.0,
+          "min": 1,
+          "max": 1,
+          "name": "Blank Magic Map",
+          "plural": "Blank Magic Maps",
+          "hint": "A magic map focus surrounded by paper.",
+          "minDifficulty": "normal"
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "twilightforest:torchberries",
+        "value": 0.5,
+        "tier": 3,
+        "max": 16,
+        "family": "tf_forage"
+      },
+      {
+        "id": "twilightforest:raven_feather",
+        "value": 0.9,
+        "tier": 3,
+        "max": 8,
+        "family": "tf_forage"
+      },
+      {
+        "id": "twilightforest:cooked_venison",
+        "value": 1.1,
+        "tier": 3,
+        "max": 16,
+        "family": "tf_game"
+      },
+      {
+        "id": "twilightforest:liveroot",
+        "value": 0.6,
+        "tier": 3,
+        "max": 16,
+        "family": "tf_forage"
+      },
+      {
+        "id": "twilightforest:ironwood_ingot",
+        "value": 2.2,
+        "tier": 3,
+        "max": 8,
+        "family": "tf_ironwood"
+      },
+      {
+        "id": "twilightforest:naga_scale",
+        "value": 3.0,
+        "tier": 4,
+        "max": 6,
+        "family": "tf_bosses",
+        "minDifficulty": "hard"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "tf_expedition",
+      "names": [
+        "Twilight Expedition",
+        "Into the Twilight",
+        "Forest Beyond"
+      ],
+      "descriptions": [
+        "The Twilight Forest is waiting: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "tf_forage"
+          ]
+        },
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "tf_wood"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tf_hunters",
+      "names": [
+        "Twilight Hunt",
+        "Forest Patrol",
+        "Goblin Trouble"
+      ],
+      "descriptions": [
+        "Clear the paths of the Twilight Forest: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "kill_mob"
+          ],
+          "keys": [
+            "tf_monsters"
+          ]
+        },
+        {
+          "types": [
+            "kill_mob"
+          ],
+          "keys": [
+            "tf_monsters"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tf_ironwood_smith",
+      "names": [
+        "Ironwood Smith",
+        "Living Metal",
+        "Root and Iron"
+      ],
+      "descriptions": [
+        "Ironwood grows from roots and iron: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "tf_forage"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "smelt_item"
+          ],
+          "keys": [
+            "tf_ironwood"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tf_venison_feast",
+      "names": [
+        "Venison Feast",
+        "Hunter's Supper"
+      ],
+      "descriptions": [
+        "Supper comes from the twilight woods: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "tf_game"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item",
+            "consume_item"
+          ],
+          "keys": [
+            "tf_game"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -22,9 +22,13 @@ rootProject.name = 'JustQuests'
 // them if buildable artifacts appear. 1.20.4 builds on Java 17.
 // NOTE: 1.21.11 (0.3.5+) renames ResourceLocation to Identifier in the Mojang
 // mappings, so its trees differ from 1.21.10 in that name throughout.
+// NOTE: 26.x (0.4.0+) is unobfuscated and builds on Java 25: its trees come from
+// 1.21.11 via scripts/port26.py (MDG 2.0.148 / Loom 1.15.5, still on Gradle 9.2.1).
+// NeoForge 26.1 / 26.1.1 / 26.3 only have -beta builds and are left out for now.
 ['1.20.4', '1.20.6',
  '1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5',
- '1.21.6', '1.21.7', '1.21.8', '1.21.9', '1.21.10', '1.21.11'].each { v ->
+ '1.21.6', '1.21.7', '1.21.8', '1.21.9', '1.21.10', '1.21.11',
+ '26.1.2', '26.2'].each { v ->
     def name = "neoforge-${v.replace('.', '_')}"
     include name
     project(":${name}").projectDir = file("neoforge/${v}")
@@ -35,7 +39,8 @@ rootProject.name = 'JustQuests'
 // the neoforge/ layout. Fabric uses Mojmap so the domain code is shared code.
 ['1.18.2', '1.19.2', '1.19.4', '1.20.1', '1.20.4', '1.20.6',
  '1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5',
- '1.21.6', '1.21.7', '1.21.8', '1.21.9', '1.21.10', '1.21.11'].each { v ->
+ '1.21.6', '1.21.7', '1.21.8', '1.21.9', '1.21.10', '1.21.11',
+ '26.1', '26.1.1', '26.1.2', '26.2', '26.3'].each { v ->
     def name = "fabric-${v.replace('.', '_')}"
     include name
     project(":${name}").projectDir = file("fabric/${v}")

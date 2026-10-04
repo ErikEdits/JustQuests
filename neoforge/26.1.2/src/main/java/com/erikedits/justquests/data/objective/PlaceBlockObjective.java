@@ -1,0 +1,43 @@
+package com.erikedits.justquests.data.objective;
+
+import com.erikedits.justquests.text.Msg;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.Block;
+
+/** Place X blocks of a given type. */
+public record PlaceBlockObjective(BlockMatcher block, int count) implements QuestObjective {
+    public static final String TYPE_ID = "justquests:place_block";
+
+    public static final MapCodec<PlaceBlockObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+        BlockMatcher.CODEC.fieldOf("block").forGetter(PlaceBlockObjective::block),
+        Codec.INT.fieldOf("count").forGetter(PlaceBlockObjective::count)
+    ).apply(instance, PlaceBlockObjective::new));
+
+    @Override
+    public String typeId() {
+        return TYPE_ID;
+    }
+
+    public boolean matches(Block b) {
+        return block.matches(b);
+    }
+
+    @Override
+    public int requiredCount() {
+        return count;
+    }
+
+    @Override
+    public String displayName() {
+        return "Place " + count + "x " + block.label();
+    }
+
+    @Override
+    public Component display() {
+        return Msg.tr("justquests.goal.place_count", count, block.name());
+    }
+}

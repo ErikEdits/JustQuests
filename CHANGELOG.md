@@ -8,6 +8,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Built step by step; test builds go to a local folder until the release.
 
 ### Added
+- **Minecraft 26.1 – 26.3:** Fabric builds for 26.1, 26.1.1, 26.1.2, 26.2 and 26.3, and NeoForge
+  builds for 26.1.2 and 26.2 (NeoForge 26.3 follows once it leaves beta). JustQuests now has 43
+  builds. Minecraft 26.x needs Java 25.
 - **Claim button:** a finished quest now waits with its rewards until you claim them, with the
   Claim button in the quest book, the `[Claim rewards]` button in chat, or `/quest claim <id>`
   (`/quest claim` alone takes every waiting reward). The quest book shows these quests on top

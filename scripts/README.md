@@ -1,3 +1,12 @@
+# Scripts
+
+| Script | Purpose |
+|---|---|
+| `sync_generator_v2.py` | copies the quest generator (`generator-v2/`) into every build listed in `settings.gradle` |
+| `sync_lang.py` | copies the language files from `lang/` into every build |
+| `gui_textures.py` | draws the quest book textures into every build with a quest book |
+| `port26.py <tree> <loader> <mc>` | turns a copy of a 1.21.11 tree into a Minecraft 26.x tree (renamed GUI and API calls; each rule must still match) |
+
 # Publishing scripts
 
 ## publish-modrinth-desktop.ps1 (recommended)

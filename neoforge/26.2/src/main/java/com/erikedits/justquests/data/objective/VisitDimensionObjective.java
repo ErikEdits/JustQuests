@@ -1,0 +1,40 @@
+package com.erikedits.justquests.data.objective;
+
+import com.erikedits.justquests.text.Msg;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+
+/** Enter a given dimension (vanilla or modded, matched by id). */
+public record VisitDimensionObjective(Identifier dimension) implements QuestObjective {
+    public static final String TYPE_ID = "justquests:visit_dimension";
+
+    public static final MapCodec<VisitDimensionObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+        Identifier.CODEC.fieldOf("dimension").forGetter(VisitDimensionObjective::dimension)
+    ).apply(instance, VisitDimensionObjective::new));
+
+    @Override
+    public String typeId() {
+        return TYPE_ID;
+    }
+
+    public boolean matches(Identifier dim) {
+        return dim.equals(this.dimension);
+    }
+
+    @Override
+    public int requiredCount() {
+        return 1;
+    }
+
+    @Override
+    public String displayName() {
+        return "Visit " + dimension;
+    }
+
+    @Override
+    public Component display() {
+        return Msg.tr("justquests.goal.dimension", Msg.dimension(dimension.toString()));
+    }
+}

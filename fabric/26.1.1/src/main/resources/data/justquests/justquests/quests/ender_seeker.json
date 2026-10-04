@@ -1,0 +1,37 @@
+{
+  "title": {
+    "en_us": "Ender Seeker",
+    "de_de": "Endersucher",
+    "fr_fr": "Chercheur de l'End",
+    "es_es": "Buscador del End",
+    "ja_jp": "エンダーを求めて"
+  },
+  "description": {
+    "en_us": "Hunt endermen and collect their pearls to find the stronghold.",
+    "de_de": "Jage Endermen und sammle ihre Perlen, um die Festung zu finden.",
+    "fr_fr": "Chassez des Endermen et récoltez leurs perles pour trouver le fort.",
+    "es_es": "Caza endermen y recoge sus perlas para hallar la fortaleza.",
+    "ja_jp": "エンダーマンを狩ってエンダーパールを集め、要塞を見つけよう。"
+  },
+  "category": "combat",
+  "sort": 40,
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:ender_pearl",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:obsidian",
+      "count": 12
+    },
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:diamond",
+      "count": 2
+    }
+  ]
+}
