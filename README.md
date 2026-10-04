@@ -67,7 +67,7 @@ Install the mod on the server **and** the clients (both are required).
 | `/quest stats` / `/quest leaderboard` | Your stats / the server's top 10 |
 | `/quest discord` | The community Discord invite |
 
-Operator commands (permission level 2):
+Operator commands (permission level 2, or the node from [Permissions](#permissions)):
 
 | Command | What it does |
 |---|---|
@@ -105,6 +105,7 @@ with the same id.
 **Quest fields:** `title` (required), `description`, `category` (default `datapack`), `sort`,
 `mode` (`all` or `any`), `requires` (list of quest ids), `repeatable`, `cooldown_hours`,
 `icon` (an item id for the quest book; taken from the first objective when left out),
+`permission` (a permission node; only players with it see and take the quest, see below),
 `objectives`, `rewards`. `title` and `description` can be a string or a per-language map
 (`{"en_us": "...", "de_de": "..."}`); players see their own language with English as fallback.
 
@@ -185,6 +186,22 @@ the corner button in the title bar moves the tracker).
 | `generatorDisabledProfiles` | `[]` | Mod profiles to ignore, e.g. `["create"]` |
 | `generatorAdaptiveBalancing` | `false` | Tune time estimates from how long quests really take |
 | `generatorStats` | `true` | Anonymous statistics in `justquests/generator_v2_stats.json` |
+
+## Permissions
+
+With LuckPerms (or another permission mod) every command has a node:
+
+| Node | Default without a permission mod |
+|---|---|
+| `justquests.command.<name>` — `list`, `categories`, `stats`, `leaderboard`, `progress`, `accept`, `abandon`, `claim`, `discord` | everyone |
+| `justquests.admin.<name>` — `reload`, `reroll`, `mainquests`, `difficulty`, `generator`, `test`, `admin` | operators (level 2) |
+| the `permission` of a quest, e.g. `myserver.vip` | operators (level 2) |
+
+`justquests.admin.*` gives all operator commands. A quest with a `permission` is hidden from
+`/quest list`, the quest book and tab completion for players without the node. NeoForge and Forge
+learn the quest nodes at server start, so a node added to a quest while the server runs works
+after the next restart (Fabric needs no restart). The Fabric builds bundle
+[fabric-permissions-api](https://github.com/lucko/fabric-permissions-api).
 
 ## Building from source
 

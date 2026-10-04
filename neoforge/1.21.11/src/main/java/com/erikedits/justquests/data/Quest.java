@@ -12,7 +12,7 @@ import java.util.Optional;
 public record Quest(LocalizedText title, LocalizedText description, String category, QuestMode mode,
                     List<Identifier> requires, boolean repeatable, Optional<Integer> cooldownHours,
                     int sort, List<QuestObjective> objectives, List<QuestReward> rewards,
-                    Optional<Identifier> icon) {
+                    Optional<Identifier> icon, Optional<String> permission) {
     public static final Codec<Quest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         LocalizedText.CODEC.fieldOf("title").forGetter(Quest::title),
         LocalizedText.CODEC.optionalFieldOf("description", LocalizedText.EMPTY).forGetter(Quest::description),
@@ -28,6 +28,8 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         QuestObjective.CODEC.listOf().fieldOf("objectives").forGetter(Quest::objectives),
         QuestReward.CODEC.listOf().fieldOf("rewards").forGetter(Quest::rewards),
         // item shown in the quest book and the HUD; picked from the first objective when absent
-        Identifier.CODEC.optionalFieldOf("icon").forGetter(Quest::icon)
+        Identifier.CODEC.optionalFieldOf("icon").forGetter(Quest::icon),
+        // permission node needed to see and take the quest (LuckPerms etc.; operators by default)
+        Codec.STRING.optionalFieldOf("permission").forGetter(Quest::permission)
     ).apply(instance, Quest::new));
 }

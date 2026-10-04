@@ -24,6 +24,7 @@ public class JustQuests {
 
         NeoForge.EVENT_BUS.addListener(this::onReload);
         NeoForge.EVENT_BUS.addListener(QuestCommand::onRegisterCommands);
+        NeoForge.EVENT_BUS.addListener(com.erikedits.justquests.perm.Perms::onGatherNodes);
         NeoForge.EVENT_BUS.register(new PlayerQuestEvents());
         NeoForge.EVENT_BUS.register(new ServerStorageEvents());
 

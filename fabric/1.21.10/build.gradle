@@ -16,6 +16,7 @@ base {
 
 repositories {
     maven { url = 'https://maven.fabricmc.net/' }
+    mavenCentral()
 }
 
 dependencies {
@@ -23,6 +24,8 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${fabricLoader}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricApi}"
+    // permission checks for LuckPerms & co., bundled inside the jar
+    include(modImplementation("me.lucko:fabric-permissions-api:0.5.0"))
 }
 
 java {

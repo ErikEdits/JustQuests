@@ -24,6 +24,7 @@ public class JustQuests {
     public JustQuests() {
         MinecraftForge.EVENT_BUS.addListener(this::onReload);
         MinecraftForge.EVENT_BUS.addListener(this::onRegisterCommands);
+        MinecraftForge.EVENT_BUS.addListener(com.erikedits.justquests.perm.Perms::onGatherNodes);
         MinecraftForge.EVENT_BUS.register(new PlayerQuestEvents());
         MinecraftForge.EVENT_BUS.register(new ServerStorageEvents());
         com.erikedits.justquests.network.QuestNetwork.register();

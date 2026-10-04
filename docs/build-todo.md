@@ -180,8 +180,8 @@ pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1
       quests via `/quest generator status|release` (0.3.0)
 - [x] Statistics + server leaderboard (Q34, 0.1.10); in-game view (Q58, stats page in the book, 0.3.4)
 - [x] Difficulty Easy/Normal/Hard, OP-set per world (Q8/Q9, 0.3.0)
-- [ ] Permission gating via OP + LuckPerms/perm plugins (Q83); per-quest
-      permission (Q55 open)
+- [x] Permission gating via OP + LuckPerms/perm plugins (Q83); per-quest
+      permission (Q55) — 0.4.0: `justquests.command.*`, `justquests.admin.*`, quest `permission`
 - [x] Self-managed JSON config — per-world `settings.json` (Q35)
 - [~] Update notice (Q36) — tried in 0.1.10, removed in 0.1.11 (see 9f)
 - [x] Locked-quest teaser, command-enabled (Q28, 0.1.7)
@@ -350,7 +350,7 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 - [x] Completion broadcast to the server, default on, toggle in settings (Q53)
 - [x] Per-world `settings.json` centralized in `WorldSettings`
       (discordWelcome, announceCompletions) — Phase 5 self-config groundwork
-- [ ] Permission gating via perms plugins / per-quest perm (Q83/Q55) — deferred
+- [x] Permission gating via perms plugins / per-quest perm (Q83/Q55) — 0.4.0
 - [x] Difficulty Easy/Normal/Hard (Q8/Q9) — done in 0.3.0 (generator)
 
 ### Phase 9f — Stats, notices & feedback (v0.1.10) — DONE (2026-06-20)

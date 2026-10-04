@@ -62,9 +62,12 @@ public final class QuestNetwork {
         JsonObject root = new JsonObject();
         if (full) {
             JsonObject quests = new JsonObject();
-            QuestManager.INSTANCE.getQuests().forEach((id, quest) ->
+            QuestManager.INSTANCE.getQuests().forEach((id, quest) -> {
+                // quests behind a permission the player lacks stay off their book
+                if (!com.erikedits.justquests.perm.Perms.quest(player, quest)) return;
                 Quest.CODEC.encodeStart(JsonOps.INSTANCE, quest).result()
-                    .ifPresent(j -> quests.add(id.toString(), j)));
+                    .ifPresent(j -> quests.add(id.toString(), j));
+            });
             root.add("quests", quests);
         }
         WorldQuestStore store = WorldQuestStore.get();

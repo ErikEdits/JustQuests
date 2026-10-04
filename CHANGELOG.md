@@ -21,6 +21,10 @@ Built step by step; test builds go to a local folder until the release.
   The example datapack has `ex_choice`.
 - **HUD position button** in the quest book's title bar: each click moves the tracker to the next
   corner (clockwise). While you point at the button, the book shows the tracker in its corner.
+- **Permissions (LuckPerms & co.):** every command has a node, `justquests.command.<name>` for the
+  player commands (everyone by default) and `justquests.admin.<name>` for the operator commands
+  (operators by default). Quests can name a `permission`; players without it don't see the quest.
+  NeoForge and Forge use their permission API, the Fabric builds bundle fabric-permissions-api.
 - `settings.json` gets new options added by itself, so owners see them without deleting the file.
 
 ### Changed

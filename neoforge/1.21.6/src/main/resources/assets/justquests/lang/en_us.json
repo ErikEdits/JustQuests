@@ -102,6 +102,7 @@
   "justquests.error.storage": "§cQuest storage is not ready yet.",
   "justquests.accept.already_active": "§cQuest is already active.",
   "justquests.accept.claim_first": "§cClaim the rewards of this quest first: /quest claim %s",
+  "justquests.accept.no_permission": "§cYou don't have permission for this quest.",
   "justquests.accept.locked": "§cLocked — finish first: §f%s",
   "justquests.accept.done": "§cYou already completed this quest.",
   "justquests.accept.cooldown": "§cOn cooldown — %s left.",

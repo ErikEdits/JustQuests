@@ -5,6 +5,7 @@ import com.erikedits.justquests.data.LocalizedText;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
+import com.erikedits.justquests.perm.Perms;
 import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.reward.QuestReward;
 import com.erikedits.justquests.diagnostics.SelfTest;
@@ -35,7 +36,10 @@ import java.util.UUID;
 
 public class QuestCommand {
     private static final SuggestionProvider<CommandSourceStack> AVAILABLE_QUESTS = (ctx, builder) ->
-        SharedSuggestionProvider.suggestResource(QuestManager.INSTANCE.getQuests().keySet(), builder);
+        SharedSuggestionProvider.suggestResource(QuestManager.INSTANCE.getQuests().entrySet().stream()
+            .filter(e -> !(ctx.getSource().getEntity() instanceof ServerPlayer p)
+                || Perms.quest(p, e.getValue()))
+            .map(Map.Entry::getKey), builder);
 
     private static final SuggestionProvider<CommandSourceStack> ACTIVE_QUESTS = (ctx, builder) -> {
         ServerPlayer player = ctx.getSource().getPlayer();
@@ -73,23 +77,23 @@ public class QuestCommand {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("quest")
-            .then(Commands.literal("list").executes(ctx -> list(ctx, null))
+            .then(Commands.literal("list").requires(Perms.command("list")).executes(ctx -> list(ctx, null))
                 .then(Commands.argument("category", StringArgumentType.word())
                     .suggests(CATEGORIES)
                     .executes(ctx -> list(ctx, StringArgumentType.getString(ctx, "category")))))
-            .then(Commands.literal("categories").executes(QuestCommand::categories))
-            .then(Commands.literal("stats").executes(QuestCommand::stats))
-            .then(Commands.literal("leaderboard").executes(QuestCommand::leaderboard))
-            .then(Commands.literal("progress").executes(QuestCommand::progress))
-            .then(Commands.literal("accept")
+            .then(Commands.literal("categories").requires(Perms.command("categories")).executes(QuestCommand::categories))
+            .then(Commands.literal("stats").requires(Perms.command("stats")).executes(QuestCommand::stats))
+            .then(Commands.literal("leaderboard").requires(Perms.command("leaderboard")).executes(QuestCommand::leaderboard))
+            .then(Commands.literal("progress").requires(Perms.command("progress")).executes(QuestCommand::progress))
+            .then(Commands.literal("accept").requires(Perms.command("accept"))
                 .then(Commands.argument("id", IdentifierArgument.id())
                     .suggests(AVAILABLE_QUESTS)
                     .executes(ctx -> accept(ctx, IdentifierArgument.getId(ctx, "id")))))
-            .then(Commands.literal("abandon")
+            .then(Commands.literal("abandon").requires(Perms.command("abandon"))
                 .then(Commands.argument("id", IdentifierArgument.id())
                     .suggests(ACTIVE_QUESTS)
                     .executes(ctx -> abandon(ctx, IdentifierArgument.getId(ctx, "id")))))
-            .then(Commands.literal("claim")
+            .then(Commands.literal("claim").requires(Perms.command("claim"))
                 .executes(QuestCommand::claimAll)
                 .then(Commands.argument("id", IdentifierArgument.id())
                     .suggests(CLAIMABLE_QUESTS)
@@ -97,26 +101,26 @@ public class QuestCommand {
                     .then(Commands.argument("reward", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1))
                         .executes(ctx -> claim(ctx, IdentifierArgument.getId(ctx, "id"),
                             com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "reward"))))))
-            .then(Commands.literal("discord").executes(QuestCommand::discord))
+            .then(Commands.literal("discord").requires(Perms.command("discord")).executes(QuestCommand::discord))
             .then(Commands.literal("reload")
-                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .requires(Perms.admin("reload"))
                 .executes(QuestCommand::reload))
             .then(Commands.literal("reroll")
-                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .requires(Perms.admin("reroll"))
                 .executes(QuestCommand::reroll))
             .then(Commands.literal("mainquests")
-                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .requires(Perms.admin("mainquests"))
                 .executes(QuestCommand::mainQuestsStatus)
                 .then(Commands.literal("on").executes(ctx -> setMainQuests(ctx, true)))
                 .then(Commands.literal("off").executes(ctx -> setMainQuests(ctx, false))))
             .then(Commands.literal("difficulty")
-                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .requires(Perms.admin("difficulty"))
                 .executes(QuestCommand::difficultyShow)
                 .then(Commands.literal("easy").executes(ctx -> difficultySet(ctx, "easy")))
                 .then(Commands.literal("normal").executes(ctx -> difficultySet(ctx, "normal")))
                 .then(Commands.literal("hard").executes(ctx -> difficultySet(ctx, "hard"))))
             .then(Commands.literal("generator")
-                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .requires(Perms.admin("generator"))
                 .then(Commands.literal("status").executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.status())))
                 .then(Commands.literal("stats").executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.statsText())))
                 .then(Commands.literal("preview")
@@ -133,10 +137,10 @@ public class QuestCommand {
                         .suggests((c, b) -> net.minecraft.commands.SharedSuggestionProvider.suggest(com.erikedits.justquests.generator.GenV2.servedIds(), b))
                         .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.forceRelease(IdentifierArgument.getId(ctx, "id")))))))
             .then(Commands.literal("test")
-                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .requires(Perms.admin("test"))
                 .executes(QuestCommand::test))
             .then(Commands.literal("admin")
-                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .requires(Perms.admin("admin"))
                 .then(Commands.literal("view")
                     .then(Commands.argument("player", EntityArgument.player())
                         .executes(QuestCommand::adminView)))
@@ -175,6 +179,7 @@ public class QuestCommand {
         // sorted by category, then per-quest sort weight, then id (stable order)
         List<Map.Entry<Identifier, Quest>> entries = quests.entrySet().stream()
             .filter(e -> category == null || e.getValue().category().equalsIgnoreCase(category))
+            .filter(e -> viewer == null || Perms.quest(viewer, e.getValue()))
             .sorted(Comparator
                 .comparing((Map.Entry<Identifier, Quest> e) -> e.getValue().category(), String.CASE_INSENSITIVE_ORDER)
                 .thenComparingInt(e -> e.getValue().sort())
@@ -376,6 +381,10 @@ public class QuestCommand {
         Quest quest = QuestManager.INSTANCE.get(id);
         if (quest == null) {
             ctx.getSource().sendFailure(Msg.tr("justquests.error.unknown_quest", id));
+            return 0;
+        }
+        if (!Perms.quest(player, quest)) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.accept.no_permission"));
             return 0;
         }
 
