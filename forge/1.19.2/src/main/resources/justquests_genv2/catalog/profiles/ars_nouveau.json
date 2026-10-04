@@ -1,0 +1,341 @@
+{
+  "format": 1,
+  "id": "ars_nouveau",
+  "name": "Ars Nouveau",
+  "requiresMod": [
+    "ars_nouveau"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "an_archwood",
+      "family": "an_archwood",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "rare"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "ars_nouveau:blue_archwood_log",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Cascading Archwood Log",
+          "hint": "Archwood trees grow in archwood forests."
+        },
+        {
+          "type": "mine_block",
+          "id": "ars_nouveau:red_archwood_log",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Blazing Archwood Log",
+          "hint": "Archwood trees grow in archwood forests."
+        },
+        {
+          "type": "mine_block",
+          "id": "ars_nouveau:purple_archwood_log",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Vexing Archwood Log",
+          "hint": "Archwood trees grow in archwood forests."
+        },
+        {
+          "type": "mine_block",
+          "id": "ars_nouveau:green_archwood_log",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Flourishing Archwood Log",
+          "hint": "Archwood trees grow in archwood forests."
+        },
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:archwood_planks",
+          "effort": 0.05,
+          "min": 16,
+          "max": 64,
+          "hint": "One archwood log makes four planks."
+        }
+      ]
+    },
+    {
+      "key": "an_forage",
+      "family": "an_forage",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "ars_nouveau:sourceberry_bush",
+          "effort": 0.5,
+          "min": 4,
+          "max": 16,
+          "name": "Sourceberry",
+          "plural": "Sourceberries",
+          "hint": "Sourceberry bushes grow in taigas and archwood forests."
+        },
+        {
+          "type": "collect_item",
+          "id": "ars_nouveau:magebloom",
+          "effort": 1.0,
+          "min": 2,
+          "max": 8,
+          "hint": "Magebloom grows from magebloom seeds; its flower drops when harvested."
+        },
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:magebloom_fiber",
+          "effort": 1.1,
+          "min": 2,
+          "max": 8,
+          "hint": "One magebloom."
+        }
+      ]
+    },
+    {
+      "key": "an_first_spells",
+      "family": "an_first_spells",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:worn_notebook",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "name": "Tattered Tome",
+          "plural": "Tattered Tomes",
+          "hint": "A book and lapis lazuli."
+        },
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:novice_spell_book",
+          "effort": 6.0,
+          "min": 1,
+          "max": 1,
+          "hint": "A book and four iron tools: shovel, pickaxe, axe and sword.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:dowsing_rod",
+          "effort": 2.0,
+          "min": 1,
+          "max": 2,
+          "hint": "A gold ingot and archwood planks."
+        }
+      ]
+    },
+    {
+      "key": "an_workshop",
+      "family": "an_workshop",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:scribes_table",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "name": "Scribe's Table",
+          "hint": "Archwood slabs, gold nuggets and archwood logs."
+        },
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:imbuement_chamber",
+          "effort": 3.5,
+          "min": 1,
+          "max": 1,
+          "hint": "Archwood planks and gold ingots."
+        },
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:archwood_chest",
+          "effort": 2.0,
+          "min": 1,
+          "max": 2,
+          "hint": "Archwood planks around a gold nugget."
+        },
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:source_jar",
+          "effort": 3.0,
+          "min": 1,
+          "max": 2,
+          "hint": "Archwood slabs and glass."
+        },
+        {
+          "type": "craft_item",
+          "id": "ars_nouveau:blank_parchment",
+          "effort": 3.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Paper surrounded by magebloom fiber.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "an_wilden",
+      "family": "an_wilden",
+      "tier": 3,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "kill_mob",
+          "id": "ars_nouveau:wilden_hunter",
+          "effort": 1.8,
+          "min": 2,
+          "max": 6,
+          "hint": "Wilden hunters prowl archwood forests at night."
+        },
+        {
+          "type": "kill_mob",
+          "id": "ars_nouveau:wilden_stalker",
+          "effort": 1.8,
+          "min": 2,
+          "max": 6,
+          "hint": "Wilden stalkers swoop down from above."
+        },
+        {
+          "type": "kill_mob",
+          "id": "ars_nouveau:wilden_guardian",
+          "effort": 2.0,
+          "min": 2,
+          "max": 6,
+          "hint": "Wilden guardians roll up behind their spikes."
+        },
+        {
+          "type": "collect_item",
+          "id": "ars_nouveau:wilden_horn",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Wilden hunters drop horns."
+        },
+        {
+          "type": "collect_item",
+          "id": "ars_nouveau:wilden_spike",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Wilden guardians drop spikes."
+        },
+        {
+          "type": "collect_item",
+          "id": "ars_nouveau:wilden_wing",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Wilden stalkers drop wings."
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "ars_nouveau:source_gem",
+        "value": 2.0,
+        "tier": 2,
+        "max": 8,
+        "family": "an_workshop"
+      },
+      {
+        "id": "ars_nouveau:sourceberry_bush",
+        "value": 0.5,
+        "tier": 1,
+        "max": 16,
+        "family": "an_forage"
+      },
+      {
+        "id": "ars_nouveau:magebloom_fiber",
+        "value": 1.2,
+        "tier": 2,
+        "max": 8,
+        "family": "an_forage"
+      },
+      {
+        "id": "ars_nouveau:archwood_planks",
+        "value": 0.06,
+        "tier": 0,
+        "max": 64,
+        "family": "an_archwood"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "an_apprentice",
+      "names": [
+        "Apprentice Mage",
+        "First Spells",
+        "Arcane Studies"
+      ],
+      "descriptions": [
+        "Every mage starts with a tome: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "an_first_spells"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "craft_item"
+          ],
+          "keys": [
+            "an_forage",
+            "an_workshop"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "an_woodland",
+      "names": [
+        "Archwood Grove",
+        "Magic Woods"
+      ],
+      "descriptions": [
+        "The archwood forest hides more than wood: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "an_archwood"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "an_forage"
+          ]
+        }
+      ]
+    }
+  ]
+}

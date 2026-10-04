@@ -5,6 +5,12 @@
     "create.json",
     "mekanism.json",
     "twilightforest.json",
-    "botania.json"
+    "botania.json",
+    "ae2.json",
+    "immersiveengineering.json",
+    "biomesoplenty.json",
+    "alexsmobs.json",
+    "tconstruct.json",
+    "ars_nouveau.json"
   ]
 }

@@ -265,7 +265,8 @@ class CatalogIntegrityTest {
 
     @Test
     void loaderAcceptsEverythingAndCoverageTargetsAreMet() {
-        FakeHost host = new FakeHost().withMods("farmersdelight", "create", "mekanism", "twilightforest", "botania");
+        FakeHost host = new FakeHost().withMods("farmersdelight", "create", "mekanism", "twilightforest", "botania",
+            "ae2", "immersiveengineering", "biomesoplenty", "alexsmobs", "tconstruct", "ars_nouveau");
         host.content.dimensions.add("twilightforest:twilight_forest");
         var catalog = new CatalogLoader(host.log, host.store).load();
         assertEquals(List.of(), catalog.loadWarnings, "bundled data must load without warnings");

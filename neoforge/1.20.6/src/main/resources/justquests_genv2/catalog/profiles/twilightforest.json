@@ -79,6 +79,40 @@
           "hint": "One twilight oak log makes four planks."
         },
         {
+          "type": "mine_block",
+          "id": "twilightforest:mangrove_log",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "hint": "Twilight mangroves stand in the swamps."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:canopy_planks",
+          "effort": 0.04,
+          "min": 16,
+          "max": 64,
+          "hint": "One canopy log makes four planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:dark_planks",
+          "effort": 0.06,
+          "min": 16,
+          "max": 48,
+          "name": "Darkwood Planks",
+          "plural": "Darkwood Planks",
+          "hint": "One darkwood log makes four planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "twilightforest:twilight_oak_boat",
+          "effort": 1.2,
+          "min": 1,
+          "max": 2,
+          "hint": "Five twilight oak planks."
+        },
+        {
           "type": "craft_item",
           "id": "twilightforest:canopy_bookshelf",
           "effort": 3.2,
@@ -122,6 +156,14 @@
           "min": 2,
           "max": 8,
           "hint": "Forest ravens drop feathers."
+        },
+        {
+          "type": "collect_item",
+          "id": "twilightforest:mushgloom",
+          "effort": 0.6,
+          "min": 4,
+          "max": 16,
+          "hint": "Mushglooms glow in the Mushroom Forest."
         }
       ]
     },
@@ -252,6 +294,38 @@
         },
         {
           "type": "kill_mob",
+          "id": "twilightforest:swarm_spider",
+          "effort": 0.6,
+          "min": 4,
+          "max": 16,
+          "hint": "Swarm spiders pour out of hedge mazes."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:slime_beetle",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Slime beetles crawl through the Twilight Forest at night."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:fire_beetle",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Fire beetles crawl through the Twilight Forest at night."
+        },
+        {
+          "type": "kill_mob",
+          "id": "twilightforest:pinch_beetle",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Pinch beetles crawl through the Twilight Forest at night."
+        },
+        {
+          "type": "kill_mob",
           "id": "twilightforest:minotaur",
           "effort": 2.4,
           "min": 1,
@@ -298,6 +372,37 @@
           "max": 1,
           "hint": "The Lich rules the tallest tower.",
           "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "tf_meef",
+      "family": "tf_game",
+      "tier": 3,
+      "dimension": "twilightforest:twilight_forest",
+      "tool": "none",
+      "requires": [
+        "dim:twilightforest:twilight_forest"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "twilightforest:raw_meef",
+          "effort": 2.0,
+          "min": 2,
+          "max": 8,
+          "plural": "Raw Meef",
+          "hint": "Minotaurs in the labyrinths drop meef."
+        },
+        {
+          "type": "smelt_item",
+          "id": "twilightforest:cooked_meef",
+          "effort": 2.1,
+          "min": 2,
+          "max": 8,
+          "name": "Meef Steak",
+          "hint": "Cook raw meef in a furnace, smoker or campfire.",
+          "minDifficulty": "normal"
         }
       ]
     },

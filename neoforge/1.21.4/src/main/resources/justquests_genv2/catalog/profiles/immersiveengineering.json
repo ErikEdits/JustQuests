@@ -1,0 +1,486 @@
+{
+  "format": 1,
+  "id": "immersiveengineering",
+  "name": "Immersive Engineering",
+  "requiresMod": [
+    "immersiveengineering"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "ie_bauxite",
+      "family": "ie_bauxite",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "stone",
+      "hints": [
+        "caves"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "immersiveengineering:ore_aluminum",
+          "effort": 0.7,
+          "min": 4,
+          "max": 24,
+          "name": "Bauxite Ore"
+        },
+        {
+          "type": "mine_block",
+          "id": "immersiveengineering:deepslate_ore_aluminum",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24,
+          "hints": [
+            "deep"
+          ],
+          "name": "Deepslate Bauxite Ore"
+        },
+        {
+          "type": "collect_item",
+          "id": "immersiveengineering:raw_aluminum",
+          "effort": 0.7,
+          "min": 4,
+          "max": 24,
+          "name": "Raw Bauxite",
+          "plural": "Raw Bauxite",
+          "hint": "Bauxite ore drops raw bauxite."
+        },
+        {
+          "type": "smelt_item",
+          "id": "immersiveengineering:ingot_aluminum",
+          "effort": 0.75,
+          "min": 4,
+          "max": 32,
+          "name": "Aluminium Ingot",
+          "hint": "Smelt raw bauxite in a furnace."
+        }
+      ]
+    },
+    {
+      "key": "ie_lead",
+      "family": "ie_lead",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "iron",
+      "hints": [
+        "caves"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "immersiveengineering:ore_lead",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24,
+          "name": "Lead Ore"
+        },
+        {
+          "type": "collect_item",
+          "id": "immersiveengineering:raw_lead",
+          "effort": 0.8,
+          "min": 4,
+          "max": 24,
+          "name": "Raw Lead",
+          "plural": "Raw Lead",
+          "hint": "Lead ore drops raw lead."
+        },
+        {
+          "type": "smelt_item",
+          "id": "immersiveengineering:ingot_lead",
+          "effort": 0.85,
+          "min": 4,
+          "max": 32,
+          "name": "Lead Ingot",
+          "hint": "Smelt raw lead in a furnace."
+        }
+      ]
+    },
+    {
+      "key": "ie_silver",
+      "family": "ie_silver",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "iron",
+      "hints": [
+        "caves",
+        "deep"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "immersiveengineering:ore_silver",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "name": "Silver Ore"
+        },
+        {
+          "type": "collect_item",
+          "id": "immersiveengineering:raw_silver",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "name": "Raw Silver",
+          "plural": "Raw Silver",
+          "hint": "Silver ore drops raw silver."
+        },
+        {
+          "type": "smelt_item",
+          "id": "immersiveengineering:ingot_silver",
+          "effort": 1.05,
+          "min": 4,
+          "max": 24,
+          "name": "Silver Ingot",
+          "hint": "Smelt raw silver in a furnace."
+        }
+      ]
+    },
+    {
+      "key": "ie_nickel",
+      "family": "ie_nickel",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "iron",
+      "hints": [
+        "caves"
+      ],
+      "exclusions": [
+        "craft_item immersiveengineering:ingot_constantan (made in the kiln or from crusher dusts)"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "immersiveengineering:ore_nickel",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "name": "Nickel Ore"
+        },
+        {
+          "type": "smelt_item",
+          "id": "immersiveengineering:ingot_nickel",
+          "effort": 1.05,
+          "min": 4,
+          "max": 24,
+          "name": "Nickel Ingot",
+          "hint": "Smelt raw nickel in a furnace."
+        },
+        {
+          "type": "collect_item",
+          "id": "immersiveengineering:raw_nickel",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "name": "Raw Nickel",
+          "plural": "Raw Nickel",
+          "hint": "Nickel ore drops raw nickel."
+        }
+      ]
+    },
+    {
+      "key": "ie_hemp",
+      "family": "ie_hemp",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "immersiveengineering:seed",
+          "effort": 0.5,
+          "min": 2,
+          "max": 8,
+          "name": "Industrial Hemp Seeds",
+          "plural": "Industrial Hemp Seeds",
+          "hint": "Breaking tall grass sometimes drops hemp seeds."
+        },
+        {
+          "type": "collect_item",
+          "id": "immersiveengineering:hemp_fiber",
+          "effort": 0.4,
+          "min": 8,
+          "max": 32,
+          "name": "Industrial Hemp Fiber",
+          "hint": "Grown hemp drops fiber."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:hemp_fabric",
+          "effort": 1.0,
+          "min": 2,
+          "max": 8,
+          "name": "Tough Fabric",
+          "hint": "Hemp fiber around a stick."
+        }
+      ]
+    },
+    {
+      "key": "ie_workshop",
+      "family": "ie_workshop",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:hammer",
+          "effort": 2.5,
+          "min": 1,
+          "max": 1,
+          "name": "Engineer's Hammer",
+          "plural": "Engineer's Hammers",
+          "hint": "Iron ingots, string and sticks."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:manual",
+          "effort": 1.5,
+          "min": 1,
+          "max": 1,
+          "name": "Engineer's Manual",
+          "plural": "Engineer's Manuals",
+          "hint": "A book and a lever."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:cokebrick",
+          "effort": 0.8,
+          "min": 4,
+          "max": 16,
+          "name": "Coke Brick",
+          "hint": "Clay, bricks and sandstone."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:alloybrick",
+          "effort": 0.8,
+          "min": 4,
+          "max": 16,
+          "name": "Kiln Brick",
+          "hint": "Two bricks and two sandstone."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:craftingtable",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "name": "Engineer's Crafting Table",
+          "hint": "Treated wood slabs, treated sticks and a crafting table."
+        }
+      ]
+    },
+    {
+      "key": "ie_metalwork",
+      "family": "ie_metalwork",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:plate_iron",
+          "effort": 1.6,
+          "min": 2,
+          "max": 8,
+          "name": "Iron Plate",
+          "hint": "An iron ingot hit with the Engineer's Hammer."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:stick_iron",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "name": "Iron Rod",
+          "hint": "Iron ingots in a column."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:wire_copper",
+          "effort": 1.2,
+          "min": 4,
+          "max": 16,
+          "name": "Copper Wire",
+          "hint": "A copper plate and the Engineer's Wire Cutters."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:component_iron",
+          "effort": 3.0,
+          "min": 1,
+          "max": 4,
+          "name": "Iron Mechanical Component",
+          "hint": "Iron plates and a copper ingot.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:conveyor_basic",
+          "effort": 1.2,
+          "min": 4,
+          "max": 16,
+          "name": "Conveyor Belt",
+          "hint": "Leather, iron and redstone.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "ie_treated",
+      "family": "ie_treated",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:stick_treated",
+          "effort": 0.5,
+          "min": 8,
+          "max": 32,
+          "name": "Treated Stick",
+          "hint": "Two treated wood planks; planks soak creosote from a coke oven."
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:treated_fence",
+          "effort": 0.6,
+          "min": 4,
+          "max": 16,
+          "name": "Treated Wood Fence",
+          "hint": "Treated wood planks and treated sticks.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "immersiveengineering:treated_scaffold",
+          "effort": 0.8,
+          "min": 4,
+          "max": 16,
+          "name": "Treated Wood Scaffolding",
+          "plural": "Treated Wood Scaffolding",
+          "hint": "Treated wood planks and treated sticks.",
+          "minDifficulty": "normal"
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "immersiveengineering:ingot_aluminum",
+        "value": 0.9,
+        "tier": 2,
+        "max": 16,
+        "family": "ie_bauxite"
+      },
+      {
+        "id": "immersiveengineering:ingot_lead",
+        "value": 1.0,
+        "tier": 2,
+        "max": 16,
+        "family": "ie_lead"
+      },
+      {
+        "id": "immersiveengineering:ingot_silver",
+        "value": 1.3,
+        "tier": 2,
+        "max": 12,
+        "family": "ie_silver"
+      },
+      {
+        "id": "immersiveengineering:hemp_fiber",
+        "value": 0.4,
+        "tier": 1,
+        "max": 32,
+        "family": "ie_hemp"
+      },
+      {
+        "id": "immersiveengineering:coal_coke",
+        "value": 1.2,
+        "tier": 2,
+        "max": 16,
+        "family": "ie_workshop"
+      },
+      {
+        "id": "immersiveengineering:ingot_steel",
+        "value": 3.0,
+        "tier": 3,
+        "max": 8,
+        "family": "ie_metalwork"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "ie_prospector",
+      "names": [
+        "Prospector",
+        "Ore Survey",
+        "Field Engineer"
+      ],
+      "descriptions": [
+        "An engineer needs metal before machines: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "ie_bauxite",
+            "ie_lead",
+            "ie_silver",
+            "ie_nickel"
+          ]
+        },
+        {
+          "types": [
+            "smelt_item",
+            "collect_item"
+          ],
+          "keys": [
+            "ie_bauxite",
+            "ie_lead",
+            "ie_silver",
+            "ie_nickel"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ie_workshop_setup",
+      "names": [
+        "Workshop Setup",
+        "Hammer Time",
+        "Bricks and Iron"
+      ],
+      "descriptions": [
+        "Set up the workshop: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "ie_workshop"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "ie_metalwork",
+            "ie_hemp"
+          ]
+        }
+      ]
+    }
+  ]
+}

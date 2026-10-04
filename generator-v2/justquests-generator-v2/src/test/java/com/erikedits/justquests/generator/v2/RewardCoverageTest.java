@@ -19,19 +19,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RewardCoverageTest {
     @Test
     void everyRewardIsUsed() {
-        FakeHost host = new FakeHost().withMods("farmersdelight", "create", "mekanism", "twilightforest", "botania");
-        host.content.dimensions.add("twilightforest:twilight_forest");
-        Progression p = TestSupport.unlockedProgression(host);
         Set<String> seen = new TreeSet<>();
-        for (Difficulty d : Difficulty.values()) {
-            for (long seed = 1; seed <= 150; seed++) {
-                for (QuestDraft q : TestSupport.generate(host, TestSupport.config(d, 20).withModdedShare(0.5), p,
-                    seed * 13L, 20).drafts()) {
-                    for (JsonElement e : q.json.getAsJsonArray("rewards")) {
-                        JsonObject r = e.getAsJsonObject();
-                        for (String f : new String[]{"item", "effect", "loot_table"}) {
-                            if (r.has(f)) {
-                                seen.add(r.get(f).getAsString());
+        // two packs, as a server would run them: each profile keeps a share like a real pack
+        for (String[] mods : new String[][]{
+            {"farmersdelight", "create", "mekanism", "twilightforest", "botania"},
+            {"ae2", "immersiveengineering", "biomesoplenty", "alexsmobs", "tconstruct", "ars_nouveau"}}) {
+            FakeHost host = new FakeHost().withMods(mods);
+            host.content.dimensions.add("twilightforest:twilight_forest");
+            Progression p = TestSupport.unlockedProgression(host);
+            for (Difficulty d : Difficulty.values()) {
+                for (long seed = 1; seed <= 150; seed++) {
+                    for (QuestDraft q : TestSupport.generate(host, TestSupport.config(d, 20).withModdedShare(0.5), p,
+                        seed * 13L, 20).drafts()) {
+                        for (JsonElement e : q.json.getAsJsonArray("rewards")) {
+                            JsonObject r = e.getAsJsonObject();
+                            for (String f : new String[]{"item", "effect", "loot_table"}) {
+                                if (r.has(f)) {
+                                    seen.add(r.get(f).getAsString());
+                                }
                             }
                         }
                     }

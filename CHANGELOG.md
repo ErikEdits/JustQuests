@@ -25,6 +25,10 @@ Built step by step; test builds go to a local folder until the release.
   player commands (everyone by default) and `justquests.admin.<name>` for the operator commands
   (operators by default). Quests can name a `permission`; players without it don't see the quest.
   NeoForge and Forge use their permission API, the Fabric builds bundle fabric-permissions-api.
+- **Six more mods for the quest generator:** Applied Energistics 2, Immersive Engineering, Biomes O'
+  Plenty, Alex's Mobs, Tinkers' Construct and Ars Nouveau. Botania, Mekanism and the Twilight Forest
+  got more quests (more flowers and gear, metal blocks and steel machines, more wood, beetles and
+  meef). Every new target was checked against the mods' released jars.
 - `settings.json` gets new options added by itself, so owners see them without deleting the file.
 
 ### Changed

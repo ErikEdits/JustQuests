@@ -1,0 +1,364 @@
+{
+  "format": 1,
+  "id": "ae2",
+  "name": "Applied Energistics 2",
+  "requiresMod": [
+    "ae2"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "ae2_meteor",
+      "family": "ae2_meteor",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "iron",
+      "hints": [
+        "rare"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "ae2:sky_stone_block",
+          "effort": 0.6,
+          "min": 8,
+          "max": 32,
+          "name": "Sky Stone",
+          "plural": "Sky Stone",
+          "hint": "Meteorites are craters of sky stone; a meteorite compass points to the nearest one."
+        },
+        {
+          "type": "mine_block",
+          "id": "ae2:quartz_cluster",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "name": "Certus Quartz Cluster",
+          "hint": "Certus clusters grow on the budding quartz inside meteorites.",
+          "since": "1.19"
+        },
+        {
+          "type": "collect_item",
+          "id": "ae2:certus_quartz_crystal",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "hint": "Meteorites are craters of sky stone; a meteorite compass points to the nearest one."
+        }
+      ]
+    },
+    {
+      "key": "ae2_skystone",
+      "family": "ae2_skystone",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "smelt_item",
+          "id": "ae2:smooth_sky_stone_block",
+          "effort": 0.8,
+          "min": 4,
+          "max": 16,
+          "name": "Sky Stone Block",
+          "hint": "Smelt sky stone in a furnace."
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:sky_stone_brick",
+          "effort": 0.3,
+          "min": 8,
+          "max": 32,
+          "hint": "Four sky stone blocks (smelted sky stone)."
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:sky_stone_chest",
+          "effort": 5.0,
+          "min": 1,
+          "max": 2,
+          "hint": "Eight sky stone.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "ae2_quartz_tools",
+      "family": "ae2_quartz_tools",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "ae2:certus_quartz_wrench",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Five certus quartz crystals."
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:certus_quartz_cutting_knife",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "hint": "A stick, an iron ingot and certus quartz."
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:nether_quartz_wrench",
+          "effort": 2.5,
+          "min": 1,
+          "max": 1,
+          "hint": "Five nether quartz."
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:certus_quartz_pickaxe",
+          "effort": 4.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Three certus quartz crystals and two sticks.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:certus_quartz_sword",
+          "effort": 3.5,
+          "min": 1,
+          "max": 1,
+          "hint": "Two certus quartz crystals and a stick.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "ae2_fluix",
+      "family": "ae2_fluix",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "ae2:fluix_crystal",
+          "effort": 2.0,
+          "min": 2,
+          "max": 8,
+          "hint": "Charged certus quartz, redstone and nether quartz dropped into water turn into fluix."
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:fluix_block",
+          "effort": 9.0,
+          "min": 1,
+          "max": 2,
+          "name": "Fluix Block",
+          "hint": "Four fluix crystals.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:fluix_pearl",
+          "effort": 10.0,
+          "min": 1,
+          "max": 1,
+          "hint": "An ender pearl surrounded by fluix crystals and fluix dust.",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "ae2_power",
+      "family": "ae2_power",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "ae2:charger",
+          "effort": 6.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Iron and copper ingots."
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:inscriber",
+          "effort": 7.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Iron ingots, pistons and a copper ingot.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:energy_acceptor",
+          "effort": 6.5,
+          "min": 1,
+          "max": 1,
+          "hint": "Iron, quartz glass and copper.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:quartz_glass",
+          "effort": 1.0,
+          "min": 4,
+          "max": 8,
+          "hint": "Glass and quartz dust, which the Inscriber grinds from quartz.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "ae2_network",
+      "family": "ae2_network",
+      "tier": 3,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "ae2:fluix_glass_cable",
+          "effort": 1.2,
+          "min": 4,
+          "max": 16,
+          "name": "Fluix ME Glass Cable",
+          "hint": "Quartz fiber and two fluix crystals."
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:drive",
+          "effort": 14.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Iron, engineering processors and fluix cables; processors come from the Inscriber.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:item_cell_housing",
+          "effort": 4.0,
+          "min": 1,
+          "max": 2,
+          "name": "ME Item Cell Housing",
+          "hint": "Quartz glass, redstone and iron.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "ae2:cell_component_1k",
+          "effort": 8.0,
+          "min": 1,
+          "max": 2,
+          "name": "1k ME Storage Component",
+          "hint": "Certus quartz, redstone and a logic processor from the Inscriber.",
+          "minDifficulty": "hard"
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "ae2:certus_quartz_crystal",
+        "value": 1.2,
+        "tier": 2,
+        "max": 16,
+        "family": "ae2_meteor"
+      },
+      {
+        "id": "ae2:fluix_crystal",
+        "value": 2.2,
+        "tier": 2,
+        "max": 8,
+        "family": "ae2_fluix"
+      },
+      {
+        "id": "ae2:sky_stone_block",
+        "value": 0.6,
+        "tier": 1,
+        "max": 32,
+        "family": "ae2_meteor"
+      },
+      {
+        "id": "ae2:silicon",
+        "value": 2.0,
+        "tier": 3,
+        "max": 8,
+        "family": "ae2_power"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "ae2_meteor_hunt",
+      "names": [
+        "Meteor Hunt",
+        "Fallen Star",
+        "Sky Stone"
+      ],
+      "descriptions": [
+        "A meteorite fell somewhere near: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "ae2_meteor"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "smelt_item"
+          ],
+          "keys": [
+            "ae2_meteor",
+            "ae2_skystone"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ae2_engineer",
+      "names": [
+        "Network Engineer",
+        "Wired Up",
+        "Matter to Energy"
+      ],
+      "descriptions": [
+        "Every network starts on a workbench: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "ae2_quartz_tools",
+            "ae2_power"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "collect_item"
+          ],
+          "keys": [
+            "ae2_fluix",
+            "ae2_network"
+          ]
+        }
+      ]
+    }
+  ]
+}

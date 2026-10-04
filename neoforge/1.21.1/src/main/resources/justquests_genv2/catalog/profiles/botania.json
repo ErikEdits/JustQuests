@@ -105,6 +105,67 @@
           "max": 32,
           "name": "Mystical Yellow Petal",
           "hint": "One mystical flower makes two petals."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:blue_petal",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Mystical Blue Petal",
+          "hint": "One mystical flower makes two petals."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:purple_petal",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Mystical Purple Petal",
+          "hint": "One mystical flower makes two petals."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:pink_petal",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "name": "Mystical Pink Petal",
+          "hint": "One mystical flower makes two petals."
+        }
+      ]
+    },
+    {
+      "key": "bot_decor",
+      "family": "bot_decor",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "botania:white_petal_block",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Nine mystical white petals."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:red_petal_block",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Nine mystical red petals."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:apothecary_mossy",
+          "effort": 3.0,
+          "min": 1,
+          "max": 1,
+          "name": "Mossy Petal Apothecary",
+          "hint": "Mossy cobblestone around a mystical petal."
         }
       ]
     },
@@ -173,6 +234,24 @@
           "max": 8,
           "name": "Red Shimmering Mushroom",
           "hint": "Shimmering mushrooms glow in caves."
+        },
+        {
+          "type": "collect_item",
+          "id": "botania:blue_mushroom",
+          "effort": 0.7,
+          "min": 2,
+          "max": 8,
+          "name": "Blue Shimmering Mushroom",
+          "hint": "Shimmering mushrooms glow in caves."
+        },
+        {
+          "type": "collect_item",
+          "id": "botania:purple_mushroom",
+          "effort": 0.7,
+          "min": 2,
+          "max": 8,
+          "name": "Purple Shimmering Mushroom",
+          "hint": "Shimmering mushrooms glow in caves."
         }
       ]
     },
@@ -203,6 +282,79 @@
           "name": "Wand of the Forest",
           "plural": "Wands of the Forest",
           "hint": "A livingwood twig and two petals; livingwood comes from a Pure Daisy."
+        }
+      ]
+    },
+    {
+      "key": "bot_manasteel",
+      "family": "bot_mana",
+      "tier": 3,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "botania:manasteel_pick",
+          "effort": 14.0,
+          "min": 1,
+          "max": 1,
+          "name": "Manasteel Pickaxe",
+          "hint": "Manasteel ingots and livingwood twigs; iron becomes manasteel in a mana pool.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:manasteel_sword",
+          "effort": 13.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Manasteel ingots and a livingwood twig; iron becomes manasteel in a mana pool.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:livingwood_twig",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Two livingwood logs from a Pure Daisy."
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:glimmering_livingwood",
+          "effort": 1.4,
+          "min": 2,
+          "max": 8,
+          "hint": "Livingwood and glowstone dust.",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "bot_alfheim",
+      "family": "bot_alfheim",
+      "tier": 4,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "weight": 0.5,
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "botania:dreamwood_planks",
+          "effort": 0.2,
+          "min": 8,
+          "max": 32,
+          "hint": "Dreamwood comes from the elves through an Elven Gateway.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "botania:elementium_pickaxe",
+          "effort": 20.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Elementium ingots and dreamwood twigs, both traded with the elves.",
+          "minDifficulty": "hard"
         }
       ]
     },

@@ -67,6 +67,22 @@ MEK_ENTRIES = [
         T("craft_item", M + "dosimeter", 3.6, 1, 1, hint="Four lead ingots around redstone."),
         T("craft_item", M + "hazmat_mask", 4.5, 1, 1, hint="Five lead ingots and orange dye."),
     ]),
+    E("mek_blocks", "mek_blocks", 1, [
+        T("craft_item", M + "block_charcoal", 1.6, 1, 4, name="Charcoal Block", minDifficulty="normal",
+          hint="Nine charcoal."),
+        T("craft_item", M + "block_tin", 6.8, 1, 2, name="Block of Tin", plural="Blocks of Tin",
+          minDifficulty="hard", hint="Nine tin ingots."),
+        T("craft_item", M + "block_lead", 7.6, 1, 2, name="Block of Lead", plural="Blocks of Lead",
+          minDifficulty="hard", hint="Nine lead ingots."),
+    ]),
+    E("mek_steel_works", "mek_machines", 3, [
+        T("craft_item", M + "dynamic_tank", 5.0, 2, 8, minDifficulty="hard",
+          hint="Steel ingots around a bucket; steel comes from the Metallurgic Infuser."),
+        T("craft_item", M + "boiler_casing", 5.0, 2, 8, minDifficulty="hard",
+          hint="Steel ingots around an iron ingot; steel comes from the Metallurgic Infuser."),
+        T("craft_item", M + "crusher", 14.0, 1, 1, minDifficulty="hard",
+          hint="A steel casing, basic control circuits, redstone and lava buckets."),
+    ]),
     E("mek_machines", "mek_machines", 2, [
         T("craft_item", M + "steel_casing", 22.0, 1, 1, minDifficulty="hard",
           hint="Steel comes from the metallurgic infuser: infuse iron with carbon twice."),
@@ -130,7 +146,7 @@ MEKANISM = {
 MEK_FAMILY_NAMES = {
     "mek_osmium": "Osmium", "mek_tin": "Tin", "mek_lead": "Lead", "mek_uranium": "Uranium",
     "mek_fluorite": "Fluorite", "mek_salt": "Salt", "mek_gear": "Workshop", "mek_radiation": "Hazmat",
-    "mek_machines": "Machine",
+    "mek_machines": "Machine", "mek_blocks": "Metal Blocks",
 }
 
 MEK_TAGS = {

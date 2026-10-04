@@ -298,7 +298,8 @@ class HostFuzzTest {
     void randomAnswersAndExceptionsNeverEscape() {
         for (int round = 0; round < 24; round++) {
             FakeHost base = new FakeHost().withMods(round % 3 == 0 ? new String[]{"farmersdelight", "botania"}
-                : round % 3 == 1 ? new String[]{"create", "farmersdelight", "mekanism", "twilightforest", "botania"}
+                : round % 3 == 1 ? new String[]{"create", "farmersdelight", "mekanism", "twilightforest", "botania",
+                    "ae2", "immersiveengineering", "biomesoplenty", "alexsmobs", "tconstruct", "ars_nouveau"}
                 : new String[0]);
             base.content.dimensions.add("twilightforest:twilight_forest");
             FuzzContent content = new FuzzContent(base.content, 1000L + round, 5 + round % 4 * 10,

@@ -20,16 +20,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ThemeCoverageTest {
     @Test
     void everyThemeAppears() {
-        FakeHost host = new FakeHost().withMods("farmersdelight", "create", "mekanism", "twilightforest", "botania");
-        host.content.dimensions.add("twilightforest:twilight_forest");
-        Progression p = TestSupport.unlockedProgression(host);
         Map<String, Integer> seen = new TreeMap<>();
-        for (Difficulty d : Difficulty.values()) {
-            for (long seed = 1; seed <= 300; seed++) {
-                for (QuestDraft q : TestSupport.generate(host, TestSupport.config(d, 20).withModdedShare(0.5), p,
-                    seed * 7L, 20).drafts()) {
-                    if (q.themeKey != null) {
-                        seen.merge(q.themeKey, 1, Integer::sum);
+        // two packs, as a server would run them: each profile keeps a share like a real pack
+        for (String[] mods : new String[][]{
+            {"farmersdelight", "create", "mekanism", "twilightforest", "botania"},
+            {"ae2", "immersiveengineering", "biomesoplenty", "alexsmobs", "tconstruct", "ars_nouveau"}}) {
+            FakeHost host = new FakeHost().withMods(mods);
+            host.content.dimensions.add("twilightforest:twilight_forest");
+            Progression p = TestSupport.unlockedProgression(host);
+            for (Difficulty d : Difficulty.values()) {
+                for (long seed = 1; seed <= 300; seed++) {
+                    for (QuestDraft q : TestSupport.generate(host, TestSupport.config(d, 20).withModdedShare(0.5), p,
+                        seed * 7L, 20).drafts()) {
+                        if (q.themeKey != null) {
+                            seen.merge(q.themeKey, 1, Integer::sum);
+                        }
                     }
                 }
             }

@@ -24,9 +24,11 @@ What it does
 - **Difficulty** Easy / Normal / Hard, **progression awareness** (Nether, End and modded dimensions
   unlock per world), **explainability** (`explain`, `status`), anonymous **test-phase statistics**
   and optional **self-calibration**.
-- **Five mod profiles**, each active only when its mod is installed, all verified against the mods'
-  own data for 1.18.2 – 1.21.1: Farmer's Delight (121 targets, 12 themes), Create (70, 10),
-  Mekanism (31, 4), The Twilight Forest (28, 4, with its own dimension unlock) and Botania (17, 2).
+- **Eleven mod profiles**, each active only when its mod is installed, all verified against the mods'
+  own data for 1.18.2 – 1.21.x: Farmer's Delight (121 targets, 12 themes), Create (70, 10),
+  Mekanism (37, 4), The Twilight Forest (39, 4, with its own dimension unlock), Botania (31, 2),
+  Applied Energistics 2 (22, 2), Immersive Engineering (29, 2), Biomes O' Plenty (41, 3),
+  Alex's Mobs (24, 2), Tinkers' Construct (20, 2) and Ars Nouveau (22, 2).
   More mods are a data-only addition (`DESIGN.md` §11).
 - **Robust:** never throws to the mod; survives throwing or lying hosts, corrupt or hand-edited state
   files, removed mods (stored quests are re-validated at start), clock jumps and v1 data.

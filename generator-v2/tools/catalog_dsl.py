@@ -39,6 +39,6 @@ def E(key, family, tier, targets, **kw):
     return e
 
 def dump(obj, path):
-    with open(path, "w") as f:
+    with open(path, "w", encoding="utf-8", newline="\n") as f:   # same bytes on every OS
         json.dump(obj, f, indent=2, ensure_ascii=False)
         f.write("\n")

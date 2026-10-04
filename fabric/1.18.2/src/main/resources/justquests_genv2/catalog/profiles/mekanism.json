@@ -344,6 +344,83 @@
       ]
     },
     {
+      "key": "mek_blocks",
+      "family": "mek_blocks",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "mekanism:block_charcoal",
+          "effort": 1.6,
+          "min": 1,
+          "max": 4,
+          "name": "Charcoal Block",
+          "hint": "Nine charcoal.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:block_tin",
+          "effort": 6.8,
+          "min": 1,
+          "max": 2,
+          "name": "Block of Tin",
+          "plural": "Blocks of Tin",
+          "hint": "Nine tin ingots.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:block_lead",
+          "effort": 7.6,
+          "min": 1,
+          "max": 2,
+          "name": "Block of Lead",
+          "plural": "Blocks of Lead",
+          "hint": "Nine lead ingots.",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "mek_steel_works",
+      "family": "mek_machines",
+      "tier": 3,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "mekanism:dynamic_tank",
+          "effort": 5.0,
+          "min": 2,
+          "max": 8,
+          "hint": "Steel ingots around a bucket; steel comes from the Metallurgic Infuser.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:boiler_casing",
+          "effort": 5.0,
+          "min": 2,
+          "max": 8,
+          "hint": "Steel ingots around an iron ingot; steel comes from the Metallurgic Infuser.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "mekanism:crusher",
+          "effort": 14.0,
+          "min": 1,
+          "max": 1,
+          "hint": "A steel casing, basic control circuits, redstone and lava buckets.",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
       "key": "mek_machines",
       "family": "mek_machines",
       "tier": 2,

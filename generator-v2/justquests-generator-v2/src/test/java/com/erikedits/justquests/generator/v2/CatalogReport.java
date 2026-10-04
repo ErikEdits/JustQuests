@@ -31,7 +31,8 @@ public final class CatalogReport {
 
     public static void main(String[] args) throws IOException {
         Path out = Path.of(args.length > 0 ? args[0] : "samples/catalog-report.md");
-        FakeHost host = new FakeHost().withMods("farmersdelight", "create", "mekanism", "twilightforest", "botania");
+        FakeHost host = new FakeHost().withMods("farmersdelight", "create", "mekanism", "twilightforest", "botania",
+            "ae2", "immersiveengineering", "biomesoplenty", "alexsmobs", "tconstruct", "ars_nouveau");
         host.content.dimensions.add("twilightforest:twilight_forest");
         Catalog catalog = TestSupport.catalog();
         Map<Difficulty, Map<String, Candidate>> pools = new EnumMap<>(Difficulty.class);

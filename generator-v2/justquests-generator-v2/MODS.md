@@ -33,15 +33,15 @@ licence that causes no problems**. Scoring 0–3 per criterion:
 |---|---|---|---|---|---|---|
 | **Farmer's Delight** (+ Refabricated) | 3 — one of the most downloaded content mods, active | 3 — Forge, NeoForge, Fabric (Refabricated, same namespace) | 3 — crops to collect, wild plants to mine, crafting-table food, smelting, many foods to eat | 3 | **MIT** | **chosen** |
 | **Create** (+ Create Fabric) | 3 — top technology mod, active | 2 — Forge 1.18.2–1.20.1, NeoForge 1.21.1, Fabric 1.18.2–1.20.1 (same namespace) | 2 — ores, stone layers, many crafting-table parts; machine outputs are not countable | 3 | **MIT** (assets ARR — we use no assets) | **chosen** |
-| Biomes O' Plenty | 3 | 3 | 2 — mostly blocks/wood | 3 | All Rights Reserved | rejected (licence) |
+| **Biomes O' Plenty** | 3 | 3 | 2 — mostly blocks/wood | 3 | All Rights Reserved | **added in 0.4.0** (ids only, see §8) |
 | Supplementaries | 3 | 3 | 2 | 2 | custom "Supplementaries Team License", All Rights Reserved | rejected (licence) |
 | Friends & Foes | 2 | 3 | 2 | 3 | CC BY-NC-ND 4.0 | rejected (licence) |
-| Alex's Mobs | 3 | 1 — Forge only, ends at 1.20.1 | 3 | 3 | no licence file found | rejected (coverage, licence unclear) |
+| **Alex's Mobs** | 3 | 1 — Forge only, ends at 1.20.1 | 3 | 3 | GPL-3.0 (Modrinth) | **added in 0.4.0** (see §8) |
 | **The Twilight Forest** | 3 | 1 — Forge/NeoForge only | 3 — own dimension, mobs, bosses, drops | 3 | **LGPL-2.1** | **chosen in the extension** (see below) |
 | The Aether | 2 | 1 — Forge/NeoForge only | 2 | 2 | LGPL-3.0 | not added (overlaps the Twilight Forest's role) |
 | **Mekanism** | 3 | 1 — Forge/NeoForge only | 2 — five ores, raw metals, first machines | 3 | **MIT** | **chosen in the extension** |
 | **Botania** | 3 | 3 — Forge, NeoForge and Fabric (same namespace) | 2 — flowers, petals, first tools | 3 | **Botania License** (open; attribution) | **chosen in the extension** |
-| Tinkers' Construct | 3 | 1 — Forge 1.18.2–1.20.1 only | 1 — tools are built in the part builder, not a grid | 3 | MIT | not added (few countable targets) |
+| **Tinkers' Construct** | 3 | 1 — Forge 1.18.2–1.20.1 only | 1 — tools are built in the part builder, not a grid | 3 | MIT | **added in 0.4.0** (the way to the tools, see §8) |
 | Storage Drawers | 3 | 3 | 1 — only crafting | 3 | MIT | not added (little quest value) |
 | Naturalist | 2 | 2 | 2 — animals | 2 | split licence (resources restricted) | rejected |
 | Oh The Biomes We've Gone | 2 | 2 | 1 — namespace changed `byg` → `biomeswevegone` | 1 | LGPL (code) | rejected (id churn) |
@@ -467,3 +467,36 @@ fertilizer, petals, manasteel ingots, mana pearls).
    result: 267 targets, 0 problems (three FD ids noted as missing before 1.20.1).
 5. The runtime existence check remains authoritative: anything missing on a given build is skipped
    silently and counted as `3_missing_id` in the stats.
+
+## 8. The 0.4.0 extension
+
+The maintainer asked for six more mods and thicker profiles for Botania, Mekanism and the Twilight
+Forest. All profiles reference ids only; ids are facts, so the licence of a mod (including Biomes
+O' Plenty's "All Rights Reserved") creates no obligation: no code, asset or text of a mod is copied
+or shipped. The hints are our own words.
+
+| Profile | Mod id | Loaders / versions with releases | Entries | Targets |
+|---|---|---|---|---|
+| Applied Energistics 2 | `ae2` | Fabric, Forge, NeoForge; 1.18.2–1.21.x | 6 (meteorites, sky stone, quartz tools, fluix, power, network) | 22 |
+| Immersive Engineering | `immersiveengineering` | Forge, NeoForge; 1.18.2–1.21.1 | 8 (bauxite, lead, silver, nickel, hemp, workshop, metalwork, treated wood) | 29 |
+| Biomes O' Plenty | `biomesoplenty` | Fabric, Forge, NeoForge; 1.18.2–1.21.11 | 7 (timber, carpentry, flowers, sands, wetlands, rose quartz, Nether) | 41 |
+| Alex's Mobs | `alexsmobs` | Forge; 1.18.2–1.20.1 | 6 (savanna, northlands, cooking, predators, gear, Nether) | 24 |
+| Tinkers' Construct | `tconstruct` | Forge; 1.18.2–1.20.1 | 5 (grout and seared bricks, stations, smeltery parts, slime islands, cobalt) | 20 |
+| Ars Nouveau | `ars_nouveau` | Forge, NeoForge; 1.18.2–1.21.1 | 5 (archwood, forage, first spells, workshop, Wilden) | 22 |
+
+Additions to the earlier profiles: Botania +14 targets (three more petal colours, petal blocks, the
+mossy apothecary, two more shimmering mushrooms, livingwood twigs, glimmering livingwood, manasteel
+gear, and an Alfheim tier on Hard), Mekanism +6 (charcoal, tin and lead blocks, dynamic tank, boiler
+casing, crusher), the Twilight Forest +11 (mangrove log, canopy and darkwood planks, a boat,
+mushglooms, swarm spiders, three beetles, raw meef and meef steak).
+
+How the ids were verified: the released jars were downloaded from Modrinth (for every Minecraft
+version a mod supports, one release each: 1.18.2, 1.19.2, 1.20.1, 1.21.1 and newer where they exist)
+and read into facts per version: `en_us.json` names, crafting-table and furnace recipe outputs
+(unconditional only; the mods' own grid types such as `botania:twig_wand`, `mekanism:mek_data` and
+`tconstruct:crafting_shaped_retextured` count as crafting), entity types, block loot tables and the
+`needs_*_tool` tags. `tools/verify_jars.py` checks every target against these facts: 226 targets,
+0 problems. The Twilight Forest has no Modrinth release, so its new ids were checked as before
+against the `en_us.json` and the generated recipes of the `1.20.1` and `1.21.1` branches on GitHub.
+The generator tests run the coverage checks for two packs (the first five mods, the new six), as a
+server would run them.

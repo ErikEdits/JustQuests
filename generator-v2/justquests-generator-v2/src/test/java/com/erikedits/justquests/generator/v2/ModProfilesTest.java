@@ -32,7 +32,9 @@ class ModProfilesTest {
                 for (QuestDraft q : TestSupport.generate(host, TestSupport.config(d, 10), TestSupport.unlockedProgression(host), seed, 10).drafts()) {
                     String t = Json.compact(q.json);
                     assertFalse(t.contains("farmersdelight:") || t.contains("create:") || t.contains("mekanism:")
-                        || t.contains("twilightforest:") || t.contains("botania:"), t);
+                        || t.contains("twilightforest:") || t.contains("botania:") || t.contains("ae2:")
+                        || t.contains("immersiveengineering:") || t.contains("biomesoplenty:") || t.contains("alexsmobs:")
+                        || t.contains("tconstruct:") || t.contains("ars_nouveau:"), t);
                     assertEquals(Set.of("vanilla"), q.profiles());
                 }
             }

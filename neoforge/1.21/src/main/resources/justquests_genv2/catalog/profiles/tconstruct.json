@@ -1,0 +1,333 @@
+{
+  "format": 1,
+  "id": "tconstruct",
+  "name": "Tinkers' Construct",
+  "requiresMod": [
+    "tconstruct"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "tc_grout",
+      "family": "tc_grout",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "tconstruct:grout",
+          "effort": 0.3,
+          "min": 8,
+          "max": 32,
+          "plural": "Grout",
+          "hint": "Clay, sand and gravel."
+        },
+        {
+          "type": "smelt_item",
+          "id": "tconstruct:seared_brick",
+          "effort": 0.45,
+          "min": 8,
+          "max": 32,
+          "hint": "Smelt grout in a furnace."
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:seared_bricks",
+          "effort": 2.0,
+          "min": 2,
+          "max": 8,
+          "plural": "Seared Bricks",
+          "hint": "Four seared bricks."
+        }
+      ]
+    },
+    {
+      "key": "tc_stations",
+      "family": "tc_stations",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "tconstruct:pattern",
+          "effort": 0.4,
+          "min": 4,
+          "max": 16,
+          "hint": "Two planks and two sticks."
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:crafting_station",
+          "effort": 1.6,
+          "min": 1,
+          "max": 1,
+          "hint": "A pattern on top of a log or crafting table."
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:part_builder",
+          "effort": 2.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Two patterns on top of two planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:tinker_station",
+          "effort": 2.4,
+          "min": 1,
+          "max": 1,
+          "hint": "Three patterns on top of planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:materials_and_you",
+          "effort": 1.2,
+          "min": 1,
+          "max": 1,
+          "name": "Materials and You",
+          "plural": "Materials and You",
+          "hint": "A book and a pattern."
+        }
+      ]
+    },
+    {
+      "key": "tc_smeltery",
+      "family": "tc_smeltery",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "tconstruct:seared_heater",
+          "effort": 5.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Eight seared bricks.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:seared_faucet",
+          "effort": 2.2,
+          "min": 1,
+          "max": 2,
+          "hint": "Three seared bricks.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:seared_table",
+          "effort": 4.5,
+          "min": 1,
+          "max": 1,
+          "name": "Seared Casting Table",
+          "hint": "Seven seared bricks.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:seared_basin",
+          "effort": 4.5,
+          "min": 1,
+          "max": 1,
+          "name": "Seared Casting Basin",
+          "hint": "Seven seared bricks.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:seared_melter",
+          "effort": 6.5,
+          "min": 1,
+          "max": 1,
+          "hint": "Seared bricks around a seared tank.",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "tc_slime_isles",
+      "family": "tc_slime_isles",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "stone",
+      "hints": [
+        "rare"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "tconstruct:skyroot_log",
+          "effort": 0.6,
+          "min": 4,
+          "max": 16,
+          "hint": "Skyroot grows on the sky slime islands floating high up."
+        },
+        {
+          "type": "collect_item",
+          "id": "tconstruct:sky_slime_ball",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "hint": "Sky slimes on the slime islands drop skyslime balls."
+        },
+        {
+          "type": "kill_mob",
+          "id": "tconstruct:sky_slime",
+          "effort": 0.9,
+          "min": 4,
+          "max": 12,
+          "name": "Skyslime",
+          "hint": "Skyslimes bounce on the sky slime islands."
+        },
+        {
+          "type": "craft_item",
+          "id": "tconstruct:sky_slime",
+          "effort": 9.0,
+          "min": 1,
+          "max": 1,
+          "name": "Skyslime Block",
+          "hint": "Nine skyslime balls.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "mine_block",
+          "id": "tconstruct:greenheart_log",
+          "effort": 0.5,
+          "min": 4,
+          "max": 16,
+          "hint": "Greenheart grows on earth slime islands in the sea."
+        }
+      ]
+    },
+    {
+      "key": "tc_cobalt",
+      "family": "tc_cobalt",
+      "tier": 3,
+      "dimension": "minecraft:the_nether",
+      "tool": "diamond",
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "tconstruct:cobalt_ore",
+          "effort": 2.0,
+          "min": 2,
+          "max": 8,
+          "name": "Nether Cobalt Ore",
+          "hint": "Cobalt ore hides in the Nether's netherrack, high and low."
+        },
+        {
+          "type": "collect_item",
+          "id": "tconstruct:raw_cobalt",
+          "effort": 2.0,
+          "min": 2,
+          "max": 8,
+          "plural": "Raw Cobalt",
+          "hint": "Cobalt ore drops raw cobalt."
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "tconstruct:seared_brick",
+        "value": 0.5,
+        "tier": 1,
+        "max": 32,
+        "family": "tc_grout"
+      },
+      {
+        "id": "tconstruct:grout",
+        "value": 0.3,
+        "tier": 1,
+        "max": 32,
+        "family": "tc_grout"
+      },
+      {
+        "id": "tconstruct:sky_slime_ball",
+        "value": 1.0,
+        "tier": 2,
+        "max": 16,
+        "family": "tc_slime_isles"
+      },
+      {
+        "id": "tconstruct:cobalt_ingot",
+        "value": 3.5,
+        "tier": 3,
+        "max": 4,
+        "family": "tc_cobalt"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "tc_tinker",
+      "names": [
+        "Apprentice Tinker",
+        "Tinker's Bench",
+        "Patterns and Parts"
+      ],
+      "descriptions": [
+        "Every tinker starts with a pattern: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "tc_stations"
+          ]
+        },
+        {
+          "types": [
+            "craft_item",
+            "smelt_item"
+          ],
+          "keys": [
+            "tc_grout",
+            "tc_stations"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tc_smelter",
+      "names": [
+        "Smeltery Builder",
+        "Seared and Ready",
+        "Molten Plans"
+      ],
+      "descriptions": [
+        "A smeltery is built brick by brick: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "smelt_item",
+            "craft_item"
+          ],
+          "keys": [
+            "tc_grout"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "tc_smeltery"
+          ]
+        }
+      ]
+    }
+  ]
+}

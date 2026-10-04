@@ -1,0 +1,547 @@
+{
+  "format": 1,
+  "id": "biomesoplenty",
+  "name": "Biomes O' Plenty",
+  "requiresMod": [
+    "biomesoplenty"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "bop_timber",
+      "family": "bop_timber",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "rare"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:fir_log",
+          "effort": 0.13,
+          "min": 16,
+          "max": 64,
+          "hint": "Firs grow in coniferous forests."
+        },
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:redwood_log",
+          "effort": 0.12,
+          "min": 16,
+          "max": 64,
+          "hint": "Redwoods tower in redwood forests."
+        },
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:jacaranda_log",
+          "effort": 0.16,
+          "min": 8,
+          "max": 48,
+          "hint": "Jacarandas bloom in jacaranda glades."
+        },
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:mahogany_log",
+          "effort": 0.16,
+          "min": 8,
+          "max": 48,
+          "hint": "Mahogany grows in rainforests."
+        },
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:willow_log",
+          "effort": 0.15,
+          "min": 8,
+          "max": 48,
+          "hint": "Willows hang over bayous and marshes."
+        },
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:palm_log",
+          "effort": 0.15,
+          "min": 8,
+          "max": 48,
+          "hint": "Palms line tropical beaches."
+        },
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:dead_log",
+          "effort": 0.18,
+          "min": 8,
+          "max": 32,
+          "hint": "Dead trees stand in wastelands and dead forests."
+        },
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:magic_log",
+          "effort": 0.45,
+          "min": 4,
+          "max": 16,
+          "hint": "Magic trees glow blue in mystic groves."
+        }
+      ]
+    },
+    {
+      "key": "bop_carpentry",
+      "family": "bop_carpentry",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "biomesoplenty:fir_planks",
+          "effort": 0.035,
+          "min": 16,
+          "max": 64,
+          "hint": "One fir log makes four planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "biomesoplenty:redwood_planks",
+          "effort": 0.035,
+          "min": 16,
+          "max": 64,
+          "hint": "One redwood log makes four planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "biomesoplenty:jacaranda_planks",
+          "effort": 0.045,
+          "min": 16,
+          "max": 64,
+          "hint": "One jacaranda log makes four planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "biomesoplenty:fir_boat",
+          "effort": 1.2,
+          "min": 1,
+          "max": 2,
+          "hint": "Five fir planks."
+        },
+        {
+          "type": "craft_item",
+          "id": "biomesoplenty:redwood_boat",
+          "effort": 1.2,
+          "min": 1,
+          "max": 2,
+          "hint": "Five redwood planks."
+        }
+      ]
+    },
+    {
+      "key": "bop_bouquet",
+      "family": "bop_bouquet",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:lavender",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "hint": "Lavender fields are purple from afar."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:violet",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "hint": "Biomes O' Plenty adds it in its own biomes."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:pink_daffodil",
+          "effort": 0.4,
+          "min": 4,
+          "max": 16,
+          "hint": "Biomes O' Plenty adds it in its own biomes."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:goldenrod",
+          "effort": 0.4,
+          "min": 4,
+          "max": 16,
+          "hint": "Goldenrod grows in prairies and fields."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:orange_cosmos",
+          "effort": 0.4,
+          "min": 4,
+          "max": 16,
+          "hint": "Biomes O' Plenty adds it in its own biomes."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:blue_hydrangea",
+          "effort": 0.45,
+          "min": 2,
+          "max": 12,
+          "hint": "Biomes O' Plenty adds it in its own biomes."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:pink_hibiscus",
+          "effort": 0.5,
+          "min": 2,
+          "max": 12,
+          "hint": "Hibiscus grows in tropical biomes."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:glowflower",
+          "effort": 0.6,
+          "min": 2,
+          "max": 8,
+          "hint": "Glowflowers light up mystic groves."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:wilted_lily",
+          "effort": 0.6,
+          "min": 2,
+          "max": 8,
+          "hint": "Wilted lilies droop in eerie, foggy biomes."
+        }
+      ]
+    },
+    {
+      "key": "bop_sands",
+      "family": "bop_sands",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:white_sand",
+          "effort": 0.1,
+          "min": 16,
+          "max": 64,
+          "hint": "White sand covers tropical beaches."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:orange_sand",
+          "effort": 0.1,
+          "min": 16,
+          "max": 64,
+          "hint": "Orange sand covers lush deserts."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:black_sand",
+          "effort": 0.12,
+          "min": 16,
+          "max": 64,
+          "hint": "Black sand covers volcanic beaches."
+        },
+        {
+          "type": "craft_item",
+          "id": "biomesoplenty:white_sandstone",
+          "effort": 0.15,
+          "min": 8,
+          "max": 32,
+          "hint": "Four white sand."
+        },
+        {
+          "type": "craft_item",
+          "id": "biomesoplenty:orange_sandstone",
+          "effort": 0.15,
+          "min": 8,
+          "max": 32,
+          "hint": "Four orange sand."
+        },
+        {
+          "type": "smelt_item",
+          "id": "biomesoplenty:smooth_white_sandstone",
+          "effort": 0.25,
+          "min": 8,
+          "max": 32,
+          "hint": "Smelt white sandstone in a furnace."
+        }
+      ]
+    },
+    {
+      "key": "bop_wetlands",
+      "family": "bop_wetlands",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "swamp"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:cattail",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "hint": "Cattails grow at the edges of marshes."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:reed",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "hint": "Reeds stand in shallow water."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:spanish_moss",
+          "effort": 0.4,
+          "min": 4,
+          "max": 16,
+          "hint": "Spanish moss hangs from bayou trees."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:watergrass",
+          "effort": 0.4,
+          "min": 4,
+          "max": 16,
+          "hint": "Watergrass grows under water in wetlands."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:barley",
+          "effort": 0.35,
+          "min": 4,
+          "max": 16,
+          "plural": "Barley",
+          "hint": "Wild barley grows on the prairie."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:glowshroom",
+          "effort": 0.8,
+          "min": 2,
+          "max": 8,
+          "hint": "Glowshrooms light up glowing grottos and caves."
+        }
+      ]
+    },
+    {
+      "key": "bop_rose_quartz",
+      "family": "bop_rose_quartz",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "caves",
+        "rare"
+      ],
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:rose_quartz_cluster",
+          "effort": 1.4,
+          "min": 2,
+          "max": 8,
+          "hint": "Rose quartz clusters grow in crystal caves underground."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:rose_quartz_chunk",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "hint": "Rose quartz clusters drop chunks.",
+          "since": "1.20"
+        },
+        {
+          "type": "craft_item",
+          "id": "biomesoplenty:rose_quartz_block",
+          "effort": 4.5,
+          "min": 1,
+          "max": 4,
+          "hint": "Four rose quartz chunks.",
+          "minDifficulty": "normal",
+          "since": "1.20"
+        }
+      ]
+    },
+    {
+      "key": "bop_nether",
+      "family": "bop_nether",
+      "tier": 3,
+      "dimension": "minecraft:the_nether",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:brimstone",
+          "effort": 0.25,
+          "min": 8,
+          "max": 32,
+          "hint": "Brimstone crusts the fumaroles of Nether biomes."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:flesh",
+          "effort": 0.35,
+          "min": 8,
+          "max": 32,
+          "plural": "Flesh",
+          "hint": "Flesh covers the Visceral Heap."
+        },
+        {
+          "type": "mine_block",
+          "id": "biomesoplenty:hellbark_log",
+          "effort": 0.3,
+          "min": 8,
+          "max": 32,
+          "hint": "Hellbark grows in the Nether's undergrowth."
+        },
+        {
+          "type": "collect_item",
+          "id": "biomesoplenty:burning_blossom",
+          "effort": 0.6,
+          "min": 2,
+          "max": 8,
+          "hint": "Burning blossoms grow in the Nether."
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "biomesoplenty:white_sand",
+        "value": 0.1,
+        "tier": 0,
+        "max": 64,
+        "family": "bop_sands"
+      },
+      {
+        "id": "biomesoplenty:magic_log",
+        "value": 0.5,
+        "tier": 1,
+        "max": 16,
+        "family": "bop_timber"
+      },
+      {
+        "id": "biomesoplenty:glowshroom",
+        "value": 0.8,
+        "tier": 1,
+        "max": 8,
+        "family": "bop_wetlands"
+      },
+      {
+        "id": "biomesoplenty:lavender",
+        "value": 0.35,
+        "tier": 0,
+        "max": 16,
+        "family": "bop_bouquet"
+      },
+      {
+        "id": "biomesoplenty:rose_quartz_chunk",
+        "value": 1.2,
+        "tier": 2,
+        "max": 8,
+        "family": "bop_rose_quartz"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "bop_explorer",
+      "names": [
+        "Biome Hopper",
+        "Plenty to See",
+        "Wanderlust"
+      ],
+      "descriptions": [
+        "The world got bigger: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "bop_timber"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "bop_bouquet",
+            "bop_wetlands"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bop_florist",
+      "names": [
+        "Wild Bouquet",
+        "Meadow Colours",
+        "Flower Hunt"
+      ],
+      "descriptions": [
+        "Gather the wild flowers: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "bop_bouquet"
+          ]
+        },
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "bop_bouquet"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bop_carpenter",
+      "names": [
+        "Exotic Carpenter",
+        "Fine Timber"
+      ],
+      "descriptions": [
+        "Exotic wood for the workshop: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "mine_block"
+          ],
+          "keys": [
+            "bop_timber"
+          ]
+        },
+        {
+          "types": [
+            "craft_item"
+          ],
+          "keys": [
+            "bop_carpentry"
+          ]
+        }
+      ]
+    }
+  ]
+}

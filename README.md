@@ -22,7 +22,9 @@ Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
 - **Generated quests** — a fresh board every 12 hours (00:00 and 12:00 by default), sized to a
   sensible amount of play time and paid with fitting rewards: gather, mine, craft, hunt, enchant,
   throw, brew and more. Supports content from
-  **Farmer's Delight, Create, Mekanism, The Twilight Forest and Botania** when installed, three
+  **Farmer's Delight, Create, Mekanism, The Twilight Forest, Botania, Applied Energistics 2,
+  Immersive Engineering, Biomes O' Plenty, Alex's Mobs, Tinkers' Construct and Ars Nouveau** when
+  installed, three
   difficulty levels, and Nether/End quests once players have been there.
 - **First come, first served** — on servers a generated quest someone accepted is taken; the book
   shows *Taken by Steve* or *Reserved for you*.

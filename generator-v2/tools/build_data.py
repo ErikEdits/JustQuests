@@ -8,10 +8,18 @@ from other_data import REWARDS, TEMPLATES, THEMES, BALANCE, TAGS
 from mod_mekanism import MEKANISM, MEK_FAMILY_NAMES, MEK_TAGS
 from mod_twilightforest import TWILIGHT_FOREST, TF_FAMILY_NAMES, TF_DIMENSION_NAMES
 from mod_botania import BOTANIA, BOT_FAMILY_NAMES
+from mod_ae2 import AE2, AE2_FAMILY_NAMES
+from mod_immersive import IMMERSIVE, IE_FAMILY_NAMES
+from mod_bop import BIOMES_O_PLENTY, BOP_FAMILY_NAMES
+from mod_alexsmobs import ALEXS_MOBS, AM_FAMILY_NAMES
+from mod_tinkers import TINKERS, TC_FAMILY_NAMES
+from mod_ars import ARS_NOUVEAU, AN_FAMILY_NAMES
 
 TEMPLATES["familyNames"].update(MEK_FAMILY_NAMES)
 TEMPLATES["familyNames"].update(TF_FAMILY_NAMES)
 TEMPLATES["familyNames"].update(BOT_FAMILY_NAMES)
+for names in (AE2_FAMILY_NAMES, IE_FAMILY_NAMES, BOP_FAMILY_NAMES, AM_FAMILY_NAMES, TC_FAMILY_NAMES, AN_FAMILY_NAMES):
+    TEMPLATES["familyNames"].update(names)
 TEMPLATES["dimensionNames"].update(TF_DIMENSION_NAMES)
 TAGS["concepts"].update(MEK_TAGS)
 
@@ -23,8 +31,12 @@ dump(CREATE, os.path.join(ROOT, "catalog", "profiles", "create.json"))
 dump(MEKANISM, os.path.join(ROOT, "catalog", "profiles", "mekanism.json"))
 dump(TWILIGHT_FOREST, os.path.join(ROOT, "catalog", "profiles", "twilightforest.json"))
 dump(BOTANIA, os.path.join(ROOT, "catalog", "profiles", "botania.json"))
+EXTRA = {"ae2.json": AE2, "immersiveengineering.json": IMMERSIVE, "biomesoplenty.json": BIOMES_O_PLENTY,
+         "alexsmobs.json": ALEXS_MOBS, "tconstruct.json": TINKERS, "ars_nouveau.json": ARS_NOUVEAU}
+for name, profile in EXTRA.items():
+    dump(profile, os.path.join(ROOT, "catalog", "profiles", name))
 dump({"format": 1, "profiles": ["farmersdelight.json", "create.json", "mekanism.json", "twilightforest.json",
-                                "botania.json"]},
+                                "botania.json"] + list(EXTRA)},
      os.path.join(ROOT, "catalog", "profiles", "index.json"))
 dump(REWARDS, os.path.join(ROOT, "rewards.json"))
 dump(TEMPLATES, os.path.join(ROOT, "templates.json"))

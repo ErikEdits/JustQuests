@@ -9,7 +9,7 @@ folder: the core sources and data files are **copied** into all 34 version trees
 | `justquests-generator-v2/` | Gradle project: core (`src/main/java/.../generator/v2`), data (`src/main/resources/justquests_genv2`), 111 JUnit tests, samples, reference adapters |
 | `justquests-generator-v2/INTEGRATION.md` | The contract between the core and the mod (host adapter, call order, settings) |
 | `justquests-generator-v2/DESIGN.md` | Algorithms, effort/reward models, data schemas, tuning guide, assumptions |
-| `justquests-generator-v2/MODS.md` | The five supported mods (Farmer's Delight, Create, Mekanism, Twilight Forest, Botania) |
+| `justquests-generator-v2/MODS.md` | The eleven supported mods (Farmer's Delight, Create, Mekanism, Twilight Forest, Botania; since 0.4.0 also AE2, Immersive Engineering, Biomes O' Plenty, Alex's Mobs, Tinkers' Construct, Ars Nouveau) |
 | `tools/` | Python scripts that **generate** the JSON catalogs (`build_data.py`) and check them |
 
 Built from the hand-off spec [`docs/generator-v2-spec.md`](../docs/generator-v2-spec.md).

@@ -1,0 +1,383 @@
+{
+  "format": 1,
+  "id": "alexsmobs",
+  "name": "Alex's Mobs",
+  "requiresMod": [
+    "alexsmobs"
+  ],
+  "minecraft": {
+    "min": "1.18.2"
+  },
+  "entries": [
+    {
+      "key": "am_savanna",
+      "family": "am_savanna",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "savanna"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:kangaroo_hide",
+          "effort": 1.4,
+          "min": 2,
+          "max": 8,
+          "hint": "Kangaroos hop around savannas and deserts."
+        },
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:kangaroo_meat",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "plural": "Kangaroo Meat",
+          "hint": "Kangaroos drop meat."
+        },
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:roadrunner_feather",
+          "effort": 1.6,
+          "min": 2,
+          "max": 6,
+          "hint": "Roadrunners race across badlands and deserts."
+        },
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:emu_feather",
+          "effort": 1.4,
+          "min": 2,
+          "max": 8,
+          "hint": "Emus roam savannas and badlands."
+        }
+      ]
+    },
+    {
+      "key": "am_northlands",
+      "family": "am_northlands",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "taiga"
+      ],
+      "targets": [
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:moose_antler",
+          "effort": 2.4,
+          "min": 1,
+          "max": 4,
+          "hint": "Moose roam snowy forests."
+        },
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:moose_ribs",
+          "effort": 1.6,
+          "min": 2,
+          "max": 6,
+          "name": "Raw Moose Ribs",
+          "plural": "Raw Moose Ribs",
+          "hint": "Moose drop ribs."
+        },
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:bear_fur",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "name": "Hair of Bear",
+          "plural": "Hair of Bear",
+          "hint": "Grizzly bears live in forests and taigas."
+        },
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:bison_fur",
+          "effort": 1.4,
+          "min": 2,
+          "max": 8,
+          "plural": "Bison Fur",
+          "hint": "Bison roam snowy plains."
+        }
+      ]
+    },
+    {
+      "key": "am_cookout",
+      "family": "am_cookout",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "smelt_item",
+          "id": "alexsmobs:cooked_kangaroo_meat",
+          "effort": 1.3,
+          "min": 2,
+          "max": 8,
+          "plural": "Cooked Kangaroo Meat",
+          "hint": "Cook kangaroo meat in a furnace, smoker or campfire."
+        },
+        {
+          "type": "smelt_item",
+          "id": "alexsmobs:cooked_moose_ribs",
+          "effort": 1.7,
+          "min": 2,
+          "max": 6,
+          "plural": "Cooked Moose Ribs",
+          "hint": "Cook moose ribs in a furnace, smoker or campfire."
+        },
+        {
+          "type": "smelt_item",
+          "id": "alexsmobs:cooked_lobster_tail",
+          "effort": 1.5,
+          "min": 2,
+          "max": 6,
+          "hint": "Lobsters crawl on beaches; cook their tails."
+        },
+        {
+          "type": "craft_item",
+          "id": "alexsmobs:kangaroo_burger",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Cooked kangaroo meat between two breads."
+        }
+      ]
+    },
+    {
+      "key": "am_predators",
+      "family": "am_predators",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "swamp"
+      ],
+      "targets": [
+        {
+          "type": "kill_mob",
+          "id": "alexsmobs:crocodile",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Crocodiles lurk in swamps, rivers and mangroves."
+        },
+        {
+          "type": "kill_mob",
+          "id": "alexsmobs:rattlesnake",
+          "effort": 1.4,
+          "min": 2,
+          "max": 6,
+          "hint": "Rattlesnakes coil in deserts and badlands."
+        },
+        {
+          "type": "kill_mob",
+          "id": "alexsmobs:komodo_dragon",
+          "effort": 2.4,
+          "min": 1,
+          "max": 3,
+          "hint": "Komodo dragons hunt in jungles.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "kill_mob",
+          "id": "alexsmobs:centipede_head",
+          "effort": 2.0,
+          "min": 1,
+          "max": 3,
+          "name": "Cave Centipede",
+          "hint": "Cave centipedes crawl in dark caves.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "collect_item",
+          "id": "alexsmobs:crocodile_scute",
+          "effort": 2.2,
+          "min": 2,
+          "max": 8,
+          "hint": "Crocodiles drop scutes."
+        }
+      ]
+    },
+    {
+      "key": "am_gear",
+      "family": "am_gear",
+      "tier": 2,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "craft_item",
+          "id": "alexsmobs:roadrunner_boots",
+          "effort": 10.0,
+          "min": 1,
+          "max": 1,
+          "plural": "Roadrunner Boots",
+          "hint": "Roadrunner feathers, leather boots and chiseled sandstone.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "alexsmobs:moose_headgear",
+          "effort": 10.0,
+          "min": 1,
+          "max": 1,
+          "name": "Antler Headdress",
+          "hint": "Moose antlers, an iron ingot and string.",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "craft_item",
+          "id": "alexsmobs:crocodile_chestplate",
+          "effort": 16.0,
+          "min": 1,
+          "max": 1,
+          "hint": "Seven crocodile scutes.",
+          "minDifficulty": "hard"
+        },
+        {
+          "type": "craft_item",
+          "id": "alexsmobs:shark_tooth_arrow",
+          "effort": 1.6,
+          "min": 4,
+          "max": 16,
+          "hint": "A shark tooth, a stick and kelp."
+        }
+      ]
+    },
+    {
+      "key": "am_nether",
+      "family": "am_nether",
+      "tier": 3,
+      "dimension": "minecraft:the_nether",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "kill_mob",
+          "id": "alexsmobs:crimson_mosquito",
+          "effort": 1.4,
+          "min": 2,
+          "max": 6,
+          "hint": "Crimson mosquitoes buzz in crimson forests."
+        },
+        {
+          "type": "kill_mob",
+          "id": "alexsmobs:soul_vulture",
+          "effort": 2.0,
+          "min": 1,
+          "max": 4,
+          "hint": "Soul vultures circle soul sand valleys."
+        },
+        {
+          "type": "kill_mob",
+          "id": "alexsmobs:dropbear",
+          "effort": 2.4,
+          "min": 1,
+          "max": 3,
+          "hint": "Dropbears hang from the ceilings of Nether wastes.",
+          "minDifficulty": "normal"
+        }
+      ]
+    }
+  ],
+  "rewards": {
+    "items": [
+      {
+        "id": "alexsmobs:cooked_kangaroo_meat",
+        "value": 1.3,
+        "tier": 1,
+        "max": 16,
+        "family": "am_cookout"
+      },
+      {
+        "id": "alexsmobs:kangaroo_burger",
+        "value": 2.2,
+        "tier": 2,
+        "max": 8,
+        "family": "am_cookout"
+      },
+      {
+        "id": "alexsmobs:bison_fur",
+        "value": 1.4,
+        "tier": 1,
+        "max": 16,
+        "family": "am_northlands"
+      },
+      {
+        "id": "alexsmobs:roadrunner_feather",
+        "value": 1.7,
+        "tier": 2,
+        "max": 8,
+        "family": "am_savanna"
+      }
+    ]
+  },
+  "themes": [
+    {
+      "key": "am_safari",
+      "names": [
+        "Safari",
+        "Wild Kingdom",
+        "Into the Wild"
+      ],
+      "descriptions": [
+        "The wild animals have plenty to give: {list}."
+      ],
+      "slots": [
+        {
+          "types": [
+            "collect_item"
+          ],
+          "keys": [
+            "am_savanna",
+            "am_northlands"
+          ]
+        },
+        {
+          "types": [
+            "collect_item",
+            "smelt_item"
+          ],
+          "keys": [
+            "am_savanna",
+            "am_northlands",
+            "am_cookout"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "am_hunter",
+      "names": [
+        "Big Game",
+        "Apex Hunter",
+        "Predator Patrol"
+      ],
+      "descriptions": [
+        "Dangerous animals roam the wilds: {list}."
+      ],
+      "minDifficulty": "normal",
+      "slots": [
+        {
+          "types": [
+            "kill_mob"
+          ],
+          "keys": [
+            "am_predators"
+          ]
+        },
+        {
+          "types": [
+            "kill_mob",
+            "collect_item"
+          ],
+          "keys": [
+            "am_predators"
+          ]
+        }
+      ]
+    }
+  ]
+}
