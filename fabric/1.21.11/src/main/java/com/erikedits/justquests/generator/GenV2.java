@@ -1,5 +1,6 @@
 package com.erikedits.justquests.generator;
 
+import com.erikedits.justquests.text.Msg;
 import com.erikedits.justquests.JustQuests;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
@@ -112,15 +113,15 @@ public final class GenV2 {
     }
 
     /** Claim before accepting. @return null to proceed, otherwise the message for the player */
-    public static String claim(Identifier id, UUID player) {
+    public static net.minecraft.network.chat.Component claim(Identifier id, UUID player) {
         if (gen == null) return null;
         ClaimResult r = gen.tryClaim(id.toString(), player);
         if (r == ClaimResult.OK) syncClaims(player);   // the other quest books now show it as taken
         if (r == ClaimResult.CLAIMED_BY_OTHER) {
             String name = playerName(gen.claim(id.toString()).holder());
-            if (name != null) return name + " already took this quest.";
+            if (name != null) return Msg.tr("justquests.claim.taken_by", name);
         }
-        return r.proceed() ? null : r.denyMessage();
+        return r.proceed() ? null : Msg.tr("justquests.claim." + r.name().toLowerCase(java.util.Locale.ROOT));
     }
 
     /** The player abandoned the quest (or an admin reset it). */
@@ -164,7 +165,7 @@ public final class GenV2 {
         }
         ServerPlayer p = server == null ? null : server.getPlayerList().getPlayer(former.get());
         if (p != null) {
-            notify(p, "§eAn operator released your generated quest: §f" + title(id));
+            notify(p, Msg.tr("justquests.claim.released_by_op", title(id)));
             syncPlayer(p);
         }
         registerServed();
@@ -258,14 +259,14 @@ public final class GenV2 {
     }
 
     /** /quest list suffix: " [yours]", " [taken by X]", " [completed by X]" or "" (free or not generated). */
-    public static String claimTag(Identifier id, UUID viewer) {
-        if (gen == null || !gen.config().exclusiveClaims() || !gen.isGenerated(id.toString())) return "";
+    public static net.minecraft.network.chat.MutableComponent claimTag(Identifier id, UUID viewer) {
+        if (gen == null || !gen.config().exclusiveClaims() || !gen.isGenerated(id.toString())) return Msg.empty();
         ClaimView view = gen.claim(id.toString());
-        if (view.state() == ClaimState.AVAILABLE || view.holder() == null) return "";
-        if (view.holder().equals(viewer)) return view.state() == ClaimState.CLAIMED ? " §a[yours]" : "";
+        if (view.state() == ClaimState.AVAILABLE || view.holder() == null) return Msg.empty();
+        if (view.holder().equals(viewer)) return view.state() == ClaimState.CLAIMED ? Msg.tr("justquests.claim.tag_yours") : Msg.empty();
         String name = playerName(view.holder());
-        String who = name != null ? name : "another player";
-        return view.state() == ClaimState.COMPLETED ? " §8[completed by " + who + "]" : " §8[taken by " + who + "]";
+        Object who = name != null ? name : Msg.tr("justquests.another_player");
+        return Msg.tr(view.state() == ClaimState.COMPLETED ? "justquests.claim.tag_completed" : "justquests.claim.tag_taken", who);
     }
 
     // ------------------------------------------------------------------ helpers
@@ -291,7 +292,7 @@ public final class GenV2 {
             PlayerQuestData data = store.peek(e.holder());
             if (data != null && id != null) data.abandon(id);
             ServerPlayer p = server == null ? null : server.getPlayerList().getPlayer(e.holder());
-            if (p != null) notify(p, "§eYour generated quest expired and was released: §f" + title(id));
+            if (p != null) notify(p, Msg.tr("justquests.claim.expired", title(id)));
         }
         store.markDirty();
         syncClaims(null);   // the holders' progress and everyone's claims changed
@@ -373,8 +374,8 @@ public final class GenV2 {
         }
     }
 
-    private static void notify(ServerPlayer p, String msg) {
-        p.sendSystemMessage(net.minecraft.network.chat.Component.literal(msg));
+    private static void notify(ServerPlayer p, net.minecraft.network.chat.Component msg) {
+        p.sendSystemMessage(msg);
     }
 
     private static void syncAll() {

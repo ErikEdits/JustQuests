@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -44,7 +45,7 @@ public record EnchantItemObjective(Optional<ItemMatcher> item, int count) implem
     @Override
     public Component display() {
         return item.isPresent()
-            ? Component.literal("Enchant " + count + "x ").append(item.get().name())
-            : Component.literal("Enchant " + count + (count == 1 ? " item" : " items"));
+            ? Msg.tr("justquests.goal.enchant_count", count, item.get().name())
+            : Msg.tr(count == 1 ? "justquests.goal.enchant_one" : "justquests.goal.enchant_many", count);
     }
 }

@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.reward;
 
+import com.erikedits.justquests.text.Msg;
 import com.erikedits.justquests.JustQuests;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -51,6 +52,6 @@ public record CommandReward(String command) implements QuestReward {
 
     @Override
     public Component display() {
-        return Component.literal(displayName());
+        return Msg.tr("justquests.reward.command", command);
     }
 }

@@ -3,6 +3,19 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.0] - in progress
+
+Built step by step; test builds go to a local folder until the release.
+
+### Changed
+- **Every text is translatable:** the quest book, the HUD, goal and reward names, and all chat
+  messages of the commands now come from language files (`assets/justquests/lang/`). For now
+  there is only English; more languages follow. Each player sees their own game language, also
+  on Minecraft 1.18–1.20.1. On 1.19.4 and newer, players without the mod see the English text.
+- Loot rewards read "Loot: simple dungeon" instead of the full loot table id; tag goals read
+  "any logs"; dimension goals name the vanilla dimensions ("Visit the Nether").
+- The Discord welcome no longer talks about voting on the v0.2 GUI.
+
 ## [0.3.5] - 2026-10-04
 
 ### Added

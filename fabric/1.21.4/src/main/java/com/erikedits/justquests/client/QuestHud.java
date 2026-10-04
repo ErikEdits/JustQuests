@@ -8,6 +8,7 @@ import com.erikedits.justquests.player.QuestProgress;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +39,7 @@ public final class QuestHud {
         ClientSettings.load();
         ClientSettings.hud = !ClientSettings.hud;
         ClientSettings.save();
-        Minecraft.getInstance().gui.setOverlayMessage(Component.literal(ClientSettings.hud ? "Quest HUD on" : "Quest HUD off"), false);
+        Minecraft.getInstance().gui.setOverlayMessage(Component.translatable(ClientSettings.hud ? "justquests.hud.on" : "justquests.hud.off"), false);
     }
 
     public static void render(GuiGraphics g) {
@@ -80,7 +81,7 @@ public final class QuestHud {
                 textW = Math.max(textW, font.width(line));
             }
             if (objs.size() > MAX_OBJECTIVES) {
-                lines.add("+" + (objs.size() - MAX_OBJECTIVES) + " more");
+                lines.add(I18n.get("justquests.hud.more", objs.size() - MAX_OBJECTIVES));
                 colors.add(MORE);
             }
             blocks.add(new Block(QuestIcons.of(id, q), title, lines, colors));

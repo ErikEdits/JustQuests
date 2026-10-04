@@ -1,5 +1,6 @@
 package com.erikedits.justquests.commands;
 
+import com.erikedits.justquests.text.Msg;
 import com.erikedits.justquests.data.LocalizedText;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
@@ -156,14 +157,14 @@ public class QuestCommand {
             .toList();
 
         if (entries.isEmpty()) {
-            String msg = category == null ? "§7No quests defined."
-                : "§7No quests in category '" + category + "'. Try /quest categories.";
-            src.sendSuccess(new net.minecraft.network.chat.TextComponent(msg), false);
+            Component msg = category == null ? Msg.tr("justquests.list.none")
+                : Msg.tr("justquests.list.none_category", category);
+            src.sendSuccess(msg, false);
             return 0;
         }
 
-        src.sendSuccess(new net.minecraft.network.chat.TextComponent(category == null
-            ? "§eAvailable quests:" : "§eQuests in §f" + category + "§e:"), false);
+        src.sendSuccess((category == null
+            ? Msg.tr("justquests.list.header") : Msg.tr("justquests.list.header_category", category)), false);
 
         String shownCategory = null;
         for (Map.Entry<ResourceLocation, Quest> entry : entries) {
@@ -174,7 +175,7 @@ public class QuestCommand {
             if (category == null && !quest.category().equals(shownCategory)) {
                 shownCategory = quest.category();
                 final String cat = shownCategory;
-                src.sendSuccess(new net.minecraft.network.chat.TextComponent("§6§l" + cat), false);
+                src.sendSuccess(Msg.tr("justquests.list.category", Msg.category(cat)), false);
             }
 
             // locked teaser: a prerequisite isn't completed yet (Q28)
@@ -187,21 +188,19 @@ public class QuestCommand {
             if (missing != null) {
                 Quest reqQuest = QuestManager.INSTANCE.get(missing);
                 String reqName = reqQuest != null ? reqQuest.title().get(lang) : missing.toString();
-                src.sendSuccess(new net.minecraft.network.chat.TextComponent("§8" + id + " §7— §8" + quest.title().get(lang)
-                    + " §c[locked: needs " + reqName + "]"), false);
+                src.sendSuccess(Msg.tr("justquests.list.locked", id, quest.title().get(lang), reqName), false);
                 continue; // teaser only — hide goal and reward
             }
 
-            String repeatTag = quest.repeatable() ? " §d(repeatable)" : "";
-            String claimTag = viewer == null ? "" : com.erikedits.justquests.generator.GenV2.claimTag(id, viewer.getUUID());
-            src.sendSuccess(new net.minecraft.network.chat.TextComponent("§b" + id + " §7— §f" + quest.title().get(lang)
-                + repeatTag + claimTag), false);
+            Component repeatTag = quest.repeatable() ? Msg.tr("justquests.list.repeatable") : Msg.empty();
+            Component claimTag = viewer == null ? Msg.empty() : com.erikedits.justquests.generator.GenV2.claimTag(id, viewer.getUUID());
+            src.sendSuccess(Msg.tr("justquests.list.entry", id, quest.title().get(lang)).append(repeatTag).append(claimTag), false);
             String desc = quest.description().get(lang);
             if (!desc.isBlank()) {
-                src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §7§o" + desc), false);
+                src.sendSuccess(Msg.tr("justquests.list.description", desc), false);
             }
 
-            MutableComponent goals = new net.minecraft.network.chat.TextComponent("  §6Goal: §f");
+            MutableComponent goals = Msg.tr("justquests.list.goal");
             List<QuestObjective> objs = quest.objectives();
             for (int i = 0; i < objs.size(); i++) {
                 if (i > 0) goals.append(new net.minecraft.network.chat.TextComponent("§7, §f"));
@@ -209,7 +208,7 @@ public class QuestCommand {
             }
             src.sendSuccess(goals, false);
 
-            MutableComponent rewards = new net.minecraft.network.chat.TextComponent("  §6Reward: §a");
+            MutableComponent rewards = Msg.tr("justquests.list.reward");
             List<QuestReward> rs = quest.rewards();
             for (int i = 0; i < rs.size(); i++) {
                 if (i > 0) rewards.append(new net.minecraft.network.chat.TextComponent("§7, §a"));
@@ -224,16 +223,16 @@ public class QuestCommand {
         CommandSourceStack src = ctx.getSource();
         Map<ResourceLocation, Quest> quests = QuestManager.INSTANCE.getQuests();
         if (quests.isEmpty()) {
-            src.sendSuccess(new net.minecraft.network.chat.TextComponent("§7No quests defined."), false);
+            src.sendSuccess(Msg.tr("justquests.list.none"), false);
             return 0;
         }
         Map<String, Integer> counts = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         for (Quest q : quests.values()) {
             counts.merge(q.category(), 1, Integer::sum);
         }
-        src.sendSuccess(new net.minecraft.network.chat.TextComponent("§eCategories:"), false);
+        src.sendSuccess(Msg.tr("justquests.categories.header"), false);
         counts.forEach((cat, n) ->
-            src.sendSuccess(new net.minecraft.network.chat.TextComponent("§6" + cat + " §7(" + n + ") §8— /quest list " + cat), false));
+            src.sendSuccess(Msg.tr("justquests.categories.entry", Msg.category(cat), n, cat), false));
         return counts.size();
     }
 
@@ -249,9 +248,9 @@ public class QuestCommand {
         // cap at 100: a player may have completed quests that are no longer loaded
         int pct = total > 0 ? Math.min(100, completed * 100 / total) : 0;
 
-        src.sendSuccess(new net.minecraft.network.chat.TextComponent("§eYour quest stats:"), false);
-        src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §7Completed: §f" + completed + "§7/§f" + total + " §7(" + pct + "%)"), false);
-        src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §7Active: §f" + active), false);
+        src.sendSuccess(Msg.tr("justquests.stats.header"), false);
+        src.sendSuccess(Msg.tr("justquests.stats.completed", completed, total, pct), false);
+        src.sendSuccess(Msg.tr("justquests.stats.active", active), false);
 
         if (data != null && !data.completed.isEmpty()) {
             Map<String, Integer> byCat = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
@@ -260,15 +259,15 @@ public class QuestCommand {
                 if (q != null) byCat.merge(q.category(), 1, Integer::sum);
             }
             if (!byCat.isEmpty()) {
-                src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §7By category:"), false);
-                byCat.forEach((c, n) -> src.sendSuccess(new net.minecraft.network.chat.TextComponent("    §6" + c + "§7: §f" + n), false));
+                src.sendSuccess(Msg.tr("justquests.stats.by_category"), false);
+                byCat.forEach((c, n) -> src.sendSuccess(Msg.tr("justquests.stats.category", Msg.category(c), n), false));
             }
             List<Long> times = data.completed.values().stream().filter(t -> t > 0L).sorted().toList();
             if (!times.isEmpty()) {
                 java.text.SimpleDateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
                 String first = fmt.format(new java.util.Date(times.get(0)));
                 String last = fmt.format(new java.util.Date(times.get(times.size() - 1)));
-                src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §7First: §f" + first + " §7Last: §f" + last), false);
+                src.sendSuccess(Msg.tr("justquests.stats.dates", first, last), false);
             }
         }
         return 1;
@@ -278,7 +277,7 @@ public class QuestCommand {
         CommandSourceStack src = ctx.getSource();
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null) {
-            src.sendSuccess(new net.minecraft.network.chat.TextComponent("§7No quest data yet."), false);
+            src.sendSuccess(Msg.tr("justquests.leaderboard.no_data"), false);
             return 0;
         }
         MinecraftServer server = src.getServer();
@@ -288,16 +287,16 @@ public class QuestCommand {
             .limit(10)
             .toList();
         if (top.isEmpty()) {
-            src.sendSuccess(new net.minecraft.network.chat.TextComponent("§7No completed quests yet."), false);
+            src.sendSuccess(Msg.tr("justquests.leaderboard.none"), false);
             return 0;
         }
-        src.sendSuccess(new net.minecraft.network.chat.TextComponent("§eQuest leaderboard (top " + top.size() + "):"), false);
+        src.sendSuccess(Msg.tr("justquests.leaderboard.header", top.size()), false);
         int rank = 0;
         for (Map.Entry<UUID, PlayerQuestData> e : top) {
             final int r = ++rank;
             final String name = nameFor(server, e.getKey());
             final int n = e.getValue().completed.size();
-            src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §6#" + r + " §f" + name + " §7— §f" + n + " §7done"), false);
+            src.sendSuccess(Msg.tr("justquests.leaderboard.entry", r, name, n), false);
         }
         return top.size();
     }
@@ -318,18 +317,18 @@ public class QuestCommand {
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
 
         if (data == null || data.active.isEmpty()) {
-            ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent("§7You have no active quests."), false);
+            ctx.getSource().sendSuccess(Msg.tr("justquests.progress.none"), false);
             return 0;
         }
 
-        ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent("§eActive quests:"), false);
+        ctx.getSource().sendSuccess(Msg.tr("justquests.progress.header"), false);
 
         for (Map.Entry<ResourceLocation, QuestProgress> entry : data.active.entrySet()) {
             Quest quest = QuestManager.INSTANCE.get(entry.getKey());
             if (quest == null) continue;
 
             ctx.getSource().sendSuccess(
-                new net.minecraft.network.chat.TextComponent("§b" + entry.getKey() + " §7— §f" + quest.title().get(lang)), false);
+                Msg.tr("justquests.list.entry", entry.getKey(), quest.title().get(lang)), false);
 
             QuestProgress prog = entry.getValue();
             for (int i = 0; i < quest.objectives().size(); i++) {
@@ -350,20 +349,20 @@ public class QuestCommand {
 
         Quest quest = QuestManager.INSTANCE.get(id);
         if (quest == null) {
-            ctx.getSource().sendFailure(new net.minecraft.network.chat.TextComponent("§cUnknown quest: " + id));
+            ctx.getSource().sendFailure(Msg.tr("justquests.error.unknown_quest", id));
             return 0;
         }
 
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null) {
-            ctx.getSource().sendFailure(new net.minecraft.network.chat.TextComponent("§cQuest storage is not ready yet."));
+            ctx.getSource().sendFailure(Msg.tr("justquests.error.storage"));
             return 0;
         }
         PlayerQuestData data = store.get(player.getUUID());
         String lang = com.erikedits.justquests.data.LocalizedText.DEFAULT_LANG;
 
         if (data.isActive(id)) {
-            ctx.getSource().sendFailure(new net.minecraft.network.chat.TextComponent("§cQuest is already active."));
+            ctx.getSource().sendFailure(Msg.tr("justquests.accept.already_active"));
             return 0;
         }
 
@@ -372,7 +371,7 @@ public class QuestCommand {
             if (!data.isCompleted(req)) {
                 Quest reqQuest = QuestManager.INSTANCE.get(req);
                 String reqName = reqQuest != null ? reqQuest.title().get(lang) : req.toString();
-                ctx.getSource().sendFailure(new net.minecraft.network.chat.TextComponent("§cLocked — finish first: §f" + reqName));
+                ctx.getSource().sendFailure(Msg.tr("justquests.accept.locked", reqName));
                 return 0;
             }
         }
@@ -380,38 +379,37 @@ public class QuestCommand {
         // already completed: only re-acceptable if repeatable and off cooldown (Q26)
         if (data.isCompleted(id)) {
             if (!quest.repeatable()) {
-                ctx.getSource().sendFailure(new net.minecraft.network.chat.TextComponent("§cYou already completed this quest."));
+                ctx.getSource().sendFailure(Msg.tr("justquests.accept.done"));
                 return 0;
             }
             long cooldownMs = quest.cooldownHours().orElse(0) * 3600_000L;
             if (cooldownMs > 0) {
                 long remaining = cooldownMs - (System.currentTimeMillis() - data.completed.getOrDefault(id, 0L));
                 if (remaining > 0) {
-                    ctx.getSource().sendFailure(new net.minecraft.network.chat.TextComponent(
-                        "§cOn cooldown — " + formatDuration(remaining) + " left."));
+                    ctx.getSource().sendFailure(Msg.tr("justquests.accept.cooldown", formatDuration(remaining)));
                     return 0;
                 }
             }
         }
 
-        String denied = com.erikedits.justquests.generator.GenV2.claim(id, player.getUUID());
+        Component denied = com.erikedits.justquests.generator.GenV2.claim(id, player.getUUID());
         if (denied != null) {
-            genFail(ctx.getSource(), "§c" + denied);
+            ctx.getSource().sendFailure(denied);
             return 0;
         }
         data.accept(id);
         store.markDirty();
         ctx.getSource().sendSuccess(
-            new net.minecraft.network.chat.TextComponent("§a✓ Accepted: " + quest.title().get(lang)), false);
+            Msg.tr("justquests.accept.ok", quest.title().get(lang)), false);
         return 1;
     }
 
     /** Human-readable remaining time, e.g. "2h 5m" or "3m". */
-    private static String formatDuration(long ms) {
+    private static Component formatDuration(long ms) {
         long totalMin = ms / 60000L;
         long h = totalMin / 60;
         long m = totalMin % 60;
-        return h > 0 ? h + "h " + m + "m" : Math.max(1, m) + "m";
+        return h > 0 ? Msg.tr("justquests.time.hours_minutes", h, m) : Msg.tr("justquests.time.minutes", Math.max(1, m));
     }
 
     private static int abandon(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
@@ -420,7 +418,7 @@ public class QuestCommand {
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
         if (data == null || !data.isActive(id)) {
-            ctx.getSource().sendFailure(new net.minecraft.network.chat.TextComponent("§cQuest is not active."));
+            ctx.getSource().sendFailure(Msg.tr("justquests.abandon.not_active"));
             return 0;
         }
 
@@ -428,7 +426,7 @@ public class QuestCommand {
         store.markDirty();
         com.erikedits.justquests.generator.GenV2.abandoned(id, player.getUUID());
         ctx.getSource().sendSuccess(
-            new net.minecraft.network.chat.TextComponent("§7Abandoned quest: " + id), false);
+            Msg.tr("justquests.abandon.ok", id), false);
         return 1;
     }
 
@@ -436,13 +434,16 @@ public class QuestCommand {
         src.sendSuccess(new net.minecraft.network.chat.TextComponent(msg), false);
     }
 
+    private static void say(CommandSourceStack src, Component msg) {
+        src.sendSuccess(msg, false);
+    }
+
     private static void genFail(CommandSourceStack src, String msg) {
         src.sendFailure(new net.minecraft.network.chat.TextComponent(msg));
     }
 
     private static int difficultyShow(CommandContext<CommandSourceStack> ctx) {
-        genSay(ctx.getSource(), "§7Generated-quest difficulty: §f" + com.erikedits.justquests.storage.WorldSettings.difficulty()
-            + "§7. Change it with /quest difficulty easy|normal|hard.");
+        say(ctx.getSource(), Msg.tr("justquests.difficulty.show", com.erikedits.justquests.storage.WorldSettings.difficulty()));
         return 1;
     }
 
@@ -451,7 +452,7 @@ public class QuestCommand {
         net.minecraft.server.MinecraftServer server = ctx.getSource().getServer();
         if (server != null) com.erikedits.justquests.storage.WorldSettings.save(server);
         com.erikedits.justquests.generator.GenV2.reloadConfig();
-        genSay(ctx.getSource(), "§aDifficulty set to " + value + " §7- applies from the next rotation or /quest reroll.");
+        say(ctx.getSource(), Msg.tr("justquests.difficulty.set", value));
         return 1;
     }
 
@@ -462,9 +463,7 @@ public class QuestCommand {
 
     private static int mainQuestsStatus(CommandContext<CommandSourceStack> ctx) {
         boolean on = com.erikedits.justquests.storage.WorldSettings.mainQuests();
-        ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(
-            "§7Main quests are currently " + (on ? "§aON" : "§cOFF")
-            + "§7. Use /quest mainquests on|off to change."), false);
+        ctx.getSource().sendSuccess(Msg.tr("justquests.mainquests.status", Msg.tr(on ? "justquests.on" : "justquests.off")), false);
         return 1;
     }
 
@@ -474,9 +473,7 @@ public class QuestCommand {
         if (server != null) {
             com.erikedits.justquests.storage.WorldSettings.save(server);
         }
-        ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(
-            enabled ? "§aMain quests enabled."
-                    : "§eMain quests disabled §7(hidden from /quest list)."), false);
+        ctx.getSource().sendSuccess((enabled ? Msg.tr("justquests.mainquests.enabled") : Msg.tr("justquests.mainquests.disabled_list")), false);
         return 1;
     }
 
@@ -485,20 +482,16 @@ public class QuestCommand {
         com.erikedits.justquests.generator.GenV2.reloadConfig();
         com.erikedits.justquests.storage.CustomQuestLoader.load();
         int count = QuestManager.INSTANCE.getQuests().size();
-        ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(
-            "§aReloaded custom quests. §7Total quests: " + count
-            + " §8(use /reload for datapack quests)"), false);
+        ctx.getSource().sendSuccess(Msg.tr("justquests.reload.done", count), false);
         return 1;
     }
 
     private static int reroll(CommandContext<CommandSourceStack> ctx) {
         int n = com.erikedits.justquests.generator.GenV2.reroll();
         if (n < 0) {
-            ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(
-                "\u00a7eGenerated quests are disabled for this world \u00a77(set generatedQuests: true in settings.json)."), false);
+            ctx.getSource().sendSuccess(Msg.tr("justquests.reroll.disabled"), false);
         } else {
-            ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(
-                "\u00a7aRerolled generated quests. \u00a77Now " + n + " in category \u00a7fgenerated\u00a77."), false);
+            ctx.getSource().sendSuccess(Msg.tr("justquests.reroll.done", n), false);
         }
         return 1;
     }
@@ -524,13 +517,12 @@ public class QuestCommand {
         PlayerQuestData data = store == null ? null : store.peek(target.getUUID());
         String name = target.getName().getString();
         if (data == null || (data.active.isEmpty() && data.completed.isEmpty())) {
-            src.sendSuccess(new net.minecraft.network.chat.TextComponent("§7" + name + " has no quest progress."), false);
+            src.sendSuccess(Msg.tr("justquests.admin.view_none", name), false);
             return 0;
         }
-        src.sendSuccess(new net.minecraft.network.chat.TextComponent("§e" + name + " §7— active: §f" + data.active.size()
-            + " §7completed: §f" + data.completed.size()), false);
-        data.active.keySet().forEach(id -> src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §b" + id + " §7(active)"), false));
-        data.completed.keySet().forEach(id -> src.sendSuccess(new net.minecraft.network.chat.TextComponent("  §a" + id + " §7(done)"), false));
+        src.sendSuccess(Msg.tr("justquests.admin.view_header", name, data.active.size(), data.completed.size()), false);
+        data.active.keySet().forEach(id -> src.sendSuccess(Msg.tr("justquests.admin.view_active", id), false));
+        data.completed.keySet().forEach(id -> src.sendSuccess(Msg.tr("justquests.admin.view_done", id), false));
         return 1;
     }
 
@@ -546,7 +538,7 @@ public class QuestCommand {
             data.pendingClaim.clear();
             store.markDirty();
         }
-        ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent("§aReset all quest progress for " + name + "."), true);
+        ctx.getSource().sendSuccess(Msg.tr("justquests.admin.reset_all", name), true);
         return 1;
     }
 
@@ -563,7 +555,7 @@ public class QuestCommand {
                 store.markDirty();
             }
         }
-        ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent("§aReset " + id + " for " + name + "."), true);
+        ctx.getSource().sendSuccess(Msg.tr("justquests.admin.reset_one", id, name), true);
         return 1;
     }
 
@@ -572,12 +564,12 @@ public class QuestCommand {
         CommandSourceStack src = ctx.getSource();
         Quest quest = QuestManager.INSTANCE.get(id);
         if (quest == null) {
-            src.sendFailure(new net.minecraft.network.chat.TextComponent("§cUnknown quest: " + id));
+            src.sendFailure(Msg.tr("justquests.error.unknown_quest", id));
             return 0;
         }
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null) {
-            src.sendFailure(new net.minecraft.network.chat.TextComponent("§cQuest storage is not ready yet."));
+            src.sendFailure(Msg.tr("justquests.error.storage"));
             return 0;
         }
         PlayerQuestData data = store.get(target.getUUID());
@@ -588,7 +580,7 @@ public class QuestCommand {
         com.erikedits.justquests.generator.GenV2.completed(id, target.getUUID());
         store.markDirty();
         String name = target.getName().getString();
-        src.sendSuccess(new net.minecraft.network.chat.TextComponent("§aForce-completed " + id + " for " + name + " (rewards granted)."), true);
+        src.sendSuccess(Msg.tr("justquests.admin.complete", id, name), true);
         return 1;
     }
 }

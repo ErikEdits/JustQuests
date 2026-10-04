@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.reward;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -39,7 +40,6 @@ public record EffectReward(MobEffect effect, int seconds, int amplifier) impleme
 
     @Override
     public Component display() {
-        return Component.literal("Effect ").append(effect.getDisplayName())
-            .append(Component.literal(" (" + seconds + "s)"));
+        return Msg.tr("justquests.reward.effect", effect.getDisplayName(), seconds);
     }
 }

@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -40,8 +41,8 @@ public class QuestScreen extends Screen {
 
     /** Where a quest stands for this player; also the order of the status groups. */
     private enum Status {
-        ACTIVE("Active", "glyph_exclamation"), AVAILABLE("Available", "glyph_star"),
-        LOCKED("Locked", "glyph_lock"), COMPLETED("Completed", "glyph_check");
+        ACTIVE("active", "glyph_exclamation"), AVAILABLE("available", "glyph_star"),
+        LOCKED("locked", "glyph_lock"), COMPLETED("completed", "glyph_check");
 
         final String label, icon;
 
@@ -68,7 +69,7 @@ public class QuestScreen extends Screen {
     private String query = "";
 
     public QuestScreen() {
-        super(Component.literal("Quests"));
+        super(Component.translatable("justquests.book.title"));
     }
 
     private static ResourceLocation tex(String name) {
@@ -104,7 +105,7 @@ public class QuestScreen extends Screen {
         left = (this.width - W) / 2;
         top = (this.height - H) / 2;
         // drawn by us on the pixel field texture; the box only handles typing
-        search = new EditBox(this.font, left + 47, top + 26, 56, 9, Component.literal("Search"));
+        search = new EditBox(this.font, left + 47, top + 26, 56, 9, Component.translatable("justquests.book.search"));
         search.setBordered(false);
         search.setMaxLength(40);
         search.setValue(query);
@@ -166,7 +167,7 @@ public class QuestScreen extends Screen {
             Entry header;
             if (ClientSettings.byStatus) {
                 Status st = Status.valueOf(group.getKey());
-                header = new Entry(st.label, st.icon, String.valueOf(group.getValue().size()), null, null);
+                header = new Entry(I18n.get("justquests.book.status." + st.label), st.icon, String.valueOf(group.getValue().size()), null, null);
             } else {
                 int[] c = perCategory.get(group.getKey());
                 header = new Entry(QuestIcons.categoryName(group.getKey()), QuestIcons.categoryIcon(group.getKey()),
@@ -265,7 +266,7 @@ public class QuestScreen extends Screen {
         refresh();
         this.renderBackground(g);
         blit(g, "window", left, top, W, H);
-        g.drawString(this.font, Component.literal("Quests"), left + 9, closeY() + 1, TITLE_DARK, false);
+        g.drawString(this.font, Component.translatable("justquests.book.title"), left + 9, closeY() + 1, TITLE_DARK, false);
 
         // title-bar buttons: stats page, HUD on/off, close
         blit(g, showStats ? "button_stats_on" : in(mouseX, mouseY, statsX(), barY(), 14, 14) ? "button_stats_hover" : "button_stats_normal",
@@ -284,26 +285,28 @@ public class QuestScreen extends Screen {
         search.visible = searchShown();
         if (search.visible) {
             blit(g, search.isFocused() ? "search_focused" : "search_normal", left + 44, top + 23, 74, 14);
-            if (query.isEmpty() && !search.isFocused()) g.drawString(this.font, "Search...", left + 47, top + 26, 0xFF8B8B8B, false);
+            if (query.isEmpty() && !search.isFocused()) g.drawString(this.font, I18n.get("justquests.book.search"), left + 47, top + 26, 0xFF8B8B8B, false);
             search.render(g, mouseX, mouseY, pt);
             if (!query.isEmpty()) blit(g, "search_clear", clearX(), top + 25, 10, 10);
         } else {
-            g.drawString(this.font, ClientSettings.byStatus ? "By status" : "By category", left + 46, toolY() + 4, TEXT, false);
+            g.drawString(this.font, I18n.get(ClientSettings.byStatus ? "justquests.book.by_status" : "justquests.book.by_category"), left + 46, toolY() + 4, TEXT, false);
         }
 
         // what the hovered button does, next to the title
         boolean pinShown = !showStats && selected != null && data().isActive(selected);
-        String hint = overSort ? (ClientSettings.byStatus ? "Group by category" : "Group by status")
-            : overFilter ? (ClientSettings.hideCompleted ? "Show completed" : "Hide completed")
-            : in(mouseX, mouseY, statsX(), barY(), 14, 14) ? (showStats ? "Back to the quest" : "Your stats")
-            : in(mouseX, mouseY, hudX(), barY(), 14, 14) ? (ClientSettings.hud ? "Hide the HUD" : "Show the HUD")
-            : pinShown && in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? (ClientSettings.isPinned(selected) ? "Unpin" : "Pin to the HUD")
+        String hint = overSort ? (ClientSettings.byStatus ? "group_category" : "group_status")
+            : overFilter ? (ClientSettings.hideCompleted ? "show_completed" : "hide_completed")
+            : in(mouseX, mouseY, statsX(), barY(), 14, 14) ? (showStats ? "back" : "stats")
+            : in(mouseX, mouseY, hudX(), barY(), 14, 14) ? (ClientSettings.hud ? "hide_hud" : "show_hud")
+            : pinShown && in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? (ClientSettings.isPinned(selected) ? "unpin" : "pin")
             : null;
-        if (hint != null) g.drawString(this.font, fit("- " + hint, W - 48 - 56), left + 48, closeY() + 1, MUTED, false);
+        if (hint != null) {
+            g.drawString(this.font, fit("- " + I18n.get("justquests.book.hint." + hint), W - 48 - 56), left + 48, closeY() + 1, MUTED, false);
+        }
 
         if (entries.isEmpty()) {
-            g.drawString(this.font, Component.literal(ClientQuestData.getQuests().isEmpty() ? "No quests available yet."
-                    : search.visible && !query.isBlank() ? "No match." : "Nothing to show."),
+            g.drawString(this.font, Component.translatable(ClientQuestData.getQuests().isEmpty() ? "justquests.book.empty"
+                    : search.visible && !query.isBlank() ? "justquests.book.no_match" : "justquests.book.nothing"),
                 listX() + 2, rowY(0) + 2, LIGHT, false);
         } else {
             int start = page * ROWS;
@@ -362,8 +365,8 @@ public class QuestScreen extends Screen {
     private void renderDetail(GuiGraphics g, int mouseX, int mouseY) {
         int dx = detailX(), dy = top + 24, dw = detailW();
         if (selected == null) {
-            g.drawString(this.font, Component.literal("Select a quest"), dx, dy, MUTED, false);
-            g.drawString(this.font, Component.literal("on the left."), dx, dy + 11, MUTED, false);
+            g.drawString(this.font, Component.translatable("justquests.book.select_1"), dx, dy, MUTED, false);
+            g.drawString(this.font, Component.translatable("justquests.book.select_2"), dx, dy + 11, MUTED, false);
             return;
         }
         Quest q = ClientQuestData.get(selected);
@@ -389,18 +392,18 @@ public class QuestScreen extends Screen {
         String note = null;
         int noteColor = MUTED;
         if (claim != null && !(claim.mine() && claim.completed())) {
-            String who = claim.by().isEmpty() ? "another player" : claim.by();
-            note = claim.mine() ? "Reserved for you" : (claim.completed() ? "Completed by " : "Taken by ") + who;
+            String who = claim.by().isEmpty() ? I18n.get("justquests.another_player") : claim.by();
+            note = claim.mine() ? I18n.get("justquests.book.reserved") : I18n.get(claim.completed() ? "justquests.book.completed_by" : "justquests.book.taken_by", who);
             if (claim.mine()) noteColor = GOOD;
         } else if (st == Status.LOCKED && !missing.isEmpty()) {
             Quest req = ClientQuestData.get(missing.get(0));
-            note = "Needs: " + (req != null ? req.title().get(lang()) : missing.get(0).getPath())
+            note = I18n.get("justquests.book.needs", req != null ? req.title().get(lang()) : missing.get(0).getPath())
                 + (missing.size() > 1 ? " +" + (missing.size() - 1) : "");
         } else if (wait > 0) {
-            note = "Again in " + duration(wait);
+            note = I18n.get("justquests.book.again_in", duration(wait));
         } else if (st == Status.COMPLETED) {
             // rewards are paid out the moment a quest completes (a claim button comes with 0.4.0)
-            note = "✓ Rewards received";
+            note = I18n.get("justquests.book.rewards_received");
             noteColor = GOOD;
         }
         if (note != null) {
@@ -416,7 +419,7 @@ public class QuestScreen extends Screen {
             }
         }
         dy += 3;
-        g.drawString(this.font, Component.literal("Objectives"), dx, dy, HEAD, false);
+        g.drawString(this.font, Component.translatable("justquests.book.objectives"), dx, dy, HEAD, false);
         dy += 11;
         List<QuestObjective> objs = q.objectives();
         boolean finished = st == Status.COMPLETED;
@@ -436,7 +439,7 @@ public class QuestScreen extends Screen {
         }
         dy += 2;
         if (dy < actionY() - 10) {
-            g.drawString(this.font, Component.literal("Rewards"), dx, dy, HEAD, false);
+            g.drawString(this.font, Component.translatable("justquests.book.rewards"), dx, dy, HEAD, false);
             dy += 11;
             for (QuestReward r : q.rewards()) {
                 if (dy >= actionY() - 2) break;
@@ -449,20 +452,20 @@ public class QuestScreen extends Screen {
         if (st == Status.ACTIVE) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_abandon_hover" : "button_abandon_normal",
                 actionX(), actionY(), 72, 20);
-            g.drawString(this.font, Component.literal("Abandon"), actionX() + 16, actionY() + 6, TEXT, false);
+            centered(g, I18n.get("justquests.book.abandon"), actionX() + 36, actionY() + 6, TEXT);
             // pin to the HUD
             boolean pinned = ClientSettings.isPinned(selected);
             blit(g, pinned ? "button_pin_on" : in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? "button_pin_hover" : "button_pin_normal",
                 pinX(), actionY(), 20, 20);
-            if (pinned) g.drawString(this.font, Component.literal("Pinned"), pinX() + 23, actionY() + 6, GOOD, false);
+            if (pinned) g.drawString(this.font, Component.translatable("justquests.book.pinned"), pinX() + 23, actionY() + 6, GOOD, false);
         } else if (st == Status.AVAILABLE) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_claim_hover" : "button_claim_normal",
                 actionX(), actionY(), 72, 20);
-            g.drawString(this.font, Component.literal("Accept"), actionX() + 20, actionY() + 6, TEXT, false);
+            centered(g, I18n.get("justquests.book.accept"), actionX() + 36, actionY() + 6, TEXT);
         } else if (st == Status.LOCKED || wait > 0) {
-            String label = takenByOther(selected) ? "Taken" : wait > 0 ? "Wait" : "Locked";
+            String label = I18n.get(takenByOther(selected) ? "justquests.book.taken" : wait > 0 ? "justquests.book.wait" : "justquests.book.locked");
             blit(g, "button_claim_disabled", actionX(), actionY(), 72, 20);
-            g.drawString(this.font, Component.literal(label), actionX() + 36 - this.font.width(label) / 2, actionY() + 6, MUTED, false);
+            centered(g, label, actionX() + 36, actionY() + 6, MUTED);
         }
     }
 
@@ -475,15 +478,16 @@ public class QuestScreen extends Screen {
         int done = (int) all.keySet().stream().filter(d::isCompleted).count();
         int pct = total > 0 ? done * 100 / total : 0;
 
-        g.drawString(this.font, Component.literal("Your stats"), dx, dy, TITLE_DARK, false);
+        g.drawString(this.font, Component.translatable("justquests.book.stats.title"), dx, dy, TITLE_DARK, false);
         dy += 13;
-        g.drawString(this.font, fit("Completed " + done + "/" + total + " (" + pct + "%)", dw), dx, dy, TEXT, false);
+        g.drawString(this.font, fit(I18n.get("justquests.book.stats.completed", done, total, pct), dw), dx, dy, TEXT, false);
         dy += 10;
         blit(g, "progress_track", dx, dy, 100, 6);
         if (total > 0 && done > 0) blitPart(g, "progress_fill", dx, dy, Math.max(1, 100 * done / total), 6, 100, 6);
         dy += 9;
         ClientQuestData.Rank rank = ClientQuestData.rank();
-        String line = "Active: " + d.active.size() + (rank != null ? "   Rank #" + rank.pos() + " of " + rank.of() : "");
+        String line = I18n.get("justquests.book.stats.active", d.active.size())
+            + (rank != null ? "   " + I18n.get("justquests.book.stats.rank", rank.pos(), rank.of()) : "");
         g.drawString(this.font, fit(line, dw), dx, dy, TEXT, false);
         dy += 12;
 
@@ -515,23 +519,28 @@ public class QuestScreen extends Screen {
             }
         }
         if (col != 0) dy += 17;
-        g.drawString(this.font, fit(hovered != null ? "By category: " + hovered : "By category", dw), dx, headY, HEAD, false);
+        g.drawString(this.font, fit(hovered != null ? I18n.get("justquests.book.stats.by_category_named", hovered) : I18n.get("justquests.book.stats.by_category"), dw), dx, headY, HEAD, false);
 
         // first and last completion
         List<Long> times = d.completed.values().stream().filter(t -> t > 0L).sorted().toList();
         if (!times.isEmpty()) {
             java.text.SimpleDateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
             dy += 2;
-            g.drawString(this.font, "First " + fmt.format(new java.util.Date(times.get(0))), dx, dy, MUTED, false);
+            g.drawString(this.font, I18n.get("justquests.book.stats.first", fmt.format(new java.util.Date(times.get(0)))), dx, dy, MUTED, false);
             dy += 9;
-            g.drawString(this.font, "Last  " + fmt.format(new java.util.Date(times.get(times.size() - 1))), dx, dy, MUTED, false);
+            g.drawString(this.font, I18n.get("justquests.book.stats.last", fmt.format(new java.util.Date(times.get(times.size() - 1)))), dx, dy, MUTED, false);
         }
+    }
+
+    /** A label centred on cx (button texts differ in length between languages). */
+    private void centered(GuiGraphics g, String text, int cx, int y, int color) {
+        g.drawString(this.font, text, cx - this.font.width(text) / 2, y, color, false);
     }
 
     private static String duration(long ms) {
         long minutes = (ms + 59_999) / 60_000;
         long h = minutes / 60, m = minutes % 60;
-        return h > 0 ? h + "h " + m + "m" : m + "m";
+        return h > 0 ? I18n.get("justquests.time.hours_minutes", h, m) : I18n.get("justquests.time.minutes", m);
     }
 
     @Override

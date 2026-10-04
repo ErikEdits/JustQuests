@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -37,6 +38,6 @@ public record PlaceBlockObjective(BlockMatcher block, int count) implements Ques
 
     @Override
     public Component display() {
-        return Component.literal("Place " + count + "x ").append(block.name());
+        return Msg.tr("justquests.goal.place_count", count, block.name());
     }
 }

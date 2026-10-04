@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -36,6 +37,6 @@ public record ConsumeItemObjective(ItemMatcher item, int count) implements Quest
 
     @Override
     public Component display() {
-        return Component.literal("Consume " + count + "x ").append(item.name());
+        return Msg.tr("justquests.goal.consume_count", count, item.name());
     }
 }

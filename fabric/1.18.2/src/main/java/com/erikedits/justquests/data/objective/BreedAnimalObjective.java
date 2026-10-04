@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -37,6 +38,6 @@ public record BreedAnimalObjective(EntityMatcher entity, int count) implements Q
 
     @Override
     public Component display() {
-        return new net.minecraft.network.chat.TextComponent("Breed " + count + "x ").append(entity.name());
+        return Msg.tr("justquests.goal.breed_count", count, entity.name());
     }
 }

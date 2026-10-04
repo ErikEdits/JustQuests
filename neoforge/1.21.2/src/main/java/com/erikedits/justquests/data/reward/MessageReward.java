@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.reward;
 
+import com.erikedits.justquests.text.Msg;
 import com.erikedits.justquests.data.LocalizedText;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -31,6 +32,6 @@ public record MessageReward(LocalizedText message) implements QuestReward {
 
     @Override
     public Component display() {
-        return Component.literal("Message");
+        return Msg.tr("justquests.reward.message");
     }
 }

@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.chat.Component;
@@ -34,6 +35,6 @@ public record VisitDimensionObjective(ResourceLocation dimension) implements Que
 
     @Override
     public Component display() {
-        return Component.literal(displayName());
+        return Msg.tr("justquests.goal.dimension", Msg.dimension(dimension.toString()));
     }
 }

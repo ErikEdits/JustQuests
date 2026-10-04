@@ -1,5 +1,6 @@
 package com.erikedits.justquests.progress;
 
+import com.erikedits.justquests.text.Msg;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
@@ -89,7 +90,7 @@ public final class QuestProgressService {
             }
             com.erikedits.justquests.generator.GenV2.completed(questId, player.getUUID());
             String questTitle = quest.title().get(player.clientInformation().language());
-            player.sendSystemMessage(Component.literal("§a✓ Quest completed: " + questTitle));
+            player.sendSystemMessage(Msg.tr("justquests.complete.chat", questTitle));
             // completion sound + action-bar toast (Q12), each toggleable
             if (WorldSettings.completionSound()) {
                 // playNotifySound is gone in 1.21.11: send the sound to this player only
@@ -98,15 +99,13 @@ public final class QuestProgressService {
                     SoundSource.MASTER, player.getX(), player.getY(), player.getZ(), 1.0f, 1.0f, player.getRandom().nextLong()));
             }
             if (WorldSettings.completionToast()) {
-                player.displayClientMessage(Component.literal("§a✓ " + questTitle), true);
+                player.displayClientMessage(Msg.tr("justquests.complete.toast", questTitle), true);
             }
             // optional server-wide announcement (Q53), default on
             if (WorldSettings.announceCompletions()) {
                 MinecraftServer server = player.level().getServer();
                 if (server != null) {
-                    server.getPlayerList().broadcastSystemMessage(Component.literal(
-                        "§e" + player.getName().getString() + " §7completed §f"
-                        + quest.title().getDefault() + "§7!"), false);
+                    server.getPlayerList().broadcastSystemMessage(Msg.tr("justquests.complete.broadcast", player.getName().getString(), quest.title().getDefault()), false);
                 }
             }
             changed = true;

@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.reward;
 
+import com.erikedits.justquests.text.Msg;
 import com.erikedits.justquests.data.LocalizedText;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -48,6 +49,6 @@ public record TitleReward(LocalizedText title, Optional<LocalizedText> subtitle,
 
     @Override
     public Component display() {
-        return new net.minecraft.network.chat.TextComponent("Title: " + title.getDefault());
+        return Msg.tr("justquests.reward.title", title.getDefault());
     }
 }

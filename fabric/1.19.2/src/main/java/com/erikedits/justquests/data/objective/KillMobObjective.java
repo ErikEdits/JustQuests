@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -38,6 +39,6 @@ public record KillMobObjective(EntityMatcher entity, int count) implements Quest
 
     @Override
     public Component display() {
-        return Component.literal("Kill " + count + "x ").append(entity.name());
+        return Msg.tr("justquests.goal.kill_count", count, entity.name());
     }
 }

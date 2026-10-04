@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.reward;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -46,6 +47,6 @@ public record GiveItemReward(Item item, int count) implements QuestReward {
 
     @Override
     public Component display() {
-        return new net.minecraft.network.chat.TextComponent(count + "x ").append(new ItemStack(item).getHoverName());
+        return Msg.tr("justquests.reward.item", count, new ItemStack(item).getHoverName());
     }
 }

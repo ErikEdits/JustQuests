@@ -21,6 +21,7 @@ import com.erikedits.justquests.data.objective.TameAnimalObjective;
 import com.erikedits.justquests.data.objective.UseItemObjective;
 import com.erikedits.justquests.data.objective.VisitDimensionObjective;
 import com.erikedits.justquests.network.ClientQuestData;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -125,29 +126,25 @@ public final class QuestIcons {
 
     /** "Mine Iron Ore": the objective without its count (the book and the HUD show "5/8" in front). */
     public static Component label(QuestObjective o) {
-        if (o instanceof CollectItemObjective c) return verb("Collect", c.item().name());
-        if (o instanceof CraftItemObjective c) return verb("Craft", c.item().name());
-        if (o instanceof SmeltItemObjective s) return verb("Smelt", s.item().name());
-        if (o instanceof ConsumeItemObjective c) return verb("Consume", c.item().name());
-        if (o instanceof UseItemObjective u) return verb("Use", u.item().name());
+        if (o instanceof CollectItemObjective c) return verb("collect", c.item().name());
+        if (o instanceof CraftItemObjective c) return verb("craft", c.item().name());
+        if (o instanceof SmeltItemObjective s) return verb("smelt", s.item().name());
+        if (o instanceof ConsumeItemObjective c) return verb("consume", c.item().name());
+        if (o instanceof UseItemObjective u) return verb("use", u.item().name());
         if (o instanceof EnchantItemObjective e) {
-            return e.item().isPresent() ? verb("Enchant", e.item().get().name()) : Component.literal("Enchant any item");
+            return e.item().isPresent() ? verb("enchant", e.item().get().name()) : Component.translatable("justquests.goal.enchant_any");
         }
-        if (o instanceof MineBlockObjective m) return verb("Mine", m.block().name());
-        if (o instanceof PlaceBlockObjective p) return verb("Place", p.block().name());
-        if (o instanceof KillMobObjective k) return verb("Kill", k.entity().name());
-        if (o instanceof TameAnimalObjective t) return verb("Tame", t.entity().name());
-        if (o instanceof BreedAnimalObjective b) return verb("Breed", b.entity().name());
+        if (o instanceof MineBlockObjective m) return verb("mine", m.block().name());
+        if (o instanceof PlaceBlockObjective p) return verb("place", p.block().name());
+        if (o instanceof KillMobObjective k) return verb("kill", k.entity().name());
+        if (o instanceof TameAnimalObjective t) return verb("tame", t.entity().name());
+        if (o instanceof BreedAnimalObjective b) return verb("breed", b.entity().name());
         return o.display();
     }
 
-    /** Verb + name; a tag ("#minecraft:logs") reads as "any logs". */
-    private static Component verb(String verb, Component name) {
-        String s = name.getString();
-        if (s.startsWith("#")) {
-            return Component.literal(verb + " any " + s.substring(s.indexOf(':') + 1).replace('_', ' ').replace('/', ' '));
-        }
-        return Component.literal(verb + " ").append(name);
+    /** "Mine %s" with the target's name (a tag's name already reads "any logs"). */
+    private static Component verb(String goal, Component name) {
+        return Component.translatable("justquests.goal." + goal, name);
     }
 
     /** Texture name of a category's pixel icon. */
@@ -156,8 +153,10 @@ public final class QuestIcons {
         return "cat_" + (CATEGORY_ICONS.contains(c) ? c : "custom");
     }
 
-    /** "farming" -> "Farming", "my_pack" -> "My pack". */
+    /** The translated name of a bundled category, else the id made readable ("my_pack" -> "My pack"). */
     public static String categoryName(String category) {
+        String key = "justquests.category." + category.toLowerCase(java.util.Locale.ROOT);
+        if (I18n.exists(key)) return I18n.get(key);
         if (category.isEmpty()) return category;
         String s = category.replace('_', ' ');
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);

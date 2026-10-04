@@ -1,5 +1,6 @@
 package com.erikedits.justquests.community;
 
+import com.erikedits.justquests.text.Msg;
 import com.erikedits.justquests.JustQuests;
 import com.erikedits.justquests.storage.WorldSettings;
 import com.google.gson.JsonArray;
@@ -87,23 +88,22 @@ public final class CommunityHints {
         return Component.literal("§9§n" + INVITE).setStyle(Style.EMPTY
             .withClickEvent(new ClickEvent.OpenUrl(URI.create(INVITE)))
             .withHoverEvent(new HoverEvent.ShowText(
-                Component.literal("Click to open the Discord invite"))));
+                Msg.tr("justquests.hint.link_hover"))));
     }
 
     public static Component welcomeMessage() {
-        MutableComponent m = Component.literal("§6> JustQuests §7- thanks for playing!\n");
-        m.append(Component.literal("§fJoin the community Discord to:\n"));
-        m.append(Component.literal("§b  - Vote on the upcoming in-game GUI (v0.2)\n"));
-        m.append(Component.literal("§b  - Get help, report bugs & follow updates\n"));
-        m.append(Component.literal("§b  - See sneak peeks and early builds\n"));
+        MutableComponent m = Msg.tr("justquests.hint.welcome_title");
+        m.append(Msg.tr("justquests.hint.welcome_join"));
+        m.append(Msg.tr("justquests.hint.welcome_vote"));
+        m.append(Msg.tr("justquests.hint.welcome_help"));
+        m.append(Msg.tr("justquests.hint.welcome_peek"));
         m.append(Component.literal("§7  ")).append(link());
-        m.append(Component.literal("  §8(/quest discord anytime)"));
+        m.append(Msg.tr("justquests.hint.welcome_anytime"));
         return m;
     }
 
     public static Component discordMessage() {
-        MutableComponent m = Component.literal(
-            "§6JustQuests Discord §7- vote on the v0.2 GUI, get support & sneak peeks:\n§7");
+        MutableComponent m = Msg.tr("justquests.hint.discord");
         m.append(link());
         return m;
     }

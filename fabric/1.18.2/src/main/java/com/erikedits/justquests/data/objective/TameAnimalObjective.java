@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -37,6 +38,6 @@ public record TameAnimalObjective(EntityMatcher entity, int count) implements Qu
 
     @Override
     public Component display() {
-        return new net.minecraft.network.chat.TextComponent("Tame " + count + "x ").append(entity.name());
+        return Msg.tr("justquests.goal.tame_count", count, entity.name());
     }
 }

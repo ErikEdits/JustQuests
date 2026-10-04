@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -84,7 +85,7 @@ public interface ItemMatcher {
 
         @Override
         public Component name() {
-            return new net.minecraft.network.chat.TextComponent("#" + tag.location());
+            return Msg.tr("justquests.goal.any", Msg.pretty(tag.location().getPath()));
         }
 
         @Override

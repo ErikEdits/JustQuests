@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -51,6 +52,6 @@ public record ReachLocationObjective(Optional<ResourceLocation> dimension, int x
 
     @Override
     public Component display() {
-        return new net.minecraft.network.chat.TextComponent(displayName());
+        return Msg.tr("justquests.goal.location", x, y, z);
     }
 }

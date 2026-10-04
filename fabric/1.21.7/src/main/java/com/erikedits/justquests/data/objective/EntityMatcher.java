@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.objective;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -58,7 +59,7 @@ public interface EntityMatcher {
 
         @Override
         public Component name() {
-            return Component.literal("#" + tag.location());
+            return Msg.tr("justquests.goal.any", Msg.pretty(tag.location().getPath()));
         }
     }
 }

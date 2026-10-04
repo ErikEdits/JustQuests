@@ -1,5 +1,6 @@
 package com.erikedits.justquests.data.reward;
 
+import com.erikedits.justquests.text.Msg;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -31,6 +32,6 @@ public record XpReward(int amount) implements QuestReward {
 
     @Override
     public Component display() {
-        return new net.minecraft.network.chat.TextComponent(displayName());
+        return Msg.tr("justquests.reward.xp", amount);
     }
 }

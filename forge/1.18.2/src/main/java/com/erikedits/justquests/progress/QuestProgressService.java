@@ -1,5 +1,6 @@
 package com.erikedits.justquests.progress;
 
+import com.erikedits.justquests.text.Msg;
 import com.erikedits.justquests.data.PlayerQuestData;
 import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
@@ -89,21 +90,19 @@ public final class QuestProgressService {
             }
             com.erikedits.justquests.generator.GenV2.completed(questId, player.getUUID());
             String questTitle = quest.title().get(com.erikedits.justquests.data.LocalizedText.DEFAULT_LANG);
-            player.sendMessage(new net.minecraft.network.chat.TextComponent("§a✓ Quest completed: " + questTitle), net.minecraft.Util.NIL_UUID);
+            player.sendMessage(Msg.tr("justquests.complete.chat", questTitle), net.minecraft.Util.NIL_UUID);
             // completion sound + action-bar toast (Q12), each toggleable
             if (WorldSettings.completionSound()) {
                 player.playNotifySound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.MASTER, 1.0f, 1.0f);
             }
             if (WorldSettings.completionToast()) {
-                player.displayClientMessage(new net.minecraft.network.chat.TextComponent("§a✓ " + questTitle), true);
+                player.displayClientMessage(Msg.tr("justquests.complete.toast", questTitle), true);
             }
             // optional server-wide announcement (Q53), default on
             if (WorldSettings.announceCompletions()) {
                 MinecraftServer server = player.getLevel().getServer();
                 if (server != null) {
-                    server.getPlayerList().broadcastMessage(new net.minecraft.network.chat.TextComponent(
-                        "§e" + player.getName().getString() + " §7completed §f"
-                        + quest.title().getDefault() + "§7!"), net.minecraft.network.chat.ChatType.SYSTEM, net.minecraft.Util.NIL_UUID);
+                    server.getPlayerList().broadcastMessage(Msg.tr("justquests.complete.broadcast", player.getName().getString(), quest.title().getDefault()), net.minecraft.network.chat.ChatType.SYSTEM, net.minecraft.Util.NIL_UUID);
                 }
             }
             changed = true;
