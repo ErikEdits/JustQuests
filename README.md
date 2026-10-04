@@ -164,7 +164,8 @@ Each world has `<world>/justquests/settings.json` (with a `_help` text inside). 
 
 Each player's own book and tracker options live in `config/justquests-client.json`: `hud`
 (tracker on/off), `hudCorner` (`top_left`, `top_right`, `bottom_left`, `bottom_right`), `hudMax`
-(quests shown, 1–5), `byStatus`, `hideCompleted` and `pinned` (also set by the book's buttons).
+(quests shown, 1–5), `byStatus`, `hideCompleted` and `pinned` (also set by the book's buttons;
+the corner button in the title bar moves the tracker).
 
 | Key | Default | Meaning |
 |---|---|---|

@@ -70,6 +70,8 @@ public class QuestScreen extends Screen {
     private String query = "";
     /** The picked option of the selected quest's choice reward (-1 = none yet). */
     private int pick = -1;
+    /** The HUD is previewed in its corner until then (after a click on the corner button). */
+    private long cornerPreviewUntil;
     /** Where the choice options were drawn this frame: x, y, w, h, option index. */
     private final List<int[]> optionHits = new ArrayList<>();
 
@@ -245,7 +247,8 @@ public class QuestScreen extends Screen {
     private int navY() { return top + H - 20; }
     private int closeX() { return left + W - 20; }
     private int closeY() { return top + 6; }
-    private int statsX() { return left + W - 52; }
+    private int statsX() { return left + W - 68; }
+    private int cornerX() { return left + W - 52; }
     private int hudX() { return left + W - 36; }
     private int barY() { return top + 3; }
     private int detailX() { return left + 137; }
@@ -271,12 +274,16 @@ public class QuestScreen extends Screen {
     public void render(GuiGraphics g, int mouseX, int mouseY, float pt) {
         refresh();
         this.renderBackground(g, mouseX, mouseY, pt);
+        // the HUD hides while a screen is open: show it in its corner while its position is being picked
+        if (in(mouseX, mouseY, cornerX(), barY(), 14, 14) || System.currentTimeMillis() < cornerPreviewUntil) QuestHud.preview(g);
         blit(g, "window", left, top, W, H);
         g.drawString(this.font, Component.translatable("justquests.book.title"), left + 9, closeY() + 1, TITLE_DARK, false);
 
-        // title-bar buttons: stats page, HUD on/off, close
+        // title-bar buttons: stats page, HUD corner, HUD on/off, close
         blit(g, showStats ? "button_stats_on" : in(mouseX, mouseY, statsX(), barY(), 14, 14) ? "button_stats_hover" : "button_stats_normal",
             statsX(), barY(), 14, 14);
+        blit(g, "button_corner_" + corner() + (in(mouseX, mouseY, cornerX(), barY(), 14, 14) ? "_hover" : "_normal"),
+            cornerX(), barY(), 14, 14);
         blit(g, ClientSettings.hud ? "button_hud_on" : in(mouseX, mouseY, hudX(), barY(), 14, 14) ? "button_hud_hover" : "button_hud_normal",
             hudX(), barY(), 14, 14);
         blit(g, in(mouseX, mouseY, closeX(), closeY(), 11, 11) ? "button_close_hover" : "button_close_normal",
@@ -303,11 +310,15 @@ public class QuestScreen extends Screen {
         String hint = overSort ? (ClientSettings.byStatus ? "group_category" : "group_status")
             : overFilter ? (ClientSettings.hideCompleted ? "show_completed" : "hide_completed")
             : in(mouseX, mouseY, statsX(), barY(), 14, 14) ? (showStats ? "back" : "stats")
+            : in(mouseX, mouseY, cornerX(), barY(), 14, 14) ? "hud_corner"
             : in(mouseX, mouseY, hudX(), barY(), 14, 14) ? (ClientSettings.hud ? "hide_hud" : "show_hud")
             : pinShown && in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? (ClientSettings.isPinned(selected) ? "unpin" : "pin")
             : null;
         if (hint != null) {
-            g.drawString(this.font, fit("- " + I18n.get("justquests.book.hint." + hint), W - 48 - 56), left + 48, closeY() + 1, MUTED, false);
+            String text = hint.equals("hud_corner")
+                ? I18n.get("justquests.book.hint.hud_corner", I18n.get("justquests.book.corner." + corner()))
+                : I18n.get("justquests.book.hint." + hint);
+            g.drawString(this.font, fit("- " + text, W - 48 - 72), left + 48, closeY() + 1, MUTED, false);
         }
 
         if (entries.isEmpty()) {
@@ -503,6 +514,22 @@ public class QuestScreen extends Screen {
         }
     }
 
+    /** The HUD corner from the client settings (an unknown value counts as top left). */
+    private static String corner() {
+        String c = ClientSettings.hudCorner;
+        return c.equals("top_right") || c.equals("bottom_left") || c.equals("bottom_right") ? c : "top_left";
+    }
+
+    /** Clockwise: top left, top right, bottom right, bottom left. */
+    private static String nextCorner(String c) {
+        return switch (c) {
+            case "top_left" -> "top_right";
+            case "top_right" -> "bottom_right";
+            case "bottom_right" -> "bottom_left";
+            default -> "top_left";
+        };
+    }
+
     /** A small pixel radio box in front of a choice option. */
     private static void radio(GuiGraphics g, int x, int y, boolean on, boolean hover) {
         g.fill(x, y, x + 7, y + 7, 0xFF373737);
@@ -592,6 +619,13 @@ public class QuestScreen extends Screen {
         if (button == 0) {
             if (in(mx, my, closeX(), closeY(), 11, 11)) { onClose(); return true; }
             if (in(mx, my, statsX(), barY(), 14, 14)) { showStats = !showStats; return true; }
+            if (in(mx, my, cornerX(), barY(), 14, 14)) {
+                ClientSettings.hudCorner = nextCorner(corner());
+                ClientSettings.hud = true;   // moving the tracker means it should show
+                ClientSettings.save();
+                cornerPreviewUntil = System.currentTimeMillis() + 2000;
+                return true;
+            }
             if (in(mx, my, hudX(), barY(), 14, 14)) {
                 ClientSettings.hud = !ClientSettings.hud;
                 ClientSettings.save();
@@ -641,6 +675,7 @@ public class QuestScreen extends Screen {
                     Status st = status(selected, q);
                     if (st == Status.ACTIVE) send("quest abandon " + selected);
                     else if (st == Status.AVAILABLE) send("quest accept " + selected);
+                    else if (st == Status.CLAIM) send("quest claim " + selected);
                     else if (st == Status.CLAIM && ChoiceReward.of(q) == null) send("quest claim " + selected);
                     else if (st == Status.CLAIM && pick >= 0) send("quest claim " + selected + " " + (pick + 1));
                 }

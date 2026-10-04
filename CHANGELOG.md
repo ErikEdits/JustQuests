@@ -19,6 +19,8 @@ Built step by step; test builds go to a local folder until the release.
   picks one when claiming: in the quest book by clicking an option, in chat with the `[1]` `[2]`
   buttons, or with `/quest claim <id> <number>`. Quests with a choice always wait to be claimed.
   The example datapack has `ex_choice`.
+- **HUD position button** in the quest book's title bar: each click moves the tracker to the next
+  corner (clockwise). While you point at the button, the book shows the tracker in its corner.
 - `settings.json` gets new options added by itself, so owners see them without deleting the file.
 
 ### Changed

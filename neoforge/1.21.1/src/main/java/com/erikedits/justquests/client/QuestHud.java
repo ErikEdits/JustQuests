@@ -48,8 +48,19 @@ public final class QuestHud {
         ClientSettings.load();
         Minecraft mc = Minecraft.getInstance();
         if (!ClientSettings.hud || mc.player == null || mc.options.hideGui || mc.screen != null || debugShown(mc)) return;
+        draw(g, false);
+    }
+
+    /** The tracker drawn by the quest book while its corner is picked; shows a sample panel without quests. */
+    public static void preview(GuiGraphics g) {
+        if (Minecraft.getInstance().player != null) draw(g, true);
+    }
+
+    private static void draw(GuiGraphics g, boolean preview) {
+        Minecraft mc = Minecraft.getInstance();
         PlayerQuestData data = ClientQuestData.getData();
-        if (data == null || (data.active.isEmpty() && data.pendingClaim.isEmpty())) return;
+        if (data == null) return;
+        if (!preview && data.active.isEmpty() && data.pendingClaim.isEmpty()) return;
         Font font = mc.font;
         String lang = mc.options.languageCode;
         prunePins();
@@ -101,7 +112,13 @@ public final class QuestHud {
             blocks.add(new Block(QuestIcons.of(id, q), title, TITLE, lines, colors));
             shown++;
         }
-        if (blocks.isEmpty()) return;
+        if (blocks.isEmpty()) {
+            if (!preview) return;
+            String title = fit(font, I18n.get("justquests.hud.preview"));
+            String line = fit(font, I18n.get("justquests.hud.preview_empty"));
+            textW = Math.max(font.width(title), font.width(line));
+            blocks.add(new Block(new ItemStack(Items.BOOK), title, TITLE, List.of(line), List.of(MORE)));
+        }
 
         int w = 23 + textW + 5;
         int h = 4;

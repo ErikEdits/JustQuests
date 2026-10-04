@@ -155,6 +155,11 @@
   "justquests.book.hint.stats": "Your stats",
   "justquests.book.hint.hide_hud": "Hide the HUD",
   "justquests.book.hint.show_hud": "Show the HUD",
+  "justquests.book.hint.hud_corner": "Move the HUD (now: %s)",
+  "justquests.book.corner.top_left": "top left",
+  "justquests.book.corner.top_right": "top right",
+  "justquests.book.corner.bottom_left": "bottom left",
+  "justquests.book.corner.bottom_right": "bottom right",
   "justquests.book.hint.unpin": "Unpin",
   "justquests.book.hint.pin": "Pin to the HUD",
   "justquests.book.empty": "No quests available yet.",
@@ -197,5 +202,7 @@
   "justquests.hud.off": "Quest HUD off",
   "justquests.hud.more": "+%s more",
   "justquests.hud.rewards": "Rewards ready: %s",
-  "justquests.hud.rewards_hint": "Claim them in the quest book"
+  "justquests.hud.rewards_hint": "Claim them in the quest book",
+  "justquests.hud.preview": "Quest HUD",
+  "justquests.hud.preview_empty": "No active quests"
 }

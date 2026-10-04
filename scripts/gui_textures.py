@@ -4,7 +4,8 @@ Source: the v2-full pixel set in docs/assets/gui-2.0.0/JustQuests-GUI-v2-full (v
   - window.png and quest_row_*.png: the pack originals with the list column 32 px wider
     (one inner pixel column repeated, so every border stays pixel-exact)
   - button_sort_* / button_filter_*: the pack's sort and filter buttons
-  - button_stats_* / button_hud_*: the pack's 14x14 button face with a chart / HUD glyph
+  - button_stats_* / button_hud_* / button_corner_*: the pack's 14x14 button face with a chart /
+    HUD glyph, or the HUD frame with a block in the tracker's corner
   - button_pin_*: a 20x20 cut of the abandon button with the pack's pin glyph
   - button_abandon_*: the pack's abandon button without its x (the label sits there)
   - search_*: the pack's search field, 74 px wide, and its clear button
@@ -136,6 +137,23 @@ HUD_GLYPH = [
     "          ",
 ]
 
+CORNERS = ("top_left", "top_right", "bottom_left", "bottom_right")
+
+
+def corner_glyph(corner):
+    """The HUD glyph's screen frame with a block in the corner where the tracker sits."""
+    rows = [list(r) for r in HUD_GLYPH]
+    for y in range(2, 8):
+        for x in range(1, 9):
+            rows[y][x] = " "
+    ys = (3, 4) if corner.startswith("top") else (5, 6)
+    xs = (2, 3, 4) if corner.endswith("left") else (5, 6, 7)
+    for y in ys:
+        for x in xs:
+            rows[y][x] = "d"
+    return ["".join(r) for r in rows]
+
+
 NEW_CATEGORIES = {
     "building": [  # bricks
         "                ", "                ", " kkkkkkkkkkkkkk ", " kllllkwllllkwk ",
@@ -198,6 +216,9 @@ def build():
         out[f"button_{name}_normal"] = button14("normal", rows)
         out[f"button_{name}_hover"] = button14("hover", rows)
         out[f"button_{name}_on"] = button14("pressed", rows)
+    for c in CORNERS:   # HUD position button, one face per corner
+        out[f"button_corner_{c}_normal"] = button14("normal", corner_glyph(c))
+        out[f"button_corner_{c}_hover"] = button14("hover", corner_glyph(c))
     for g in ("check", "lock", "clock", "repeat", "star", "exclamation"):
         out["glyph_" + g] = pack("icons", "glyph", g + ".png")
     for c in ("gathering", "farming", "combat", "survival", "daily", "custom"):
