@@ -18,7 +18,7 @@ import com.erikedits.justquests.data.objective.VisitDimensionObjective;
 import com.erikedits.justquests.progress.QuestProgressService;
 import com.erikedits.justquests.registry.ModAttachments;
 import com.erikedits.justquests.storage.WorldQuestStore;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
@@ -47,6 +47,7 @@ public class PlayerQuestEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         // One-time, clickable Discord welcome (0.1.5).
         com.erikedits.justquests.community.CommunityHints.onLogin(player);
+        com.erikedits.justquests.network.QuestNetwork.syncPlayer(player);
         // No v0.1 NBT migration on 1.21.6+: it only ever applied to 1.21.1,
         // and NeoForge removed the attachment serialization API (INBTSerializable).
     }
@@ -112,7 +113,7 @@ public class PlayerQuestEvents {
     @SubscribeEvent
     public void onAdvancement(AdvancementEvent.AdvancementEarnEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            ResourceLocation id = event.getAdvancement().id();
+            Identifier id = event.getAdvancement().id();
             QuestProgressService.advance(player, obj ->
                 (obj instanceof GainAdvancementObjective g && g.matches(id)) ? 1 : 0);
         }
@@ -122,7 +123,7 @@ public class PlayerQuestEvents {
     @SubscribeEvent
     public void onDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            ResourceLocation to = event.getTo().location();
+            Identifier to = event.getTo().identifier();
             QuestProgressService.advance(player, obj ->
                 (obj instanceof VisitDimensionObjective v && v.matches(to)) ? 1 : 0);
         }
@@ -175,6 +176,7 @@ public class PlayerQuestEvents {
     /** reach_location + reach_level: checked once a second per player. */
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent.Post event) {
+        if (event.getEntity() instanceof ServerPlayer sp) com.erikedits.justquests.progress.StatObjectives.tick(sp);   // use_item, enchant_item (every tick)
         if (event.getEntity() instanceof ServerPlayer player && player.tickCount % 20 == 0) {
             QuestProgressService.advance(player, obj -> {
                 if (obj instanceof ReachLocationObjective r && r.isAt(player)) return 1;

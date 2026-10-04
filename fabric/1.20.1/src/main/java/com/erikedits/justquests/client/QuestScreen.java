@@ -8,6 +8,7 @@ import com.erikedits.justquests.network.ClientQuestData;
 import com.erikedits.justquests.player.QuestProgress;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -16,19 +17,23 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
  * The quest book, rendered from the JustQuests v2-full pixel textures (no vanilla widgets — manual
  * blit + click hit-testing so the look is fully custom). Left: the quest list, grouped by category or
- * by status, one item icon per quest. Right: the selected quest, or the player's stats. Reads the
- * synced {@link ClientQuestData} and runs /quest accept|abandon for actions. Textures live in
+ * by status, one item icon per quest, with a search field once there are many quests. Right: the
+ * selected quest (active ones can be pinned to the HUD), or the player's stats. Reads the synced
+ * {@link ClientQuestData} and runs /quest accept|abandon for actions. Textures live in
  * assets/justquests/textures/gui/. Fixed 280x184 window.
  */
 public class QuestScreen extends Screen {
     private static final int W = 280, H = 184;
     private static final int ROWS = 6, ROW_W = 112, ROW_H = 18;
+    /** The search field shows up from this many quests on. */
+    private static final int SEARCH_MIN = 15;
     // darker text reads clearly on the light-grey panes; full alpha, since 1.21.6+ skips text with alpha 0
     private static final int TITLE_DARK = 0xFF161616, TEXT = 0xFF282828, MUTED = 0xFF4C4C4C, HEAD = 0xFF24395C,
         GOOD = 0xFF2E7D32, WHITE = 0xFFFFFFFF, LIGHT = 0xFFC6C6C6;
@@ -59,6 +64,8 @@ public class QuestScreen extends Screen {
     private boolean showStats;
     private int page = 0, left, top;
     private int shownSync = -1;
+    private EditBox search;
+    private String query = "";
 
     public QuestScreen() {
         super(Component.literal("Quests"));
@@ -96,7 +103,23 @@ public class QuestScreen extends Screen {
         ClientSettings.load();
         left = (this.width - W) / 2;
         top = (this.height - H) / 2;
+        // drawn by us on the pixel field texture; the box only handles typing
+        search = new EditBox(this.font, left + 47, top + 26, 56, 9, Component.literal("Search"));
+        search.setBordered(false);
+        search.setMaxLength(40);
+        search.setValue(query);
+        search.setResponder(text -> {
+            query = text;
+            page = 0;
+            rebuild();
+        });
+        search.visible = searchShown();
+        addWidget(search);
         refresh();
+    }
+
+    private boolean searchShown() {
+        return ClientQuestData.getQuests().size() >= SEARCH_MIN;
     }
 
     /**
@@ -107,6 +130,7 @@ public class QuestScreen extends Screen {
         int s = ClientQuestData.syncCount();
         if (s == shownSync) return;
         shownSync = s;
+        QuestHud.prunePins();
         rebuild();
     }
 
@@ -126,12 +150,14 @@ public class QuestScreen extends Screen {
             for (Status st : Status.values()) groups.put(st.name(), new ArrayList<>());
         }
         Map<String, int[]> perCategory = new LinkedHashMap<>();   // category -> {done, total}
+        String q = searchShown() ? query.trim().toLowerCase(Locale.ROOT) : "";
         for (Map.Entry<ResourceLocation, Quest> e : sorted) {
             Status st = status(e.getKey(), e.getValue());
             int[] c = perCategory.computeIfAbsent(e.getValue().category(), k -> new int[2]);
             c[1]++;
             if (data().isCompleted(e.getKey())) c[0]++;
             if (ClientSettings.hideCompleted && st == Status.COMPLETED) continue;
+            if (!matches(e.getValue(), q)) continue;
             String key = ClientSettings.byStatus ? st.name() : e.getValue().category();
             groups.computeIfAbsent(key, k -> new ArrayList<>()).add(e);
         }
@@ -154,6 +180,17 @@ public class QuestScreen extends Screen {
             }
         }
         if (page > pages() - 1) page = Math.max(0, pages() - 1);
+    }
+
+    /** Search: title, category and goals, so "diam" finds every quest with diamonds. */
+    private boolean matches(Quest quest, String q) {
+        if (q.isEmpty()) return true;
+        if (quest.title().get(lang()).toLowerCase(Locale.ROOT).contains(q)) return true;
+        if (QuestIcons.categoryName(quest.category()).toLowerCase(Locale.ROOT).contains(q)) return true;
+        for (QuestObjective o : quest.objectives()) {
+            if (QuestIcons.label(o).getString().toLowerCase(Locale.ROOT).contains(q)) return true;
+        }
+        return false;
     }
 
     private int pages() {
@@ -208,6 +245,8 @@ public class QuestScreen extends Screen {
     private int detailW() { return W - 137 - 9; }
     private int actionX() { return detailX(); }
     private int actionY() { return top + H - 28; }
+    private int pinX() { return actionX() + 76; }
+    private int clearX() { return left + 44 + 74 - 12; }
     private boolean hasPrev() { return page > 0; }
     private boolean hasNext() { return page < pages() - 1; }
 
@@ -236,19 +275,35 @@ public class QuestScreen extends Screen {
         blit(g, in(mouseX, mouseY, closeX(), closeY(), 11, 11) ? "button_close_hover" : "button_close_normal",
             closeX(), closeY(), 11, 11);
 
-        // list tools: grouping and filter; the label names what the hovered button does
+        // list tools: grouping, filter and (with many quests) the search field
         boolean overSort = in(mouseX, mouseY, sortX(), toolY(), 16, 16);
         boolean overFilter = in(mouseX, mouseY, filterX(), toolY(), 16, 16);
         blit(g, overSort ? "button_sort_hover" : "button_sort_normal", sortX(), toolY(), 16, 16);
         blit(g, ClientSettings.hideCompleted ? "button_filter_on" : overFilter ? "button_filter_hover" : "button_filter_normal",
             filterX(), toolY(), 16, 16);
-        String tool = overSort ? (ClientSettings.byStatus ? "Category view" : "Status view")
-            : overFilter ? (ClientSettings.hideCompleted ? "Show done" : "Hide done")
-            : ClientSettings.byStatus ? "By status" : "By category";
-        g.drawString(this.font, fit(tool, ROW_W - 40), left + 46, toolY() + 4, TEXT, false);
+        search.visible = searchShown();
+        if (search.visible) {
+            blit(g, search.isFocused() ? "search_focused" : "search_normal", left + 44, top + 23, 74, 14);
+            if (query.isEmpty() && !search.isFocused()) g.drawString(this.font, "Search...", left + 47, top + 26, 0xFF8B8B8B, false);
+            search.render(g, mouseX, mouseY, pt);
+            if (!query.isEmpty()) blit(g, "search_clear", clearX(), top + 25, 10, 10);
+        } else {
+            g.drawString(this.font, ClientSettings.byStatus ? "By status" : "By category", left + 46, toolY() + 4, TEXT, false);
+        }
+
+        // what the hovered button does, next to the title
+        boolean pinShown = !showStats && selected != null && data().isActive(selected);
+        String hint = overSort ? (ClientSettings.byStatus ? "Group by category" : "Group by status")
+            : overFilter ? (ClientSettings.hideCompleted ? "Show completed" : "Hide completed")
+            : in(mouseX, mouseY, statsX(), barY(), 14, 14) ? (showStats ? "Back to the quest" : "Your stats")
+            : in(mouseX, mouseY, hudX(), barY(), 14, 14) ? (ClientSettings.hud ? "Hide the HUD" : "Show the HUD")
+            : pinShown && in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? (ClientSettings.isPinned(selected) ? "Unpin" : "Pin to the HUD")
+            : null;
+        if (hint != null) g.drawString(this.font, fit("- " + hint, W - 48 - 56), left + 48, closeY() + 1, MUTED, false);
 
         if (entries.isEmpty()) {
-            g.drawString(this.font, Component.literal(ClientQuestData.getQuests().isEmpty() ? "No quests available yet." : "Nothing to show."),
+            g.drawString(this.font, Component.literal(ClientQuestData.getQuests().isEmpty() ? "No quests available yet."
+                    : search.visible && !query.isBlank() ? "No match." : "Nothing to show."),
                 listX() + 2, rowY(0) + 2, LIGHT, false);
         } else {
             int start = page * ROWS;
@@ -293,6 +348,7 @@ public class QuestScreen extends Screen {
         blit(g, "quest_row_" + state, x, y, ROW_W, ROW_H);
         // completed and locked rows have their glyph in the texture; the others get one drawn on top
         String glyph = cooldown ? "glyph_clock"
+            : st == Status.ACTIVE && ClientSettings.isPinned(id) ? "glyph_pin"
             : st == Status.AVAILABLE && q.repeatable() ? "glyph_repeat"
             : sel && st == Status.COMPLETED ? "glyph_check"
             : sel && st == Status.LOCKED ? "glyph_lock" : null;
@@ -394,6 +450,11 @@ public class QuestScreen extends Screen {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_abandon_hover" : "button_abandon_normal",
                 actionX(), actionY(), 72, 20);
             g.drawString(this.font, Component.literal("Abandon"), actionX() + 16, actionY() + 6, TEXT, false);
+            // pin to the HUD
+            boolean pinned = ClientSettings.isPinned(selected);
+            blit(g, pinned ? "button_pin_on" : in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? "button_pin_hover" : "button_pin_normal",
+                pinX(), actionY(), 20, 20);
+            if (pinned) g.drawString(this.font, Component.literal("Pinned"), pinX() + 23, actionY() + 6, GOOD, false);
         } else if (st == Status.AVAILABLE) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_claim_hover" : "button_claim_normal",
                 actionX(), actionY(), 72, 20);
@@ -496,6 +557,10 @@ public class QuestScreen extends Screen {
                 rebuild();
                 return true;
             }
+            if (search.visible && !query.isEmpty() && in(mx, my, clearX(), top + 25, 10, 10)) {
+                search.setValue("");
+                return true;
+            }
             if (hasPrev() && in(mx, my, prevX(), navY(), 12, 12)) { page--; return true; }
             if (hasNext() && in(mx, my, nextX(), navY(), 12, 12)) { page++; return true; }
             int start = page * ROWS;
@@ -506,6 +571,10 @@ public class QuestScreen extends Screen {
                     showStats = false;
                     return true;
                 }
+            }
+            if (!showStats && selected != null && data().isActive(selected) && in(mx, my, pinX(), actionY(), 20, 20)) {
+                ClientSettings.togglePin(selected);
+                return true;
             }
             if (!showStats && selected != null && in(mx, my, actionX(), actionY(), 72, 20)) {
                 Quest q = ClientQuestData.get(selected);
@@ -518,6 +587,17 @@ public class QuestScreen extends Screen {
             }
         }
         return super.mouseClicked(mx, my, button);
+    }
+
+    /** The mouse wheel over the list turns the pages. */
+    @Override
+    public boolean mouseScrolled(double mx, double my, double scrollY) {
+        if (in(mx, my, listX(), rowY(0), ROW_W, ROWS * ROW_H)) {
+            if (scrollY < 0 && hasNext()) page++;
+            else if (scrollY > 0 && hasPrev()) page--;
+            return true;
+        }
+        return super.mouseScrolled(mx, my, scrollY);
     }
 
     private void send(String cmd) {

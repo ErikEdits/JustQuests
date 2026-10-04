@@ -1,0 +1,30 @@
+{
+  "title": {
+    "en_us": "Fuel for the Fire",
+    "de_de": "Brennstoff fürs Feuer",
+    "fr_fr": "Du combustible pour le feu",
+    "es_es": "Combustible para el fuego"
+  },
+  "description": {
+    "en_us": "Dig deep and gather coal to keep the furnaces burning.",
+    "de_de": "Grabe tief und sammle Kohle, damit die Öfen weiterbrennen.",
+    "fr_fr": "Creusez profond et recoltez du charbon pour alimenter les fours.",
+    "es_es": "Cava hondo y reune carbon para mantener los hornos encendidos."
+  },
+  "category": "gathering",
+  "sort": 30,
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "minecraft:coal",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:torch",
+      "count": 32
+    }
+  ]
+}

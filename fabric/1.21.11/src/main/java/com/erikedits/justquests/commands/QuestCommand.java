@@ -1,0 +1,602 @@
+package com.erikedits.justquests.commands;
+
+import com.erikedits.justquests.data.LocalizedText;
+import com.erikedits.justquests.data.PlayerQuestData;
+import com.erikedits.justquests.data.Quest;
+import com.erikedits.justquests.data.QuestManager;
+import com.erikedits.justquests.data.objective.QuestObjective;
+import com.erikedits.justquests.data.reward.QuestReward;
+import com.erikedits.justquests.diagnostics.SelfTest;
+import com.erikedits.justquests.player.QuestProgress;
+import com.erikedits.justquests.storage.WorldQuestStore;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.suggestion.SuggestionProvider;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.arguments.IdentifierArgument;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.UUID;
+
+public class QuestCommand {
+    private static final SuggestionProvider<CommandSourceStack> AVAILABLE_QUESTS = (ctx, builder) ->
+        SharedSuggestionProvider.suggestResource(QuestManager.INSTANCE.getQuests().keySet(), builder);
+
+    private static final SuggestionProvider<CommandSourceStack> ACTIVE_QUESTS = (ctx, builder) -> {
+        ServerPlayer player = ctx.getSource().getPlayer();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (player != null && store != null) {
+            PlayerQuestData data = store.peek(player.getUUID());
+            if (data != null) {
+                return SharedSuggestionProvider.suggestResource(data.active.keySet(), builder);
+            }
+        }
+        return builder.buildFuture();
+    };
+
+    private static final SuggestionProvider<CommandSourceStack> CATEGORIES = (ctx, builder) -> {
+        var cats = QuestManager.INSTANCE.getQuests().values().stream()
+            .map(Quest::category).distinct().sorted().toList();
+        return SharedSuggestionProvider.suggest(cats, builder);
+    };
+
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("quest")
+            .then(Commands.literal("list").executes(ctx -> list(ctx, null))
+                .then(Commands.argument("category", StringArgumentType.word())
+                    .suggests(CATEGORIES)
+                    .executes(ctx -> list(ctx, StringArgumentType.getString(ctx, "category")))))
+            .then(Commands.literal("categories").executes(QuestCommand::categories))
+            .then(Commands.literal("stats").executes(QuestCommand::stats))
+            .then(Commands.literal("leaderboard").executes(QuestCommand::leaderboard))
+            .then(Commands.literal("progress").executes(QuestCommand::progress))
+            .then(Commands.literal("accept")
+                .then(Commands.argument("id", IdentifierArgument.id())
+                    .suggests(AVAILABLE_QUESTS)
+                    .executes(ctx -> accept(ctx, IdentifierArgument.getId(ctx, "id")))))
+            .then(Commands.literal("abandon")
+                .then(Commands.argument("id", IdentifierArgument.id())
+                    .suggests(ACTIVE_QUESTS)
+                    .executes(ctx -> abandon(ctx, IdentifierArgument.getId(ctx, "id")))))
+            .then(Commands.literal("discord").executes(QuestCommand::discord))
+            .then(Commands.literal("reload")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .executes(QuestCommand::reload))
+            .then(Commands.literal("reroll")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .executes(QuestCommand::reroll))
+            .then(Commands.literal("mainquests")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .executes(QuestCommand::mainQuestsStatus)
+                .then(Commands.literal("on").executes(ctx -> setMainQuests(ctx, true)))
+                .then(Commands.literal("off").executes(ctx -> setMainQuests(ctx, false))))
+            .then(Commands.literal("difficulty")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .executes(QuestCommand::difficultyShow)
+                .then(Commands.literal("easy").executes(ctx -> difficultySet(ctx, "easy")))
+                .then(Commands.literal("normal").executes(ctx -> difficultySet(ctx, "normal")))
+                .then(Commands.literal("hard").executes(ctx -> difficultySet(ctx, "hard"))))
+            .then(Commands.literal("generator")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .then(Commands.literal("status").executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.status())))
+                .then(Commands.literal("stats").executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.statsText())))
+                .then(Commands.literal("preview")
+                    .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.preview(5)))
+                    .then(Commands.argument("count", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1, 20))
+                        .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.preview(
+                            com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "count"))))))
+                .then(Commands.literal("explain")
+                    .then(Commands.argument("id", IdentifierArgument.id())
+                        .suggests((c, b) -> net.minecraft.commands.SharedSuggestionProvider.suggest(com.erikedits.justquests.generator.GenV2.servedIds(), b))
+                        .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.explain(IdentifierArgument.getId(ctx, "id"))))))
+                .then(Commands.literal("release")
+                    .then(Commands.argument("id", IdentifierArgument.id())
+                        .suggests((c, b) -> net.minecraft.commands.SharedSuggestionProvider.suggest(com.erikedits.justquests.generator.GenV2.servedIds(), b))
+                        .executes(ctx -> generatorLines(ctx, com.erikedits.justquests.generator.GenV2.forceRelease(IdentifierArgument.getId(ctx, "id")))))))
+            .then(Commands.literal("test")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .executes(QuestCommand::test))
+            .then(Commands.literal("admin")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                .then(Commands.literal("view")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .executes(QuestCommand::adminView)))
+                .then(Commands.literal("reset")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .executes(QuestCommand::adminResetAll)
+                        .then(Commands.argument("id", IdentifierArgument.id())
+                            .suggests(AVAILABLE_QUESTS)
+                            .executes(ctx -> adminResetOne(ctx, IdentifierArgument.getId(ctx, "id"))))))
+                .then(Commands.literal("complete")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .then(Commands.argument("id", IdentifierArgument.id())
+                            .suggests(AVAILABLE_QUESTS)
+                            .executes(ctx -> adminComplete(ctx, IdentifierArgument.getId(ctx, "id"))))))));
+    }
+
+    /** The client language of the command source, or English for the console. */
+    private static String lang(CommandSourceStack src) {
+        ServerPlayer player = src.getPlayer();
+        return player != null ? player.clientInformation().language() : LocalizedText.DEFAULT_LANG;
+    }
+
+    private static int list(CommandContext<CommandSourceStack> ctx, String category) {
+        CommandSourceStack src = ctx.getSource();
+        String lang = lang(src);
+        // the caller's progress, so locked (prerequisite) quests can be teased
+        PlayerQuestData self = null;
+        ServerPlayer viewer = src.getPlayer();
+        if (viewer != null) {
+            WorldQuestStore store = WorldQuestStore.get();
+            if (store != null) self = store.peek(viewer.getUUID());
+        }
+        final PlayerQuestData data = self;
+
+        Map<Identifier, Quest> quests = QuestManager.INSTANCE.getQuests();
+        // sorted by category, then per-quest sort weight, then id (stable order)
+        List<Map.Entry<Identifier, Quest>> entries = quests.entrySet().stream()
+            .filter(e -> category == null || e.getValue().category().equalsIgnoreCase(category))
+            .sorted(Comparator
+                .comparing((Map.Entry<Identifier, Quest> e) -> e.getValue().category(), String.CASE_INSENSITIVE_ORDER)
+                .thenComparingInt(e -> e.getValue().sort())
+                .thenComparing(e -> e.getKey().toString()))
+            .toList();
+
+        if (entries.isEmpty()) {
+            String msg = category == null ? "§7No quests defined."
+                : "§7No quests in category '" + category + "'. Try /quest categories.";
+            src.sendSuccess(() -> Component.literal(msg), false);
+            return 0;
+        }
+
+        src.sendSuccess(() -> Component.literal(category == null
+            ? "§eAvailable quests:" : "§eQuests in §f" + category + "§e:"), false);
+
+        String shownCategory = null;
+        for (Map.Entry<Identifier, Quest> entry : entries) {
+            Identifier id = entry.getKey();
+            Quest quest = entry.getValue();
+
+            // category header (only when listing everything, not when filtered)
+            if (category == null && !quest.category().equals(shownCategory)) {
+                shownCategory = quest.category();
+                final String cat = shownCategory;
+                src.sendSuccess(() -> Component.literal("§6§l" + cat), false);
+            }
+
+            // locked teaser: a prerequisite isn't completed yet (Q28)
+            Identifier missing = null;
+            if (data != null) {
+                for (Identifier req : quest.requires()) {
+                    if (!data.isCompleted(req)) { missing = req; break; }
+                }
+            }
+            if (missing != null) {
+                Quest reqQuest = QuestManager.INSTANCE.get(missing);
+                String reqName = reqQuest != null ? reqQuest.title().get(lang) : missing.toString();
+                src.sendSuccess(() -> Component.literal("§8" + id + " §7— §8" + quest.title().get(lang)
+                    + " §c[locked: needs " + reqName + "]"), false);
+                continue; // teaser only — hide goal and reward
+            }
+
+            String repeatTag = quest.repeatable() ? " §d(repeatable)" : "";
+            String claimTag = viewer == null ? "" : com.erikedits.justquests.generator.GenV2.claimTag(id, viewer.getUUID());
+            src.sendSuccess(() -> Component.literal("§b" + id + " §7— §f" + quest.title().get(lang)
+                + repeatTag + claimTag), false);
+            String desc = quest.description().get(lang);
+            if (!desc.isBlank()) {
+                src.sendSuccess(() -> Component.literal("  §7§o" + desc), false);
+            }
+
+            MutableComponent goals = Component.literal("  §6Goal: §f");
+            List<QuestObjective> objs = quest.objectives();
+            for (int i = 0; i < objs.size(); i++) {
+                if (i > 0) goals.append(Component.literal("§7, §f"));
+                goals.append(objs.get(i).display());
+            }
+            src.sendSuccess(() -> goals, false);
+
+            MutableComponent rewards = Component.literal("  §6Reward: §a");
+            List<QuestReward> rs = quest.rewards();
+            for (int i = 0; i < rs.size(); i++) {
+                if (i > 0) rewards.append(Component.literal("§7, §a"));
+                rewards.append(rs.get(i).display());
+            }
+            src.sendSuccess(() -> rewards, false);
+        }
+        return entries.size();
+    }
+
+    private static int categories(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack src = ctx.getSource();
+        Map<Identifier, Quest> quests = QuestManager.INSTANCE.getQuests();
+        if (quests.isEmpty()) {
+            src.sendSuccess(() -> Component.literal("§7No quests defined."), false);
+            return 0;
+        }
+        Map<String, Integer> counts = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        for (Quest q : quests.values()) {
+            counts.merge(q.category(), 1, Integer::sum);
+        }
+        src.sendSuccess(() -> Component.literal("§eCategories:"), false);
+        counts.forEach((cat, n) ->
+            src.sendSuccess(() -> Component.literal("§6" + cat + " §7(" + n + ") §8— /quest list " + cat), false));
+        return counts.size();
+    }
+
+    private static int stats(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        CommandSourceStack src = ctx.getSource();
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+
+        int total = QuestManager.INSTANCE.getQuests().size();
+        int completed = data == null ? 0 : data.completed.size();
+        int active = data == null ? 0 : data.active.size();
+        // cap at 100: a player may have completed quests that are no longer loaded
+        int pct = total > 0 ? Math.min(100, completed * 100 / total) : 0;
+
+        src.sendSuccess(() -> Component.literal("§eYour quest stats:"), false);
+        src.sendSuccess(() -> Component.literal("  §7Completed: §f" + completed + "§7/§f" + total + " §7(" + pct + "%)"), false);
+        src.sendSuccess(() -> Component.literal("  §7Active: §f" + active), false);
+
+        if (data != null && !data.completed.isEmpty()) {
+            Map<String, Integer> byCat = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+            for (Identifier id : data.completed.keySet()) {
+                Quest q = QuestManager.INSTANCE.get(id);
+                if (q != null) byCat.merge(q.category(), 1, Integer::sum);
+            }
+            if (!byCat.isEmpty()) {
+                src.sendSuccess(() -> Component.literal("  §7By category:"), false);
+                byCat.forEach((c, n) -> src.sendSuccess(() -> Component.literal("    §6" + c + "§7: §f" + n), false));
+            }
+            List<Long> times = data.completed.values().stream().filter(t -> t > 0L).sorted().toList();
+            if (!times.isEmpty()) {
+                java.text.SimpleDateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                String first = fmt.format(new java.util.Date(times.get(0)));
+                String last = fmt.format(new java.util.Date(times.get(times.size() - 1)));
+                src.sendSuccess(() -> Component.literal("  §7First: §f" + first + " §7Last: §f" + last), false);
+            }
+        }
+        return 1;
+    }
+
+    private static int leaderboard(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack src = ctx.getSource();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) {
+            src.sendSuccess(() -> Component.literal("§7No quest data yet."), false);
+            return 0;
+        }
+        MinecraftServer server = src.getServer();
+        List<Map.Entry<UUID, PlayerQuestData>> top = store.allPlayers().entrySet().stream()
+            .filter(e -> !e.getValue().completed.isEmpty())
+            .sorted((a, b) -> Integer.compare(b.getValue().completed.size(), a.getValue().completed.size()))
+            .limit(10)
+            .toList();
+        if (top.isEmpty()) {
+            src.sendSuccess(() -> Component.literal("§7No completed quests yet."), false);
+            return 0;
+        }
+        src.sendSuccess(() -> Component.literal("§eQuest leaderboard (top " + top.size() + "):"), false);
+        int rank = 0;
+        for (Map.Entry<UUID, PlayerQuestData> e : top) {
+            final int r = ++rank;
+            final String name = nameFor(server, e.getKey());
+            final int n = e.getValue().completed.size();
+            src.sendSuccess(() -> Component.literal("  §6#" + r + " §f" + name + " §7— §f" + n + " §7done"), false);
+        }
+        return top.size();
+    }
+
+    /** Resolves an online player's name, else a short UUID (cross-version safe). */
+    private static String nameFor(MinecraftServer server, UUID id) {
+        if (server != null) {
+            ServerPlayer online = server.getPlayerList().getPlayer(id);
+            if (online != null) return online.getName().getString();
+        }
+        return id.toString().substring(0, 8);
+    }
+
+    private static int progress(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        String lang = player.clientInformation().language();
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+
+        if (data == null || data.active.isEmpty()) {
+            ctx.getSource().sendSuccess(() -> Component.literal("§7You have no active quests."), false);
+            return 0;
+        }
+
+        ctx.getSource().sendSuccess(() -> Component.literal("§eActive quests:"), false);
+
+        for (Map.Entry<Identifier, QuestProgress> entry : data.active.entrySet()) {
+            Quest quest = QuestManager.INSTANCE.get(entry.getKey());
+            if (quest == null) continue;
+
+            ctx.getSource().sendSuccess(() ->
+                Component.literal("§b" + entry.getKey() + " §7— §f" + quest.title().get(lang)), false);
+
+            QuestProgress prog = entry.getValue();
+            for (int i = 0; i < quest.objectives().size(); i++) {
+                QuestObjective obj = quest.objectives().get(i);
+                int current = Math.min(prog.get(i), obj.requiredCount());
+                int needed = obj.requiredCount();
+                String bar = current >= needed ? "§a✓" : "§7" + current + "/" + needed;
+                final int idx = i;
+                ctx.getSource().sendSuccess(() ->
+                    Component.literal("  " + bar + " §f").append(quest.objectives().get(idx).display()), false);
+            }
+        }
+        return data.active.size();
+    }
+
+    private static int accept(CommandContext<CommandSourceStack> ctx, Identifier id) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+
+        Quest quest = QuestManager.INSTANCE.get(id);
+        if (quest == null) {
+            ctx.getSource().sendFailure(Component.literal("§cUnknown quest: " + id));
+            return 0;
+        }
+
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) {
+            ctx.getSource().sendFailure(Component.literal("§cQuest storage is not ready yet."));
+            return 0;
+        }
+        PlayerQuestData data = store.get(player.getUUID());
+        String lang = player.clientInformation().language();
+
+        if (data.isActive(id)) {
+            ctx.getSource().sendFailure(Component.literal("§cQuest is already active."));
+            return 0;
+        }
+
+        // prerequisites must be completed first (Q28)
+        for (Identifier req : quest.requires()) {
+            if (!data.isCompleted(req)) {
+                Quest reqQuest = QuestManager.INSTANCE.get(req);
+                String reqName = reqQuest != null ? reqQuest.title().get(lang) : req.toString();
+                ctx.getSource().sendFailure(Component.literal("§cLocked — finish first: §f" + reqName));
+                return 0;
+            }
+        }
+
+        // already completed: only re-acceptable if repeatable and off cooldown (Q26)
+        if (data.isCompleted(id)) {
+            if (!quest.repeatable()) {
+                ctx.getSource().sendFailure(Component.literal("§cYou already completed this quest."));
+                return 0;
+            }
+            long cooldownMs = quest.cooldownHours().orElse(0) * 3600_000L;
+            if (cooldownMs > 0) {
+                long remaining = cooldownMs - (System.currentTimeMillis() - data.completed.getOrDefault(id, 0L));
+                if (remaining > 0) {
+                    ctx.getSource().sendFailure(Component.literal(
+                        "§cOn cooldown — " + formatDuration(remaining) + " left."));
+                    return 0;
+                }
+            }
+        }
+
+        String denied = com.erikedits.justquests.generator.GenV2.claim(id, player.getUUID());
+        if (denied != null) {
+            genFail(ctx.getSource(), "§c" + denied);
+            return 0;
+        }
+        data.accept(id);
+        store.markDirty();
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        ctx.getSource().sendSuccess(() ->
+            Component.literal("§a✓ Accepted: " + quest.title().get(lang)), false);
+        return 1;
+    }
+
+    /** Human-readable remaining time, e.g. "2h 5m" or "3m". */
+    private static String formatDuration(long ms) {
+        long totalMin = ms / 60000L;
+        long h = totalMin / 60;
+        long m = totalMin % 60;
+        return h > 0 ? h + "h " + m + "m" : Math.max(1, m) + "m";
+    }
+
+    private static int abandon(CommandContext<CommandSourceStack> ctx, Identifier id) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        if (data == null || !data.isActive(id)) {
+            ctx.getSource().sendFailure(Component.literal("§cQuest is not active."));
+            return 0;
+        }
+
+        data.abandon(id);
+        store.markDirty();
+        com.erikedits.justquests.generator.GenV2.abandoned(id, player.getUUID());
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        ctx.getSource().sendSuccess(() ->
+            Component.literal("§7Abandoned quest: " + id), false);
+        return 1;
+    }
+
+    private static void genSay(CommandSourceStack src, String msg) {
+        src.sendSuccess(() -> Component.literal(msg), false);
+    }
+
+    private static void genFail(CommandSourceStack src, String msg) {
+        src.sendFailure(Component.literal(msg));
+    }
+
+    private static int difficultyShow(CommandContext<CommandSourceStack> ctx) {
+        genSay(ctx.getSource(), "§7Generated-quest difficulty: §f" + com.erikedits.justquests.storage.WorldSettings.difficulty()
+            + "§7. Change it with /quest difficulty easy|normal|hard.");
+        return 1;
+    }
+
+    private static int difficultySet(CommandContext<CommandSourceStack> ctx, String value) {
+        com.erikedits.justquests.storage.WorldSettings.setDifficulty(value);
+        net.minecraft.server.MinecraftServer server = ctx.getSource().getServer();
+        if (server != null) com.erikedits.justquests.storage.WorldSettings.save(server);
+        com.erikedits.justquests.generator.GenV2.reloadConfig();
+        genSay(ctx.getSource(), "§aDifficulty set to " + value + " §7- applies from the next rotation or /quest reroll.");
+        return 1;
+    }
+
+    private static int generatorLines(CommandContext<CommandSourceStack> ctx, String text) {
+        for (String line : text.split("\n")) genSay(ctx.getSource(), line.startsWith("§") ? line : "§7" + line);
+        return 1;
+    }
+
+    private static int mainQuestsStatus(CommandContext<CommandSourceStack> ctx) {
+        boolean on = com.erikedits.justquests.storage.WorldSettings.mainQuests();
+        ctx.getSource().sendSuccess(() -> Component.literal(
+            "§7Main quests are currently " + (on ? "§aON" : "§cOFF")
+            + "§7. Use /quest mainquests on|off to change."), false);
+        return 1;
+    }
+
+    private static int setMainQuests(CommandContext<CommandSourceStack> ctx, boolean enabled) {
+        com.erikedits.justquests.storage.WorldSettings.setMainQuests(enabled);
+        net.minecraft.server.MinecraftServer server = ctx.getSource().getServer();
+        if (server != null) {
+            com.erikedits.justquests.storage.WorldSettings.save(server);
+            com.erikedits.justquests.network.QuestNetwork.syncAll(server);
+        }
+        ctx.getSource().sendSuccess(() -> Component.literal(
+            enabled ? "§aMain quests enabled."
+                    : "§eMain quests disabled §7(hidden from /quest list and the quest book)."), false);
+        return 1;
+    }
+
+    private static int reload(CommandContext<CommandSourceStack> ctx) {
+        com.erikedits.justquests.storage.WorldSettings.load(ctx.getSource().getServer());
+        com.erikedits.justquests.generator.GenV2.reloadConfig();
+        com.erikedits.justquests.storage.CustomQuestLoader.load();
+        com.erikedits.justquests.network.QuestNetwork.syncAll(ctx.getSource().getServer());
+        int count = QuestManager.INSTANCE.getQuests().size();
+        ctx.getSource().sendSuccess(() -> Component.literal(
+            "§aReloaded custom quests. §7Total quests: " + count
+            + " §8(use /reload for datapack quests)"), false);
+        return 1;
+    }
+
+    private static int reroll(CommandContext<CommandSourceStack> ctx) {
+        int n = com.erikedits.justquests.generator.GenV2.reroll();
+        if (n < 0) {
+            ctx.getSource().sendSuccess(() -> Component.literal(
+                "\u00a7eGenerated quests are disabled for this world \u00a77(set generatedQuests: true in settings.json)."), false);
+        } else {
+            final int count = n;
+            ctx.getSource().sendSuccess(() -> Component.literal(
+                "\u00a7aRerolled generated quests. \u00a77Now " + count + " in category \u00a7fgenerated\u00a77."), false);
+        }
+        return 1;
+    }
+
+    private static int test(CommandContext<CommandSourceStack> ctx) {
+        String summary = SelfTest.run(ctx.getSource());
+        ctx.getSource().sendSuccess(() -> Component.literal(summary), false);
+        return 1;
+    }
+
+    private static int discord(CommandContext<CommandSourceStack> ctx) {
+        ctx.getSource().sendSuccess(
+            com.erikedits.justquests.community.CommunityHints::discordMessage, false);
+        return 1;
+    }
+
+    // --- admin (OP, permission level 2) ---------------------------------
+
+    private static int adminView(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        CommandSourceStack src = ctx.getSource();
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(target.getUUID());
+        String name = target.getName().getString();
+        if (data == null || (data.active.isEmpty() && data.completed.isEmpty())) {
+            src.sendSuccess(() -> Component.literal("§7" + name + " has no quest progress."), false);
+            return 0;
+        }
+        src.sendSuccess(() -> Component.literal("§e" + name + " §7— active: §f" + data.active.size()
+            + " §7completed: §f" + data.completed.size()), false);
+        data.active.keySet().forEach(id -> src.sendSuccess(() -> Component.literal("  §b" + id + " §7(active)"), false));
+        data.completed.keySet().forEach(id -> src.sendSuccess(() -> Component.literal("  §a" + id + " §7(done)"), false));
+        return 1;
+    }
+
+    private static int adminResetAll(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        String name = target.getName().getString();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store != null && store.has(target.getUUID())) {
+            PlayerQuestData data = store.get(target.getUUID());
+            com.erikedits.justquests.generator.GenV2.releaseAllFor(target.getUUID());
+            data.active.clear();
+            data.completed.clear();
+            data.pendingClaim.clear();
+            store.markDirty();
+        }
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(target);
+        ctx.getSource().sendSuccess(() -> Component.literal("§aReset all quest progress for " + name + "."), true);
+        return 1;
+    }
+
+    private static int adminResetOne(CommandContext<CommandSourceStack> ctx, Identifier id) throws CommandSyntaxException {
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        String name = target.getName().getString();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store != null) {
+            PlayerQuestData data = store.peek(target.getUUID());
+            if (data != null) {
+                if (data.isActive(id)) com.erikedits.justquests.generator.GenV2.abandoned(id, target.getUUID());
+                data.active.remove(id);
+                data.completed.remove(id);
+                store.markDirty();
+            }
+        }
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(target);
+        ctx.getSource().sendSuccess(() -> Component.literal("§aReset " + id + " for " + name + "."), true);
+        return 1;
+    }
+
+    private static int adminComplete(CommandContext<CommandSourceStack> ctx, Identifier id) throws CommandSyntaxException {
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        CommandSourceStack src = ctx.getSource();
+        Quest quest = QuestManager.INSTANCE.get(id);
+        if (quest == null) {
+            src.sendFailure(Component.literal("§cUnknown quest: " + id));
+            return 0;
+        }
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) {
+            src.sendFailure(Component.literal("§cQuest storage is not ready yet."));
+            return 0;
+        }
+        PlayerQuestData data = store.get(target.getUUID());
+        data.complete(id);
+        for (QuestReward reward : quest.rewards()) {
+            reward.grant(target);
+        }
+        com.erikedits.justquests.generator.GenV2.completed(id, target.getUUID());
+        store.markDirty();
+        String name = target.getName().getString();
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(target);
+        src.sendSuccess(() -> Component.literal("§aForce-completed " + id + " for " + name + " (rewards granted)."), true);
+        return 1;
+    }
+}

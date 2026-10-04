@@ -3,11 +3,16 @@ package com.erikedits.justquests.client;
 import com.erikedits.justquests.JustQuests;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Client options for the quest book and the HUD tracker, kept in
@@ -27,6 +32,9 @@ public final class ClientSettings {
     public static boolean byStatus = false;
     /** Quest book hides completed quests. */
     public static boolean hideCompleted = false;
+    /** Quests pinned to the HUD, as ids; QuestHud drops finished or abandoned ones. */
+    public static final List<String> pinned = new ArrayList<>();
+    private static final int MAX_PINS = 20;
 
     private ClientSettings() {}
 
@@ -51,21 +59,41 @@ public final class ClientSettings {
             if (o.has("hudMax")) hudMax = Math.max(1, Math.min(5, o.get("hudMax").getAsInt()));
             if (o.has("byStatus")) byStatus = o.get("byStatus").getAsBoolean();
             if (o.has("hideCompleted")) hideCompleted = o.get("hideCompleted").getAsBoolean();
+            if (o.has("pinned")) {
+                for (JsonElement e : o.getAsJsonArray("pinned")) pinned.add(e.getAsString());
+            }
         } catch (Exception e) {
             JustQuests.LOG.warn("Could not read justquests-client.json, using defaults", e);
         }
+    }
+
+    public static boolean isPinned(ResourceLocation id) {
+        return pinned.contains(id.toString());
+    }
+
+    public static void togglePin(ResourceLocation id) {
+        String s = id.toString();
+        if (!pinned.remove(s)) {
+            pinned.add(s);
+            while (pinned.size() > MAX_PINS) pinned.remove(0);
+        }
+        save();
     }
 
     public static void save() {
         JsonObject o = new JsonObject();
         o.addProperty("_help", "JustQuests client options. hud: show the quest tracker (toggle key H). "
             + "hudCorner: top_left, top_right, bottom_left or bottom_right. hudMax: quests shown (1-5). "
-            + "byStatus / hideCompleted: quest book list options (also set by its buttons).");
+            + "byStatus / hideCompleted: quest book list options (also set by its buttons). "
+            + "pinned: quests pinned to the HUD (set with the pin button in the book).");
         o.addProperty("hud", hud);
         o.addProperty("hudCorner", hudCorner);
         o.addProperty("hudMax", hudMax);
         o.addProperty("byStatus", byStatus);
         o.addProperty("hideCompleted", hideCompleted);
+        JsonArray pins = new JsonArray();
+        pinned.forEach(pins::add);
+        o.add("pinned", pins);
         try {
             Path f = file();
             Files.createDirectories(f.getParent());

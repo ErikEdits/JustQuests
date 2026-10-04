@@ -44,7 +44,8 @@ community until we are ready for the GUI.
 | 0.3.1 | Claims shown in the quest book; GUI text fix for 1.21.6+ | ✅ shipped |
 | 0.3.2 | `enchant_item`, `use_item`, item filters, `title` reward, v1 generator removed, CurseForge | ✅ shipped |
 | 0.3.3 | Block/mob tags, stonecutter counts as crafting, generator uses enchant/use/potions/tags | ✅ shipped |
-| 0.3.4 | HUD tracker, quest book grouped by category/status, pixel icons, stats page | ✅ done |
+| 0.3.4 | HUD tracker, quest book grouped by category/status, pixel icons, stats page | ✅ shipped |
+| 0.3.5 | MC 1.21.11 (NeoForge + Fabric, 36 builds), book search, pin quests to the HUD, mouse wheel | ✅ done |
 | 0.4.0 | Translations (EN, DE, JA, FR, ES; picked from the player's language), claim button, choice rewards | ⏭️ later |
 
 Each 0.1.x release is a Modrinth update, which puts the mod back in
@@ -150,7 +151,7 @@ pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1
 - [x] Generated-quest claims in the book ("Taken by X", 0.3.1)
 - [x] Quest list screen: grouping by category or status, hide completed (Q45, 0.3.4)
 - [x] Per-quest icon with fallback (Q44, 0.3.4: `icon` field, else from the first objective); detail view (Q78 open)
-- [ ] Search box that auto-appears at high quest counts (Q46)
+- [x] Search box that auto-appears at high quest counts (Q46, 0.3.5: from 15 quests; title, category, goals)
 - [ ] **Claim button** + completed-pending state (Q48)
 - [ ] **Choice reward** picker (Q49)
 - [x] Category + state icons (Q3, 0.3.4)
@@ -268,12 +269,15 @@ under `neoforge/<mc-version>/`, all built by one `./gradlew build`.
       `Player.getServer()`, `getProfileCache()` → use `getName().getString()`,
       `player.level().getServer()`, drop the profile-cache lookup (all
       cross-version safe).
-- [~] **1.21.11** excluded for now: upstream NeoForm package is broken
-      (duplicate `mcp/client/Start.class` → empty merged jar). Folder kept;
-      re-add in settings.gradle once fixed upstream.
+- [x] **1.21.11** (0.3.5): the NeoForm package was fixed upstream; NeoForge 21.11.45 builds with MDG
+      2.0.141, Fabric needs Loom 1.14.10 (the other Fabric builds stay on 1.11.8). Mojang renamed
+      `ResourceLocation` to `Identifier`, `ResourceKey.location()` to `identifier()`, commands use
+      `PermissionSet`s and `playNotifySound` is gone. (Excluded until then: the upstream NeoForm
+      package was broken, a duplicate `mcp/client/Start.class` gave an empty merged jar.)
 - 12 → **11 NeoForge versions** building (1.21–1.21.10).
-- [x] Loader ports: Fabric 1.18.2–1.21.10 (17), Forge 1.18.2–1.20.1 (4) — 34 builds
-      with NeoForge 1.20.4–1.21.10 (13)
+- [x] Loader ports: Fabric 1.18.2–1.21.11 (18), Forge 1.18.2–1.20.1 (4) — 36 builds
+      with NeoForge 1.20.4–1.21.11 (14)
+- [ ] Minecraft 26.1+ (year-numbered releases after 1.21.11) — not started
 - [ ] **CurseForge** listing (0.3.2: local create sheet + upload script)
 - [ ] **Paper/Bukkit plugin** edition (shared JSON file is the bridge;
       poll cog already specced) — own deep breakdown when reached
@@ -376,7 +380,7 @@ forward the non-GUI items from Phases 2, 5, 6 and 7.
 ## Cross-cutting (apply throughout)
 
 - [x] Everything server-side-safe; no webhooks/tokens in the mod jar
-- [x] CI builds all 34 jars on every push; a `v*` tag publishes the GitHub release
+- [x] CI builds all 36 jars on every push; a `v*` tag publishes the GitHub release
 - [x] Modrinth publish per release (local `upload-modrinth.ps1`, one version per jar)
 - [ ] CurseForge publish per release (local `upload-curseforge.ps1`, from 0.3.2)
 - [ ] Back up to USB after each work session

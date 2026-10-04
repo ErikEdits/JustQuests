@@ -1,0 +1,34 @@
+{
+  "title": {
+    "en_us": "Level Up",
+    "de_de": "Level-Aufstieg",
+    "fr_fr": "Montee de niveau",
+    "es_es": "Subir de nivel"
+  },
+  "description": {
+    "en_us": "Reach experience level 20.",
+    "de_de": "Erreiche Erfahrungsstufe 20.",
+    "fr_fr": "Atteignez le niveau d'experience 20.",
+    "es_es": "Alcanza el nivel de experiencia 20."
+  },
+  "category": "challenges",
+  "sort": 10,
+  "objectives": [
+    {
+      "type": "justquests:reach_level",
+      "level": 20
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    },
+    {
+      "type": "justquests:effect",
+      "effect": "minecraft:strength",
+      "seconds": 120,
+      "amplifier": 0
+    }
+  ]
+}

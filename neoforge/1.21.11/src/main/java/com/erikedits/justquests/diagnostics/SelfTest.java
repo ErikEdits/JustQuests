@@ -13,7 +13,7 @@ import com.mojang.serialization.JsonOps;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.fml.ModList;
@@ -77,8 +77,13 @@ public final class SelfTest {
 
         // --- Mod state ---
         out.append("[MOD STATE]\n");
-        Map<ResourceLocation, Quest> quests = QuestManager.INSTANCE.getQuests();
+        Map<Identifier, Quest> quests = QuestManager.INSTANCE.getQuests();
         out.append("  Quests loaded: ").append(quests.size()).append("\n");
+        long genLive = quests.values().stream().filter(q -> "generated".equals(q.category())).count();
+        out.append("  Generated quests live: ").append(genLive)
+           .append(com.erikedits.justquests.storage.WorldSettings.generatedQuests()
+               ? " (generator enabled, cap " + com.erikedits.justquests.storage.WorldSettings.generatedCount() + ")"
+               : " (generator disabled)").append("\n");
         java.util.Set<String> objTypes = new java.util.TreeSet<>();
         java.util.Set<String> rewTypes = new java.util.TreeSet<>();
         quests.values().forEach(q -> {
@@ -115,7 +120,7 @@ public final class SelfTest {
         boolean questsValid = true;
         String questIssue = "";
         try {
-            for (Map.Entry<ResourceLocation, Quest> e : quests.entrySet()) {
+            for (Map.Entry<Identifier, Quest> e : quests.entrySet()) {
                 Quest q = e.getValue();
                 if (q.objectives().isEmpty()) { questsValid = false; questIssue = e.getKey() + " has no objectives"; break; }
                 for (QuestObjective o : q.objectives()) {
@@ -128,6 +133,16 @@ public final class SelfTest {
         } catch (Exception ex) { questsValid = false; questIssue = ex.toString(); }
         check(results, tally, "All quests valid", questsValid, questsValid ? "ok" : questIssue);
 
+        // generator v2: running, served set valid and registered, claims match player data
+        boolean genOk;
+        String genMsg;
+        try {
+            java.util.List<String> genProblems = com.erikedits.justquests.generator.GenV2.selfTest();
+            genOk = genProblems.isEmpty();
+            genMsg = genOk ? com.erikedits.justquests.generator.GenV2.selfTestSummary() : String.join("; ", genProblems);
+        } catch (Exception ex) { genOk = false; genMsg = ex.toString(); }
+        check(results, tally, "Generator v2 healthy", genOk, genMsg);
+
         // codec round-trip
         boolean codecOk;
         String codecMsg;
@@ -135,13 +150,13 @@ public final class SelfTest {
             PlayerQuestData sample = new PlayerQuestData();
             QuestProgress p = new QuestProgress();
             p.increment(0, 7);
-            sample.active.put(ResourceLocation.parse("justquests:_selftest"), p);
-            sample.completed.put(ResourceLocation.parse("justquests:_done"), 123L);
+            sample.active.put(Identifier.parse("justquests:_selftest"), p);
+            sample.completed.put(Identifier.parse("justquests:_done"), 123L);
             JsonElement enc = PlayerQuestData.CODEC.encodeStart(JsonOps.INSTANCE, sample).getOrThrow();
             PlayerQuestData dec = PlayerQuestData.CODEC.parse(JsonOps.INSTANCE, enc).getOrThrow();
-            codecOk = dec.active.containsKey(ResourceLocation.parse("justquests:_selftest"))
-                   && dec.completed.getOrDefault(ResourceLocation.parse("justquests:_done"), -1L) == 123L
-                   && dec.active.get(ResourceLocation.parse("justquests:_selftest")).get(0) == 7;
+            codecOk = dec.active.containsKey(Identifier.parse("justquests:_selftest"))
+                   && dec.completed.getOrDefault(Identifier.parse("justquests:_done"), -1L) == 123L
+                   && dec.active.get(Identifier.parse("justquests:_selftest")).get(0) == 7;
             codecMsg = codecOk ? "encode/decode equal" : "round-trip mismatch";
         } catch (Exception ex) { codecOk = false; codecMsg = ex.toString(); }
         check(results, tally, "Codec round-trip (PlayerQuestData)", codecOk, codecMsg);
@@ -168,7 +183,7 @@ public final class SelfTest {
         boolean questRtOk = true;
         String questRtMsg = "ok";
         try {
-            for (Map.Entry<ResourceLocation, Quest> e : quests.entrySet()) {
+            for (Map.Entry<Identifier, Quest> e : quests.entrySet()) {
                 Quest q = e.getValue();
                 JsonElement enc = Quest.CODEC.encodeStart(JsonOps.INSTANCE, q).getOrThrow();
                 Quest back = Quest.CODEC.parse(JsonOps.INSTANCE, enc).getOrThrow();
@@ -196,9 +211,14 @@ public final class SelfTest {
             {"reach_level", "{\"type\":\"justquests:reach_level\",\"level\":30}"},
             {"reach_location", "{\"type\":\"justquests:reach_location\",\"x\":0,\"y\":64,\"z\":0}"},
             {"mine_block", "{\"type\":\"justquests:mine_block\",\"block\":\"minecraft:stone\",\"count\":1}"},
+            {"mine_block (tag)", "{\"type\":\"justquests:mine_block\",\"block\":\"#minecraft:logs\",\"count\":1}"},
+            {"kill_mob (tag)", "{\"type\":\"justquests:kill_mob\",\"entity\":\"#minecraft:skeletons\",\"count\":1}"},
             {"breed_animal", "{\"type\":\"justquests:breed_animal\",\"entity\":\"minecraft:cow\",\"count\":1}"},
             {"consume_item", "{\"type\":\"justquests:consume_item\",\"item\":\"minecraft:cooked_beef\",\"count\":1}"},
             {"smelt_item", "{\"type\":\"justquests:smelt_item\",\"item\":\"minecraft:iron_ingot\",\"count\":1}"},
+            {"enchant_item", "{\"type\":\"justquests:enchant_item\",\"count\":1}"},
+            {"use_item", "{\"type\":\"justquests:use_item\",\"item\":\"minecraft:snowball\",\"count\":1}"},
+            {"collect_item (filter)", "{\"type\":\"justquests:collect_item\",\"item\":{\"id\":\"minecraft:diamond_sword\",\"enchantments\":{\"minecraft:sharpness\":2},\"name\":\"Excalibur\"},\"count\":1}"},
         };
         String objErr = parsesAll(objSamples, true);
         check(results, tally, "All objective types parse", objErr == null,
@@ -212,6 +232,7 @@ public final class SelfTest {
             {"xp", "{\"type\":\"justquests:xp\",\"amount\":30}"},
             {"effect", "{\"type\":\"justquests:effect\",\"effect\":\"minecraft:regeneration\",\"seconds\":20,\"amplifier\":0}"},
             {"message", "{\"type\":\"justquests:message\",\"message\":\"Well done!\"}"},
+            {"title", "{\"type\":\"justquests:title\",\"title\":\"Well done!\",\"subtitle\":\"Quest complete\"}"},
         };
         String rewErr = parsesAll(rewSamples, false);
         check(results, tally, "All reward types parse", rewErr == null,

@@ -1,0 +1,30 @@
+{
+  "title": {
+    "en_us": "Lumberjack",
+    "de_de": "Holzfäller",
+    "fr_fr": "Bucheron",
+    "es_es": "Lenador"
+  },
+  "description": {
+    "en_us": "Chop wood of any kind.",
+    "de_de": "Fälle Holz jeder Art.",
+    "fr_fr": "Coupez du bois de toute sorte.",
+    "es_es": "Corta madera de cualquier tipo."
+  },
+  "category": "gathering",
+  "sort": 90,
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "#minecraft:logs",
+      "count": 32
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_axe",
+      "count": 1
+    }
+  ]
+}

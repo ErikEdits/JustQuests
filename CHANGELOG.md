@@ -3,6 +3,23 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.5] - 2026-10-04
+
+### Added
+- **Minecraft 1.21.11** for NeoForge and Fabric. JustQuests now has 36 builds.
+- **Search in the quest book:** with 15 or more quests a search field appears next to the list
+  buttons. It looks at titles, categories and goals, so "diam" finds every quest with diamonds.
+- **Pin quests to the HUD:** active quests get a pin button next to "Abandon". With pins the
+  tracker shows only the pinned quests, without pins the newest ones as before. Finished or
+  abandoned quests are unpinned by themselves.
+- **Mouse wheel** over the quest list turns the pages.
+
+### Changed
+- What a button does now shows next to the "Quests" title while the mouse is on it.
+
+### Fixed
+- The "Abandon" button had an x drawn under its label.
+
 ## [0.3.4] - 2026-10-04
 
 ### Added

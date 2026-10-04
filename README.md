@@ -8,15 +8,15 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.3.4** — see the [changelog](CHANGELOG.md).
+Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
 
 ## Features
 
 - **Quest book** — press **J** to browse quests, follow progress bars and accept or abandon with a
   click (Minecraft 1.20.1 and newer). Grouped by category or by status, a pixel icon for every
-  quest, and a stats page. Works in singleplayer and on servers.
-- **Quest tracker** — your active quests and their goals in a corner of the screen; **H** turns
-  it on or off.
+  quest, a search field, and a stats page. Works in singleplayer and on servers.
+- **Quest tracker** — your pinned (or newest) active quests and their goals in a corner of the
+  screen; **H** turns it on or off.
 - **Ready to play** — 25 built-in quests in English, German, French and Spanish. Server owners can
   hide them with `/quest mainquests off`.
 - **Generated quests** — a fresh board every 12 hours (00:00 and 12:00 by default), sized to a
@@ -39,8 +39,8 @@ Current version: **0.3.4** — see the [changelog](CHANGELOG.md).
 
 | Loader | Minecraft | Quest book |
 |---|---|---|
-| NeoForge | 1.20.4, 1.20.6, 1.21 – 1.21.10 | yes |
-| Fabric (needs [Fabric API](https://modrinth.com/mod/fabric-api)) | 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4, 1.20.6, 1.21 – 1.21.10 | 1.20.1 and newer |
+| NeoForge | 1.20.4, 1.20.6, 1.21 – 1.21.11 | yes |
+| Fabric (needs [Fabric API](https://modrinth.com/mod/fabric-api)) | 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4, 1.20.6, 1.21 – 1.21.11 | 1.20.1 and newer |
 | Forge | 1.18.2, 1.19.2, 1.19.4, 1.20.1 | 1.20.1 |
 
 On 1.18 and 1.19 JustQuests is command-only; quests, tracking and rewards work the same.
@@ -52,7 +52,7 @@ Install the mod on the server **and** the clients (both are required).
 2. Download the jar for **your loader and exact version** from
    [Modrinth](https://modrinth.com/mod/justquests) or the
    [GitHub releases](https://github.com/ErikEdits/JustQuests/releases) — the file name says which,
-   e.g. `JustQuests-fabric-1.21.1-0.3.4.jar` — and put it into `mods/`.
+   e.g. `JustQuests-fabric-1.21.1-0.3.5.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
 ## Commands
@@ -162,7 +162,7 @@ Each world has `<world>/justquests/settings.json` (with a `_help` text inside). 
 
 Each player's own book and tracker options live in `config/justquests-client.json`: `hud`
 (tracker on/off), `hudCorner` (`top_left`, `top_right`, `bottom_left`, `bottom_right`), `hudMax`
-(quests shown, 1–5), `byStatus` and `hideCompleted` (also set by the book's buttons).
+(quests shown, 1–5), `byStatus`, `hideCompleted` and `pinned` (also set by the book's buttons).
 
 | Key | Default | Meaning |
 |---|---|---|
@@ -190,17 +190,17 @@ Needs JDK 17 and JDK 21 (Gradle picks the right one per Minecraft version).
 git clone https://github.com/ErikEdits/JustQuests.git
 cd JustQuests
 ./gradlew :neoforge-1_21_1:build      # one version
-./gradlew build                       # all 34 builds (slow the first time)
+./gradlew build                       # all 36 builds (slow the first time)
 ```
 
-Jars end up in `<loader>/<version>/build/libs/`. GitHub Actions builds all 34 on every push and
+Jars end up in `<loader>/<version>/build/libs/`. GitHub Actions builds all 36 on every push and
 publishes a release with every jar for each `v*` tag.
 
 ### Project layout
 
 ```
-neoforge/<version>/   13 NeoForge builds   ─┐
-fabric/<version>/     17 Fabric builds      ├─ one source tree per Minecraft version
+neoforge/<version>/   14 NeoForge builds   ─┐
+fabric/<version>/     18 Fabric builds      ├─ one source tree per Minecraft version
 forge/<version>/       4 Forge builds      ─┘
 generator-v2/         the quest generator core (Java 17, own tests), copied into every build
                       by scripts/sync_generator_v2.py

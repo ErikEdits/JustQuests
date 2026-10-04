@@ -34,10 +34,10 @@ In-game you can run `/quest discord` anytime to get the invite.
 
 - **In-game quest book (GUI)** — press **J** to browse quests, track objective
   progress, and accept with a click (**MC 1.20.1+**, singleplayer and servers).
-  Grouped by category or status, a pixel icon for every quest, and a stats
-  page. The full `/quest` command set works everywhere.
-- **Quest tracker** — your active quests and their goals in a corner of the
-  screen; press **H** to turn it on or off.
+  Grouped by category or status, a pixel icon for every quest, a search
+  field and a stats page. The full `/quest` command set works everywhere.
+- **Quest tracker** — your pinned (or newest) active quests and their goals
+  in a corner of the screen; press **H** to turn it on or off.
 - **Ready to play** — ships with a built-in quest progression you can start
   right away, no setup required.
 - **Lightweight** — tiny and fast, with no heavy dependencies.
@@ -192,9 +192,9 @@ the box, so you can jump in right away. A sample:
 
 Pick the jar for your loader **and** exact Minecraft version:
 
-- **NeoForge:** 1.20.4, 1.20.6, and 1.21 – 1.21.10
+- **NeoForge:** 1.20.4, 1.20.6, and 1.21 – 1.21.11
 - **Fabric** *(requires Fabric API)*: 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4,
-  1.20.6, and 1.21 – 1.21.10
+  1.20.6, and 1.21 – 1.21.11
 - **Forge:** 1.18.2, 1.19.2, 1.19.4, 1.20.1
 
 - **Environment:** singleplayer **and** servers (runs server-side)

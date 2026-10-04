@@ -5,7 +5,10 @@ Source: the v2-full pixel set in docs/assets/gui-2.0.0/JustQuests-GUI-v2-full (v
     (one inner pixel column repeated, so every border stays pixel-exact)
   - button_sort_* / button_filter_*: the pack's sort and filter buttons
   - button_stats_* / button_hud_*: the pack's 14x14 button face with a chart / HUD glyph
-  - glyph_*: state icons from the pack
+  - button_pin_*: a 20x20 cut of the abandon button with the pack's pin glyph
+  - button_abandon_*: the pack's abandon button without its x (the label sits there)
+  - search_*: the pack's search field, 74 px wide, and its clear button
+  - glyph_*: state icons from the pack (glyph_pin from the pinned row)
   - cat_*: category icons; six from the pack, five drawn here in the same style
 
 Run from the repo root:  python scripts/gui_textures.py
@@ -46,6 +49,50 @@ def pattern(rows, size=16):
         for x, ch in enumerate(row):
             if ch in CMAP:
                 im.putpixel((x, y), (*CMAP[ch], 255))
+    return im
+
+
+def narrow(im, w):
+    """Shrink a bordered texture to width w by dropping middle columns."""
+    half = w // 2
+    out = Image.new("RGBA", (w, im.height))
+    out.paste(im.crop((0, 0, half, im.height)), (0, 0))
+    out.paste(im.crop((im.width - (w - half), 0, im.width, im.height)), (half, 0))
+    return out
+
+
+def clear_glyph(im):
+    """Paint dark glyph pixels inside a button's bevel with the face colour."""
+    im = im.copy()
+    face = im.getpixel((im.width // 2, 3))
+    for y in range(2, im.height - 2):
+        for x in range(2, im.width - 2):
+            if im.getpixel((x, y))[:3] == DARK:
+                im.putpixel((x, y), face)
+    return im
+
+
+def pin_glyph():
+    """The pin from the pack's pinned quest row, as a 16x16 icon."""
+    return pack("interactive", "quest_row", "pinned.png").crop((62, 1, 78, 17))
+
+
+def pin_button(state):
+    im = clear_glyph(narrow(pack("interactive", "button_abandon", state + ".png"), 20))
+    glyph = pin_glyph()
+    glyph = glyph.crop(glyph.getbbox())
+    off = 1 if state == "pressed" else 0   # the pressed face is shifted down-right
+    im.alpha_composite(glyph, ((20 - glyph.width) // 2 + off, (20 - glyph.height) // 2 + off))
+    return im
+
+
+def search_focused():
+    """The search field with a white frame; the pack's version has a cursor drawn in, the edit box draws its own."""
+    im = narrow(pack("interactive", "search_field", "normal.png"), 74)
+    for y in range(im.height):
+        for x in range(im.width):
+            if im.getpixel((x, y)) == (*BLACK, 255):
+                im.putpixel((x, y), (*WHITE, 255))
     return im
 
 
@@ -132,6 +179,15 @@ def build():
     out = {"window": widen(pack("background", "window.png"), 50, EXTRA)}
     for state in ("available", "hover", "selected", "active", "completed", "claimable", "locked"):
         out["quest_row_" + state] = widen(pack("interactive", "quest_row", state + ".png"), 40, EXTRA)
+    for state in ("normal", "hover", "pressed", "disabled"):
+        out["button_abandon_" + state] = clear_glyph(pack("interactive", "button_abandon", state + ".png"))
+    out["button_pin_normal"] = pin_button("normal")
+    out["button_pin_hover"] = pin_button("hover")
+    out["button_pin_on"] = pin_button("pressed")
+    out["search_normal"] = narrow(pack("interactive", "search_field", "normal.png"), 74)
+    out["search_focused"] = search_focused()
+    out["search_clear"] = pack("interactive", "search_field", "clear_x.png")
+    out["glyph_pin"] = pin_glyph()
     out["button_sort_normal"] = pack("interactive", "sort_button", "normal.png")
     out["button_sort_hover"] = pack("interactive", "sort_button", "hover.png")
     out["button_filter_normal"] = pack("interactive", "filter_button", "normal.png")

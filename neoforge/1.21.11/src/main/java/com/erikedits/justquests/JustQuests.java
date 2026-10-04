@@ -7,7 +7,7 @@ import com.erikedits.justquests.registry.ModAttachments;
 import com.erikedits.justquests.storage.ServerStorageEvents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import org.slf4j.Logger;
@@ -20,6 +20,7 @@ public class JustQuests {
 
     public JustQuests(IEventBus modEventBus) {
         ModAttachments.ATTACHMENTS.register(modEventBus);
+        modEventBus.addListener(com.erikedits.justquests.network.QuestNetwork::register);
 
         NeoForge.EVENT_BUS.addListener(this::onReload);
         NeoForge.EVENT_BUS.addListener(QuestCommand::onRegisterCommands);
@@ -30,6 +31,6 @@ public class JustQuests {
     }
 
     private void onReload(AddServerReloadListenersEvent event) {
-        event.addListener(ResourceLocation.fromNamespaceAndPath(MOD_ID, "quests"), QuestManager.INSTANCE);
+        event.addListener(Identifier.fromNamespaceAndPath(MOD_ID, "quests"), QuestManager.INSTANCE);
     }
 }

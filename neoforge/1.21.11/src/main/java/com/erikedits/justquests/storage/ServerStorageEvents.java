@@ -15,14 +15,17 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 public class ServerStorageEvents {
     private static final int SAVE_INTERVAL_TICKS = 600;   // 30 seconds
     private static final int CUSTOM_INTERVAL_TICKS = 60;  // 3 seconds
+    private static final int GEN_INTERVAL_TICKS = 6000;   // 5 minutes (rotation check)
     private int tickCounter = 0;
     private int customCounter = 0;
+    private int genCounter = 0;
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         WorldQuestStore.load(event.getServer());
         WorldSettings.load(event.getServer());   // load settings before readers
         CustomQuestLoader.init(event.getServer());
+        com.erikedits.justquests.generator.GenV2.start(event.getServer());
         CommunityHints.init(event.getServer());
     }
 
@@ -30,6 +33,8 @@ public class ServerStorageEvents {
     public void onServerStopping(ServerStoppingEvent event) {
         WorldQuestStore.unload();
         CustomQuestLoader.clear();
+        com.erikedits.justquests.generator.GenV2.stop();
+        com.erikedits.justquests.progress.StatObjectives.clear();
         CommunityHints.clear();
         WorldSettings.reset();
     }
@@ -47,6 +52,10 @@ public class ServerStorageEvents {
         if (++customCounter >= CUSTOM_INTERVAL_TICKS) {
             customCounter = 0;
             CustomQuestLoader.tickCheck();
+        }
+        if (++genCounter >= GEN_INTERVAL_TICKS) {
+            genCounter = 0;
+            com.erikedits.justquests.generator.GenV2.tick();
         }
     }
 }

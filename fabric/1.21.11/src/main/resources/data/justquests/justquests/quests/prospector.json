@@ -1,0 +1,29 @@
+{
+  "title": {
+    "en_us": "Prospector",
+    "de_de": "Schürfer",
+    "fr_fr": "Prospecteur",
+    "es_es": "Prospector"
+  },
+  "description": {
+    "en_us": "Mine 3 diamond ore for a mystery reward.",
+    "de_de": "Baue 3 Diamanterz für eine Überraschungsbelohnung ab.",
+    "fr_fr": "Minez 3 minerais de diamant pour une recompense mystere.",
+    "es_es": "Mina 3 minerales de diamante por una recompensa misteriosa."
+  },
+  "category": "gathering",
+  "sort": 65,
+  "objectives": [
+    {
+      "type": "justquests:mine_block",
+      "block": "minecraft:diamond_ore",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:loot_table",
+      "loot_table": "minecraft:chests/simple_dungeon"
+    }
+  ]
+}

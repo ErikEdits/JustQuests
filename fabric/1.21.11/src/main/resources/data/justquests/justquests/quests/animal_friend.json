@@ -1,0 +1,30 @@
+{
+  "title": {
+    "en_us": "Animal Friend",
+    "de_de": "Tierfreund",
+    "fr_fr": "Ami des animaux",
+    "es_es": "Amigo de los animales"
+  },
+  "description": {
+    "en_us": "Tame a wolf.",
+    "de_de": "Zähme einen Wolf.",
+    "fr_fr": "Apprivoisez un loup.",
+    "es_es": "Doma un lobo."
+  },
+  "category": "farming",
+  "sort": 30,
+  "objectives": [
+    {
+      "type": "justquests:tame_animal",
+      "entity": "minecraft:wolf",
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bone",
+      "count": 16
+    }
+  ]
+}

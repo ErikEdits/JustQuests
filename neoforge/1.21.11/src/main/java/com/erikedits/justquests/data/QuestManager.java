@@ -2,7 +2,7 @@ package com.erikedits.justquests.data;
 
 import com.erikedits.justquests.JustQuests;
 import net.minecraft.resources.FileToIdConverter;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
@@ -23,17 +23,19 @@ public class QuestManager extends SimpleJsonResourceReloadListener<Quest> {
     public static final QuestManager INSTANCE = new QuestManager();
 
     /** Quests from datapacks (reloaded on /reload). */
-    private Map<ResourceLocation, Quest> datapackQuests = new HashMap<>();
+    private Map<Identifier, Quest> datapackQuests = new HashMap<>();
     /** Quests from the per-world custom file. Override datapack on id clash (Q54). */
-    private Map<ResourceLocation, Quest> customQuests = new HashMap<>();
+    private Map<Identifier, Quest> customQuests = new HashMap<>();
+    /** Procedurally generated quests (Phase 6), rotated per world; own id namespace. */
+    private Map<Identifier, Quest> generatedQuests = new HashMap<>();
 
     private QuestManager() {
         super(Quest.CODEC, FileToIdConverter.json(DIRECTORY));
     }
 
     @Override
-    protected void apply(Map<ResourceLocation, Quest> map, ResourceManager resourceManager, ProfilerFiller profiler) {
-        Map<ResourceLocation, Quest> loaded = new HashMap<>();
+    protected void apply(Map<Identifier, Quest> map, ResourceManager resourceManager, ProfilerFiller profiler) {
+        Map<Identifier, Quest> loaded = new HashMap<>();
         map.forEach((id, quest) -> {
             if (quest.objectives().isEmpty()) {
                 JustQuests.LOG.warn("Quest {} has no objectives - skipping", id);
@@ -48,22 +50,33 @@ public class QuestManager extends SimpleJsonResourceReloadListener<Quest> {
     }
 
     /** Replaces the custom (world-file) quests. Precedence: custom > datapack. */
-    public void setCustomQuests(Map<ResourceLocation, Quest> custom) {
+    public void setCustomQuests(Map<Identifier, Quest> custom) {
         this.customQuests = custom;
     }
 
+    /** Replaces the generated (rotating) quests. They use their own id namespace. */
+    public void setGeneratedQuests(Map<Identifier, Quest> generated) {
+        this.generatedQuests = generated;
+    }
+
     /** All quests, custom overriding datapack on a shared id. */
-    public Map<ResourceLocation, Quest> getQuests() {
-        if (customQuests.isEmpty()) {
-            return Collections.unmodifiableMap(datapackQuests);
+    public Map<Identifier, Quest> getQuests() {
+        Map<Identifier, Quest> merged = new HashMap<>();
+        if (com.erikedits.justquests.storage.WorldSettings.mainQuests()) {
+            merged.putAll(datapackQuests);
         }
-        Map<ResourceLocation, Quest> merged = new HashMap<>(datapackQuests);
-        merged.putAll(customQuests);
+        merged.putAll(customQuests);   // custom overrides datapack on a shared id
+        merged.putAll(generatedQuests);
         return Collections.unmodifiableMap(merged);
     }
 
-    public Quest get(ResourceLocation id) {
+    public Quest get(Identifier id) {
         Quest custom = customQuests.get(id);
-        return custom != null ? custom : datapackQuests.get(id);
+        if (custom != null) return custom;
+        if (com.erikedits.justquests.storage.WorldSettings.mainQuests()) {
+            Quest datapack = datapackQuests.get(id);
+            if (datapack != null) return datapack;
+        }
+        return generatedQuests.get(id);
     }
 }

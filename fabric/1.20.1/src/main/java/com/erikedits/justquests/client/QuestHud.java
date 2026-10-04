@@ -13,17 +13,21 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
- * The quest tracker: a small translucent panel in a screen corner listing the player's active
- * quests (most recently accepted first) with their objectives. Toggled with H or the quest book's
+ * The quest tracker: a small translucent panel in a screen corner listing the player's pinned
+ * quests, or without pins the most recently accepted ones, with their objectives. Toggled with H or the quest book's
  * HUD button; hidden with F1, F3 and while a screen is open. Drawn with fills, not a texture, so the
  * panel can grow with its text (the look matches hud_panel from the v2-full set).
  */
 public final class QuestHud {
     private static final int MAX_OBJECTIVES = 3, MAX_TEXT = 140, LINE = 9;
     private static final int TITLE = 0xFFFFFFFF, OPEN = 0xFFD0D0D0, DONE = 0xFF55FF55, MORE = 0xFFA0A0A0;
+
+    private static int prunedAt = -1;
 
     private QuestHud() {}
 
@@ -45,10 +49,18 @@ public final class QuestHud {
         if (data == null || data.active.isEmpty()) return;
         Font font = mc.font;
         String lang = mc.options.languageCode;
+        prunePins();
 
+        // pinned quests in pin order; without pins the newest active ones
+        List<ResourceLocation> pins = new ArrayList<>();
+        for (String p : ClientSettings.pinned) {
+            for (ResourceLocation id : data.active.keySet()) {
+                if (id.toString().equals(p)) pins.add(id);
+            }
+        }
         List<Block> blocks = new ArrayList<>();
         int textW = 0;
-        for (ResourceLocation id : ClientQuestData.activeOrder()) {
+        for (ResourceLocation id : pins.isEmpty() ? ClientQuestData.activeOrder() : pins) {
             if (blocks.size() >= ClientSettings.hudMax) break;
             Quest q = ClientQuestData.get(id);
             QuestProgress prog = data.active.get(id);
@@ -97,6 +109,18 @@ public final class QuestHud {
             }
             cy += height(b);
         }
+    }
+
+    /** Unpin quests that are loaded but no longer active (finished or abandoned); once per sync. */
+    static void prunePins() {
+        int s = ClientQuestData.syncCount();
+        if (s == prunedAt) return;
+        prunedAt = s;
+        if (ClientSettings.pinned.isEmpty() || ClientQuestData.getQuests().isEmpty()) return;
+        Set<String> known = new HashSet<>(), active = new HashSet<>();
+        ClientQuestData.getQuests().keySet().forEach(id -> known.add(id.toString()));
+        ClientQuestData.getData().active.keySet().forEach(id -> active.add(id.toString()));
+        if (ClientSettings.pinned.removeIf(p -> known.contains(p) && !active.contains(p))) ClientSettings.save();
     }
 
     /** Height of one quest block: icon or title + objective lines, plus a gap. */

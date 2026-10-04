@@ -6,7 +6,7 @@ plugins {
 // --- per-version settings (this is the only file that differs between versions) ---
 def mcVersion = '1.21.11'
 def mcRange = '[1.21.11,1.21.12)'
-def neoVersion = '21.11.42'
+def neoVersion = '21.11.45'
 
 version = mod_version
 group = mod_group_id
