@@ -46,7 +46,7 @@ community until we are ready for the GUI.
 | 0.3.3 | Block/mob tags, stonecutter counts as crafting, generator uses enchant/use/potions/tags | ✅ shipped |
 | 0.3.4 | HUD tracker, quest book grouped by category/status, pixel icons, stats page | ✅ shipped |
 | 0.3.5 | MC 1.21.11 (NeoForge + Fabric, 36 builds), book search, pin quests to the HUD, mouse wheel | ✅ done |
-| 0.4.0 | Translations (EN, DE, JA, FR, ES; picked from the player's language), claim button, choice rewards | ⏭️ later |
+| 0.4.0 | Translations (EN, DE, JA, FR, ES), claim button, choice rewards, permissions, more generator profiles, MC 26.x, Spigot/Paper plugin | 🚧 in progress |
 
 Each 0.1.x release is a Modrinth update, which puts the mod back in
 "recently updated" and funnels new players to the Discord — so a steady
@@ -152,7 +152,7 @@ pre-1.21.9, a `Category` object in 1.21.9+; `@EventBusSubscriber bus=` gone in 1
 - [x] Quest list screen: grouping by category or status, hide completed (Q45, 0.3.4)
 - [x] Per-quest icon with fallback (Q44, 0.3.4: `icon` field, else from the first objective); detail view (Q78 open)
 - [x] Search box that auto-appears at high quest counts (Q46, 0.3.5: from 15 quests; title, category, goals)
-- [ ] **Claim button** + completed-pending state (Q48)
+- [x] **Claim button** + completed-pending state (Q48, 0.4.0: default on, `claimRewards` in settings.json, `/quest claim [id]`)
 - [ ] **Choice reward** picker (Q49)
 - [x] Category + state icons (Q3, 0.3.4)
 - [x] Optional HUD tracker overlay, toggleable (Q43, 0.3.4: key H, `config/justquests-client.json`)

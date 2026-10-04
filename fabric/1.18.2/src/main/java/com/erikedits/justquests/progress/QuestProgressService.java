@@ -84,13 +84,9 @@ public final class QuestProgressService {
         for (ResourceLocation questId : completing) {
             Quest quest = QuestManager.INSTANCE.get(questId);
             if (quest == null) continue; // quest vanished mid-tick (e.g. custom reload)
-            data.complete(questId);
-            for (QuestReward reward : quest.rewards()) {
-                reward.grant(player);
-            }
-            com.erikedits.justquests.generator.GenV2.completed(questId, player.getUUID());
+            boolean claim = finish(player, data, questId, quest);
             String questTitle = quest.title().get(com.erikedits.justquests.data.LocalizedText.DEFAULT_LANG);
-            player.sendMessage(Msg.tr("justquests.complete.chat", questTitle), net.minecraft.Util.NIL_UUID);
+            player.sendMessage(completeChat(questTitle, questId, claim), net.minecraft.Util.NIL_UUID);
             // completion sound + action-bar toast (Q12), each toggleable
             if (WorldSettings.completionSound()) {
                 player.playNotifySound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.MASTER, 1.0f, 1.0f);
@@ -111,5 +107,48 @@ public final class QuestProgressService {
         if (changed) {
             store.markDirty();
         }
+    }
+
+    /**
+     * Marks a quest finished for the player. With claimRewards on (the default) its rewards wait in
+     * pendingClaim for the quest book's Claim button or /quest claim; otherwise they are granted now.
+     *
+     * @return true when the rewards wait to be claimed
+     */
+    public static boolean finish(ServerPlayer player, PlayerQuestData data, ResourceLocation id, Quest quest) {
+        data.complete(id);
+        com.erikedits.justquests.generator.GenV2.completed(id, player.getUUID());
+        if (WorldSettings.claimRewards()) {
+            data.pendingClaim.put(id, System.currentTimeMillis());
+            return true;
+        }
+        grant(player, quest);
+        return false;
+    }
+
+    /** Pays out a finished quest's waiting rewards; false if none wait (or the quest was removed since). */
+    public static boolean claim(ServerPlayer player, PlayerQuestData data, ResourceLocation id) {
+        if (data.pendingClaim.remove(id) == null) return false;
+        Quest quest = QuestManager.INSTANCE.get(id);
+        if (quest == null) return false;
+        grant(player, quest);
+        return true;
+    }
+
+    private static void grant(ServerPlayer player, Quest quest) {
+        for (QuestReward reward : quest.rewards()) {
+            reward.grant(player);
+        }
+    }
+
+    /** A clickable [Claim rewards] that runs /quest claim for the quest. */
+    public static net.minecraft.network.chat.MutableComponent claimButton(ResourceLocation id) {
+        return Msg.button(Msg.tr("justquests.rewards.button"), "/quest claim " + id, Msg.tr("justquests.rewards.button_hover"));
+    }
+
+    /** "Quest completed: X", followed by the claim button while the rewards wait. */
+    private static net.minecraft.network.chat.MutableComponent completeChat(String title, ResourceLocation id, boolean claim) {
+        net.minecraft.network.chat.MutableComponent m = Msg.tr("justquests.complete.chat", title);
+        return claim ? m.append(Msg.lit(" ")).append(claimButton(id)) : m;
     }
 }

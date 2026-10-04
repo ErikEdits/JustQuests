@@ -63,6 +63,7 @@ Install the mod on the server **and** the clients (both are required).
 | `/quest categories` | Categories and how many quests each has |
 | `/quest accept <id>` / `/quest abandon <id>` | Start or drop a quest (tab completion) |
 | `/quest progress` | Your active quests and how far along you are |
+| `/quest claim [id]` | Take the rewards of a finished quest (without an id: all waiting rewards) |
 | `/quest stats` / `/quest leaderboard` | Your stats / the server's top 10 |
 | `/quest discord` | The community Discord invite |
 
@@ -169,6 +170,7 @@ Each player's own book and tracker options live in `config/justquests-client.jso
 | `mainQuests` | `true` | Show the built-in quests |
 | `announceCompletions` | `true` | Tell everyone when a player finishes a quest |
 | `completionSound` / `completionToast` | `true` | Sound and action-bar message on completion |
+| `claimRewards` | `true` | Finished quests wait until the player claims the rewards; `false` pays them out at once |
 | `discordWelcome` | `true` | One-time Discord invite on a player's first join |
 | `generatedQuests` / `generatedCount` | `true` / `5` | Generated quests on/off and how many per board (1–20) |
 | `difficulty` | `normal` | `easy`, `normal` or `hard` for generated quests |

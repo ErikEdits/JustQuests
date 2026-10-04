@@ -29,6 +29,7 @@ public final class WorldSettings {
     private static boolean announceCompletions = true;
     private static boolean completionSound = true;
     private static boolean completionToast = true;
+    private static boolean claimRewards = true;
     private static boolean mainQuests = true;
     private static boolean generatedQuests = true;
     private static int generatedCount = 5;
@@ -63,6 +64,7 @@ public final class WorldSettings {
                     if (o.has("announceCompletions")) announceCompletions = o.get("announceCompletions").getAsBoolean();
                     if (o.has("completionSound")) completionSound = o.get("completionSound").getAsBoolean();
                     if (o.has("completionToast")) completionToast = o.get("completionToast").getAsBoolean();
+                    if (o.has("claimRewards")) claimRewards = o.get("claimRewards").getAsBoolean();
                     if (o.has("mainQuests")) mainQuests = o.get("mainQuests").getAsBoolean();
                     if (o.has("generatedQuests")) generatedQuests = o.get("generatedQuests").getAsBoolean();
                     if (o.has("generatedCount")) generatedCount = o.get("generatedCount").getAsInt();
@@ -81,6 +83,8 @@ public final class WorldSettings {
                     }
                     if (o.has("generatorAdaptiveBalancing")) generatorAdaptiveBalancing = o.get("generatorAdaptiveBalancing").getAsBoolean();
                     if (o.has("generatorStats")) generatorStats = o.get("generatorStats").getAsBoolean();
+                    // options added by a newer version are written into the file, so owners see them
+                    if (toJson().keySet().stream().anyMatch(k -> !o.has(k))) save(server);
                 }
             } else {
                 Files.createDirectories(file.getParent());
@@ -109,6 +113,7 @@ public final class WorldSettings {
         o.addProperty("announceCompletions", announceCompletions);
         o.addProperty("completionSound", completionSound);
         o.addProperty("completionToast", completionToast);
+        o.addProperty("claimRewards", claimRewards);
         o.addProperty("mainQuests", mainQuests);
         o.addProperty("generatedQuests", generatedQuests);
         o.addProperty("generatedCount", generatedCount);
@@ -135,6 +140,8 @@ public final class WorldSettings {
     public static boolean completionSound() { return completionSound; }
 
     public static boolean completionToast() { return completionToast; }
+
+    public static boolean claimRewards() { return claimRewards; }
 
     public static boolean mainQuests() { return mainQuests; }
 
@@ -173,6 +180,7 @@ public final class WorldSettings {
         announceCompletions = true;
         completionSound = true;
         completionToast = true;
+        claimRewards = true;
         mainQuests = true;
         generatedQuests = true;
         generatedCount = 5;
@@ -195,6 +203,7 @@ public final class WorldSettings {
         + "announceCompletions: broadcast to everyone when a player finishes a quest. "
         + "completionSound: play a sound for the player on completion. "
         + "completionToast: show an action-bar toast on completion. "
+        + "claimRewards: finished quests wait until the player claims their rewards (Claim button in the quest book, or /quest claim); false pays rewards out the moment a quest is finished. "
         + "mainQuests: the built-in quests bundled with the mod; set false to hide them from /quest list and the quest book (custom + generated quests stay). Toggle in-game with /quest mainquests on|off (OP). "
         + "generatedQuests: auto-generate a rotating set of quests (category 'generated'); set false to disable. "
         + "generatedCount: how many generated quests per cycle (1-20). "

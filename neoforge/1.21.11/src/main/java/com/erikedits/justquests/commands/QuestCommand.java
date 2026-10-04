@@ -49,6 +49,18 @@ public class QuestCommand {
         return builder.buildFuture();
     };
 
+    private static final SuggestionProvider<CommandSourceStack> CLAIMABLE_QUESTS = (ctx, builder) -> {
+        ServerPlayer player = ctx.getSource().getPlayer();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (player != null && store != null) {
+            PlayerQuestData data = store.peek(player.getUUID());
+            if (data != null) {
+                return SharedSuggestionProvider.suggestResource(data.pendingClaim.keySet(), builder);
+            }
+        }
+        return builder.buildFuture();
+    };
+
     private static final SuggestionProvider<CommandSourceStack> CATEGORIES = (ctx, builder) -> {
         var cats = QuestManager.INSTANCE.getQuests().values().stream()
             .map(Quest::category).distinct().sorted().toList();
@@ -77,6 +89,11 @@ public class QuestCommand {
                 .then(Commands.argument("id", IdentifierArgument.id())
                     .suggests(ACTIVE_QUESTS)
                     .executes(ctx -> abandon(ctx, IdentifierArgument.getId(ctx, "id")))))
+            .then(Commands.literal("claim")
+                .executes(QuestCommand::claimAll)
+                .then(Commands.argument("id", IdentifierArgument.id())
+                    .suggests(CLAIMABLE_QUESTS)
+                    .executes(ctx -> claim(ctx, IdentifierArgument.getId(ctx, "id")))))
             .then(Commands.literal("discord").executes(QuestCommand::discord))
             .then(Commands.literal("reload")
                 .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
@@ -199,7 +216,7 @@ public class QuestCommand {
 
             Component repeatTag = quest.repeatable() ? Msg.tr("justquests.list.repeatable") : Msg.empty();
             Component claimTag = viewer == null ? Msg.empty() : com.erikedits.justquests.generator.GenV2.claimTag(id, viewer.getUUID());
-            src.sendSuccess(() -> Msg.tr("justquests.list.entry", id, quest.title().get(lang)).append(repeatTag).append(claimTag), false);
+            src.sendSuccess(() -> Msg.tr("justquests.list.entry", id, quest.title().get(lang)).append(repeatTag).append(claimTag).append(rewardTag(data, id)), false);
             String desc = quest.description().get(lang);
             if (!desc.isBlank()) {
                 src.sendSuccess(() -> Msg.tr("justquests.list.description", desc), false);
@@ -320,6 +337,7 @@ public class QuestCommand {
         String lang = player.clientInformation().language();
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        rewardsReady(ctx.getSource(), data, lang);
 
         if (data == null || data.active.isEmpty()) {
             ctx.getSource().sendSuccess(() -> Msg.tr("justquests.progress.none"), false);
@@ -368,6 +386,10 @@ public class QuestCommand {
 
         if (data.isActive(id)) {
             ctx.getSource().sendFailure(Msg.tr("justquests.accept.already_active"));
+            return 0;
+        }
+        if (data.isClaimable(id)) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.accept.claim_first", id));
             return 0;
         }
 
@@ -439,6 +461,64 @@ public class QuestCommand {
 
     private static void genSay(CommandSourceStack src, String msg) {
         src.sendSuccess(() -> Component.literal(msg), false);
+    }
+
+    private static int claim(CommandContext<CommandSourceStack> ctx, Identifier id) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        Quest quest = QuestManager.INSTANCE.get(id);
+        if (data == null || quest == null || !com.erikedits.justquests.progress.QuestProgressService.claim(player, data, id)) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.rewards.nothing"));
+            return 0;
+        }
+        store.markDirty();
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        say(ctx.getSource(), Msg.tr("justquests.rewards.claimed", quest.title().get(lang(ctx.getSource()))));
+        return 1;
+    }
+
+    /** /quest claim without an id: every waiting reward at once. */
+    private static int claimAll(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        int n = 0;
+        String last = "";
+        if (data != null && !data.pendingClaim.isEmpty()) {
+            for (Identifier id : new java.util.ArrayList<>(data.pendingClaim.keySet())) {
+                Quest quest = QuestManager.INSTANCE.get(id);
+                if (com.erikedits.justquests.progress.QuestProgressService.claim(player, data, id)) {
+                    n++;
+                    last = quest.title().get(lang(ctx.getSource()));
+                }
+            }
+            store.markDirty();
+            com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        }
+        if (n == 0) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.rewards.none"));
+            return 0;
+        }
+        say(ctx.getSource(), n == 1 ? Msg.tr("justquests.rewards.claimed", last) : Msg.tr("justquests.rewards.claimed_all", n));
+        return n;
+    }
+
+    /** "Rewards ready: <quest> [Claim rewards]" for every finished quest whose rewards wait. */
+    private static void rewardsReady(CommandSourceStack src, PlayerQuestData data, String lang) {
+        if (data == null) return;
+        for (Identifier id : data.pendingClaim.keySet()) {
+            Quest quest = QuestManager.INSTANCE.get(id);
+            if (quest == null) continue;
+            say(src, Msg.tr("justquests.rewards.ready", quest.title().get(lang)).append(Msg.lit(" "))
+                .append(com.erikedits.justquests.progress.QuestProgressService.claimButton(id)));
+        }
+    }
+
+    /** A clickable " [Claim rewards]" behind quests in /quest list whose rewards wait. */
+    private static Component rewardTag(PlayerQuestData data, Identifier id) {
+        return data != null && data.isClaimable(id)
+            ? Msg.lit(" ").append(com.erikedits.justquests.progress.QuestProgressService.claimButton(id)) : Msg.empty();
     }
 
     private static void say(CommandSourceStack src, Component msg) {
@@ -563,6 +643,7 @@ public class QuestCommand {
                 if (data.isActive(id)) com.erikedits.justquests.generator.GenV2.abandoned(id, target.getUUID());
                 data.active.remove(id);
                 data.completed.remove(id);
+                data.pendingClaim.remove(id);
                 store.markDirty();
             }
         }
@@ -585,11 +666,7 @@ public class QuestCommand {
             return 0;
         }
         PlayerQuestData data = store.get(target.getUUID());
-        data.complete(id);
-        for (QuestReward reward : quest.rewards()) {
-            reward.grant(target);
-        }
-        com.erikedits.justquests.generator.GenV2.completed(id, target.getUUID());
+        com.erikedits.justquests.progress.QuestProgressService.finish(target, data, id, quest);
         store.markDirty();
         String name = target.getName().getString();
         com.erikedits.justquests.network.QuestNetwork.syncProgress(target);

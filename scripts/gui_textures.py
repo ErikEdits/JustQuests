@@ -8,7 +8,7 @@ Source: the v2-full pixel set in docs/assets/gui-2.0.0/JustQuests-GUI-v2-full (v
   - button_pin_*: a 20x20 cut of the abandon button with the pack's pin glyph
   - button_abandon_*: the pack's abandon button without its x (the label sits there)
   - search_*: the pack's search field, 74 px wide, and its clear button
-  - glyph_*: state icons from the pack (glyph_pin from the pinned row)
+  - glyph_*: state icons from the pack (glyph_pin from the pinned row, glyph_gift from the give_item reward icon)
   - cat_*: category icons; six from the pack, five drawn here in the same style
 
 Run from the repo root:  python scripts/gui_textures.py
@@ -188,6 +188,7 @@ def build():
     out["search_focused"] = search_focused()
     out["search_clear"] = pack("interactive", "search_field", "clear_x.png")
     out["glyph_pin"] = pin_glyph()
+    out["glyph_gift"] = pack("icons", "reward", "give_item.png")   # rewards waiting to be claimed
     out["button_sort_normal"] = pack("interactive", "sort_button", "normal.png")
     out["button_sort_hover"] = pack("interactive", "sort_button", "hover.png")
     out["button_filter_normal"] = pack("interactive", "filter_button", "normal.png")

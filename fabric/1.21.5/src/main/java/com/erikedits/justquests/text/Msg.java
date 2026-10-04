@@ -26,6 +26,12 @@ public final class Msg {
         return lit("");
     }
 
+    /** A chat button: runs the command when clicked and shows the hover text. */
+    public static MutableComponent button(MutableComponent label, String command, Component hover) {
+        return label.withStyle(s -> s.withClickEvent(new net.minecraft.network.chat.ClickEvent.RunCommand(command))
+            .withHoverEvent(new net.minecraft.network.chat.HoverEvent.ShowText(hover)));
+    }
+
     /** A category: translated for the bundled categories, the id itself for pack-defined ones. */
     public static MutableComponent category(String category) {
         String key = "justquests.category." + category.toLowerCase(Locale.ROOT);

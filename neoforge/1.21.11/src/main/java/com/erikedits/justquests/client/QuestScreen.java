@@ -41,7 +41,7 @@ public class QuestScreen extends Screen {
 
     /** Where a quest stands for this player; also the order of the status groups. */
     private enum Status {
-        ACTIVE("active", "glyph_exclamation"), AVAILABLE("available", "glyph_star"),
+        CLAIM("claim", "glyph_gift"), ACTIVE("active", "glyph_exclamation"), AVAILABLE("available", "glyph_star"),
         LOCKED("locked", "glyph_lock"), COMPLETED("completed", "glyph_check");
 
         final String label, icon;
@@ -201,6 +201,7 @@ public class QuestScreen extends Screen {
     // --- quest state ---
     private Status status(Identifier id, Quest q) {
         PlayerQuestData d = data();
+        if (d.isClaimable(id)) return Status.CLAIM;
         if (d.isActive(id)) return Status.ACTIVE;
         if (takenByOther(id)) return Status.LOCKED;
         if (d.isCompleted(id) && (!q.repeatable() || cooldownLeft(id, q) > 0)) return Status.COMPLETED;
@@ -344,13 +345,15 @@ public class QuestScreen extends Screen {
         boolean sel = id.equals(selected);
         boolean cooldown = st == Status.COMPLETED && q.repeatable();
         String state = sel ? "selected"
+            : st == Status.CLAIM ? "claimable"
             : st == Status.ACTIVE ? "active"
             : st == Status.LOCKED ? "locked"
             : st == Status.COMPLETED && !cooldown ? "completed"
             : hover ? "hover" : "available";
         blit(g, "quest_row_" + state, x, y, ROW_W, ROW_H);
         // completed and locked rows have their glyph in the texture; the others get one drawn on top
-        String glyph = cooldown ? "glyph_clock"
+        String glyph = st == Status.CLAIM ? "glyph_gift"
+            : cooldown ? "glyph_clock"
             : st == Status.ACTIVE && ClientSettings.isPinned(id) ? "glyph_pin"
             : st == Status.AVAILABLE && q.repeatable() ? "glyph_repeat"
             : sel && st == Status.COMPLETED ? "glyph_check"
@@ -395,6 +398,9 @@ public class QuestScreen extends Screen {
             String who = claim.by().isEmpty() ? I18n.get("justquests.another_player") : claim.by();
             note = claim.mine() ? I18n.get("justquests.book.reserved") : I18n.get(claim.completed() ? "justquests.book.completed_by" : "justquests.book.taken_by", who);
             if (claim.mine()) noteColor = GOOD;
+        } else if (st == Status.CLAIM) {
+            note = I18n.get("justquests.book.claim_note");
+            noteColor = GOOD;
         } else if (st == Status.LOCKED && !missing.isEmpty()) {
             Quest req = ClientQuestData.get(missing.get(0));
             note = I18n.get("justquests.book.needs", req != null ? req.title().get(lang()) : missing.get(0).getPath())
@@ -422,7 +428,7 @@ public class QuestScreen extends Screen {
         g.drawString(this.font, Component.translatable("justquests.book.objectives"), dx, dy, HEAD, false);
         dy += 11;
         List<QuestObjective> objs = q.objectives();
-        boolean finished = st == Status.COMPLETED;
+        boolean finished = st == Status.COMPLETED || st == Status.CLAIM;
         for (int i = 0; i < objs.size() && dy < actionY() - 12; i++) {
             int need = objs.get(i).requiredCount();
             int cur = finished ? need : prog != null ? Math.min(prog.get(i), need) : 0;
@@ -448,7 +454,7 @@ public class QuestScreen extends Screen {
             }
         }
 
-        // accept / abandon button
+        // claim / accept / abandon button
         if (st == Status.ACTIVE) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_abandon_hover" : "button_abandon_normal",
                 actionX(), actionY(), 72, 20);
@@ -458,6 +464,10 @@ public class QuestScreen extends Screen {
             blit(g, pinned ? "button_pin_on" : in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? "button_pin_hover" : "button_pin_normal",
                 pinX(), actionY(), 20, 20);
             if (pinned) g.drawString(this.font, Component.translatable("justquests.book.pinned"), pinX() + 23, actionY() + 6, GOOD, false);
+        } else if (st == Status.CLAIM) {
+            blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_claim_hover" : "button_claim_normal",
+                actionX(), actionY(), 72, 20);
+            centered(g, I18n.get("justquests.book.claim"), actionX() + 36, actionY() + 6, TEXT);
         } else if (st == Status.AVAILABLE) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_claim_hover" : "button_claim_normal",
                 actionX(), actionY(), 72, 20);
@@ -594,6 +604,7 @@ public class QuestScreen extends Screen {
                     Status st = status(selected, q);
                     if (st == Status.ACTIVE) send("quest abandon " + selected);
                     else if (st == Status.AVAILABLE) send("quest accept " + selected);
+                    else if (st == Status.CLAIM) send("quest claim " + selected);
                 }
                 return true;
             }

@@ -7,6 +7,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 
 Built step by step; test builds go to a local folder until the release.
 
+### Added
+- **Claim button:** a finished quest now waits with its rewards until you claim them, with the
+  Claim button in the quest book, the `[Claim rewards]` button in chat, or `/quest claim <id>`
+  (`/quest claim` alone takes every waiting reward). The quest book shows these quests on top
+  under "Rewards ready", the HUD reminds you of them, and `/quest progress` and `/quest list`
+  mark them too. On Minecraft 1.18–1.19 (no quest book) the chat button and the command do it.
+  Server owners who prefer the old way set `"claimRewards": false` in `settings.json`; then
+  rewards arrive the moment a quest is finished, as before.
+- `settings.json` gets new options added by itself, so owners see them without deleting the file.
+
 ### Changed
 - **Every text is translatable:** the quest book, the HUD, goal and reward names, and all chat
   messages of the commands now come from language files (`assets/justquests/lang/`). For now

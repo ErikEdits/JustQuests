@@ -14,8 +14,8 @@ import java.util.Optional;
  * (see WorldQuestStore). Forward-compatible fields are reserved now so the
  * format never needs a migration later:
  *  - teamId: optional group id for future team-quest integration (Q14)
- *  - pendingClaim: completed-but-unclaimed rewards for the future GUI claim
- *    flow (Q48) — unused in v0.1 (rewards are still instant)
+ *  - pendingClaim: finished quests whose rewards wait to be claimed (Claim
+ *    button in the quest book or /quest claim): quest id -> completion time (Q48)
  *  - completed: quest id -> last completion timestamp (epoch millis), used
  *    for the 6-day no-repeat window and repeatable quests (Q26)
  */
@@ -50,6 +50,11 @@ public class PlayerQuestData {
 
     public boolean isCompleted(Identifier id) {
         return completed.containsKey(id);
+    }
+
+    /** A finished quest whose rewards still wait to be claimed. */
+    public boolean isClaimable(Identifier id) {
+        return pendingClaim.containsKey(id);
     }
 
     /**

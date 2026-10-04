@@ -12,6 +12,7 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,20 +21,21 @@ import java.util.Set;
 
 /**
  * The quest tracker: a small translucent panel in a screen corner listing the player's pinned
- * quests, or without pins the most recently accepted ones, with their objectives. Toggled with H or the quest book's
+ * quests, or without pins the most recently accepted ones, with their objectives (and, on top, how
+ * many finished quests have rewards waiting). Toggled with H or the quest book's
  * HUD button; hidden with F1, F3 and while a screen is open. Drawn with fills, not a texture, so the
  * panel can grow with its text (the look matches hud_panel from the v2-full set).
  */
 public final class QuestHud {
     private static final int MAX_OBJECTIVES = 3, MAX_TEXT = 140, LINE = 9;
-    private static final int TITLE = 0xFFFFFFFF, OPEN = 0xFFD0D0D0, DONE = 0xFF55FF55, MORE = 0xFFA0A0A0;
+    private static final int TITLE = 0xFFFFFFFF, OPEN = 0xFFD0D0D0, DONE = 0xFF55FF55, MORE = 0xFFA0A0A0, GOLD = 0xFFFFAA00;
 
     private static int prunedAt = -1;
 
     private QuestHud() {}
 
     /** One quest block: icon, title and its objective lines. */
-    private record Block(ItemStack icon, String title, List<String> lines, List<Integer> colors) {}
+    private record Block(ItemStack icon, String title, int titleColor, List<String> lines, List<Integer> colors) {}
 
     public static void toggle() {
         ClientSettings.load();
@@ -47,7 +49,7 @@ public final class QuestHud {
         Minecraft mc = Minecraft.getInstance();
         if (!ClientSettings.hud || mc.player == null || mc.options.hideGui || mc.screen != null || debugShown(mc)) return;
         PlayerQuestData data = ClientQuestData.getData();
-        if (data == null || data.active.isEmpty()) return;
+        if (data == null || (data.active.isEmpty() && data.pendingClaim.isEmpty())) return;
         Font font = mc.font;
         String lang = mc.options.languageCode;
         prunePins();
@@ -61,8 +63,20 @@ public final class QuestHud {
         }
         List<Block> blocks = new ArrayList<>();
         int textW = 0;
+        // finished quests whose rewards wait: one block on top, so they are not forgotten
+        int ready = 0;
+        for (ResourceLocation id : data.pendingClaim.keySet()) {
+            if (ClientQuestData.get(id) != null) ready++;
+        }
+        if (ready > 0) {
+            String title = fit(font, I18n.get("justquests.hud.rewards", ready));
+            String hint = fit(font, I18n.get("justquests.hud.rewards_hint"));
+            textW = Math.max(font.width(title), font.width(hint));
+            blocks.add(new Block(new ItemStack(Items.CHEST), title, GOLD, List.of(hint), List.of(MORE)));
+        }
+        int shown = 0;
         for (ResourceLocation id : pins.isEmpty() ? ClientQuestData.activeOrder() : pins) {
-            if (blocks.size() >= ClientSettings.hudMax) break;
+            if (shown >= ClientSettings.hudMax) break;
             Quest q = ClientQuestData.get(id);
             QuestProgress prog = data.active.get(id);
             if (q == null || prog == null) continue;
@@ -84,7 +98,8 @@ public final class QuestHud {
                 lines.add(I18n.get("justquests.hud.more", objs.size() - MAX_OBJECTIVES));
                 colors.add(MORE);
             }
-            blocks.add(new Block(QuestIcons.of(id, q), title, lines, colors));
+            blocks.add(new Block(QuestIcons.of(id, q), title, TITLE, lines, colors));
+            shown++;
         }
         if (blocks.isEmpty()) return;
 
@@ -102,7 +117,7 @@ public final class QuestHud {
         int cy = y + 4;
         for (Block b : blocks) {
             g.renderItem(b.icon(), x + 4, cy);
-            g.drawString(font, b.title(), x + 23, cy + 1, TITLE, true);
+            g.drawString(font, b.title(), x + 23, cy + 1, b.titleColor(), true);
             int ly = cy + 11;
             for (int i = 0; i < b.lines().size(); i++) {
                 g.drawString(font, b.lines().get(i), x + 23, ly, b.colors().get(i), true);
