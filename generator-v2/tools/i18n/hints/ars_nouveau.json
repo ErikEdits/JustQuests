@@ -1,0 +1,21 @@
+{
+  "Archwood trees grow in archwood forests.": ["Archwood-Bäume wachsen in Archwood-Wäldern.", "Les arbres d'Archwood poussent dans les forêts d'Archwood.", "Los árboles de Archwood crecen en los bosques de Archwood.", "アークウッドの木はアークウッドの森に生える。"],
+  "One archwood log makes four planks.": ["Ein Archwood-Stamm ergibt vier Planken.", "Une bûche d'Archwood donne quatre planches.", "Un tronco de Archwood da cuatro tablones.", "アークウッドの原木1個で木材が4個できる。"],
+  "Sourceberry bushes grow in taigas and archwood forests.": ["Quellbeerensträucher wachsen in Taigas und Archwood-Wäldern.", "Les buissons de baies de source poussent dans les taïgas et les forêts d'Archwood.", "Los arbustos de bayas fuente crecen en taigas y bosques de Archwood.", "ソースベリーの茂みはタイガやアークウッドの森に生える。"],
+  "Magebloom grows from magebloom seeds; its flower drops when harvested.": ["Magebloom wächst aus Magebloom-Samen; beim Ernten fällt die Blüte ab.", "La magefleur pousse à partir de graines de magefleur ; la fleur tombe à la récolte.", "La flor de mago crece de sus semillas; la flor cae al cosecharla.", "メイジブルームは種から育つ。収穫すると花が手に入る。"],
+  "One magebloom.": ["Ein Magebloom.", "Une magefleur.", "Una flor de mago.", "メイジブルーム1個。"],
+  "A book and lapis lazuli.": ["Ein Buch und Lapislazuli.", "Un livre et du lapis-lazuli.", "Un libro y lapislázuli.", "本とラピスラズリ。"],
+  "A book and four iron tools: shovel, pickaxe, axe and sword.": ["Ein Buch und vier Eisenwerkzeuge: Schaufel, Spitzhacke, Axt und Schwert.", "Un livre et quatre outils en fer : pelle, pioche, hache et épée.", "Un libro y cuatro herramientas de hierro: pala, pico, hacha y espada.", "本と鉄の道具4つ（シャベル、ツルハシ、斧、剣）。"],
+  "A gold ingot and archwood planks.": ["Ein Goldbarren und Archwood-Planken.", "Un lingot d'or et des planches d'Archwood.", "Un lingote de oro y tablones de Archwood.", "金インゴットとアークウッドの木材。"],
+  "Archwood slabs, gold nuggets and archwood logs.": ["Archwood-Platten, Goldklumpen und Archwood-Stämme.", "Des dalles d'Archwood, des pépites d'or et des bûches d'Archwood.", "Losas de Archwood, pepitas de oro y troncos de Archwood.", "アークウッドのハーフブロック、金塊、アークウッドの原木。"],
+  "Archwood planks and gold ingots.": ["Archwood-Planken und Goldbarren.", "Des planches d'Archwood et des lingots d'or.", "Tablones de Archwood y lingotes de oro.", "アークウッドの木材と金インゴット。"],
+  "Archwood planks around a gold nugget.": ["Archwood-Planken um einen Goldklumpen.", "Des planches d'Archwood autour d'une pépite d'or.", "Tablones de Archwood alrededor de una pepita de oro.", "金塊をアークウッドの木材で囲む。"],
+  "Archwood slabs and glass.": ["Archwood-Platten und Glas.", "Des dalles d'Archwood et du verre.", "Losas de Archwood y cristal.", "アークウッドのハーフブロックとガラス。"],
+  "Paper surrounded by magebloom fiber.": ["Papier, umgeben von Magieblütenfaser.", "Du papier entouré de fibre de magefleur.", "Papel rodeado de fibra de flor de mago.", "紙をメイジブルームの繊維で囲む。"],
+  "Wilden hunters prowl archwood forests at night.": ["Wilden-Jäger streifen nachts durch Archwood-Wälder.", "Les chasseurs sauvages rôdent la nuit dans les forêts d'Archwood.", "Los cazadores Wilden merodean de noche por los bosques de Archwood.", "ウィルデン ハンターは夜のアークウッドの森をうろつく。"],
+  "Wilden stalkers swoop down from above.": ["Wilden-Stalker stürzen sich von oben herab.", "Les traqueurs sauvages fondent du ciel.", "Los acechadores Wilden se lanzan desde arriba.", "ウィルデン ストーカーは上空から急降下してくる。"],
+  "Wilden guardians roll up behind their spikes.": ["Wilden-Wächter rollen sich hinter ihren Stacheln ein.", "Les gardiens sauvages se roulent en boule derrière leurs pointes.", "Los guardianes Wilden se enrollan tras sus pinchos.", "ウィルデン ガーディアンはトゲの後ろで丸くなる。"],
+  "Wilden hunters drop horns.": ["Wilden-Jäger lassen Hörner fallen.", "Les chasseurs sauvages donnent des cornes.", "Los cazadores Wilden sueltan cuernos.", "ウィルデン ハンターは角を落とす。"],
+  "Wilden guardians drop spikes.": ["Wilden-Wächter lassen Stacheln fallen.", "Les gardiens sauvages donnent des pointes.", "Los guardianes Wilden sueltan pinchos.", "ウィルデン ガーディアンはトゲを落とす。"],
+  "Wilden stalkers drop wings.": ["Wilden-Stalker lassen Flügel fallen.", "Les traqueurs sauvages donnent des ailes.", "Los acechadores Wilden sueltan alas.", "ウィルデン ストーカーは翼を落とす。"]
+}

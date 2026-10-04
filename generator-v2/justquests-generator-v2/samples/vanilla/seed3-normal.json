@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_8": {
-    "title": "Parrot Companion",
-    "description": "Tame a parrot. Tame parrots with seeds. Look in jungles.",
+    "title": {
+      "en_us": "Parrot Companion",
+      "de_de": "Gefährte: Papagei",
+      "fr_fr": "Compagnon : perroquet",
+      "es_es": "Compañero: loro",
+      "ja_jp": "オウムの相棒"
+    },
+    "description": {
+      "en_us": "Tame a parrot. Tame parrots with seeds. Look in jungles.",
+      "de_de": "Zähme 1× Papagei. Zähme Papageien mit Samen. Suche in Dschungeln.",
+      "fr_fr": "Apprivoisez 1× perroquet. Apprivoisez les perroquets avec des graines. Cherchez dans les jungles.",
+      "es_es": "Domestica 1× loro. Domestica loros con semillas. Busca en junglas.",
+      "ja_jp": "オウム1匹の飼いならしをこなそう。種でオウムを飼いならす。ジャングルを探そう。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -24,8 +36,20 @@
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "Throw Eggs",
-    "description": "Throw 16 eggs. Chickens lay eggs. Grow them on a farm.",
+    "title": {
+      "en_us": "Throw Eggs",
+      "de_de": "Ei werfen",
+      "fr_fr": "Jeter : oeuf",
+      "es_es": "Lanzar huevo",
+      "ja_jp": "卵を投げよう"
+    },
+    "description": {
+      "en_us": "Throw 16 eggs. Chickens lay eggs. Grow them on a farm.",
+      "de_de": "Wirf 16× Ei. Hühner legen Eier. Baue sie auf einem Feld an.",
+      "fr_fr": "Lancez 16× oeuf. Les poules pondent des œufs. Cultivez-les dans une ferme.",
+      "es_es": "Lanza 16× huevo. Los pollos ponen huevos. Cultívalos en una granja.",
+      "ja_jp": "卵16個の投てきをこなそう。ニワトリが卵を産む。畑で育てよう。"
+    },
     "category": "generated",
     "sort": 10,
     "objectives": [
@@ -48,8 +72,20 @@
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Gardening Job",
-    "description": "Pick up 32 seagrass and craft 64 paper. Use shears. Look in and near oceans. Three sugar cane make three paper. Look along rivers.",
+    "title": {
+      "en_us": "Gardening Job",
+      "de_de": "Job: Gartenarbeit",
+      "fr_fr": "Boulot : Jardinage",
+      "es_es": "Trabajo: Jardinería",
+      "ja_jp": "園芸の仕事"
+    },
+    "description": {
+      "en_us": "Pick up 32 seagrass and craft 64 paper. Use shears. Look in and near oceans. Three sugar cane make three paper. Look along rivers.",
+      "de_de": "Hebe 32× Seegras auf und stelle 64× Papier her. Benutze eine Schere. Suche in und an Ozeanen. Drei Zuckerrohr ergeben drei Papier.",
+      "fr_fr": "Ramassez 32× herbe aquatique et fabriquez 64× papier. Utilisez des cisailles. Cherchez dans les océans et à proximité.",
+      "es_es": "Recolecta 32× hierba marina y fabrica 64× papel. Usa tijeras. Busca en los océanos y cerca de ellos. Busca a lo largo de los ríos.",
+      "ja_jp": "海草32個の回収と紙64個の作成をこなそう。ハサミを使う。海の中や近くを探そう。サトウキビ3本で紙が3枚できる。川沿いを探そう。"
+    },
     "category": "generated",
     "sort": 10,
     "mode": "all",
@@ -78,8 +114,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Pumpkin Run",
-    "description": "Gather 24 pumpkins. Common in plains.",
+    "title": {
+      "en_us": "Pumpkin Run",
+      "de_de": "Sammeltour: Kürbis",
+      "fr_fr": "Tournée : citrouille",
+      "es_es": "Ronda de calabaza",
+      "ja_jp": "カボチャ集めの旅"
+    },
+    "description": {
+      "en_us": "Gather 24 pumpkins. Common in plains.",
+      "de_de": "Trage 24× Kürbis zusammen. Häufig in Ebenen.",
+      "fr_fr": "Rassemblez 24× citrouille. Courant dans les plaines.",
+      "es_es": "Reúne 24× calabaza. Común en llanuras.",
+      "ja_jp": "カボチャ24個の採集をこなそう。平原によくある。"
+    },
     "category": "generated",
     "sort": 10,
     "objectives": [
@@ -102,8 +150,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Raw Beef Bundle",
-    "description": "Pick up 32 raw beef. Common in plains.",
+    "title": {
+      "en_us": "Raw Beef Bundle",
+      "de_de": "Bündel: Rohes Rindfleisch",
+      "fr_fr": "Lot de boeuf cru",
+      "es_es": "Lote de filete crudo",
+      "ja_jp": "生の牛肉の束"
+    },
+    "description": {
+      "en_us": "Pick up 32 raw beef. Common in plains.",
+      "de_de": "Hebe 32× Rohes Rindfleisch auf. Häufig in Ebenen.",
+      "fr_fr": "Ramassez 32× boeuf cru. Courant dans les plaines.",
+      "es_es": "Recolecta 32× filete crudo. Común en llanuras.",
+      "ja_jp": "生の牛肉32個の回収をこなそう。平原によくある。"
+    },
     "category": "generated",
     "sort": 10,
     "objectives": [
@@ -126,8 +186,20 @@
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Ocelot Breeder",
-    "description": "Breed 2 ocelots. Ocelots breed with raw cod or salmon. Look in jungles.",
+    "title": {
+      "en_us": "Ocelot Breeder",
+      "de_de": "Züchter: Ozelot",
+      "fr_fr": "Éleveur : ocelot",
+      "es_es": "Criador de ocelote",
+      "ja_jp": "ヤマネコブリーダー"
+    },
+    "description": {
+      "en_us": "Breed 2 ocelots. Ocelots breed with raw cod or salmon. Look in jungles.",
+      "de_de": "Züchte 2× Ozelot. Ozelots vermehren sich mit rohem Kabeljau oder Lachs. Suche in Dschungeln.",
+      "fr_fr": "Élevez 2× ocelot. Les ocelots se reproduisent avec de la morue ou du saumon cru. Cherchez dans les jungles.",
+      "es_es": "Cría 2× ocelote. Los ocelotes se reproducen con bacalao o salmón crudo. Busca en junglas.",
+      "ja_jp": "ヤマネコ2匹の繁殖をこなそう。ヤマネコは生鱈か生鮭で繁殖する。ジャングルを探そう。"
+    },
     "category": "generated",
     "sort": 11,
     "objectives": [
@@ -150,8 +222,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Camp Setup",
-    "description": "Set up camp before nightfall: mine 64 birch logs and make 128 torches. Coal or charcoal on a stick.",
+    "title": {
+      "en_us": "Camp Setup",
+      "de_de": "Lageraufbau",
+      "fr_fr": "Installation du camp",
+      "es_es": "Montar el campamento",
+      "ja_jp": "キャンプ設営"
+    },
+    "description": {
+      "en_us": "Set up camp before nightfall: mine 64 birch logs and make 128 torches. Coal or charcoal on a stick.",
+      "de_de": "Schlag vor Einbruch der Nacht ein Lager auf: Baue 64× Birkenstamm ab und fertige 128× Fackel an. Kohle oder Holzkohle auf einem Stock.",
+      "fr_fr": "Installez le camp avant la nuit : minez 64× bûche de bouleau et façonnez 128× torche. Du charbon ou du charbon de bois sur un bâton.",
+      "es_es": "Monta el campamento antes del anochecer: mina 64× tronco de abedul y haz 128× antorcha. Carbón o carbón vegetal sobre un palo.",
+      "ja_jp": "日暮れまでにキャンプを張ろう：シラカバの原木64個の採掘と松明128個の製作。棒の上に石炭か木炭。"
+    },
     "category": "generated",
     "sort": 15,
     "mode": "all",
@@ -180,8 +264,20 @@
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "Deepslate Coal Ore Dig",
-    "description": "Break 24 deepslate coal ore. Found deep underground.",
+    "title": {
+      "en_us": "Deepslate Coal Ore Dig",
+      "de_de": "Job: Tiefenschiefer-Steinkohle",
+      "fr_fr": "Minerai de charbon des abîmes",
+      "es_es": "Mena de carbón de pizarra",
+      "ja_jp": "深層石炭鉱石掘り"
+    },
+    "description": {
+      "en_us": "Break 24 deepslate coal ore. Found deep underground.",
+      "de_de": "Zerstöre 24× Tiefenschiefer-Steinkohle. Tief unter der Erde zu finden.",
+      "fr_fr": "Cassez 24× minerai de charbon des abîmes. Se trouve en profondeur.",
+      "es_es": "Rompe 24× mena de carbón de pizarra profunda. Se encuentra a gran profundidad.",
+      "ja_jp": "深層石炭鉱石24個の破壊をこなそう。地下深くで見つかる。"
+    },
     "category": "generated",
     "sort": 16,
     "objectives": [
@@ -204,8 +300,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Blacksmith's Order",
-    "description": "The smithy needs help: smelt 64 copper ingots and craft 32 iron bars. Smelt raw copper in a furnace. Needs a stone pickaxe or better.",
+    "title": {
+      "en_us": "Blacksmith's Order",
+      "de_de": "Auftrag der Schmiede",
+      "fr_fr": "Commande du forgeron",
+      "es_es": "Encargo del herrero",
+      "ja_jp": "鍛冶屋の注文"
+    },
+    "description": {
+      "en_us": "The smithy needs help: smelt 64 copper ingots and craft 32 iron bars. Smelt raw copper in a furnace. Needs a stone pickaxe or better.",
+      "de_de": "Die Schmiede braucht Hilfe: Schmelze 64× Kupferbarren und stelle 32× Eisengitter her. Schmelze Rohkupfer im Ofen. In Höhlen zu finden.",
+      "fr_fr": "La forge a besoin d'aide : faites fondre 64× lingot de cuivre et fabriquez 32× barreaux de fer. Il faut au moins une pioche en pierre.",
+      "es_es": "La herrería necesita ayuda: funde 64× lingote de cobre y fabrica 32× barrotes de hierro. Funde cobre en bruto en un horno.",
+      "ja_jp": "鍛冶場が手を借りたいそうだ：銅インゴット64個の製錬と鉄格子32個の作成。銅の原石をかまどで製錬する。石のツルハシ以上が必要。洞窟で見つかる。"
+    },
     "category": "generated",
     "sort": 16,
     "mode": "all",
@@ -234,8 +342,20 @@
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Silverfish Bounty",
-    "description": "Defeat 8 silverfish. They hide in infested stone in mountains and strongholds. Look in the mountains.",
+    "title": {
+      "en_us": "Silverfish Bounty",
+      "de_de": "Kopfgeld: Silberfischchen",
+      "fr_fr": "Prime : poisson d'argent",
+      "es_es": "Recompensa: lepisma",
+      "ja_jp": "シルバーフィッシュの懸賞金"
+    },
+    "description": {
+      "en_us": "Defeat 8 silverfish. They hide in infested stone in mountains and strongholds. Look in the mountains.",
+      "de_de": "Besiege 8× Silberfischchen. Sie verstecken sich in befallenem Stein in Bergen und Festungen. Suche in den Bergen.",
+      "fr_fr": "Vainquez 8× poisson d'argent. Ils se cachent dans la roche infestée des montagnes et des forts. Cherchez dans les montagnes.",
+      "es_es": "Derrota 8× lepisma. Se esconden en piedra infestada en montañas y fortalezas. Busca en las montañas.",
+      "ja_jp": "シルバーフィッシュ8体の討伐をこなそう。山や要塞の虫食い石に隠れている。山を探そう。"
+    },
     "category": "generated",
     "sort": 16,
     "objectives": [

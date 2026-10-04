@@ -1,0 +1,41 @@
+{
+  "_format": "Index-aligned with templates.json. {Name} = official name, {name} = lower-cased mid-sentence, {de_name} = de/d' + name, {count} = number, {Dimension} = dimension name, {dimension_to}/{dimension_in} = travel/location phrase.",
+  "grammar": {"sentenceEnd": ".", "sentenceSep": " ", "listSep": ", ", "listAnd": " et ", "lowerNames": true, "lowerAfterColon": true},
+  "titles": {
+    "collect_item": ["Butin : {name}", "Tournée : {name}", "Récolte {de_name}", "Réserve {de_name}", "Stock {de_name}", "Collecte {de_name}", "Ramassage : {name}", "Apporter : {name}", "Livraison {de_name}", "Récupérer : {name}", "On cherche : {name}", "Lot {de_name}"],
+    "mine_block": ["Mineur {de_name}", "Extraction {de_name}", "Fouille : {name}", "Carrière {de_name}", "Casser : {name}", "Excavation : {name}", "Corvée {de_name}", "Briseur {de_name}", "Creuser : {name}"],
+    "craft_item": ["Commande {de_name}", "Fabriquer : {name}", "Atelier : {name}", "Artisan : {name}", "Façonner : {name}", "Commission : {name}", "Fournée {de_name}", "Construire : {name}", "Demande : {name}", "Assemblage : {name}", "Fabrication : {name}"],
+    "smelt_item": ["Stock {de_name}", "Faire fondre : {name}", "Fonderie : {name}", "Brûlant : {name}", "Fournée {de_name}", "Fourneau : {name}", "Chaleur : {name}", "Allumez : {name}"],
+    "kill_mob": ["Chasse : {name}", "Patrouille : {name}", "Éliminer : {name}", "Prime : {name}", "Tueur {de_name}", "Ennuis : {name}", "Nettoyage : {name}", "Menace : {name}", "Stopper : {name}", "Traquer : {name}", "Veille : {name}"],
+    "breed_animal": ["Éleveur : {name}", "Portée : {name}", "Ranch : {name}", "Famille : {name}", "Élever : {name}", "Troupeau : {name}", "Petits : {name}", "Nurserie : {name}", "Ferme : {name}"],
+    "tame_animal": ["Nouvel ami", "Apprivoiser : {name}", "Compagnon : {name}", "Murmureur : {name}", "Fidèle : {name}", "Ami : {name}"],
+    "consume_item": ["Festin : {name}", "Goûter : {name}", "Dégustation : {name}", "En-cas : {name}", "Pause : {name}", "Déjeuner : {name}", "Envie {de_name}", "Repas : {name}", "Souper : {name}"],
+    "place_block": ["Bâtisseur : {name}", "Bâtir en {name}", "Poser : {name}", "Projet : {name}", "Ouvrage : {name}", "Plan : {name}", "Décorer : {name}", "Chantier : {name}", "Design : {name}"],
+    "visit_dimension": ["Voyage : {Dimension}", "Visite : {Dimension}", "Périple : {Dimension}", "En route : {Dimension}", "Porte : {Dimension}", "Expédition : {Dimension}"],
+    "enchant_item": ["Enchanteur : {name}", "Enchanté : {name}", "Arcane : {name}", "Enchantement : {name}", "Ensorcelé : {name}", "Magie : {name}"],
+    "use_item": ["Pratique : {name}", "Utiliser : {name}", "Exercice : {name}", "Astuce : {name}", "Entraînement : {name}"]
+  },
+  "phrases": {
+    "collect_item": ["Récoltez {count}× {name}", "Rassemblez {count}× {name}", "Ramassez {count}× {name}"],
+    "mine_block": ["Minez {count}× {name}", "Cassez {count}× {name}"],
+    "craft_item": ["Fabriquez {count}× {name}", "Façonnez {count}× {name}"],
+    "smelt_item": ["Faites fondre {count}× {name}"],
+    "kill_mob": ["Vainquez {count}× {name}", "Chassez {count}× {name}", "Terrassez {count}× {name}"],
+    "breed_animal": ["Élevez {count}× {name}"],
+    "tame_animal": ["Apprivoisez {count}× {name}"],
+    "consume_item": ["Mangez {count}× {name}"],
+    "enchant_item": ["Enchantez {count}× {name}"],
+    "use_item": ["Utilisez {count}× {name}"],
+    "place_block": ["Posez {count}× {name}", "Construisez avec {count}× {name}"],
+    "visit_dimension": ["Rendez-vous {dimension_to}", "Entrez {dimension_to}"]
+  },
+  "variants": {
+    "throw": {"phrases": ["Lancez {count}× {name}"], "titles": ["Lancer : {name}", "Jeter : {name}", "Volée : {name}", "Tir : {name}"]},
+    "launch": {"phrases": ["Tirez {count}× {name}"], "titles": ["Spectacle : {name}", "Lancement : {name}", "Ciel : {name}"]},
+    "drink": {"phrases": ["Buvez {count}× {name}"], "titles": ["Pause : {name}", "Goûter : {name}", "Tournée : {name}"]},
+    "cook": {"phrases": ["Cuisinez {count}× {name}"], "titles": ["Cuisiner : {name}", "Fournée {de_name}", "Tout chaud : {name}", "Cuisine : {name}", "Commande {de_name}"]}
+  },
+  "fallbackTitles": ["Tâche : {name}", "Boulot : {name}", "Course : {name}", "Devoir : {name}", "Mission : {name}", "Travail : {name}"],
+  "comboTitles": ["Commande : {Family}", "Course : {Family}", "Boulot : {Family}", "Fournitures : {Family}", "Service : {Family}", "Corvées : {Family}"],
+  "sentences": {"tag": "Toutes les variétés comptent.", "dimension": "Se trouve {dimension_in}.", "list": "{list}"}
+}

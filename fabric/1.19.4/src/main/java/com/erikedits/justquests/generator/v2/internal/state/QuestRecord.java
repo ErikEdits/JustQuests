@@ -30,7 +30,7 @@ public final class QuestRecord {
     public ClaimRecord claim = new ClaimRecord();
 
     public String title() {
-        return json == null ? "" : Json.str(json, "title", "");
+        return json == null ? "" : Json.text(json, "title", "");
     }
 
     public JsonObject toJson() {

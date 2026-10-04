@@ -34,8 +34,8 @@ estimated 5.0 min (quick)
 reward give_item minecraft:cooked_porkchop ×7 (value 3.5) + xp 18 (value 1.5)  → 5.0 / budget 5.0
 state: AVAILABLE
 
-justquests:gen/1790510400_8  "Mystical Red Petal Job"  (EASY, cycle 1790510400, seed 0xDC9F…)
-objective craft_item botania:red_petal ×24
+justquests:gen/1790510400_8  "Mystical Purple Petal Workshop"  (EASY, cycle 1790510400, seed 0xDC9F…)
+objective craft_item botania:purple_petal ×24
   effort 0.20 min/unit → 4.8 min (target 4.0, range 4–10 min)
   tier 1 (always available), family bot_petals, profile botania
 estimated 4.8 min (quick)

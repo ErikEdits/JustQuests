@@ -1,0 +1,2687 @@
+{
+  "format": 1,
+  "language": "ja_jp",
+  "grammar": {
+    "sentenceEnd": "。",
+    "sentenceSep": "",
+    "listSep": "、",
+    "listAnd": "と",
+    "lowerNames": false,
+    "lowerAfterColon": false
+  },
+  "templates": {
+    "titles": {
+      "collect_item": [
+        "{Name}の運搬",
+        "{Name}集めの旅",
+        "{Name}を集めよう",
+        "{Name}の備蓄",
+        "{Name}の補給",
+        "{Name}コレクター",
+        "{Name}の回収",
+        "{Name}を届けよう",
+        "{Name}の配達",
+        "{Name}集め",
+        "{Name}求む",
+        "{Name}の束"
+      ],
+      "mine_block": [
+        "{Name}採掘者",
+        "{Name}を掘ろう",
+        "{Name}掘り",
+        "{Name}の採石場",
+        "{Name}を壊そう",
+        "{Name}の発掘",
+        "{Name}採掘シフト",
+        "{Name}ブレイカー",
+        "{Name}を掘り出そう"
+      ],
+      "craft_item": [
+        "{Name}の注文",
+        "{Name}を作ろう",
+        "{Name}工房",
+        "{Name}職人",
+        "{Name}作り",
+        "{Name}の依頼",
+        "{Name}の量産",
+        "{Name}を組み立てよう",
+        "{Name}のリクエスト",
+        "{Name}の組み立て",
+        "{Name}のクラフト"
+      ],
+      "smelt_item": [
+        "{Name}の補給",
+        "{Name}を製錬しよう",
+        "{Name}製錬所",
+        "アツアツの{Name}",
+        "{Name}のまとめ焼き",
+        "かまど：{Name}",
+        "{Name}の熱",
+        "{Name}に火を入れよう"
+      ],
+      "kill_mob": [
+        "{Name}狩り",
+        "{Name}パトロール",
+        "{Name}を間引こう",
+        "{Name}の懸賞金",
+        "{Name}スレイヤー",
+        "{Name}騒動",
+        "{Name}の掃討",
+        "{Name}の脅威",
+        "{Name}を止めろ",
+        "{Name}を狩れ",
+        "{Name}の見張り"
+      ],
+      "breed_animal": [
+        "{Name}ブリーダー",
+        "{Name}を増やそう",
+        "{Name}牧場",
+        "{Name}ファミリー",
+        "{Name}を繁殖させよう",
+        "{Name}の群れ",
+        "{Name}の赤ちゃん",
+        "{Name}の育児室",
+        "{Name}ファーム"
+      ],
+      "tame_animal": [
+        "新しい友達",
+        "{Name}を飼いならそう",
+        "{Name}の相棒",
+        "{Name}使い",
+        "忠実な{Name}",
+        "{Name}の友達"
+      ],
+      "consume_item": [
+        "{Name}のごちそう",
+        "{Name}を味わおう",
+        "{Name}の試食",
+        "{Name}でおやつ",
+        "{Name}で一休み",
+        "{Name}ランチ",
+        "{Name}が食べたい",
+        "{Name}の食事",
+        "{Name}の夕食"
+      ],
+      "place_block": [
+        "{Name}の建築家",
+        "{Name}で建てよう",
+        "{Name}を置こう",
+        "{Name}プロジェクト",
+        "{Name}工事",
+        "{Name}のレイアウト",
+        "飾りつけ：{Name}",
+        "{Name}の建設",
+        "{Name}デザイン"
+      ],
+      "visit_dimension": [
+        "{Dimension}への旅",
+        "{Dimension}を訪ねよう",
+        "{Dimension}紀行",
+        "{Dimension}へ",
+        "{Dimension}への門",
+        "{Dimension}遠征"
+      ],
+      "enchant_item": [
+        "{Name}のエンチャンター",
+        "エンチャントされた{Name}",
+        "神秘の{Name}",
+        "{Name}のエンチャント",
+        "魔法がかかった{Name}",
+        "魔法の{Name}"
+      ],
+      "use_item": [
+        "{Name}の練習",
+        "{Name}を使おう",
+        "{Name}の訓練",
+        "便利な{Name}",
+        "{Name}トレーニング"
+      ]
+    },
+    "phrases": {
+      "collect_item": [
+        "{name}{count}個の収集",
+        "{name}{count}個の採集",
+        "{name}{count}個の回収"
+      ],
+      "mine_block": [
+        "{name}{count}個の採掘",
+        "{name}{count}個の破壊"
+      ],
+      "craft_item": [
+        "{name}{count}個の作成",
+        "{name}{count}個の製作"
+      ],
+      "smelt_item": [
+        "{name}{count}個の製錬"
+      ],
+      "kill_mob": [
+        "{name}{count}体の討伐",
+        "{name}{count}体の狩猟",
+        "{name}{count}体の撃破"
+      ],
+      "breed_animal": [
+        "{name}{count}匹の繁殖"
+      ],
+      "tame_animal": [
+        "{name}{count}匹の飼いならし"
+      ],
+      "consume_item": [
+        "{name}{count}個の実食"
+      ],
+      "enchant_item": [
+        "{name}{count}個へのエンチャント"
+      ],
+      "use_item": [
+        "{name}{count}個の使用"
+      ],
+      "place_block": [
+        "{name}{count}個の設置",
+        "{name}{count}個での建築"
+      ],
+      "visit_dimension": [
+        "{dimension}への旅",
+        "{dimension}への突入"
+      ]
+    },
+    "variants": {
+      "throw": {
+        "phrases": [
+          "{name}{count}個の投てき"
+        ],
+        "titles": [
+          "{Name}投げ",
+          "{Name}を投げよう",
+          "{Name}の連投",
+          "{Name}のピッチング"
+        ]
+      },
+      "launch": {
+        "phrases": [
+          "{name}{count}個の打ち上げ"
+        ],
+        "titles": [
+          "{Name}ショー",
+          "{Name}を打ち上げよう",
+          "空に{Name}"
+        ]
+      },
+      "drink": {
+        "phrases": [
+          "{name}{count}個の飲用"
+        ],
+        "titles": [
+          "{Name}で一休み",
+          "{Name}を味わおう",
+          "{Name}で乾杯"
+        ]
+      },
+      "cook": {
+        "phrases": [
+          "{name}{count}個の調理"
+        ],
+        "titles": [
+          "{Name}を料理しよう",
+          "{Name}のまとめ作り",
+          "アツアツの{Name}",
+          "{Name}キッチン",
+          "{Name}の注文"
+        ]
+      }
+    },
+    "fallbackTitles": [
+      "{Name}のタスク",
+      "{Name}の仕事",
+      "{Name}のおつかい",
+      "{Name}の任務",
+      "{Name}ミッション",
+      "{Name}の作業"
+    ],
+    "comboTitles": [
+      "{Family}の注文",
+      "{Family}のおつかい",
+      "{Family}の仕事",
+      "{Family}の物資",
+      "{Family}の任務",
+      "{Family}の雑用"
+    ],
+    "sentences": {
+      "tag": "{noun}なら種類は問わない。",
+      "dimension": "{dimension}で見つかる。",
+      "list": "{list}をこなそう"
+    },
+    "tools": {
+      "stone": "石のツルハシ以上が必要",
+      "iron": "鉄のツルハシ以上が必要",
+      "diamond": "ダイヤモンドのツルハシが必要",
+      "netherite": "ネザライトのツルハシが必要",
+      "shears": "ハサミを使う",
+      "silk_touch": "シルクタッチが必要",
+      "fishing_rod": "釣竿を使う",
+      "knife": "Farmer's Delightのナイフを使う",
+      "shovel": "シャベルを使う"
+    },
+    "hints": {
+      "night": "夜や暗い洞窟に出現する。",
+      "desert": "砂漠を探そう。",
+      "swamp": "沼地を探そう。",
+      "jungle": "ジャングルを探そう。",
+      "taiga": "タイガを探そう。",
+      "snowy": "雪のバイオームを探そう。",
+      "ocean": "海の中や近くを探そう。",
+      "beach": "砂浜を探そう。",
+      "savanna": "サバンナを探そう。",
+      "badlands": "荒野を探そう。",
+      "mountains": "山を探そう。",
+      "plains": "平原によくある。",
+      "flower_forest": "花の森に一番多い。",
+      "dark_forest": "暗い森にたくさんある。",
+      "mushroom_fields": "キノコ島を探そう。",
+      "lush_caves": "繁茂した洞窟を探そう。",
+      "dripstone_caves": "鍾乳洞を探そう。",
+      "cherry_grove": "サクラの林を探そう。",
+      "mangrove_swamp": "マングローブの沼地を探そう。",
+      "pale_garden": "ペールガーデンを探そう。",
+      "caves": "洞窟で見つかる。",
+      "deep": "地下深くで見つかる。",
+      "geode": "アメジストジオードの中を探そう。",
+      "village": "村によくある。",
+      "farm": "畑で育てよう。",
+      "bees": "ミツバチと花が必要。",
+      "rare": "珍しいので気長に探そう。",
+      "river": "川沿いを探そう。",
+      "fortress": "ネザー要塞で見つかる。",
+      "bastion": "砦の遺跡で見つかる。",
+      "crimson_forest": "真紅の森で見つかる。",
+      "warped_forest": "歪んだ森で見つかる。",
+      "soul_sand_valley": "ソウルサンドの谷で見つかる。",
+      "basalt_deltas": "玄武岩の三角州で見つかる。",
+      "end_city": "エンドシティで見つかる。",
+      "outer_islands": "エンドの外縁の島に生える。",
+      "mineshaft": "廃坑で見つかる。",
+      "outpost": "ピリジャーの前哨基地で見つかる。",
+      "monument": "海底神殿で見つかる。",
+      "trial_chambers": "トライアルチャンバーで見つかる。",
+      "layers": "地下の厚い岩の層で見つかる。",
+      "warm_ocean": "暖かい海のサンゴ礁を探そう。",
+      "ruined_portal": "荒廃したポータルの周りを探そう。",
+      "deep_dark": "ディープダークで見つかる。"
+    },
+    "familyNames": {
+      "wood": "木材",
+      "forestry": "林業",
+      "stone": "採石",
+      "stonework": "石工",
+      "sand": "砂",
+      "glass": "ガラス工房",
+      "soil": "土木",
+      "badlands": "荒野",
+      "lush": "繁茂した洞窟",
+      "snow": "冬",
+      "plants": "園芸",
+      "coal": "石炭",
+      "metals": "金属",
+      "gems": "宝石",
+      "redstone": "レッドストーン",
+      "amethyst": "アメジスト",
+      "obsidian": "黒曜石",
+      "crops": "農場",
+      "fruit": "果樹園",
+      "mushrooms": "キノコ",
+      "flowers": "花",
+      "bees": "養蜂",
+      "livestock": "牧場",
+      "wool": "羊毛",
+      "wild_animals": "野生動物",
+      "horses": "厩舎",
+      "pets": "ペット",
+      "villagers": "村",
+      "fishing": "釣り",
+      "ocean": "航海",
+      "undead": "アンデッド",
+      "arthropods": "クモ",
+      "monsters": "モンスター",
+      "illagers": "イリジャー",
+      "trial": "試練",
+      "lighting": "照明",
+      "woodwork": "木工",
+      "baking": "パン屋",
+      "library": "図書館",
+      "archery": "矢師",
+      "iron_tools": "道具鍛冶",
+      "iron_armor": "防具鍛冶",
+      "iron_works": "製鉄所",
+      "decor": "インテリア",
+      "copper_works": "銅",
+      "golden_food": "黄金",
+      "diamond_gear": "ダイヤモンド",
+      "nether_travel": "ネザー",
+      "nether_blocks": "ネザーの石",
+      "nether_ores": "ネザーの採掘",
+      "nether_plants": "ネザーの庭",
+      "nether_mobs": "ネザーの狩り",
+      "end_travel": "エンド",
+      "end_blocks": "エンドストーン",
+      "end_plants": "コーラス",
+      "end_mobs": "エンドの狩り",
+      "end_prep": "要塞",
+      "fd_crops": "野菜",
+      "fd_wild": "採集",
+      "fd_straw": "藁",
+      "fd_tools": "刃物",
+      "fd_kitchen": "キッチン",
+      "fd_furniture": "戸棚",
+      "fd_butchery": "精肉",
+      "fd_seafood": "海の幸",
+      "fd_breakfast": "朝食",
+      "fd_meals": "サンドイッチ",
+      "fd_salads": "サラダ",
+      "fd_sweets": "デザート",
+      "fd_stews": "シチュー",
+      "fd_plates": "ディナー",
+      "fd_drinks": "飲み物",
+      "fd_feasts": "ごちそう",
+      "fd_soil": "堆肥",
+      "fd_snacks": "軽食",
+      "create_contraptions": "からくり",
+      "create_zinc": "亜鉛",
+      "create_stone": "岩石層",
+      "create_masonry": "石工",
+      "create_alloy": "合金",
+      "create_kinetics": "動力",
+      "create_power": "水車小屋",
+      "create_logistics": "物流",
+      "create_machines": "機械",
+      "create_tools": "エンジニア",
+      "create_decor": "座席",
+      "create_sweets": "おやつ",
+      "create_quartz": "ローズクォーツ",
+      "deep_dark": "ディープダーク",
+      "dyes": "染料",
+      "stone_tools": "石切り",
+      "leather_armor": "革細工",
+      "workstations": "工房",
+      "transport": "輸送",
+      "brewing": "醸造",
+      "enchanting": "エンチャント",
+      "use_items": "野外作業",
+      "exploration": "探検",
+      "nether_animals": "ネザー牧場",
+      "nether_crafts": "ネザーの石工",
+      "storage_blocks": "宝物庫",
+      "mek_osmium": "オスミウム",
+      "mek_tin": "錫",
+      "mek_lead": "鉛",
+      "mek_uranium": "ウラン",
+      "mek_fluorite": "蛍石",
+      "mek_salt": "塩",
+      "mek_gear": "工房",
+      "mek_radiation": "放射線対策",
+      "mek_machines": "機械",
+      "mek_blocks": "金属ブロック",
+      "tf_travel": "黄昏",
+      "tf_wood": "黄昏の木材",
+      "tf_forage": "黄昏の採集",
+      "tf_game": "鹿肉",
+      "tf_ranch": "黄昏の牧場",
+      "tf_monsters": "黄昏の狩り",
+      "tf_bosses": "ボス",
+      "tf_ironwood": "樹鉄",
+      "tf_maps": "地図職人",
+      "bot_flowers": "花屋",
+      "bot_petals": "花びら",
+      "bot_start": "植物学者",
+      "bot_mushrooms": "きらめくキノコ",
+      "bot_livingwood": "リビングウッド",
+      "bot_mana": "マナ",
+      "bot_decor": "花びら装飾",
+      "bot_alfheim": "アルフヘイム",
+      "ae2_meteor": "隕石",
+      "ae2_skystone": "スカイストーン",
+      "ae2_quartz_tools": "クォーツ鍛冶",
+      "ae2_fluix": "フルーシュ",
+      "ae2_power": "電力",
+      "ae2_network": "ネットワーク",
+      "ie_bauxite": "ボーキサイト",
+      "ie_lead": "鉛",
+      "ie_silver": "銀",
+      "ie_nickel": "ニッケル",
+      "ie_hemp": "大麻",
+      "ie_workshop": "工房",
+      "ie_metalwork": "金属加工",
+      "ie_treated": "防腐木材",
+      "bop_timber": "珍しい木材",
+      "bop_carpentry": "大工",
+      "bop_bouquet": "野の花",
+      "bop_sands": "砂",
+      "bop_wetlands": "湿地",
+      "bop_rose_quartz": "ローズクォーツ",
+      "bop_nether": "ネザーの植物",
+      "am_savanna": "サバンナ",
+      "am_northlands": "北の大地",
+      "am_cookout": "野外料理",
+      "am_predators": "捕食者",
+      "am_gear": "装備",
+      "am_nether": "ネザーの狩人",
+      "tc_grout": "焼成",
+      "tc_stations": "ティンカー",
+      "tc_smeltery": "製錬炉",
+      "tc_slime_isles": "スライム島",
+      "tc_cobalt": "コバルト",
+      "an_archwood": "アークウッド",
+      "an_forage": "ソースベリー",
+      "an_first_spells": "見習い",
+      "an_workshop": "秘術",
+      "an_wilden": "ウィルデン"
+    },
+    "dimensionNames": {
+      "minecraft:overworld": "オーバーワールド",
+      "minecraft:the_nether": "ネザー",
+      "minecraft:the_end": "エンド",
+      "twilightforest:twilight_forest": "黄昏の森"
+    },
+    "dimensionTo": {
+      "minecraft:overworld": "オーバーワールド",
+      "minecraft:the_nether": "ネザー",
+      "minecraft:the_end": "エンド",
+      "twilightforest:twilight_forest": "黄昏の森"
+    },
+    "dimensionIn": {
+      "minecraft:overworld": "オーバーワールド",
+      "minecraft:the_nether": "ネザー",
+      "minecraft:the_end": "エンド",
+      "twilightforest:twilight_forest": "黄昏の森"
+    }
+  },
+  "themes": {
+    "blacksmith_order": {
+      "names": [
+        "鍛冶屋の注文",
+        "鍛冶仕事",
+        "鍛冶場の補給"
+      ],
+      "descriptions": [
+        "鍛冶場が手を借りたいそうだ：{list}。"
+      ]
+    },
+    "harvest_festival": {
+      "names": [
+        "収穫祭",
+        "収穫の時",
+        "大豊作"
+      ],
+      "descriptions": [
+        "収穫の時期だ：{list}。"
+      ]
+    },
+    "monster_patrol": {
+      "names": [
+        "モンスター巡回",
+        "夜警",
+        "アンデッド掃討"
+      ],
+      "descriptions": [
+        "道の安全を守ろう：{list}。"
+      ]
+    },
+    "ranch_hand": {
+      "names": [
+        "牧場の手伝い",
+        "農場の雑用",
+        "家畜小屋の当番"
+      ],
+      "descriptions": [
+        "牧場が人手を求めている：{list}。"
+      ]
+    },
+    "nether_expedition": {
+      "names": [
+        "ネザー遠征",
+        "炎の中へ",
+        "要塞襲撃"
+      ],
+      "descriptions": [
+        "ネザーから宝を持ち帰ろう：{list}。"
+      ]
+    },
+    "mining_expedition": {
+      "names": [
+        "採掘遠征",
+        "深掘り",
+        "洞窟調査"
+      ],
+      "descriptions": [
+        "地下へ向かおう：{list}。"
+      ]
+    },
+    "lumberjack": {
+      "names": [
+        "木こり",
+        "倒れるぞー！",
+        "きこり仕事"
+      ],
+      "descriptions": [
+        "製材所が待っている：{list}。"
+      ]
+    },
+    "ocean_voyage": {
+      "names": [
+        "大海原の旅",
+        "海の恵み",
+        "潮の仕事"
+      ],
+      "descriptions": [
+        "海へ出よう：{list}。"
+      ]
+    },
+    "camp_cook": {
+      "names": [
+        "キャンプの料理番",
+        "焚き火のディナー",
+        "夕食の時間"
+      ],
+      "descriptions": [
+        "キャンプのみんなに食事を：{list}。"
+      ]
+    },
+    "builders_order": {
+      "names": [
+        "建築家の注文",
+        "建設の仕事",
+        "石工の仕事"
+      ],
+      "descriptions": [
+        "建築家たちが資材を求めている：{list}。"
+      ]
+    },
+    "desert_trek": {
+      "names": [
+        "砂漠横断",
+        "砂と太陽"
+      ],
+      "descriptions": [
+        "砂漠に挑もう：{list}。"
+      ]
+    },
+    "end_expedition": {
+      "names": [
+        "エンド遠征",
+        "奈落の彼方へ"
+      ],
+      "descriptions": [
+        "エンドを探索しよう：{list}。"
+      ]
+    },
+    "beekeeper": {
+      "names": [
+        "養蜂家",
+        "働き者のミツバチ"
+      ],
+      "descriptions": [
+        "巣箱の世話をしよう：{list}。"
+      ]
+    },
+    "winter_prep": {
+      "names": [
+        "冬支度",
+        "寒波到来",
+        "雪に閉ざされて"
+      ],
+      "descriptions": [
+        "寒さに備えよう：{list}。"
+      ]
+    },
+    "tool_upgrade": {
+      "names": [
+        "道具のアップグレード",
+        "鉄器時代",
+        "もっといい道具"
+      ],
+      "descriptions": [
+        "いい道具を手に入れる時だ：{list}。"
+      ]
+    },
+    "railway_builder": {
+      "names": [
+        "線路づくり",
+        "鉄道路線",
+        "保線班"
+      ],
+      "descriptions": [
+        "新しい路線を敷こう：{list}。"
+      ]
+    },
+    "redstone_workshop": {
+      "names": [
+        "レッドストーン工房",
+        "回路職人"
+      ],
+      "descriptions": [
+        "工房に配線しよう：{list}。"
+      ]
+    },
+    "enchanters_study": {
+      "names": [
+        "エンチャンターの書斎",
+        "秘術の図書館"
+      ],
+      "descriptions": [
+        "エンチャンターが材料を求めている：{list}。"
+      ]
+    },
+    "night_hunter": {
+      "names": [
+        "夜の狩人",
+        "月下の狩り",
+        "日が暮れたら"
+      ],
+      "descriptions": [
+        "日が沈んだら：{list}。"
+      ]
+    },
+    "fishermans_day": {
+      "names": [
+        "漁師の一日",
+        "本日の釣果",
+        "釣りに出かけよう"
+      ],
+      "descriptions": [
+        "水辺で過ごす一日：{list}。"
+      ]
+    },
+    "florist": {
+      "names": [
+        "花屋",
+        "花市場",
+        "花束"
+      ],
+      "descriptions": [
+        "市場に新鮮な花を：{list}。"
+      ]
+    },
+    "village_fair": {
+      "names": [
+        "村祭り",
+        "市場の縁日",
+        "収穫市"
+      ],
+      "descriptions": [
+        "もうすぐお祭りが始まる：{list}。"
+      ]
+    },
+    "stonemason": {
+      "names": [
+        "石工",
+        "石工の仕事",
+        "石細工"
+      ],
+      "descriptions": [
+        "石工が手を借りたいそうだ：{list}。"
+      ]
+    },
+    "deep_dark_delve": {
+      "names": [
+        "ディープダーク探索",
+        "静寂の深淵"
+      ],
+      "descriptions": [
+        "ディープダークへ降りよう：{list}。"
+      ]
+    },
+    "brewers_supplies": {
+      "names": [
+        "醸造家の材料",
+        "ポーションの素材"
+      ],
+      "descriptions": [
+        "醸造家がネザーの品を求めている：{list}。"
+      ]
+    },
+    "leatherworker": {
+      "names": [
+        "革職人",
+        "なめし屋の注文"
+      ],
+      "descriptions": [
+        "なめし屋は大忙し：{list}。"
+      ]
+    },
+    "copper_age": {
+      "names": [
+        "銅の時代",
+        "銅細工"
+      ],
+      "descriptions": [
+        "どこもかしこも銅だらけ：{list}。"
+      ]
+    },
+    "nether_builder": {
+      "names": [
+        "ネザーの建築家",
+        "要塞の石工"
+      ],
+      "descriptions": [
+        "ピグリンのように建てよう：{list}。"
+      ]
+    },
+    "stable_hand": {
+      "names": [
+        "厩務員",
+        "馬の牧場"
+      ],
+      "descriptions": [
+        "厩舎に仕事がある：{list}。"
+      ]
+    },
+    "library_project": {
+      "names": [
+        "図書館計画",
+        "本の虫"
+      ],
+      "descriptions": [
+        "司書が本を求めている：{list}。"
+      ]
+    },
+    "lamplighter": {
+      "names": [
+        "点灯夫",
+        "灯台守",
+        "明るい夜"
+      ],
+      "descriptions": [
+        "暗くなる前に道を照らそう：{list}。"
+      ]
+    },
+    "glassblower": {
+      "names": [
+        "ガラス職人",
+        "ガラス工房",
+        "澄んだ眺め"
+      ],
+      "descriptions": [
+        "ガラス職人の砂が切れた：{list}。"
+      ]
+    },
+    "potter": {
+      "names": [
+        "ろくろ",
+        "粘土細工",
+        "窯焚きの日"
+      ],
+      "descriptions": [
+        "陶芸家の窯が待っている：{list}。"
+      ]
+    },
+    "pet_shop": {
+      "names": [
+        "ペットショップ",
+        "動物の仲間",
+        "生き物のお世話"
+      ],
+      "descriptions": [
+        "ペットショップに新しい仲間を：{list}。"
+      ]
+    },
+    "mushroom_forager": {
+      "names": [
+        "キノコ採り",
+        "キノコ狩り",
+        "胞子の季節"
+      ],
+      "descriptions": [
+        "料理人がキノコを欲しがっている：{list}。"
+      ]
+    },
+    "cave_garden": {
+      "names": [
+        "洞窟の庭",
+        "繁茂した洞窟",
+        "地下の緑"
+      ],
+      "descriptions": [
+        "地下で何かが育っている：{list}。"
+      ]
+    },
+    "rock_collector": {
+      "names": [
+        "石コレクター",
+        "採石の達人",
+        "岩石調査"
+      ],
+      "descriptions": [
+        "地質学者がサンプルを求めている：{list}。"
+      ]
+    },
+    "diamond_smith": {
+      "names": [
+        "ダイヤモンド鍛冶",
+        "鍛冶の名匠",
+        "輝く装備"
+      ],
+      "descriptions": [
+        "最高のものだけを：{list}。"
+      ]
+    },
+    "bake_sale": {
+      "names": [
+        "焼き菓子バザー",
+        "甘党",
+        "市場の屋台"
+      ],
+      "descriptions": [
+        "村の焼き菓子バザーがあなたを待っている：{list}。"
+      ]
+    },
+    "nether_gardener": {
+      "names": [
+        "ネザーの庭師",
+        "キノコの林",
+        "真紅の収穫"
+      ],
+      "descriptions": [
+        "ネザーにも庭はある：{list}。"
+      ]
+    },
+    "camp_setup": {
+      "names": [
+        "キャンプ設営",
+        "ベースキャンプ",
+        "夜営"
+      ],
+      "descriptions": [
+        "日暮れまでにキャンプを張ろう：{list}。"
+      ]
+    },
+    "workshop_setup": {
+      "names": [
+        "工房の準備",
+        "新しい工房",
+        "クラフトコーナー"
+      ],
+      "descriptions": [
+        "どの村にも工房が必要だ：{list}。"
+      ]
+    },
+    "adventurers_kit": {
+      "names": [
+        "冒険者セット",
+        "旅立ちの準備",
+        "旅の装備"
+      ],
+      "descriptions": [
+        "旅の支度をしよう：{list}。"
+      ]
+    },
+    "treasure_hunter": {
+      "names": [
+        "トレジャーハンター",
+        "地底の財宝",
+        "宝石探し"
+      ],
+      "descriptions": [
+        "財宝は地下深くに眠っている：{list}。"
+      ]
+    },
+    "fd_farmers_market": {
+      "names": [
+        "ファーマーズマーケット",
+        "市の日",
+        "新鮮な野菜"
+      ],
+      "descriptions": [
+        "市場が新鮮な野菜を求めている：{list}。"
+      ]
+    },
+    "fd_harvest_festival": {
+      "names": [
+        "収穫祭",
+        "収穫の時"
+      ],
+      "descriptions": [
+        "収穫の時期だ！{list}。"
+      ]
+    },
+    "fd_chefs_special": {
+      "names": [
+        "シェフのおすすめ",
+        "厨房は大忙し",
+        "ディナータイム"
+      ],
+      "descriptions": [
+        "今夜のメニュー：{list}。"
+      ]
+    },
+    "fd_butcher": {
+      "names": [
+        "肉屋の注文",
+        "肉市場"
+      ],
+      "descriptions": [
+        "肉屋が手を借りたいそうだ：{list}。"
+      ]
+    },
+    "fd_kitchen_setup": {
+      "names": [
+        "キッチンの準備",
+        "新しいキッチン"
+      ],
+      "descriptions": [
+        "どんな料理人にも道具が必要だ：{list}。"
+      ]
+    },
+    "fd_wild_forager": {
+      "names": [
+        "野生の採集家",
+        "採集の散歩"
+      ],
+      "descriptions": [
+        "野山を探そう：{list}。"
+      ]
+    },
+    "fd_village_bakery": {
+      "names": [
+        "村のパン屋",
+        "焼きたてパン"
+      ],
+      "descriptions": [
+        "パン屋は人手不足だ：{list}。"
+      ]
+    },
+    "fd_breakfast_club": {
+      "names": [
+        "朝食クラブ",
+        "モーニングメニュー"
+      ],
+      "descriptions": [
+        "朝ごはんができたよ：{list}。"
+      ]
+    },
+    "fd_picnic": {
+      "names": [
+        "ピクニックバスケット",
+        "ピクニックの日"
+      ],
+      "descriptions": [
+        "ピクニックの準備をしよう：{list}。"
+      ]
+    },
+    "fd_rope_maker": {
+      "names": [
+        "縄職人",
+        "藁細工"
+      ],
+      "descriptions": [
+        "藁を役立つものに変えよう：{list}。"
+      ]
+    },
+    "fd_crate_stock": {
+      "names": [
+        "木箱の在庫",
+        "食料庫の備蓄"
+      ],
+      "descriptions": [
+        "食料庫をいっぱいにしよう：{list}。"
+      ]
+    },
+    "fd_fishmonger": {
+      "names": [
+        "魚屋",
+        "魚市場"
+      ],
+      "descriptions": [
+        "魚屋が仕入れを求めている：{list}。"
+      ]
+    },
+    "create_zinc_rush": {
+      "names": [
+        "亜鉛ラッシュ",
+        "亜鉛の補給",
+        "亜鉛の探鉱者"
+      ],
+      "descriptions": [
+        "工房は亜鉛で動いている：{list}。"
+      ]
+    },
+    "create_first_steps": {
+      "names": [
+        "エンジニアの第一歩",
+        "初めてのからくり",
+        "歯車始動"
+      ],
+      "descriptions": [
+        "どんな機械も小さく始まる：{list}。"
+      ]
+    },
+    "create_water_mill": {
+      "names": [
+        "水車小屋",
+        "水車づくり"
+      ],
+      "descriptions": [
+        "川辺に水車小屋を建てよう：{list}。"
+      ]
+    },
+    "create_stone_layers": {
+      "names": [
+        "岩石層",
+        "深い地層",
+        "岩石調査"
+      ],
+      "descriptions": [
+        "地下の岩石層を調べよう：{list}。"
+      ]
+    },
+    "create_metalworks": {
+      "names": [
+        "金属工場",
+        "鉄と亜鉛",
+        "鋳造所の注文"
+      ],
+      "descriptions": [
+        "鋳造所が金属を求めている：{list}。"
+      ]
+    },
+    "create_logistics_line": {
+      "names": [
+        "物流ライン",
+        "コンベアの設置"
+      ],
+      "descriptions": [
+        "アイテムを自動で運ぼう：{list}。"
+      ]
+    },
+    "create_contraption_crew": {
+      "names": [
+        "からくり班",
+        "動く部品"
+      ],
+      "descriptions": [
+        "動くものを作ろう：{list}。"
+      ]
+    },
+    "create_masonry_works": {
+      "names": [
+        "層状の石工",
+        "石の工房"
+      ],
+      "descriptions": [
+        "Createの石材で飾ろう：{list}。"
+      ]
+    },
+    "create_andesite_age": {
+      "names": [
+        "安山岩の時代",
+        "合金鋳造所"
+      ],
+      "descriptions": [
+        "すべては安山岩から始まる：{list}。"
+      ]
+    },
+    "create_engineers_kit": {
+      "names": [
+        "エンジニアセット",
+        "工房の道具"
+      ],
+      "descriptions": [
+        "どんなエンジニアにも装備が必要だ：{list}。"
+      ]
+    },
+    "mek_osmium_rush": {
+      "names": [
+        "オスミウムラッシュ",
+        "青い金属",
+        "オスミウムの補給"
+      ],
+      "descriptions": [
+        "Mekanismの機械にはオスミウムが必要だ：{list}。"
+      ]
+    },
+    "mek_first_machine": {
+      "names": [
+        "初めての機械",
+        "吹込機の組み立て",
+        "技術の第一歩"
+      ],
+      "descriptions": [
+        "工房を動かそう：{list}。"
+      ]
+    },
+    "mek_metal_survey": {
+      "names": [
+        "金属調査",
+        "鉱石調査",
+        "新しい金属"
+      ],
+      "descriptions": [
+        "地下の新しい鉱石を調べよう：{list}。"
+      ]
+    },
+    "mek_radiation_safety": {
+      "names": [
+        "放射線の安全対策",
+        "防護服の準備",
+        "鉛の遮蔽"
+      ],
+      "descriptions": [
+        "何かが光り出す前に備えよう：{list}。"
+      ]
+    },
+    "tf_expedition": {
+      "names": [
+        "黄昏の遠征",
+        "黄昏の中へ",
+        "彼方の森"
+      ],
+      "descriptions": [
+        "黄昏の森が待っている：{list}。"
+      ]
+    },
+    "tf_hunters": {
+      "names": [
+        "黄昏の狩り",
+        "森の巡回",
+        "ゴブリン騒動"
+      ],
+      "descriptions": [
+        "黄昏の森の道を切り開こう：{list}。"
+      ]
+    },
+    "tf_ironwood_smith": {
+      "names": [
+        "樹鉄の鍛冶",
+        "生きた金属",
+        "根と鉄"
+      ],
+      "descriptions": [
+        "樹鉄は根と鉄から生まれる：{list}。"
+      ]
+    },
+    "tf_venison_feast": {
+      "names": [
+        "鹿肉のごちそう",
+        "狩人の夕食"
+      ],
+      "descriptions": [
+        "夕食は黄昏の森からやってくる：{list}。"
+      ]
+    },
+    "bot_first_steps": {
+      "names": [
+        "植物学者の第一歩",
+        "庭の魔法",
+        "フラワーパワー"
+      ],
+      "descriptions": [
+        "どんな植物学者も草原から始まる：{list}。"
+      ]
+    },
+    "bot_florist": {
+      "names": [
+        "花屋",
+        "花束",
+        "花びら摘み"
+      ],
+      "descriptions": [
+        "花屋が彩りを求めている：{list}。"
+      ]
+    },
+    "ae2_meteor_hunt": {
+      "names": [
+        "隕石探し",
+        "落ちた星",
+        "スカイストーン"
+      ],
+      "descriptions": [
+        "近くのどこかに隕石が落ちた：{list}。"
+      ]
+    },
+    "ae2_engineer": {
+      "names": [
+        "ネットワーク技師",
+        "配線完了",
+        "物質をエネルギーに"
+      ],
+      "descriptions": [
+        "どんなネットワークも作業台から始まる：{list}。"
+      ]
+    },
+    "ie_prospector": {
+      "names": [
+        "探鉱者",
+        "鉱石調査",
+        "現場エンジニア"
+      ],
+      "descriptions": [
+        "機械の前にまず金属が必要だ：{list}。"
+      ]
+    },
+    "ie_workshop_setup": {
+      "names": [
+        "工房の準備",
+        "ハンマーの出番",
+        "レンガと鉄"
+      ],
+      "descriptions": [
+        "工房を整えよう：{list}。"
+      ]
+    },
+    "bop_explorer": {
+      "names": [
+        "バイオーム巡り",
+        "見どころいっぱい",
+        "放浪の心"
+      ],
+      "descriptions": [
+        "世界が広くなった：{list}。"
+      ]
+    },
+    "bop_florist": {
+      "names": [
+        "野の花束",
+        "草原の彩り",
+        "花探し"
+      ],
+      "descriptions": [
+        "野の花を集めよう：{list}。"
+      ]
+    },
+    "bop_carpenter": {
+      "names": [
+        "珍木の大工",
+        "上等な木材"
+      ],
+      "descriptions": [
+        "工房に珍しい木材を：{list}。"
+      ]
+    },
+    "am_safari": {
+      "names": [
+        "サファリ",
+        "野生の王国",
+        "大自然へ"
+      ],
+      "descriptions": [
+        "野生動物は恵みにあふれている：{list}。"
+      ]
+    },
+    "am_hunter": {
+      "names": [
+        "大物狩り",
+        "頂点の狩人",
+        "捕食者パトロール"
+      ],
+      "descriptions": [
+        "危険な動物が野をうろついている：{list}。"
+      ]
+    },
+    "tc_tinker": {
+      "names": [
+        "見習いティンカー",
+        "ティンカーの作業台",
+        "パターンと部品"
+      ],
+      "descriptions": [
+        "どんなティンカーもパターンから始まる：{list}。"
+      ]
+    },
+    "tc_smelter": {
+      "names": [
+        "製錬炉の建設者",
+        "焼成準備完了",
+        "溶けた計画"
+      ],
+      "descriptions": [
+        "製錬炉はレンガを一つずつ積んで作る：{list}。"
+      ]
+    },
+    "an_apprentice": {
+      "names": [
+        "見習い魔術師",
+        "初めての呪文",
+        "秘術の研究"
+      ],
+      "descriptions": [
+        "どんな魔術師も一冊の本から始まる：{list}。"
+      ]
+    },
+    "an_woodland": {
+      "names": [
+        "アークウッドの林",
+        "魔法の森"
+      ],
+      "descriptions": [
+        "アークウッドの森には木材以外もある：{list}。"
+      ]
+    }
+  },
+  "tagNouns": {
+    "logs": "原木",
+    "logs_block": "原木",
+    "skeletons": "スケルトン",
+    "wool": "羊毛",
+    "beds": "ベッド",
+    "small_flowers": "花",
+    "iron_ingots": "鉄インゴット",
+    "zinc_ingots": "亜鉛インゴット",
+    "wool_carpets": "カーペット",
+    "fishes": "魚",
+    "tomatoes": "トマト",
+    "osmium_ingots": "オスミウムインゴット",
+    "tin_ingots": "錫インゴット",
+    "lead_ingots": "鉛インゴット"
+  },
+  "hints": {
+    "Chop any kind of tree.": "種類を問わず木を切る。",
+    "Plant saplings to regrow the forest.": "苗木を植えて森を育て直そう。",
+    "Smelt logs in a furnace.": "原木をかまどで焼く。",
+    "Mine stone with a pickaxe.": "ツルハシで石を掘る。",
+    "Build something with it.": "それを使って何か建てよう。",
+    "Smelt cobblestone in a furnace.": "丸石をかまどで焼く。",
+    "Smelt stone a second time.": "石をもう一度焼く。",
+    "Craft from smelted stone.": "焼いた石から作る。",
+    "Smelt cobbled deepslate.": "深層岩の丸石を焼く。",
+    "Smelt sandstone.": "砂岩を焼く。",
+    "Dig sand with a shovel.": "シャベルで砂を掘る。",
+    "Smelt sand in a furnace.": "砂をかまどで焼く。",
+    "Craft panes from smelted glass.": "焼いたガラスから板を作る。",
+    "Gravel sometimes drops flint.": "砂利からときどき火打石が出る。",
+    "Dig clay in rivers and swamps.": "川や沼地で粘土を掘る。",
+    "Smelt clay balls.": "粘土玉を焼く。",
+    "Smelt clay blocks.": "粘土ブロックを焼く。",
+    "Four bricks make a brick block.": "レンガ4個でレンガブロックになる。",
+    "Dig snow with a shovel.": "シャベルで雪を掘る。",
+    "Break tall grass anywhere.": "どこでも背の高い草を壊す。",
+    "Break grass to find seeds.": "草を壊して種を探す。",
+    "Mine coal ore.": "石炭鉱石を掘る。",
+    "Copper ore drops raw copper.": "銅鉱石から銅の原石が出る。",
+    "Smelt raw copper in a furnace.": "銅の原石をかまどで製錬する。",
+    "Iron ore drops raw iron.": "鉄鉱石から鉄の原石が出る。",
+    "Smelt raw iron in a furnace.": "鉄の原石をかまどで製錬する。",
+    "Gold ore drops raw gold.": "金鉱石から金の原石が出る。",
+    "Smelt raw gold in a furnace.": "金の原石をかまどで製錬する。",
+    "Lapis ore drops several pieces.": "ラピスラズリ鉱石からは数個出る。",
+    "Redstone ore drops dust.": "レッドストーン鉱石からダストが出る。",
+    "Dig deep, around y=-58.": "y=-58あたりまで深く掘る。",
+    "Break amethyst clusters.": "アメジストの塊を壊す。",
+    "Pour water on lava pools, then mine it.": "溶岩だまりに水をかけてから掘る。",
+    "Harvest fully grown wheat.": "育ちきった小麦を収穫する。",
+    "Nine wheat make a hay bale.": "小麦9個で干草の俵になる。",
+    "Bake potatoes in a furnace or smoker.": "ジャガイモをかまどか燻製器で焼く。",
+    "Six beetroots make a soup.": "ビートルート6個でスープになる。",
+    "Pumpkin, sugar and an egg.": "カボチャ、砂糖、卵。",
+    "Oak and dark oak leaves sometimes drop apples.": "オークとダークオークの葉からときどきリンゴが出る。",
+    "Three sugar cane make three paper.": "サトウキビ3本で紙が3枚できる。",
+    "Smelt cactus.": "サボテンを焼く。",
+    "Bamboo and string.": "竹と糸。",
+    "Smelt kelp.": "コンブを焼く。",
+    "A bowl with a red and a brown mushroom.": "ボウルと赤色・茶色のキノコ。",
+    "Pick flowers.": "花を摘む。",
+    "Shear a full bee nest.": "満タンのミツバチの巣をハサミで採る。",
+    "Use a glass bottle on a full hive.": "満タンの巣にガラス瓶を使う。",
+    "Bees breed with flowers.": "ミツバチは花で繁殖する。",
+    "Cows breed with wheat.": "ウシは小麦で繁殖する。",
+    "Cook raw beef.": "生の牛肉を焼く。",
+    "Pigs breed with carrots, potatoes or beetroots.": "ブタはニンジン、ジャガイモ、ビートルートで繁殖する。",
+    "Cook raw porkchops.": "生の豚肉を焼く。",
+    "Chickens breed with seeds.": "ニワトリは種で繁殖する。",
+    "Chickens lay eggs over time.": "ニワトリはときどき卵を産む。",
+    "Cook raw chicken.": "生の鶏肉を焼く。",
+    "Sheep breed with wheat.": "ヒツジは小麦で繁殖する。",
+    "Shear sheep.": "ヒツジの毛を刈る。",
+    "Rabbits breed with carrots or dandelions.": "ウサギはニンジンかタンポポで繁殖する。",
+    "Goats breed with wheat.": "ヤギは小麦で繁殖する。",
+    "Llamas breed with hay bales.": "ラマは干草の俵で繁殖する。",
+    "Turtles breed with seagrass.": "カメは海草で繁殖する。",
+    "Frogs breed with slimeballs.": "カエルはスライムボールで繁殖する。",
+    "Sneak up on foxes with sweet berries.": "スイートベリーを持ってキツネに忍び寄る。",
+    "Armadillos breed with spider eyes.": "アルマジロはクモの目で繁殖する。",
+    "Camels breed with cactus.": "ラクダはサボテンで繁殖する。",
+    "Horses breed with golden carrots or apples.": "ウマは金のニンジンかリンゴで繁殖する。",
+    "Donkeys breed with golden carrots or apples.": "ロバは金のニンジンかリンゴで繁殖する。",
+    "Tame wolves with bones.": "骨でオオカミを飼いならす。",
+    "Tamed wolves breed with meat.": "飼いならしたオオカミは肉で繁殖する。",
+    "Tame stray cats with raw cod or salmon.": "野良ネコは生鱈か生鮭で飼いならす。",
+    "Tamed cats breed with raw fish.": "飼いネコは生魚で繁殖する。",
+    "Tame parrots with seeds.": "種でオウムを飼いならす。",
+    "Squid drop ink sacs.": "イカはイカスミを落とす。",
+    "Glow squid live in dark water.": "ヒカリイカは暗い水中にいる。",
+    "Skeletons drop arrows.": "スケルトンは矢を落とす。",
+    "Five gunpowder and four sand.": "火薬5個と砂4個。",
+    "Coal or charcoal on a stick.": "棒の上に石炭か木炭。",
+    "Build with oak planks.": "オークの板材で建てる。",
+    "Three wheat make a loaf.": "小麦3個でパンが1個できる。",
+    "Wheat and cocoa beans.": "小麦とカカオ豆。",
+    "Needs milk, sugar, wheat and an egg.": "ミルク、砂糖、小麦、卵が必要。",
+    "Each shelf needs three books.": "本棚1つに本が3冊必要。",
+    "Flint, stick and feather.": "火打石、棒、羽根。",
+    "Build a railway.": "線路を敷こう。",
+    "Milk a cow with a bucket.": "バケツでウシの乳をしぼる。",
+    "Three wool and three planks.": "羊毛3個と板材3個。",
+    "Smelt netherrack.": "ネザーラックを焼く。",
+    "They attack as a group once angered.": "怒らせると集団で襲ってくる。",
+    "Blaze powder and an ender pearl.": "ブレイズパウダーとエンダーパール。",
+    "Nine copper ingots.": "銅インゴット9個。",
+    "Four copper blocks make four cut copper.": "銅ブロック4個で切り込み入りの銅が4個できる。",
+    "Watch it oxidize over time.": "時間とともに酸化していく。",
+    "Cobblestone with vines or moss.": "丸石とツタか苔。",
+    "Stone bricks with vines or moss.": "石レンガとツタか苔。",
+    "Smelt stone bricks.": "石レンガを焼く。",
+    "Three smooth stone make six slabs.": "滑らかな石3個でハーフブロックが6個できる。",
+    "Mud and wheat.": "泥と小麦。",
+    "Four red sand.": "赤い砂4個。",
+    "Terracotta around white dye.": "白色の染料をテラコッタで囲む。",
+    "Smelt white terracotta.": "白色のテラコッタを焼く。",
+    "Four snowballs.": "雪玉4個。",
+    "Cut them with a sword or shears.": "剣かハサミで切る。",
+    "Move quietly: the warden listens.": "静かに動こう。ウォーデンが聞いている。",
+    "Sunflower plains are full of them.": "ヒマワリ平原にたくさんある。",
+    "From poppies, tulips or beetroot.": "ポピー、チューリップ、ビートルートから。",
+    "From dandelions or sunflowers.": "タンポポかヒマワリから。",
+    "From bone meal or lilies of the valley.": "骨粉かスズランから。",
+    "From cornflowers or lapis lazuli.": "ヤグルマギクかラピスラズリから。",
+    "From ink sacs or wither roses.": "イカスミかウィザーローズから。",
+    "One bone makes three bone meal.": "骨1本で骨粉が3個できる。",
+    "Leaves and dead bushes drop sticks.": "葉や枯れ木から棒が出る。",
+    "Mooshrooms breed with wheat.": "ムーシュルームは小麦で繁殖する。",
+    "Pandas breed with bamboo near bamboo.": "パンダは竹の近くで竹を与えると繁殖する。",
+    "Axolotls breed with a bucket of tropical fish.": "ウーパールーパーは熱帯魚入りバケツで繁殖する。",
+    "Ocelots breed with raw cod or salmon.": "ヤマネコは生鱈か生鮭で繁殖する。",
+    "Striders breed with warped fungus.": "ストライダーは歪んだキノコで繁殖する。",
+    "Hoglins breed with crimson fungus; they fight back.": "ホグリンは真紅のキノコで繁殖する。反撃してくるので注意。",
+    "Golden apples can be eaten any time.": "金のリンゴはいつでも食べられる。",
+    "Baby turtles drop a scute when they grow up.": "子ガメは大人になるとウロコを落とす。",
+    "They hide in infested stone in mountains and strongholds.": "山や要塞の虫食い石に隠れている。",
+    "Piglins attack players without gold armor.": "ピグリンは金の防具を着ていないプレイヤーを襲う。",
+    "Nether gold ore drops gold nuggets.": "ネザー金鉱石から金塊が出る。",
+    "Fossils in soul sand valleys.": "ソウルサンドの谷の化石から。",
+    "Four Nether brick items.": "ネザーレンガ（アイテム）4個。",
+    "Nether bricks and Nether wart.": "ネザーレンガとネザーウォート。",
+    "Four Nether quartz.": "ネザークォーツ4個。",
+    "One blaze rod makes two powder.": "ブレイズロッド1本でパウダーが2個できる。",
+    "31 iron ingots.": "鉄インゴット31個。",
+    "Needs a blaze rod from a Nether fortress.": "ネザー要塞のブレイズロッドが必要。",
+    "String and a slimeball.": "糸とスライムボール。",
+    "Gold ingots, a stick and redstone.": "金インゴット、棒、レッドストーン。",
+    "Spider eye, sugar and a brown mushroom.": "クモの目、砂糖、茶色のキノコ。",
+    "Two wool make three carpets.": "羊毛2個でカーペットが3枚できる。",
+    "Crafted from sugar cane.": "サトウキビから作る。",
+    "Dry wet sponges from ocean monuments.": "海底神殿の濡れたスポンジを乾かす。",
+    "Nine iron ingots.": "鉄インゴット9個。",
+    "A stonecutter makes them one for one.": "石切台なら1対1で作れる。",
+    "Use a stonecutter on stone.": "石切台で石を加工する。",
+    "Cut copper blocks on a stonecutter.": "石切台で銅ブロックを加工する。",
+    "Enchant books on an enchanting table; any enchantment counts.": "エンチャントテーブルで本にエンチャントする。種類は問わない。",
+    "Any enchantment counts.": "エンチャントの種類は問わない。",
+    "Shovel snow and throw the snowballs.": "雪を掘って雪玉を投げる。",
+    "Chickens lay eggs.": "ニワトリが卵を産む。",
+    "Endermen drop ender pearls.": "エンダーマンはエンダーパールを落とす。",
+    "Use bone meal on crops or grass.": "作物や草に骨粉を使う。",
+    "Craft rockets from paper and gunpowder.": "紙と火薬でロケット花火を作る。",
+    "Brew an Awkward Potion with sugar.": "奇妙なポーションに砂糖を加えて醸造する。",
+    "Brew an Awkward Potion with a golden carrot.": "奇妙なポーションに金のニンジンを加えて醸造する。",
+    "Brew an Awkward Potion with magma cream.": "奇妙なポーションにマグマクリームを加えて醸造する。",
+    "Brew an Awkward Potion with blaze powder.": "奇妙なポーションにブレイズパウダーを加えて醸造する。",
+    "Brew an Awkward Potion with a pufferfish.": "奇妙なポーションにフグを加えて醸造する。",
+    "Cabbage seeds come from wild cabbages on beaches.": "キャベツの種は砂浜の野生のキャベツから取れる。",
+    "Nine cabbages fill a crate.": "キャベツ9個で木箱がいっぱいになる。",
+    "Tomato seeds come from wild tomatoes in warm, dry biomes.": "トマトの種は暑く乾いたバイオームの野生のトマトから取れる。",
+    "Nine tomatoes fill a crate.": "トマト9個で木箱がいっぱいになる。",
+    "Onions come from wild onions; replant them.": "タマネギは野生のタマネギから取れる。植え直そう。",
+    "Nine onions fill a crate.": "タマネギ9個で木箱がいっぱいになる。",
+    "Grow rice in shallow water.": "浅い水で稲を育てる。",
+    "Wild rice grows in swamps and jungles.": "野生の稲は沼地やジャングルに生える。",
+    "Nine rice panicles make a bale.": "稲9個で俵になる。",
+    "Wild cabbages grow on beaches.": "野生のキャベツは砂浜に生える。",
+    "Wild beetroots grow on beaches.": "野生のビートルートは砂浜に生える。",
+    "Wild tomatoes grow in warm, dry biomes.": "野生のトマトは暑く乾いたバイオームに生える。",
+    "Wild onions grow in most overworld biomes.": "野生のタマネギはオーバーワールドのほとんどのバイオームに生える。",
+    "Wild carrots grow in most overworld biomes.": "野生のニンジンはオーバーワールドのほとんどのバイオームに生える。",
+    "Wild potatoes grow in most overworld biomes.": "野生のジャガイモはオーバーワールドのほとんどのバイオームに生える。",
+    "Cut grass or ripe wheat with a knife.": "ナイフで草や実った小麦を刈る。",
+    "Two straw make four rope.": "藁2個でロープが4個できる。",
+    "Four straw make a canvas.": "藁4個でキャンバスになる。",
+    "Hang rope down a cliff or well.": "崖や井戸にロープを垂らす。",
+    "Five iron ingots, bricks, a wooden shovel and water.": "鉄インゴット5個、レンガ、木のシャベル、水。",
+    "Bricks, a campfire and iron.": "レンガ、焚き火、鉄。",
+    "Oak slabs and trapdoors.": "オークのハーフブロックとトラップドア。",
+    "Spruce slabs and trapdoors.": "トウヒのハーフブロックとトラップドア。",
+    "Pigs killed with a knife drop ham.": "ナイフで倒したブタはハムを落とす。",
+    "Smoke ham in a smoker.": "燻製器でハムを燻製にする。",
+    "Cut porkchops on a cutting board, then cook.": "まな板で豚肉を切ってから焼く。",
+    "Mince beef on a cutting board, then cook.": "まな板で牛肉をひいてから焼く。",
+    "Cut chicken on a cutting board, then cook.": "まな板で鶏肉を切ってから焼く。",
+    "Cut mutton on a cutting board, then cook.": "まな板で羊肉を切ってから焼く。",
+    "Slice cod on a cutting board, then cook.": "まな板で鱈を切り身にしてから焼く。",
+    "Slice salmon on a cutting board, then cook.": "まな板で鮭を切り身にしてから焼く。",
+    "Rice, kelp and a carrot.": "米、コンブ、ニンジン。",
+    "Cook eggs in a furnace or skillet.": "かまどかフライパンで卵を焼く。",
+    "Bread, a beef patty, cabbage, tomato and onion.": "パン、ビーフパティ、キャベツ、トマト、タマネギ。",
+    "Apple, melon, berries and a pumpkin slice.": "リンゴ、スイカ、ベリー、カボチャの薄切り。",
+    "Cabbage, tomato and beetroot in a bowl.": "ボウルにキャベツ、トマト、ビートルート。",
+    "Crimson and warped fungi in a bowl.": "ボウルに真紅のキノコと歪んだキノコ。",
+    "Needs a pie crust, apples and sugar.": "パイ生地、リンゴ、砂糖が必要。",
+    "Melon slices, ice and a stick.": "スイカの薄切り、氷、棒。",
+    "Cook it in a Cooking Pot.": "鍋で調理する。",
+    "Cook rice in a Cooking Pot.": "鍋で米を炊く。",
+    "Steak, a baked potato, onion and cooked rice.": "ステーキ、ベイクドポテト、タマネギ、ご飯。",
+    "Brew it in a Cooking Pot.": "鍋で作る。",
+    "Melon slices, sugar and a glass bottle.": "スイカの薄切り、砂糖、ガラス瓶。",
+    "Pour a milk bucket into glass bottles.": "ミルク入りバケツをガラス瓶に移す。",
+    "A feast to share.": "みんなで分け合うごちそう。",
+    "Wheat with an egg or water.": "小麦と卵か水。",
+    "Bake wheat dough in a furnace.": "パン生地をかまどで焼く。",
+    "Dirt, rotten flesh, straw and bone meal.": "土、腐った肉、藁、骨粉。",
+    "Salmon slices and cooked rice.": "鮭の切り身とご飯。",
+    "Cod slices and cooked rice.": "鱈の切り身とご飯。",
+    "Tomato, onion and meat on a stick.": "棒に刺したトマト、タマネギ、肉。",
+    "Place a roast chicken and serve it into a bowl.": "ローストチキンを置いてボウルに取り分ける。",
+    "Place a shepherd's pie and serve it into a bowl.": "シェパーズパイを置いてボウルに取り分ける。",
+    "Place a glazed ham and serve it into a bowl.": "ハムのグレーズ焼きを置いてボウルに取り分ける。",
+    "Made from rope.": "ロープから作る。",
+    "It slowly turns into rich soil.": "ゆっくりと肥沃な土に変わる。",
+    "Zinc ore drops raw zinc.": "亜鉛鉱石から亜鉛の原石が出る。",
+    "Smelt raw zinc in a furnace.": "亜鉛の原石をかまどで製錬する。",
+    "Cut limestone on a stonecutter, then build.": "石切台で石灰岩を加工してから建てる。",
+    "Cut asurine on a stonecutter, then build.": "石切台で瑠璃岩を加工してから建てる。",
+    "Cut crimsite on a stonecutter, then build.": "石切台で真紅岩を加工してから建てる。",
+    "Cut limestone on a stonecutter.": "石切台で石灰岩を加工する。",
+    "Cut asurine on a stonecutter.": "石切台で瑠璃岩を加工する。",
+    "Cut granite on a stonecutter.": "石切台で花崗岩を加工する。",
+    "Cut diorite on a stonecutter.": "石切台で閃緑岩を加工する。",
+    "Cut andesite on a stonecutter.": "石切台で安山岩を加工する。",
+    "Cut tuff on a stonecutter.": "石切台で凝灰岩を加工する。",
+    "Two andesite and two iron nuggets.": "安山岩2個と鉄塊2個。",
+    "Use andesite alloy on stripped logs to make casings.": "樹皮を剥いだ原木に安山岩合金を使ってケーシングを作る。",
+    "Five andesite alloy.": "安山岩合金5個。",
+    "Two andesite alloy make eight shafts.": "安山岩合金2個でシャフトが8本できる。",
+    "A shaft and wooden planks.": "シャフトと板材。",
+    "Four cogwheels and an andesite casing.": "歯車4個と安山岩ケーシング。",
+    "A shaft surrounded by planks.": "シャフトを板材で囲む。",
+    "Andesite alloy, sticks and wool.": "安山岩合金、棒、羊毛。",
+    "A cogwheel, stone and an andesite casing.": "歯車、石、安山岩ケーシング。",
+    "Six dried kelp.": "乾燥した昆布6個。",
+    "Andesite alloy and dried kelp.": "安山岩合金と乾燥した昆布。",
+    "An iron block, a shaft and an andesite casing.": "鉄ブロック、シャフト、安山岩ケーシング。",
+    "Needs a whisk made from iron sheets.": "鉄の板で作った泡立て器が必要。",
+    "Needs a propeller made from iron sheets.": "鉄の板で作ったプロペラが必要。",
+    "Needs golden sheets from a press.": "プレスで作った金の板が必要。",
+    "Needs a golden sheet from a press.": "プレスで作った金の板が必要。",
+    "White wool on a wooden slab.": "木のハーフブロックの上に白色の羊毛。",
+    "Made with a mixer and a press.": "ミキサーとプレスで作る。",
+    "Fill apples with honey using a spout.": "注液口でリンゴにハチミツをかける。",
+    "Brewed by a mixer, bottled by a spout.": "ミキサーで作り、注液口で瓶に詰める。",
+    "Fill bread with milk using a spout.": "注液口でパンにミルクを注ぐ。",
+    "Nether quartz and eight redstone dust.": "ネザークォーツとレッドストーンダスト8個。",
+    "Andesite alloy and logs.": "安山岩合金と原木。",
+    "Andesite alloy and planks.": "安山岩合金と板材。",
+    "Nine andesite alloy.": "安山岩合金9個。",
+    "A clock in an andesite casing.": "安山岩ケーシングに時計。",
+    "Iron sheets and netherrack.": "鉄の板とネザーラック。",
+    "Polish limestone on a stonecutter, then build.": "石切台で石灰岩を磨いてから建てる。",
+    "Osmium ore drops raw osmium.": "オスミウム鉱石からオスミウムの原石が出る。",
+    "Smelt raw osmium in a furnace.": "オスミウムの原石をかまどで製錬する。",
+    "Tin ore drops raw tin.": "錫鉱石から錫の原石が出る。",
+    "Smelt raw tin in a furnace.": "錫の原石をかまどで製錬する。",
+    "Lead ore drops raw lead.": "鉛鉱石から鉛の原石が出る。",
+    "Smelt raw lead in a furnace.": "鉛の原石をかまどで製錬する。",
+    "Smelt raw uranium in a furnace.": "ウランの原石をかまどで製錬する。",
+    "Fluorite ore drops two to four gems.": "蛍石鉱石から宝石が2〜4個出る。",
+    "Salt forms in small patches under shallow water, like clay.": "塩は粘土のように浅い水の底に小さく固まっている。",
+    "Salt blocks drop salt.": "塩ブロックから塩が出る。",
+    "Iron, osmium, redstone and two furnaces: the first Mekanism machine.": "鉄、オスミウム、レッドストーン、かまど2つ。最初のMekanism機械。",
+    "An osmium ingot over five glass panes.": "ガラス板5枚の上にオスミウムインゴット。",
+    "Four tin ingots around a bowl.": "ボウルを錫インゴット4個で囲む。",
+    "Four lead ingots around redstone.": "レッドストーンを鉛インゴット4個で囲む。",
+    "Five lead ingots and orange dye.": "鉛インゴット5個と橙色の染料。",
+    "Nine charcoal.": "木炭9個。",
+    "Nine tin ingots.": "錫インゴット9個。",
+    "Nine lead ingots.": "鉛インゴット9個。",
+    "Steel ingots around a bucket; steel comes from the Metallurgic Infuser.": "バケツを鋼鉄インゴットで囲む。鋼鉄は冶金吹込機で作る。",
+    "Steel ingots around an iron ingot; steel comes from the Metallurgic Infuser.": "鉄インゴットを鋼鉄インゴットで囲む。鋼鉄は冶金吹込機で作る。",
+    "A steel casing, basic control circuits, redstone and lava buckets.": "鋼鉄ケーシング、基本制御回路、レッドストーン、溶岩入りバケツ。",
+    "Steel comes from the metallurgic infuser: infuse iron with carbon twice.": "鋼鉄は冶金吹込機で作る。鉄に炭素を2回吹き込む。",
+    "A steel casing, basic alloys and a basic control circuit.": "鋼鉄ケーシング、基本合金、基本制御回路。",
+    "A steel casing, basic alloys, glass and a basic control circuit.": "鋼鉄ケーシング、基本合金、ガラス、基本制御回路。",
+    "Iron, an osmium ingot and a steel ingot.": "鉄、オスミウムインゴット、鋼鉄インゴット。",
+    "Throw a diamond into a two-by-two pool of water ringed with flowers or grass.": "花か草で囲んだ2×2の水たまりにダイヤモンドを投げ込む。",
+    "Darkwood grows in the gloomy Dark Forest.": "ダークウッドは薄暗い闇の森に生える。",
+    "One twilight oak log makes four planks.": "トワイライトオークの原木1個で板材が4個できる。",
+    "Twilight mangroves stand in the swamps.": "黄昏のマングローブは沼地に生えている。",
+    "One canopy log makes four planks.": "林冠木の原木1個で板材が4個できる。",
+    "One darkwood log makes four planks.": "ダークウッドの原木1個で板材が4個できる。",
+    "Five twilight oak planks.": "トワイライトオークの板材5個。",
+    "Six canopy planks and three books.": "林冠木の板材6個と本3冊。",
+    "Ripe torchberries hang from cave ceilings in the Twilight Forest.": "熟したトーチベリーは黄昏の森の洞窟の天井から下がっている。",
+    "Liveroot grows in the root tangles underground; break it without Silk Touch.": "生きている根は地下の根の絡まりに生える。シルクタッチなしで壊す。",
+    "Forest ravens drop feathers.": "森のカラスは羽根を落とす。",
+    "Mushglooms glow in the Mushroom Forest.": "ヒカリダケはキノコの森で光っている。",
+    "Deer drop venison.": "黄昏鹿は鹿肉を落とす。",
+    "Cook raw venison in a furnace, smoker or campfire.": "生の鹿肉をかまど、燻製器、焚き火で焼く。",
+    "Deer breed with wheat.": "黄昏鹿は小麦で繁殖する。",
+    "Boars breed like pigs: carrots, potatoes or beetroots.": "イノシシはブタと同じくニンジン、ジャガイモ、ビートルートで繁殖する。",
+    "Bighorn sheep breed with wheat.": "オオツノヒツジは小麦で繁殖する。",
+    "Kobolds roam the Twilight Forest in packs.": "コボルトは群れで黄昏の森をうろついている。",
+    "Redcaps lurk around the hollow hills.": "レッドキャップゴブリンは空洞の丘のまわりに潜んでいる。",
+    "Skeleton druids haunt the swamps and forests.": "スケルトンドルイドは沼地や森に出没する。",
+    "Hedge spiders hide in hedge mazes.": "生垣蜘蛛は生垣の迷路に隠れている。",
+    "Swarm spiders pour out of hedge mazes.": "群れ蜘蛛は生垣の迷路からあふれ出てくる。",
+    "Slime beetles crawl through the Twilight Forest at night.": "スライムビートルは夜の黄昏の森を這い回る。",
+    "Fire beetles crawl through the Twilight Forest at night.": "ファイアビートルは夜の黄昏の森を這い回る。",
+    "Pinch beetles crawl through the Twilight Forest at night.": "ピンチビートルは夜の黄昏の森を這い回る。",
+    "Minotaurs guard the labyrinths below the swamp.": "ミノタウロスは沼地の下の迷宮を守っている。",
+    "The Naga coils in a stone courtyard in the forest.": "ナーガは森の石の中庭でとぐろを巻いている。",
+    "Dropped by the Naga.": "ナーガが落とす。",
+    "The Lich rules the tallest tower.": "トワイライトリッチは一番高い塔を支配している。",
+    "Minotaurs in the labyrinths drop meef.": "迷宮のミノタウロスはミーフを落とす。",
+    "Cook raw meef in a furnace, smoker or campfire.": "生のミーフをかまど、燻製器、焚き火で焼く。",
+    "Liveroot, raw iron and a gold nugget.": "生きている根、鉄の原石、金塊。",
+    "Smelt raw ironwood in a furnace.": "樹鉄の素をかまどで製錬する。",
+    "A raven feather, torchberries and glowstone dust.": "カラスの羽根、トーチベリー、グロウストーンダスト。",
+    "A magic map focus surrounded by paper.": "魔法の地図の核を紙で囲む。",
+    "Mystical flowers grow in forests, plains and meadows.": "神秘の花は森、平原、草地に咲く。",
+    "One mystical flower makes two petals.": "神秘の花1本で花びらが2枚できる。",
+    "Nine mystical white petals.": "白色の神秘的な花びら9枚。",
+    "Nine mystical red petals.": "赤色の神秘的な花びら9枚。",
+    "Mossy cobblestone around a mystical petal.": "神秘的な花びらを苔むした丸石で囲む。",
+    "A book and any sapling.": "本と好きな苗木。",
+    "Cobblestone around a mystical petal.": "神秘的な花びらを丸石で囲む。",
+    "Six wool and a mystical petal.": "羊毛6個と神秘的な花びら。",
+    "Shimmering mushrooms glow in caves.": "きらめくキノコは洞窟で光っている。",
+    "A Pure Daisy turns logs placed around it into livingwood.": "ピュアデイジーはまわりに置いた原木をリビングウッドに変える。",
+    "A livingwood twig and two petals; livingwood comes from a Pure Daisy.": "リビングウッドの小枝と花びら2枚。リビングウッドはピュアデイジーで作る。",
+    "Manasteel ingots and livingwood twigs; iron becomes manasteel in a mana pool.": "マナスチールインゴットとリビングウッドの小枝。鉄はマナプールでマナスチールになる。",
+    "Manasteel ingots and a livingwood twig; iron becomes manasteel in a mana pool.": "マナスチールインゴットとリビングウッドの小枝。鉄はマナプールでマナスチールになる。",
+    "Two livingwood logs from a Pure Daisy.": "ピュアデイジーで作ったリビングウッドの原木2個。",
+    "Livingwood and glowstone dust.": "リビングウッドとグロウストーンダスト。",
+    "Dreamwood comes from the elves through an Elven Gateway.": "ドリームウッドはエルヴンゲートを通じてエルフから手に入る。",
+    "Elementium ingots and dreamwood twigs, both traded with the elves.": "エレメンチウムインゴットとドリームウッドの小枝。どちらもエルフとの交換で手に入る。",
+    "Five livingrock; a Pure Daisy turns stone into livingrock.": "リビングロック5個。ピュアデイジーは石をリビングロックに変える。",
+    "Meteorites are craters of sky stone; a meteorite compass points to the nearest one.": "隕石はスカイストーンのクレーター。隕石コンパスが一番近い隕石を指す。",
+    "Certus clusters grow on the budding quartz inside meteorites.": "ケルタスの結晶は隕石の中の芽吹いたクォーツに育つ。",
+    "Smelt sky stone in a furnace.": "スカイストーンをかまどで焼く。",
+    "Four sky stone blocks (smelted sky stone).": "スカイストーンブロック4個（焼いたスカイストーン）。",
+    "Eight sky stone.": "スカイストーン8個。",
+    "Five certus quartz crystals.": "ケルタスクォーツの水晶5個。",
+    "A stick, an iron ingot and certus quartz.": "棒、鉄インゴット、ケルタスクォーツ。",
+    "Five nether quartz.": "ネザークォーツ5個。",
+    "Three certus quartz crystals and two sticks.": "ケルタスクォーツの水晶3個と棒2本。",
+    "Two certus quartz crystals and a stick.": "ケルタスクォーツの水晶2個と棒1本。",
+    "Charged certus quartz, redstone and nether quartz dropped into water turn into fluix.": "チャージ済みケルタスクォーツ、レッドストーン、ネザークォーツを水に落とすとフルーシュになる。",
+    "Four fluix crystals.": "フルーシュの水晶4個。",
+    "An ender pearl surrounded by fluix crystals and fluix dust.": "エンダーパールをフルーシュの水晶とダストで囲む。",
+    "Iron and copper ingots.": "鉄インゴットと銅インゴット。",
+    "Iron ingots, pistons and a copper ingot.": "鉄インゴット、ピストン、銅インゴット。",
+    "Iron, quartz glass and copper.": "鉄、クォーツガラス、銅。",
+    "Glass and quartz dust, which the Inscriber grinds from quartz.": "ガラスとクォーツダスト。ダストは刻印機でクォーツを砕いて作る。",
+    "Quartz fiber and two fluix crystals.": "クォーツファイバーとフルーシュの水晶2個。",
+    "Iron, engineering processors and fluix cables; processors come from the Inscriber.": "鉄、情報処理プロセッサ、フルーシュケーブル。プロセッサは刻印機で作る。",
+    "Quartz glass, redstone and iron.": "クォーツガラス、レッドストーン、鉄。",
+    "Certus quartz, redstone and a logic processor from the Inscriber.": "ケルタスクォーツ、レッドストーン、刻印機で作った論理プロセッサ。",
+    "Bauxite ore drops raw bauxite.": "ボーキサイト鉱石からボーキサイトの原石が出る。",
+    "Smelt raw bauxite in a furnace.": "ボーキサイトの原石をかまどで製錬する。",
+    "Silver ore drops raw silver.": "銀鉱石から銀の原石が出る。",
+    "Smelt raw silver in a furnace.": "銀の原石をかまどで製錬する。",
+    "Smelt raw nickel in a furnace.": "ニッケルの原石をかまどで製錬する。",
+    "Nickel ore drops raw nickel.": "ニッケル鉱石からニッケルの原石が出る。",
+    "Breaking tall grass sometimes drops hemp seeds.": "背の高い草を壊すとときどき大麻の種が出る。",
+    "Grown hemp drops fiber.": "育った大麻から繊維が出る。",
+    "Hemp fiber around a stick.": "棒を大麻の繊維で囲む。",
+    "Iron ingots, string and sticks.": "鉄インゴット、糸、棒。",
+    "A book and a lever.": "本とレバー。",
+    "Clay, bricks and sandstone.": "粘土、レンガ、砂岩。",
+    "Two bricks and two sandstone.": "レンガ2個と砂岩2個。",
+    "Treated wood slabs, treated sticks and a crafting table.": "防腐木材のハーフブロック、防腐木棒、作業台。",
+    "An iron ingot hit with the Engineer's Hammer.": "鉄インゴットをエンジニアのハンマーで叩く。",
+    "Iron ingots in a column.": "鉄インゴットを縦に並べる。",
+    "A copper plate and the Engineer's Wire Cutters.": "銅板とエンジニアのワイヤーカッター。",
+    "Iron plates and a copper ingot.": "鉄板と銅インゴット。",
+    "Leather, iron and redstone.": "革、鉄、レッドストーン。",
+    "Two treated wood planks; planks soak creosote from a coke oven.": "防腐木材2個。板材をコークス炉のクレオソートに浸して作る。",
+    "Treated wood planks and treated sticks.": "防腐木材と防腐木棒。",
+    "Firs grow in coniferous forests.": "モミは針葉樹林に生える。",
+    "Redwoods tower in redwood forests.": "セコイアはセコイアの森にそびえ立つ。",
+    "Jacarandas bloom in jacaranda glades.": "ジャカランダはジャカランダの空き地に咲く。",
+    "Mahogany grows in rainforests.": "マホガニーは熱帯雨林に生える。",
+    "Willows hang over bayous and marshes.": "ヤナギはバイユーや沼沢地に垂れ下がっている。",
+    "Palms line tropical beaches.": "ヤシは南国の砂浜に並んでいる。",
+    "Dead trees stand in wastelands and dead forests.": "枯れ木は荒地や枯れた森に立っている。",
+    "Magic trees glow blue in mystic groves.": "魔法の木は神秘の林で青く光る。",
+    "One fir log makes four planks.": "モミの原木1個で板材が4個できる。",
+    "One redwood log makes four planks.": "セコイアの原木1個で板材が4個できる。",
+    "One jacaranda log makes four planks.": "ジャカランダの原木1個で板材が4個できる。",
+    "Five fir planks.": "モミの板材5個。",
+    "Five redwood planks.": "セコイアの板材5個。",
+    "Lavender fields are purple from afar.": "ラベンダーの野原は遠くからでも紫色に見える。",
+    "Biomes O' Plenty adds it in its own biomes.": "Biomes O' Plenty独自のバイオームに生える。",
+    "Goldenrod grows in prairies and fields.": "アキノキリンソウは大草原や野原に生える。",
+    "Hibiscus grows in tropical biomes.": "ハイビスカスは熱帯のバイオームに咲く。",
+    "Glowflowers light up mystic groves.": "グロウフラワーは神秘の林を照らしている。",
+    "Wilted lilies droop in eerie, foggy biomes.": "しおれたユリは不気味な霧のバイオームに咲く。",
+    "White sand covers tropical beaches.": "白い砂が南国の砂浜を覆っている。",
+    "Orange sand covers lush deserts.": "橙色の砂が繁茂した砂漠を覆っている。",
+    "Black sand covers volcanic beaches.": "黒い砂が火山の浜辺を覆っている。",
+    "Four white sand.": "白い砂4個。",
+    "Four orange sand.": "橙色の砂4個。",
+    "Smelt white sandstone in a furnace.": "白い砂岩をかまどで焼く。",
+    "Cattails grow at the edges of marshes.": "ガマは沼沢地のふちに生える。",
+    "Reeds stand in shallow water.": "ヨシは浅い水の中に生えている。",
+    "Spanish moss hangs from bayou trees.": "サルオガセモドキはバイユーの木から垂れ下がっている。",
+    "Watergrass grows under water in wetlands.": "水草は湿地の水中に生える。",
+    "Wild barley grows on the prairie.": "野生の大麦は大草原に生える。",
+    "Glowshrooms light up glowing grottos and caves.": "グロウシュルームは輝く洞窟や洞窟を照らしている。",
+    "Rose quartz clusters grow in crystal caves underground.": "ローズクォーツの塊は地下の結晶洞窟に育つ。",
+    "Rose quartz clusters drop chunks.": "ローズクォーツの塊からかけらが出る。",
+    "Four rose quartz chunks.": "ローズクォーツのかけら4個。",
+    "Brimstone crusts the fumaroles of Nether biomes.": "硫黄石はネザーのバイオームの噴気孔を覆っている。",
+    "Flesh covers the Visceral Heap.": "肉ブロックが内臓塚を覆っている。",
+    "Hellbark grows in the Nether's undergrowth.": "ヘルバークはネザーの地獄の灌木地に生える。",
+    "Burning blossoms grow in the Nether.": "灼熱の花はネザーに咲く。",
+    "Kangaroos hop around savannas and deserts.": "カンガルーはサバンナや砂漠を跳ね回っている。",
+    "Kangaroos drop meat.": "カンガルーは肉を落とす。",
+    "Roadrunners race across badlands and deserts.": "ロードランナーは荒野や砂漠を駆け回っている。",
+    "Emus roam savannas and badlands.": "エミューはサバンナや荒野をうろついている。",
+    "Moose roam snowy forests.": "ヘラジカは雪の森をうろついている。",
+    "Moose drop ribs.": "ヘラジカはあばら肉を落とす。",
+    "Grizzly bears live in forests and taigas.": "グリズリーは森やタイガにすんでいる。",
+    "Bison roam snowy plains.": "バイソンは雪原をうろついている。",
+    "Cook kangaroo meat in a furnace, smoker or campfire.": "カンガルー肉をかまど、燻製器、焚き火で焼く。",
+    "Cook moose ribs in a furnace, smoker or campfire.": "ヘラジカのあばら肉をかまど、燻製器、焚き火で焼く。",
+    "Lobsters crawl on beaches; cook their tails.": "ロブスターは砂浜を這っている。尻尾を焼こう。",
+    "Cooked kangaroo meat between two breads.": "焼いたカンガルー肉をパン2つで挟む。",
+    "Crocodiles lurk in swamps, rivers and mangroves.": "クロコダイルは沼地、川、マングローブに潜んでいる。",
+    "Rattlesnakes coil in deserts and badlands.": "ガラガラヘビは砂漠や荒野でとぐろを巻いている。",
+    "Komodo dragons hunt in jungles.": "コモドドラゴンはジャングルで狩りをする。",
+    "Cave centipedes crawl in dark caves.": "洞窟ムカデは暗い洞窟を這っている。",
+    "Crocodiles drop scutes.": "クロコダイルは鱗を落とす。",
+    "Roadrunner feathers, leather boots and chiseled sandstone.": "ロードランナーの羽、革のブーツ、模様入りの砂岩。",
+    "Moose antlers, an iron ingot and string.": "ヘラジカの角、鉄インゴット、糸。",
+    "Seven crocodile scutes.": "クロコダイルの鱗7枚。",
+    "A shark tooth, a stick and kelp.": "サメの歯、棒、コンブ。",
+    "Crimson mosquitoes buzz in crimson forests.": "クリムゾンモスキートは真紅の森を飛び回っている。",
+    "Soul vultures circle soul sand valleys.": "ソウルバルチャーはソウルサンドの谷の上を旋回している。",
+    "Dropbears hang from the ceilings of Nether wastes.": "ドロップベアはネザーの荒地の天井にぶら下がっている。",
+    "Clay, sand and gravel.": "粘土、砂、砂利。",
+    "Smelt grout in a furnace.": "グラウトをかまどで焼く。",
+    "Four seared bricks.": "焼成レンガ4個。",
+    "Two planks and two sticks.": "板材2個と棒2本。",
+    "A pattern on top of a log or crafting table.": "原木か作業台の上にパターン。",
+    "Two patterns on top of two planks.": "板材2個の上にパターン2枚。",
+    "Three patterns on top of planks.": "板材の上にパターン3枚。",
+    "A book and a pattern.": "本とパターン。",
+    "Eight seared bricks.": "焼成レンガ8個。",
+    "Three seared bricks.": "焼成レンガ3個。",
+    "Seven seared bricks.": "焼成レンガ7個。",
+    "Seared bricks around a seared tank.": "焼成タンクを焼成レンガで囲む。",
+    "Skyroot grows on the sky slime islands floating high up.": "スカイルートは空高く浮かぶスカイスライム島に生える。",
+    "Sky slimes on the slime islands drop skyslime balls.": "スライム島のスカイスライムはスカイスライムボールを落とす。",
+    "Skyslimes bounce on the sky slime islands.": "スカイスライムはスカイスライム島で跳ねている。",
+    "Nine skyslime balls.": "スカイスライムボール9個。",
+    "Greenheart grows on earth slime islands in the sea.": "グリーンハートは海のアーススライム島に生える。",
+    "Cobalt ore hides in the Nether's netherrack, high and low.": "コバルト鉱石はネザーのネザーラックの上層にも下層にも隠れている。",
+    "Cobalt ore drops raw cobalt.": "コバルト鉱石からコバルトの原石が出る。",
+    "Archwood trees grow in archwood forests.": "アークウッドの木はアークウッドの森に生える。",
+    "One archwood log makes four planks.": "アークウッドの原木1個で木材が4個できる。",
+    "Sourceberry bushes grow in taigas and archwood forests.": "ソースベリーの茂みはタイガやアークウッドの森に生える。",
+    "Magebloom grows from magebloom seeds; its flower drops when harvested.": "メイジブルームは種から育つ。収穫すると花が手に入る。",
+    "One magebloom.": "メイジブルーム1個。",
+    "A book and lapis lazuli.": "本とラピスラズリ。",
+    "A book and four iron tools: shovel, pickaxe, axe and sword.": "本と鉄の道具4つ（シャベル、ツルハシ、斧、剣）。",
+    "A gold ingot and archwood planks.": "金インゴットとアークウッドの木材。",
+    "Archwood slabs, gold nuggets and archwood logs.": "アークウッドのハーフブロック、金塊、アークウッドの原木。",
+    "Archwood planks and gold ingots.": "アークウッドの木材と金インゴット。",
+    "Archwood planks around a gold nugget.": "金塊をアークウッドの木材で囲む。",
+    "Archwood slabs and glass.": "アークウッドのハーフブロックとガラス。",
+    "Paper surrounded by magebloom fiber.": "紙をメイジブルームの繊維で囲む。",
+    "Wilden hunters prowl archwood forests at night.": "ウィルデン ハンターは夜のアークウッドの森をうろつく。",
+    "Wilden stalkers swoop down from above.": "ウィルデン ストーカーは上空から急降下してくる。",
+    "Wilden guardians roll up behind their spikes.": "ウィルデン ガーディアンはトゲの後ろで丸くなる。",
+    "Wilden hunters drop horns.": "ウィルデン ハンターは角を落とす。",
+    "Wilden guardians drop spikes.": "ウィルデン ガーディアンはトゲを落とす。",
+    "Wilden stalkers drop wings.": "ウィルデン ストーカーは翼を落とす。"
+  },
+  "messages": [
+    "村のみんなが感謝しているよ！",
+    "あなたの活躍が噂になっている。",
+    "よくやった、冒険者よ。",
+    "今回もいい仕事だった。",
+    "クエストボードに新たな英雄が誕生した。",
+    "いつか誰かがこの話を歌にするだろう。",
+    "商人たちも感心している。",
+    "お疲れさま。少し休もう。"
+  ],
+  "names": {
+    "ae2:cell_component_1k": "1k MEストレージコンポーネント",
+    "ae2:certus_quartz_crystal": "ケルタスクォーツの水晶",
+    "ae2:certus_quartz_cutting_knife": "ケルタスクォーツのナイフ",
+    "ae2:certus_quartz_pickaxe": "ケルタスクォーツのピッケル",
+    "ae2:certus_quartz_sword": "ケルタスクォーツの剣",
+    "ae2:certus_quartz_wrench": "ケルタスクォーツのレンチ",
+    "ae2:charger": "チャージャー",
+    "ae2:drive": "MEドライブ",
+    "ae2:energy_acceptor": "エネルギーアクセプター",
+    "ae2:fluix_block": "フルーシュブロック",
+    "ae2:fluix_crystal": "フルーシュの水晶",
+    "ae2:fluix_glass_cable": "フルーシュのMEガラスケーブル",
+    "ae2:fluix_pearl": "フルーシュパール",
+    "ae2:inscriber": "刻印機",
+    "ae2:item_cell_housing": "MEアイテムセル筐体",
+    "ae2:nether_quartz_wrench": "ネザークォーツのレンチ",
+    "ae2:quartz_cluster": "ケルタスクォーツの塊",
+    "ae2:quartz_glass": "クォーツガラス",
+    "ae2:sky_stone_block": "スカイストーン",
+    "ae2:sky_stone_brick": "スカイストーンレンガ",
+    "ae2:sky_stone_chest": "スカイストーンチェスト",
+    "ae2:smooth_sky_stone_block": "スカイストーンブロック",
+    "alexsmobs:bear_fur": "クマの毛",
+    "alexsmobs:bison_fur": "バイソンの毛皮",
+    "alexsmobs:centipede_head": "洞窟ムカデ",
+    "alexsmobs:cooked_kangaroo_meat": "焼きカンガルー肉",
+    "alexsmobs:cooked_lobster_tail": "焼きロブスターの尻尾",
+    "alexsmobs:cooked_moose_ribs": "焼きヘラジカのリブ肉",
+    "alexsmobs:crimson_mosquito": "クリムゾンモスキート",
+    "alexsmobs:crocodile": "クロコダイル",
+    "alexsmobs:crocodile_chestplate": "クロコダイルのチェストプレート",
+    "alexsmobs:crocodile_scute": "クロコダイルの鱗",
+    "alexsmobs:dropbear": "ドロップベア",
+    "alexsmobs:emu_feather": "エミューの羽",
+    "alexsmobs:kangaroo_burger": "カンガルーバーガー",
+    "alexsmobs:kangaroo_hide": "カンガルーの皮",
+    "alexsmobs:kangaroo_meat": "カンガルー肉",
+    "alexsmobs:komodo_dragon": "コモドドラゴン",
+    "alexsmobs:moose_antler": "ヘラジカの角",
+    "alexsmobs:moose_headgear": "角の頭飾り",
+    "alexsmobs:moose_ribs": "生のヘラジカのリブ肉",
+    "alexsmobs:rattlesnake": "ガラガラヘビ",
+    "alexsmobs:roadrunner_boots": "ロードランナーのブーツ",
+    "alexsmobs:roadrunner_feather": "ロードランナーの羽",
+    "alexsmobs:shark_tooth_arrow": "サメの歯の矢",
+    "alexsmobs:soul_vulture": "ソウルバルチャー",
+    "ars_nouveau:archwood_chest": "アークウッドのチェスト",
+    "ars_nouveau:archwood_planks": "アークウッドの木材",
+    "ars_nouveau:blank_parchment": "空の羊皮紙",
+    "ars_nouveau:blue_archwood_log": "滝のアークウッドの原木",
+    "ars_nouveau:dowsing_rod": "ダウジングロッド",
+    "ars_nouveau:green_archwood_log": "繁栄のアークウッドの原木",
+    "ars_nouveau:imbuement_chamber": "注入チェンバー",
+    "ars_nouveau:magebloom": "メイジブルーム",
+    "ars_nouveau:magebloom_fiber": "メイジブルームの繊維",
+    "ars_nouveau:novice_spell_book": "初心者のスペルブック",
+    "ars_nouveau:purple_archwood_log": "成長のアークウッドの原木",
+    "ars_nouveau:red_archwood_log": "爛々のアークウッドの原木",
+    "ars_nouveau:scribes_table": "スクライブテーブル",
+    "ars_nouveau:source_jar": "ソース瓶",
+    "ars_nouveau:sourceberry_bush": "ソースベリー",
+    "ars_nouveau:wilden_guardian": "ウィルデン ディフェンダー",
+    "ars_nouveau:wilden_horn": "ウィルデン ホーン",
+    "ars_nouveau:wilden_hunter": "ウィルデン ハンター",
+    "ars_nouveau:wilden_spike": "ウィルデン スパイク",
+    "ars_nouveau:wilden_stalker": "ウィルデン ストーカー",
+    "ars_nouveau:wilden_wing": "ウィルデン ウィング",
+    "ars_nouveau:worn_notebook": "使い古されたノート",
+    "biomesoplenty:barley": "大麦",
+    "biomesoplenty:black_sand": "黒い砂",
+    "biomesoplenty:blue_hydrangea": "青色のアジサイ",
+    "biomesoplenty:brimstone": "硫黄石",
+    "biomesoplenty:burning_blossom": "灼熱の花",
+    "biomesoplenty:cattail": "ガマ",
+    "biomesoplenty:dead_log": "枯れた原木",
+    "biomesoplenty:fir_boat": "モミのボート",
+    "biomesoplenty:fir_log": "モミの原木",
+    "biomesoplenty:fir_planks": "モミの板材",
+    "biomesoplenty:flesh": "肉",
+    "biomesoplenty:glowflower": "グロウフラワー",
+    "biomesoplenty:glowshroom": "グロウシュルーム",
+    "biomesoplenty:goldenrod": "アキノキリンソウ",
+    "biomesoplenty:hellbark_log": "ヘルバークの原木",
+    "biomesoplenty:jacaranda_log": "ジャカランダの原木",
+    "biomesoplenty:jacaranda_planks": "ジャカランダの板材",
+    "biomesoplenty:lavender": "ラベンダー",
+    "biomesoplenty:magic_log": "魔法の原木",
+    "biomesoplenty:mahogany_log": "マホガニーの原木",
+    "biomesoplenty:orange_cosmos": "橙色のコスモス",
+    "biomesoplenty:orange_sand": "橙色の砂",
+    "biomesoplenty:orange_sandstone": "橙色の砂岩",
+    "biomesoplenty:palm_log": "ヤシの原木",
+    "biomesoplenty:pink_daffodil": "桃色のスイセン",
+    "biomesoplenty:pink_hibiscus": "桃色のハイビスカス",
+    "biomesoplenty:redwood_boat": "セコイアのボート",
+    "biomesoplenty:redwood_log": "セコイアの原木",
+    "biomesoplenty:redwood_planks": "セコイアの板材",
+    "biomesoplenty:reed": "ヨシ",
+    "biomesoplenty:rose_quartz_block": "ローズクォーツブロック",
+    "biomesoplenty:rose_quartz_chunk": "ローズクォーツの塊",
+    "biomesoplenty:rose_quartz_cluster": "ローズクォーツの塊",
+    "biomesoplenty:smooth_white_sandstone": "滑らかな白い砂岩",
+    "biomesoplenty:spanish_moss": "サルオガセモドキ",
+    "biomesoplenty:violet": "スミレ",
+    "biomesoplenty:watergrass": "水草",
+    "biomesoplenty:white_sand": "白い砂",
+    "biomesoplenty:white_sandstone": "白い砂岩",
+    "biomesoplenty:willow_log": "ヤナギの原木",
+    "biomesoplenty:wilted_lily": "しおれたユリ",
+    "botania:apothecary_default": "花びらの調合所",
+    "botania:apothecary_mossy": "苔むした花びらの調合所",
+    "botania:blue_mushroom": "青色のきらめくキノコ",
+    "botania:blue_mystical_flower": "青色の神秘の花",
+    "botania:blue_petal": "青色の神秘的な花びら",
+    "botania:dreamwood_planks": "ドリームウッドの木材",
+    "botania:elementium_pickaxe": "エレメンチウムのツルハシ",
+    "botania:flower_bag": "花入れ小袋",
+    "botania:glimmering_livingwood": "光り輝くリビングウッド",
+    "botania:lexicon": "ボタニア植物辞典",
+    "botania:livingwood_planks": "リビングウッドの木材",
+    "botania:livingwood_twig": "リビングングウッドの小枝",
+    "botania:mana_pool": "マナプール",
+    "botania:manasteel_pick": "マナスチールのツルハシ",
+    "botania:manasteel_sword": "マナスチールの剣",
+    "botania:pink_mystical_flower": "桃色の神秘の花",
+    "botania:pink_petal": "桃色の神秘的な花びら",
+    "botania:purple_mushroom": "紫色のきらめくキノコ",
+    "botania:purple_mystical_flower": "紫色の神秘の花",
+    "botania:purple_petal": "紫色の神秘的な花びら",
+    "botania:red_mushroom": "赤色のきらめくキノコ",
+    "botania:red_mystical_flower": "赤色の神秘の花",
+    "botania:red_petal": "赤色の神秘的な花びら",
+    "botania:red_petal_block": "赤色の花びらブロック",
+    "botania:twig_wand": "森の杖",
+    "botania:white_mushroom": "白色のきらめくキノコ",
+    "botania:white_mystical_flower": "白色の神秘の花",
+    "botania:white_petal": "白色の神秘的な花びら",
+    "botania:white_petal_block": "白色の花びらブロック",
+    "botania:yellow_mystical_flower": "黄色の神秘の花",
+    "botania:yellow_petal": "黄色の神秘的な花びら",
+    "create:andesite_alloy": "安山岩合金",
+    "create:andesite_alloy_block": "安山岩合金ブロック",
+    "create:andesite_casing": "安山岩ケーシング",
+    "create:andesite_funnel": "安山岩ファンネル",
+    "create:andesite_tunnel": "安山岩トンネル",
+    "create:asurine": "瑠璃岩",
+    "create:bar_of_chocolate": "チョコレートバー",
+    "create:basin": "鉢",
+    "create:belt_connector": "メカニカルベルト",
+    "create:builders_tea": "建築家のお茶",
+    "create:cart_assembler": "トロッコアセンブラ",
+    "create:chocolate_glazed_berries": "チョコレートベリー",
+    "create:cogwheel": "歯車",
+    "create:crimsite": "真紅岩",
+    "create:cuckoo_clock": "鳩時計",
+    "create:cut_andesite": "研がれた安山岩",
+    "create:cut_asurine": "研がれた瑠璃岩",
+    "create:cut_crimsite": "研がれた真紅岩",
+    "create:cut_diorite": "研がれた閃緑岩",
+    "create:cut_granite": "研がれた花崗岩",
+    "create:cut_limestone": "研がれた石灰岩",
+    "create:cut_tuff": "研がれた凝灰岩",
+    "create:deepslate_zinc_ore": "深層亜鉛鉱石",
+    "create:depot": "デポ",
+    "create:empty_blaze_burner": "空のブレイズバーナー",
+    "create:encased_chain_drive": "ケース入りチェーンドライブ",
+    "create:encased_fan": "ケース入りファン",
+    "create:fluid_tank": "液体タンク",
+    "create:gearbox": "ギアボックス",
+    "create:goggles": "エンジニアのゴーグル",
+    "create:hand_crank": "ハンドクランク",
+    "create:honeyed_apple": "リンゴのハチミツがけ",
+    "create:item_vault": "アイテム保管庫",
+    "create:large_cogwheel": "大きな歯車",
+    "create:large_water_wheel": "大きな水車",
+    "create:limestone": "石灰岩",
+    "create:linear_chassis": "リニアシャーシ",
+    "create:mechanical_bearing": "メカニカルベアリング",
+    "create:mechanical_drill": "メカニカルドリル",
+    "create:mechanical_mixer": "メカニカルミキサー",
+    "create:mechanical_piston": "メカニカルピストン",
+    "create:mechanical_press": "メカニカルプレス",
+    "create:mechanical_saw": "メカニカルソー",
+    "create:millstone": "石臼",
+    "create:ochrum": "黄土岩",
+    "create:piston_extension_pole": "ピストン延長ポール",
+    "create:polished_cut_limestone": "磨かれた研がれた石灰岩",
+    "create:polished_cut_ochrum": "磨かれた研がれた黄土岩",
+    "create:polished_cut_veridium": "磨かれた研がれた緑青岩",
+    "create:radial_chassis": "ラジアルシャーシ",
+    "create:raw_zinc": "亜鉛の原石",
+    "create:rose_quartz": "ローズクォーツ",
+    "create:scorchia": "スコーチア",
+    "create:scoria": "スコリア",
+    "create:shaft": "シャフト",
+    "create:sticker": "スティッカー",
+    "create:super_glue": "超粘着剤",
+    "create:sweet_roll": "スイートロール",
+    "create:turntable": "ターンテーブル",
+    "create:veridium": "緑青岩",
+    "create:water_wheel": "水車",
+    "create:white_sail": "風車の帆",
+    "create:white_seat": "白色のシート",
+    "create:windmill_bearing": "風車ベアリング",
+    "create:wooden_bracket": "木製ブラケット",
+    "create:wrench": "レンチ",
+    "create:zinc_block": "亜鉛ブロック",
+    "create:zinc_ingot": "亜鉛インゴット",
+    "create:zinc_ore": "亜鉛鉱石",
+    "farmersdelight:acacia_cabinet": "アカシアの戸棚",
+    "farmersdelight:apple_cider": "リンゴサイダー",
+    "farmersdelight:apple_pie": "アップルパイ",
+    "farmersdelight:bacon_and_eggs": "ベーコンエッグ",
+    "farmersdelight:bacon_sandwich": "ベーコンサンド",
+    "farmersdelight:baked_cod_stew": "焼き鱈のシチュー",
+    "farmersdelight:bamboo_basket": "竹のかご",
+    "farmersdelight:barbecue_stick": "串焼き",
+    "farmersdelight:beef_patty": "ビーフパティ",
+    "farmersdelight:beef_stew": "ビーフシチュー",
+    "farmersdelight:birch_cabinet": "シラカバの戸棚",
+    "farmersdelight:cabbage": "キャベツ",
+    "farmersdelight:cabbage_crate": "キャベツ入り木箱",
+    "farmersdelight:cabbage_rolls": "ロールキャベツ",
+    "farmersdelight:canvas": "キャンバス",
+    "farmersdelight:canvas_rug": "キャンバスのカーペット",
+    "farmersdelight:chicken_sandwich": "チキンサンド",
+    "farmersdelight:chicken_soup": "チキンスープ",
+    "farmersdelight:cod_roll": "タラの握り寿司",
+    "farmersdelight:cooked_bacon": "焼きベーコン",
+    "farmersdelight:cooked_chicken_cuts": "カットした焼き鳥",
+    "farmersdelight:cooked_cod_slice": "焼き鱈の切り身",
+    "farmersdelight:cooked_mutton_chops": "焼きラムチョップ",
+    "farmersdelight:cooked_rice": "ご飯",
+    "farmersdelight:cooked_salmon_slice": "焼き鮭の切り身",
+    "farmersdelight:cooking_pot": "鍋",
+    "farmersdelight:cutting_board": "まな板",
+    "farmersdelight:dark_oak_cabinet": "ダークオークの戸棚",
+    "farmersdelight:diamond_knife": "ダイヤモンドのナイフ",
+    "farmersdelight:dumplings": "ダンプリング",
+    "farmersdelight:egg_sandwich": "たまごサンド",
+    "farmersdelight:fish_stew": "魚のシチュー",
+    "farmersdelight:fried_egg": "目玉焼き",
+    "farmersdelight:fried_rice": "チャーハン",
+    "farmersdelight:fruit_salad": "フルーツサラダ",
+    "farmersdelight:glow_berry_custard": "グロウベリーカスタード",
+    "farmersdelight:grilled_salmon": "鮭のムニエル",
+    "farmersdelight:ham": "ハム",
+    "farmersdelight:hamburger": "ハンバーガー",
+    "farmersdelight:honey_cookie": "ハチミツクッキー",
+    "farmersdelight:honey_glazed_ham": "大皿のハニーグレイズドハム",
+    "farmersdelight:honey_glazed_ham_block": "ハニーグレイズドハム",
+    "farmersdelight:hot_cocoa": "ホットココア",
+    "farmersdelight:iron_knife": "鉄のナイフ",
+    "farmersdelight:jungle_cabinet": "ジャングルの戸棚",
+    "farmersdelight:kelp_roll": "巻き寿司",
+    "farmersdelight:kelp_roll_slice": "巻き寿司の一切れ",
+    "farmersdelight:melon_juice": "スイカジュース",
+    "farmersdelight:melon_popsicle": "スイカバー",
+    "farmersdelight:milk_bottle": "ミルク入りの瓶",
+    "farmersdelight:mixed_salad": "ミックスサラダ",
+    "farmersdelight:mushroom_rice": "キノコの炊き込みご飯",
+    "farmersdelight:mutton_wrap": "マトンラップ",
+    "farmersdelight:nether_salad": "ネザーサラダ",
+    "farmersdelight:noodle_soup": "ラーメン",
+    "farmersdelight:oak_cabinet": "オークの戸棚",
+    "farmersdelight:onion": "タマネギ",
+    "farmersdelight:onion_crate": "タマネギ入り木箱",
+    "farmersdelight:onion_soup": "オニオンスープ",
+    "farmersdelight:organic_compost": "有機コンポスト",
+    "farmersdelight:pasta_with_meatballs": "ミートボールパスタ",
+    "farmersdelight:pie_crust": "パイ生地",
+    "farmersdelight:pumpkin_soup": "カボチャスープ",
+    "farmersdelight:ratatouille": "ラタトゥイユ",
+    "farmersdelight:rice": "米",
+    "farmersdelight:rice_bale": "稲の俵",
+    "farmersdelight:rice_panicle": "稲",
+    "farmersdelight:rice_roll_medley_block": "寿司の盛り合わせ",
+    "farmersdelight:roast_chicken": "大皿のローストチキン",
+    "farmersdelight:roast_chicken_block": "ローストチキン",
+    "farmersdelight:roasted_mutton_chops": "ローストマトンチョップ",
+    "farmersdelight:rope": "ロープ",
+    "farmersdelight:safety_net": "安全ネット",
+    "farmersdelight:salmon_roll": "サーモンの握り寿司",
+    "farmersdelight:shepherds_pie": "大皿のシェパーズパイ",
+    "farmersdelight:shepherds_pie_block": "シェパーズパイ",
+    "farmersdelight:skillet": "フライパン",
+    "farmersdelight:smoked_ham": "ハムの燻製",
+    "farmersdelight:spruce_cabinet": "トウヒの戸棚",
+    "farmersdelight:squid_ink_pasta": "イカスミパスタ",
+    "farmersdelight:steak_and_potatoes": "ステーキとポテト",
+    "farmersdelight:stove": "コンロ",
+    "farmersdelight:straw": "藁",
+    "farmersdelight:straw_bale": "藁の俵",
+    "farmersdelight:stuffed_potato": "スタッフドポテト",
+    "farmersdelight:sweet_berry_cheesecake": "スイートベリーチーズケーキ",
+    "farmersdelight:sweet_berry_cookie": "スイートベリークッキー",
+    "farmersdelight:tatami": "畳ブロック",
+    "farmersdelight:tomato": "トマト",
+    "farmersdelight:tomato_crate": "トマト入り木箱",
+    "farmersdelight:vegetable_soup": "野菜スープ",
+    "farmersdelight:wheat_dough": "パン生地",
+    "farmersdelight:wild_beetroots": "シービート",
+    "farmersdelight:wild_cabbages": "野生のキャベツ",
+    "farmersdelight:wild_carrots": "野生のニンジン",
+    "farmersdelight:wild_onions": "野生のタマネギ",
+    "farmersdelight:wild_potatoes": "野生のジャガイモ",
+    "farmersdelight:wild_rice": "野生の稲",
+    "farmersdelight:wild_tomatoes": "トマトの低木",
+    "farmersdelight:wooden_basket": "かご",
+    "immersiveengineering:alloybrick": "耐熱レンガ",
+    "immersiveengineering:cokebrick": "コークス炉用レンガ",
+    "immersiveengineering:component_iron": "鉄製機械部品",
+    "immersiveengineering:conveyor_basic": "ベルトコンベア",
+    "immersiveengineering:craftingtable": "エンジニアの作業台",
+    "immersiveengineering:deepslate_ore_aluminum": "深層ボーキサイト鉱石",
+    "immersiveengineering:hammer": "エンジニアのハンマー",
+    "immersiveengineering:hemp_fabric": "丈夫な麻布",
+    "immersiveengineering:hemp_fiber": "工業用大麻の繊維",
+    "immersiveengineering:ingot_aluminum": "アルミニウムインゴット",
+    "immersiveengineering:ingot_lead": "鉛インゴット",
+    "immersiveengineering:ingot_nickel": "ニッケルインゴット",
+    "immersiveengineering:ingot_silver": "銀インゴット",
+    "immersiveengineering:manual": "エンジニアの手引書",
+    "immersiveengineering:ore_aluminum": "ボーキサイト鉱石",
+    "immersiveengineering:ore_lead": "鉛鉱石",
+    "immersiveengineering:ore_nickel": "ニッケル鉱石",
+    "immersiveengineering:ore_silver": "銀鉱石",
+    "immersiveengineering:plate_iron": "鉄板",
+    "immersiveengineering:raw_aluminum": "ボーキサイトの原石",
+    "immersiveengineering:raw_lead": "鉛の原石",
+    "immersiveengineering:raw_nickel": "ニッケルの原石",
+    "immersiveengineering:raw_silver": "銀の原石",
+    "immersiveengineering:seed": "工業用大麻の種",
+    "immersiveengineering:stick_iron": "鉄の棒",
+    "immersiveengineering:stick_treated": "防腐木棒",
+    "immersiveengineering:treated_fence": "防腐木材のフェンス",
+    "immersiveengineering:treated_scaffold": "防腐木材の足場",
+    "immersiveengineering:wire_copper": "銅ワイヤー",
+    "mekanism:block_charcoal": "木炭ブロック",
+    "mekanism:block_fluorite": "蛍石ブロック",
+    "mekanism:block_lead": "鉛ブロック",
+    "mekanism:block_osmium": "オスミウムブロック",
+    "mekanism:block_salt": "塩ブロック",
+    "mekanism:block_tin": "錫ブロック",
+    "mekanism:boiler_casing": "ボイラーケーシング",
+    "mekanism:canteen": "キャンティーン",
+    "mekanism:configurator": "コンフィギュレーター",
+    "mekanism:crusher": "粉砕機",
+    "mekanism:deepslate_fluorite_ore": "深層蛍石鉱石",
+    "mekanism:deepslate_lead_ore": "深層鉛鉱石",
+    "mekanism:deepslate_osmium_ore": "深層オスミウム鉱石",
+    "mekanism:deepslate_tin_ore": "深層錫鉱石",
+    "mekanism:deepslate_uranium_ore": "深層ウラン鉱石",
+    "mekanism:dosimeter": "線量計",
+    "mekanism:dynamic_tank": "ダイナミックタンク",
+    "mekanism:energized_smelter": "電動精錬機",
+    "mekanism:enrichment_chamber": "濃縮室",
+    "mekanism:fluorite_gem": "蛍石",
+    "mekanism:fluorite_ore": "蛍石鉱石",
+    "mekanism:gauge_dropper": "計量スポイト",
+    "mekanism:hazmat_mask": "防護マスク",
+    "mekanism:ingot_lead": "鉛インゴット",
+    "mekanism:ingot_osmium": "オスミウムインゴット",
+    "mekanism:ingot_tin": "錫インゴット",
+    "mekanism:ingot_uranium": "ウランインゴット",
+    "mekanism:lead_ore": "鉛鉱石",
+    "mekanism:metallurgic_infuser": "冶金吹込機",
+    "mekanism:osmium_ore": "オスミウム鉱石",
+    "mekanism:raw_lead": "鉛の原石",
+    "mekanism:raw_osmium": "オスミウムの原石",
+    "mekanism:raw_tin": "錫の原石",
+    "mekanism:salt": "塩",
+    "mekanism:steel_casing": "鋼鉄ケーシング",
+    "mekanism:tin_ore": "錫鉱石",
+    "mekanism:uranium_ore": "ウラン鉱石",
+    "minecraft:acacia_log": "アカシアの原木",
+    "minecraft:acacia_sapling": "アカシアの苗木",
+    "minecraft:allium": "アリウム",
+    "minecraft:amethyst_shard": "アメジストの欠片",
+    "minecraft:ancient_debris": "古代の残骸",
+    "minecraft:andesite": "安山岩",
+    "minecraft:anvil": "金床",
+    "minecraft:apple": "リンゴ",
+    "minecraft:armadillo": "アルマジロ",
+    "minecraft:armor_stand": "防具立て",
+    "minecraft:arrow": "矢",
+    "minecraft:axolotl": "ウーパールーパー",
+    "minecraft:azure_bluet": "ヒナソウ",
+    "minecraft:baked_potato": "ベイクドポテト",
+    "minecraft:bamboo": "竹",
+    "minecraft:barrel": "樽",
+    "minecraft:basalt": "玄武岩",
+    "minecraft:bee": "ミツバチ",
+    "minecraft:beef": "生の牛肉",
+    "minecraft:beehive": "養蜂箱",
+    "minecraft:beetroot": "ビートルート",
+    "minecraft:beetroot_seeds": "ビートルートの種",
+    "minecraft:beetroot_soup": "ビートルートスープ",
+    "minecraft:birch_log": "シラカバの原木",
+    "minecraft:birch_sapling": "シラカバの苗木",
+    "minecraft:black_dye": "黒色の染料",
+    "minecraft:blackstone": "ブラックストーン",
+    "minecraft:blast_furnace": "溶鉱炉",
+    "minecraft:blaze": "ブレイズ",
+    "minecraft:blaze_powder": "ブレイズパウダー",
+    "minecraft:blaze_rod": "ブレイズロッド",
+    "minecraft:blue_dye": "青色の染料",
+    "minecraft:blue_orchid": "ヒスイラン",
+    "minecraft:bogged": "ボグド",
+    "minecraft:bone": "骨",
+    "minecraft:bone_block": "骨ブロック",
+    "minecraft:bone_meal": "骨粉",
+    "minecraft:book": "本",
+    "minecraft:bookshelf": "本棚",
+    "minecraft:bow": "弓",
+    "minecraft:bread": "パン",
+    "minecraft:breeze": "ブリーズ",
+    "minecraft:brewing_stand": "醸造台",
+    "minecraft:brick": "レンガ",
+    "minecraft:bricks": "レンガ",
+    "minecraft:brown_mushroom": "茶色のキノコ",
+    "minecraft:brown_mushroom_block": "茶色のキノコブロック",
+    "minecraft:bucket": "バケツ",
+    "minecraft:cactus": "サボテン",
+    "minecraft:cake": "ケーキ",
+    "minecraft:calcite": "方解石",
+    "minecraft:camel": "ラクダ",
+    "minecraft:campfire": "焚き火",
+    "minecraft:candle": "ろうそく",
+    "minecraft:carrot": "ニンジン",
+    "minecraft:cartography_table": "製図台",
+    "minecraft:cat": "ネコ",
+    "minecraft:cauldron": "大釜",
+    "minecraft:cave_spider": "洞窟グモ",
+    "minecraft:chain": "鉄の鎖",
+    "minecraft:charcoal": "木炭",
+    "minecraft:cherry_log": "サクラの原木",
+    "minecraft:cherry_sapling": "サクラの苗木",
+    "minecraft:chest": "チェスト",
+    "minecraft:chicken": "ニワトリ",
+    "minecraft:chiseled_bookshelf": "模様入りの本棚",
+    "minecraft:chiseled_stone_bricks": "模様入りの石レンガ",
+    "minecraft:chorus_fruit": "コーラスフルーツ",
+    "minecraft:chorus_plant": "コーラスプラント",
+    "minecraft:clay": "粘土",
+    "minecraft:clay_ball": "粘土玉",
+    "minecraft:clock": "時計",
+    "minecraft:coal": "石炭",
+    "minecraft:coal_block": "石炭ブロック",
+    "minecraft:coal_ore": "石炭鉱石",
+    "minecraft:cobbled_deepslate": "深層岩の丸石",
+    "minecraft:cobblestone": "丸石",
+    "minecraft:cobweb": "クモの巣",
+    "minecraft:cocoa_beans": "カカオ豆",
+    "minecraft:cod": "生鱈",
+    "minecraft:compass": "コンパス",
+    "minecraft:composter": "コンポスター",
+    "minecraft:cooked_beef": "ステーキ",
+    "minecraft:cooked_chicken": "焼き鳥",
+    "minecraft:cooked_cod": "焼き鱈",
+    "minecraft:cooked_mutton": "焼き羊肉",
+    "minecraft:cooked_porkchop": "焼き豚",
+    "minecraft:cooked_rabbit": "焼き兎肉",
+    "minecraft:cooked_salmon": "焼き鮭",
+    "minecraft:cookie": "クッキー",
+    "minecraft:copper_block": "銅ブロック",
+    "minecraft:copper_door": "銅のドア",
+    "minecraft:copper_grate": "銅の金網",
+    "minecraft:copper_ingot": "銅インゴット",
+    "minecraft:copper_ore": "銅鉱石",
+    "minecraft:cornflower": "ヤグルマギク",
+    "minecraft:cow": "ウシ",
+    "minecraft:cracked_deepslate_bricks": "ひび割れた深層岩レンガ",
+    "minecraft:cracked_stone_bricks": "ひび割れた石レンガ",
+    "minecraft:creeper": "クリーパー",
+    "minecraft:crimson_fungus": "真紅のキノコ",
+    "minecraft:crimson_nylium": "真紅のナイリウム",
+    "minecraft:crimson_stem": "真紅の幹",
+    "minecraft:crossbow": "クロスボウ",
+    "minecraft:crying_obsidian": "泣く黒曜石",
+    "minecraft:cut_copper": "切り込み入りの銅",
+    "minecraft:cut_sandstone": "研がれた砂岩",
+    "minecraft:dandelion": "タンポポ",
+    "minecraft:dark_oak_log": "ダークオークの原木",
+    "minecraft:dark_oak_sapling": "ダークオークの苗木",
+    "minecraft:decorated_pot": "飾り壺",
+    "minecraft:deepslate": "深層岩",
+    "minecraft:deepslate_bricks": "深層岩レンガ",
+    "minecraft:deepslate_coal_ore": "深層石炭鉱石",
+    "minecraft:deepslate_copper_ore": "深層銅鉱石",
+    "minecraft:deepslate_diamond_ore": "深層ダイヤモンド鉱石",
+    "minecraft:deepslate_gold_ore": "深層金鉱石",
+    "minecraft:deepslate_iron_ore": "深層鉄鉱石",
+    "minecraft:deepslate_lapis_ore": "深層ラピスラズリ鉱石",
+    "minecraft:deepslate_redstone_ore": "深層レッドストーン鉱石",
+    "minecraft:deepslate_tiles": "深層岩タイル",
+    "minecraft:detector_rail": "ディテクターレール",
+    "minecraft:diamond": "ダイヤモンド",
+    "minecraft:diamond_boots": "ダイヤモンドのブーツ",
+    "minecraft:diamond_helmet": "ダイヤモンドのヘルメット",
+    "minecraft:diamond_pickaxe": "ダイヤモンドのツルハシ",
+    "minecraft:diamond_sword": "ダイヤモンドの剣",
+    "minecraft:diorite": "閃緑岩",
+    "minecraft:dirt": "土",
+    "minecraft:dispenser": "ディスペンサー",
+    "minecraft:donkey": "ロバ",
+    "minecraft:dried_kelp": "乾燥した昆布",
+    "minecraft:dried_kelp_block": "乾燥した昆布ブロック",
+    "minecraft:dripstone_block": "鍾乳石ブロック",
+    "minecraft:dropper": "ドロッパー",
+    "minecraft:drowned": "ドラウンド",
+    "minecraft:egg": "卵",
+    "minecraft:emerald_ore": "エメラルド鉱石",
+    "minecraft:enchanted_book": "本",
+    "minecraft:enchanting_table": "エンチャントテーブル",
+    "minecraft:end_stone": "エンドストーン",
+    "minecraft:ender_chest": "エンダーチェスト",
+    "minecraft:ender_eye": "エンダーアイ",
+    "minecraft:ender_pearl": "エンダーパール",
+    "minecraft:enderman": "エンダーマン",
+    "minecraft:feather": "羽根",
+    "minecraft:fermented_spider_eye": "発酵したクモの目",
+    "minecraft:firework_rocket": "ロケット花火",
+    "minecraft:fishing_rod": "釣竿",
+    "minecraft:fletching_table": "矢細工台",
+    "minecraft:flint": "火打石",
+    "minecraft:flint_and_steel": "火打石と打ち金",
+    "minecraft:flower_pot": "植木鉢",
+    "minecraft:fox": "キツネ",
+    "minecraft:frog": "カエル",
+    "minecraft:furnace": "かまど",
+    "minecraft:ghast": "ガスト",
+    "minecraft:ghast_tear": "ガストの涙",
+    "minecraft:glass": "ガラス",
+    "minecraft:glass_bottle": "ガラス瓶",
+    "minecraft:glass_pane": "ガラス板",
+    "minecraft:glistering_melon_slice": "きらめくスイカの薄切り",
+    "minecraft:glow_berries": "グロウベリー",
+    "minecraft:glow_ink_sac": "輝くイカスミ",
+    "minecraft:glow_item_frame": "輝く額縁",
+    "minecraft:glow_lichen": "ヒカリゴケ",
+    "minecraft:glowstone": "グロウストーン",
+    "minecraft:glowstone_dust": "グロウストーンダスト",
+    "minecraft:goat": "ヤギ",
+    "minecraft:gold_ingot": "金インゴット",
+    "minecraft:gold_nugget": "金塊",
+    "minecraft:gold_ore": "金鉱石",
+    "minecraft:golden_apple": "金のリンゴ",
+    "minecraft:golden_carrot": "金のニンジン",
+    "minecraft:granite": "花崗岩",
+    "minecraft:grass": "草",
+    "minecraft:gravel": "砂利",
+    "minecraft:green_dye": "緑色の染料",
+    "minecraft:grindstone": "砥石",
+    "minecraft:guardian": "ガーディアン",
+    "minecraft:gunpowder": "火薬",
+    "minecraft:hay_block": "干草の俵",
+    "minecraft:hoglin": "ホグリン",
+    "minecraft:honey_block": "ハチミツブロック",
+    "minecraft:honey_bottle": "ハチミツ入りの瓶",
+    "minecraft:honeycomb": "ハニカム",
+    "minecraft:hopper": "ホッパー",
+    "minecraft:horse": "ウマ",
+    "minecraft:husk": "ハスク",
+    "minecraft:ice": "氷",
+    "minecraft:ink_sac": "イカスミ",
+    "minecraft:iron_axe": "鉄の斧",
+    "minecraft:iron_bars": "鉄格子",
+    "minecraft:iron_block": "鉄ブロック",
+    "minecraft:iron_boots": "鉄のブーツ",
+    "minecraft:iron_chain": "鉄の鎖",
+    "minecraft:iron_chestplate": "鉄のチェストプレート",
+    "minecraft:iron_helmet": "鉄のヘルメット",
+    "minecraft:iron_ingot": "鉄インゴット",
+    "minecraft:iron_leggings": "鉄のレギンス",
+    "minecraft:iron_ore": "鉄鉱石",
+    "minecraft:iron_pickaxe": "鉄のツルハシ",
+    "minecraft:iron_shovel": "鉄のシャベル",
+    "minecraft:iron_sword": "鉄の剣",
+    "minecraft:item_frame": "額縁",
+    "minecraft:jukebox": "ジュークボックス",
+    "minecraft:jungle_log": "ジャングルの原木",
+    "minecraft:jungle_sapling": "ジャングルの苗木",
+    "minecraft:kelp": "コンブ",
+    "minecraft:ladder": "はしご",
+    "minecraft:lantern": "ランタン",
+    "minecraft:lapis_block": "ラピスラズリブロック",
+    "minecraft:lapis_lazuli": "ラピスラズリ",
+    "minecraft:lapis_ore": "ラピスラズリ鉱石",
+    "minecraft:lead": "リード",
+    "minecraft:leather": "革",
+    "minecraft:leather_boots": "革のブーツ",
+    "minecraft:leather_chestplate": "革の上着",
+    "minecraft:leather_helmet": "革の帽子",
+    "minecraft:leather_leggings": "革のズボン",
+    "minecraft:lectern": "書見台",
+    "minecraft:lightning_rod": "避雷針",
+    "minecraft:lilac": "ライラック",
+    "minecraft:lily_of_the_valley": "スズラン",
+    "minecraft:lily_pad": "スイレンの葉",
+    "minecraft:llama": "ラマ",
+    "minecraft:loom": "機織り機",
+    "minecraft:magma_block": "マグマブロック",
+    "minecraft:magma_cream": "マグマクリーム",
+    "minecraft:magma_cube": "マグマキューブ",
+    "minecraft:mangrove_log": "マングローブの原木",
+    "minecraft:mangrove_roots": "マングローブの根",
+    "minecraft:map": "白紙の地図",
+    "minecraft:melon": "スイカ",
+    "minecraft:melon_slice": "スイカの薄切り",
+    "minecraft:milk_bucket": "ミルク入りバケツ",
+    "minecraft:minecart": "トロッコ",
+    "minecraft:mooshroom": "ムーシュルーム",
+    "minecraft:moss_block": "苔ブロック",
+    "minecraft:mossy_cobblestone": "苔むした丸石",
+    "minecraft:mossy_stone_bricks": "苔むした石レンガ",
+    "minecraft:mud": "泥",
+    "minecraft:mud_bricks": "泥レンガ",
+    "minecraft:mushroom_stew": "キノコシチュー",
+    "minecraft:mutton": "生の羊肉",
+    "minecraft:nether_brick": "ネザーレンガ",
+    "minecraft:nether_bricks": "ネザーレンガ",
+    "minecraft:nether_gold_ore": "ネザー金鉱石",
+    "minecraft:nether_quartz_ore": "ネザークォーツ鉱石",
+    "minecraft:nether_wart": "ネザーウォート",
+    "minecraft:nether_wart_block": "ネザーウォートブロック",
+    "minecraft:netherite_scrap": "ネザライトの欠片",
+    "minecraft:netherrack": "ネザーラック",
+    "minecraft:note_block": "音符ブロック",
+    "minecraft:oak_boat": "オークのボート",
+    "minecraft:oak_fence": "オークのフェンス",
+    "minecraft:oak_log": "オークの原木",
+    "minecraft:oak_planks": "オークの板材",
+    "minecraft:oak_sapling": "オークの苗木",
+    "minecraft:obsidian": "黒曜石",
+    "minecraft:ocelot": "ヤマネコ",
+    "minecraft:oxeye_daisy": "フランスギク",
+    "minecraft:packed_ice": "氷塊",
+    "minecraft:packed_mud": "固めた泥",
+    "minecraft:painting": "絵画",
+    "minecraft:pale_oak_log": "ペールオークの原木",
+    "minecraft:panda": "パンダ",
+    "minecraft:paper": "紙",
+    "minecraft:parrot": "オウム",
+    "minecraft:peony": "ボタン",
+    "minecraft:phantom": "ファントム",
+    "minecraft:phantom_membrane": "ファントムの皮膜",
+    "minecraft:pig": "ブタ",
+    "minecraft:piglin": "ピグリン",
+    "minecraft:pillager": "ピリジャー",
+    "minecraft:piston": "ピストン",
+    "minecraft:pointed_dripstone": "鍾乳石",
+    "minecraft:polished_andesite": "磨かれた安山岩",
+    "minecraft:polished_blackstone": "磨かれたブラックストーン",
+    "minecraft:polished_deepslate": "磨かれた深層岩",
+    "minecraft:polished_diorite": "磨かれた閃緑岩",
+    "minecraft:polished_granite": "磨かれた花崗岩",
+    "minecraft:popped_chorus_fruit": "焼いたコーラスフルーツ",
+    "minecraft:poppy": "ポピー",
+    "minecraft:porkchop": "生の豚肉",
+    "minecraft:potato": "ジャガイモ",
+    "minecraft:potion{minecraft:fire_resistance}": "耐火のポーション",
+    "minecraft:potion{minecraft:night_vision}": "暗視のポーション",
+    "minecraft:potion{minecraft:strength}": "力のポーション",
+    "minecraft:potion{minecraft:swiftness}": "俊敏のポーション",
+    "minecraft:potion{minecraft:water_breathing}": "水中呼吸のポーション",
+    "minecraft:powered_rail": "パワードレール",
+    "minecraft:prismarine": "プリズマリン",
+    "minecraft:prismarine_crystals": "プリズマリンクリスタル",
+    "minecraft:prismarine_shard": "プリズマリンの欠片",
+    "minecraft:pumpkin": "カボチャ",
+    "minecraft:pumpkin_pie": "パンプキンパイ",
+    "minecraft:purpur_block": "プルプァブロック",
+    "minecraft:quartz": "ネザークォーツ",
+    "minecraft:quartz_block": "クォーツブロック",
+    "minecraft:rabbit": "ウサギ",
+    "minecraft:rabbit_hide": "ウサギの皮",
+    "minecraft:rabbit_stew": "ウサギシチュー",
+    "minecraft:rail": "レール",
+    "minecraft:raw_copper": "銅の原石",
+    "minecraft:raw_gold": "金の原石",
+    "minecraft:raw_iron": "鉄の原石",
+    "minecraft:red_dye": "赤色の染料",
+    "minecraft:red_mushroom": "赤色のキノコ",
+    "minecraft:red_mushroom_block": "赤色のキノコブロック",
+    "minecraft:red_nether_bricks": "赤いネザーレンガ",
+    "minecraft:red_sand": "赤い砂",
+    "minecraft:red_sandstone": "赤い砂岩",
+    "minecraft:red_tulip": "赤色のチューリップ",
+    "minecraft:redstone": "レッドストーンダスト",
+    "minecraft:redstone_block": "レッドストーンブロック",
+    "minecraft:redstone_ore": "レッドストーン鉱石",
+    "minecraft:redstone_torch": "レッドストーントーチ",
+    "minecraft:repeater": "レッドストーンリピーター",
+    "minecraft:rotten_flesh": "腐った肉",
+    "minecraft:salmon": "生鮭",
+    "minecraft:sand": "砂",
+    "minecraft:sandstone": "砂岩",
+    "minecraft:scaffolding": "足場",
+    "minecraft:sculk": "スカルク",
+    "minecraft:sculk_sensor": "スカルクセンサー",
+    "minecraft:scute": "カメのウロコ",
+    "minecraft:sea_lantern": "シーランタン",
+    "minecraft:sea_pickle": "シーピクルス",
+    "minecraft:seagrass": "海草",
+    "minecraft:shears": "ハサミ",
+    "minecraft:sheep": "ヒツジ",
+    "minecraft:shield": "盾",
+    "minecraft:short_grass": "背の低い草",
+    "minecraft:shroomlight": "シュルームライト",
+    "minecraft:shulker": "シュルカー",
+    "minecraft:shulker_shell": "シュルカーの殻",
+    "minecraft:silverfish": "シルバーフィッシュ",
+    "minecraft:skeleton": "スケルトン",
+    "minecraft:slime": "スライム",
+    "minecraft:slime_ball": "スライムボール",
+    "minecraft:smithing_table": "鍛冶台",
+    "minecraft:smoker": "燻製器",
+    "minecraft:smooth_quartz": "滑らかなクォーツブロック",
+    "minecraft:smooth_red_sandstone": "滑らかな赤い砂岩",
+    "minecraft:smooth_sandstone": "滑らかな砂岩",
+    "minecraft:smooth_stone": "滑らかな石",
+    "minecraft:smooth_stone_slab": "滑らかな石のハーフブロック",
+    "minecraft:snow_block": "雪ブロック",
+    "minecraft:snowball": "雪玉",
+    "minecraft:soul_lantern": "魂のランタン",
+    "minecraft:soul_sand": "ソウルサンド",
+    "minecraft:soul_soil": "ソウルソイル",
+    "minecraft:soul_torch": "魂の松明",
+    "minecraft:spectral_arrow": "光の矢",
+    "minecraft:spider": "クモ",
+    "minecraft:spider_eye": "クモの目",
+    "minecraft:sponge": "スポンジ",
+    "minecraft:spruce_log": "トウヒの原木",
+    "minecraft:spruce_sapling": "トウヒの苗木",
+    "minecraft:spyglass": "望遠鏡",
+    "minecraft:stick": "棒",
+    "minecraft:stone": "石",
+    "minecraft:stone_brick_stairs": "石レンガの階段",
+    "minecraft:stone_bricks": "石レンガ",
+    "minecraft:stonecutter": "石切台",
+    "minecraft:stray": "ストレイ",
+    "minecraft:strider": "ストライダー",
+    "minecraft:string": "糸",
+    "minecraft:sugar": "砂糖",
+    "minecraft:sugar_cane": "サトウキビ",
+    "minecraft:sunflower": "ヒマワリ",
+    "minecraft:sweet_berries": "スイートベリー",
+    "minecraft:target": "的",
+    "minecraft:terracotta": "テラコッタ",
+    "minecraft:tnt": "TNT",
+    "minecraft:torch": "松明",
+    "minecraft:trapped_chest": "トラップチェスト",
+    "minecraft:tripwire_hook": "トリップワイヤーフック",
+    "minecraft:tuff": "凝灰岩",
+    "minecraft:turtle": "カメ",
+    "minecraft:turtle_scute": "カメのウロコ",
+    "minecraft:vine": "ツタ",
+    "minecraft:warped_fungus": "歪んだキノコ",
+    "minecraft:warped_stem": "歪んだ幹",
+    "minecraft:warped_wart_block": "歪んだウォートブロック",
+    "minecraft:wheat": "小麦",
+    "minecraft:wheat_seeds": "小麦の種",
+    "minecraft:white_banner": "白色の旗",
+    "minecraft:white_bed": "白色のベッド",
+    "minecraft:white_carpet": "白色のカーペット",
+    "minecraft:white_dye": "白色の染料",
+    "minecraft:white_glazed_terracotta": "白色の彩釉テラコッタ",
+    "minecraft:white_stained_glass": "白色の色付きガラス",
+    "minecraft:white_terracotta": "白色のテラコッタ",
+    "minecraft:white_wool": "白色の羊毛",
+    "minecraft:witch": "ウィッチ",
+    "minecraft:wither_skeleton": "ウィザースケルトン",
+    "minecraft:wolf": "オオカミ",
+    "minecraft:yellow_dye": "黄色の染料",
+    "minecraft:zombie": "ゾンビ",
+    "minecraft:zombie_villager": "村人ゾンビ",
+    "minecraft:zombified_piglin": "ゾンビピグリン",
+    "tconstruct:cobalt_ore": "ネザーコバルト鉱石",
+    "tconstruct:crafting_station": "改良作業台",
+    "tconstruct:greenheart_log": "グリーンハートの原木",
+    "tconstruct:grout": "グラウト",
+    "tconstruct:materials_and_you": "素材とあなた",
+    "tconstruct:part_builder": "部品作成台",
+    "tconstruct:pattern": "パターン",
+    "tconstruct:raw_cobalt": "コバルトの原石",
+    "tconstruct:seared_basin": "焼成石の鋳造鉢",
+    "tconstruct:seared_brick": "焼成レンガ",
+    "tconstruct:seared_bricks": "焼成レンガ",
+    "tconstruct:seared_faucet": "焼成石の蛇口",
+    "tconstruct:seared_heater": "焼成石の発熱器",
+    "tconstruct:seared_melter": "焼成石の溶融器",
+    "tconstruct:seared_table": "焼成石の鋳造台",
+    "tconstruct:sky_slime": "スカイスライム",
+    "tconstruct:sky_slime_ball": "スカイスライムボール",
+    "tconstruct:skyroot_log": "スカイルートの原木",
+    "tconstruct:tinker_station": "ティンカー台",
+    "twilightforest:bighorn_sheep": "オオツノヒツジ",
+    "twilightforest:boar": "イノシシ",
+    "twilightforest:canopy_bookshelf": "林冠木の本棚",
+    "twilightforest:canopy_log": "林冠木の原木",
+    "twilightforest:canopy_planks": "林冠木の板材",
+    "twilightforest:cooked_meef": "ミーフステーキ",
+    "twilightforest:cooked_venison": "鹿肉ステーキ",
+    "twilightforest:dark_log": "ダークウッドの原木",
+    "twilightforest:dark_planks": "ダークウッドの板材",
+    "twilightforest:deer": "シカ",
+    "twilightforest:fire_beetle": "ファイヤービートル",
+    "twilightforest:hedge_spider": "生垣グモ",
+    "twilightforest:hostile_wolf": "凶暴なオオカミ",
+    "twilightforest:ironwood_ingot": "樹鉄インゴット",
+    "twilightforest:kobold": "コボルト",
+    "twilightforest:lich": "トワイライトリッチ",
+    "twilightforest:liveroot": "生きている根",
+    "twilightforest:magic_map": "白紙の魔法の地図",
+    "twilightforest:magic_map_focus": "魔法の地図の核",
+    "twilightforest:mangrove_log": "マングローブの原木",
+    "twilightforest:minotaur": "ミノタウロス",
+    "twilightforest:mushgloom": "ヒカリタケ",
+    "twilightforest:naga": "ナーガ",
+    "twilightforest:naga_scale": "ナーガの鱗",
+    "twilightforest:pinch_beetle": "ピンチビートル",
+    "twilightforest:raven_feather": "カラスの羽根",
+    "twilightforest:raw_ironwood": "樹鉄の素",
+    "twilightforest:raw_meef": "生のミノ肉",
+    "twilightforest:raw_venison": "生の鹿肉",
+    "twilightforest:redcap": "レッドキャップゴブリン",
+    "twilightforest:skeleton_druid": "スケルトンドルイド",
+    "twilightforest:slime_beetle": "スライムビートル",
+    "twilightforest:swarm_spider": "群れグモ",
+    "twilightforest:torchberries": "トーチベリー",
+    "twilightforest:twilight_oak_boat": "トワイライトオークのボート",
+    "twilightforest:twilight_oak_log": "トワイライトオークの原木",
+    "twilightforest:twilight_oak_planks": "トワイライトオークの板材"
+  }
+}

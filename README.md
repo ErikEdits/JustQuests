@@ -17,8 +17,8 @@ Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
   quest, a search field, and a stats page. Works in singleplayer and on servers.
 - **Quest tracker** — your pinned (or newest) active quests and their goals in a corner of the
   screen; **H** turns it on or off.
-- **Ready to play** — 25 built-in quests in English, German, French and Spanish. Server owners can
-  hide them with `/quest mainquests off`.
+- **Ready to play** — 25 built-in quests in English, German, French, Spanish and Japanese.
+  Server owners can hide them with `/quest mainquests off`.
 - **Generated quests** — a fresh board every 12 hours (00:00 and 12:00 by default), sized to a
   sensible amount of play time and paid with fitting rewards: gather, mine, craft, hunt, enchant,
   throw, brew and more. Supports content from
@@ -30,8 +30,10 @@ Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
   shows *Taken by Steve* or *Reserved for you*.
 - **Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads
   by itself while you edit it. 15 objective types, 8 reward types, item tags and item filters.
-- **Speaks the player's language** — quest text can be a per-language map; item, block and mob
-  names are translated by the game.
+- **Speaks the player's language** — the mod, the built-in quests and the generated quests come
+  in English, German, French, Spanish and Japanese; each player reads their own game language.
+  Your own quests can use a per-language map too, and item, block and mob names are translated
+  by the game.
 - **Quest logic** — prerequisites (`requires`), repeatable quests with cooldowns, "all" or "any"
   objectives, categories and sort order.
 - **For server owners** — completion broadcast, stats and leaderboard, admin commands, a

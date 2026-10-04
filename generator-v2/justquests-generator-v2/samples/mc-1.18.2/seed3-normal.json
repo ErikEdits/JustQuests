@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_4": {
-    "title": "Note Block Crafter",
-    "description": "Craft 6 note blocks.",
+    "title": {
+      "en_us": "Note Block Crafter",
+      "de_de": "Handwerk: Notenblock",
+      "fr_fr": "Artisan : bloc musical",
+      "es_es": "Artesano de bloque musical",
+      "ja_jp": "音符ブロック職人"
+    },
+    "description": {
+      "en_us": "Craft 6 note blocks.",
+      "de_de": "Stelle 6× Notenblock her.",
+      "fr_fr": "Fabriquez 6× bloc musical.",
+      "es_es": "Fabrica 6× bloque musical.",
+      "ja_jp": "音符ブロック6個の作成をこなそう。"
+    },
     "category": "generated",
     "sort": 6,
     "objectives": [
@@ -24,8 +36,20 @@
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Apple Pickup",
-    "description": "Collect 4 apples. Oak and dark oak leaves sometimes drop apples.",
+    "title": {
+      "en_us": "Apple Pickup",
+      "de_de": "Abholung: Apfel",
+      "fr_fr": "Ramassage : pomme",
+      "es_es": "Recogida de manzana",
+      "ja_jp": "リンゴの回収"
+    },
+    "description": {
+      "en_us": "Collect 4 apples. Oak and dark oak leaves sometimes drop apples.",
+      "de_de": "Sammle 4× Apfel. Eichen- und Schwarzeichenlaub lässt manchmal Äpfel fallen.",
+      "fr_fr": "Récoltez 4× pomme. Les feuilles de chêne et de chêne noir donnent parfois des pommes.",
+      "es_es": "Recoge 4× manzana. Las hojas de roble y roble oscuro a veces sueltan manzanas.",
+      "ja_jp": "リンゴ4個の収集をこなそう。オークとダークオークの葉からときどきリンゴが出る。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -48,8 +72,20 @@
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "Spider Watch",
-    "description": "Hunt 12 spiders. They spawn at night and in dark caves.",
+    "title": {
+      "en_us": "Spider Watch",
+      "de_de": "Wache: Spinne",
+      "fr_fr": "Veille : araignée",
+      "es_es": "Vigilancia: araña",
+      "ja_jp": "クモの見張り"
+    },
+    "description": {
+      "en_us": "Hunt 12 spiders. They spawn at night and in dark caves.",
+      "de_de": "Jage 12× Spinne. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Chassez 12× araignée. Ils apparaissent la nuit et dans les grottes sombres.",
+      "es_es": "Caza 12× araña. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "クモ12体の狩猟をこなそう。夜や暗い洞窟に出現する。"
+    },
     "category": "generated",
     "sort": 10,
     "objectives": [
@@ -72,8 +108,20 @@
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "Witch Watch",
-    "description": "Hunt a witch. Look in swamps. Rare, so take your time.",
+    "title": {
+      "en_us": "Witch Watch",
+      "de_de": "Wache: Hexe",
+      "fr_fr": "Veille : sorcière",
+      "es_es": "Vigilancia: bruja",
+      "ja_jp": "ウィッチの見張り"
+    },
+    "description": {
+      "en_us": "Hunt a witch. Look in swamps. Rare, so take your time.",
+      "de_de": "Jage 1× Hexe. Suche in Sümpfen. Selten, also lass dir Zeit.",
+      "fr_fr": "Chassez 1× sorcière. Cherchez dans les marais. Rare, alors prenez votre temps.",
+      "es_es": "Caza 1× bruja. Busca en pantanos. Es raro, tómatelo con calma.",
+      "ja_jp": "ウィッチ1体の狩猟をこなそう。沼地を探そう。珍しいので気長に探そう。"
+    },
     "category": "generated",
     "sort": 10,
     "objectives": [
@@ -100,8 +148,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Smelt Cracked Stone Bricks",
-    "description": "Smelt 48 cracked stone bricks. Smelt stone bricks.",
+    "title": {
+      "en_us": "Smelt Cracked Stone Bricks",
+      "de_de": "Rissige Steinziegel schmelzen",
+      "fr_fr": "Tâche : pierre taillée craquelée",
+      "es_es": "Ladrillos de piedra agrietados",
+      "ja_jp": "ひび割れた石レンガを製錬しよう"
+    },
+    "description": {
+      "en_us": "Smelt 48 cracked stone bricks. Smelt stone bricks.",
+      "de_de": "Schmelze 48× Rissige Steinziegel. Brenne Steinziegel.",
+      "fr_fr": "Faites fondre 48× pierre taillée craquelée. Faites cuire de la pierre taillée.",
+      "es_es": "Funde 48× ladrillos de piedra agrietados. Funde ladrillos de piedra.",
+      "ja_jp": "ひび割れた石レンガ48個の製錬をこなそう。石レンガを焼く。"
+    },
     "category": "generated",
     "sort": 10,
     "objectives": [
@@ -124,8 +184,20 @@
     ]
   },
   "justquests:gen/1790510400_8": {
-    "title": "Bring Eggs",
-    "description": "Gather 16 eggs. Chickens lay eggs over time.",
+    "title": {
+      "en_us": "Bring Eggs",
+      "de_de": "Ei bringen",
+      "fr_fr": "Apporter : oeuf",
+      "es_es": "Traer huevo",
+      "ja_jp": "卵を届けよう"
+    },
+    "description": {
+      "en_us": "Gather 16 eggs. Chickens lay eggs over time.",
+      "de_de": "Trage 16× Ei zusammen. Hühner legen mit der Zeit Eier.",
+      "fr_fr": "Rassemblez 16× oeuf. Les poules pondent des œufs avec le temps.",
+      "es_es": "Reúne 16× huevo. Los pollos ponen huevos con el tiempo.",
+      "ja_jp": "卵16個の採集をこなそう。ニワトリはときどき卵を産む。"
+    },
     "category": "generated",
     "sort": 11,
     "objectives": [
@@ -147,13 +219,31 @@
       },
       {
         "type": "justquests:message",
-        "message": "The village thanks you!"
+        "message": {
+          "en_us": "The village thanks you!",
+          "de_de": "Das Dorf dankt dir!",
+          "fr_fr": "Le village vous remercie !",
+          "es_es": "¡El pueblo te lo agradece!",
+          "ja_jp": "村のみんなが感謝しているよ！"
+        }
       }
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Coal Duty",
-    "description": "Mine 24 coal ore and pick up 24 coal. Found in caves. Mine coal ore.",
+    "title": {
+      "en_us": "Coal Duty",
+      "de_de": "Dienst: Kohle",
+      "fr_fr": "Service : Charbon",
+      "es_es": "Deber: Carbón",
+      "ja_jp": "石炭の任務"
+    },
+    "description": {
+      "en_us": "Mine 24 coal ore and pick up 24 coal. Found in caves. Mine coal ore.",
+      "de_de": "Baue 24× Steinkohle ab und hebe 24× Kohle auf. In Höhlen zu finden. Baue Steinkohle ab.",
+      "fr_fr": "Minez 24× minerai de charbon et ramassez 24× charbon. Se trouve dans les grottes. Minez du minerai de charbon.",
+      "es_es": "Mina 24× mena de carbón y recolecta 24× carbón. Se encuentra en cuevas. Mina menas de carbón.",
+      "ja_jp": "石炭鉱石24個の採掘と石炭24個の回収をこなそう。洞窟で見つかる。石炭鉱石を掘る。"
+    },
     "category": "generated",
     "sort": 12,
     "mode": "all",
@@ -182,8 +272,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Camp Setup",
-    "description": "Set up camp before nightfall: mine 64 birch logs and make 128 torches. Coal or charcoal on a stick.",
+    "title": {
+      "en_us": "Camp Setup",
+      "de_de": "Lageraufbau",
+      "fr_fr": "Installation du camp",
+      "es_es": "Montar el campamento",
+      "ja_jp": "キャンプ設営"
+    },
+    "description": {
+      "en_us": "Set up camp before nightfall: mine 64 birch logs and make 128 torches. Coal or charcoal on a stick.",
+      "de_de": "Schlag vor Einbruch der Nacht ein Lager auf: Baue 64× Birkenstamm ab und fertige 128× Fackel an. Kohle oder Holzkohle auf einem Stock.",
+      "fr_fr": "Installez le camp avant la nuit : minez 64× bûche de bouleau et façonnez 128× torche. Du charbon ou du charbon de bois sur un bâton.",
+      "es_es": "Monta el campamento antes del anochecer: mina 64× tronco de abedul y haz 128× antorcha. Carbón o carbón vegetal sobre un palo.",
+      "ja_jp": "日暮れまでにキャンプを張ろう：シラカバの原木64個の採掘と松明128個の製作。棒の上に石炭か木炭。"
+    },
     "category": "generated",
     "sort": 15,
     "mode": "all",
@@ -212,8 +314,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Sand and Sun",
-    "description": "Brave the desert: break 128 sand and defeat 8 husks. Look along beaches. Look in deserts. They spawn at night and in dark caves.",
+    "title": {
+      "en_us": "Sand and Sun",
+      "de_de": "Sand und Sonne",
+      "fr_fr": "Sable et soleil",
+      "es_es": "Arena y sol",
+      "ja_jp": "砂と太陽"
+    },
+    "description": {
+      "en_us": "Brave the desert: break 128 sand and defeat 8 husks. Look along beaches. Look in deserts. They spawn at night and in dark caves.",
+      "de_de": "Trotze der Wüste: Zerstöre 128× Sand und besiege 8× Wüstenzombie. Suche an Stränden. Suche in Wüsten.",
+      "fr_fr": "Bravez le désert : cassez 128× sable et vainquez 8× momifié. Cherchez le long des plages. Cherchez dans les déserts.",
+      "es_es": "Desafía el desierto: rompe 128× arena y derrota 8× disecado. Busca en las playas. Busca en desiertos. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "砂漠に挑もう：砂128個の破壊とハスク8体の討伐。砂浜を探そう。砂漠を探そう。夜や暗い洞窟に出現する。"
+    },
     "category": "generated",
     "sort": 17,
     "mode": "all",
@@ -242,8 +356,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Ender Pearl Volley",
-    "description": "Throw 8 ender pearls. Endermen drop ender pearls. They spawn at night and in dark caves.",
+    "title": {
+      "en_us": "Ender Pearl Volley",
+      "de_de": "Salve: Enderperle",
+      "fr_fr": "Volée : perle de l'Ender",
+      "es_es": "Ráfaga de perla de ender",
+      "ja_jp": "エンダーパールの連投"
+    },
+    "description": {
+      "en_us": "Throw 8 ender pearls. Endermen drop ender pearls. They spawn at night and in dark caves.",
+      "de_de": "Wirf 8× Enderperle. Endermen lassen Enderperlen fallen. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Lancez 8× perle de l'Ender. Les Endermen donnent des perles de l'Ender. Ils apparaissent la nuit et dans les grottes sombres.",
+      "es_es": "Lanza 8× perla de ender. Los endermen sueltan perlas de ender. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "エンダーパール8個の投てきをこなそう。エンダーマンはエンダーパールを落とす。夜や暗い洞窟に出現する。"
+    },
     "category": "generated",
     "sort": 20,
     "objectives": [

@@ -1,7 +1,55 @@
 {
+  "justquests:gen/1790510400_7": {
+    "title": {
+      "en_us": "Mystical Red Petal Job",
+      "de_de": "Job: Mystisches Red Blütenblatt",
+      "fr_fr": "Boulot : pétale mystique rouge",
+      "es_es": "Trabajo: pétalo místico rojo",
+      "ja_jp": "赤色の神秘的な花びらの仕事"
+    },
+    "description": {
+      "en_us": "Craft 32 mystical red petals. One mystical flower makes two petals.",
+      "de_de": "Stelle 32× Mystisches Red Blütenblatt her. Eine mystische Blume ergibt zwei Blütenblätter.",
+      "fr_fr": "Fabriquez 32× pétale mystique rouge. Une fleur mystique donne deux pétales.",
+      "es_es": "Fabrica 32× pétalo místico rojo. Una flor mística da dos pétalos.",
+      "ja_jp": "赤色の神秘的な花びら32個の作成をこなそう。神秘の花1本で花びらが2枚できる。"
+    },
+    "category": "generated",
+    "sort": 6,
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "botania:red_petal",
+        "count": 32
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:redstone_block",
+        "count": 3
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 31
+      }
+    ]
+  },
   "justquests:gen/1790510400_0": {
-    "title": "Bring Dark Oak Logs",
-    "description": "Gather 64 dark oak logs. Dark forests have plenty.",
+    "title": {
+      "en_us": "Bring Dark Oak Logs",
+      "de_de": "Schwarzeichenstamm bringen",
+      "fr_fr": "Apporter : bûche de chêne noir",
+      "es_es": "Traer tronco de roble oscuro",
+      "ja_jp": "ダークオークの原木を届けよう"
+    },
+    "description": {
+      "en_us": "Gather 64 dark oak logs. Dark forests have plenty.",
+      "de_de": "Trage 64× Schwarzeichenstamm zusammen. Dunkle Wälder haben jede Menge.",
+      "fr_fr": "Rassemblez 64× bûche de chêne noir. Les forêts sombres en regorgent.",
+      "es_es": "Reúne 64× tronco de roble oscuro. Los bosques oscuros tienen muchos.",
+      "ja_jp": "ダークオークの原木64個の採集をこなそう。暗い森にたくさんある。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -24,8 +72,20 @@
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Encased Fan Crafting",
-    "description": "Craft 2 encased fans. Needs a propeller made from iron sheets.",
+    "title": {
+      "en_us": "Encased Fan Crafting",
+      "de_de": "Ummantelter Lüfter fertigen",
+      "fr_fr": "Tâche : ventilateur enchâssé",
+      "es_es": "Tarea: ventilador revestido",
+      "ja_jp": "ケース入りファンのクラフト"
+    },
+    "description": {
+      "en_us": "Craft 2 encased fans. Needs a propeller made from iron sheets.",
+      "de_de": "Stelle 2× Ummantelter Lüfter her. Braucht einen Propeller aus Eisenblech.",
+      "fr_fr": "Fabriquez 2× ventilateur enchâssé. Il faut une hélice faite de plaques de fer.",
+      "es_es": "Fabrica 2× ventilador revestido. Necesita una hélice hecha con láminas de hierro.",
+      "ja_jp": "ケース入りファン2個の作成をこなそう。鉄の板で作ったプロペラが必要。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -48,32 +108,56 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Fluorite Supply",
-    "description": "Pick up 24 fluorite. Fluorite ore drops two to four gems. Needs a stone pickaxe or better. Found in caves.",
+    "title": {
+      "en_us": "Break Salt Blocks",
+      "de_de": "Salzblock abtragen",
+      "fr_fr": "Casser : bloc de sel",
+      "es_es": "Romper bloque de sal",
+      "ja_jp": "塩ブロックを壊そう"
+    },
+    "description": {
+      "en_us": "Mine 24 salt blocks. Salt forms in small patches under shallow water, like clay. Look along rivers.",
+      "de_de": "Baue 24× Salzblock ab. Salz bildet kleine Flecken unter flachem Wasser, wie Ton. Suche an Flüssen.",
+      "fr_fr": "Minez 24× bloc de sel. Le sel forme de petites plaques sous l'eau peu profonde, comme l'argile. Cherchez le long des rivières.",
+      "es_es": "Mina 24× bloque de sal. La sal forma pequeñas vetas bajo agua poco profunda, como la arcilla. Busca a lo largo de los ríos.",
+      "ja_jp": "塩ブロック24個の採掘をこなそう。塩は粘土のように浅い水の底に小さく固まっている。川沿いを探そう。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
       {
-        "type": "justquests:collect_item",
-        "item": "mekanism:fluorite_gem",
+        "type": "justquests:mine_block",
+        "block": "mekanism:block_salt",
         "count": 24
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:experience_bottle",
+        "item": "minecraft:gold_ingot",
         "count": 6
       },
       {
         "type": "justquests:xp",
-        "amount": 24
+        "amount": 27
       }
     ]
   },
-  "justquests:gen/1790510400_9": {
-    "title": "Egg Volley",
-    "description": "Throw 16 eggs. Chickens lay eggs. Grow them on a farm.",
+  "justquests:gen/1790510400_6": {
+    "title": {
+      "en_us": "Egg Volley",
+      "de_de": "Salve: Ei",
+      "fr_fr": "Volée : oeuf",
+      "es_es": "Ráfaga de huevo",
+      "ja_jp": "卵の連投"
+    },
+    "description": {
+      "en_us": "Throw 16 eggs. Chickens lay eggs. Grow them on a farm.",
+      "de_de": "Wirf 16× Ei. Hühner legen Eier. Baue sie auf einem Feld an.",
+      "fr_fr": "Lancez 16× oeuf. Les poules pondent des œufs. Cultivez-les dans une ferme.",
+      "es_es": "Lanza 16× huevo. Los pollos ponen huevos. Cultívalos en una granja.",
+      "ja_jp": "卵16個の投てきをこなそう。ニワトリが卵を産む。畑で育てよう。"
+    },
     "category": "generated",
     "sort": 10,
     "objectives": [
@@ -86,42 +170,30 @@
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "mekanism:ingot_lead",
-        "count": 9
+        "item": "minecraft:cooked_salmon",
+        "count": 10
       },
       {
         "type": "justquests:xp",
-        "amount": 36
-      }
-    ]
-  },
-  "justquests:gen/1790510400_8": {
-    "title": "Venison Steak Feast",
-    "description": "Eat 6 venison steaks. Found in the Twilight Forest.",
-    "category": "generated",
-    "sort": 12,
-    "objectives": [
-      {
-        "type": "justquests:consume_item",
-        "item": "twilightforest:cooked_venison",
-        "count": 6
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "create:bar_of_chocolate",
-        "count": 3
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 60
+        "amount": 30
       }
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Raw Cod Pickup",
-    "description": "Collect 16 raw cod. Use a fishing rod.",
+    "title": {
+      "en_us": "Raw Cod Pickup",
+      "de_de": "Abholung: Roher Kabeljau",
+      "fr_fr": "Ramassage : morue crue",
+      "es_es": "Recogida de bacalao crudo",
+      "ja_jp": "生鱈の回収"
+    },
+    "description": {
+      "en_us": "Collect 16 raw cod. Use a fishing rod.",
+      "de_de": "Sammle 16× Roher Kabeljau. Benutze eine Angel.",
+      "fr_fr": "Récoltez 16× morue crue. Utilisez une canne à pêche.",
+      "es_es": "Recoge 16× bacalao crudo. Usa una caña de pescar.",
+      "ja_jp": "生鱈16個の収集をこなそう。釣竿を使う。"
+    },
     "category": "generated",
     "sort": 13,
     "objectives": [
@@ -143,67 +215,93 @@
       }
     ]
   },
-  "justquests:gen/1790510400_6": {
-    "title": "Goat Family",
-    "description": "Breed 6 goats. Goats breed with wheat. Look in the mountains.",
+  "justquests:gen/1790510400_8": {
+    "title": {
+      "en_us": "Smelt Venison Steaks",
+      "de_de": "Hirschsteak schmelzen",
+      "fr_fr": "Tâche : steak de chevreuil",
+      "es_es": "Fundir filete de venado",
+      "ja_jp": "鹿肉ステーキを製錬しよう"
+    },
+    "description": {
+      "en_us": "Smelt 8 venison steaks. Cook raw venison in a furnace, smoker or campfire. Found in the Twilight Forest.",
+      "de_de": "Schmelze 8× Hirschsteak. Brate rohes Hirschfleisch im Ofen, Räucherofen oder Lagerfeuer. Zu finden im Dämmerwald.",
+      "fr_fr": "Faites fondre 8× steak de chevreuil. Faites cuire du chevreuil cru au fourneau, au fumoir ou au feu de camp.",
+      "es_es": "Funde 8× filete de venado. Cocina venado crudo en un horno, ahumador o fogata. Se encuentra en el Bosque crepuscular.",
+      "ja_jp": "鹿肉ステーキ8個の製錬をこなそう。生の鹿肉をかまど、燻製器、焚き火で焼く。黄昏の森で見つかる。"
+    },
+    "category": "generated",
+    "sort": 13,
+    "objectives": [
+      {
+        "type": "justquests:smelt_item",
+        "item": "twilightforest:cooked_venison",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:prismarine_crystals",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 43
+      }
+    ]
+  },
+  "justquests:gen/1790510400_9": {
+    "title": {
+      "en_us": "Frog Nursery",
+      "de_de": "Kinderstube: Frosch",
+      "fr_fr": "Nurserie : grenouille",
+      "es_es": "Guardería: rana",
+      "ja_jp": "カエルの育児室"
+    },
+    "description": {
+      "en_us": "Breed 5 frogs. Frogs breed with slimeballs. Look in swamps.",
+      "de_de": "Züchte 5× Frosch. Frösche vermehren sich mit Schleimbällen. Suche in Sümpfen.",
+      "fr_fr": "Élevez 5× grenouille. Les grenouilles se reproduisent avec des boules de slime. Cherchez dans les marais.",
+      "es_es": "Cría 5× rana. Las ranas se reproducen con bolas de slime. Busca en pantanos.",
+      "ja_jp": "カエル5匹の繁殖をこなそう。カエルはスライムボールで繁殖する。沼地を探そう。"
+    },
     "category": "generated",
     "sort": 16,
     "objectives": [
       {
         "type": "justquests:breed_animal",
-        "entity": "minecraft:goat",
-        "count": 6
+        "entity": "minecraft:frog",
+        "count": 5
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:music_disc_13",
-        "count": 1
-      },
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:pumpkin_pie",
-        "count": 8
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 55
-      }
-    ]
-  },
-  "justquests:gen/1790510400_7": {
-    "title": "Make Livingwood Planks",
-    "description": "Make 16 livingwood planks. A Pure Daisy turns logs placed around it into livingwood.",
-    "category": "generated",
-    "sort": 16,
-    "objectives": [
-      {
-        "type": "justquests:craft_item",
-        "item": "botania:livingwood_planks",
-        "count": 16
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "create:large_cogwheel",
+        "item": "mekanism:ingot_osmium",
         "count": 16
       },
       {
-        "type": "justquests:give_item",
-        "item": "farmersdelight:cooking_pot",
-        "count": 1
-      },
-      {
         "type": "justquests:xp",
-        "amount": 105
+        "amount": 60
       }
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Monster Duty",
-    "description": "Slay 4 slimes and slay a witch. Look in swamps. Rare, so take your time.",
+    "title": {
+      "en_us": "Monster Duty",
+      "de_de": "Dienst: Monster",
+      "fr_fr": "Service : Monstres",
+      "es_es": "Deber: Monstruos",
+      "ja_jp": "モンスターの任務"
+    },
+    "description": {
+      "en_us": "Slay 4 slimes and slay a witch. Look in swamps. Rare, so take your time.",
+      "de_de": "Erlege 4× Schleim und erlege 1× Hexe. Suche in Sümpfen. Selten, also lass dir Zeit.",
+      "fr_fr": "Terrassez 4× slime et terrassez 1× sorcière. Cherchez dans les marais. Rare, alors prenez votre temps.",
+      "es_es": "Abate 4× slime y abate 1× bruja. Busca en pantanos. Es raro, tómatelo con calma.",
+      "ja_jp": "スライム4体の撃破とウィッチ1体の撃破をこなそう。沼地を探そう。珍しいので気長に探そう。"
+    },
     "category": "generated",
     "sort": 18,
     "mode": "all",
@@ -231,13 +329,31 @@
       },
       {
         "type": "justquests:message",
-        "message": "Another job well done."
+        "message": {
+          "en_us": "Another job well done.",
+          "de_de": "Wieder ein Auftrag gut erledigt.",
+          "fr_fr": "Encore un travail bien fait.",
+          "es_es": "Otro trabajo bien hecho.",
+          "ja_jp": "今回もいい仕事だった。"
+        }
       }
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "Seafood Order",
-    "description": "Craft 6 salmon rolls and cook 16 cod slices. Salmon slices and cooked rice. Slice cod on a cutting board, then cook. Use a fishing rod.",
+    "title": {
+      "en_us": "Seafood Order",
+      "de_de": "Auftrag: Meeresfrüchte",
+      "fr_fr": "Commande : Fruits de mer",
+      "es_es": "Pedido: Marisco",
+      "ja_jp": "海の幸の注文"
+    },
+    "description": {
+      "en_us": "Craft 6 salmon rolls and cook 16 cod slices. Salmon slices and cooked rice. Slice cod on a cutting board, then cook. Use a fishing rod.",
+      "de_de": "Stelle 6× Lachsrolle her und bereite 16× Gebratene Kabeljauscheibe zu. Lachsscheiben und gekochter Reis. Benutze eine Angel.",
+      "fr_fr": "Fabriquez 6× roulés au saumon et cuisinez 16× filet de morue cuit. Des tranches de saumon et du riz cuit. Utilisez une canne à pêche.",
+      "es_es": "Fabrica 6× rollos de salmon y cocina 16× rebanada de bacalao cocido. Rodajas de salmón y arroz cocido. Usa una caña de pescar.",
+      "ja_jp": "サーモンの握り寿司6個の作成と焼き鱈の切り身16個の調理をこなそう。鮭の切り身とご飯。まな板で鱈を切り身にしてから焼く。釣竿を使う。"
+    },
     "category": "generated",
     "sort": 19,
     "mode": "all",

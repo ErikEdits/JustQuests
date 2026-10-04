@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_0": {
-    "title": "Packed Ice Excavation",
-    "description": "Mine 32 packed ice. Look in snowy biomes. Rare, so take your time.",
+    "title": {
+      "en_us": "Packed Ice Excavation",
+      "de_de": "Ausgrabung: Packeis",
+      "fr_fr": "Excavation : glace compactée",
+      "es_es": "Extracción de hielo compacto",
+      "ja_jp": "氷塊の発掘"
+    },
+    "description": {
+      "en_us": "Mine 32 packed ice. Look in snowy biomes. Rare, so take your time.",
+      "de_de": "Baue 32× Packeis ab. Suche in verschneiten Biomen. Selten, also lass dir Zeit.",
+      "fr_fr": "Minez 32× glace compactée. Cherchez dans les biomes enneigés. Rare, alors prenez votre temps.",
+      "es_es": "Mina 32× hielo compacto. Busca en biomas nevados. Es raro, tómatelo con calma.",
+      "ja_jp": "氷塊32個の採掘をこなそう。雪のバイオームを探そう。珍しいので気長に探そう。"
+    },
     "category": "generated",
     "sort": 13,
     "objectives": [
@@ -24,8 +36,20 @@
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Breeze Hunt",
-    "description": "Defeat 2 breezes. Found in trial chambers.",
+    "title": {
+      "en_us": "Breeze Hunt",
+      "de_de": "Jagd: Böe",
+      "fr_fr": "Chasse : breeze",
+      "es_es": "Caza de breeze",
+      "ja_jp": "ブリーズ狩り"
+    },
+    "description": {
+      "en_us": "Defeat 2 breezes. Found in trial chambers.",
+      "de_de": "Besiege 2× Böe. In Prüfungskammern zu finden.",
+      "fr_fr": "Vainquez 2× breeze. Se trouve dans les chambres des épreuves.",
+      "es_es": "Derrota 2× breeze. Se encuentra en cámaras de desafío.",
+      "ja_jp": "ブリーズ2体の討伐をこなそう。トライアルチャンバーで見つかる。"
+    },
     "category": "generated",
     "sort": 15,
     "objectives": [
@@ -48,8 +72,20 @@
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "Treasure Hunter",
-    "description": "Riches lie deep underground: break 6 deepslate lapis ore and mine 3 crying obsidian. Found deep underground. Needs a diamond pickaxe.",
+    "title": {
+      "en_us": "Treasure Hunter",
+      "de_de": "Schatzjäger",
+      "fr_fr": "Chasseur de trésors",
+      "es_es": "Cazatesoros",
+      "ja_jp": "トレジャーハンター"
+    },
+    "description": {
+      "en_us": "Riches lie deep underground: break 6 deepslate lapis ore and mine 3 crying obsidian. Found deep underground. Needs a diamond pickaxe.",
+      "de_de": "Reichtümer liegen tief unter der Erde: Zerstöre 6× Tiefenschiefer-Lapislazulierz und baue 3× Weinender Obsidian ab.",
+      "fr_fr": "Les richesses dorment sous terre : cassez 6× minerai de lapis-lazuli des abîmes et minez 3× obsidienne pleureuse. Se trouve en profondeur.",
+      "es_es": "Las riquezas yacen bajo tierra: rompe 6× mena de lapislázuli de pizarra profunda y mina 3× obsidiana llorosa. Necesita un pico de diamante.",
+      "ja_jp": "財宝は地下深くに眠っている：深層ラピスラズリ鉱石6個の破壊と泣く黒曜石3個の採掘。地下深くで見つかる。ダイヤモンドのツルハシが必要。荒廃したポータルの周りを探そう。"
+    },
     "category": "generated",
     "sort": 16,
     "mode": "all",
@@ -78,8 +114,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Base Camp",
-    "description": "Set up camp before nightfall: pick up 96 logs and make 128 torches. Chop any kind of tree. Any log counts. Coal or charcoal on a stick.",
+    "title": {
+      "en_us": "Base Camp",
+      "de_de": "Basislager",
+      "fr_fr": "Camp de base",
+      "es_es": "Campamento base",
+      "ja_jp": "ベースキャンプ"
+    },
+    "description": {
+      "en_us": "Set up camp before nightfall: pick up 96 logs and make 128 torches. Chop any kind of tree. Any log counts. Coal or charcoal on a stick.",
+      "de_de": "Schlag vor Einbruch der Nacht ein Lager auf: Hebe 96× Stamm auf und fertige 128× Fackel an. Fälle Bäume jeder Art. Jede Sorte zählt.",
+      "fr_fr": "Installez le camp avant la nuit : ramassez 96× bûche et façonnez 128× torche. Abattez n'importe quel arbre. Toutes les variétés comptent.",
+      "es_es": "Monta el campamento antes del anochecer: recolecta 96× tronco y haz 128× antorcha. Tala cualquier tipo de árbol. Vale cualquier tipo.",
+      "ja_jp": "日暮れまでにキャンプを張ろう：原木96個の回収と松明128個の製作。種類を問わず木を切る。原木なら種類は問わない。棒の上に石炭か木炭。"
+    },
     "category": "generated",
     "sort": 18,
     "mode": "all",
@@ -113,8 +161,20 @@
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Bake Sale",
-    "description": "The village bake sale needs you: make 2 honey blocks and pick up 4 apples. Needs bees and flowers.",
+    "title": {
+      "en_us": "Bake Sale",
+      "de_de": "Kuchenbasar",
+      "fr_fr": "Vente de pâtisseries",
+      "es_es": "Venta de pasteles",
+      "ja_jp": "焼き菓子バザー"
+    },
+    "description": {
+      "en_us": "The village bake sale needs you: make 2 honey blocks and pick up 4 apples. Needs bees and flowers.",
+      "de_de": "Der Kuchenbasar im Dorf braucht dich: Fertige 2× Honigblock an und hebe 4× Apfel auf. Braucht Bienen und Blumen.",
+      "fr_fr": "La vente de pâtisseries du village a besoin de vous : façonnez 2× bloc de miel et ramassez 4× pomme. Il faut des abeilles et des fleurs.",
+      "es_es": "La venta de pasteles del pueblo te necesita: haz 2× bloque de miel y recolecta 4× manzana. Necesita abejas y flores.",
+      "ja_jp": "村の焼き菓子バザーがあなたを待っている：ハチミツブロック2個の製作とリンゴ4個の回収。ミツバチと花が必要。オークとダークオークの葉からときどきリンゴが出る。"
+    },
     "category": "generated",
     "sort": 19,
     "mode": "all",
@@ -149,8 +209,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Ender Pearl Toss",
-    "description": "Throw 8 ender pearls. Endermen drop ender pearls. They spawn at night and in dark caves.",
+    "title": {
+      "en_us": "Ender Pearl Toss",
+      "de_de": "Wurf: Enderperle",
+      "fr_fr": "Lancer : perle de l'Ender",
+      "es_es": "Lanzamiento: perla de ender",
+      "ja_jp": "エンダーパール投げ"
+    },
+    "description": {
+      "en_us": "Throw 8 ender pearls. Endermen drop ender pearls. They spawn at night and in dark caves.",
+      "de_de": "Wirf 8× Enderperle. Endermen lassen Enderperlen fallen. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Lancez 8× perle de l'Ender. Les Endermen donnent des perles de l'Ender. Ils apparaissent la nuit et dans les grottes sombres.",
+      "es_es": "Lanza 8× perla de ender. Los endermen sueltan perlas de ender. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "エンダーパール8個の投てきをこなそう。エンダーマンはエンダーパールを落とす。夜や暗い洞窟に出現する。"
+    },
     "category": "generated",
     "sort": 20,
     "objectives": [
@@ -178,8 +250,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Ocelot Nursery",
-    "description": "Breed 4 ocelots. Ocelots breed with raw cod or salmon. Look in jungles.",
+    "title": {
+      "en_us": "Ocelot Nursery",
+      "de_de": "Kinderstube: Ozelot",
+      "fr_fr": "Nurserie : ocelot",
+      "es_es": "Guardería: ocelote",
+      "ja_jp": "ヤマネコの育児室"
+    },
+    "description": {
+      "en_us": "Breed 4 ocelots. Ocelots breed with raw cod or salmon. Look in jungles.",
+      "de_de": "Züchte 4× Ozelot. Ozelots vermehren sich mit rohem Kabeljau oder Lachs. Suche in Dschungeln.",
+      "fr_fr": "Élevez 4× ocelot. Les ocelots se reproduisent avec de la morue ou du saumon cru. Cherchez dans les jungles.",
+      "es_es": "Cría 4× ocelote. Los ocelotes se reproducen con bacalao o salmón crudo. Busca en junglas.",
+      "ja_jp": "ヤマネコ4匹の繁殖をこなそう。ヤマネコは生鱈か生鮭で繁殖する。ジャングルを探そう。"
+    },
     "category": "generated",
     "sort": 22,
     "objectives": [
@@ -202,8 +286,20 @@
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Monster Duty",
-    "description": "Slay 5 endermen and defeat a witch. They spawn at night and in dark caves. Look in swamps. Rare, so take your time.",
+    "title": {
+      "en_us": "Monster Duty",
+      "de_de": "Dienst: Monster",
+      "fr_fr": "Service : Monstres",
+      "es_es": "Deber: Monstruos",
+      "ja_jp": "モンスターの任務"
+    },
+    "description": {
+      "en_us": "Slay 5 endermen and defeat a witch. They spawn at night and in dark caves. Look in swamps. Rare, so take your time.",
+      "de_de": "Erlege 5× Enderman und besiege 1× Hexe. Sie erscheinen nachts und in dunklen Höhlen. Suche in Sümpfen. Selten, also lass dir Zeit.",
+      "fr_fr": "Terrassez 5× enderman et vainquez 1× sorcière. Ils apparaissent la nuit et dans les grottes sombres. Cherchez dans les marais.",
+      "es_es": "Abate 5× enderman y derrota 1× bruja. Aparecen de noche y en cuevas oscuras. Busca en pantanos. Es raro, tómatelo con calma.",
+      "ja_jp": "エンダーマン5体の撃破とウィッチ1体の討伐をこなそう。夜や暗い洞窟に出現する。沼地を探そう。珍しいので気長に探そう。"
+    },
     "category": "generated",
     "sort": 23,
     "mode": "all",
@@ -236,8 +332,20 @@
     ]
   },
   "justquests:gen/1790510400_8": {
-    "title": "Mine Deepslate Redstone Ore",
-    "description": "Break 24 deepslate redstone ore. Needs an iron pickaxe or better. Found deep underground.",
+    "title": {
+      "en_us": "Mine Deepslate Redstone Ore",
+      "de_de": "Job: Tiefenschiefer-Redstone-Erz",
+      "fr_fr": "Minerai de redstone des abîmes",
+      "es_es": "Mena de redstone de pizarra",
+      "ja_jp": "深層レッドストーン鉱石を掘ろう"
+    },
+    "description": {
+      "en_us": "Break 24 deepslate redstone ore. Needs an iron pickaxe or better. Found deep underground.",
+      "de_de": "Zerstöre 24× Tiefenschiefer-Redstone-Erz. Braucht mindestens eine Eisenspitzhacke. Tief unter der Erde zu finden.",
+      "fr_fr": "Cassez 24× minerai de redstone des abîmes. Il faut au moins une pioche en fer. Se trouve en profondeur.",
+      "es_es": "Rompe 24× mena de redstone de pizarra profunda. Necesita un pico de hierro o mejor. Se encuentra a gran profundidad.",
+      "ja_jp": "深層レッドストーン鉱石24個の破壊をこなそう。鉄のツルハシ以上が必要。地下深くで見つかる。"
+    },
     "category": "generated",
     "sort": 24,
     "objectives": [
@@ -265,8 +373,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Metal Duty",
-    "description": "Collect 32 raw iron and collect 16 raw gold. Iron ore drops raw iron. Found in caves. Gold ore drops raw gold. Found deep underground.",
+    "title": {
+      "en_us": "Metal Duty",
+      "de_de": "Dienst: Metall",
+      "fr_fr": "Service : Métal",
+      "es_es": "Deber: Metal",
+      "ja_jp": "金属の任務"
+    },
+    "description": {
+      "en_us": "Collect 32 raw iron and collect 16 raw gold. Iron ore drops raw iron. Found in caves. Gold ore drops raw gold. Found deep underground.",
+      "de_de": "Sammle 32× Roheisen und sammle 16× Rohgold. Eisenerz lässt Roheisen fallen. In Höhlen zu finden. Golderz lässt Rohgold fallen.",
+      "fr_fr": "Récoltez 32× fer brut et récoltez 16× or brut. Le minerai de fer donne du fer brut. Se trouve dans les grottes. Se trouve en profondeur.",
+      "es_es": "Recoge 32× hierro en bruto y recoge 16× oro en bruto. La mena de hierro suelta hierro en bruto. Se encuentra en cuevas.",
+      "ja_jp": "鉄の原石32個の収集と金の原石16個の収集をこなそう。鉄鉱石から鉄の原石が出る。洞窟で見つかる。金鉱石から金の原石が出る。鉄のツルハシ以上が必要。地下深くで見つかる。"
+    },
     "category": "generated",
     "sort": 37,
     "mode": "all",

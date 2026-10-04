@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_0": {
-    "title": "Smooth Stone Slab Job",
-    "description": "Craft 40 smooth stone slabs. Three smooth stone make six slabs.",
+    "title": {
+      "en_us": "Smooth Stone Slab Job",
+      "de_de": "Job: Glatte Steinstufe",
+      "fr_fr": "Boulot : dalle de roche lisse",
+      "es_es": "Trabajo: losa de piedra lisa",
+      "ja_jp": "滑らかな石のハーフブロックの仕事"
+    },
+    "description": {
+      "en_us": "Craft 40 smooth stone slabs. Three smooth stone make six slabs.",
+      "de_de": "Stelle 40× Glatte Steinstufe her. Drei glatte Steine ergeben sechs Stufen.",
+      "fr_fr": "Fabriquez 40× dalle de roche lisse. Trois roches lisses font six dalles.",
+      "es_es": "Fabrica 40× losa de piedra lisa. Tres de piedra lisa hacen seis losas.",
+      "ja_jp": "滑らかな石のハーフブロック40個の作成をこなそう。滑らかな石3個でハーフブロックが6個できる。"
+    },
     "category": "generated",
     "sort": 5,
     "objectives": [
@@ -24,8 +36,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Gather Oxeye Daisies",
-    "description": "Gather 24 oxeye daisies.",
+    "title": {
+      "en_us": "Gather Oxeye Daisies",
+      "de_de": "Margerite sammeln",
+      "fr_fr": "Récolte de marguerite",
+      "es_es": "Recolectar margarita",
+      "ja_jp": "フランスギクを集めよう"
+    },
+    "description": {
+      "en_us": "Gather 24 oxeye daisies.",
+      "de_de": "Trage 24× Margerite zusammen.",
+      "fr_fr": "Rassemblez 24× marguerite.",
+      "es_es": "Reúne 24× margarita.",
+      "ja_jp": "フランスギク24個の採集をこなそう。"
+    },
     "category": "generated",
     "sort": 5,
     "objectives": [
@@ -47,13 +71,31 @@
       },
       {
         "type": "justquests:message",
-        "message": "Someone will write songs about this."
+        "message": {
+          "en_us": "Someone will write songs about this.",
+          "de_de": "Darüber wird man noch Lieder singen.",
+          "fr_fr": "On en fera des chansons.",
+          "es_es": "Alguien compondrá canciones sobre esto.",
+          "ja_jp": "いつか誰かがこの話を歌にするだろう。"
+        }
       }
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Terracotta Supply",
-    "description": "Smelt 16 terracotta. Smelt clay blocks. Look along rivers.",
+    "title": {
+      "en_us": "Terracotta Supply",
+      "de_de": "Nachschub: Keramik",
+      "fr_fr": "Stock de terre cuite",
+      "es_es": "Suministro de terracota",
+      "ja_jp": "テラコッタの補給"
+    },
+    "description": {
+      "en_us": "Smelt 16 terracotta. Smelt clay blocks. Look along rivers.",
+      "de_de": "Schmelze 16× Keramik. Brenne Tonblöcke. Suche an Flüssen.",
+      "fr_fr": "Faites fondre 16× terre cuite. Faites cuire des blocs d'argile. Cherchez le long des rivières.",
+      "es_es": "Funde 16× terracota. Cuece bloques de arcilla. Busca a lo largo de los ríos.",
+      "ja_jp": "テラコッタ16個の製錬をこなそう。粘土ブロックを焼く。川沿いを探そう。"
+    },
     "category": "generated",
     "sort": 6,
     "objectives": [
@@ -76,8 +118,20 @@
     ]
   },
   "justquests:gen/1790510400_8": {
-    "title": "Mangrove Log Delivery",
-    "description": "Collect 48 mangrove logs. Look in mangrove swamps.",
+    "title": {
+      "en_us": "Mangrove Log Delivery",
+      "de_de": "Lieferung: Mangrovenstamm",
+      "fr_fr": "Livraison de bûche de palétuvier",
+      "es_es": "Entrega de tronco de mangle",
+      "ja_jp": "マングローブの原木の配達"
+    },
+    "description": {
+      "en_us": "Collect 48 mangrove logs. Look in mangrove swamps.",
+      "de_de": "Sammle 48× Mangrovenstamm. Suche in Mangrovensümpfen.",
+      "fr_fr": "Récoltez 48× bûche de palétuvier. Cherchez dans les marais à mangroves.",
+      "es_es": "Recoge 48× tronco de mangle. Busca en manglares.",
+      "ja_jp": "マングローブの原木48個の収集をこなそう。マングローブの沼地を探そう。"
+    },
     "category": "generated",
     "sort": 7,
     "objectives": [
@@ -105,8 +159,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Handy Bone Meal",
-    "description": "Use 48 bone meal. Use bone meal on crops or grass. They spawn at night and in dark caves.",
+    "title": {
+      "en_us": "Handy Bone Meal",
+      "de_de": "Praktisch: Knochenmehl",
+      "fr_fr": "Astuce : poudre d'os",
+      "es_es": "A mano: polvo de hueso",
+      "ja_jp": "便利な骨粉"
+    },
+    "description": {
+      "en_us": "Use 48 bone meal. Use bone meal on crops or grass. They spawn at night and in dark caves.",
+      "de_de": "Benutze 48× Knochenmehl. Benutze Knochenmehl an Pflanzen oder Gras. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Utilisez 48× poudre d'os. Utilisez de la poudre d'os sur des cultures ou de l'herbe. Ils apparaissent la nuit et dans les grottes sombres.",
+      "es_es": "Usa 48× polvo de hueso. Usa polvo de hueso en cultivos o hierba. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "骨粉48個の使用をこなそう。作物や草に骨粉を使う。夜や暗い洞窟に出現する。"
+    },
     "category": "generated",
     "sort": 7,
     "objectives": [
@@ -129,8 +195,20 @@
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "More Cows",
-    "description": "Breed 8 cows. Cows breed with wheat. Common in plains.",
+    "title": {
+      "en_us": "More Cows",
+      "de_de": "Nachwuchs: Kuh",
+      "fr_fr": "Portée : vache",
+      "es_es": "Camada de vaca",
+      "ja_jp": "ウシを増やそう"
+    },
+    "description": {
+      "en_us": "Breed 8 cows. Cows breed with wheat. Common in plains.",
+      "de_de": "Züchte 8× Kuh. Kühe vermehren sich mit Weizen. Häufig in Ebenen.",
+      "fr_fr": "Élevez 8× vache. Les vaches se reproduisent avec du blé. Courant dans les plaines.",
+      "es_es": "Cría 8× vaca. Las vacas se reproducen con trigo. Común en llanuras.",
+      "ja_jp": "ウシ8匹の繁殖をこなそう。ウシは小麦で繁殖する。平原によくある。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -153,8 +231,20 @@
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Make White Terracotta",
-    "description": "Make 16 white terracotta. Terracotta around white dye.",
+    "title": {
+      "en_us": "Make White Terracotta",
+      "de_de": "Weiße Keramik anfertigen",
+      "fr_fr": "Façonner : terre cuite blanche",
+      "es_es": "Hacer terracota blanca",
+      "ja_jp": "白色のテラコッタ作り"
+    },
+    "description": {
+      "en_us": "Make 16 white terracotta. Terracotta around white dye.",
+      "de_de": "Fertige 16× Weiße Keramik an. Keramik um weißen Farbstoff.",
+      "fr_fr": "Façonnez 16× terre cuite blanche. De la terre cuite autour de teinture blanche.",
+      "es_es": "Haz 16× terracota blanca. Terracota alrededor de tinte blanco.",
+      "ja_jp": "白色のテラコッタ16個の製作をこなそう。白色の染料をテラコッタで囲む。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -176,13 +266,31 @@
       },
       {
         "type": "justquests:message",
-        "message": "Another job well done."
+        "message": {
+          "en_us": "Another job well done.",
+          "de_de": "Wieder ein Auftrag gut erledigt.",
+          "fr_fr": "Encore un travail bien fait.",
+          "es_es": "Otro trabajo bien hecho.",
+          "ja_jp": "今回もいい仕事だった。"
+        }
       }
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Gather Wool",
-    "description": "Collect 32 wool. Shear sheep. Any wool counts. Use shears.",
+    "title": {
+      "en_us": "Gather Wool",
+      "de_de": "Wolle sammeln",
+      "fr_fr": "Récolte de laine",
+      "es_es": "Recolectar lana",
+      "ja_jp": "羊毛を集めよう"
+    },
+    "description": {
+      "en_us": "Collect 32 wool. Shear sheep. Any wool counts. Use shears.",
+      "de_de": "Sammle 32× Wolle. Schere Schafe. Jede Sorte zählt. Benutze eine Schere.",
+      "fr_fr": "Récoltez 32× laine. Tondez des moutons. Toutes les variétés comptent. Utilisez des cisailles.",
+      "es_es": "Recoge 32× lana. Esquila ovejas. Vale cualquier tipo. Usa tijeras.",
+      "ja_jp": "羊毛32個の収集をこなそう。ヒツジの毛を刈る。羊毛なら種類は問わない。ハサミを使う。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -205,8 +313,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Black Dye Order",
-    "description": "Craft 16 black dyes. From ink sacs or wither roses.",
+    "title": {
+      "en_us": "Black Dye Order",
+      "de_de": "Bestellung: Schwarzer Farbstoff",
+      "fr_fr": "Commande de teinture noire",
+      "es_es": "Pedido de tinte negro",
+      "ja_jp": "黒色の染料の注文"
+    },
+    "description": {
+      "en_us": "Craft 16 black dyes. From ink sacs or wither roses.",
+      "de_de": "Stelle 16× Schwarzer Farbstoff her. Aus Tintenbeuteln oder Wither-Rosen.",
+      "fr_fr": "Fabriquez 16× teinture noire. À partir de poches d'encre ou de roses de Wither.",
+      "es_es": "Fabrica 16× tinte negro. De sacos de tinta o rosas del Wither.",
+      "ja_jp": "黒色の染料16個の作成をこなそう。イカスミかウィザーローズから。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -229,8 +349,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Mine Melons",
-    "description": "Break 16 melons. Look in jungles.",
+    "title": {
+      "en_us": "Mine Melons",
+      "de_de": "Melone abbauen",
+      "fr_fr": "Extraction de pastèque",
+      "es_es": "Minar sandía",
+      "ja_jp": "スイカを掘ろう"
+    },
+    "description": {
+      "en_us": "Break 16 melons. Look in jungles.",
+      "de_de": "Zerstöre 16× Melone. Suche in Dschungeln.",
+      "fr_fr": "Cassez 16× pastèque. Cherchez dans les jungles.",
+      "es_es": "Rompe 16× sandía. Busca en junglas.",
+      "ja_jp": "スイカ16個の破壊をこなそう。ジャングルを探そう。"
+    },
     "category": "generated",
     "sort": 9,
     "objectives": [

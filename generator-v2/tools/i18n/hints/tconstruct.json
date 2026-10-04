@@ -1,0 +1,21 @@
+{
+  "Clay, sand and gravel.": ["Ton, Sand und Kies.", "De l'argile, du sable et du gravier.", "Arcilla, arena y grava.", "粘土、砂、砂利。"],
+  "Smelt grout in a furnace.": ["Brenne Mörtel im Ofen.", "Faites cuire du coulis durcissant dans un fourneau.", "Cuece mezcla de construcción en un horno.", "グラウトをかまどで焼く。"],
+  "Four seared bricks.": ["Vier angebrannte Ziegel.", "Quatre briques fondues.", "Cuatro ladrillos refractarios.", "焼成レンガ4個。"],
+  "Two planks and two sticks.": ["Zwei Bretter und zwei Stöcke.", "Deux planches et deux bâtons.", "Dos tablones y dos palos.", "板材2個と棒2本。"],
+  "A pattern on top of a log or crafting table.": ["Ein Muster auf einem Stamm oder einer Werkbank.", "Un modèle au-dessus d'une bûche ou d'un établi.", "Un molde sobre un tronco o una mesa de trabajo.", "原木か作業台の上にパターン。"],
+  "Two patterns on top of two planks.": ["Zwei Muster auf zwei Brettern.", "Deux modèles au-dessus de deux planches.", "Dos moldes sobre dos tablones.", "板材2個の上にパターン2枚。"],
+  "Three patterns on top of planks.": ["Drei Muster auf Brettern.", "Trois modèles au-dessus de planches.", "Tres moldes sobre tablones.", "板材の上にパターン3枚。"],
+  "A book and a pattern.": ["Ein Buch und ein Muster.", "Un livre et un modèle.", "Un libro y un molde.", "本とパターン。"],
+  "Eight seared bricks.": ["Acht angebrannte Ziegel.", "Huit briques fondues.", "Ocho ladrillos refractarios.", "焼成レンガ8個。"],
+  "Three seared bricks.": ["Drei angebrannte Ziegel.", "Trois briques fondues.", "Tres ladrillos refractarios.", "焼成レンガ3個。"],
+  "Seven seared bricks.": ["Sieben angebrannte Ziegel.", "Sept briques fondues.", "Siete ladrillos refractarios.", "焼成レンガ7個。"],
+  "Seared bricks around a seared tank.": ["Angebrannte Ziegel um einen angebrannten Tank.", "Des briques fondues autour d'un réservoir fondu.", "Ladrillos refractarios alrededor de un tanque refractario.", "焼成タンクを焼成レンガで囲む。"],
+  "Skyroot grows on the sky slime islands floating high up.": ["Skyroot wächst auf den hoch schwebenden Himmelsschleiminseln.", "Le célébène pousse sur les îles de slime céleste qui flottent très haut.", "El skyroot crece en las islas de slime celeste que flotan en lo alto.", "スカイルートは空高く浮かぶスカイスライム島に生える。"],
+  "Sky slimes on the slime islands drop skyslime balls.": ["Himmelsschleime auf den Schleiminseln lassen Himmelsschleimbälle fallen.", "Les slimes célestes des îles de slime donnent des boules de slime céleste.", "Los slimes celestes de las islas de slime sueltan bolas de slime celeste.", "スライム島のスカイスライムはスカイスライムボールを落とす。"],
+  "Skyslimes bounce on the sky slime islands.": ["Himmelsschleime hüpfen auf den Himmelsschleiminseln.", "Les slimes célestes rebondissent sur les îles de slime céleste.", "Los slimes celestes rebotan en las islas de slime celeste.", "スカイスライムはスカイスライム島で跳ねている。"],
+  "Nine skyslime balls.": ["Neun Himmelsschleimbälle.", "Neuf boules de slime céleste.", "Nueve bolas de slime celeste.", "スカイスライムボール9個。"],
+  "Greenheart grows on earth slime islands in the sea.": ["Greenheart wächst auf Erdschleiminseln im Meer.", "Le cœurvert pousse sur les îles de slime terrestre en mer.", "El greenheart crece en las islas de slime terrestre del mar.", "グリーンハートは海のアーススライム島に生える。"],
+  "Cobalt ore hides in the Nether's netherrack, high and low.": ["Kobalterz versteckt sich im Netherrack des Nethers, oben wie unten.", "Le minerai de cobalt se cache dans la netherrack du Nether, en haut comme en bas.", "La mena de cobalto se esconde en el netherrack del Nether, arriba y abajo.", "コバルト鉱石はネザーのネザーラックの上層にも下層にも隠れている。"],
+  "Cobalt ore drops raw cobalt.": ["Kobalterz lässt rohes Kobalt fallen.", "Le minerai de cobalt donne du cobalt brut.", "La mena de cobalto suelta cobalto crudo.", "コバルト鉱石からコバルトの原石が出る。"]
+}

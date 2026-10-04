@@ -1,0 +1,41 @@
+{
+  "_format": "Index-aligned with templates.json. {Name} = official name, {name} = lower-cased mid-sentence, {count} = number, {Dimension} = dimension name, {dimension_to}/{dimension_in} = travel/location phrase.",
+  "grammar": {"sentenceEnd": ".", "sentenceSep": " ", "listSep": ", ", "listAnd": " y ", "lowerNames": true, "lowerAfterColon": true},
+  "titles": {
+    "collect_item": ["Botín de {name}", "Ronda de {name}", "Recolectar {name}", "Reserva de {name}", "Suministro de {name}", "Acopio de {name}", "Recogida de {name}", "Traer {name}", "Entrega de {name}", "Recolección de {name}", "Se busca: {name}", "Lote de {name}"],
+    "mine_block": ["Minero de {name}", "Minar {name}", "Excavación de {name}", "Cantera de {name}", "Romper {name}", "Extracción de {name}", "Turno de {name}", "Rompedor de {name}", "Cavar {name}"],
+    "craft_item": ["Pedido de {name}", "Fabricar {name}", "Taller de {name}", "Artesano de {name}", "Hacer {name}", "Encargo de {name}", "Lote de {name}", "Construir {name}", "Solicitud de {name}", "Montaje de {name}", "Fabricación de {name}"],
+    "smelt_item": ["Suministro de {name}", "Fundir {name}", "Fundición de {name}", "Al rojo: {name}", "Hornada de {name}", "Horno: {name}", "Fuego: {name}", "A fundir: {name}"],
+    "kill_mob": ["Caza de {name}", "Patrulla: {name}", "Purga de {name}", "Recompensa: {name}", "Cazador de {name}", "Problema: {name}", "Limpieza de {name}", "Amenaza: {name}", "Detener: {name}", "Cazar: {name}", "Vigilancia: {name}"],
+    "breed_animal": ["Criador de {name}", "Camada de {name}", "Rancho de {name}", "Familia de {name}", "Criar: {name}", "Rebaño de {name}", "Crías de {name}", "Guardería: {name}", "Granja de {name}"],
+    "tame_animal": ["Nuevo amigo", "Domesticar: {name}", "Compañero: {name}", "Susurrador: {name}", "Leal: {name}", "Amigo: {name}"],
+    "consume_item": ["Festín de {name}", "Probar {name}", "Degustación de {name}", "Tentempié: {name}", "Pausa: {name}", "Almuerzo: {name}", "Hambre de {name}", "Comida: {name}", "Cena: {name}"],
+    "place_block": ["Constructor: {name}", "Construir con {name}", "Colocar {name}", "Proyecto de {name}", "Obras de {name}", "Plano de {name}", "Decorar: {name}", "Construcción: {name}", "Diseño de {name}"],
+    "visit_dimension": ["Viaje: {Dimension}", "Visita: {Dimension}", "Travesía: {Dimension}", "Rumbo: {Dimension}", "Portal: {Dimension}", "Expedición: {Dimension}"],
+    "enchant_item": ["Encantador: {name}", "Encantar: {name}", "Arcano: {name}", "Encantamiento: {name}", "Hechizo: {name}", "Magia: {name}"],
+    "use_item": ["Práctica: {name}", "Usar {name}", "Ejercicio: {name}", "A mano: {name}", "Entrenamiento: {name}"]
+  },
+  "phrases": {
+    "collect_item": ["Recoge {count}× {name}", "Reúne {count}× {name}", "Recolecta {count}× {name}"],
+    "mine_block": ["Mina {count}× {name}", "Rompe {count}× {name}"],
+    "craft_item": ["Fabrica {count}× {name}", "Haz {count}× {name}"],
+    "smelt_item": ["Funde {count}× {name}"],
+    "kill_mob": ["Derrota {count}× {name}", "Caza {count}× {name}", "Abate {count}× {name}"],
+    "breed_animal": ["Cría {count}× {name}"],
+    "tame_animal": ["Domestica {count}× {name}"],
+    "consume_item": ["Come {count}× {name}"],
+    "enchant_item": ["Encanta {count}× {name}"],
+    "use_item": ["Usa {count}× {name}"],
+    "place_block": ["Coloca {count}× {name}", "Construye con {count}× {name}"],
+    "visit_dimension": ["Viaja {dimension_to}", "Entra {dimension_in}"]
+  },
+  "variants": {
+    "throw": {"phrases": ["Lanza {count}× {name}"], "titles": ["Lanzamiento: {name}", "Lanzar {name}", "Ráfaga de {name}", "Tiro de {name}"]},
+    "launch": {"phrases": ["Dispara {count}× {name}"], "titles": ["Espectáculo: {name}", "Disparar {name}", "Cielo: {name}"]},
+    "drink": {"phrases": ["Bebe {count}× {name}"], "titles": ["Pausa: {name}", "Probar {name}", "Ronda de {name}"]},
+    "cook": {"phrases": ["Cocina {count}× {name}"], "titles": ["Cocinar {name}", "Hornada de {name}", "Caliente: {name}", "Cocina: {name}", "Pedido de {name}"]}
+  },
+  "fallbackTitles": ["Tarea: {name}", "Trabajo: {name}", "Recado: {name}", "Deber: {name}", "Misión: {name}", "Faena: {name}"],
+  "comboTitles": ["Pedido: {Family}", "Recado: {Family}", "Trabajo: {Family}", "Suministros: {Family}", "Deber: {Family}", "Tareas: {Family}"],
+  "sentences": {"tag": "Vale cualquier tipo.", "dimension": "Se encuentra {dimension_in}.", "list": "{list}"}
+}

@@ -96,7 +96,23 @@ public final class CatalogLoader {
             loot.addAll(p.loot());
             themes.addAll(p.themes());
         }
-        return new Catalog(profiles, items, effects, loot, messages, themes, tags, templates, balance, warnings);
+        List<Localization> languages = new ArrayList<>();
+        for (String code : Localization.CODES) {
+            String text = readResource("lang/" + code + ".json");
+            Localization l = null;
+            try {
+                l = text == null ? null : Localization.parse(code, Json.parseObject(text));
+            } catch (RuntimeException e) {
+                l = null;
+            }
+            if (l != null) {
+                languages.add(l);
+            } else {
+                warn("bundled resource missing or invalid: " + ROOT + "lang/" + code + ".json");
+            }
+        }
+        return new Catalog(profiles, items, effects, loot, messages, themes, tags, templates, balance, warnings,
+            languages);
     }
 
     private static void addOrReplace(List<ProfileDef> profiles, ProfileDef p) {

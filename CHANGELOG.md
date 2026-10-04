@@ -30,12 +30,19 @@ Built step by step; test builds go to a local folder until the release.
   got more quests (more flowers and gear, metal blocks and steel machines, more wood, beetles and
   meef). Every new target was checked against the mods' released jars.
 - `settings.json` gets new options added by itself, so owners see them without deleting the file.
+- **Generated quests in five languages:** quests from the generator now have their title,
+  description and reward message in English, German, French, Spanish and Japanese, and each player
+  reads their own game language. Item, block and mob names use the official translations of
+  Minecraft and of the supported mods. The built-in quests got Japanese as well.
 
 ### Changed
 - **Every text is translatable:** the quest book, the HUD, goal and reward names, and all chat
-  messages of the commands now come from language files (`assets/justquests/lang/`). For now
-  there is only English; more languages follow. Each player sees their own game language, also
-  on Minecraft 1.18–1.20.1. On 1.19.4 and newer, players without the mod see the English text.
+  messages of the commands now come from language files (`assets/justquests/lang/`), with
+  English, German, French, Spanish and Japanese included. Each player sees their own game
+  language, also on Minecraft 1.18–1.20.1. On 1.19.4 and newer, players without the mod see the
+  English text.
+- The German, French and Spanish texts of the built-in quests have proper accents and use the
+  game's own names (for example the "Acquire Hardware" advancement).
 - Loot rewards read "Loot: simple dungeon" instead of the full loot table id; tag goals read
   "any logs"; dimension goals name the vanilla dimensions ("Visit the Nether").
 - The Discord welcome no longer talks about voting on the v0.2 GUI.

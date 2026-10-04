@@ -1,0 +1,41 @@
+{
+  "_format": "Index-aligned with templates.json. {Name}/{name} = official name, {count} = number, {Dimension}/{dimension} = dimension name. Phrases are noun phrases so they join with と and fit the list sentence.",
+  "grammar": {"sentenceEnd": "。", "sentenceSep": "", "listSep": "、", "listAnd": "と", "lowerNames": false, "lowerAfterColon": false},
+  "titles": {
+    "collect_item": ["{Name}の運搬", "{Name}集めの旅", "{Name}を集めよう", "{Name}の備蓄", "{Name}の補給", "{Name}コレクター", "{Name}の回収", "{Name}を届けよう", "{Name}の配達", "{Name}集め", "{Name}求む", "{Name}の束"],
+    "mine_block": ["{Name}採掘者", "{Name}を掘ろう", "{Name}掘り", "{Name}の採石場", "{Name}を壊そう", "{Name}の発掘", "{Name}採掘シフト", "{Name}ブレイカー", "{Name}を掘り出そう"],
+    "craft_item": ["{Name}の注文", "{Name}を作ろう", "{Name}工房", "{Name}職人", "{Name}作り", "{Name}の依頼", "{Name}の量産", "{Name}を組み立てよう", "{Name}のリクエスト", "{Name}の組み立て", "{Name}のクラフト"],
+    "smelt_item": ["{Name}の補給", "{Name}を製錬しよう", "{Name}製錬所", "アツアツの{Name}", "{Name}のまとめ焼き", "かまど：{Name}", "{Name}の熱", "{Name}に火を入れよう"],
+    "kill_mob": ["{Name}狩り", "{Name}パトロール", "{Name}を間引こう", "{Name}の懸賞金", "{Name}スレイヤー", "{Name}騒動", "{Name}の掃討", "{Name}の脅威", "{Name}を止めろ", "{Name}を狩れ", "{Name}の見張り"],
+    "breed_animal": ["{Name}ブリーダー", "{Name}を増やそう", "{Name}牧場", "{Name}ファミリー", "{Name}を繁殖させよう", "{Name}の群れ", "{Name}の赤ちゃん", "{Name}の育児室", "{Name}ファーム"],
+    "tame_animal": ["新しい友達", "{Name}を飼いならそう", "{Name}の相棒", "{Name}使い", "忠実な{Name}", "{Name}の友達"],
+    "consume_item": ["{Name}のごちそう", "{Name}を味わおう", "{Name}の試食", "{Name}でおやつ", "{Name}で一休み", "{Name}ランチ", "{Name}が食べたい", "{Name}の食事", "{Name}の夕食"],
+    "place_block": ["{Name}の建築家", "{Name}で建てよう", "{Name}を置こう", "{Name}プロジェクト", "{Name}工事", "{Name}のレイアウト", "飾りつけ：{Name}", "{Name}の建設", "{Name}デザイン"],
+    "visit_dimension": ["{Dimension}への旅", "{Dimension}を訪ねよう", "{Dimension}紀行", "{Dimension}へ", "{Dimension}への門", "{Dimension}遠征"],
+    "enchant_item": ["{Name}のエンチャンター", "エンチャントされた{Name}", "神秘の{Name}", "{Name}のエンチャント", "魔法がかかった{Name}", "魔法の{Name}"],
+    "use_item": ["{Name}の練習", "{Name}を使おう", "{Name}の訓練", "便利な{Name}", "{Name}トレーニング"]
+  },
+  "phrases": {
+    "collect_item": ["{name}{count}個の収集", "{name}{count}個の採集", "{name}{count}個の回収"],
+    "mine_block": ["{name}{count}個の採掘", "{name}{count}個の破壊"],
+    "craft_item": ["{name}{count}個の作成", "{name}{count}個の製作"],
+    "smelt_item": ["{name}{count}個の製錬"],
+    "kill_mob": ["{name}{count}体の討伐", "{name}{count}体の狩猟", "{name}{count}体の撃破"],
+    "breed_animal": ["{name}{count}匹の繁殖"],
+    "tame_animal": ["{name}{count}匹の飼いならし"],
+    "consume_item": ["{name}{count}個の実食"],
+    "enchant_item": ["{name}{count}個へのエンチャント"],
+    "use_item": ["{name}{count}個の使用"],
+    "place_block": ["{name}{count}個の設置", "{name}{count}個での建築"],
+    "visit_dimension": ["{dimension}への旅", "{dimension}への突入"]
+  },
+  "variants": {
+    "throw": {"phrases": ["{name}{count}個の投てき"], "titles": ["{Name}投げ", "{Name}を投げよう", "{Name}の連投", "{Name}のピッチング"]},
+    "launch": {"phrases": ["{name}{count}個の打ち上げ"], "titles": ["{Name}ショー", "{Name}を打ち上げよう", "空に{Name}"]},
+    "drink": {"phrases": ["{name}{count}個の飲用"], "titles": ["{Name}で一休み", "{Name}を味わおう", "{Name}で乾杯"]},
+    "cook": {"phrases": ["{name}{count}個の調理"], "titles": ["{Name}を料理しよう", "{Name}のまとめ作り", "アツアツの{Name}", "{Name}キッチン", "{Name}の注文"]}
+  },
+  "fallbackTitles": ["{Name}のタスク", "{Name}の仕事", "{Name}のおつかい", "{Name}の任務", "{Name}ミッション", "{Name}の作業"],
+  "comboTitles": ["{Family}の注文", "{Family}のおつかい", "{Family}の仕事", "{Family}の物資", "{Family}の任務", "{Family}の雑用"],
+  "sentences": {"tag": "{noun}なら種類は問わない。", "dimension": "{dimension}で見つかる。", "list": "{list}をこなそう"}
+}

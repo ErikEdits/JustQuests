@@ -72,7 +72,7 @@ public final class Generation {
                     return -1;
                 }
             }, rewardTypes);
-        TextBuilder text = new TextBuilder(catalog.templates);
+        TextBuilder text = new TextBuilder(catalog.templates, catalog.messages, catalog.languages);
         SetBuilder.Validator validator = (draft, json, ordinal) ->
             host.validator().validate(Ids.GEN_PREFIX + cycleId + "_" + (firstIndex + ordinal), json.deepCopy());
         SetBuilder builder = new SetBuilder(catalog, config.difficulty(), pool, new Rng(seed), history, rewards, text,

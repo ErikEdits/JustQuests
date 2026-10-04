@@ -1,123 +1,55 @@
 {
   "justquests:gen/1790510400_7": {
-    "title": "Make Mutton Wraps",
-    "description": "Craft 6 mutton wraps.",
+    "title": {
+      "en_us": "Hamburger Commission",
+      "de_de": "Auftrag: Hamburger",
+      "fr_fr": "Commission : hamburger",
+      "es_es": "Encargo de hamburguesa",
+      "ja_jp": "ハンバーガーの依頼"
+    },
+    "description": {
+      "en_us": "Craft 6 hamburgers. Bread, a beef patty, cabbage, tomato and onion.",
+      "de_de": "Stelle 6× Hamburger her. Brot, eine Rindfleischbulette, Kohl, Tomate und Zwiebel.",
+      "fr_fr": "Fabriquez 6× hamburger. Du pain, un steak haché, du chou, une tomate et un oignon.",
+      "es_es": "Fabrica 6× hamburguesa. Pan, una hamburguesa, col, tomate y cebolla.",
+      "ja_jp": "ハンバーガー6個の作成をこなそう。パン、ビーフパティ、キャベツ、トマト、タマネギ。"
+    },
     "category": "generated",
-    "sort": 11,
+    "sort": 16,
     "objectives": [
       {
         "type": "justquests:craft_item",
-        "item": "farmersdelight:mutton_wrap",
+        "item": "farmersdelight:hamburger",
         "count": 6
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:lantern",
-        "count": 8
-      },
-      {
-        "type": "justquests:loot_table",
-        "loot_table": "minecraft:chests/abandoned_mineshaft"
+        "item": "minecraft:obsidian",
+        "count": 16
       },
       {
         "type": "justquests:xp",
-        "amount": 55
-      }
-    ]
-  },
-  "justquests:gen/1790510400_8": {
-    "title": "Ender Pearl Stockpile",
-    "description": "Pick up 4 ender pearls. They spawn at night and in dark caves.",
-    "category": "generated",
-    "sort": 12,
-    "objectives": [
-      {
-        "type": "justquests:collect_item",
-        "item": "minecraft:ender_pearl",
-        "count": 4
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "mekanism:ingot_osmium",
-        "count": 15
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 55
-      }
-    ]
-  },
-  "justquests:gen/1790510400_4": {
-    "title": "Leatherworker",
-    "description": "The tannery is busy: breed 4 rabbits and craft 8 paintings. Rabbits breed with carrots or dandelions. Look in deserts.",
-    "category": "generated",
-    "sort": 15,
-    "mode": "all",
-    "objectives": [
-      {
-        "type": "justquests:breed_animal",
-        "entity": "minecraft:rabbit",
-        "count": 4
-      },
-      {
-        "type": "justquests:craft_item",
-        "item": "minecraft:painting",
-        "count": 8
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:phantom_membrane",
-        "count": 4
-      },
-      {
-        "type": "justquests:loot_table",
-        "loot_table": "minecraft:chests/abandoned_mineshaft"
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 75
-      }
-    ]
-  },
-  "justquests:gen/1790510400_3": {
-    "title": "Ironworks Supplies",
-    "description": "Make 32 rails and build with 10 iron chains.",
-    "category": "generated",
-    "sort": 16,
-    "mode": "all",
-    "objectives": [
-      {
-        "type": "justquests:craft_item",
-        "item": "minecraft:rail",
-        "count": 32
-      },
-      {
-        "type": "justquests:place_block",
-        "block": "minecraft:iron_chain",
-        "count": 10
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:emerald_block",
-        "count": 1
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 37
+        "amount": 90
       }
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Mana Pool Commission",
-    "description": "Craft a mana pool. Five livingrock; a Pure Daisy turns stone into livingrock.",
+    "title": {
+      "en_us": "Mana Pool Commission",
+      "de_de": "Auftrag: Manabecken",
+      "fr_fr": "Commission : bassin de mana",
+      "es_es": "Encargo de pila de maná",
+      "ja_jp": "マナプールの依頼"
+    },
+    "description": {
+      "en_us": "Craft a mana pool. Five livingrock; a Pure Daisy turns stone into livingrock.",
+      "de_de": "Stelle 1× Manabecken her. Fünf Lebestein; ein Reines Gänseblümchen verwandelt Stein in Lebestein.",
+      "fr_fr": "Fabriquez 1× bassin de mana. Cinq viveroches ; une pâquerette pure transforme la roche en viveroche.",
+      "es_es": "Fabrica 1× pila de maná. Cinco de piedra viviente; una margarita pura convierte la piedra en piedra viviente.",
+      "ja_jp": "マナプール1個の作成をこなそう。リビングロック5個。ピュアデイジーは石をリビングロックに変える。"
+    },
     "category": "generated",
     "sort": 16,
     "objectives": [
@@ -144,22 +76,34 @@
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "More Bighorn Sheep",
-    "description": "Breed 6 bighorn sheep. Bighorn sheep breed with wheat. Found in the Twilight Forest.",
+    "title": {
+      "en_us": "Redcap Watch",
+      "de_de": "Wache: Rotkappe",
+      "fr_fr": "Veille : bonnet rouge",
+      "es_es": "Vigilancia: gorro rojo",
+      "ja_jp": "レッドキャップゴブリンの見張り"
+    },
+    "description": {
+      "en_us": "Hunt 12 redcaps. Redcaps lurk around the hollow hills. Found in the Twilight Forest.",
+      "de_de": "Jage 12× Rotkappe. Rotkappen lauern um die hohlen Hügel. Zu finden im Dämmerwald.",
+      "fr_fr": "Chassez 12× bonnet rouge. Les bonnets rouges rôdent autour des collines creuses. Se trouve dans la Forêt du Crépuscule.",
+      "es_es": "Caza 12× gorro rojo. Los gorros rojos acechan alrededor de las colinas huecas. Se encuentra en el Bosque crepuscular.",
+      "ja_jp": "レッドキャップゴブリン12体の狩猟をこなそう。レッドキャップゴブリンは空洞の丘のまわりに潜んでいる。黄昏の森で見つかる。"
+    },
     "category": "generated",
     "sort": 17,
     "objectives": [
       {
-        "type": "justquests:breed_animal",
-        "entity": "twilightforest:bighorn_sheep",
-        "count": 6
+        "type": "justquests:kill_mob",
+        "entity": "twilightforest:redcap",
+        "count": 12
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "twilightforest:cooked_venison",
-        "count": 16
+        "item": "twilightforest:ironwood_ingot",
+        "count": 8
       },
       {
         "type": "justquests:xp",
@@ -167,29 +111,88 @@
       }
     ]
   },
-  "justquests:gen/1790510400_1": {
-    "title": "Seafaring Duty",
-    "description": "Gather 16 sea pickles and pick up 16 ink sacs. Look on coral reefs in warm oceans. Squid drop ink sacs. Look in and near oceans.",
+  "justquests:gen/1790510400_3": {
+    "title": {
+      "en_us": "Fortress Mason",
+      "de_de": "Festungsmaurer",
+      "fr_fr": "Maçon de forteresse",
+      "es_es": "Albañil de fortaleza",
+      "ja_jp": "要塞の石工"
+    },
+    "description": {
+      "en_us": "Build like the piglins: break 64 soul soil and smelt 8 smooth quartz. Found in soul sand valleys. Found in the Nether.",
+      "de_de": "Bau wie die Piglins: Zerstöre 64× Seelenerde und schmelze 8× Glatter Quarzblock. In Seelensandtälern zu finden. Zu finden im Nether.",
+      "fr_fr": "Bâtissez comme les piglins : cassez 64× terre des âmes et faites fondre 8× bloc de quartz lisse. Se trouve dans les vallées des âmes.",
+      "es_es": "Construye como los piglins: rompe 64× tierra de almas y funde 8× bloque de cuarzo liso. Se encuentra en valles de almas.",
+      "ja_jp": "ピグリンのように建てよう：ソウルソイル64個の破壊と滑らかなクォーツブロック8個の製錬。ソウルサンドの谷で見つかる。ネザーで見つかる。"
+    },
     "category": "generated",
-    "sort": 19,
+    "sort": 17,
     "mode": "all",
     "objectives": [
       {
-        "type": "justquests:collect_item",
-        "item": "minecraft:sea_pickle",
-        "count": 16
+        "type": "justquests:mine_block",
+        "block": "minecraft:soul_soil",
+        "count": 64
       },
       {
-        "type": "justquests:collect_item",
-        "item": "minecraft:ink_sac",
-        "count": 16
+        "type": "justquests:smelt_item",
+        "item": "minecraft:smooth_quartz",
+        "count": 8
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:gold_ingot",
+        "item": "mekanism:basic_control_circuit",
+        "count": 5
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 100
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": {
+      "en_us": "Ready to Roam",
+      "de_de": "Bereit zum Aufbruch",
+      "fr_fr": "Prêt à partir",
+      "es_es": "Listo para partir",
+      "ja_jp": "旅立ちの準備"
+    },
+    "description": {
+      "en_us": "Pack for the road: make 8 spectral arrows and craft 4 leads. String and a slimeball.",
+      "de_de": "Pack für die Reise: Fertige 8× Spektralpfeil an und stelle 4× Leine her. Faden und ein Schleimball.",
+      "fr_fr": "Préparez vos bagages : façonnez 8× flèche spectrale et fabriquez 4× laisse. De la ficelle et une boule de slime.",
+      "es_es": "Prepara el equipaje: haz 8× flecha espectral y fabrica 4× rienda. Hilo y una bola de slime.",
+      "ja_jp": "旅の支度をしよう：光の矢8個の製作とリード4個の作成。糸とスライムボール。"
+    },
+    "category": "generated",
+    "sort": 17,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:spectral_arrow",
+        "count": 8
+      },
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:lead",
+        "count": 4
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "botania:fertilizer",
         "count": 16
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:honeycomb",
+        "count": 8
       },
       {
         "type": "justquests:xp",
@@ -198,21 +201,33 @@
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Uranium Ingot Smeltery",
-    "description": "Smelt 16 uranium ingots. Smelt raw uranium in a furnace. Needs a stone pickaxe or better. Found in caves.",
+    "title": {
+      "en_us": "Deepslate Fluorite Ore Shift",
+      "de_de": "Job: Tiefenschiefer Fluoriterz",
+      "fr_fr": "Minerais de fluorite des abîmes",
+      "es_es": "Mena de Fluorita de Pizarra",
+      "ja_jp": "深層蛍石鉱石採掘シフト"
+    },
+    "description": {
+      "en_us": "Break 16 deepslate fluorite ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
+      "de_de": "Zerstöre 16× Tiefenschiefer Fluoriterz. Braucht mindestens eine Steinspitzhacke. In Höhlen zu finden. Tief unter der Erde zu finden.",
+      "fr_fr": "Cassez 16× minerais de fluorite des abîmes. Il faut au moins une pioche en pierre. Se trouve dans les grottes. Se trouve en profondeur.",
+      "es_es": "Rompe 16× mena de fluorita de pizarra profunda. Necesita un pico de piedra o mejor. Se encuentra en cuevas. Se encuentra a gran profundidad.",
+      "ja_jp": "深層蛍石鉱石16個の破壊をこなそう。石のツルハシ以上が必要。洞窟で見つかる。地下深くで見つかる。"
+    },
     "category": "generated",
-    "sort": 19,
+    "sort": 18,
     "objectives": [
       {
-        "type": "justquests:smelt_item",
-        "item": "mekanism:ingot_uranium",
+        "type": "justquests:mine_block",
+        "block": "mekanism:deepslate_fluorite_ore",
         "count": 16
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:cooked_salmon",
+        "item": "minecraft:cooked_chicken",
         "count": 16
       },
       {
@@ -223,20 +238,32 @@
       },
       {
         "type": "justquests:xp",
-        "amount": 145
+        "amount": 190
       }
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Masonry Errand",
-    "description": "Place 64 polished cut limestone and make 64 cut asurine. Polish limestone on a stonecutter, then build. Cut asurine on a stonecutter.",
+    "title": {
+      "en_us": "Masonry Errand",
+      "de_de": "Besorgung: Mauerwerk",
+      "fr_fr": "Course : Maçonnerie",
+      "es_es": "Recado: Albañilería",
+      "ja_jp": "石工のおつかい"
+    },
+    "description": {
+      "en_us": "Place 64 polished cut veridium and make 64 cut asurine. Found in thick stone layers underground. Cut asurine on a stonecutter.",
+      "de_de": "Platziere 64× Poliertes geschnittenes Veridium und fertige 64× Geschnittenes Asurin an. Schneide Asurin auf der Steinsäge.",
+      "fr_fr": "Posez 64× veridium coupé poli et façonnez 64× asurine coupée. Se trouve dans les épaisses couches de roche souterraines.",
+      "es_es": "Coloca 64× veridio cortado pulido y haz 64× azurina cortada. Se encuentra en gruesas capas de roca subterráneas.",
+      "ja_jp": "磨かれた研がれた緑青岩64個の設置と研がれた瑠璃岩64個の製作をこなそう。地下の厚い岩の層で見つかる。石切台で瑠璃岩を加工する。"
+    },
     "category": "generated",
     "sort": 22,
     "mode": "all",
     "objectives": [
       {
         "type": "justquests:place_block",
-        "block": "create:polished_cut_limestone",
+        "block": "create:polished_cut_veridium",
         "count": 64
       },
       {
@@ -262,38 +289,145 @@
       }
     ]
   },
-  "justquests:gen/1790510400_2": {
-    "title": "Cave Survey",
-    "description": "Head underground: break 10 gold ore and mine 32 calcite. Needs an iron pickaxe or better. Found deep underground.",
+  "justquests:gen/1790510400_8": {
+    "title": {
+      "en_us": "End Hunt Chores",
+      "de_de": "Arbeiten: Endjagd",
+      "fr_fr": "Corvées : Chasse de l'End",
+      "es_es": "Tareas: Caza del End",
+      "ja_jp": "エンドの狩りの雑用"
+    },
+    "description": {
+      "en_us": "Collect 2 shulker shells and hunt 2 shulkers. Found in End cities. Found in the End.",
+      "de_de": "Sammle 2× Shulker-Schale und jage 2× Shulker. In Endsiedlungen zu finden. Zu finden im Ende.",
+      "fr_fr": "Récoltez 2× carapace de shulker et chassez 2× shulker. Se trouve dans les cités de l'End. Se trouve dans l'End.",
+      "es_es": "Recoge 2× caparazón de shulker y caza 2× shulker. Se encuentra en ciudades del End. Se encuentra en el End.",
+      "ja_jp": "シュルカーの殻2個の収集とシュルカー2体の狩猟をこなそう。エンドシティで見つかる。エンドで見つかる。"
+    },
     "category": "generated",
-    "sort": 24,
+    "sort": 22,
     "mode": "all",
     "objectives": [
       {
-        "type": "justquests:mine_block",
-        "block": "minecraft:gold_ore",
-        "count": 10
+        "type": "justquests:collect_item",
+        "item": "minecraft:shulker_shell",
+        "count": 2
       },
       {
-        "type": "justquests:mine_block",
-        "block": "minecraft:calcite",
-        "count": 32
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:shulker",
+        "count": 2
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:diamond_pickaxe",
-        "count": 1
+        "item": "minecraft:cooked_salmon",
+        "count": 16
       },
       {
-        "type": "justquests:give_item",
-        "item": "minecraft:glass",
-        "count": 32
+        "type": "justquests:effect",
+        "effect": "minecraft:fire_resistance",
+        "seconds": 480,
+        "amplifier": 0
       },
       {
         "type": "justquests:xp",
-        "amount": 235
+        "amount": 185
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": {
+      "en_us": "Undead Purge",
+      "de_de": "Untoten-Säuberung",
+      "fr_fr": "Purge des morts-vivants",
+      "es_es": "Purga de no muertos",
+      "ja_jp": "アンデッド掃討"
+    },
+    "description": {
+      "en_us": "Keep the roads safe: defeat 8 husks and hunt 8 strays. Look in deserts. They spawn at night and in dark caves. Look in snowy biomes.",
+      "de_de": "Halte die Wege sicher: Besiege 8× Wüstenzombie und jage 8× Eiswanderer. Suche in Wüsten. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Sécurisez les routes : vainquez 8× momifié et chassez 8× vagabond. Cherchez dans les déserts. Cherchez dans les biomes enneigés.",
+      "es_es": "Mantén seguros los caminos: derrota 8× disecado y caza 8× errante. Busca en desiertos. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "道の安全を守ろう：ハスク8体の討伐とストレイ8体の狩猟。砂漠を探そう。夜や暗い洞窟に出現する。雪のバイオームを探そう。"
+    },
+    "category": "generated",
+    "sort": 23,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:husk",
+        "count": 8
+      },
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:stray",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:bookshelf",
+        "count": 4
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/simple_dungeon"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 140
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": {
+      "en_us": "Farm Duty",
+      "de_de": "Dienst: Hof",
+      "fr_fr": "Service : Ferme",
+      "es_es": "Deber: Granja",
+      "ja_jp": "農場の任務"
+    },
+    "description": {
+      "en_us": "Craft 8 hay blocks and collect 48 beetroots. Nine wheat make a hay bale. Grow them on a farm. Villages often have them.",
+      "de_de": "Stelle 8× Strohballen her und sammle 48× Rote Bete. Neun Weizen ergeben einen Strohballen. Baue sie auf einem Feld an.",
+      "fr_fr": "Fabriquez 8× botte de paille et récoltez 48× betterave. Neuf blés font une botte de paille. Cultivez-les dans une ferme.",
+      "es_es": "Fabrica 8× bala de heno y recoge 48× remolacha. Nueve de trigo forman una bala de heno. Cultívalos en una granja.",
+      "ja_jp": "干草の俵8個の作成とビートルート48個の収集をこなそう。小麦9個で干草の俵になる。畑で育てよう。村によくある。"
+    },
+    "category": "generated",
+    "sort": 23,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:craft_item",
+        "item": "minecraft:hay_block",
+        "count": 8
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:beetroot",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "mekanism:ingot_tin",
+        "count": 29
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:speed",
+        "seconds": 480,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 95
       }
     ]
   }

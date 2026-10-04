@@ -267,9 +267,9 @@ class HostFuzzTest {
             JsonObject q = e.getValue();
             List<String> problems = StrictQuestCheck.check(q, h.base.caps);
             assertTrue(problems.isEmpty(), ctx + " " + e.getKey() + ": " + problems + "\n" + q);
-            String title = Json.str(q, "title", "");
+            String title = Json.text(q, "title", "");
             assertFalse(title.contains("§") || title.contains("{") || title.contains("\n"), ctx + " title " + title);
-            String description = Json.str(q, "description", "");
+            String description = Json.text(q, "description", "");
             assertFalse(description.contains("§") || description.contains("{"), ctx + " description " + description);
             for (JsonElement o : q.getAsJsonArray("objectives")) {
                 JsonObject obj = o.getAsJsonObject();

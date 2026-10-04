@@ -91,8 +91,8 @@ class TextQualityTest {
             for (long seed = 1; seed <= 60; seed++) {
                 for (QuestDraft q : TestSupport.generate(host, TestSupport.config(d, 20), p, seed * 31L, 20).drafts()) {
                     checked++;
-                    String title = Json.str(q.json, "title", "");
-                    String description = Json.str(q.json, "description", "");
+                    String title = Json.text(q.json, "title", "");
+                    String description = Json.text(q.json, "description", "");
                     for (String problem : problems(title, description)) {
                         if (failures.size() < 40) {
                             failures.add(problem + " | " + title + " | " + description);
@@ -127,7 +127,7 @@ class TextQualityTest {
         for (long seed = 1; seed <= 40; seed++) {
             for (QuestDraft q : TestSupport.generate(host, TestSupport.config(Difficulty.HARD, 3).withModdedShare(0.34), p,
                 seed, 3).drafts()) {
-                String title = Json.str(q.json, "title", "");
+                String title = Json.text(q.json, "title", "");
                 assertTrue(Character.isUpperCase(title.charAt(0)), "title '" + title + "'");
                 seen++;
             }

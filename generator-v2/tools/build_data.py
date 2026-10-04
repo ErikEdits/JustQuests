@@ -2,6 +2,7 @@
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from catalog_dsl import dump
+import lang_data
 from vanilla_catalog import VANILLA
 from mod_profiles import FARMERS_DELIGHT, CREATE
 from other_data import REWARDS, TEMPLATES, THEMES, BALANCE, TAGS
@@ -43,4 +44,8 @@ dump(TEMPLATES, os.path.join(ROOT, "templates.json"))
 dump(THEMES, os.path.join(ROOT, "themes.json"))
 dump(BALANCE, os.path.join(ROOT, "balance.json"))
 dump(TAGS, os.path.join(ROOT, "tags.json"))
+PROFILES = [VANILLA, FARMERS_DELIGHT, CREATE, MEKANISM, TWILIGHT_FOREST, BOTANIA] + list(EXTRA.values())
+os.makedirs(os.path.join(ROOT, "lang"), exist_ok=True)
+for code, data in lang_data.build(TEMPLATES, THEMES["themes"], PROFILES, REWARDS["messages"], TAGS).items():
+    dump(data, os.path.join(ROOT, "lang", code + ".json"))
 print("written to", os.path.normpath(ROOT))

@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_8": {
-    "title": "Make Lightning Rods",
-    "description": "Make 8 lightning rods.",
+    "title": {
+      "en_us": "Make Lightning Rods",
+      "de_de": "Blitzableiter anfertigen",
+      "fr_fr": "Façonner : paratonnerre",
+      "es_es": "Hacer pararrayos",
+      "ja_jp": "避雷針作り"
+    },
+    "description": {
+      "en_us": "Make 8 lightning rods.",
+      "de_de": "Fertige 8× Blitzableiter an.",
+      "fr_fr": "Façonnez 8× paratonnerre.",
+      "es_es": "Haz 8× pararrayos.",
+      "ja_jp": "避雷針8個の製作をこなそう。"
+    },
     "category": "generated",
     "sort": 3,
     "objectives": [
@@ -24,8 +36,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Potato Stockpile",
-    "description": "Gather 24 potatoes. Villages often have them. Grow them on a farm.",
+    "title": {
+      "en_us": "Potato Stockpile",
+      "de_de": "Vorrat: Kartoffel",
+      "fr_fr": "Réserve de pomme de terre",
+      "es_es": "Reserva de patata",
+      "ja_jp": "ジャガイモの備蓄"
+    },
+    "description": {
+      "en_us": "Gather 24 potatoes. Villages often have them. Grow them on a farm.",
+      "de_de": "Trage 24× Kartoffel zusammen. In Dörfern gibt es sie oft. Baue sie auf einem Feld an.",
+      "fr_fr": "Rassemblez 24× pomme de terre. Les villages en ont souvent. Cultivez-les dans une ferme.",
+      "es_es": "Reúne 24× patata. Los pueblos suelen tenerlos. Cultívalos en una granja.",
+      "ja_jp": "ジャガイモ24個の採集をこなそう。村によくある。畑で育てよう。"
+    },
     "category": "generated",
     "sort": 4,
     "objectives": [
@@ -48,8 +72,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Glass Pane Project",
-    "description": "Build with 64 glass panes.",
+    "title": {
+      "en_us": "Glass Pane Project",
+      "de_de": "Projekt: Glasscheibe",
+      "fr_fr": "Projet : vitre",
+      "es_es": "Proyecto de panel de cristal",
+      "ja_jp": "ガラス板プロジェクト"
+    },
+    "description": {
+      "en_us": "Build with 64 glass panes.",
+      "de_de": "Baue mit 64× Glasscheibe.",
+      "fr_fr": "Construisez avec 64× vitre.",
+      "es_es": "Construye con 64× panel de cristal.",
+      "ja_jp": "ガラス板64個での建築をこなそう。"
+    },
     "category": "generated",
     "sort": 4,
     "objectives": [
@@ -72,8 +108,20 @@
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "Stone Brick Stairs Job",
-    "description": "Craft 24 stone brick stairs.",
+    "title": {
+      "en_us": "Stone Brick Stairs Job",
+      "de_de": "Job: Steinziegeltreppe",
+      "fr_fr": "Escalier en pierre taillée",
+      "es_es": "Escaleras de ladrillos de piedra",
+      "ja_jp": "石レンガの階段の仕事"
+    },
+    "description": {
+      "en_us": "Craft 24 stone brick stairs.",
+      "de_de": "Stelle 24× Steinziegeltreppe her.",
+      "fr_fr": "Fabriquez 24× escalier en pierre taillée.",
+      "es_es": "Fabrica 24× escaleras de ladrillos de piedra.",
+      "ja_jp": "石レンガの階段24個の作成をこなそう。"
+    },
     "category": "generated",
     "sort": 5,
     "objectives": [
@@ -96,8 +144,20 @@
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Snowball Toss",
-    "description": "Throw 48 snowballs. Shovel snow and throw the snowballs. Look in snowy biomes.",
+    "title": {
+      "en_us": "Snowball Toss",
+      "de_de": "Wurf: Schneeball",
+      "fr_fr": "Lancer : boule de neige",
+      "es_es": "Lanzamiento: bola de nieve",
+      "ja_jp": "雪玉投げ"
+    },
+    "description": {
+      "en_us": "Throw 48 snowballs. Shovel snow and throw the snowballs. Look in snowy biomes.",
+      "de_de": "Wirf 48× Schneeball. Schaufle Schnee und wirf die Schneebälle. Suche in verschneiten Biomen.",
+      "fr_fr": "Lancez 48× boule de neige. Pelletez de la neige et lancez les boules. Cherchez dans les biomes enneigés.",
+      "es_es": "Lanza 48× bola de nieve. Recoge nieve con la pala y lanza las bolas. Busca en biomas nevados.",
+      "ja_jp": "雪玉48個の投てきをこなそう。雪を掘って雪玉を投げる。雪のバイオームを探そう。"
+    },
     "category": "generated",
     "sort": 5,
     "objectives": [
@@ -120,8 +180,20 @@
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Granite Excavation",
-    "description": "Break 96 granite.",
+    "title": {
+      "en_us": "Granite Excavation",
+      "de_de": "Ausgrabung: Granit",
+      "fr_fr": "Excavation : granite",
+      "es_es": "Extracción de granito",
+      "ja_jp": "花崗岩の発掘"
+    },
+    "description": {
+      "en_us": "Break 96 granite.",
+      "de_de": "Zerstöre 96× Granit.",
+      "fr_fr": "Cassez 96× granite.",
+      "es_es": "Rompe 96× granito.",
+      "ja_jp": "花崗岩96個の破壊をこなそう。"
+    },
     "category": "generated",
     "sort": 5,
     "objectives": [
@@ -144,8 +216,20 @@
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Smooth Sandstone Batch",
-    "description": "Smelt 40 smooth sandstone. Smelt sandstone. Look in deserts.",
+    "title": {
+      "en_us": "Smooth Sandstone Batch",
+      "de_de": "Charge: Glatter Sandstein",
+      "fr_fr": "Fournée de grès lisse",
+      "es_es": "Hornada de arenisca lisa",
+      "ja_jp": "滑らかな砂岩のまとめ焼き"
+    },
+    "description": {
+      "en_us": "Smelt 40 smooth sandstone. Smelt sandstone. Look in deserts.",
+      "de_de": "Schmelze 40× Glatter Sandstein. Brenne Sandstein. Suche in Wüsten.",
+      "fr_fr": "Faites fondre 40× grès lisse. Faites cuire du grès. Cherchez dans les déserts.",
+      "es_es": "Funde 40× arenisca lisa. Funde arenisca. Busca en desiertos.",
+      "ja_jp": "滑らかな砂岩40個の製錬をこなそう。砂岩を焼く。砂漠を探そう。"
+    },
     "category": "generated",
     "sort": 6,
     "objectives": [
@@ -168,8 +252,20 @@
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "More Cows",
-    "description": "Breed 8 cows. Cows breed with wheat. Common in plains.",
+    "title": {
+      "en_us": "More Cows",
+      "de_de": "Nachwuchs: Kuh",
+      "fr_fr": "Portée : vache",
+      "es_es": "Camada de vaca",
+      "ja_jp": "ウシを増やそう"
+    },
+    "description": {
+      "en_us": "Breed 8 cows. Cows breed with wheat. Common in plains.",
+      "de_de": "Züchte 8× Kuh. Kühe vermehren sich mit Weizen. Häufig in Ebenen.",
+      "fr_fr": "Élevez 8× vache. Les vaches se reproduisent avec du blé. Courant dans les plaines.",
+      "es_es": "Cría 8× vaca. Las vacas se reproducen con trigo. Común en llanuras.",
+      "ja_jp": "ウシ8匹の繁殖をこなそう。ウシは小麦で繁殖する。平原によくある。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -192,8 +288,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Build Iron Bars",
-    "description": "Craft 32 iron bars.",
+    "title": {
+      "en_us": "Build Iron Bars",
+      "de_de": "Eisengitter bauen",
+      "fr_fr": "Construire : barreaux de fer",
+      "es_es": "Construir barrotes de hierro",
+      "ja_jp": "鉄格子を組み立てよう"
+    },
+    "description": {
+      "en_us": "Craft 32 iron bars.",
+      "de_de": "Stelle 32× Eisengitter her.",
+      "fr_fr": "Fabriquez 32× barreaux de fer.",
+      "es_es": "Fabrica 32× barrotes de hierro.",
+      "ja_jp": "鉄格子32個の作成をこなそう。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -216,8 +324,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Pumpkin Pickup",
-    "description": "Collect 24 pumpkins. Common in plains.",
+    "title": {
+      "en_us": "Pumpkin Pickup",
+      "de_de": "Abholung: Kürbis",
+      "fr_fr": "Ramassage : citrouille",
+      "es_es": "Recogida de calabaza",
+      "ja_jp": "カボチャの回収"
+    },
+    "description": {
+      "en_us": "Collect 24 pumpkins. Common in plains.",
+      "de_de": "Sammle 24× Kürbis. Häufig in Ebenen.",
+      "fr_fr": "Récoltez 24× citrouille. Courant dans les plaines.",
+      "es_es": "Recoge 24× calabaza. Común en llanuras.",
+      "ja_jp": "カボチャ24個の収集をこなそう。平原によくある。"
+    },
     "category": "generated",
     "sort": 10,
     "objectives": [

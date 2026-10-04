@@ -1,0 +1,2687 @@
+{
+  "format": 1,
+  "language": "de_de",
+  "grammar": {
+    "sentenceEnd": ".",
+    "sentenceSep": " ",
+    "listSep": ", ",
+    "listAnd": " und ",
+    "lowerNames": false,
+    "lowerAfterColon": false
+  },
+  "templates": {
+    "titles": {
+      "collect_item": [
+        "Ausbeute: {Name}",
+        "Sammeltour: {Name}",
+        "{Name} sammeln",
+        "Vorrat: {Name}",
+        "Nachschub: {Name}",
+        "Sammelauftrag: {Name}",
+        "Abholung: {Name}",
+        "{Name} bringen",
+        "Lieferung: {Name}",
+        "{Name} einsammeln",
+        "{Name} gesucht",
+        "Bündel: {Name}"
+      ],
+      "mine_block": [
+        "Abbau: {Name}",
+        "{Name} abbauen",
+        "Grabung: {Name}",
+        "Steinbruch: {Name}",
+        "{Name} abtragen",
+        "Ausgrabung: {Name}",
+        "Schicht: {Name}",
+        "{Name} knacken",
+        "{Name} ausgraben"
+      ],
+      "craft_item": [
+        "Bestellung: {Name}",
+        "{Name} herstellen",
+        "Werkstatt: {Name}",
+        "Handwerk: {Name}",
+        "{Name} anfertigen",
+        "Auftrag: {Name}",
+        "Charge: {Name}",
+        "{Name} bauen",
+        "Anfrage: {Name}",
+        "Montage: {Name}",
+        "{Name} fertigen"
+      ],
+      "smelt_item": [
+        "Nachschub: {Name}",
+        "{Name} schmelzen",
+        "Schmelzerei: {Name}",
+        "Glühend: {Name}",
+        "Charge: {Name}",
+        "Ofen: {Name}",
+        "Hitze: {Name}",
+        "Feuer frei: {Name}"
+      ],
+      "kill_mob": [
+        "Jagd: {Name}",
+        "Patrouille: {Name}",
+        "{Name} dezimieren",
+        "Kopfgeld: {Name}",
+        "{Name}-Bezwinger",
+        "Ärger: {Name}",
+        "Säuberung: {Name}",
+        "Bedrohung: {Name}",
+        "{Name} aufhalten",
+        "{Name} jagen",
+        "Wache: {Name}"
+      ],
+      "breed_animal": [
+        "Züchter: {Name}",
+        "Nachwuchs: {Name}",
+        "Ranch: {Name}",
+        "Familie: {Name}",
+        "{Name} züchten",
+        "Herde: {Name}",
+        "Jungtiere: {Name}",
+        "Kinderstube: {Name}",
+        "Hof: {Name}"
+      ],
+      "tame_animal": [
+        "Neuer Freund",
+        "{Name} zähmen",
+        "Gefährte: {Name}",
+        "{Name}-Flüsterer",
+        "Treue: {Name}",
+        "Freund: {Name}"
+      ],
+      "consume_item": [
+        "Festmahl: {Name}",
+        "{Name} probieren",
+        "Verkostung: {Name}",
+        "Snack: {Name}",
+        "Pause: {Name}",
+        "Mittagessen: {Name}",
+        "Hunger auf {Name}",
+        "Mahlzeit: {Name}",
+        "Abendbrot: {Name}"
+      ],
+      "place_block": [
+        "Baumeister: {Name}",
+        "Bauen mit {Name}",
+        "{Name} platzieren",
+        "Projekt: {Name}",
+        "Bauwerk: {Name}",
+        "Grundriss: {Name}",
+        "Dekorieren: {Name}",
+        "Bau: {Name}",
+        "Entwurf: {Name}"
+      ],
+      "visit_dimension": [
+        "Ausflug: {Dimension}",
+        "Besuch: {Dimension}",
+        "Reise: {Dimension}",
+        "Aufbruch: {Dimension}",
+        "Portal: {Dimension}",
+        "Expedition: {Dimension}"
+      ],
+      "enchant_item": [
+        "Verzauberer: {Name}",
+        "Verzaubert: {Name}",
+        "Arkan: {Name}",
+        "Verzauberung: {Name}",
+        "Gebannt: {Name}",
+        "Magie: {Name}"
+      ],
+      "use_item": [
+        "Übung: {Name}",
+        "{Name} benutzen",
+        "Drill: {Name}",
+        "Praktisch: {Name}",
+        "Training: {Name}"
+      ]
+    },
+    "phrases": {
+      "collect_item": [
+        "Sammle {count}× {name}",
+        "Trage {count}× {name} zusammen",
+        "Hebe {count}× {name} auf"
+      ],
+      "mine_block": [
+        "Baue {count}× {name} ab",
+        "Zerstöre {count}× {name}"
+      ],
+      "craft_item": [
+        "Stelle {count}× {name} her",
+        "Fertige {count}× {name} an"
+      ],
+      "smelt_item": [
+        "Schmelze {count}× {name}"
+      ],
+      "kill_mob": [
+        "Besiege {count}× {name}",
+        "Jage {count}× {name}",
+        "Erlege {count}× {name}"
+      ],
+      "breed_animal": [
+        "Züchte {count}× {name}"
+      ],
+      "tame_animal": [
+        "Zähme {count}× {name}"
+      ],
+      "consume_item": [
+        "Iss {count}× {name}"
+      ],
+      "enchant_item": [
+        "Verzaubere {count}× {name}"
+      ],
+      "use_item": [
+        "Benutze {count}× {name}"
+      ],
+      "place_block": [
+        "Platziere {count}× {name}",
+        "Baue mit {count}× {name}"
+      ],
+      "visit_dimension": [
+        "Reise {dimension_to}",
+        "Begib dich {dimension_to}"
+      ]
+    },
+    "variants": {
+      "throw": {
+        "phrases": [
+          "Wirf {count}× {name}"
+        ],
+        "titles": [
+          "Wurf: {Name}",
+          "{Name} werfen",
+          "Salve: {Name}",
+          "Weitwurf: {Name}"
+        ]
+      },
+      "launch": {
+        "phrases": [
+          "Zünde {count}× {name}"
+        ],
+        "titles": [
+          "Show: {Name}",
+          "{Name} zünden",
+          "Am Himmel: {Name}"
+        ]
+      },
+      "drink": {
+        "phrases": [
+          "Trink {count}× {name}"
+        ],
+        "titles": [
+          "Pause: {Name}",
+          "{Name} probieren",
+          "Runde: {Name}"
+        ]
+      },
+      "cook": {
+        "phrases": [
+          "Bereite {count}× {name} zu"
+        ],
+        "titles": [
+          "{Name} zubereiten",
+          "Charge: {Name}",
+          "Frisch: {Name}",
+          "Küche: {Name}",
+          "Bestellung: {Name}"
+        ]
+      }
+    },
+    "fallbackTitles": [
+      "Aufgabe: {Name}",
+      "Job: {Name}",
+      "Besorgung: {Name}",
+      "Pflicht: {Name}",
+      "Mission: {Name}",
+      "Arbeit: {Name}"
+    ],
+    "comboTitles": [
+      "Auftrag: {Family}",
+      "Besorgung: {Family}",
+      "Job: {Family}",
+      "Vorräte: {Family}",
+      "Dienst: {Family}",
+      "Arbeiten: {Family}"
+    ],
+    "sentences": {
+      "tag": "Jede Sorte zählt.",
+      "dimension": "Zu finden {dimension_in}.",
+      "list": "{list}"
+    },
+    "tools": {
+      "stone": "Braucht mindestens eine Steinspitzhacke",
+      "iron": "Braucht mindestens eine Eisenspitzhacke",
+      "diamond": "Braucht eine Diamantspitzhacke",
+      "netherite": "Braucht eine Netheritspitzhacke",
+      "shears": "Benutze eine Schere",
+      "silk_touch": "Braucht Behutsamkeit",
+      "fishing_rod": "Benutze eine Angel",
+      "knife": "Benutze ein Messer aus Farmer's Delight",
+      "shovel": "Benutze eine Schaufel"
+    },
+    "hints": {
+      "night": "Sie erscheinen nachts und in dunklen Höhlen.",
+      "desert": "Suche in Wüsten.",
+      "swamp": "Suche in Sümpfen.",
+      "jungle": "Suche in Dschungeln.",
+      "taiga": "Suche in Taigas.",
+      "snowy": "Suche in verschneiten Biomen.",
+      "ocean": "Suche in und an Ozeanen.",
+      "beach": "Suche an Stränden.",
+      "savanna": "Suche in Savannen.",
+      "badlands": "Suche in Tafelbergen.",
+      "mountains": "Suche in den Bergen.",
+      "plains": "Häufig in Ebenen.",
+      "flower_forest": "Blumenwälder haben am meisten.",
+      "dark_forest": "Dunkle Wälder haben jede Menge.",
+      "mushroom_fields": "Suche auf Pilzinseln.",
+      "lush_caves": "Suche in üppigen Höhlen.",
+      "dripstone_caves": "Suche in Tropfsteinhöhlen.",
+      "cherry_grove": "Suche in Kirschberghainen.",
+      "mangrove_swamp": "Suche in Mangrovensümpfen.",
+      "pale_garden": "Suche in blassen Gärten.",
+      "caves": "In Höhlen zu finden.",
+      "deep": "Tief unter der Erde zu finden.",
+      "geode": "Suche in Amethystgeoden.",
+      "village": "In Dörfern gibt es sie oft.",
+      "farm": "Baue sie auf einem Feld an.",
+      "bees": "Braucht Bienen und Blumen.",
+      "rare": "Selten, also lass dir Zeit.",
+      "river": "Suche an Flüssen.",
+      "fortress": "In Netherfestungen zu finden.",
+      "bastion": "In Bastionsruinen zu finden.",
+      "crimson_forest": "In Karmesinwäldern zu finden.",
+      "warped_forest": "In Wirrwäldern zu finden.",
+      "soul_sand_valley": "In Seelensandtälern zu finden.",
+      "basalt_deltas": "In Basaltdeltas zu finden.",
+      "end_city": "In Endsiedlungen zu finden.",
+      "outer_islands": "Wächst auf den äußeren Endinseln.",
+      "mineshaft": "In verlassenen Minen zu finden.",
+      "outpost": "An Plündererposten zu finden.",
+      "monument": "An Ozeanmonumenten zu finden.",
+      "trial_chambers": "In Prüfungskammern zu finden.",
+      "layers": "In dicken Gesteinsschichten unter der Erde zu finden.",
+      "warm_ocean": "Suche an Korallenriffen in warmen Ozeanen.",
+      "ruined_portal": "Suche rund um Portalruinen.",
+      "deep_dark": "Im Tiefen Dunkel zu finden."
+    },
+    "familyNames": {
+      "wood": "Holz",
+      "forestry": "Forstwirtschaft",
+      "stone": "Steinbruch",
+      "stonework": "Mauerwerk",
+      "sand": "Sand",
+      "glass": "Glashütte",
+      "soil": "Erdarbeiten",
+      "badlands": "Tafelberge",
+      "lush": "Üppige Höhle",
+      "snow": "Winter",
+      "plants": "Gartenarbeit",
+      "coal": "Kohle",
+      "metals": "Metall",
+      "gems": "Edelsteine",
+      "redstone": "Redstone",
+      "amethyst": "Amethyst",
+      "obsidian": "Obsidian",
+      "crops": "Hof",
+      "fruit": "Obstgarten",
+      "mushrooms": "Pilze",
+      "flowers": "Blumen",
+      "bees": "Imkerei",
+      "livestock": "Ranch",
+      "wool": "Wolle",
+      "wild_animals": "Wildtiere",
+      "horses": "Stall",
+      "pets": "Haustiere",
+      "villagers": "Dorf",
+      "fishing": "Angeln",
+      "ocean": "Seefahrt",
+      "undead": "Untote",
+      "arthropods": "Spinnen",
+      "monsters": "Monster",
+      "illagers": "Illager",
+      "trial": "Prüfung",
+      "lighting": "Beleuchtung",
+      "woodwork": "Tischlerei",
+      "baking": "Bäckerei",
+      "library": "Bibliothek",
+      "archery": "Pfeilmacher",
+      "iron_tools": "Werkzeugschmied",
+      "iron_armor": "Rüstungsschmied",
+      "iron_works": "Eisenhütte",
+      "decor": "Dekoration",
+      "copper_works": "Kupfer",
+      "golden_food": "Gold",
+      "diamond_gear": "Diamant",
+      "nether_travel": "Nether",
+      "nether_blocks": "Nethergestein",
+      "nether_ores": "Nether-Bergbau",
+      "nether_plants": "Nethergarten",
+      "nether_mobs": "Netherjagd",
+      "end_travel": "Ende",
+      "end_blocks": "Endstein",
+      "end_plants": "Chorus",
+      "end_mobs": "Endjagd",
+      "end_prep": "Festung",
+      "fd_crops": "Gemüse",
+      "fd_wild": "Sammler",
+      "fd_straw": "Stroh",
+      "fd_tools": "Besteck",
+      "fd_kitchen": "Küche",
+      "fd_furniture": "Schrank",
+      "fd_butchery": "Metzgerei",
+      "fd_seafood": "Meeresfrüchte",
+      "fd_breakfast": "Frühstück",
+      "fd_meals": "Sandwich",
+      "fd_salads": "Salat",
+      "fd_sweets": "Dessert",
+      "fd_stews": "Eintopf",
+      "fd_plates": "Abendessen",
+      "fd_drinks": "Getränke",
+      "fd_feasts": "Festmahl",
+      "fd_soil": "Kompost",
+      "fd_snacks": "Snack",
+      "create_contraptions": "Apparatur",
+      "create_zinc": "Zink",
+      "create_stone": "Gesteinsschicht",
+      "create_masonry": "Mauerwerk",
+      "create_alloy": "Legierung",
+      "create_kinetics": "Kinetik",
+      "create_power": "Mühle",
+      "create_logistics": "Logistik",
+      "create_machines": "Maschine",
+      "create_tools": "Ingenieur",
+      "create_decor": "Sitzplätze",
+      "create_sweets": "Leckerei",
+      "create_quartz": "Rosenquarz",
+      "deep_dark": "Tiefes Dunkel",
+      "dyes": "Farbstoff",
+      "stone_tools": "Steinmetz",
+      "leather_armor": "Lederarbeit",
+      "workstations": "Werkstatt",
+      "transport": "Transport",
+      "brewing": "Brauer",
+      "enchanting": "Verzauberung",
+      "use_items": "Feldarbeit",
+      "exploration": "Entdecker",
+      "nether_animals": "Nether-Ranch",
+      "nether_crafts": "Nether-Maurer",
+      "storage_blocks": "Schatzkammer",
+      "mek_osmium": "Osmium",
+      "mek_tin": "Zinn",
+      "mek_lead": "Blei",
+      "mek_uranium": "Uran",
+      "mek_fluorite": "Fluorit",
+      "mek_salt": "Salz",
+      "mek_gear": "Werkstatt",
+      "mek_radiation": "Strahlenschutz",
+      "mek_machines": "Maschine",
+      "mek_blocks": "Metallblöcke",
+      "tf_travel": "Dämmerung",
+      "tf_wood": "Dämmerholz",
+      "tf_forage": "Dämmersammler",
+      "tf_game": "Wildbret",
+      "tf_ranch": "Dämmer-Ranch",
+      "tf_monsters": "Dämmerjagd",
+      "tf_bosses": "Boss",
+      "tf_ironwood": "Eisenholz",
+      "tf_maps": "Kartograf",
+      "bot_flowers": "Florist",
+      "bot_petals": "Blütenblätter",
+      "bot_start": "Botaniker",
+      "bot_mushrooms": "Schimmerpilze",
+      "bot_livingwood": "Lebeholz",
+      "bot_mana": "Mana",
+      "bot_decor": "Blütendeko",
+      "bot_alfheim": "Alfheim",
+      "ae2_meteor": "Meteorit",
+      "ae2_skystone": "Himmelsstein",
+      "ae2_quartz_tools": "Quarzschmied",
+      "ae2_fluix": "Fluix",
+      "ae2_power": "Energie",
+      "ae2_network": "Netzwerk",
+      "ie_bauxite": "Bauxit",
+      "ie_lead": "Blei",
+      "ie_silver": "Silber",
+      "ie_nickel": "Nickel",
+      "ie_hemp": "Hanf",
+      "ie_workshop": "Werkstatt",
+      "ie_metalwork": "Metallbau",
+      "ie_treated": "Behandeltes Holz",
+      "bop_timber": "Exotisches Holz",
+      "bop_carpentry": "Zimmerei",
+      "bop_bouquet": "Wildblumen",
+      "bop_sands": "Sand",
+      "bop_wetlands": "Feuchtgebiet",
+      "bop_rose_quartz": "Rosenquarz",
+      "bop_nether": "Nether-Botanik",
+      "am_savanna": "Savanne",
+      "am_northlands": "Nordland",
+      "am_cookout": "Buschküche",
+      "am_predators": "Raubtiere",
+      "am_gear": "Ausrüster",
+      "am_nether": "Netherjäger",
+      "tc_grout": "Angebrannt",
+      "tc_stations": "Bastler",
+      "tc_smeltery": "Schmelze",
+      "tc_slime_isles": "Schleiminsel",
+      "tc_cobalt": "Kobalt",
+      "an_archwood": "Archwood",
+      "an_forage": "Quellbeere",
+      "an_first_spells": "Lehrling",
+      "an_workshop": "Arkan",
+      "an_wilden": "Wilden"
+    },
+    "dimensionNames": {
+      "minecraft:overworld": "Oberwelt",
+      "minecraft:the_nether": "Nether",
+      "minecraft:the_end": "Ende",
+      "twilightforest:twilight_forest": "Dämmerwald"
+    },
+    "dimensionTo": {
+      "minecraft:overworld": "in die Oberwelt",
+      "minecraft:the_nether": "in den Nether",
+      "minecraft:the_end": "ins Ende",
+      "twilightforest:twilight_forest": "in den Dämmerwald"
+    },
+    "dimensionIn": {
+      "minecraft:overworld": "in der Oberwelt",
+      "minecraft:the_nether": "im Nether",
+      "minecraft:the_end": "im Ende",
+      "twilightforest:twilight_forest": "im Dämmerwald"
+    }
+  },
+  "themes": {
+    "blacksmith_order": {
+      "names": [
+        "Auftrag der Schmiede",
+        "Schmiedearbeit",
+        "Schmiedebedarf"
+      ],
+      "descriptions": [
+        "Die Schmiede braucht Hilfe: {list}."
+      ]
+    },
+    "harvest_festival": {
+      "names": [
+        "Erntefest",
+        "Erntezeit",
+        "Rekordernte"
+      ],
+      "descriptions": [
+        "Bring die Ernte ein: {list}."
+      ]
+    },
+    "monster_patrol": {
+      "names": [
+        "Monsterpatrouille",
+        "Nachtwache",
+        "Untoten-Säuberung"
+      ],
+      "descriptions": [
+        "Halte die Wege sicher: {list}."
+      ]
+    },
+    "ranch_hand": {
+      "names": [
+        "Rancharbeiter",
+        "Hofarbeit",
+        "Stalldienst"
+      ],
+      "descriptions": [
+        "Die Ranch braucht Hilfe: {list}."
+      ]
+    },
+    "nether_expedition": {
+      "names": [
+        "Nether-Expedition",
+        "Ins Feuer",
+        "Festungsraubzug"
+      ],
+      "descriptions": [
+        "Bring Schätze aus dem Nether mit: {list}."
+      ]
+    },
+    "mining_expedition": {
+      "names": [
+        "Bergbau-Expedition",
+        "Tiefe Grabung",
+        "Höhlenerkundung"
+      ],
+      "descriptions": [
+        "Ab unter die Erde: {list}."
+      ]
+    },
+    "lumberjack": {
+      "names": [
+        "Holzfäller",
+        "Baum fällt!",
+        "Holzhacker"
+      ],
+      "descriptions": [
+        "Das Sägewerk wartet: {list}."
+      ]
+    },
+    "ocean_voyage": {
+      "names": [
+        "Seereise",
+        "Meeresernte",
+        "Gezeitenarbeit"
+      ],
+      "descriptions": [
+        "Stich in See: {list}."
+      ]
+    },
+    "camp_cook": {
+      "names": [
+        "Lagerkoch",
+        "Lagerfeueressen",
+        "Zeit fürs Abendbrot"
+      ],
+      "descriptions": [
+        "Versorge das Lager: {list}."
+      ]
+    },
+    "builders_order": {
+      "names": [
+        "Bauauftrag",
+        "Baustellenjob",
+        "Maurerarbeit"
+      ],
+      "descriptions": [
+        "Die Bauleute brauchen Material: {list}."
+      ]
+    },
+    "desert_trek": {
+      "names": [
+        "Wüstentrek",
+        "Sand und Sonne"
+      ],
+      "descriptions": [
+        "Trotze der Wüste: {list}."
+      ]
+    },
+    "end_expedition": {
+      "names": [
+        "End-Expedition",
+        "Jenseits der Leere"
+      ],
+      "descriptions": [
+        "Erkunde das Ende: {list}."
+      ]
+    },
+    "beekeeper": {
+      "names": [
+        "Imker",
+        "Fleißige Bienen"
+      ],
+      "descriptions": [
+        "Kümmere dich um die Bienenstöcke: {list}."
+      ]
+    },
+    "winter_prep": {
+      "names": [
+        "Wintervorbereitung",
+        "Kälteeinbruch",
+        "Eingeschneit"
+      ],
+      "descriptions": [
+        "Mach dich bereit für die Kälte: {list}."
+      ]
+    },
+    "tool_upgrade": {
+      "names": [
+        "Werkzeug-Upgrade",
+        "Eisenzeit",
+        "Besseres Werkzeug"
+      ],
+      "descriptions": [
+        "Zeit für besseres Werkzeug: {list}."
+      ]
+    },
+    "railway_builder": {
+      "names": [
+        "Gleisbauer",
+        "Bahnlinie",
+        "Gleistrupp"
+      ],
+      "descriptions": [
+        "Verlege eine neue Strecke: {list}."
+      ]
+    },
+    "redstone_workshop": {
+      "names": [
+        "Redstone-Werkstatt",
+        "Schaltungsbauer"
+      ],
+      "descriptions": [
+        "Verkable die Werkstatt: {list}."
+      ]
+    },
+    "enchanters_study": {
+      "names": [
+        "Zauberstube",
+        "Arkane Bibliothek"
+      ],
+      "descriptions": [
+        "Der Verzauberer braucht Nachschub: {list}."
+      ]
+    },
+    "night_hunter": {
+      "names": [
+        "Nachtjäger",
+        "Jagd im Mondlicht",
+        "Nach Einbruch der Dunkelheit"
+      ],
+      "descriptions": [
+        "Wenn die Sonne untergeht: {list}."
+      ]
+    },
+    "fishermans_day": {
+      "names": [
+        "Anglertag",
+        "Fang des Tages",
+        "Angeln gegangen"
+      ],
+      "descriptions": [
+        "Ein Tag am Wasser: {list}."
+      ]
+    },
+    "florist": {
+      "names": [
+        "Florist",
+        "Blumenmarkt",
+        "Blumenstrauß"
+      ],
+      "descriptions": [
+        "Frische Blumen für den Markt: {list}."
+      ]
+    },
+    "village_fair": {
+      "names": [
+        "Dorffest",
+        "Jahrmarkt",
+        "Erntemarkt"
+      ],
+      "descriptions": [
+        "Der Markt öffnet bald: {list}."
+      ]
+    },
+    "stonemason": {
+      "names": [
+        "Steinmetz",
+        "Maurerjob",
+        "Steinwerk"
+      ],
+      "descriptions": [
+        "Der Steinmetz braucht Hilfe: {list}."
+      ]
+    },
+    "deep_dark_delve": {
+      "names": [
+        "Ins Tiefe Dunkel",
+        "Stille Tiefen"
+      ],
+      "descriptions": [
+        "Steig hinab ins Tiefe Dunkel: {list}."
+      ]
+    },
+    "brewers_supplies": {
+      "names": [
+        "Brauerbedarf",
+        "Trankzutaten"
+      ],
+      "descriptions": [
+        "Der Brauer braucht Waren aus dem Nether: {list}."
+      ]
+    },
+    "leatherworker": {
+      "names": [
+        "Lederer",
+        "Gerbereiauftrag"
+      ],
+      "descriptions": [
+        "Die Gerberei hat viel zu tun: {list}."
+      ]
+    },
+    "copper_age": {
+      "names": [
+        "Kupferzeit",
+        "Kupferwerk"
+      ],
+      "descriptions": [
+        "Überall Kupfer: {list}."
+      ]
+    },
+    "nether_builder": {
+      "names": [
+        "Nether-Baumeister",
+        "Festungsmaurer"
+      ],
+      "descriptions": [
+        "Bau wie die Piglins: {list}."
+      ]
+    },
+    "stable_hand": {
+      "names": [
+        "Stallbursche",
+        "Pferderanch"
+      ],
+      "descriptions": [
+        "Im Stall gibt es Arbeit: {list}."
+      ]
+    },
+    "library_project": {
+      "names": [
+        "Bibliotheksprojekt",
+        "Bücherwurm"
+      ],
+      "descriptions": [
+        "Der Bibliothekar braucht Bücher: {list}."
+      ]
+    },
+    "lamplighter": {
+      "names": [
+        "Laternenanzünder",
+        "Leuchtturmwärter",
+        "Helle Nächte"
+      ],
+      "descriptions": [
+        "Erhelle die Wege vor der Dunkelheit: {list}."
+      ]
+    },
+    "glassblower": {
+      "names": [
+        "Glasbläser",
+        "Glaswerk",
+        "Klare Sicht"
+      ],
+      "descriptions": [
+        "Dem Glasbläser ist der Sand ausgegangen: {list}."
+      ]
+    },
+    "potter": {
+      "names": [
+        "Töpferscheibe",
+        "Tonwerk",
+        "Brenntag"
+      ],
+      "descriptions": [
+        "Der Brennofen des Töpfers wartet: {list}."
+      ]
+    },
+    "pet_shop": {
+      "names": [
+        "Tierhandlung",
+        "Tierfreunde",
+        "Tierpflege"
+      ],
+      "descriptions": [
+        "Die Tierhandlung braucht neue Freunde: {list}."
+      ]
+    },
+    "mushroom_forager": {
+      "names": [
+        "Pilzsammler",
+        "Pilzjagd",
+        "Sporenzeit"
+      ],
+      "descriptions": [
+        "Der Koch will Pilze: {list}."
+      ]
+    },
+    "cave_garden": {
+      "names": [
+        "Höhlengarten",
+        "Üppige Höhlen",
+        "Grün im Untergrund"
+      ],
+      "descriptions": [
+        "Unter der Erde wächst etwas: {list}."
+      ]
+    },
+    "rock_collector": {
+      "names": [
+        "Steinsammler",
+        "Meister des Steinbruchs",
+        "Gesteinsprobe"
+      ],
+      "descriptions": [
+        "Der Geologe will Proben: {list}."
+      ]
+    },
+    "diamond_smith": {
+      "names": [
+        "Diamantschmied",
+        "Schmiedemeister",
+        "Funkelnde Ausrüstung"
+      ],
+      "descriptions": [
+        "Nur das Beste ist gut genug: {list}."
+      ]
+    },
+    "bake_sale": {
+      "names": [
+        "Kuchenbasar",
+        "Naschkatze",
+        "Marktstand"
+      ],
+      "descriptions": [
+        "Der Kuchenbasar im Dorf braucht dich: {list}."
+      ]
+    },
+    "nether_gardener": {
+      "names": [
+        "Nethergärtner",
+        "Pilzhain",
+        "Karmesinernte"
+      ],
+      "descriptions": [
+        "Sogar der Nether hat einen Garten: {list}."
+      ]
+    },
+    "camp_setup": {
+      "names": [
+        "Lageraufbau",
+        "Basislager",
+        "Nachtlager"
+      ],
+      "descriptions": [
+        "Schlag vor Einbruch der Nacht ein Lager auf: {list}."
+      ]
+    },
+    "workshop_setup": {
+      "names": [
+        "Werkstatt einrichten",
+        "Neue Werkstatt",
+        "Bastelecke"
+      ],
+      "descriptions": [
+        "Jedes Dorf braucht eine Werkstatt: {list}."
+      ]
+    },
+    "adventurers_kit": {
+      "names": [
+        "Abenteurerausrüstung",
+        "Bereit zum Aufbruch",
+        "Reiseausrüstung"
+      ],
+      "descriptions": [
+        "Pack für die Reise: {list}."
+      ]
+    },
+    "treasure_hunter": {
+      "names": [
+        "Schatzjäger",
+        "Tiefe Schätze",
+        "Edelsteinsucher"
+      ],
+      "descriptions": [
+        "Reichtümer liegen tief unter der Erde: {list}."
+      ]
+    },
+    "fd_farmers_market": {
+      "names": [
+        "Bauernmarkt",
+        "Markttag",
+        "Frische Ware"
+      ],
+      "descriptions": [
+        "Der Markt braucht frische Ware: {list}."
+      ]
+    },
+    "fd_harvest_festival": {
+      "names": [
+        "Erntefest",
+        "Erntezeit"
+      ],
+      "descriptions": [
+        "Bring die Ernte ein! {list}."
+      ]
+    },
+    "fd_chefs_special": {
+      "names": [
+        "Spezialität des Küchenchefs",
+        "Küchenstress",
+        "Abendservice"
+      ],
+      "descriptions": [
+        "Das Menü heute Abend: {list}."
+      ]
+    },
+    "fd_butcher": {
+      "names": [
+        "Metzgerauftrag",
+        "Fleischmarkt"
+      ],
+      "descriptions": [
+        "Der Metzger braucht Hilfe: {list}."
+      ]
+    },
+    "fd_kitchen_setup": {
+      "names": [
+        "Kücheneinrichtung",
+        "Neue Küche"
+      ],
+      "descriptions": [
+        "Jeder Koch braucht Werkzeug: {list}."
+      ]
+    },
+    "fd_wild_forager": {
+      "names": [
+        "Wildsammler",
+        "Sammlerspaziergang"
+      ],
+      "descriptions": [
+        "Durchsuche die Wildnis: {list}."
+      ]
+    },
+    "fd_village_bakery": {
+      "names": [
+        "Dorfbäckerei",
+        "Frisches Brot"
+      ],
+      "descriptions": [
+        "Der Bäckerei fehlen Hände: {list}."
+      ]
+    },
+    "fd_breakfast_club": {
+      "names": [
+        "Frühstücksclub",
+        "Morgenmenü"
+      ],
+      "descriptions": [
+        "Das Frühstück ist serviert: {list}."
+      ]
+    },
+    "fd_picnic": {
+      "names": [
+        "Picknickkorb",
+        "Picknicktag"
+      ],
+      "descriptions": [
+        "Pack den Picknickkorb: {list}."
+      ]
+    },
+    "fd_rope_maker": {
+      "names": [
+        "Seiler",
+        "Stroharbeit"
+      ],
+      "descriptions": [
+        "Dreh Stroh zu etwas Nützlichem: {list}."
+      ]
+    },
+    "fd_crate_stock": {
+      "names": [
+        "Kistenvorrat",
+        "Speisekammer"
+      ],
+      "descriptions": [
+        "Füll die Speisekammer: {list}."
+      ]
+    },
+    "fd_fishmonger": {
+      "names": [
+        "Fischhändler",
+        "Fischmarkt"
+      ],
+      "descriptions": [
+        "Der Fischhändler braucht Ware: {list}."
+      ]
+    },
+    "create_zinc_rush": {
+      "names": [
+        "Zinkrausch",
+        "Zinknachschub",
+        "Zinksucher"
+      ],
+      "descriptions": [
+        "Die Werkstatt läuft mit Zink: {list}."
+      ]
+    },
+    "create_first_steps": {
+      "names": [
+        "Ingenieurs-Start",
+        "Erste Apparatur",
+        "Zahnrad für Zahnrad"
+      ],
+      "descriptions": [
+        "Jede Maschine fängt klein an: {list}."
+      ]
+    },
+    "create_water_mill": {
+      "names": [
+        "Wassermühle",
+        "Mühlenbau"
+      ],
+      "descriptions": [
+        "Bau eine Mühle am Fluss: {list}."
+      ]
+    },
+    "create_stone_layers": {
+      "names": [
+        "Gesteinsschichten",
+        "Tiefe Schichten",
+        "Gesteinserkundung"
+      ],
+      "descriptions": [
+        "Erkunde die Gesteinsschichten unter der Erde: {list}."
+      ]
+    },
+    "create_metalworks": {
+      "names": [
+        "Metallwerk",
+        "Eisen und Zink",
+        "Gießereiauftrag"
+      ],
+      "descriptions": [
+        "Die Gießerei braucht Metall: {list}."
+      ]
+    },
+    "create_logistics_line": {
+      "names": [
+        "Logistikstrecke",
+        "Förderband-Aufbau"
+      ],
+      "descriptions": [
+        "Bewege Gegenstände automatisch: {list}."
+      ]
+    },
+    "create_contraption_crew": {
+      "names": [
+        "Apparatur-Team",
+        "Bewegliche Teile"
+      ],
+      "descriptions": [
+        "Bau etwas, das sich bewegt: {list}."
+      ]
+    },
+    "create_masonry_works": {
+      "names": [
+        "Schichtmauerwerk",
+        "Steinwerkstatt"
+      ],
+      "descriptions": [
+        "Dekoriere mit Create-Gestein: {list}."
+      ]
+    },
+    "create_andesite_age": {
+      "names": [
+        "Andesitzeit",
+        "Legierungsgießerei"
+      ],
+      "descriptions": [
+        "Alles beginnt mit Andesit: {list}."
+      ]
+    },
+    "create_engineers_kit": {
+      "names": [
+        "Ingenieursausrüstung",
+        "Werkstattwerkzeug"
+      ],
+      "descriptions": [
+        "Jeder Ingenieur braucht Ausrüstung: {list}."
+      ]
+    },
+    "mek_osmium_rush": {
+      "names": [
+        "Osmiumrausch",
+        "Blaues Metall",
+        "Osmiumnachschub"
+      ],
+      "descriptions": [
+        "Jede Mekanism-Maschine braucht Osmium: {list}."
+      ]
+    },
+    "mek_first_machine": {
+      "names": [
+        "Erste Maschine",
+        "Infusionsanlage bauen",
+        "Technikstart"
+      ],
+      "descriptions": [
+        "Bring die Werkstatt in Gang: {list}."
+      ]
+    },
+    "mek_metal_survey": {
+      "names": [
+        "Metallerkundung",
+        "Erzerkundung",
+        "Neue Metalle"
+      ],
+      "descriptions": [
+        "Kartiere die neuen Erze unter der Erde: {list}."
+      ]
+    },
+    "mek_radiation_safety": {
+      "names": [
+        "Strahlenschutz",
+        "Schutzanzug bereit",
+        "Bleiabschirmung"
+      ],
+      "descriptions": [
+        "Sei bereit, bevor etwas leuchtet: {list}."
+      ]
+    },
+    "tf_expedition": {
+      "names": [
+        "Dämmer-Expedition",
+        "In die Dämmerung",
+        "Wald jenseits"
+      ],
+      "descriptions": [
+        "Der Dämmerwald wartet: {list}."
+      ]
+    },
+    "tf_hunters": {
+      "names": [
+        "Dämmerjagd",
+        "Waldpatrouille",
+        "Ärger mit Kobolden"
+      ],
+      "descriptions": [
+        "Säubere die Wege des Dämmerwalds: {list}."
+      ]
+    },
+    "tf_ironwood_smith": {
+      "names": [
+        "Eisenholzschmied",
+        "Lebendes Metall",
+        "Wurzel und Eisen"
+      ],
+      "descriptions": [
+        "Eisenholz wächst aus Wurzeln und Eisen: {list}."
+      ]
+    },
+    "tf_venison_feast": {
+      "names": [
+        "Wildbretschmaus",
+        "Jägermahl"
+      ],
+      "descriptions": [
+        "Das Abendessen kommt aus dem Dämmerwald: {list}."
+      ]
+    },
+    "bot_first_steps": {
+      "names": [
+        "Botaniker-Start",
+        "Gartenzauber",
+        "Blumenkraft"
+      ],
+      "descriptions": [
+        "Jeder Botaniker beginnt auf einer Wiese: {list}."
+      ]
+    },
+    "bot_florist": {
+      "names": [
+        "Florist",
+        "Blumenstrauß",
+        "Blütenpflücker"
+      ],
+      "descriptions": [
+        "Der Florist will Farbe: {list}."
+      ]
+    },
+    "ae2_meteor_hunt": {
+      "names": [
+        "Meteoritenjagd",
+        "Gefallener Stern",
+        "Himmelsstein"
+      ],
+      "descriptions": [
+        "Irgendwo in der Nähe ist ein Meteorit eingeschlagen: {list}."
+      ]
+    },
+    "ae2_engineer": {
+      "names": [
+        "Netzwerkingenieur",
+        "Verkabelt",
+        "Materie zu Energie"
+      ],
+      "descriptions": [
+        "Jedes Netzwerk beginnt an der Werkbank: {list}."
+      ]
+    },
+    "ie_prospector": {
+      "names": [
+        "Prospektor",
+        "Erzerkundung",
+        "Feldingenieur"
+      ],
+      "descriptions": [
+        "Ein Ingenieur braucht Metall vor Maschinen: {list}."
+      ]
+    },
+    "ie_workshop_setup": {
+      "names": [
+        "Werkstatt einrichten",
+        "Hammerzeit",
+        "Ziegel und Eisen"
+      ],
+      "descriptions": [
+        "Richte die Werkstatt ein: {list}."
+      ]
+    },
+    "bop_explorer": {
+      "names": [
+        "Biomhüpfer",
+        "Viel zu sehen",
+        "Fernweh"
+      ],
+      "descriptions": [
+        "Die Welt ist größer geworden: {list}."
+      ]
+    },
+    "bop_florist": {
+      "names": [
+        "Wilder Strauß",
+        "Wiesenfarben",
+        "Blumenjagd"
+      ],
+      "descriptions": [
+        "Sammle die Wildblumen: {list}."
+      ]
+    },
+    "bop_carpenter": {
+      "names": [
+        "Exotischer Zimmermann",
+        "Edles Holz"
+      ],
+      "descriptions": [
+        "Exotisches Holz für die Werkstatt: {list}."
+      ]
+    },
+    "am_safari": {
+      "names": [
+        "Safari",
+        "Wildes Königreich",
+        "Ab in die Wildnis"
+      ],
+      "descriptions": [
+        "Die wilden Tiere haben viel zu bieten: {list}."
+      ]
+    },
+    "am_hunter": {
+      "names": [
+        "Großwild",
+        "Spitzenjäger",
+        "Raubtierpatrouille"
+      ],
+      "descriptions": [
+        "Gefährliche Tiere streifen durch die Wildnis: {list}."
+      ]
+    },
+    "tc_tinker": {
+      "names": [
+        "Bastlerlehrling",
+        "Bastlerbank",
+        "Muster und Teile"
+      ],
+      "descriptions": [
+        "Jeder Bastler beginnt mit einem Muster: {list}."
+      ]
+    },
+    "tc_smelter": {
+      "names": [
+        "Schmelzenbauer",
+        "Angebrannt und bereit",
+        "Geschmolzene Pläne"
+      ],
+      "descriptions": [
+        "Eine Schmelze baut man Ziegel für Ziegel: {list}."
+      ]
+    },
+    "an_apprentice": {
+      "names": [
+        "Magierlehrling",
+        "Erste Zauber",
+        "Arkane Studien"
+      ],
+      "descriptions": [
+        "Jeder Magier beginnt mit einem Buch: {list}."
+      ]
+    },
+    "an_woodland": {
+      "names": [
+        "Archwood-Hain",
+        "Magische Wälder"
+      ],
+      "descriptions": [
+        "Der Archwood-Wald verbirgt mehr als Holz: {list}."
+      ]
+    }
+  },
+  "tagNouns": {
+    "logs": "Stamm",
+    "logs_block": "Stamm",
+    "skeletons": "Skelett",
+    "wool": "Wolle",
+    "beds": "Bett",
+    "small_flowers": "Blume",
+    "iron_ingots": "Eisenbarren",
+    "zinc_ingots": "Zinkbarren",
+    "wool_carpets": "Teppich",
+    "fishes": "Fisch",
+    "tomatoes": "Tomate",
+    "osmium_ingots": "Osmiumbarren",
+    "tin_ingots": "Zinnbarren",
+    "lead_ingots": "Bleibarren"
+  },
+  "hints": {
+    "Chop any kind of tree.": "Fälle Bäume jeder Art.",
+    "Plant saplings to regrow the forest.": "Pflanze Setzlinge, damit der Wald nachwächst.",
+    "Smelt logs in a furnace.": "Brenne Stämme im Ofen.",
+    "Mine stone with a pickaxe.": "Baue Stein mit einer Spitzhacke ab.",
+    "Build something with it.": "Bau etwas daraus.",
+    "Smelt cobblestone in a furnace.": "Brenne Bruchstein im Ofen.",
+    "Smelt stone a second time.": "Brenne Stein ein zweites Mal.",
+    "Craft from smelted stone.": "Wird aus gebranntem Stein hergestellt.",
+    "Smelt cobbled deepslate.": "Brenne Bruchtiefenschiefer.",
+    "Smelt sandstone.": "Brenne Sandstein.",
+    "Dig sand with a shovel.": "Grabe Sand mit einer Schaufel.",
+    "Smelt sand in a furnace.": "Schmelze Sand im Ofen.",
+    "Craft panes from smelted glass.": "Stelle Scheiben aus geschmolzenem Glas her.",
+    "Gravel sometimes drops flint.": "Kies lässt manchmal Feuerstein fallen.",
+    "Dig clay in rivers and swamps.": "Grabe Ton in Flüssen und Sümpfen.",
+    "Smelt clay balls.": "Brenne Tonklumpen.",
+    "Smelt clay blocks.": "Brenne Tonblöcke.",
+    "Four bricks make a brick block.": "Vier Ziegel ergeben einen Ziegelsteinblock.",
+    "Dig snow with a shovel.": "Grabe Schnee mit einer Schaufel.",
+    "Break tall grass anywhere.": "Zerstöre hohes Gras, egal wo.",
+    "Break grass to find seeds.": "Zerstöre Gras, um Samen zu finden.",
+    "Mine coal ore.": "Baue Steinkohle ab.",
+    "Copper ore drops raw copper.": "Kupfererz lässt Rohkupfer fallen.",
+    "Smelt raw copper in a furnace.": "Schmelze Rohkupfer im Ofen.",
+    "Iron ore drops raw iron.": "Eisenerz lässt Roheisen fallen.",
+    "Smelt raw iron in a furnace.": "Schmelze Roheisen im Ofen.",
+    "Gold ore drops raw gold.": "Golderz lässt Rohgold fallen.",
+    "Smelt raw gold in a furnace.": "Schmelze Rohgold im Ofen.",
+    "Lapis ore drops several pieces.": "Lapislazulierz lässt mehrere Stücke fallen.",
+    "Redstone ore drops dust.": "Redstone-Erz lässt Staub fallen.",
+    "Dig deep, around y=-58.": "Grabe tief, etwa bei y=-58.",
+    "Break amethyst clusters.": "Zerstöre Amethysthaufen.",
+    "Pour water on lava pools, then mine it.": "Gieße Wasser auf Lavaseen und baue es dann ab.",
+    "Harvest fully grown wheat.": "Ernte ausgewachsenen Weizen.",
+    "Nine wheat make a hay bale.": "Neun Weizen ergeben einen Strohballen.",
+    "Bake potatoes in a furnace or smoker.": "Backe Kartoffeln im Ofen oder Räucherofen.",
+    "Six beetroots make a soup.": "Sechs Rote Bete ergeben eine Suppe.",
+    "Pumpkin, sugar and an egg.": "Kürbis, Zucker und ein Ei.",
+    "Oak and dark oak leaves sometimes drop apples.": "Eichen- und Schwarzeichenlaub lässt manchmal Äpfel fallen.",
+    "Three sugar cane make three paper.": "Drei Zuckerrohr ergeben drei Papier.",
+    "Smelt cactus.": "Schmelze Kaktus.",
+    "Bamboo and string.": "Bambus und Faden.",
+    "Smelt kelp.": "Trockne Seetang im Ofen.",
+    "A bowl with a red and a brown mushroom.": "Eine Schüssel mit einem roten und einem braunen Pilz.",
+    "Pick flowers.": "Pflücke Blumen.",
+    "Shear a full bee nest.": "Schere ein volles Bienennest.",
+    "Use a glass bottle on a full hive.": "Benutze eine Glasflasche an einem vollen Bienenstock.",
+    "Bees breed with flowers.": "Bienen vermehren sich mit Blumen.",
+    "Cows breed with wheat.": "Kühe vermehren sich mit Weizen.",
+    "Cook raw beef.": "Brate rohes Rindfleisch.",
+    "Pigs breed with carrots, potatoes or beetroots.": "Schweine vermehren sich mit Karotten, Kartoffeln oder Roter Bete.",
+    "Cook raw porkchops.": "Brate rohes Schweinefleisch.",
+    "Chickens breed with seeds.": "Hühner vermehren sich mit Samen.",
+    "Chickens lay eggs over time.": "Hühner legen mit der Zeit Eier.",
+    "Cook raw chicken.": "Brate rohes Hühnchen.",
+    "Sheep breed with wheat.": "Schafe vermehren sich mit Weizen.",
+    "Shear sheep.": "Schere Schafe.",
+    "Rabbits breed with carrots or dandelions.": "Kaninchen vermehren sich mit Karotten oder Löwenzahn.",
+    "Goats breed with wheat.": "Ziegen vermehren sich mit Weizen.",
+    "Llamas breed with hay bales.": "Lamas vermehren sich mit Strohballen.",
+    "Turtles breed with seagrass.": "Schildkröten vermehren sich mit Seegras.",
+    "Frogs breed with slimeballs.": "Frösche vermehren sich mit Schleimbällen.",
+    "Sneak up on foxes with sweet berries.": "Schleiche dich mit Süßbeeren an Füchse heran.",
+    "Armadillos breed with spider eyes.": "Gürteltiere vermehren sich mit Spinnenaugen.",
+    "Camels breed with cactus.": "Dromedare vermehren sich mit Kaktus.",
+    "Horses breed with golden carrots or apples.": "Pferde vermehren sich mit goldenen Karotten oder Äpfeln.",
+    "Donkeys breed with golden carrots or apples.": "Esel vermehren sich mit goldenen Karotten oder Äpfeln.",
+    "Tame wolves with bones.": "Zähme Wölfe mit Knochen.",
+    "Tamed wolves breed with meat.": "Gezähmte Wölfe vermehren sich mit Fleisch.",
+    "Tame stray cats with raw cod or salmon.": "Zähme streunende Katzen mit rohem Kabeljau oder Lachs.",
+    "Tamed cats breed with raw fish.": "Gezähmte Katzen vermehren sich mit rohem Fisch.",
+    "Tame parrots with seeds.": "Zähme Papageien mit Samen.",
+    "Squid drop ink sacs.": "Tintenfische lassen Tintenbeutel fallen.",
+    "Glow squid live in dark water.": "Leuchttintenfische leben in dunklem Wasser.",
+    "Skeletons drop arrows.": "Skelette lassen Pfeile fallen.",
+    "Five gunpowder and four sand.": "Fünf Schwarzpulver und vier Sand.",
+    "Coal or charcoal on a stick.": "Kohle oder Holzkohle auf einem Stock.",
+    "Build with oak planks.": "Baue mit Eichenholzbrettern.",
+    "Three wheat make a loaf.": "Drei Weizen ergeben ein Brot.",
+    "Wheat and cocoa beans.": "Weizen und Kakaobohnen.",
+    "Needs milk, sugar, wheat and an egg.": "Braucht Milch, Zucker, Weizen und ein Ei.",
+    "Each shelf needs three books.": "Jedes Regal braucht drei Bücher.",
+    "Flint, stick and feather.": "Feuerstein, Stock und Feder.",
+    "Build a railway.": "Baue eine Bahnstrecke.",
+    "Milk a cow with a bucket.": "Melke eine Kuh mit einem Eimer.",
+    "Three wool and three planks.": "Drei Wolle und drei Bretter.",
+    "Smelt netherrack.": "Brenne Netherrack.",
+    "They attack as a group once angered.": "Einmal verärgert, greifen sie in der Gruppe an.",
+    "Blaze powder and an ender pearl.": "Lohenstaub und eine Enderperle.",
+    "Nine copper ingots.": "Neun Kupferbarren.",
+    "Four copper blocks make four cut copper.": "Vier Kupferblöcke ergeben vier geschnittene Kupferblöcke.",
+    "Watch it oxidize over time.": "Sieh zu, wie es mit der Zeit oxidiert.",
+    "Cobblestone with vines or moss.": "Bruchstein mit Ranken oder Moos.",
+    "Stone bricks with vines or moss.": "Steinziegel mit Ranken oder Moos.",
+    "Smelt stone bricks.": "Brenne Steinziegel.",
+    "Three smooth stone make six slabs.": "Drei glatte Steine ergeben sechs Stufen.",
+    "Mud and wheat.": "Schlamm und Weizen.",
+    "Four red sand.": "Vier roter Sand.",
+    "Terracotta around white dye.": "Keramik um weißen Farbstoff.",
+    "Smelt white terracotta.": "Brenne weiße Keramik.",
+    "Four snowballs.": "Vier Schneebälle.",
+    "Cut them with a sword or shears.": "Schneide sie mit einem Schwert oder einer Schere.",
+    "Move quietly: the warden listens.": "Bewege dich leise: Der Wärter hört mit.",
+    "Sunflower plains are full of them.": "In der Sonnenblumenebene gibt es jede Menge.",
+    "From poppies, tulips or beetroot.": "Aus Mohn, Tulpen oder Roter Bete.",
+    "From dandelions or sunflowers.": "Aus Löwenzahn oder Sonnenblumen.",
+    "From bone meal or lilies of the valley.": "Aus Knochenmehl oder Maiglöckchen.",
+    "From cornflowers or lapis lazuli.": "Aus Kornblumen oder Lapislazuli.",
+    "From ink sacs or wither roses.": "Aus Tintenbeuteln oder Wither-Rosen.",
+    "One bone makes three bone meal.": "Ein Knochen ergibt drei Knochenmehl.",
+    "Leaves and dead bushes drop sticks.": "Laub und tote Büsche lassen Stöcke fallen.",
+    "Mooshrooms breed with wheat.": "Mooshrooms vermehren sich mit Weizen.",
+    "Pandas breed with bamboo near bamboo.": "Pandas vermehren sich mit Bambus, wenn Bambus in der Nähe ist.",
+    "Axolotls breed with a bucket of tropical fish.": "Axolotl vermehren sich mit einem Tropenfischeimer.",
+    "Ocelots breed with raw cod or salmon.": "Ozelots vermehren sich mit rohem Kabeljau oder Lachs.",
+    "Striders breed with warped fungus.": "Schreiter vermehren sich mit Wirrpilzen.",
+    "Hoglins breed with crimson fungus; they fight back.": "Hoglins vermehren sich mit Karmesinpilzen; sie wehren sich.",
+    "Golden apples can be eaten any time.": "Goldene Äpfel kann man jederzeit essen.",
+    "Baby turtles drop a scute when they grow up.": "Junge Schildkröten lassen beim Erwachsenwerden ein Hornschild fallen.",
+    "They hide in infested stone in mountains and strongholds.": "Sie verstecken sich in befallenem Stein in Bergen und Festungen.",
+    "Piglins attack players without gold armor.": "Piglins greifen Spieler ohne Goldrüstung an.",
+    "Nether gold ore drops gold nuggets.": "Nethergolderz lässt Goldklumpen fallen.",
+    "Fossils in soul sand valleys.": "Fossilien in Seelensandtälern.",
+    "Four Nether brick items.": "Vier Netherziegel-Items.",
+    "Nether bricks and Nether wart.": "Netherziegel und Netherwarzen.",
+    "Four Nether quartz.": "Vier Netherquarz.",
+    "One blaze rod makes two powder.": "Eine Lohenrute ergibt zwei Staub.",
+    "31 iron ingots.": "31 Eisenbarren.",
+    "Needs a blaze rod from a Nether fortress.": "Braucht eine Lohenrute aus einer Netherfestung.",
+    "String and a slimeball.": "Faden und ein Schleimball.",
+    "Gold ingots, a stick and redstone.": "Goldbarren, ein Stock und Redstone.",
+    "Spider eye, sugar and a brown mushroom.": "Spinnenauge, Zucker und ein brauner Pilz.",
+    "Two wool make three carpets.": "Zwei Wolle ergeben drei Teppiche.",
+    "Crafted from sugar cane.": "Wird aus Zuckerrohr hergestellt.",
+    "Dry wet sponges from ocean monuments.": "Trockne nasse Schwämme aus Ozeanmonumenten.",
+    "Nine iron ingots.": "Neun Eisenbarren.",
+    "A stonecutter makes them one for one.": "Eine Steinsäge stellt sie eins zu eins her.",
+    "Use a stonecutter on stone.": "Benutze eine Steinsäge mit Stein.",
+    "Cut copper blocks on a stonecutter.": "Schneide Kupferblöcke auf einer Steinsäge.",
+    "Enchant books on an enchanting table; any enchantment counts.": "Verzaubere Bücher am Zaubertisch; jede Verzauberung zählt.",
+    "Any enchantment counts.": "Jede Verzauberung zählt.",
+    "Shovel snow and throw the snowballs.": "Schaufle Schnee und wirf die Schneebälle.",
+    "Chickens lay eggs.": "Hühner legen Eier.",
+    "Endermen drop ender pearls.": "Endermen lassen Enderperlen fallen.",
+    "Use bone meal on crops or grass.": "Benutze Knochenmehl an Pflanzen oder Gras.",
+    "Craft rockets from paper and gunpowder.": "Stelle Raketen aus Papier und Schwarzpulver her.",
+    "Brew an Awkward Potion with sugar.": "Braue einen Seltsamen Trank mit Zucker.",
+    "Brew an Awkward Potion with a golden carrot.": "Braue einen Seltsamen Trank mit einer goldenen Karotte.",
+    "Brew an Awkward Potion with magma cream.": "Braue einen Seltsamen Trank mit Magmacreme.",
+    "Brew an Awkward Potion with blaze powder.": "Braue einen Seltsamen Trank mit Lohenstaub.",
+    "Brew an Awkward Potion with a pufferfish.": "Braue einen Seltsamen Trank mit einem Kugelfisch.",
+    "Cabbage seeds come from wild cabbages on beaches.": "Weißkohlsamen stammen von wildem Kohl an Stränden.",
+    "Nine cabbages fill a crate.": "Neun Kohlköpfe füllen eine Kiste.",
+    "Tomato seeds come from wild tomatoes in warm, dry biomes.": "Tomatensamen stammen von wilden Tomaten in warmen, trockenen Biomen.",
+    "Nine tomatoes fill a crate.": "Neun Tomaten füllen eine Kiste.",
+    "Onions come from wild onions; replant them.": "Zwiebeln stammen von wilden Zwiebeln; pflanze sie neu.",
+    "Nine onions fill a crate.": "Neun Zwiebeln füllen eine Kiste.",
+    "Grow rice in shallow water.": "Baue Reis in flachem Wasser an.",
+    "Wild rice grows in swamps and jungles.": "Wildreis wächst in Sümpfen und Dschungeln.",
+    "Nine rice panicles make a bale.": "Neun Reisrispen ergeben ein Bündel.",
+    "Wild cabbages grow on beaches.": "Wilder Kohl wächst an Stränden.",
+    "Wild beetroots grow on beaches.": "Wilde Rote Bete wächst an Stränden.",
+    "Wild tomatoes grow in warm, dry biomes.": "Wilde Tomaten wachsen in warmen, trockenen Biomen.",
+    "Wild onions grow in most overworld biomes.": "Wilde Zwiebeln wachsen in den meisten Biomen der Oberwelt.",
+    "Wild carrots grow in most overworld biomes.": "Wilde Karotten wachsen in den meisten Biomen der Oberwelt.",
+    "Wild potatoes grow in most overworld biomes.": "Wilde Kartoffeln wachsen in den meisten Biomen der Oberwelt.",
+    "Cut grass or ripe wheat with a knife.": "Schneide Gras oder reifen Weizen mit einem Messer.",
+    "Two straw make four rope.": "Zwei Stroh ergeben vier Strohseile.",
+    "Four straw make a canvas.": "Vier Stroh ergeben einen Leinenstofffetzen.",
+    "Hang rope down a cliff or well.": "Lass Seil eine Klippe oder einen Brunnen hinab.",
+    "Five iron ingots, bricks, a wooden shovel and water.": "Fünf Eisenbarren, Ziegel, eine Holzschaufel und Wasser.",
+    "Bricks, a campfire and iron.": "Ziegel, ein Lagerfeuer und Eisen.",
+    "Oak slabs and trapdoors.": "Eichenholzstufen und Falltüren.",
+    "Spruce slabs and trapdoors.": "Fichtenholzstufen und Falltüren.",
+    "Pigs killed with a knife drop ham.": "Mit einem Messer getötete Schweine lassen Schinken fallen.",
+    "Smoke ham in a smoker.": "Räuchere Schinken im Räucherofen.",
+    "Cut porkchops on a cutting board, then cook.": "Schneide Schweinefleisch auf dem Schneidebrett und brate es dann.",
+    "Mince beef on a cutting board, then cook.": "Hacke Rindfleisch auf dem Schneidebrett und brate es dann.",
+    "Cut chicken on a cutting board, then cook.": "Schneide Hühnchen auf dem Schneidebrett und brate es dann.",
+    "Cut mutton on a cutting board, then cook.": "Schneide Hammelfleisch auf dem Schneidebrett und brate es dann.",
+    "Slice cod on a cutting board, then cook.": "Schneide Kabeljau auf dem Schneidebrett und brate ihn dann.",
+    "Slice salmon on a cutting board, then cook.": "Schneide Lachs auf dem Schneidebrett und brate ihn dann.",
+    "Rice, kelp and a carrot.": "Reis, Seetang und eine Karotte.",
+    "Cook eggs in a furnace or skillet.": "Brate Eier im Ofen oder in der Bratpfanne.",
+    "Bread, a beef patty, cabbage, tomato and onion.": "Brot, eine Rindfleischbulette, Kohl, Tomate und Zwiebel.",
+    "Apple, melon, berries and a pumpkin slice.": "Apfel, Melone, Beeren und eine Kürbisscheibe.",
+    "Cabbage, tomato and beetroot in a bowl.": "Kohl, Tomate und Rote Bete in einer Schüssel.",
+    "Crimson and warped fungi in a bowl.": "Karmesin- und Wirrpilze in einer Schüssel.",
+    "Needs a pie crust, apples and sugar.": "Braucht eine Kuchenkruste, Äpfel und Zucker.",
+    "Melon slices, ice and a stick.": "Melonenscheiben, Eis und ein Stock.",
+    "Cook it in a Cooking Pot.": "Koche es im Kochtopf.",
+    "Cook rice in a Cooking Pot.": "Koche Reis im Kochtopf.",
+    "Steak, a baked potato, onion and cooked rice.": "Steak, eine Ofenkartoffel, Zwiebel und gekochter Reis.",
+    "Brew it in a Cooking Pot.": "Braue es im Kochtopf.",
+    "Melon slices, sugar and a glass bottle.": "Melonenscheiben, Zucker und eine Glasflasche.",
+    "Pour a milk bucket into glass bottles.": "Fülle einen Milcheimer in Glasflaschen.",
+    "A feast to share.": "Ein Festmahl zum Teilen.",
+    "Wheat with an egg or water.": "Weizen mit einem Ei oder Wasser.",
+    "Bake wheat dough in a furnace.": "Backe Teig im Ofen.",
+    "Dirt, rotten flesh, straw and bone meal.": "Erde, verrottetes Fleisch, Stroh und Knochenmehl.",
+    "Salmon slices and cooked rice.": "Lachsscheiben und gekochter Reis.",
+    "Cod slices and cooked rice.": "Kabeljauscheiben und gekochter Reis.",
+    "Tomato, onion and meat on a stick.": "Tomate, Zwiebel und Fleisch an einem Stock.",
+    "Place a roast chicken and serve it into a bowl.": "Stelle ein Backhähnchen ab und fülle es in eine Schüssel.",
+    "Place a shepherd's pie and serve it into a bowl.": "Stelle einen Hirtenkuchen ab und fülle ihn in eine Schüssel.",
+    "Place a glazed ham and serve it into a bowl.": "Stelle einen glasierten Schinken ab und fülle ihn in eine Schüssel.",
+    "Made from rope.": "Wird aus Strohseil hergestellt.",
+    "It slowly turns into rich soil.": "Es wird langsam zu reichhaltiger Erde.",
+    "Zinc ore drops raw zinc.": "Zinkerz lässt Rohzink fallen.",
+    "Smelt raw zinc in a furnace.": "Schmelze Rohzink im Ofen.",
+    "Cut limestone on a stonecutter, then build.": "Schneide Kalkstein auf der Steinsäge und baue dann.",
+    "Cut asurine on a stonecutter, then build.": "Schneide Asurin auf der Steinsäge und baue dann.",
+    "Cut crimsite on a stonecutter, then build.": "Schneide Karmesit auf der Steinsäge und baue dann.",
+    "Cut limestone on a stonecutter.": "Schneide Kalkstein auf der Steinsäge.",
+    "Cut asurine on a stonecutter.": "Schneide Asurin auf der Steinsäge.",
+    "Cut granite on a stonecutter.": "Schneide Granit auf der Steinsäge.",
+    "Cut diorite on a stonecutter.": "Schneide Diorit auf der Steinsäge.",
+    "Cut andesite on a stonecutter.": "Schneide Andesit auf der Steinsäge.",
+    "Cut tuff on a stonecutter.": "Schneide Tuffstein auf der Steinsäge.",
+    "Two andesite and two iron nuggets.": "Zwei Andesit und zwei Eisenklumpen.",
+    "Use andesite alloy on stripped logs to make casings.": "Benutze Andesitlegierung an entrindeten Stämmen für Gehäuse.",
+    "Five andesite alloy.": "Fünf Andesitlegierung.",
+    "Two andesite alloy make eight shafts.": "Zwei Andesitlegierung ergeben acht Wellen.",
+    "A shaft and wooden planks.": "Eine Welle und Holzbretter.",
+    "Four cogwheels and an andesite casing.": "Vier Zahnräder und ein Andesitgehäuse.",
+    "A shaft surrounded by planks.": "Eine Welle, umgeben von Brettern.",
+    "Andesite alloy, sticks and wool.": "Andesitlegierung, Stöcke und Wolle.",
+    "A cogwheel, stone and an andesite casing.": "Ein Zahnrad, Stein und ein Andesitgehäuse.",
+    "Six dried kelp.": "Sechs getrockneter Seetang.",
+    "Andesite alloy and dried kelp.": "Andesitlegierung und getrockneter Seetang.",
+    "An iron block, a shaft and an andesite casing.": "Ein Eisenblock, eine Welle und ein Andesitgehäuse.",
+    "Needs a whisk made from iron sheets.": "Braucht einen Rührstab aus Eisenblech.",
+    "Needs a propeller made from iron sheets.": "Braucht einen Propeller aus Eisenblech.",
+    "Needs golden sheets from a press.": "Braucht Goldblech aus einer Presse.",
+    "Needs a golden sheet from a press.": "Braucht ein Goldblech aus einer Presse.",
+    "White wool on a wooden slab.": "Weiße Wolle auf einer Holzstufe.",
+    "Made with a mixer and a press.": "Wird mit einem Mixer und einer Presse hergestellt.",
+    "Fill apples with honey using a spout.": "Fülle Äpfel mit einem Ausguss mit Honig.",
+    "Brewed by a mixer, bottled by a spout.": "Im Mixer gebraut, vom Ausguss abgefüllt.",
+    "Fill bread with milk using a spout.": "Fülle Brot mit einem Ausguss mit Milch.",
+    "Nether quartz and eight redstone dust.": "Netherquarz und acht Redstone-Staub.",
+    "Andesite alloy and logs.": "Andesitlegierung und Stämme.",
+    "Andesite alloy and planks.": "Andesitlegierung und Bretter.",
+    "Nine andesite alloy.": "Neun Andesitlegierung.",
+    "A clock in an andesite casing.": "Eine Uhr in einem Andesitgehäuse.",
+    "Iron sheets and netherrack.": "Eisenblech und Netherrack.",
+    "Polish limestone on a stonecutter, then build.": "Poliere Kalkstein auf der Steinsäge und baue dann.",
+    "Osmium ore drops raw osmium.": "Osmiumerz lässt rohes Osmium fallen.",
+    "Smelt raw osmium in a furnace.": "Schmelze rohes Osmium im Ofen.",
+    "Tin ore drops raw tin.": "Zinnerz lässt rohes Zinn fallen.",
+    "Smelt raw tin in a furnace.": "Schmelze rohes Zinn im Ofen.",
+    "Lead ore drops raw lead.": "Bleierz lässt Rohblei fallen.",
+    "Smelt raw lead in a furnace.": "Schmelze Rohblei im Ofen.",
+    "Smelt raw uranium in a furnace.": "Schmelze rohes Uran im Ofen.",
+    "Fluorite ore drops two to four gems.": "Fluoriterz lässt zwei bis vier Edelsteine fallen.",
+    "Salt forms in small patches under shallow water, like clay.": "Salz bildet kleine Flecken unter flachem Wasser, wie Ton.",
+    "Salt blocks drop salt.": "Salzblöcke lassen Salz fallen.",
+    "Iron, osmium, redstone and two furnaces: the first Mekanism machine.": "Eisen, Osmium, Redstone und zwei Öfen: die erste Mekanism-Maschine.",
+    "An osmium ingot over five glass panes.": "Ein Osmiumbarren über fünf Glasscheiben.",
+    "Four tin ingots around a bowl.": "Vier Zinnbarren um eine Schüssel.",
+    "Four lead ingots around redstone.": "Vier Bleibarren um Redstone.",
+    "Five lead ingots and orange dye.": "Fünf Bleibarren und oranger Farbstoff.",
+    "Nine charcoal.": "Neun Holzkohle.",
+    "Nine tin ingots.": "Neun Zinnbarren.",
+    "Nine lead ingots.": "Neun Bleibarren.",
+    "Steel ingots around a bucket; steel comes from the Metallurgic Infuser.": "Stahlbarren um einen Eimer; Stahl kommt aus der Metallurgischen Infusionsanlage.",
+    "Steel ingots around an iron ingot; steel comes from the Metallurgic Infuser.": "Stahlbarren um einen Eisenbarren; Stahl kommt aus der Metallurgischen Infusionsanlage.",
+    "A steel casing, basic control circuits, redstone and lava buckets.": "Ein Stahlgehäuse, einfache Steuerschaltkreise, Redstone und Lavaeimer.",
+    "Steel comes from the metallurgic infuser: infuse iron with carbon twice.": "Stahl kommt aus der Metallurgischen Infusionsanlage: Infundiere Eisen zweimal mit Kohlenstoff.",
+    "A steel casing, basic alloys and a basic control circuit.": "Ein Stahlgehäuse, einfache Legierungen und ein einfacher Steuerschaltkreis.",
+    "A steel casing, basic alloys, glass and a basic control circuit.": "Ein Stahlgehäuse, einfache Legierungen, Glas und ein einfacher Steuerschaltkreis.",
+    "Iron, an osmium ingot and a steel ingot.": "Eisen, ein Osmiumbarren und ein Stahlbarren.",
+    "Throw a diamond into a two-by-two pool of water ringed with flowers or grass.": "Wirf einen Diamanten in ein 2×2-Wasserbecken, umringt von Blumen oder Gras.",
+    "Darkwood grows in the gloomy Dark Forest.": "Dunkelbäume wachsen im düsteren Dunklen Wald.",
+    "One twilight oak log makes four planks.": "Ein Dämmerungseichenstamm ergibt vier Bretter.",
+    "Twilight mangroves stand in the swamps.": "Dämmerungsmangroven stehen in den Sümpfen.",
+    "One canopy log makes four planks.": "Ein Baldachinstamm ergibt vier Bretter.",
+    "One darkwood log makes four planks.": "Ein Dunkelbaumstamm ergibt vier Bretter.",
+    "Five twilight oak planks.": "Fünf Dämmerungseichenbretter.",
+    "Six canopy planks and three books.": "Sechs Baldachinbretter und drei Bücher.",
+    "Ripe torchberries hang from cave ceilings in the Twilight Forest.": "Reife Fackelbeeren hängen im Dämmerwald von Höhlendecken.",
+    "Liveroot grows in the root tangles underground; break it without Silk Touch.": "Lebenswurzel wächst im Wurzelgeflecht unter der Erde; baue sie ohne Behutsamkeit ab.",
+    "Forest ravens drop feathers.": "Waldraben lassen Federn fallen.",
+    "Mushglooms glow in the Mushroom Forest.": "Düsterpilze leuchten im Pilzwald.",
+    "Deer drop venison.": "Hirsche lassen Hirschfleisch fallen.",
+    "Cook raw venison in a furnace, smoker or campfire.": "Brate rohes Hirschfleisch im Ofen, Räucherofen oder Lagerfeuer.",
+    "Deer breed with wheat.": "Hirsche vermehren sich mit Weizen.",
+    "Boars breed like pigs: carrots, potatoes or beetroots.": "Wildschweine vermehren sich wie Schweine: Karotten, Kartoffeln oder Rote Bete.",
+    "Bighorn sheep breed with wheat.": "Dickhornschafe vermehren sich mit Weizen.",
+    "Kobolds roam the Twilight Forest in packs.": "Kobolde streifen in Rudeln durch den Dämmerwald.",
+    "Redcaps lurk around the hollow hills.": "Rotkappen lauern um die hohlen Hügel.",
+    "Skeleton druids haunt the swamps and forests.": "Skelettdruiden spuken in Sümpfen und Wäldern.",
+    "Hedge spiders hide in hedge mazes.": "Heckenspinnen verstecken sich in Heckenlabyrinthen.",
+    "Swarm spiders pour out of hedge mazes.": "Schwarmspinnen strömen aus Heckenlabyrinthen.",
+    "Slime beetles crawl through the Twilight Forest at night.": "Schleimkäfer krabbeln nachts durch den Dämmerwald.",
+    "Fire beetles crawl through the Twilight Forest at night.": "Feuerkäfer krabbeln nachts durch den Dämmerwald.",
+    "Pinch beetles crawl through the Twilight Forest at night.": "Zangenkäfer krabbeln nachts durch den Dämmerwald.",
+    "Minotaurs guard the labyrinths below the swamp.": "Minotauren bewachen die Labyrinthe unter dem Sumpf.",
+    "The Naga coils in a stone courtyard in the forest.": "Die Naga ringelt sich in einem steinernen Hof im Wald.",
+    "Dropped by the Naga.": "Wird von der Naga fallen gelassen.",
+    "The Lich rules the tallest tower.": "Der Lich herrscht über den höchsten Turm.",
+    "Minotaurs in the labyrinths drop meef.": "Minotauren in den Labyrinthen lassen Meeffleisch fallen.",
+    "Cook raw meef in a furnace, smoker or campfire.": "Brate rohes Meeffleisch im Ofen, Räucherofen oder Lagerfeuer.",
+    "Liveroot, raw iron and a gold nugget.": "Lebenswurzel, Roheisen und ein Goldklumpen.",
+    "Smelt raw ironwood in a furnace.": "Schmelze Eisenholzmaterial im Ofen.",
+    "A raven feather, torchberries and glowstone dust.": "Eine Rabenfeder, Fackelbeeren und Leuchtsteinstaub.",
+    "A magic map focus surrounded by paper.": "Ein magischer Kartenfokus, umgeben von Papier.",
+    "Mystical flowers grow in forests, plains and meadows.": "Mystische Blumen wachsen in Wäldern, Ebenen und auf Wiesen.",
+    "One mystical flower makes two petals.": "Eine mystische Blume ergibt zwei Blütenblätter.",
+    "Nine mystical white petals.": "Neun mystische weiße Blütenblätter.",
+    "Nine mystical red petals.": "Neun mystische rote Blütenblätter.",
+    "Mossy cobblestone around a mystical petal.": "Bemooster Bruchstein um ein mystisches Blütenblatt.",
+    "A book and any sapling.": "Ein Buch und ein beliebiger Setzling.",
+    "Cobblestone around a mystical petal.": "Bruchstein um ein mystisches Blütenblatt.",
+    "Six wool and a mystical petal.": "Sechs Wolle und ein mystisches Blütenblatt.",
+    "Shimmering mushrooms glow in caves.": "Schimmernde Pilze leuchten in Höhlen.",
+    "A Pure Daisy turns logs placed around it into livingwood.": "Ein Reines Gänseblümchen verwandelt Stämme um sich herum in Lebeholz.",
+    "A livingwood twig and two petals; livingwood comes from a Pure Daisy.": "Ein Lebeholzzweig und zwei Blütenblätter; Lebeholz kommt vom Reinen Gänseblümchen.",
+    "Manasteel ingots and livingwood twigs; iron becomes manasteel in a mana pool.": "Manastahlbarren und Lebeholzzweige; Eisen wird im Manabecken zu Manastahl.",
+    "Manasteel ingots and a livingwood twig; iron becomes manasteel in a mana pool.": "Manastahlbarren und ein Lebeholzzweig; Eisen wird im Manabecken zu Manastahl.",
+    "Two livingwood logs from a Pure Daisy.": "Zwei Lebeholzstämme vom Reinen Gänseblümchen.",
+    "Livingwood and glowstone dust.": "Lebeholz und Leuchtsteinstaub.",
+    "Dreamwood comes from the elves through an Elven Gateway.": "Traumholz kommt über ein Elfenportal von den Elfen.",
+    "Elementium ingots and dreamwood twigs, both traded with the elves.": "Elementiumbarren und Traumholzzweige, beides von den Elfen eingetauscht.",
+    "Five livingrock; a Pure Daisy turns stone into livingrock.": "Fünf Lebestein; ein Reines Gänseblümchen verwandelt Stein in Lebestein.",
+    "Meteorites are craters of sky stone; a meteorite compass points to the nearest one.": "Meteoriten sind Krater aus Himmelsstein; ein Meteoritenkompass zeigt zum nächsten.",
+    "Certus clusters grow on the budding quartz inside meteorites.": "Certushaufen wachsen auf dem knospenden Quarz in Meteoriten.",
+    "Smelt sky stone in a furnace.": "Brenne Himmelsstein im Ofen.",
+    "Four sky stone blocks (smelted sky stone).": "Vier Himmelssteinblöcke (gebrannter Himmelsstein).",
+    "Eight sky stone.": "Acht Himmelsstein.",
+    "Five certus quartz crystals.": "Fünf Certusquarzkristalle.",
+    "A stick, an iron ingot and certus quartz.": "Ein Stock, ein Eisenbarren und Certusquarz.",
+    "Five nether quartz.": "Fünf Netherquarz.",
+    "Three certus quartz crystals and two sticks.": "Drei Certusquarzkristalle und zwei Stöcke.",
+    "Two certus quartz crystals and a stick.": "Zwei Certusquarzkristalle und ein Stock.",
+    "Charged certus quartz, redstone and nether quartz dropped into water turn into fluix.": "Geladener Certusquarz, Redstone und Netherquarz werden im Wasser zu Fluix.",
+    "Four fluix crystals.": "Vier Fluixkristalle.",
+    "An ender pearl surrounded by fluix crystals and fluix dust.": "Eine Enderperle, umgeben von Fluixkristallen und Fluixstaub.",
+    "Iron and copper ingots.": "Eisen- und Kupferbarren.",
+    "Iron ingots, pistons and a copper ingot.": "Eisenbarren, Kolben und ein Kupferbarren.",
+    "Iron, quartz glass and copper.": "Eisen, Quarzglas und Kupfer.",
+    "Glass and quartz dust, which the Inscriber grinds from quartz.": "Glas und Quarzstaub, den der Gravurdrucker aus Quarz mahlt.",
+    "Quartz fiber and two fluix crystals.": "Quarzfaser und zwei Fluixkristalle.",
+    "Iron, engineering processors and fluix cables; processors come from the Inscriber.": "Eisen, Konstruktionsprozessoren und Fluixkabel; Prozessoren kommen aus dem Gravurdrucker.",
+    "Quartz glass, redstone and iron.": "Quarzglas, Redstone und Eisen.",
+    "Certus quartz, redstone and a logic processor from the Inscriber.": "Certusquarz, Redstone und ein Logikprozessor aus dem Gravurdrucker.",
+    "Bauxite ore drops raw bauxite.": "Bauxiterz lässt Rohbauxit fallen.",
+    "Smelt raw bauxite in a furnace.": "Schmelze Rohbauxit im Ofen.",
+    "Silver ore drops raw silver.": "Silbererz lässt Rohsilber fallen.",
+    "Smelt raw silver in a furnace.": "Schmelze Rohsilber im Ofen.",
+    "Smelt raw nickel in a furnace.": "Schmelze Rohnickel im Ofen.",
+    "Nickel ore drops raw nickel.": "Nickelerz lässt Rohnickel fallen.",
+    "Breaking tall grass sometimes drops hemp seeds.": "Hohes Gras lässt manchmal Hanfsamen fallen.",
+    "Grown hemp drops fiber.": "Ausgewachsener Hanf lässt Fasern fallen.",
+    "Hemp fiber around a stick.": "Hanffasern um einen Stock.",
+    "Iron ingots, string and sticks.": "Eisenbarren, Faden und Stöcke.",
+    "A book and a lever.": "Ein Buch und ein Hebel.",
+    "Clay, bricks and sandstone.": "Ton, Ziegel und Sandstein.",
+    "Two bricks and two sandstone.": "Zwei Ziegel und zwei Sandstein.",
+    "Treated wood slabs, treated sticks and a crafting table.": "Behandelte Holzstufen, behandelte Stöcke und eine Werkbank.",
+    "An iron ingot hit with the Engineer's Hammer.": "Ein Eisenbarren, mit dem Ingenieurshammer bearbeitet.",
+    "Iron ingots in a column.": "Eisenbarren in einer Spalte.",
+    "A copper plate and the Engineer's Wire Cutters.": "Ein Kupferblech und der Ingenieurskabelschneider.",
+    "Iron plates and a copper ingot.": "Eisenbleche und ein Kupferbarren.",
+    "Leather, iron and redstone.": "Leder, Eisen und Redstone.",
+    "Two treated wood planks; planks soak creosote from a coke oven.": "Zwei behandelte Holzbretter; Bretter saugen Kreosot aus einem Koksofen auf.",
+    "Treated wood planks and treated sticks.": "Behandelte Holzbretter und behandelte Stöcke.",
+    "Firs grow in coniferous forests.": "Tannen wachsen in Koniferenwäldern.",
+    "Redwoods tower in redwood forests.": "Mammutbäume ragen in Mammutbaumwäldern auf.",
+    "Jacarandas bloom in jacaranda glades.": "Jacarandas blühen auf Jacarandalichtungen.",
+    "Mahogany grows in rainforests.": "Mahagoni wächst in Regenwäldern.",
+    "Willows hang over bayous and marshes.": "Weiden hängen über Stillgewässern und Marschen.",
+    "Palms line tropical beaches.": "Palmen säumen tropische Strände.",
+    "Dead trees stand in wastelands and dead forests.": "Tote Bäume stehen in Ödland und toten Wäldern.",
+    "Magic trees glow blue in mystic groves.": "Magische Bäume leuchten blau in mystischen Hainen.",
+    "One fir log makes four planks.": "Ein Tannenstamm ergibt vier Bretter.",
+    "One redwood log makes four planks.": "Ein Mammutbaumstamm ergibt vier Bretter.",
+    "One jacaranda log makes four planks.": "Ein Jacarandastamm ergibt vier Bretter.",
+    "Five fir planks.": "Fünf Tannenholzbretter.",
+    "Five redwood planks.": "Fünf Mammutbaumholzbretter.",
+    "Lavender fields are purple from afar.": "Lavendelfelder sieht man schon von weitem lila leuchten.",
+    "Biomes O' Plenty adds it in its own biomes.": "Biomes O' Plenty fügt es in eigenen Biomen hinzu.",
+    "Goldenrod grows in prairies and fields.": "Goldrute wächst in Prärien und auf Feldern.",
+    "Hibiscus grows in tropical biomes.": "Hibiskus wächst in tropischen Biomen.",
+    "Glowflowers light up mystic groves.": "Glühblumen erhellen mystische Haine.",
+    "Wilted lilies droop in eerie, foggy biomes.": "Verwelkte Lilien hängen in unheimlichen, nebligen Biomen.",
+    "White sand covers tropical beaches.": "Weißer Sand bedeckt tropische Strände.",
+    "Orange sand covers lush deserts.": "Oranger Sand bedeckt üppige Wüsten.",
+    "Black sand covers volcanic beaches.": "Schwarzer Sand bedeckt vulkanische Strände.",
+    "Four white sand.": "Vier weißer Sand.",
+    "Four orange sand.": "Vier oranger Sand.",
+    "Smelt white sandstone in a furnace.": "Brenne weißen Sandstein im Ofen.",
+    "Cattails grow at the edges of marshes.": "Rohrkolben wachsen an den Rändern von Marschen.",
+    "Reeds stand in shallow water.": "Schilf steht in flachem Wasser.",
+    "Spanish moss hangs from bayou trees.": "Spanisches Moos hängt von Bäumen im Stillgewässer.",
+    "Watergrass grows under water in wetlands.": "Wassergras wächst unter Wasser in Feuchtgebieten.",
+    "Wild barley grows on the prairie.": "Wilde Gerste wächst in der Prärie.",
+    "Glowshrooms light up glowing grottos and caves.": "Leuchtpilze erhellen glimmernde Grotten und Höhlen.",
+    "Rose quartz clusters grow in crystal caves underground.": "Rosenquarzhaufen wachsen in unterirdischen Kristallhöhlen.",
+    "Rose quartz clusters drop chunks.": "Rosenquarzhaufen lassen Brocken fallen.",
+    "Four rose quartz chunks.": "Vier Rosenquarzbrocken.",
+    "Brimstone crusts the fumaroles of Nether biomes.": "Schwefel überzieht die Fumarolen der Nether-Biome.",
+    "Flesh covers the Visceral Heap.": "Fleisch bedeckt die Eingeweidehalde.",
+    "Hellbark grows in the Nether's undergrowth.": "Höllenrinde wächst im Unterholz des Nethers.",
+    "Burning blossoms grow in the Nether.": "Brennende Blüten wachsen im Nether.",
+    "Kangaroos hop around savannas and deserts.": "Kängurus hüpfen durch Savannen und Wüsten.",
+    "Kangaroos drop meat.": "Kängurus lassen Fleisch fallen.",
+    "Roadrunners race across badlands and deserts.": "Wegekuckucke rasen durch Tafelberge und Wüsten.",
+    "Emus roam savannas and badlands.": "Emus streifen durch Savannen und Tafelberge.",
+    "Moose roam snowy forests.": "Elche streifen durch verschneite Wälder.",
+    "Moose drop ribs.": "Elche lassen Rippen fallen.",
+    "Grizzly bears live in forests and taigas.": "Grizzlybären leben in Wäldern und Taigas.",
+    "Bison roam snowy plains.": "Bisons streifen durch verschneite Ebenen.",
+    "Cook kangaroo meat in a furnace, smoker or campfire.": "Brate Kängurufleisch im Ofen, Räucherofen oder Lagerfeuer.",
+    "Cook moose ribs in a furnace, smoker or campfire.": "Brate Elchrippen im Ofen, Räucherofen oder Lagerfeuer.",
+    "Lobsters crawl on beaches; cook their tails.": "Hummer krabbeln an Stränden; brate ihre Schwänze.",
+    "Cooked kangaroo meat between two breads.": "Gebratenes Kängurufleisch zwischen zwei Broten.",
+    "Crocodiles lurk in swamps, rivers and mangroves.": "Krokodile lauern in Sümpfen, Flüssen und Mangroven.",
+    "Rattlesnakes coil in deserts and badlands.": "Klapperschlangen ringeln sich in Wüsten und Tafelbergen.",
+    "Komodo dragons hunt in jungles.": "Komodowarane jagen in Dschungeln.",
+    "Cave centipedes crawl in dark caves.": "Höhlentausendfüßler krabbeln in dunklen Höhlen.",
+    "Crocodiles drop scutes.": "Krokodile lassen Panzerplatten fallen.",
+    "Roadrunner feathers, leather boots and chiseled sandstone.": "Wegekuckucks-Federn, Lederstiefel und gemeißelter Sandstein.",
+    "Moose antlers, an iron ingot and string.": "Elchgeweihe, ein Eisenbarren und Faden.",
+    "Seven crocodile scutes.": "Sieben Krokodilpanzer.",
+    "A shark tooth, a stick and kelp.": "Ein Haifischzahn, ein Stock und Seetang.",
+    "Crimson mosquitoes buzz in crimson forests.": "Karmesinmücken summen in Karmesinwäldern.",
+    "Soul vultures circle soul sand valleys.": "Seelengeier kreisen über Seelensandtälern.",
+    "Dropbears hang from the ceilings of Nether wastes.": "Fallbären hängen an den Decken der Nether-Ödnis.",
+    "Clay, sand and gravel.": "Ton, Sand und Kies.",
+    "Smelt grout in a furnace.": "Brenne Mörtel im Ofen.",
+    "Four seared bricks.": "Vier angebrannte Ziegel.",
+    "Two planks and two sticks.": "Zwei Bretter und zwei Stöcke.",
+    "A pattern on top of a log or crafting table.": "Ein Muster auf einem Stamm oder einer Werkbank.",
+    "Two patterns on top of two planks.": "Zwei Muster auf zwei Brettern.",
+    "Three patterns on top of planks.": "Drei Muster auf Brettern.",
+    "A book and a pattern.": "Ein Buch und ein Muster.",
+    "Eight seared bricks.": "Acht angebrannte Ziegel.",
+    "Three seared bricks.": "Drei angebrannte Ziegel.",
+    "Seven seared bricks.": "Sieben angebrannte Ziegel.",
+    "Seared bricks around a seared tank.": "Angebrannte Ziegel um einen angebrannten Tank.",
+    "Skyroot grows on the sky slime islands floating high up.": "Skyroot wächst auf den hoch schwebenden Himmelsschleiminseln.",
+    "Sky slimes on the slime islands drop skyslime balls.": "Himmelsschleime auf den Schleiminseln lassen Himmelsschleimbälle fallen.",
+    "Skyslimes bounce on the sky slime islands.": "Himmelsschleime hüpfen auf den Himmelsschleiminseln.",
+    "Nine skyslime balls.": "Neun Himmelsschleimbälle.",
+    "Greenheart grows on earth slime islands in the sea.": "Greenheart wächst auf Erdschleiminseln im Meer.",
+    "Cobalt ore hides in the Nether's netherrack, high and low.": "Kobalterz versteckt sich im Netherrack des Nethers, oben wie unten.",
+    "Cobalt ore drops raw cobalt.": "Kobalterz lässt rohes Kobalt fallen.",
+    "Archwood trees grow in archwood forests.": "Archwood-Bäume wachsen in Archwood-Wäldern.",
+    "One archwood log makes four planks.": "Ein Archwood-Stamm ergibt vier Planken.",
+    "Sourceberry bushes grow in taigas and archwood forests.": "Quellbeerensträucher wachsen in Taigas und Archwood-Wäldern.",
+    "Magebloom grows from magebloom seeds; its flower drops when harvested.": "Magebloom wächst aus Magebloom-Samen; beim Ernten fällt die Blüte ab.",
+    "One magebloom.": "Ein Magebloom.",
+    "A book and lapis lazuli.": "Ein Buch und Lapislazuli.",
+    "A book and four iron tools: shovel, pickaxe, axe and sword.": "Ein Buch und vier Eisenwerkzeuge: Schaufel, Spitzhacke, Axt und Schwert.",
+    "A gold ingot and archwood planks.": "Ein Goldbarren und Archwood-Planken.",
+    "Archwood slabs, gold nuggets and archwood logs.": "Archwood-Platten, Goldklumpen und Archwood-Stämme.",
+    "Archwood planks and gold ingots.": "Archwood-Planken und Goldbarren.",
+    "Archwood planks around a gold nugget.": "Archwood-Planken um einen Goldklumpen.",
+    "Archwood slabs and glass.": "Archwood-Platten und Glas.",
+    "Paper surrounded by magebloom fiber.": "Papier, umgeben von Magieblütenfaser.",
+    "Wilden hunters prowl archwood forests at night.": "Wilden-Jäger streifen nachts durch Archwood-Wälder.",
+    "Wilden stalkers swoop down from above.": "Wilden-Stalker stürzen sich von oben herab.",
+    "Wilden guardians roll up behind their spikes.": "Wilden-Wächter rollen sich hinter ihren Stacheln ein.",
+    "Wilden hunters drop horns.": "Wilden-Jäger lassen Hörner fallen.",
+    "Wilden guardians drop spikes.": "Wilden-Wächter lassen Stacheln fallen.",
+    "Wilden stalkers drop wings.": "Wilden-Stalker lassen Flügel fallen."
+  },
+  "messages": [
+    "Das Dorf dankt dir!",
+    "Deine Taten sprechen sich herum.",
+    "Gut gemacht, Abenteurer.",
+    "Wieder ein Auftrag gut erledigt.",
+    "Das Auftragsbrett hat einen neuen Helden.",
+    "Darüber wird man noch Lieder singen.",
+    "Die Händler sind beeindruckt.",
+    "Gute Arbeit. Ruh dich etwas aus."
+  ],
+  "names": {
+    "ae2:cell_component_1k": "1k-ME-Speicherkomponente",
+    "ae2:certus_quartz_crystal": "Certusquarzkristall",
+    "ae2:certus_quartz_cutting_knife": "Certusquarzmeißel",
+    "ae2:certus_quartz_pickaxe": "Certusquarzspitzhacke",
+    "ae2:certus_quartz_sword": "Certusquarzschwert",
+    "ae2:certus_quartz_wrench": "Certusquarzschraubenschlüssel",
+    "ae2:charger": "Ladegerät",
+    "ae2:drive": "ME-Laufwerk",
+    "ae2:energy_acceptor": "Energieakzeptor",
+    "ae2:fluix_block": "Fluixblock",
+    "ae2:fluix_crystal": "Fluixkristall",
+    "ae2:fluix_glass_cable": "Fluix ME-Glaskabel",
+    "ae2:fluix_pearl": "Fluixperle",
+    "ae2:inscriber": "Gravurmaschine",
+    "ae2:item_cell_housing": "ME-Speichergehäuse",
+    "ae2:nether_quartz_wrench": "Netherquarzschraubenschlüssel",
+    "ae2:quartz_cluster": "Certusquarzkristall",
+    "ae2:quartz_glass": "Quarzglas",
+    "ae2:sky_stone_block": "Himmelsstein",
+    "ae2:sky_stone_brick": "Himmelssteinziegel",
+    "ae2:sky_stone_chest": "Himmelssteintruhe",
+    "ae2:smooth_sky_stone_block": "Himmelssteinblock",
+    "alexsmobs:bear_fur": "Bärenhaar",
+    "alexsmobs:bison_fur": "Bisonfell",
+    "alexsmobs:centipede_head": "Höhlentausendfüßler",
+    "alexsmobs:cooked_kangaroo_meat": "Gebratenes Kängurufleisch",
+    "alexsmobs:cooked_lobster_tail": "Gekochter Hummerschwanz",
+    "alexsmobs:cooked_moose_ribs": "Gebratene Elchrippen",
+    "alexsmobs:crimson_mosquito": "Karmesinmücke",
+    "alexsmobs:crocodile": "Krokodil",
+    "alexsmobs:crocodile_chestplate": "Krokodilharnisch",
+    "alexsmobs:crocodile_scute": "Krokodilpanzer",
+    "alexsmobs:dropbear": "Fallbär",
+    "alexsmobs:emu_feather": "Emufeder",
+    "alexsmobs:kangaroo_burger": "Känguruburger",
+    "alexsmobs:kangaroo_hide": "Kängurufell",
+    "alexsmobs:kangaroo_meat": "Rohes Kängurufleisch",
+    "alexsmobs:komodo_dragon": "Komodowaran",
+    "alexsmobs:moose_antler": "Elchgeweih",
+    "alexsmobs:moose_headgear": "Geweihkopfschmuck",
+    "alexsmobs:moose_ribs": "Rohe Elchrippen",
+    "alexsmobs:rattlesnake": "Klapperschlange",
+    "alexsmobs:roadrunner_boots": "Wegekuckuck-Stiefel",
+    "alexsmobs:roadrunner_feather": "Wegekuckucks-Feder",
+    "alexsmobs:shark_tooth_arrow": "Haifischzahn-Pfeil",
+    "alexsmobs:soul_vulture": "Seelengeier",
+    "ars_nouveau:archwood_chest": "Archwood-Truhe",
+    "ars_nouveau:archwood_planks": "Archwood-Planken",
+    "ars_nouveau:blank_parchment": "Leeres Pergament",
+    "ars_nouveau:blue_archwood_log": "Kaskadierender Archwood-Block",
+    "ars_nouveau:dowsing_rod": "Wünschelrute",
+    "ars_nouveau:green_archwood_log": "Blühender Bogenholzscheit",
+    "ars_nouveau:imbuement_chamber": "Imbuement-Kammer",
+    "ars_nouveau:magebloom": "Magebloom",
+    "ars_nouveau:magebloom_fiber": "Magieblütenfaser",
+    "ars_nouveau:novice_spell_book": "Zauberbuch für Anfänger",
+    "ars_nouveau:purple_archwood_log": "Ärgerlicher Erzholzscheit",
+    "ars_nouveau:red_archwood_log": "Brennender Bogenholzscheit",
+    "ars_nouveau:scribes_table": "Tisch des Schreibers",
+    "ars_nouveau:source_jar": "Quellglas",
+    "ars_nouveau:sourceberry_bush": "Quellbeere",
+    "ars_nouveau:wilden_guardian": "Wilden-Verteidiger",
+    "ars_nouveau:wilden_horn": "Wilden Horn",
+    "ars_nouveau:wilden_hunter": "Wilder Jäger",
+    "ars_nouveau:wilden_spike": "Wilden Spike",
+    "ars_nouveau:wilden_stalker": "Wilden Stalker",
+    "ars_nouveau:wilden_wing": "Wilden-Flügel",
+    "ars_nouveau:worn_notebook": "Abgenutztes Notizbuch",
+    "biomesoplenty:barley": "Gerste",
+    "biomesoplenty:black_sand": "Schwarzer Sand",
+    "biomesoplenty:blue_hydrangea": "Blaue Hortensie",
+    "biomesoplenty:brimstone": "Schwefel",
+    "biomesoplenty:burning_blossom": "Brennende Blüte",
+    "biomesoplenty:cattail": "Rohrkolben",
+    "biomesoplenty:dead_log": "Totstamm",
+    "biomesoplenty:fir_boat": "Tannenholzboot",
+    "biomesoplenty:fir_log": "Tannenstamm",
+    "biomesoplenty:fir_planks": "Tannenholzbretter",
+    "biomesoplenty:flesh": "Fleisch",
+    "biomesoplenty:glowflower": "Glühblume",
+    "biomesoplenty:glowshroom": "Leuchtpilz",
+    "biomesoplenty:goldenrod": "Goldrute",
+    "biomesoplenty:hellbark_log": "Höllenrindenstamm",
+    "biomesoplenty:jacaranda_log": "Jacarandastamm",
+    "biomesoplenty:jacaranda_planks": "Jacarandaholzbretter",
+    "biomesoplenty:lavender": "Lavendel",
+    "biomesoplenty:magic_log": "Magiestamm",
+    "biomesoplenty:mahogany_log": "Mahagonistamm",
+    "biomesoplenty:orange_cosmos": "Orangener Kosmos",
+    "biomesoplenty:orange_sand": "Orangener Sand",
+    "biomesoplenty:orange_sandstone": "Orangener Sandstein",
+    "biomesoplenty:palm_log": "Palmenstamm",
+    "biomesoplenty:pink_daffodil": "Rosa Narzisse",
+    "biomesoplenty:pink_hibiscus": "Rosa Hibiskus",
+    "biomesoplenty:redwood_boat": "Mammutholzboot",
+    "biomesoplenty:redwood_log": "Mammutbaumstamm",
+    "biomesoplenty:redwood_planks": "Mammutbaumstamm",
+    "biomesoplenty:reed": "Schilf",
+    "biomesoplenty:rose_quartz_block": "Rosenquarzblock",
+    "biomesoplenty:rose_quartz_chunk": "Rosenquarzbrocken",
+    "biomesoplenty:rose_quartz_cluster": "Rosenquarzhaufen",
+    "biomesoplenty:smooth_white_sandstone": "Glatter weißer Sandstein",
+    "biomesoplenty:spanish_moss": "Spanisches Moos",
+    "biomesoplenty:violet": "Veilchen",
+    "biomesoplenty:watergrass": "Wassergras",
+    "biomesoplenty:white_sand": "Weißer Sand",
+    "biomesoplenty:white_sandstone": "Weißer Sandstein",
+    "biomesoplenty:willow_log": "Weidenstamm",
+    "biomesoplenty:wilted_lily": "Verwelkte Lilie",
+    "botania:apothecary_default": "Blütenapotheke",
+    "botania:apothecary_mossy": "Moosige Blütenapotheke",
+    "botania:blue_mushroom": "Blauer Schillernder Pilz",
+    "botania:blue_mystical_flower": "Mystische Blaue Blume",
+    "botania:blue_petal": "Mystisches Blaues Blütenblatt",
+    "botania:dreamwood_planks": "Traumholzbretter",
+    "botania:elementium_pickaxe": "Elementiumspitzhacke",
+    "botania:flower_bag": "Blumenbeutel",
+    "botania:glimmering_livingwood": "Schimmerndes Lebeholz",
+    "botania:lexicon": "Lexica Botania",
+    "botania:livingwood_planks": "Lebeholzbretter",
+    "botania:livingwood_twig": "Lebeholzzweig",
+    "botania:mana_pool": "Manabecken",
+    "botania:manasteel_pick": "Manastahlspitzhacke",
+    "botania:manasteel_sword": "Manastahlschwert",
+    "botania:pink_mystical_flower": "Mystische Rosa Blume",
+    "botania:pink_petal": "Mystisches Rosa Blütenblatt",
+    "botania:purple_mushroom": "Violetter Schillernder Pilz",
+    "botania:purple_mystical_flower": "Mystische Violette Blume",
+    "botania:purple_petal": "Mystisches Violettes Blütenblatt",
+    "botania:red_mushroom": "Roter Schillernder Pilz",
+    "botania:red_mystical_flower": "Mystische Rote Blume",
+    "botania:red_petal": "Mystisches Red Blütenblatt",
+    "botania:red_petal_block": "Roter Blütenblock",
+    "botania:twig_wand": "Stab des Waldes",
+    "botania:white_mushroom": "Weißer Schillernder Pilz",
+    "botania:white_mystical_flower": "Mystische Weiße Blume",
+    "botania:white_petal": "Mystisches Weißes Blütenblatt",
+    "botania:white_petal_block": "Weißer Blütenblock",
+    "botania:yellow_mystical_flower": "Mystische Gelbe Blume",
+    "botania:yellow_petal": "Mystisches Gelbes Blütenblatt",
+    "create:andesite_alloy": "Andesitlegierung",
+    "create:andesite_alloy_block": "Andesitlegierungsblock",
+    "create:andesite_casing": "Andesitgehäuse",
+    "create:andesite_funnel": "Andesitschleuse",
+    "create:andesite_tunnel": "Andesittunnel",
+    "create:asurine": "Asurin",
+    "create:bar_of_chocolate": "Schokoladentafel",
+    "create:basin": "Becken",
+    "create:belt_connector": "Förderband",
+    "create:builders_tea": "Baumeister-Tee",
+    "create:cart_assembler": "Lorenmonteur",
+    "create:chocolate_glazed_berries": "Schokoladenglasierte Beeren",
+    "create:cogwheel": "Zahnrad",
+    "create:crimsite": "Karmesit",
+    "create:cuckoo_clock": "Kuckucksuhr",
+    "create:cut_andesite": "Geschnittener Andesit",
+    "create:cut_asurine": "Geschnittenes Asurin",
+    "create:cut_crimsite": "Geschnittenes Karmesit",
+    "create:cut_diorite": "Gescnittener Diorit",
+    "create:cut_granite": "Geschnittener Granit",
+    "create:cut_limestone": "Geschnittener Kalkstein",
+    "create:cut_tuff": "Geschnittener Tuffstein",
+    "create:deepslate_zinc_ore": "Tiefenschiefer-Zinkerz",
+    "create:depot": "Depot",
+    "create:empty_blaze_burner": "Leerer Lohenbrenner",
+    "create:encased_chain_drive": "Ummantelter Kettenriemen",
+    "create:encased_fan": "Ummantelter Lüfter",
+    "create:fluid_tank": "Flüssigkeitstank",
+    "create:gearbox": "Getriebe",
+    "create:goggles": "Ingenieursbrille",
+    "create:hand_crank": "Handkurbel",
+    "create:honeyed_apple": "Honigapfel",
+    "create:item_vault": "Gegenstandstresor",
+    "create:large_cogwheel": "Großes Zahnrad",
+    "create:large_water_wheel": "Großes Wasserrad",
+    "create:limestone": "Kalkstein",
+    "create:linear_chassis": "Schubgerüst",
+    "create:mechanical_bearing": "Mechanisches Lager",
+    "create:mechanical_drill": "Mechanischer Bohrer",
+    "create:mechanical_mixer": "Mechanischer Mixer",
+    "create:mechanical_piston": "Mechanischer Kolben",
+    "create:mechanical_press": "Mechanische Presse",
+    "create:mechanical_saw": "Mechanische Säge",
+    "create:millstone": "Mahlstein",
+    "create:ochrum": "Ockrum",
+    "create:piston_extension_pole": "Kolbenverlängerungsstange",
+    "create:polished_cut_limestone": "Polierter geschnittener Kalkstein",
+    "create:polished_cut_ochrum": "Poliertes geschnittenes Ockrum",
+    "create:polished_cut_veridium": "Poliertes geschnittenes Veridium",
+    "create:radial_chassis": "Drehgerüst",
+    "create:raw_zinc": "Rohzink",
+    "create:rose_quartz": "Rosenquarz",
+    "create:scorchia": "Scorchia",
+    "create:scoria": "Schlacke",
+    "create:shaft": "Welle",
+    "create:sticker": "Ankleber",
+    "create:super_glue": "Sekundenkleber",
+    "create:sweet_roll": "Rosinenschnecke",
+    "create:turntable": "Drehtisch",
+    "create:veridium": "Veridium",
+    "create:water_wheel": "Wasserrad",
+    "create:white_sail": "Windmühlen-Segel",
+    "create:white_seat": "Weißer Sitz",
+    "create:windmill_bearing": "Windmühlenlager",
+    "create:wooden_bracket": "Holzhalterung",
+    "create:wrench": "Schraubenschlüssel",
+    "create:zinc_block": "Zinkblock",
+    "create:zinc_ingot": "Zinkbarren",
+    "create:zinc_ore": "Zinkerz",
+    "farmersdelight:acacia_cabinet": "Akazienholzküchenschrank",
+    "farmersdelight:apple_cider": "Apfelwein",
+    "farmersdelight:apple_pie": "Apfelkuchen",
+    "farmersdelight:bacon_and_eggs": "Spiegelei mit Speck",
+    "farmersdelight:bacon_sandwich": "Specksandwich",
+    "farmersdelight:baked_cod_stew": "Gebackener Kabeljaueintopf",
+    "farmersdelight:bamboo_basket": "Bambuskorb",
+    "farmersdelight:barbecue_stick": "Barbecuespieß",
+    "farmersdelight:beef_patty": "Rindfleischbulette",
+    "farmersdelight:beef_stew": "Rindfleischeintopf",
+    "farmersdelight:birch_cabinet": "Birkenholzküchenschrank",
+    "farmersdelight:cabbage": "Weißkohl",
+    "farmersdelight:cabbage_crate": "Weißkohlkiste",
+    "farmersdelight:cabbage_rolls": "Salatrollen",
+    "farmersdelight:canvas": "Leinenstofffetzen",
+    "farmersdelight:canvas_rug": "Leinen Teppich",
+    "farmersdelight:chicken_sandwich": "Hühnchensandwich",
+    "farmersdelight:chicken_soup": "Hühnersuppe",
+    "farmersdelight:cod_roll": "Kabeljaurolle",
+    "farmersdelight:cooked_bacon": "Gebratener Speck",
+    "farmersdelight:cooked_chicken_cuts": "Gebratene Hähnchenstücke",
+    "farmersdelight:cooked_cod_slice": "Gebratene Kabeljauscheibe",
+    "farmersdelight:cooked_mutton_chops": "Gebratene Hammelkoteletts",
+    "farmersdelight:cooked_rice": "Gekochter Reis",
+    "farmersdelight:cooked_salmon_slice": "Gebratene Lachsscheibe",
+    "farmersdelight:cooking_pot": "Kochtopf",
+    "farmersdelight:cutting_board": "Schneidebrett",
+    "farmersdelight:dark_oak_cabinet": "Schwarzeichenholzküchenschrank",
+    "farmersdelight:diamond_knife": "Diamantküchenmesser",
+    "farmersdelight:dumplings": "Teigtaschen",
+    "farmersdelight:egg_sandwich": "Eiersandwich",
+    "farmersdelight:fish_stew": "Fischeintopf",
+    "farmersdelight:fried_egg": "Spiegelei",
+    "farmersdelight:fried_rice": "Gebratener Reis",
+    "farmersdelight:fruit_salad": "Fruchtsalat",
+    "farmersdelight:glow_berry_custard": "Leuchtbeerenpudding",
+    "farmersdelight:grilled_salmon": "Gegrillter Lachs",
+    "farmersdelight:ham": "Schinken",
+    "farmersdelight:hamburger": "Hamburger",
+    "farmersdelight:honey_cookie": "Honigkeks",
+    "farmersdelight:honey_glazed_ham": "Eine Portion Honigglasierter Schinken",
+    "farmersdelight:honey_glazed_ham_block": "Honigglasierter Schinken",
+    "farmersdelight:hot_cocoa": "Heiße Schokolade",
+    "farmersdelight:iron_knife": "Eisenküchenmesser",
+    "farmersdelight:jungle_cabinet": "Tropenholzküchenschrank",
+    "farmersdelight:kelp_roll": "Seetangrolle",
+    "farmersdelight:kelp_roll_slice": "Seetangrollen Stück",
+    "farmersdelight:melon_juice": "Melonensaft",
+    "farmersdelight:melon_popsicle": "Meloneneis am Stiel",
+    "farmersdelight:milk_bottle": "Milchflasche",
+    "farmersdelight:mixed_salad": "Gemischter Salat",
+    "farmersdelight:mushroom_rice": "Pilzreis",
+    "farmersdelight:mutton_wrap": "Hammelfleisch Wrap",
+    "farmersdelight:nether_salad": "Nether Salat",
+    "farmersdelight:noodle_soup": "Nudelsuppe",
+    "farmersdelight:oak_cabinet": "Eichenholzküchenschrank",
+    "farmersdelight:onion": "Zwiebel",
+    "farmersdelight:onion_crate": "Zwiebelkiste",
+    "farmersdelight:onion_soup": "Zwiebelsuppe",
+    "farmersdelight:organic_compost": "Organischer Kompost",
+    "farmersdelight:pasta_with_meatballs": "Nudeln mit Fleischbällchen",
+    "farmersdelight:pie_crust": "Kuchenkruste",
+    "farmersdelight:pumpkin_soup": "Kürbissuppe",
+    "farmersdelight:ratatouille": "Ratatouille",
+    "farmersdelight:rice": "Reis",
+    "farmersdelight:rice_bale": "Reisbündel",
+    "farmersdelight:rice_panicle": "Reisrispe",
+    "farmersdelight:rice_roll_medley_block": "Gemischte Reisrollen",
+    "farmersdelight:roast_chicken": "Eine Portion Backhähnchen",
+    "farmersdelight:roast_chicken_block": "Backhähnchen",
+    "farmersdelight:roasted_mutton_chops": "Gebratene Hammelkoteletts",
+    "farmersdelight:rope": "Strohseil",
+    "farmersdelight:safety_net": "Sicherheitsnetz",
+    "farmersdelight:salmon_roll": "Lachsrolle",
+    "farmersdelight:shepherds_pie": "Eine Portion Hirtenkuchen",
+    "farmersdelight:shepherds_pie_block": "Hirtenkuchen",
+    "farmersdelight:skillet": "Bratpfanne",
+    "farmersdelight:smoked_ham": "Räucherschinken",
+    "farmersdelight:spruce_cabinet": "Fichtenholzküchenschrank",
+    "farmersdelight:squid_ink_pasta": "Pasta mit Tintenfischtinte",
+    "farmersdelight:steak_and_potatoes": "Steak und Kartoffeln",
+    "farmersdelight:stove": "Herd",
+    "farmersdelight:straw": "Stroh",
+    "farmersdelight:straw_bale": "Strohbündel",
+    "farmersdelight:stuffed_potato": "Gefüllte Kartoffel",
+    "farmersdelight:sweet_berry_cheesecake": "Süßbeerenkäsekuchen",
+    "farmersdelight:sweet_berry_cookie": "Süßbeerenkeks",
+    "farmersdelight:tatami": "Tatamiblock",
+    "farmersdelight:tomato": "Tomate",
+    "farmersdelight:tomato_crate": "Tomatenkiste",
+    "farmersdelight:vegetable_soup": "Gemüsesuppe",
+    "farmersdelight:wheat_dough": "Teigball",
+    "farmersdelight:wild_beetroots": "Wildrüben",
+    "farmersdelight:wild_cabbages": "Wildweißkohl",
+    "farmersdelight:wild_carrots": "Wildkarotten",
+    "farmersdelight:wild_onions": "Wildzwiebel",
+    "farmersdelight:wild_potatoes": "Wildkartoffeln",
+    "farmersdelight:wild_rice": "Wildreis",
+    "farmersdelight:wild_tomatoes": "Tomatenstrauch",
+    "farmersdelight:wooden_basket": "Korb",
+    "immersiveengineering:alloybrick": "Legierungsziegel",
+    "immersiveengineering:cokebrick": "Koksziegel",
+    "immersiveengineering:component_iron": "Mechanische Eisenkomponente",
+    "immersiveengineering:conveyor_basic": "Förderband",
+    "immersiveengineering:craftingtable": "Ingenieurswerkbank",
+    "immersiveengineering:deepslate_ore_aluminum": "Tiefenschiefer-Bauxiterz",
+    "immersiveengineering:hammer": "Ingenieurshammer",
+    "immersiveengineering:hemp_fabric": "Robustes Gewebe",
+    "immersiveengineering:hemp_fiber": "Industriehanffasern",
+    "immersiveengineering:ingot_aluminum": "Aluminiumbarren",
+    "immersiveengineering:ingot_lead": "Bleibarren",
+    "immersiveengineering:ingot_nickel": "Nickelbarren",
+    "immersiveengineering:ingot_silver": "Silberbarren",
+    "immersiveengineering:manual": "Ingenieurshandbuch",
+    "immersiveengineering:ore_aluminum": "Bauxiterz",
+    "immersiveengineering:ore_lead": "Bleierz",
+    "immersiveengineering:ore_nickel": "Nickelerz",
+    "immersiveengineering:ore_silver": "Silbererz",
+    "immersiveengineering:plate_iron": "Eisenblech",
+    "immersiveengineering:raw_aluminum": "Rohbauxit",
+    "immersiveengineering:raw_lead": "Rohblei",
+    "immersiveengineering:raw_nickel": "Rohnickel",
+    "immersiveengineering:raw_silver": "Rohsilber",
+    "immersiveengineering:seed": "Industriehanfsamen",
+    "immersiveengineering:stick_iron": "Eisenstab",
+    "immersiveengineering:stick_treated": "Behandelter Stock",
+    "immersiveengineering:treated_fence": "Behandelter Holzzaun",
+    "immersiveengineering:treated_scaffold": "Behandeltes Holzgerüst",
+    "immersiveengineering:wire_copper": "Kupferkabel",
+    "mekanism:block_charcoal": "Holzkohleblock",
+    "mekanism:block_fluorite": "Fluoritblock",
+    "mekanism:block_lead": "Bleiblock",
+    "mekanism:block_osmium": "Osmiumblock",
+    "mekanism:block_salt": "Salzblock",
+    "mekanism:block_tin": "Zinnblock",
+    "mekanism:boiler_casing": "Kesselgehäuse",
+    "mekanism:canteen": "Feldflasche",
+    "mekanism:configurator": "Konfigurator",
+    "mekanism:crusher": "Zerkleinerer",
+    "mekanism:deepslate_fluorite_ore": "Tiefenschiefer Fluoriterz",
+    "mekanism:deepslate_lead_ore": "Tiefenschiefer Bleierz",
+    "mekanism:deepslate_osmium_ore": "Tiefenschiefer Osmiumerz",
+    "mekanism:deepslate_tin_ore": "Tiefenschiefer Zinnerz",
+    "mekanism:deepslate_uranium_ore": "Tiefenschiefer Uranerz",
+    "mekanism:dosimeter": "Dosimeter",
+    "mekanism:dynamic_tank": "Dynamischer Tank",
+    "mekanism:energized_smelter": "Energiegeladener Schmelzer",
+    "mekanism:enrichment_chamber": "Anreicherungskammer",
+    "mekanism:fluorite_gem": "Fluorit",
+    "mekanism:fluorite_ore": "Fluoriterz",
+    "mekanism:gauge_dropper": "Ventilspender",
+    "mekanism:hazmat_mask": "Strahlenschutzmaske",
+    "mekanism:ingot_lead": "Bleibarren",
+    "mekanism:ingot_osmium": "Osmiumbarren",
+    "mekanism:ingot_tin": "Zinnbarren",
+    "mekanism:ingot_uranium": "Uranbarren",
+    "mekanism:lead_ore": "Bleierz",
+    "mekanism:metallurgic_infuser": "Metallurgische Infusionsanlage",
+    "mekanism:osmium_ore": "Osmiumerz",
+    "mekanism:raw_lead": "Rohes Blei",
+    "mekanism:raw_osmium": "Rohes Osmium",
+    "mekanism:raw_tin": "Rohes Zinn",
+    "mekanism:salt": "Salz",
+    "mekanism:steel_casing": "Stahlgehäuse",
+    "mekanism:tin_ore": "Zinnerz",
+    "mekanism:uranium_ore": "Uranerz",
+    "minecraft:acacia_log": "Akazienstamm",
+    "minecraft:acacia_sapling": "Akaziensetzling",
+    "minecraft:allium": "Zierlauch",
+    "minecraft:amethyst_shard": "Amethystscherbe",
+    "minecraft:ancient_debris": "Antiker Schrott",
+    "minecraft:andesite": "Andesit",
+    "minecraft:anvil": "Amboss",
+    "minecraft:apple": "Apfel",
+    "minecraft:armadillo": "Gürteltier",
+    "minecraft:armor_stand": "Rüstungsständer",
+    "minecraft:arrow": "Pfeil",
+    "minecraft:axolotl": "Axolotl",
+    "minecraft:azure_bluet": "Porzellansternchen",
+    "minecraft:baked_potato": "Ofenkartoffel",
+    "minecraft:bamboo": "Bambus",
+    "minecraft:barrel": "Fass",
+    "minecraft:basalt": "Basalt",
+    "minecraft:bee": "Biene",
+    "minecraft:beef": "Rohes Rindfleisch",
+    "minecraft:beehive": "Bienenstock",
+    "minecraft:beetroot": "Rote Bete",
+    "minecraft:beetroot_seeds": "Rote-Bete-Samen",
+    "minecraft:beetroot_soup": "Borschtsch",
+    "minecraft:birch_log": "Birkenstamm",
+    "minecraft:birch_sapling": "Birkensetzling",
+    "minecraft:black_dye": "Schwarzer Farbstoff",
+    "minecraft:blackstone": "Schwarzstein",
+    "minecraft:blast_furnace": "Schmelzofen",
+    "minecraft:blaze": "Lohe",
+    "minecraft:blaze_powder": "Lohenstaub",
+    "minecraft:blaze_rod": "Lohenrute",
+    "minecraft:blue_dye": "Blauer Farbstoff",
+    "minecraft:blue_orchid": "Blaue Orchidee",
+    "minecraft:bogged": "Sumpfskelett",
+    "minecraft:bone": "Knochen",
+    "minecraft:bone_block": "Knochenblock",
+    "minecraft:bone_meal": "Knochenmehl",
+    "minecraft:book": "Buch",
+    "minecraft:bookshelf": "Bücherregal",
+    "minecraft:bow": "Bogen",
+    "minecraft:bread": "Brot",
+    "minecraft:breeze": "Böe",
+    "minecraft:brewing_stand": "Braustand",
+    "minecraft:brick": "Ziegel",
+    "minecraft:bricks": "Ziegelsteine",
+    "minecraft:brown_mushroom": "Brauner Pilz",
+    "minecraft:brown_mushroom_block": "Brauner Pilzblock",
+    "minecraft:bucket": "Eimer",
+    "minecraft:cactus": "Kaktus",
+    "minecraft:cake": "Kuchen",
+    "minecraft:calcite": "Kalzit",
+    "minecraft:camel": "Dromedar",
+    "minecraft:campfire": "Lagerfeuer",
+    "minecraft:candle": "Kerze",
+    "minecraft:carrot": "Karotte",
+    "minecraft:cartography_table": "Kartentisch",
+    "minecraft:cat": "Katze",
+    "minecraft:cauldron": "Kessel",
+    "minecraft:cave_spider": "Höhlenspinne",
+    "minecraft:chain": "Kette",
+    "minecraft:charcoal": "Holzkohle",
+    "minecraft:cherry_log": "Kirschstamm",
+    "minecraft:cherry_sapling": "Kirschsetzling",
+    "minecraft:chest": "Truhe",
+    "minecraft:chicken": "Huhn",
+    "minecraft:chiseled_bookshelf": "Gearbeitetes Bücherregal",
+    "minecraft:chiseled_stone_bricks": "Gemeißelte Steinziegel",
+    "minecraft:chorus_fruit": "Chorusfrucht",
+    "minecraft:chorus_plant": "Choruspflanze",
+    "minecraft:clay": "Ton",
+    "minecraft:clay_ball": "Tonklumpen",
+    "minecraft:clock": "Uhr",
+    "minecraft:coal": "Kohle",
+    "minecraft:coal_block": "Kohleblock",
+    "minecraft:coal_ore": "Steinkohle",
+    "minecraft:cobbled_deepslate": "Bruchtiefenschiefer",
+    "minecraft:cobblestone": "Bruchstein",
+    "minecraft:cobweb": "Spinnennetz",
+    "minecraft:cocoa_beans": "Kakaobohnen",
+    "minecraft:cod": "Roher Kabeljau",
+    "minecraft:compass": "Kompass",
+    "minecraft:composter": "Komposter",
+    "minecraft:cooked_beef": "Steak",
+    "minecraft:cooked_chicken": "Gebratenes Hühnchen",
+    "minecraft:cooked_cod": "Gebratener Kabeljau",
+    "minecraft:cooked_mutton": "Gebratenes Hammelfleisch",
+    "minecraft:cooked_porkchop": "Gebratenes Schweinefleisch",
+    "minecraft:cooked_rabbit": "Gebratenes Kaninchen",
+    "minecraft:cooked_salmon": "Gebratener Lachs",
+    "minecraft:cookie": "Keks",
+    "minecraft:copper_block": "Kupferblock",
+    "minecraft:copper_door": "Kupfertür",
+    "minecraft:copper_grate": "Kupferrost",
+    "minecraft:copper_ingot": "Kupferbarren",
+    "minecraft:copper_ore": "Kupfererz",
+    "minecraft:cornflower": "Kornblume",
+    "minecraft:cow": "Kuh",
+    "minecraft:cracked_deepslate_bricks": "Rissige Tiefenschieferziegel",
+    "minecraft:cracked_stone_bricks": "Rissige Steinziegel",
+    "minecraft:creeper": "Creeper",
+    "minecraft:crimson_fungus": "Karmesinpilz",
+    "minecraft:crimson_nylium": "Karmesin-Nezel",
+    "minecraft:crimson_stem": "Karmesinstiel",
+    "minecraft:crossbow": "Armbrust",
+    "minecraft:crying_obsidian": "Weinender Obsidian",
+    "minecraft:cut_copper": "Geschnittener Kupferblock",
+    "minecraft:cut_sandstone": "Geschnittener Sandstein",
+    "minecraft:dandelion": "Löwenzahn",
+    "minecraft:dark_oak_log": "Schwarzeichenstamm",
+    "minecraft:dark_oak_sapling": "Schwarzeichensetzling",
+    "minecraft:decorated_pot": "Verzierter Krug",
+    "minecraft:deepslate": "Tiefenschiefer",
+    "minecraft:deepslate_bricks": "Tiefenschieferziegel",
+    "minecraft:deepslate_coal_ore": "Tiefenschiefer-Steinkohle",
+    "minecraft:deepslate_copper_ore": "Tiefenschiefer-Kupfererz",
+    "minecraft:deepslate_diamond_ore": "Tiefenschiefer-Diamanterz",
+    "minecraft:deepslate_gold_ore": "Tiefenschiefer-Golderz",
+    "minecraft:deepslate_iron_ore": "Tiefenschiefer-Eisenerz",
+    "minecraft:deepslate_lapis_ore": "Tiefenschiefer-Lapislazulierz",
+    "minecraft:deepslate_redstone_ore": "Tiefenschiefer-Redstone-Erz",
+    "minecraft:deepslate_tiles": "Tiefenschieferfliesen",
+    "minecraft:detector_rail": "Sensorschiene",
+    "minecraft:diamond": "Diamant",
+    "minecraft:diamond_boots": "Diamantstiefel",
+    "minecraft:diamond_helmet": "Diamanthelm",
+    "minecraft:diamond_pickaxe": "Diamantspitzhacke",
+    "minecraft:diamond_sword": "Diamantschwert",
+    "minecraft:diorite": "Diorit",
+    "minecraft:dirt": "Erde",
+    "minecraft:dispenser": "Werfer",
+    "minecraft:donkey": "Esel",
+    "minecraft:dried_kelp": "Getrockneter Seetang",
+    "minecraft:dried_kelp_block": "Getrockneter Seetangblock",
+    "minecraft:dripstone_block": "Tropfsteinblock",
+    "minecraft:dropper": "Spender",
+    "minecraft:drowned": "Ertrunkener",
+    "minecraft:egg": "Ei",
+    "minecraft:emerald_ore": "Smaragderz",
+    "minecraft:enchanted_book": "Buch",
+    "minecraft:enchanting_table": "Zaubertisch",
+    "minecraft:end_stone": "Endstein",
+    "minecraft:ender_chest": "Endertruhe",
+    "minecraft:ender_eye": "Enderauge",
+    "minecraft:ender_pearl": "Enderperle",
+    "minecraft:enderman": "Enderman",
+    "minecraft:feather": "Feder",
+    "minecraft:fermented_spider_eye": "Fermentiertes Spinnenauge",
+    "minecraft:firework_rocket": "Feuerwerksrakete",
+    "minecraft:fishing_rod": "Angel",
+    "minecraft:fletching_table": "Bognertisch",
+    "minecraft:flint": "Feuerstein",
+    "minecraft:flint_and_steel": "Feuerzeug",
+    "minecraft:flower_pot": "Blumentopf",
+    "minecraft:fox": "Fuchs",
+    "minecraft:frog": "Frosch",
+    "minecraft:furnace": "Ofen",
+    "minecraft:ghast": "Ghast",
+    "minecraft:ghast_tear": "Ghast-Träne",
+    "minecraft:glass": "Glas",
+    "minecraft:glass_bottle": "Glasflasche",
+    "minecraft:glass_pane": "Glasscheibe",
+    "minecraft:glistering_melon_slice": "Glitzernde Melonenscheibe",
+    "minecraft:glow_berries": "Leuchtbeeren",
+    "minecraft:glow_ink_sac": "Leuchttintenbeutel",
+    "minecraft:glow_item_frame": "Leuchtrahmen",
+    "minecraft:glow_lichen": "Leuchtflechte",
+    "minecraft:glowstone": "Leuchtstein",
+    "minecraft:glowstone_dust": "Leuchtsteinstaub",
+    "minecraft:goat": "Ziege",
+    "minecraft:gold_ingot": "Goldbarren",
+    "minecraft:gold_nugget": "Goldklumpen",
+    "minecraft:gold_ore": "Golderz",
+    "minecraft:golden_apple": "Goldener Apfel",
+    "minecraft:golden_carrot": "Goldene Karotte",
+    "minecraft:granite": "Granit",
+    "minecraft:grass": "Gras",
+    "minecraft:gravel": "Kies",
+    "minecraft:green_dye": "Grüner Farbstoff",
+    "minecraft:grindstone": "Schleifstein",
+    "minecraft:guardian": "Wächter",
+    "minecraft:gunpowder": "Schwarzpulver",
+    "minecraft:hay_block": "Strohballen",
+    "minecraft:hoglin": "Hoglin",
+    "minecraft:honey_block": "Honigblock",
+    "minecraft:honey_bottle": "Honigflasche",
+    "minecraft:honeycomb": "Honigwabe",
+    "minecraft:hopper": "Trichter",
+    "minecraft:horse": "Pferd",
+    "minecraft:husk": "Wüstenzombie",
+    "minecraft:ice": "Eis",
+    "minecraft:ink_sac": "Tintenbeutel",
+    "minecraft:iron_axe": "Eisenaxt",
+    "minecraft:iron_bars": "Eisengitter",
+    "minecraft:iron_block": "Eisenblock",
+    "minecraft:iron_boots": "Eisenstiefel",
+    "minecraft:iron_chain": "Eisenkette",
+    "minecraft:iron_chestplate": "Eisenharnisch",
+    "minecraft:iron_helmet": "Eisenhelm",
+    "minecraft:iron_ingot": "Eisenbarren",
+    "minecraft:iron_leggings": "Eisenbeinschutz",
+    "minecraft:iron_ore": "Eisenerz",
+    "minecraft:iron_pickaxe": "Eisenspitzhacke",
+    "minecraft:iron_shovel": "Eisenschaufel",
+    "minecraft:iron_sword": "Eisenschwert",
+    "minecraft:item_frame": "Rahmen",
+    "minecraft:jukebox": "Plattenspieler",
+    "minecraft:jungle_log": "Tropenbaumstamm",
+    "minecraft:jungle_sapling": "Tropenbaumsetzling",
+    "minecraft:kelp": "Seetang",
+    "minecraft:ladder": "Leiter",
+    "minecraft:lantern": "Laterne",
+    "minecraft:lapis_block": "Lapislazuliblock",
+    "minecraft:lapis_lazuli": "Lapislazuli",
+    "minecraft:lapis_ore": "Lapislazulierz",
+    "minecraft:lead": "Leine",
+    "minecraft:leather": "Leder",
+    "minecraft:leather_boots": "Lederstiefel",
+    "minecraft:leather_chestplate": "Lederjacke",
+    "minecraft:leather_helmet": "Lederkappe",
+    "minecraft:leather_leggings": "Lederhose",
+    "minecraft:lectern": "Lesepult",
+    "minecraft:lightning_rod": "Blitzableiter",
+    "minecraft:lilac": "Flieder",
+    "minecraft:lily_of_the_valley": "Maiglöckchen",
+    "minecraft:lily_pad": "Seerosenblatt",
+    "minecraft:llama": "Lama",
+    "minecraft:loom": "Webstuhl",
+    "minecraft:magma_block": "Magmablock",
+    "minecraft:magma_cream": "Magmacreme",
+    "minecraft:magma_cube": "Magmawürfel",
+    "minecraft:mangrove_log": "Mangrovenstamm",
+    "minecraft:mangrove_roots": "Mangrovenwurzeln",
+    "minecraft:map": "Leere Karte",
+    "minecraft:melon": "Melone",
+    "minecraft:melon_slice": "Melonenscheibe",
+    "minecraft:milk_bucket": "Milcheimer",
+    "minecraft:minecart": "Lore",
+    "minecraft:mooshroom": "Mooshroom",
+    "minecraft:moss_block": "Moosblock",
+    "minecraft:mossy_cobblestone": "Bemooster Bruchstein",
+    "minecraft:mossy_stone_bricks": "Bemooste Steinziegel",
+    "minecraft:mud": "Schlamm",
+    "minecraft:mud_bricks": "Schlammziegel",
+    "minecraft:mushroom_stew": "Pilzsuppe",
+    "minecraft:mutton": "Rohes Hammelfleisch",
+    "minecraft:nether_brick": "Netherziegel",
+    "minecraft:nether_bricks": "Netherziegel",
+    "minecraft:nether_gold_ore": "Nethergolderz",
+    "minecraft:nether_quartz_ore": "Netherquarzerz",
+    "minecraft:nether_wart": "Netherwarze",
+    "minecraft:nether_wart_block": "Netherwarzenblock",
+    "minecraft:netherite_scrap": "Netheritplatten",
+    "minecraft:netherrack": "Netherrack",
+    "minecraft:note_block": "Notenblock",
+    "minecraft:oak_boat": "Eichenholzboot",
+    "minecraft:oak_fence": "Eichenholzzaun",
+    "minecraft:oak_log": "Eichenstamm",
+    "minecraft:oak_planks": "Eichenholzbretter",
+    "minecraft:oak_sapling": "Eichensetzling",
+    "minecraft:obsidian": "Obsidian",
+    "minecraft:ocelot": "Ozelot",
+    "minecraft:oxeye_daisy": "Margerite",
+    "minecraft:packed_ice": "Packeis",
+    "minecraft:packed_mud": "Fester Schlamm",
+    "minecraft:painting": "Gemälde",
+    "minecraft:pale_oak_log": "Blasseichenstamm",
+    "minecraft:panda": "Panda",
+    "minecraft:paper": "Papier",
+    "minecraft:parrot": "Papagei",
+    "minecraft:peony": "Pfingstrose",
+    "minecraft:phantom": "Phantom",
+    "minecraft:phantom_membrane": "Phantomhaut",
+    "minecraft:pig": "Schwein",
+    "minecraft:piglin": "Piglin",
+    "minecraft:pillager": "Plünderer",
+    "minecraft:piston": "Kolben",
+    "minecraft:pointed_dripstone": "Spitzer Tropfstein",
+    "minecraft:polished_andesite": "Polierter Andesit",
+    "minecraft:polished_blackstone": "Polierter Schwarzstein",
+    "minecraft:polished_deepslate": "Polierter Tiefenschiefer",
+    "minecraft:polished_diorite": "Polierter Diorit",
+    "minecraft:polished_granite": "Polierter Granit",
+    "minecraft:popped_chorus_fruit": "Geplatzte Chorusfrucht",
+    "minecraft:poppy": "Mohn",
+    "minecraft:porkchop": "Rohes Schweinefleisch",
+    "minecraft:potato": "Kartoffel",
+    "minecraft:potion{minecraft:fire_resistance}": "Trank der Feuerresistenz",
+    "minecraft:potion{minecraft:night_vision}": "Trank der Nachtsicht",
+    "minecraft:potion{minecraft:strength}": "Trank der Stärke",
+    "minecraft:potion{minecraft:swiftness}": "Trank der Schnelligkeit",
+    "minecraft:potion{minecraft:water_breathing}": "Trank der Unterwasseratmung",
+    "minecraft:powered_rail": "Antriebsschiene",
+    "minecraft:prismarine": "Prismarin",
+    "minecraft:prismarine_crystals": "Prismarinkristalle",
+    "minecraft:prismarine_shard": "Prismarinscherbe",
+    "minecraft:pumpkin": "Kürbis",
+    "minecraft:pumpkin_pie": "Kürbiskuchen",
+    "minecraft:purpur_block": "Purpurblock",
+    "minecraft:quartz": "Netherquarz",
+    "minecraft:quartz_block": "Quarzblock",
+    "minecraft:rabbit": "Kaninchen",
+    "minecraft:rabbit_hide": "Kaninchenfell",
+    "minecraft:rabbit_stew": "Kaninchenragout",
+    "minecraft:rail": "Schiene",
+    "minecraft:raw_copper": "Rohkupfer",
+    "minecraft:raw_gold": "Rohgold",
+    "minecraft:raw_iron": "Roheisen",
+    "minecraft:red_dye": "Roter Farbstoff",
+    "minecraft:red_mushroom": "Roter Pilz",
+    "minecraft:red_mushroom_block": "Roter Pilzblock",
+    "minecraft:red_nether_bricks": "Rote Netherziegel",
+    "minecraft:red_sand": "Roter Sand",
+    "minecraft:red_sandstone": "Roter Sandstein",
+    "minecraft:red_tulip": "Rote Tulpe",
+    "minecraft:redstone": "Redstone-Staub",
+    "minecraft:redstone_block": "Redstone-Block",
+    "minecraft:redstone_ore": "Redstone-Erz",
+    "minecraft:redstone_torch": "Redstone-Fackel",
+    "minecraft:repeater": "Redstone-Verstärker",
+    "minecraft:rotten_flesh": "Verrottetes Fleisch",
+    "minecraft:salmon": "Roher Lachs",
+    "minecraft:sand": "Sand",
+    "minecraft:sandstone": "Sandstein",
+    "minecraft:scaffolding": "Gerüst",
+    "minecraft:sculk": "Sculk",
+    "minecraft:sculk_sensor": "Sculk-Sensor",
+    "minecraft:scute": "Hornschild",
+    "minecraft:sea_lantern": "Seelaterne",
+    "minecraft:sea_pickle": "Meeresgurke",
+    "minecraft:seagrass": "Seegras",
+    "minecraft:shears": "Schere",
+    "minecraft:sheep": "Schaf",
+    "minecraft:shield": "Schild",
+    "minecraft:short_grass": "Niedriges Gras",
+    "minecraft:shroomlight": "Pilzlicht",
+    "minecraft:shulker": "Shulker",
+    "minecraft:shulker_shell": "Shulker-Schale",
+    "minecraft:silverfish": "Silberfischchen",
+    "minecraft:skeleton": "Skelett",
+    "minecraft:slime": "Schleim",
+    "minecraft:slime_ball": "Schleimball",
+    "minecraft:smithing_table": "Schmiedetisch",
+    "minecraft:smoker": "Räucherofen",
+    "minecraft:smooth_quartz": "Glatter Quarzblock",
+    "minecraft:smooth_red_sandstone": "Glatter roter Sandstein",
+    "minecraft:smooth_sandstone": "Glatter Sandstein",
+    "minecraft:smooth_stone": "Glatter Stein",
+    "minecraft:smooth_stone_slab": "Glatte Steinstufe",
+    "minecraft:snow_block": "Schneeblock",
+    "minecraft:snowball": "Schneeball",
+    "minecraft:soul_lantern": "Seelenlaterne",
+    "minecraft:soul_sand": "Seelensand",
+    "minecraft:soul_soil": "Seelenerde",
+    "minecraft:soul_torch": "Seelenfackel",
+    "minecraft:spectral_arrow": "Spektralpfeil",
+    "minecraft:spider": "Spinne",
+    "minecraft:spider_eye": "Spinnenauge",
+    "minecraft:sponge": "Schwamm",
+    "minecraft:spruce_log": "Fichtenstamm",
+    "minecraft:spruce_sapling": "Fichtensetzling",
+    "minecraft:spyglass": "Fernrohr",
+    "minecraft:stick": "Stock",
+    "minecraft:stone": "Stein",
+    "minecraft:stone_brick_stairs": "Steinziegeltreppe",
+    "minecraft:stone_bricks": "Steinziegel",
+    "minecraft:stonecutter": "Steinsäge",
+    "minecraft:stray": "Eiswanderer",
+    "minecraft:strider": "Schreiter",
+    "minecraft:string": "Faden",
+    "minecraft:sugar": "Zucker",
+    "minecraft:sugar_cane": "Zuckerrohr",
+    "minecraft:sunflower": "Sonnenblume",
+    "minecraft:sweet_berries": "Süßbeeren",
+    "minecraft:target": "Zielblock",
+    "minecraft:terracotta": "Keramik",
+    "minecraft:tnt": "TNT",
+    "minecraft:torch": "Fackel",
+    "minecraft:trapped_chest": "Redstone-Truhe",
+    "minecraft:tripwire_hook": "Haken",
+    "minecraft:tuff": "Tuffstein",
+    "minecraft:turtle": "Schildkröte",
+    "minecraft:turtle_scute": "Schildkröten-Hornschild",
+    "minecraft:vine": "Ranken",
+    "minecraft:warped_fungus": "Wirrpilz",
+    "minecraft:warped_stem": "Wirrstiel",
+    "minecraft:warped_wart_block": "Wirrwarzenblock",
+    "minecraft:wheat": "Weizen",
+    "minecraft:wheat_seeds": "Weizenkörner",
+    "minecraft:white_banner": "Weißes Banner",
+    "minecraft:white_bed": "Weißes Bett",
+    "minecraft:white_carpet": "Weißer Teppich",
+    "minecraft:white_dye": "Weißer Farbstoff",
+    "minecraft:white_glazed_terracotta": "Weiße glasierte Keramik",
+    "minecraft:white_stained_glass": "Weißes Glas",
+    "minecraft:white_terracotta": "Weiße Keramik",
+    "minecraft:white_wool": "Weiße Wolle",
+    "minecraft:witch": "Hexe",
+    "minecraft:wither_skeleton": "Wither-Skelett",
+    "minecraft:wolf": "Wolf",
+    "minecraft:yellow_dye": "Gelber Farbstoff",
+    "minecraft:zombie": "Zombie",
+    "minecraft:zombie_villager": "Zombiedorfbewohner",
+    "minecraft:zombified_piglin": "Zombifizierter Piglin",
+    "tconstruct:cobalt_ore": "Nether-Kobalt-Erz",
+    "tconstruct:crafting_station": "Handwerksstation",
+    "tconstruct:greenheart_log": "Greenheart-Stamm",
+    "tconstruct:grout": "Mörtel",
+    "tconstruct:materials_and_you": "Materialien und Sie",
+    "tconstruct:part_builder": "Teilebauer",
+    "tconstruct:pattern": "Muster",
+    "tconstruct:raw_cobalt": "Rohes Kobalt",
+    "tconstruct:seared_basin": "Seared Casting Basin",
+    "tconstruct:seared_brick": "Angebrannter Ziegel",
+    "tconstruct:seared_bricks": "Angebrannte Ziegel",
+    "tconstruct:seared_faucet": "Versengter Wasserhahn",
+    "tconstruct:seared_heater": "Versengte Heizung",
+    "tconstruct:seared_melter": "Angebrannter Schmelzer",
+    "tconstruct:seared_table": "Seared Casting-Tabelle",
+    "tconstruct:sky_slime": "Himmelsschleim",
+    "tconstruct:sky_slime_ball": "Himmelsschleimball",
+    "tconstruct:skyroot_log": "Skyroot-Stamm",
+    "tconstruct:tinker_station": "Bastelstation",
+    "twilightforest:bighorn_sheep": "Dickhornschaf",
+    "twilightforest:boar": "Eber",
+    "twilightforest:canopy_bookshelf": "Baldachin-Bücherregal",
+    "twilightforest:canopy_log": "Baldachinbaumstamm",
+    "twilightforest:canopy_planks": "Baldachinholzbretter",
+    "twilightforest:cooked_meef": "Meefsteak",
+    "twilightforest:cooked_venison": "Hirschsteak",
+    "twilightforest:dark_log": "Dunkelstamm",
+    "twilightforest:dark_planks": "Dunkelholzbretter",
+    "twilightforest:deer": "Hirsch",
+    "twilightforest:fire_beetle": "Feuerkäfer",
+    "twilightforest:hedge_spider": "Heckenspinne",
+    "twilightforest:hostile_wolf": "Böser Wolf",
+    "twilightforest:ironwood_ingot": "Eisenholzbarren",
+    "twilightforest:kobold": "Kobold",
+    "twilightforest:lich": "Lich",
+    "twilightforest:liveroot": "Lebenswurzel",
+    "twilightforest:magic_map": "Leere magische Karte",
+    "twilightforest:magic_map_focus": "Magischer Kartenfokus",
+    "twilightforest:mangrove_log": "Mangrovenstamm",
+    "twilightforest:minotaur": "Minotaurus",
+    "twilightforest:mushgloom": "Düsterpilz",
+    "twilightforest:naga": "Naga",
+    "twilightforest:naga_scale": "Nagaschuppe",
+    "twilightforest:pinch_beetle": "Zangenkäfer",
+    "twilightforest:raven_feather": "Rabenfeder",
+    "twilightforest:raw_ironwood": "Eisenholzmaterialien",
+    "twilightforest:raw_meef": "Rohes Meeffleisch",
+    "twilightforest:raw_venison": "Rohes Hirschfleisch",
+    "twilightforest:redcap": "Rotkappe",
+    "twilightforest:skeleton_druid": "Skelettdruide",
+    "twilightforest:slime_beetle": "Schleimkäfer",
+    "twilightforest:swarm_spider": "Schwarmspinne",
+    "twilightforest:torchberries": "Fackelbeeren",
+    "twilightforest:twilight_oak_boat": "Dämmerungseichen-Boot",
+    "twilightforest:twilight_oak_log": "Dämmerung-Eichenstamm",
+    "twilightforest:twilight_oak_planks": "Dämmerung-Eichenholzbretter"
+  }
+}

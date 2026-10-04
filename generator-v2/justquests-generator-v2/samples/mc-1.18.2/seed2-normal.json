@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_1": {
-    "title": "Snowball Pitch",
-    "description": "Throw 64 snowballs. Shovel snow and throw the snowballs. Look in snowy biomes.",
+    "title": {
+      "en_us": "Snowball Pitch",
+      "de_de": "Weitwurf: Schneeball",
+      "fr_fr": "Tir : boule de neige",
+      "es_es": "Tiro de bola de nieve",
+      "ja_jp": "雪玉のピッチング"
+    },
+    "description": {
+      "en_us": "Throw 64 snowballs. Shovel snow and throw the snowballs. Look in snowy biomes.",
+      "de_de": "Wirf 64× Schneeball. Schaufle Schnee und wirf die Schneebälle. Suche in verschneiten Biomen.",
+      "fr_fr": "Lancez 64× boule de neige. Pelletez de la neige et lancez les boules. Cherchez dans les biomes enneigés.",
+      "es_es": "Lanza 64× bola de nieve. Recoge nieve con la pala y lanza las bolas. Busca en biomas nevados.",
+      "ja_jp": "雪玉64個の投てきをこなそう。雪を掘って雪玉を投げる。雪のバイオームを探そう。"
+    },
     "category": "generated",
     "sort": 7,
     "objectives": [
@@ -29,8 +41,20 @@
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "Mine Dark Oak Logs",
-    "description": "Mine 64 dark oak logs. Dark forests have plenty.",
+    "title": {
+      "en_us": "Mine Dark Oak Logs",
+      "de_de": "Schwarzeichenstamm abbauen",
+      "fr_fr": "Tâche : bûche de chêne noir",
+      "es_es": "Minar tronco de roble oscuro",
+      "ja_jp": "ダークオークの原木を掘ろう"
+    },
+    "description": {
+      "en_us": "Mine 64 dark oak logs. Dark forests have plenty.",
+      "de_de": "Baue 64× Schwarzeichenstamm ab. Dunkle Wälder haben jede Menge.",
+      "fr_fr": "Minez 64× bûche de chêne noir. Les forêts sombres en regorgent.",
+      "es_es": "Mina 64× tronco de roble oscuro. Los bosques oscuros tienen muchos.",
+      "ja_jp": "ダークオークの原木64個の採掘をこなそう。暗い森にたくさんある。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -53,8 +77,20 @@
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Black Dye Order",
-    "description": "Make 16 black dyes. From ink sacs or wither roses.",
+    "title": {
+      "en_us": "Black Dye Order",
+      "de_de": "Bestellung: Schwarzer Farbstoff",
+      "fr_fr": "Commande de teinture noire",
+      "es_es": "Pedido de tinte negro",
+      "ja_jp": "黒色の染料の注文"
+    },
+    "description": {
+      "en_us": "Make 16 black dyes. From ink sacs or wither roses.",
+      "de_de": "Fertige 16× Schwarzer Farbstoff an. Aus Tintenbeuteln oder Wither-Rosen.",
+      "fr_fr": "Façonnez 16× teinture noire. À partir de poches d'encre ou de roses de Wither.",
+      "es_es": "Haz 16× tinte negro. De sacos de tinta o rosas del Wither.",
+      "ja_jp": "黒色の染料16個の製作をこなそう。イカスミかウィザーローズから。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -77,8 +113,20 @@
     ]
   },
   "justquests:gen/1790510400_8": {
-    "title": "Hot Bricks",
-    "description": "Smelt 64 bricks. Smelt clay balls. Look along rivers.",
+    "title": {
+      "en_us": "Hot Bricks",
+      "de_de": "Glühend: Ziegel",
+      "fr_fr": "Brûlant : brique",
+      "es_es": "Al rojo: ladrillo",
+      "ja_jp": "アツアツのレンガ"
+    },
+    "description": {
+      "en_us": "Smelt 64 bricks. Smelt clay balls. Look along rivers.",
+      "de_de": "Schmelze 64× Ziegel. Brenne Tonklumpen. Suche an Flüssen.",
+      "fr_fr": "Faites fondre 64× brique. Faites cuire des mottes d'argile. Cherchez le long des rivières.",
+      "es_es": "Funde 64× ladrillo. Cuece bolas de arcilla. Busca a lo largo de los ríos.",
+      "ja_jp": "レンガ64個の製錬をこなそう。粘土玉を焼く。川沿いを探そう。"
+    },
     "category": "generated",
     "sort": 8,
     "objectives": [
@@ -101,8 +149,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Blast Furnace Batch",
-    "description": "Craft 3 blast furnaces.",
+    "title": {
+      "en_us": "Blast Furnace Batch",
+      "de_de": "Charge: Schmelzofen",
+      "fr_fr": "Fournée de haut fourneau",
+      "es_es": "Lote de alto horno",
+      "ja_jp": "溶鉱炉の量産"
+    },
+    "description": {
+      "en_us": "Craft 3 blast furnaces.",
+      "de_de": "Stelle 3× Schmelzofen her.",
+      "fr_fr": "Fabriquez 3× haut fourneau.",
+      "es_es": "Fabrica 3× alto horno.",
+      "ja_jp": "溶鉱炉3個の作成をこなそう。"
+    },
     "category": "generated",
     "sort": 9,
     "objectives": [
@@ -131,8 +191,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Baked Potato Order",
-    "description": "Cook 48 baked potatoes. Bake potatoes in a furnace or smoker. Villages often have them. Grow them on a farm.",
+    "title": {
+      "en_us": "Baked Potato Order",
+      "de_de": "Bestellung: Ofenkartoffel",
+      "fr_fr": "Commande de pomme de terre cuite",
+      "es_es": "Pedido de patata cocida",
+      "ja_jp": "ベイクドポテトの注文"
+    },
+    "description": {
+      "en_us": "Cook 48 baked potatoes. Bake potatoes in a furnace or smoker. Villages often have them. Grow them on a farm.",
+      "de_de": "Bereite 48× Ofenkartoffel zu. Backe Kartoffeln im Ofen oder Räucherofen. In Dörfern gibt es sie oft. Baue sie auf einem Feld an.",
+      "fr_fr": "Cuisinez 48× pomme de terre cuite. Faites cuire des pommes de terre au fourneau ou au fumoir. Les villages en ont souvent.",
+      "es_es": "Cocina 48× patata cocida. Asa patatas en un horno o ahumador. Los pueblos suelen tenerlos. Cultívalos en una granja.",
+      "ja_jp": "ベイクドポテト48個の調理をこなそう。ジャガイモをかまどか燻製器で焼く。村によくある。畑で育てよう。"
+    },
     "category": "generated",
     "sort": 12,
     "objectives": [
@@ -161,8 +233,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Dig Redstone Ore",
-    "description": "Break 12 redstone ore. Needs an iron pickaxe or better. Found deep underground.",
+    "title": {
+      "en_us": "Dig Redstone Ore",
+      "de_de": "Redstone-Erz ausgraben",
+      "fr_fr": "Creuser : minerai de redstone",
+      "es_es": "Cavar mena de redstone",
+      "ja_jp": "レッドストーン鉱石を掘り出そう"
+    },
+    "description": {
+      "en_us": "Break 12 redstone ore. Needs an iron pickaxe or better. Found deep underground.",
+      "de_de": "Zerstöre 12× Redstone-Erz. Braucht mindestens eine Eisenspitzhacke. Tief unter der Erde zu finden.",
+      "fr_fr": "Cassez 12× minerai de redstone. Il faut au moins une pioche en fer. Se trouve en profondeur.",
+      "es_es": "Rompe 12× mena de redstone. Necesita un pico de hierro o mejor. Se encuentra a gran profundidad.",
+      "ja_jp": "レッドストーン鉱石12個の破壊をこなそう。鉄のツルハシ以上が必要。地下深くで見つかる。"
+    },
     "category": "generated",
     "sort": 12,
     "objectives": [
@@ -185,8 +269,20 @@
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Winter Prep",
-    "description": "Get ready for the cold: break 48 ice and breed 8 sheep. Look in snowy biomes. Sheep breed with wheat.",
+    "title": {
+      "en_us": "Winter Prep",
+      "de_de": "Wintervorbereitung",
+      "fr_fr": "Préparatifs d'hiver",
+      "es_es": "Preparativos de invierno",
+      "ja_jp": "冬支度"
+    },
+    "description": {
+      "en_us": "Get ready for the cold: break 48 ice and breed 8 sheep. Look in snowy biomes. Sheep breed with wheat.",
+      "de_de": "Mach dich bereit für die Kälte: Zerstöre 48× Eis und züchte 8× Schaf. Suche in verschneiten Biomen. Schafe vermehren sich mit Weizen.",
+      "fr_fr": "Préparez-vous au froid : cassez 48× glace et élevez 8× mouton. Cherchez dans les biomes enneigés. Les moutons se reproduisent avec du blé.",
+      "es_es": "Prepárate para el frío: rompe 48× hielo y cría 8× oveja. Busca en biomas nevados. Las ovejas se reproducen con trigo.",
+      "ja_jp": "寒さに備えよう：氷48個の破壊とヒツジ8匹の繁殖。雪のバイオームを探そう。ヒツジは小麦で繁殖する。"
+    },
     "category": "generated",
     "sort": 15,
     "mode": "all",
@@ -215,8 +311,20 @@
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Drowned Trouble",
-    "description": "Defeat 12 drowned. Look in and near oceans. They spawn at night and in dark caves.",
+    "title": {
+      "en_us": "Drowned Trouble",
+      "de_de": "Ärger: Ertrunkener",
+      "fr_fr": "Ennuis : noyé",
+      "es_es": "Problema: ahogado",
+      "ja_jp": "ドラウンド騒動"
+    },
+    "description": {
+      "en_us": "Defeat 12 drowned. Look in and near oceans. They spawn at night and in dark caves.",
+      "de_de": "Besiege 12× Ertrunkener. Suche in und an Ozeanen. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Vainquez 12× noyé. Cherchez dans les océans et à proximité. Ils apparaissent la nuit et dans les grottes sombres.",
+      "es_es": "Derrota 12× ahogado. Busca en los océanos y cerca de ellos. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "ドラウンド12体の討伐をこなそう。海の中や近くを探そう。夜や暗い洞窟に出現する。"
+    },
     "category": "generated",
     "sort": 17,
     "objectives": [
@@ -239,8 +347,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Raw Salmon Pickup",
-    "description": "Pick up 16 raw salmon. Use a fishing rod.",
+    "title": {
+      "en_us": "Raw Salmon Pickup",
+      "de_de": "Abholung: Roher Lachs",
+      "fr_fr": "Ramassage : saumon cru",
+      "es_es": "Recogida de salmón crudo",
+      "ja_jp": "生鮭の回収"
+    },
+    "description": {
+      "en_us": "Pick up 16 raw salmon. Use a fishing rod.",
+      "de_de": "Hebe 16× Roher Lachs auf. Benutze eine Angel.",
+      "fr_fr": "Ramassez 16× saumon cru. Utilisez une canne à pêche.",
+      "es_es": "Recolecta 16× salmón crudo. Usa una caña de pescar.",
+      "ja_jp": "生鮭16個の回収をこなそう。釣竿を使う。"
+    },
     "category": "generated",
     "sort": 22,
     "objectives": [

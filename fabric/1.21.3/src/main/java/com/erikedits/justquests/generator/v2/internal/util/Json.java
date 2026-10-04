@@ -62,6 +62,18 @@ public final class Json {
         return def;
     }
 
+    /** A quest text field: the string itself, or the {@code en_us} entry of a per-language map. */
+    public static String text(JsonObject o, String key, String def) {
+        JsonElement e = o == null ? null : o.get(key);
+        if (e != null && e.isJsonObject()) {
+            e = e.getAsJsonObject().get("en_us");
+        }
+        if (e != null && e.isJsonPrimitive()) {
+            return e.getAsString();
+        }
+        return def;
+    }
+
     public static double dbl(JsonObject o, String key, double def) {
         JsonElement e = o == null ? null : o.get(key);
         if (e != null && e.isJsonPrimitive() && e.getAsJsonPrimitive().isNumber()) {

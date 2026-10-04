@@ -1,0 +1,537 @@
+{
+  "_format": "Theme key -> language -> [names..., description]. Names are index-aligned with the English theme names; the last entry is the description ({list} = objective list).",
+  "blacksmith_order": {
+    "de_de": ["Auftrag der Schmiede", "Schmiedearbeit", "Schmiedebedarf", "Die Schmiede braucht Hilfe: {list}."],
+    "fr_fr": ["Commande du forgeron", "Travail de forge", "Fournitures de forge", "La forge a besoin d'aide : {list}."],
+    "es_es": ["Encargo del herrero", "Trabajo de forja", "Suministros de forja", "La herrería necesita ayuda: {list}."],
+    "ja_jp": ["鍛冶屋の注文", "鍛冶仕事", "鍛冶場の補給", "鍛冶場が手を借りたいそうだ：{list}。"]
+  },
+  "harvest_festival": {
+    "de_de": ["Erntefest", "Erntezeit", "Rekordernte", "Bring die Ernte ein: {list}."],
+    "fr_fr": ["Fête des moissons", "Temps des récoltes", "Récolte record", "Rentrez la récolte : {list}."],
+    "es_es": ["Fiesta de la cosecha", "Tiempo de cosecha", "Cosecha récord", "Recoge la cosecha: {list}."],
+    "ja_jp": ["収穫祭", "収穫の時", "大豊作", "収穫の時期だ：{list}。"]
+  },
+  "monster_patrol": {
+    "de_de": ["Monsterpatrouille", "Nachtwache", "Untoten-Säuberung", "Halte die Wege sicher: {list}."],
+    "fr_fr": ["Patrouille anti-monstres", "Garde de nuit", "Purge des morts-vivants", "Sécurisez les routes : {list}."],
+    "es_es": ["Patrulla de monstruos", "Guardia nocturna", "Purga de no muertos", "Mantén seguros los caminos: {list}."],
+    "ja_jp": ["モンスター巡回", "夜警", "アンデッド掃討", "道の安全を守ろう：{list}。"]
+  },
+  "ranch_hand": {
+    "de_de": ["Rancharbeiter", "Hofarbeit", "Stalldienst", "Die Ranch braucht Hilfe: {list}."],
+    "fr_fr": ["Garçon de ferme", "Corvées de la ferme", "Service à l'étable", "Le ranch a besoin d'un coup de main : {list}."],
+    "es_es": ["Peón del rancho", "Tareas de la granja", "Turno en el establo", "El rancho necesita ayuda: {list}."],
+    "ja_jp": ["牧場の手伝い", "農場の雑用", "家畜小屋の当番", "牧場が人手を求めている：{list}。"]
+  },
+  "nether_expedition": {
+    "de_de": ["Nether-Expedition", "Ins Feuer", "Festungsraubzug", "Bring Schätze aus dem Nether mit: {list}."],
+    "fr_fr": ["Expédition dans le Nether", "Dans le feu", "Raid sur la forteresse", "Rapportez des trésors du Nether : {list}."],
+    "es_es": ["Expedición al Nether", "Hacia el fuego", "Asalto a la fortaleza", "Trae tesoros del Nether: {list}."],
+    "ja_jp": ["ネザー遠征", "炎の中へ", "要塞襲撃", "ネザーから宝を持ち帰ろう：{list}。"]
+  },
+  "mining_expedition": {
+    "de_de": ["Bergbau-Expedition", "Tiefe Grabung", "Höhlenerkundung", "Ab unter die Erde: {list}."],
+    "fr_fr": ["Expédition minière", "Fouille profonde", "Relevé des grottes", "Descendez sous terre : {list}."],
+    "es_es": ["Expedición minera", "Excavación profunda", "Estudio de cuevas", "Baja bajo tierra: {list}."],
+    "ja_jp": ["採掘遠征", "深掘り", "洞窟調査", "地下へ向かおう：{list}。"]
+  },
+  "lumberjack": {
+    "de_de": ["Holzfäller", "Baum fällt!", "Holzhacker", "Das Sägewerk wartet: {list}."],
+    "fr_fr": ["Bûcheron", "Attention, ça tombe !", "Coupeur de bois", "La scierie attend : {list}."],
+    "es_es": ["Leñador", "¡Árbol va!", "Talador", "El aserradero espera: {list}."],
+    "ja_jp": ["木こり", "倒れるぞー！", "きこり仕事", "製材所が待っている：{list}。"]
+  },
+  "ocean_voyage": {
+    "de_de": ["Seereise", "Meeresernte", "Gezeitenarbeit", "Stich in See: {list}."],
+    "fr_fr": ["Voyage en mer", "Récolte marine", "Travail des marées", "Prenez la mer : {list}."],
+    "es_es": ["Viaje por mar", "Cosecha marina", "Trabajo de mareas", "Hazte a la mar: {list}."],
+    "ja_jp": ["大海原の旅", "海の恵み", "潮の仕事", "海へ出よう：{list}。"]
+  },
+  "camp_cook": {
+    "de_de": ["Lagerkoch", "Lagerfeueressen", "Zeit fürs Abendbrot", "Versorge das Lager: {list}."],
+    "fr_fr": ["Cuisinier du camp", "Dîner au feu de camp", "L'heure du souper", "Nourrissez le camp : {list}."],
+    "es_es": ["Cocinero del campamento", "Cena junto al fuego", "Hora de cenar", "Alimenta el campamento: {list}."],
+    "ja_jp": ["キャンプの料理番", "焚き火のディナー", "夕食の時間", "キャンプのみんなに食事を：{list}。"]
+  },
+  "builders_order": {
+    "de_de": ["Bauauftrag", "Baustellenjob", "Maurerarbeit", "Die Bauleute brauchen Material: {list}."],
+    "fr_fr": ["Commande du bâtisseur", "Travaux de construction", "Travail de maçonnerie", "Les bâtisseurs ont besoin de matériaux : {list}."],
+    "es_es": ["Encargo del constructor", "Trabajo de obra", "Trabajo de albañilería", "Los constructores necesitan material: {list}."],
+    "ja_jp": ["建築家の注文", "建設の仕事", "石工の仕事", "建築家たちが資材を求めている：{list}。"]
+  },
+  "desert_trek": {
+    "de_de": ["Wüstentrek", "Sand und Sonne", "Trotze der Wüste: {list}."],
+    "fr_fr": ["Traversée du désert", "Sable et soleil", "Bravez le désert : {list}."],
+    "es_es": ["Travesía del desierto", "Arena y sol", "Desafía el desierto: {list}."],
+    "ja_jp": ["砂漠横断", "砂と太陽", "砂漠に挑もう：{list}。"]
+  },
+  "end_expedition": {
+    "de_de": ["End-Expedition", "Jenseits der Leere", "Erkunde das Ende: {list}."],
+    "fr_fr": ["Expédition dans l'End", "Au-delà du vide", "Explorez l'End : {list}."],
+    "es_es": ["Expedición al End", "Más allá del vacío", "Explora el End: {list}."],
+    "ja_jp": ["エンド遠征", "奈落の彼方へ", "エンドを探索しよう：{list}。"]
+  },
+  "beekeeper": {
+    "de_de": ["Imker", "Fleißige Bienen", "Kümmere dich um die Bienenstöcke: {list}."],
+    "fr_fr": ["Apiculteur", "Abeilles affairées", "Occupez-vous des ruches : {list}."],
+    "es_es": ["Apicultor", "Abejas atareadas", "Cuida las colmenas: {list}."],
+    "ja_jp": ["養蜂家", "働き者のミツバチ", "巣箱の世話をしよう：{list}。"]
+  },
+  "winter_prep": {
+    "de_de": ["Wintervorbereitung", "Kälteeinbruch", "Eingeschneit", "Mach dich bereit für die Kälte: {list}."],
+    "fr_fr": ["Préparatifs d'hiver", "Vague de froid", "Bloqué par la neige", "Préparez-vous au froid : {list}."],
+    "es_es": ["Preparativos de invierno", "Ola de frío", "Atrapado en la nieve", "Prepárate para el frío: {list}."],
+    "ja_jp": ["冬支度", "寒波到来", "雪に閉ざされて", "寒さに備えよう：{list}。"]
+  },
+  "tool_upgrade": {
+    "de_de": ["Werkzeug-Upgrade", "Eisenzeit", "Besseres Werkzeug", "Zeit für besseres Werkzeug: {list}."],
+    "fr_fr": ["Outils améliorés", "Âge du fer", "De meilleurs outils", "Place à de meilleurs outils : {list}."],
+    "es_es": ["Mejora de herramientas", "Edad de hierro", "Mejores herramientas", "Es hora de mejores herramientas: {list}."],
+    "ja_jp": ["道具のアップグレード", "鉄器時代", "もっといい道具", "いい道具を手に入れる時だ：{list}。"]
+  },
+  "railway_builder": {
+    "de_de": ["Gleisbauer", "Bahnlinie", "Gleistrupp", "Verlege eine neue Strecke: {list}."],
+    "fr_fr": ["Constructeur de voies", "Ligne ferroviaire", "Équipe de voie", "Posez une nouvelle ligne : {list}."],
+    "es_es": ["Constructor de vías", "Línea férrea", "Cuadrilla de vías", "Tiende una nueva línea: {list}."],
+    "ja_jp": ["線路づくり", "鉄道路線", "保線班", "新しい路線を敷こう：{list}。"]
+  },
+  "redstone_workshop": {
+    "de_de": ["Redstone-Werkstatt", "Schaltungsbauer", "Verkable die Werkstatt: {list}."],
+    "fr_fr": ["Atelier de redstone", "Bâtisseur de circuits", "Câblez l'atelier : {list}."],
+    "es_es": ["Taller de redstone", "Constructor de circuitos", "Cablea el taller: {list}."],
+    "ja_jp": ["レッドストーン工房", "回路職人", "工房に配線しよう：{list}。"]
+  },
+  "enchanters_study": {
+    "de_de": ["Zauberstube", "Arkane Bibliothek", "Der Verzauberer braucht Nachschub: {list}."],
+    "fr_fr": ["Cabinet de l'enchanteur", "Bibliothèque arcanique", "L'enchanteur a besoin de fournitures : {list}."],
+    "es_es": ["Estudio del encantador", "Biblioteca arcana", "El encantador necesita suministros: {list}."],
+    "ja_jp": ["エンチャンターの書斎", "秘術の図書館", "エンチャンターが材料を求めている：{list}。"]
+  },
+  "night_hunter": {
+    "de_de": ["Nachtjäger", "Jagd im Mondlicht", "Nach Einbruch der Dunkelheit", "Wenn die Sonne untergeht: {list}."],
+    "fr_fr": ["Chasseur nocturne", "Chasse au clair de lune", "Après la tombée de la nuit", "Quand le soleil se couche : {list}."],
+    "es_es": ["Cazador nocturno", "Caza a la luz de la luna", "Al caer la noche", "Cuando se pone el sol: {list}."],
+    "ja_jp": ["夜の狩人", "月下の狩り", "日が暮れたら", "日が沈んだら：{list}。"]
+  },
+  "fishermans_day": {
+    "de_de": ["Anglertag", "Fang des Tages", "Angeln gegangen", "Ein Tag am Wasser: {list}."],
+    "fr_fr": ["Journée du pêcheur", "Pêche du jour", "Partie de pêche", "Une journée au bord de l'eau : {list}."],
+    "es_es": ["Día del pescador", "Pesca del día", "De pesca", "Un día junto al agua: {list}."],
+    "ja_jp": ["漁師の一日", "本日の釣果", "釣りに出かけよう", "水辺で過ごす一日：{list}。"]
+  },
+  "florist": {
+    "de_de": ["Florist", "Blumenmarkt", "Blumenstrauß", "Frische Blumen für den Markt: {list}."],
+    "fr_fr": ["Fleuriste", "Marché aux fleurs", "Bouquet", "Des fleurs fraîches pour le marché : {list}."],
+    "es_es": ["Florista", "Mercado de flores", "Ramo", "Flores frescas para el mercado: {list}."],
+    "ja_jp": ["花屋", "花市場", "花束", "市場に新鮮な花を：{list}。"]
+  },
+  "village_fair": {
+    "de_de": ["Dorffest", "Jahrmarkt", "Erntemarkt", "Der Markt öffnet bald: {list}."],
+    "fr_fr": ["Fête du village", "Foire du marché", "Marché des récoltes", "La foire ouvre bientôt : {list}."],
+    "es_es": ["Feria del pueblo", "Feria del mercado", "Mercado de cosecha", "La feria abre pronto: {list}."],
+    "ja_jp": ["村祭り", "市場の縁日", "収穫市", "もうすぐお祭りが始まる：{list}。"]
+  },
+  "stonemason": {
+    "de_de": ["Steinmetz", "Maurerjob", "Steinwerk", "Der Steinmetz braucht Hilfe: {list}."],
+    "fr_fr": ["Tailleur de pierre", "Travail de maçon", "Ouvrages en pierre", "Le tailleur de pierre a besoin d'aide : {list}."],
+    "es_es": ["Cantero", "Trabajo de albañil", "Obras de piedra", "El cantero necesita ayuda: {list}."],
+    "ja_jp": ["石工", "石工の仕事", "石細工", "石工が手を借りたいそうだ：{list}。"]
+  },
+  "deep_dark_delve": {
+    "de_de": ["Ins Tiefe Dunkel", "Stille Tiefen", "Steig hinab ins Tiefe Dunkel: {list}."],
+    "fr_fr": ["Plongée dans les Abîmes", "Profondeurs silencieuses", "Descendez dans les Abîmes : {list}."],
+    "es_es": ["Descenso a la oscuridad", "Profundidades silenciosas", "Desciende a la oscuridad profunda: {list}."],
+    "ja_jp": ["ディープダーク探索", "静寂の深淵", "ディープダークへ降りよう：{list}。"]
+  },
+  "brewers_supplies": {
+    "de_de": ["Brauerbedarf", "Trankzutaten", "Der Brauer braucht Waren aus dem Nether: {list}."],
+    "fr_fr": ["Fournitures d'alchimiste", "Ingrédients de potion", "L'alchimiste a besoin de produits du Nether : {list}."],
+    "es_es": ["Suministros del alquimista", "Ingredientes de pociones", "El alquimista necesita bienes del Nether: {list}."],
+    "ja_jp": ["醸造家の材料", "ポーションの素材", "醸造家がネザーの品を求めている：{list}。"]
+  },
+  "leatherworker": {
+    "de_de": ["Lederer", "Gerbereiauftrag", "Die Gerberei hat viel zu tun: {list}."],
+    "fr_fr": ["Maroquinier", "Commande de tannerie", "La tannerie est débordée : {list}."],
+    "es_es": ["Peletero", "Encargo de la curtiduría", "La curtiduría está ocupada: {list}."],
+    "ja_jp": ["革職人", "なめし屋の注文", "なめし屋は大忙し：{list}。"]
+  },
+  "copper_age": {
+    "de_de": ["Kupferzeit", "Kupferwerk", "Überall Kupfer: {list}."],
+    "fr_fr": ["Âge du cuivre", "Ouvrages en cuivre", "Du cuivre partout : {list}."],
+    "es_es": ["Edad del cobre", "Obras de cobre", "Cobre por todas partes: {list}."],
+    "ja_jp": ["銅の時代", "銅細工", "どこもかしこも銅だらけ：{list}。"]
+  },
+  "nether_builder": {
+    "de_de": ["Nether-Baumeister", "Festungsmaurer", "Bau wie die Piglins: {list}."],
+    "fr_fr": ["Bâtisseur du Nether", "Maçon de forteresse", "Bâtissez comme les piglins : {list}."],
+    "es_es": ["Constructor del Nether", "Albañil de fortaleza", "Construye como los piglins: {list}."],
+    "ja_jp": ["ネザーの建築家", "要塞の石工", "ピグリンのように建てよう：{list}。"]
+  },
+  "stable_hand": {
+    "de_de": ["Stallbursche", "Pferderanch", "Im Stall gibt es Arbeit: {list}."],
+    "fr_fr": ["Palefrenier", "Ranch équestre", "L'écurie a besoin de bras : {list}."],
+    "es_es": ["Mozo de cuadra", "Rancho de caballos", "El establo necesita trabajo: {list}."],
+    "ja_jp": ["厩務員", "馬の牧場", "厩舎に仕事がある：{list}。"]
+  },
+  "library_project": {
+    "de_de": ["Bibliotheksprojekt", "Bücherwurm", "Der Bibliothekar braucht Bücher: {list}."],
+    "fr_fr": ["Projet de bibliothèque", "Rat de bibliothèque", "Le bibliothécaire a besoin de livres : {list}."],
+    "es_es": ["Proyecto de biblioteca", "Ratón de biblioteca", "El bibliotecario necesita libros: {list}."],
+    "ja_jp": ["図書館計画", "本の虫", "司書が本を求めている：{list}。"]
+  },
+  "lamplighter": {
+    "de_de": ["Laternenanzünder", "Leuchtturmwärter", "Helle Nächte", "Erhelle die Wege vor der Dunkelheit: {list}."],
+    "fr_fr": ["Allumeur de réverbères", "Gardien de phare", "Nuits claires", "Éclairez les chemins avant la nuit : {list}."],
+    "es_es": ["Farolero", "Guardián del faro", "Noches brillantes", "Ilumina los caminos antes de que oscurezca: {list}."],
+    "ja_jp": ["点灯夫", "灯台守", "明るい夜", "暗くなる前に道を照らそう：{list}。"]
+  },
+  "glassblower": {
+    "de_de": ["Glasbläser", "Glaswerk", "Klare Sicht", "Dem Glasbläser ist der Sand ausgegangen: {list}."],
+    "fr_fr": ["Souffleur de verre", "Verrerie", "Vue dégagée", "Le souffleur de verre n'a plus de sable : {list}."],
+    "es_es": ["Soplador de vidrio", "Vidriería", "Vista despejada", "Al vidriero se le acabó la arena: {list}."],
+    "ja_jp": ["ガラス職人", "ガラス工房", "澄んだ眺め", "ガラス職人の砂が切れた：{list}。"]
+  },
+  "potter": {
+    "de_de": ["Töpferscheibe", "Tonwerk", "Brenntag", "Der Brennofen des Töpfers wartet: {list}."],
+    "fr_fr": ["Tour de potier", "Travail de l'argile", "Jour de cuisson", "Le four du potier attend : {list}."],
+    "es_es": ["Torno de alfarero", "Obras de arcilla", "Día de horno", "El horno del alfarero espera: {list}."],
+    "ja_jp": ["ろくろ", "粘土細工", "窯焚きの日", "陶芸家の窯が待っている：{list}。"]
+  },
+  "pet_shop": {
+    "de_de": ["Tierhandlung", "Tierfreunde", "Tierpflege", "Die Tierhandlung braucht neue Freunde: {list}."],
+    "fr_fr": ["Animalerie", "Amis des bêtes", "Soins des animaux", "L'animalerie cherche de nouveaux amis : {list}."],
+    "es_es": ["Tienda de mascotas", "Amigos animales", "Cuidado de animales", "La tienda de mascotas necesita nuevos amigos: {list}."],
+    "ja_jp": ["ペットショップ", "動物の仲間", "生き物のお世話", "ペットショップに新しい仲間を：{list}。"]
+  },
+  "mushroom_forager": {
+    "de_de": ["Pilzsammler", "Pilzjagd", "Sporenzeit", "Der Koch will Pilze: {list}."],
+    "fr_fr": ["Cueilleur de champignons", "Chasse aux champignons", "Saison des spores", "Le cuisinier veut des champignons : {list}."],
+    "es_es": ["Recolector de setas", "Caza de hongos", "Temporada de esporas", "El cocinero quiere setas: {list}."],
+    "ja_jp": ["キノコ採り", "キノコ狩り", "胞子の季節", "料理人がキノコを欲しがっている：{list}。"]
+  },
+  "cave_garden": {
+    "de_de": ["Höhlengarten", "Üppige Höhlen", "Grün im Untergrund", "Unter der Erde wächst etwas: {list}."],
+    "fr_fr": ["Jardin souterrain", "Cavernes luxuriantes", "Verdure souterraine", "Quelque chose pousse sous terre : {list}."],
+    "es_es": ["Jardín de cuevas", "Cuevas frondosas", "Verde bajo tierra", "Algo crece bajo tierra: {list}."],
+    "ja_jp": ["洞窟の庭", "繁茂した洞窟", "地下の緑", "地下で何かが育っている：{list}。"]
+  },
+  "rock_collector": {
+    "de_de": ["Steinsammler", "Meister des Steinbruchs", "Gesteinsprobe", "Der Geologe will Proben: {list}."],
+    "fr_fr": ["Collectionneur de roches", "Maître carrier", "Étude des roches", "Le géologue veut des échantillons : {list}."],
+    "es_es": ["Coleccionista de rocas", "Maestro cantero", "Estudio de rocas", "El geólogo quiere muestras: {list}."],
+    "ja_jp": ["石コレクター", "採石の達人", "岩石調査", "地質学者がサンプルを求めている：{list}。"]
+  },
+  "diamond_smith": {
+    "de_de": ["Diamantschmied", "Schmiedemeister", "Funkelnde Ausrüstung", "Nur das Beste ist gut genug: {list}."],
+    "fr_fr": ["Forgeron de diamant", "Maître forgeron", "Équipement étincelant", "Seul le meilleur fera l'affaire : {list}."],
+    "es_es": ["Herrero de diamante", "Maestro herrero", "Equipo reluciente", "Solo vale lo mejor: {list}."],
+    "ja_jp": ["ダイヤモンド鍛冶", "鍛冶の名匠", "輝く装備", "最高のものだけを：{list}。"]
+  },
+  "bake_sale": {
+    "de_de": ["Kuchenbasar", "Naschkatze", "Marktstand", "Der Kuchenbasar im Dorf braucht dich: {list}."],
+    "fr_fr": ["Vente de pâtisseries", "Bec sucré", "Étal du marché", "La vente de pâtisseries du village a besoin de vous : {list}."],
+    "es_es": ["Venta de pasteles", "Goloso", "Puesto del mercado", "La venta de pasteles del pueblo te necesita: {list}."],
+    "ja_jp": ["焼き菓子バザー", "甘党", "市場の屋台", "村の焼き菓子バザーがあなたを待っている：{list}。"]
+  },
+  "nether_gardener": {
+    "de_de": ["Nethergärtner", "Pilzhain", "Karmesinernte", "Sogar der Nether hat einen Garten: {list}."],
+    "fr_fr": ["Jardinier du Nether", "Bosquet fongique", "Récolte carmin", "Même le Nether a son jardin : {list}."],
+    "es_es": ["Jardinero del Nether", "Arboleda fúngica", "Cosecha carmesí", "Hasta el Nether tiene un jardín: {list}."],
+    "ja_jp": ["ネザーの庭師", "キノコの林", "真紅の収穫", "ネザーにも庭はある：{list}。"]
+  },
+  "camp_setup": {
+    "de_de": ["Lageraufbau", "Basislager", "Nachtlager", "Schlag vor Einbruch der Nacht ein Lager auf: {list}."],
+    "fr_fr": ["Installation du camp", "Camp de base", "Camp de nuit", "Installez le camp avant la nuit : {list}."],
+    "es_es": ["Montar el campamento", "Campamento base", "Campamento nocturno", "Monta el campamento antes del anochecer: {list}."],
+    "ja_jp": ["キャンプ設営", "ベースキャンプ", "夜営", "日暮れまでにキャンプを張ろう：{list}。"]
+  },
+  "workshop_setup": {
+    "de_de": ["Werkstatt einrichten", "Neue Werkstatt", "Bastelecke", "Jedes Dorf braucht eine Werkstatt: {list}."],
+    "fr_fr": ["Installation de l'atelier", "Nouvel atelier", "Coin bricolage", "Chaque village a besoin d'un atelier : {list}."],
+    "es_es": ["Montar el taller", "Nuevo taller", "Rincón de trabajo", "Todo pueblo necesita un taller: {list}."],
+    "ja_jp": ["工房の準備", "新しい工房", "クラフトコーナー", "どの村にも工房が必要だ：{list}。"]
+  },
+  "adventurers_kit": {
+    "de_de": ["Abenteurerausrüstung", "Bereit zum Aufbruch", "Reiseausrüstung", "Pack für die Reise: {list}."],
+    "fr_fr": ["Kit d'aventurier", "Prêt à partir", "Équipement de voyage", "Préparez vos bagages : {list}."],
+    "es_es": ["Equipo de aventurero", "Listo para partir", "Equipo de viaje", "Prepara el equipaje: {list}."],
+    "ja_jp": ["冒険者セット", "旅立ちの準備", "旅の装備", "旅の支度をしよう：{list}。"]
+  },
+  "treasure_hunter": {
+    "de_de": ["Schatzjäger", "Tiefe Schätze", "Edelsteinsucher", "Reichtümer liegen tief unter der Erde: {list}."],
+    "fr_fr": ["Chasseur de trésors", "Richesses profondes", "Chercheur de gemmes", "Les richesses dorment sous terre : {list}."],
+    "es_es": ["Cazatesoros", "Riquezas profundas", "Buscador de gemas", "Las riquezas yacen bajo tierra: {list}."],
+    "ja_jp": ["トレジャーハンター", "地底の財宝", "宝石探し", "財宝は地下深くに眠っている：{list}。"]
+  },
+  "ae2_meteor_hunt": {
+    "de_de": ["Meteoritenjagd", "Gefallener Stern", "Himmelsstein", "Irgendwo in der Nähe ist ein Meteorit eingeschlagen: {list}."],
+    "fr_fr": ["Chasse aux météorites", "Étoile tombée", "Pierre de ciel", "Une météorite est tombée non loin : {list}."],
+    "es_es": ["Caza de meteoritos", "Estrella caída", "Piedra del cielo", "Un meteorito cayó cerca: {list}."],
+    "ja_jp": ["隕石探し", "落ちた星", "スカイストーン", "近くのどこかに隕石が落ちた：{list}。"]
+  },
+  "ae2_engineer": {
+    "de_de": ["Netzwerkingenieur", "Verkabelt", "Materie zu Energie", "Jedes Netzwerk beginnt an der Werkbank: {list}."],
+    "fr_fr": ["Ingénieur réseau", "Tout câblé", "De la matière à l'énergie", "Tout réseau commence sur un établi : {list}."],
+    "es_es": ["Ingeniero de redes", "Todo cableado", "Materia a energía", "Toda red empieza en una mesa de trabajo: {list}."],
+    "ja_jp": ["ネットワーク技師", "配線完了", "物質をエネルギーに", "どんなネットワークも作業台から始まる：{list}。"]
+  },
+  "am_safari": {
+    "de_de": ["Safari", "Wildes Königreich", "Ab in die Wildnis", "Die wilden Tiere haben viel zu bieten: {list}."],
+    "fr_fr": ["Safari", "Royaume sauvage", "Vers la nature", "Les animaux sauvages ont beaucoup à offrir : {list}."],
+    "es_es": ["Safari", "Reino salvaje", "Hacia lo salvaje", "Los animales salvajes tienen mucho que dar: {list}."],
+    "ja_jp": ["サファリ", "野生の王国", "大自然へ", "野生動物は恵みにあふれている：{list}。"]
+  },
+  "am_hunter": {
+    "de_de": ["Großwild", "Spitzenjäger", "Raubtierpatrouille", "Gefährliche Tiere streifen durch die Wildnis: {list}."],
+    "fr_fr": ["Gros gibier", "Super-prédateur", "Patrouille anti-prédateurs", "Des bêtes dangereuses rôdent : {list}."],
+    "es_es": ["Caza mayor", "Cazador supremo", "Patrulla de depredadores", "Animales peligrosos recorren la naturaleza: {list}."],
+    "ja_jp": ["大物狩り", "頂点の狩人", "捕食者パトロール", "危険な動物が野をうろついている：{list}。"]
+  },
+  "an_apprentice": {
+    "de_de": ["Magierlehrling", "Erste Zauber", "Arkane Studien", "Jeder Magier beginnt mit einem Buch: {list}."],
+    "fr_fr": ["Apprenti mage", "Premiers sorts", "Études arcaniques", "Tout mage commence par un grimoire : {list}."],
+    "es_es": ["Aprendiz de mago", "Primeros hechizos", "Estudios arcanos", "Todo mago empieza con un tomo: {list}."],
+    "ja_jp": ["見習い魔術師", "初めての呪文", "秘術の研究", "どんな魔術師も一冊の本から始まる：{list}。"]
+  },
+  "an_woodland": {
+    "de_de": ["Archwood-Hain", "Magische Wälder", "Der Archwood-Wald verbirgt mehr als Holz: {list}."],
+    "fr_fr": ["Bosquet d'Archwood", "Bois magiques", "La forêt d'Archwood cache plus que du bois : {list}."],
+    "es_es": ["Arboleda de Archwood", "Bosques mágicos", "El bosque de Archwood esconde más que madera: {list}."],
+    "ja_jp": ["アークウッドの林", "魔法の森", "アークウッドの森には木材以外もある：{list}。"]
+  },
+  "bop_explorer": {
+    "de_de": ["Biomhüpfer", "Viel zu sehen", "Fernweh", "Die Welt ist größer geworden: {list}."],
+    "fr_fr": ["Globe-trotteur", "Tant à voir", "Envie d'ailleurs", "Le monde s'est agrandi : {list}."],
+    "es_es": ["Saltabiomas", "Mucho que ver", "Ganas de viajar", "El mundo se ha hecho más grande: {list}."],
+    "ja_jp": ["バイオーム巡り", "見どころいっぱい", "放浪の心", "世界が広くなった：{list}。"]
+  },
+  "bop_florist": {
+    "de_de": ["Wilder Strauß", "Wiesenfarben", "Blumenjagd", "Sammle die Wildblumen: {list}."],
+    "fr_fr": ["Bouquet sauvage", "Couleurs des prés", "Chasse aux fleurs", "Cueillez les fleurs sauvages : {list}."],
+    "es_es": ["Ramo silvestre", "Colores del prado", "Caza de flores", "Recoge las flores silvestres: {list}."],
+    "ja_jp": ["野の花束", "草原の彩り", "花探し", "野の花を集めよう：{list}。"]
+  },
+  "bop_carpenter": {
+    "de_de": ["Exotischer Zimmermann", "Edles Holz", "Exotisches Holz für die Werkstatt: {list}."],
+    "fr_fr": ["Charpentier exotique", "Bois de qualité", "Du bois exotique pour l'atelier : {list}."],
+    "es_es": ["Carpintero exótico", "Madera fina", "Madera exótica para el taller: {list}."],
+    "ja_jp": ["珍木の大工", "上等な木材", "工房に珍しい木材を：{list}。"]
+  },
+  "bot_first_steps": {
+    "de_de": ["Botaniker-Start", "Gartenzauber", "Blumenkraft", "Jeder Botaniker beginnt auf einer Wiese: {list}."],
+    "fr_fr": ["Débuts du botaniste", "Magie du jardin", "Pouvoir des fleurs", "Tout botaniste commence dans une prairie : {list}."],
+    "es_es": ["Inicio del botánico", "Magia del jardín", "Poder floral", "Todo botánico empieza en un prado: {list}."],
+    "ja_jp": ["植物学者の第一歩", "庭の魔法", "フラワーパワー", "どんな植物学者も草原から始まる：{list}。"]
+  },
+  "bot_florist": {
+    "de_de": ["Florist", "Blumenstrauß", "Blütenpflücker", "Der Florist will Farbe: {list}."],
+    "fr_fr": ["Fleuriste", "Bouquet", "Cueilleur de pétales", "Le fleuriste veut de la couleur : {list}."],
+    "es_es": ["Florista", "Ramo", "Recolector de pétalos", "El florista quiere color: {list}."],
+    "ja_jp": ["花屋", "花束", "花びら摘み", "花屋が彩りを求めている：{list}。"]
+  },
+  "create_zinc_rush": {
+    "de_de": ["Zinkrausch", "Zinknachschub", "Zinksucher", "Die Werkstatt läuft mit Zink: {list}."],
+    "fr_fr": ["Ruée vers le zinc", "Stock de zinc", "Prospecteur de zinc", "L'atelier tourne au zinc : {list}."],
+    "es_es": ["Fiebre del cinc", "Suministro de cinc", "Buscador de cinc", "El taller funciona con cinc: {list}."],
+    "ja_jp": ["亜鉛ラッシュ", "亜鉛の補給", "亜鉛の探鉱者", "工房は亜鉛で動いている：{list}。"]
+  },
+  "create_first_steps": {
+    "de_de": ["Ingenieurs-Start", "Erste Apparatur", "Zahnrad für Zahnrad", "Jede Maschine fängt klein an: {list}."],
+    "fr_fr": ["Débuts de l'ingénieur", "Première machine", "En route les engrenages", "Toute machine commence petite : {list}."],
+    "es_es": ["Inicio del ingeniero", "Primer artilugio", "A toda máquina", "Toda máquina empieza pequeña: {list}."],
+    "ja_jp": ["エンジニアの第一歩", "初めてのからくり", "歯車始動", "どんな機械も小さく始まる：{list}。"]
+  },
+  "create_water_mill": {
+    "de_de": ["Wassermühle", "Mühlenbau", "Bau eine Mühle am Fluss: {list}."],
+    "fr_fr": ["Moulin à eau", "Travaux du moulin", "Construisez un moulin près de la rivière : {list}."],
+    "es_es": ["Molino de agua", "Obras del molino", "Construye un molino junto al río: {list}."],
+    "ja_jp": ["水車小屋", "水車づくり", "川辺に水車小屋を建てよう：{list}。"]
+  },
+  "create_stone_layers": {
+    "de_de": ["Gesteinsschichten", "Tiefe Schichten", "Gesteinserkundung", "Erkunde die Gesteinsschichten unter der Erde: {list}."],
+    "fr_fr": ["Strates rocheuses", "Strates profondes", "Étude des roches", "Étudiez les strates rocheuses souterraines : {list}."],
+    "es_es": ["Estratos de piedra", "Estratos profundos", "Estudio de rocas", "Estudia los estratos de piedra bajo tierra: {list}."],
+    "ja_jp": ["岩石層", "深い地層", "岩石調査", "地下の岩石層を調べよう：{list}。"]
+  },
+  "create_metalworks": {
+    "de_de": ["Metallwerk", "Eisen und Zink", "Gießereiauftrag", "Die Gießerei braucht Metall: {list}."],
+    "fr_fr": ["Métallurgie", "Fer et zinc", "Commande de fonderie", "La fonderie a besoin de métal : {list}."],
+    "es_es": ["Metalurgia", "Hierro y cinc", "Encargo de fundición", "La fundición necesita metal: {list}."],
+    "ja_jp": ["金属工場", "鉄と亜鉛", "鋳造所の注文", "鋳造所が金属を求めている：{list}。"]
+  },
+  "create_logistics_line": {
+    "de_de": ["Logistikstrecke", "Förderband-Aufbau", "Bewege Gegenstände automatisch: {list}."],
+    "fr_fr": ["Ligne logistique", "Installation de convoyeurs", "Déplacez les objets automatiquement : {list}."],
+    "es_es": ["Línea logística", "Montaje de cintas", "Mueve objetos automáticamente: {list}."],
+    "ja_jp": ["物流ライン", "コンベアの設置", "アイテムを自動で運ぼう：{list}。"]
+  },
+  "create_contraption_crew": {
+    "de_de": ["Apparatur-Team", "Bewegliche Teile", "Bau etwas, das sich bewegt: {list}."],
+    "fr_fr": ["Équipe des machines", "Pièces mobiles", "Construisez quelque chose qui bouge : {list}."],
+    "es_es": ["Equipo de artilugios", "Piezas móviles", "Construye algo que se mueva: {list}."],
+    "ja_jp": ["からくり班", "動く部品", "動くものを作ろう：{list}。"]
+  },
+  "create_masonry_works": {
+    "de_de": ["Schichtmauerwerk", "Steinwerkstatt", "Dekoriere mit Create-Gestein: {list}."],
+    "fr_fr": ["Maçonnerie en strates", "Atelier de pierre", "Décorez avec la pierre de Create : {list}."],
+    "es_es": ["Albañilería en capas", "Taller de piedra", "Decora con piedra de Create: {list}."],
+    "ja_jp": ["層状の石工", "石の工房", "Createの石材で飾ろう：{list}。"]
+  },
+  "create_andesite_age": {
+    "de_de": ["Andesitzeit", "Legierungsgießerei", "Alles beginnt mit Andesit: {list}."],
+    "fr_fr": ["Âge de l'andésite", "Fonderie d'alliage", "Tout commence par l'andésite : {list}."],
+    "es_es": ["Edad de la andesita", "Fundición de aleación", "Todo empieza con andesita: {list}."],
+    "ja_jp": ["安山岩の時代", "合金鋳造所", "すべては安山岩から始まる：{list}。"]
+  },
+  "create_engineers_kit": {
+    "de_de": ["Ingenieursausrüstung", "Werkstattwerkzeug", "Jeder Ingenieur braucht Ausrüstung: {list}."],
+    "fr_fr": ["Kit d'ingénieur", "Outils d'atelier", "Tout ingénieur a besoin d'équipement : {list}."],
+    "es_es": ["Equipo de ingeniero", "Herramientas de taller", "Todo ingeniero necesita equipo: {list}."],
+    "ja_jp": ["エンジニアセット", "工房の道具", "どんなエンジニアにも装備が必要だ：{list}。"]
+  },
+  "fd_farmers_market": {
+    "de_de": ["Bauernmarkt", "Markttag", "Frische Ware", "Der Markt braucht frische Ware: {list}."],
+    "fr_fr": ["Marché fermier", "Jour de marché", "Produits frais", "Le marché a besoin de produits frais : {list}."],
+    "es_es": ["Mercado de agricultores", "Día de mercado", "Productos frescos", "El mercado necesita productos frescos: {list}."],
+    "ja_jp": ["ファーマーズマーケット", "市の日", "新鮮な野菜", "市場が新鮮な野菜を求めている：{list}。"]
+  },
+  "fd_harvest_festival": {
+    "de_de": ["Erntefest", "Erntezeit", "Bring die Ernte ein! {list}."],
+    "fr_fr": ["Fête des moissons", "Temps des récoltes", "Rentrez la récolte ! {list}."],
+    "es_es": ["Fiesta de la cosecha", "Tiempo de cosecha", "¡Recoge la cosecha! {list}."],
+    "ja_jp": ["収穫祭", "収穫の時", "収穫の時期だ！{list}。"]
+  },
+  "fd_chefs_special": {
+    "de_de": ["Spezialität des Küchenchefs", "Küchenstress", "Abendservice", "Das Menü heute Abend: {list}."],
+    "fr_fr": ["Spécialité du chef", "Coup de feu", "Service du soir", "Au menu ce soir : {list}."],
+    "es_es": ["Especialidad del chef", "Prisa en la cocina", "Servicio de cena", "El menú de esta noche: {list}."],
+    "ja_jp": ["シェフのおすすめ", "厨房は大忙し", "ディナータイム", "今夜のメニュー：{list}。"]
+  },
+  "fd_butcher": {
+    "de_de": ["Metzgerauftrag", "Fleischmarkt", "Der Metzger braucht Hilfe: {list}."],
+    "fr_fr": ["Commande du boucher", "Marché de la viande", "Le boucher a besoin d'aide : {list}."],
+    "es_es": ["Encargo del carnicero", "Mercado de carne", "El carnicero necesita ayuda: {list}."],
+    "ja_jp": ["肉屋の注文", "肉市場", "肉屋が手を借りたいそうだ：{list}。"]
+  },
+  "fd_kitchen_setup": {
+    "de_de": ["Kücheneinrichtung", "Neue Küche", "Jeder Koch braucht Werkzeug: {list}."],
+    "fr_fr": ["Installation de cuisine", "Nouvelle cuisine", "Tout cuisinier a besoin d'ustensiles : {list}."],
+    "es_es": ["Montar la cocina", "Cocina nueva", "Todo cocinero necesita utensilios: {list}."],
+    "ja_jp": ["キッチンの準備", "新しいキッチン", "どんな料理人にも道具が必要だ：{list}。"]
+  },
+  "fd_wild_forager": {
+    "de_de": ["Wildsammler", "Sammlerspaziergang", "Durchsuche die Wildnis: {list}."],
+    "fr_fr": ["Cueilleur sauvage", "Balade du cueilleur", "Fouillez la nature : {list}."],
+    "es_es": ["Recolector silvestre", "Paseo del recolector", "Busca en la naturaleza: {list}."],
+    "ja_jp": ["野生の採集家", "採集の散歩", "野山を探そう：{list}。"]
+  },
+  "fd_village_bakery": {
+    "de_de": ["Dorfbäckerei", "Frisches Brot", "Der Bäckerei fehlen Hände: {list}."],
+    "fr_fr": ["Boulangerie du village", "Pain frais", "La boulangerie manque de bras : {list}."],
+    "es_es": ["Panadería del pueblo", "Pan recién hecho", "A la panadería le falta personal: {list}."],
+    "ja_jp": ["村のパン屋", "焼きたてパン", "パン屋は人手不足だ：{list}。"]
+  },
+  "fd_breakfast_club": {
+    "de_de": ["Frühstücksclub", "Morgenmenü", "Das Frühstück ist serviert: {list}."],
+    "fr_fr": ["Club du petit-déjeuner", "Menu du matin", "Le petit-déjeuner est servi : {list}."],
+    "es_es": ["Club del desayuno", "Menú matutino", "El desayuno está servido: {list}."],
+    "ja_jp": ["朝食クラブ", "モーニングメニュー", "朝ごはんができたよ：{list}。"]
+  },
+  "fd_picnic": {
+    "de_de": ["Picknickkorb", "Picknicktag", "Pack den Picknickkorb: {list}."],
+    "fr_fr": ["Panier de pique-nique", "Jour de pique-nique", "Préparez le panier de pique-nique : {list}."],
+    "es_es": ["Cesta de pícnic", "Día de pícnic", "Prepara la cesta de pícnic: {list}."],
+    "ja_jp": ["ピクニックバスケット", "ピクニックの日", "ピクニックの準備をしよう：{list}。"]
+  },
+  "fd_rope_maker": {
+    "de_de": ["Seiler", "Stroharbeit", "Dreh Stroh zu etwas Nützlichem: {list}."],
+    "fr_fr": ["Cordier", "Travail de la paille", "Tressez la paille en quelque chose d'utile : {list}."],
+    "es_es": ["Cordelero", "Trabajo con paja", "Convierte la paja en algo útil: {list}."],
+    "ja_jp": ["縄職人", "藁細工", "藁を役立つものに変えよう：{list}。"]
+  },
+  "fd_crate_stock": {
+    "de_de": ["Kistenvorrat", "Speisekammer", "Füll die Speisekammer: {list}."],
+    "fr_fr": ["Stock de caisses", "Garde-manger", "Remplissez le garde-manger : {list}."],
+    "es_es": ["Reserva de cajones", "Despensa llena", "Llena la despensa: {list}."],
+    "ja_jp": ["木箱の在庫", "食料庫の備蓄", "食料庫をいっぱいにしよう：{list}。"]
+  },
+  "fd_fishmonger": {
+    "de_de": ["Fischhändler", "Fischmarkt", "Der Fischhändler braucht Ware: {list}."],
+    "fr_fr": ["Poissonnier", "Marché aux poissons", "Le poissonnier a besoin de marchandise : {list}."],
+    "es_es": ["Pescadero", "Mercado de pescado", "El pescadero necesita género: {list}."],
+    "ja_jp": ["魚屋", "魚市場", "魚屋が仕入れを求めている：{list}。"]
+  },
+  "ie_prospector": {
+    "de_de": ["Prospektor", "Erzerkundung", "Feldingenieur", "Ein Ingenieur braucht Metall vor Maschinen: {list}."],
+    "fr_fr": ["Prospecteur", "Étude des minerais", "Ingénieur de terrain", "Un ingénieur a besoin de métal avant les machines : {list}."],
+    "es_es": ["Prospector", "Estudio de menas", "Ingeniero de campo", "Un ingeniero necesita metal antes que máquinas: {list}."],
+    "ja_jp": ["探鉱者", "鉱石調査", "現場エンジニア", "機械の前にまず金属が必要だ：{list}。"]
+  },
+  "ie_workshop_setup": {
+    "de_de": ["Werkstatt einrichten", "Hammerzeit", "Ziegel und Eisen", "Richte die Werkstatt ein: {list}."],
+    "fr_fr": ["Installation de l'atelier", "L'heure du marteau", "Briques et fer", "Installez l'atelier : {list}."],
+    "es_es": ["Montar el taller", "Hora del martillo", "Ladrillos y hierro", "Monta el taller: {list}."],
+    "ja_jp": ["工房の準備", "ハンマーの出番", "レンガと鉄", "工房を整えよう：{list}。"]
+  },
+  "mek_osmium_rush": {
+    "de_de": ["Osmiumrausch", "Blaues Metall", "Osmiumnachschub", "Jede Mekanism-Maschine braucht Osmium: {list}."],
+    "fr_fr": ["Ruée vers l'osmium", "Métal bleu", "Stock d'osmium", "Toute machine Mekanism a besoin d'osmium : {list}."],
+    "es_es": ["Fiebre del osmio", "Metal azul", "Suministro de osmio", "Toda máquina de Mekanism necesita osmio: {list}."],
+    "ja_jp": ["オスミウムラッシュ", "青い金属", "オスミウムの補給", "Mekanismの機械にはオスミウムが必要だ：{list}。"]
+  },
+  "mek_first_machine": {
+    "de_de": ["Erste Maschine", "Infusionsanlage bauen", "Technikstart", "Bring die Werkstatt in Gang: {list}."],
+    "fr_fr": ["Première machine", "Montage de l'infuseur", "Débuts techniques", "Lancez l'atelier : {list}."],
+    "es_es": ["Primera máquina", "Montar el infusor", "Inicio técnico", "Pon en marcha el taller: {list}."],
+    "ja_jp": ["初めての機械", "吹込機の組み立て", "技術の第一歩", "工房を動かそう：{list}。"]
+  },
+  "mek_metal_survey": {
+    "de_de": ["Metallerkundung", "Erzerkundung", "Neue Metalle", "Kartiere die neuen Erze unter der Erde: {list}."],
+    "fr_fr": ["Étude des métaux", "Étude des minerais", "Nouveaux métaux", "Cartographiez les nouveaux minerais souterrains : {list}."],
+    "es_es": ["Estudio de metales", "Estudio de menas", "Metales nuevos", "Localiza las nuevas menas bajo tierra: {list}."],
+    "ja_jp": ["金属調査", "鉱石調査", "新しい金属", "地下の新しい鉱石を調べよう：{list}。"]
+  },
+  "mek_radiation_safety": {
+    "de_de": ["Strahlenschutz", "Schutzanzug bereit", "Bleiabschirmung", "Sei bereit, bevor etwas leuchtet: {list}."],
+    "fr_fr": ["Sécurité radiologique", "Préparation anti-radiations", "Blindage en plomb", "Soyez prêt avant que ça brille : {list}."],
+    "es_es": ["Seguridad radiológica", "Equipo de protección", "Blindaje de plomo", "Prepárate antes de que algo brille: {list}."],
+    "ja_jp": ["放射線の安全対策", "防護服の準備", "鉛の遮蔽", "何かが光り出す前に備えよう：{list}。"]
+  },
+  "tc_tinker": {
+    "de_de": ["Bastlerlehrling", "Bastlerbank", "Muster und Teile", "Jeder Bastler beginnt mit einem Muster: {list}."],
+    "fr_fr": ["Apprenti bricoleur", "Établi du bricoleur", "Modèles et pièces", "Tout bricoleur commence par un modèle : {list}."],
+    "es_es": ["Aprendiz de Tinker", "Banco de Tinker", "Moldes y piezas", "Todo Tinker empieza con un molde: {list}."],
+    "ja_jp": ["見習いティンカー", "ティンカーの作業台", "パターンと部品", "どんなティンカーもパターンから始まる：{list}。"]
+  },
+  "tc_smelter": {
+    "de_de": ["Schmelzenbauer", "Angebrannt und bereit", "Geschmolzene Pläne", "Eine Schmelze baut man Ziegel für Ziegel: {list}."],
+    "fr_fr": ["Bâtisseur de fonderie", "Fondu et prêt", "Projets en fusion", "Une fonderie se bâtit brique par brique : {list}."],
+    "es_es": ["Constructor de fundición", "Refractario y listo", "Planes fundidos", "Una fundición se construye ladrillo a ladrillo: {list}."],
+    "ja_jp": ["製錬炉の建設者", "焼成準備完了", "溶けた計画", "製錬炉はレンガを一つずつ積んで作る：{list}。"]
+  },
+  "tf_expedition": {
+    "de_de": ["Dämmer-Expedition", "In die Dämmerung", "Wald jenseits", "Der Dämmerwald wartet: {list}."],
+    "fr_fr": ["Expédition crépusculaire", "Vers le Crépuscule", "La forêt au-delà", "La Forêt du Crépuscule vous attend : {list}."],
+    "es_es": ["Expedición crepuscular", "Hacia el crepúsculo", "El bosque del más allá", "El Bosque crepuscular espera: {list}."],
+    "ja_jp": ["黄昏の遠征", "黄昏の中へ", "彼方の森", "黄昏の森が待っている：{list}。"]
+  },
+  "tf_hunters": {
+    "de_de": ["Dämmerjagd", "Waldpatrouille", "Ärger mit Kobolden", "Säubere die Wege des Dämmerwalds: {list}."],
+    "fr_fr": ["Chasse crépusculaire", "Patrouille forestière", "Ennuis de gobelins", "Dégagez les chemins de la Forêt du Crépuscule : {list}."],
+    "es_es": ["Caza crepuscular", "Patrulla forestal", "Problemas con trasgos", "Despeja los caminos del Bosque crepuscular: {list}."],
+    "ja_jp": ["黄昏の狩り", "森の巡回", "ゴブリン騒動", "黄昏の森の道を切り開こう：{list}。"]
+  },
+  "tf_ironwood_smith": {
+    "de_de": ["Eisenholzschmied", "Lebendes Metall", "Wurzel und Eisen", "Eisenholz wächst aus Wurzeln und Eisen: {list}."],
+    "fr_fr": ["Forgeron du bois de fer", "Métal vivant", "Racine et fer", "Le bois de fer naît des racines et du fer : {list}."],
+    "es_es": ["Herrero de madera de hierro", "Metal vivo", "Raíz y hierro", "La madera de hierro nace de raíces y hierro: {list}."],
+    "ja_jp": ["樹鉄の鍛冶", "生きた金属", "根と鉄", "樹鉄は根と鉄から生まれる：{list}。"]
+  },
+  "tf_venison_feast": {
+    "de_de": ["Wildbretschmaus", "Jägermahl", "Das Abendessen kommt aus dem Dämmerwald: {list}."],
+    "fr_fr": ["Festin de gibier", "Souper du chasseur", "Le souper vient des bois du Crépuscule : {list}."],
+    "es_es": ["Festín de venado", "Cena del cazador", "La cena viene del bosque crepuscular: {list}."],
+    "ja_jp": ["鹿肉のごちそう", "狩人の夕食", "夕食は黄昏の森からやってくる：{list}。"]
+  }
+}

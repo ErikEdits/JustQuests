@@ -1,0 +1,2687 @@
+{
+  "format": 1,
+  "language": "es_es",
+  "grammar": {
+    "sentenceEnd": ".",
+    "sentenceSep": " ",
+    "listSep": ", ",
+    "listAnd": " y ",
+    "lowerNames": true,
+    "lowerAfterColon": true
+  },
+  "templates": {
+    "titles": {
+      "collect_item": [
+        "Botín de {name}",
+        "Ronda de {name}",
+        "Recolectar {name}",
+        "Reserva de {name}",
+        "Suministro de {name}",
+        "Acopio de {name}",
+        "Recogida de {name}",
+        "Traer {name}",
+        "Entrega de {name}",
+        "Recolección de {name}",
+        "Se busca: {name}",
+        "Lote de {name}"
+      ],
+      "mine_block": [
+        "Minero de {name}",
+        "Minar {name}",
+        "Excavación de {name}",
+        "Cantera de {name}",
+        "Romper {name}",
+        "Extracción de {name}",
+        "Turno de {name}",
+        "Rompedor de {name}",
+        "Cavar {name}"
+      ],
+      "craft_item": [
+        "Pedido de {name}",
+        "Fabricar {name}",
+        "Taller de {name}",
+        "Artesano de {name}",
+        "Hacer {name}",
+        "Encargo de {name}",
+        "Lote de {name}",
+        "Construir {name}",
+        "Solicitud de {name}",
+        "Montaje de {name}",
+        "Fabricación de {name}"
+      ],
+      "smelt_item": [
+        "Suministro de {name}",
+        "Fundir {name}",
+        "Fundición de {name}",
+        "Al rojo: {name}",
+        "Hornada de {name}",
+        "Horno: {name}",
+        "Fuego: {name}",
+        "A fundir: {name}"
+      ],
+      "kill_mob": [
+        "Caza de {name}",
+        "Patrulla: {name}",
+        "Purga de {name}",
+        "Recompensa: {name}",
+        "Cazador de {name}",
+        "Problema: {name}",
+        "Limpieza de {name}",
+        "Amenaza: {name}",
+        "Detener: {name}",
+        "Cazar: {name}",
+        "Vigilancia: {name}"
+      ],
+      "breed_animal": [
+        "Criador de {name}",
+        "Camada de {name}",
+        "Rancho de {name}",
+        "Familia de {name}",
+        "Criar: {name}",
+        "Rebaño de {name}",
+        "Crías de {name}",
+        "Guardería: {name}",
+        "Granja de {name}"
+      ],
+      "tame_animal": [
+        "Nuevo amigo",
+        "Domesticar: {name}",
+        "Compañero: {name}",
+        "Susurrador: {name}",
+        "Leal: {name}",
+        "Amigo: {name}"
+      ],
+      "consume_item": [
+        "Festín de {name}",
+        "Probar {name}",
+        "Degustación de {name}",
+        "Tentempié: {name}",
+        "Pausa: {name}",
+        "Almuerzo: {name}",
+        "Hambre de {name}",
+        "Comida: {name}",
+        "Cena: {name}"
+      ],
+      "place_block": [
+        "Constructor: {name}",
+        "Construir con {name}",
+        "Colocar {name}",
+        "Proyecto de {name}",
+        "Obras de {name}",
+        "Plano de {name}",
+        "Decorar: {name}",
+        "Construcción: {name}",
+        "Diseño de {name}"
+      ],
+      "visit_dimension": [
+        "Viaje: {Dimension}",
+        "Visita: {Dimension}",
+        "Travesía: {Dimension}",
+        "Rumbo: {Dimension}",
+        "Portal: {Dimension}",
+        "Expedición: {Dimension}"
+      ],
+      "enchant_item": [
+        "Encantador: {name}",
+        "Encantar: {name}",
+        "Arcano: {name}",
+        "Encantamiento: {name}",
+        "Hechizo: {name}",
+        "Magia: {name}"
+      ],
+      "use_item": [
+        "Práctica: {name}",
+        "Usar {name}",
+        "Ejercicio: {name}",
+        "A mano: {name}",
+        "Entrenamiento: {name}"
+      ]
+    },
+    "phrases": {
+      "collect_item": [
+        "Recoge {count}× {name}",
+        "Reúne {count}× {name}",
+        "Recolecta {count}× {name}"
+      ],
+      "mine_block": [
+        "Mina {count}× {name}",
+        "Rompe {count}× {name}"
+      ],
+      "craft_item": [
+        "Fabrica {count}× {name}",
+        "Haz {count}× {name}"
+      ],
+      "smelt_item": [
+        "Funde {count}× {name}"
+      ],
+      "kill_mob": [
+        "Derrota {count}× {name}",
+        "Caza {count}× {name}",
+        "Abate {count}× {name}"
+      ],
+      "breed_animal": [
+        "Cría {count}× {name}"
+      ],
+      "tame_animal": [
+        "Domestica {count}× {name}"
+      ],
+      "consume_item": [
+        "Come {count}× {name}"
+      ],
+      "enchant_item": [
+        "Encanta {count}× {name}"
+      ],
+      "use_item": [
+        "Usa {count}× {name}"
+      ],
+      "place_block": [
+        "Coloca {count}× {name}",
+        "Construye con {count}× {name}"
+      ],
+      "visit_dimension": [
+        "Viaja {dimension_to}",
+        "Entra {dimension_in}"
+      ]
+    },
+    "variants": {
+      "throw": {
+        "phrases": [
+          "Lanza {count}× {name}"
+        ],
+        "titles": [
+          "Lanzamiento: {name}",
+          "Lanzar {name}",
+          "Ráfaga de {name}",
+          "Tiro de {name}"
+        ]
+      },
+      "launch": {
+        "phrases": [
+          "Dispara {count}× {name}"
+        ],
+        "titles": [
+          "Espectáculo: {name}",
+          "Disparar {name}",
+          "Cielo: {name}"
+        ]
+      },
+      "drink": {
+        "phrases": [
+          "Bebe {count}× {name}"
+        ],
+        "titles": [
+          "Pausa: {name}",
+          "Probar {name}",
+          "Ronda de {name}"
+        ]
+      },
+      "cook": {
+        "phrases": [
+          "Cocina {count}× {name}"
+        ],
+        "titles": [
+          "Cocinar {name}",
+          "Hornada de {name}",
+          "Caliente: {name}",
+          "Cocina: {name}",
+          "Pedido de {name}"
+        ]
+      }
+    },
+    "fallbackTitles": [
+      "Tarea: {name}",
+      "Trabajo: {name}",
+      "Recado: {name}",
+      "Deber: {name}",
+      "Misión: {name}",
+      "Faena: {name}"
+    ],
+    "comboTitles": [
+      "Pedido: {Family}",
+      "Recado: {Family}",
+      "Trabajo: {Family}",
+      "Suministros: {Family}",
+      "Deber: {Family}",
+      "Tareas: {Family}"
+    ],
+    "sentences": {
+      "tag": "Vale cualquier tipo.",
+      "dimension": "Se encuentra {dimension_in}.",
+      "list": "{list}"
+    },
+    "tools": {
+      "stone": "Necesita un pico de piedra o mejor",
+      "iron": "Necesita un pico de hierro o mejor",
+      "diamond": "Necesita un pico de diamante",
+      "netherite": "Necesita un pico de netherita",
+      "shears": "Usa tijeras",
+      "silk_touch": "Necesita Toque de seda",
+      "fishing_rod": "Usa una caña de pescar",
+      "knife": "Usa un cuchillo de Farmer's Delight",
+      "shovel": "Usa una pala"
+    },
+    "hints": {
+      "night": "Aparecen de noche y en cuevas oscuras.",
+      "desert": "Busca en desiertos.",
+      "swamp": "Busca en pantanos.",
+      "jungle": "Busca en junglas.",
+      "taiga": "Busca en taigas.",
+      "snowy": "Busca en biomas nevados.",
+      "ocean": "Busca en los océanos y cerca de ellos.",
+      "beach": "Busca en las playas.",
+      "savanna": "Busca en sabanas.",
+      "badlands": "Busca en tierras baldías.",
+      "mountains": "Busca en las montañas.",
+      "plains": "Común en llanuras.",
+      "flower_forest": "Los bosques florales tienen más.",
+      "dark_forest": "Los bosques oscuros tienen muchos.",
+      "mushroom_fields": "Busca en islas de champiñones.",
+      "lush_caves": "Busca en cuevas frondosas.",
+      "dripstone_caves": "Busca en cuevas kársticas.",
+      "cherry_grove": "Busca en cerezales.",
+      "mangrove_swamp": "Busca en manglares.",
+      "pale_garden": "Busca en jardines pálidos.",
+      "caves": "Se encuentra en cuevas.",
+      "deep": "Se encuentra a gran profundidad.",
+      "geode": "Busca dentro de geodas de amatista.",
+      "village": "Los pueblos suelen tenerlos.",
+      "farm": "Cultívalos en una granja.",
+      "bees": "Necesita abejas y flores.",
+      "rare": "Es raro, tómatelo con calma.",
+      "river": "Busca a lo largo de los ríos.",
+      "fortress": "Se encuentra en fortalezas del Nether.",
+      "bastion": "Se encuentra en restos de bastión.",
+      "crimson_forest": "Se encuentra en bosques carmesí.",
+      "warped_forest": "Se encuentra en bosques distorsionados.",
+      "soul_sand_valley": "Se encuentra en valles de almas.",
+      "basalt_deltas": "Se encuentra en deltas de basalto.",
+      "end_city": "Se encuentra en ciudades del End.",
+      "outer_islands": "Crece en las islas exteriores del End.",
+      "mineshaft": "Se encuentra en minas abandonadas.",
+      "outpost": "Se encuentra en puestos de saqueadores.",
+      "monument": "Se encuentra en monumentos oceánicos.",
+      "trial_chambers": "Se encuentra en cámaras de desafío.",
+      "layers": "Se encuentra en gruesas capas de roca subterráneas.",
+      "warm_ocean": "Busca en los arrecifes de coral de los océanos cálidos.",
+      "ruined_portal": "Busca alrededor de portales en ruinas.",
+      "deep_dark": "Se encuentra en la oscuridad profunda."
+    },
+    "familyNames": {
+      "wood": "Madera",
+      "forestry": "Silvicultura",
+      "stone": "Cantera",
+      "stonework": "Albañilería",
+      "sand": "Arena",
+      "glass": "Vidriería",
+      "soil": "Excavación",
+      "badlands": "Tierras baldías",
+      "lush": "Cueva frondosa",
+      "snow": "Invierno",
+      "plants": "Jardinería",
+      "coal": "Carbón",
+      "metals": "Metal",
+      "gems": "Gemas",
+      "redstone": "Redstone",
+      "amethyst": "Amatista",
+      "obsidian": "Obsidiana",
+      "crops": "Granja",
+      "fruit": "Huerto",
+      "mushrooms": "Setas",
+      "flowers": "Flores",
+      "bees": "Apicultura",
+      "livestock": "Rancho",
+      "wool": "Lana",
+      "wild_animals": "Fauna",
+      "horses": "Establo",
+      "pets": "Mascotas",
+      "villagers": "Aldea",
+      "fishing": "Pesca",
+      "ocean": "Navegación",
+      "undead": "No muertos",
+      "arthropods": "Arañas",
+      "monsters": "Monstruos",
+      "illagers": "Illagers",
+      "trial": "Desafío",
+      "lighting": "Iluminación",
+      "woodwork": "Carpintería",
+      "baking": "Panadería",
+      "library": "Biblioteca",
+      "archery": "Flechero",
+      "iron_tools": "Herramientas",
+      "iron_armor": "Armero",
+      "iron_works": "Herrería",
+      "decor": "Decoración",
+      "copper_works": "Cobre",
+      "golden_food": "Dorado",
+      "diamond_gear": "Diamante",
+      "nether_travel": "Nether",
+      "nether_blocks": "Piedra del Nether",
+      "nether_ores": "Minería del Nether",
+      "nether_plants": "Jardín del Nether",
+      "nether_mobs": "Caza del Nether",
+      "end_travel": "End",
+      "end_blocks": "Piedra del End",
+      "end_plants": "Chorus",
+      "end_mobs": "Caza del End",
+      "end_prep": "Fortaleza",
+      "fd_crops": "Hortalizas",
+      "fd_wild": "Recolección",
+      "fd_straw": "Paja",
+      "fd_tools": "Cuchillería",
+      "fd_kitchen": "Cocina",
+      "fd_furniture": "Despensa",
+      "fd_butchery": "Carnicería",
+      "fd_seafood": "Marisco",
+      "fd_breakfast": "Desayuno",
+      "fd_meals": "Sándwich",
+      "fd_salads": "Ensalada",
+      "fd_sweets": "Postre",
+      "fd_stews": "Guiso",
+      "fd_plates": "Cena",
+      "fd_drinks": "Bebidas",
+      "fd_feasts": "Festín",
+      "fd_soil": "Compost",
+      "fd_snacks": "Tentempié",
+      "create_contraptions": "Artilugio",
+      "create_zinc": "Cinc",
+      "create_stone": "Estrato",
+      "create_masonry": "Albañilería",
+      "create_alloy": "Aleación",
+      "create_kinetics": "Cinética",
+      "create_power": "Molino",
+      "create_logistics": "Logística",
+      "create_machines": "Máquina",
+      "create_tools": "Ingeniero",
+      "create_decor": "Asientos",
+      "create_sweets": "Golosina",
+      "create_quartz": "Cuarzo rosado",
+      "deep_dark": "Oscuridad profunda",
+      "dyes": "Tinte",
+      "stone_tools": "Cantero",
+      "leather_armor": "Marroquinería",
+      "workstations": "Taller",
+      "transport": "Transporte",
+      "brewing": "Alquimia",
+      "enchanting": "Encantamiento",
+      "use_items": "Trabajo de campo",
+      "exploration": "Explorador",
+      "nether_animals": "Rancho del Nether",
+      "nether_crafts": "Albañil del Nether",
+      "storage_blocks": "Tesoro",
+      "mek_osmium": "Osmio",
+      "mek_tin": "Estaño",
+      "mek_lead": "Plomo",
+      "mek_uranium": "Uranio",
+      "mek_fluorite": "Fluorita",
+      "mek_salt": "Sal",
+      "mek_gear": "Taller",
+      "mek_radiation": "Radioprotección",
+      "mek_machines": "Máquina",
+      "mek_blocks": "Bloques de metal",
+      "tf_travel": "Crepúsculo",
+      "tf_wood": "Madera crepuscular",
+      "tf_forage": "Recolección crepuscular",
+      "tf_game": "Venado",
+      "tf_ranch": "Rancho crepuscular",
+      "tf_monsters": "Caza crepuscular",
+      "tf_bosses": "Jefe",
+      "tf_ironwood": "Madera de hierro",
+      "tf_maps": "Cartógrafo",
+      "bot_flowers": "Florista",
+      "bot_petals": "Pétalos",
+      "bot_start": "Botánico",
+      "bot_mushrooms": "Setas brillantes",
+      "bot_livingwood": "Madera viviente",
+      "bot_mana": "Maná",
+      "bot_decor": "Decoración floral",
+      "bot_alfheim": "Alfheim",
+      "ae2_meteor": "Meteorito",
+      "ae2_skystone": "Piedra del cielo",
+      "ae2_quartz_tools": "Herrero de cuarzo",
+      "ae2_fluix": "Fluix",
+      "ae2_power": "Energía",
+      "ae2_network": "Red",
+      "ie_bauxite": "Bauxita",
+      "ie_lead": "Plomo",
+      "ie_silver": "Plata",
+      "ie_nickel": "Níquel",
+      "ie_hemp": "Cáñamo",
+      "ie_workshop": "Taller",
+      "ie_metalwork": "Metalistería",
+      "ie_treated": "Madera tratada",
+      "bop_timber": "Madera exótica",
+      "bop_carpentry": "Carpintería",
+      "bop_bouquet": "Flores silvestres",
+      "bop_sands": "Arena",
+      "bop_wetlands": "Humedal",
+      "bop_rose_quartz": "Cuarzo rosa",
+      "bop_nether": "Botánica del Nether",
+      "am_savanna": "Sabana",
+      "am_northlands": "Tierras del norte",
+      "am_cookout": "Cocina salvaje",
+      "am_predators": "Depredadores",
+      "am_gear": "Equipamiento",
+      "am_nether": "Cazador del Nether",
+      "tc_grout": "Refractario",
+      "tc_stations": "Tinker",
+      "tc_smeltery": "Fundición",
+      "tc_slime_isles": "Isla de slime",
+      "tc_cobalt": "Cobalto",
+      "an_archwood": "Archwood",
+      "an_forage": "Bayas fuente",
+      "an_first_spells": "Aprendiz",
+      "an_workshop": "Arcano",
+      "an_wilden": "Wilden"
+    },
+    "dimensionNames": {
+      "minecraft:overworld": "Superficie",
+      "minecraft:the_nether": "Nether",
+      "minecraft:the_end": "End",
+      "twilightforest:twilight_forest": "Bosque crepuscular"
+    },
+    "dimensionTo": {
+      "minecraft:overworld": "a la superficie",
+      "minecraft:the_nether": "al Nether",
+      "minecraft:the_end": "al End",
+      "twilightforest:twilight_forest": "al Bosque crepuscular"
+    },
+    "dimensionIn": {
+      "minecraft:overworld": "en la superficie",
+      "minecraft:the_nether": "en el Nether",
+      "minecraft:the_end": "en el End",
+      "twilightforest:twilight_forest": "en el Bosque crepuscular"
+    }
+  },
+  "themes": {
+    "blacksmith_order": {
+      "names": [
+        "Encargo del herrero",
+        "Trabajo de forja",
+        "Suministros de forja"
+      ],
+      "descriptions": [
+        "La herrería necesita ayuda: {list}."
+      ]
+    },
+    "harvest_festival": {
+      "names": [
+        "Fiesta de la cosecha",
+        "Tiempo de cosecha",
+        "Cosecha récord"
+      ],
+      "descriptions": [
+        "Recoge la cosecha: {list}."
+      ]
+    },
+    "monster_patrol": {
+      "names": [
+        "Patrulla de monstruos",
+        "Guardia nocturna",
+        "Purga de no muertos"
+      ],
+      "descriptions": [
+        "Mantén seguros los caminos: {list}."
+      ]
+    },
+    "ranch_hand": {
+      "names": [
+        "Peón del rancho",
+        "Tareas de la granja",
+        "Turno en el establo"
+      ],
+      "descriptions": [
+        "El rancho necesita ayuda: {list}."
+      ]
+    },
+    "nether_expedition": {
+      "names": [
+        "Expedición al Nether",
+        "Hacia el fuego",
+        "Asalto a la fortaleza"
+      ],
+      "descriptions": [
+        "Trae tesoros del Nether: {list}."
+      ]
+    },
+    "mining_expedition": {
+      "names": [
+        "Expedición minera",
+        "Excavación profunda",
+        "Estudio de cuevas"
+      ],
+      "descriptions": [
+        "Baja bajo tierra: {list}."
+      ]
+    },
+    "lumberjack": {
+      "names": [
+        "Leñador",
+        "¡Árbol va!",
+        "Talador"
+      ],
+      "descriptions": [
+        "El aserradero espera: {list}."
+      ]
+    },
+    "ocean_voyage": {
+      "names": [
+        "Viaje por mar",
+        "Cosecha marina",
+        "Trabajo de mareas"
+      ],
+      "descriptions": [
+        "Hazte a la mar: {list}."
+      ]
+    },
+    "camp_cook": {
+      "names": [
+        "Cocinero del campamento",
+        "Cena junto al fuego",
+        "Hora de cenar"
+      ],
+      "descriptions": [
+        "Alimenta el campamento: {list}."
+      ]
+    },
+    "builders_order": {
+      "names": [
+        "Encargo del constructor",
+        "Trabajo de obra",
+        "Trabajo de albañilería"
+      ],
+      "descriptions": [
+        "Los constructores necesitan material: {list}."
+      ]
+    },
+    "desert_trek": {
+      "names": [
+        "Travesía del desierto",
+        "Arena y sol"
+      ],
+      "descriptions": [
+        "Desafía el desierto: {list}."
+      ]
+    },
+    "end_expedition": {
+      "names": [
+        "Expedición al End",
+        "Más allá del vacío"
+      ],
+      "descriptions": [
+        "Explora el End: {list}."
+      ]
+    },
+    "beekeeper": {
+      "names": [
+        "Apicultor",
+        "Abejas atareadas"
+      ],
+      "descriptions": [
+        "Cuida las colmenas: {list}."
+      ]
+    },
+    "winter_prep": {
+      "names": [
+        "Preparativos de invierno",
+        "Ola de frío",
+        "Atrapado en la nieve"
+      ],
+      "descriptions": [
+        "Prepárate para el frío: {list}."
+      ]
+    },
+    "tool_upgrade": {
+      "names": [
+        "Mejora de herramientas",
+        "Edad de hierro",
+        "Mejores herramientas"
+      ],
+      "descriptions": [
+        "Es hora de mejores herramientas: {list}."
+      ]
+    },
+    "railway_builder": {
+      "names": [
+        "Constructor de vías",
+        "Línea férrea",
+        "Cuadrilla de vías"
+      ],
+      "descriptions": [
+        "Tiende una nueva línea: {list}."
+      ]
+    },
+    "redstone_workshop": {
+      "names": [
+        "Taller de redstone",
+        "Constructor de circuitos"
+      ],
+      "descriptions": [
+        "Cablea el taller: {list}."
+      ]
+    },
+    "enchanters_study": {
+      "names": [
+        "Estudio del encantador",
+        "Biblioteca arcana"
+      ],
+      "descriptions": [
+        "El encantador necesita suministros: {list}."
+      ]
+    },
+    "night_hunter": {
+      "names": [
+        "Cazador nocturno",
+        "Caza a la luz de la luna",
+        "Al caer la noche"
+      ],
+      "descriptions": [
+        "Cuando se pone el sol: {list}."
+      ]
+    },
+    "fishermans_day": {
+      "names": [
+        "Día del pescador",
+        "Pesca del día",
+        "De pesca"
+      ],
+      "descriptions": [
+        "Un día junto al agua: {list}."
+      ]
+    },
+    "florist": {
+      "names": [
+        "Florista",
+        "Mercado de flores",
+        "Ramo"
+      ],
+      "descriptions": [
+        "Flores frescas para el mercado: {list}."
+      ]
+    },
+    "village_fair": {
+      "names": [
+        "Feria del pueblo",
+        "Feria del mercado",
+        "Mercado de cosecha"
+      ],
+      "descriptions": [
+        "La feria abre pronto: {list}."
+      ]
+    },
+    "stonemason": {
+      "names": [
+        "Cantero",
+        "Trabajo de albañil",
+        "Obras de piedra"
+      ],
+      "descriptions": [
+        "El cantero necesita ayuda: {list}."
+      ]
+    },
+    "deep_dark_delve": {
+      "names": [
+        "Descenso a la oscuridad",
+        "Profundidades silenciosas"
+      ],
+      "descriptions": [
+        "Desciende a la oscuridad profunda: {list}."
+      ]
+    },
+    "brewers_supplies": {
+      "names": [
+        "Suministros del alquimista",
+        "Ingredientes de pociones"
+      ],
+      "descriptions": [
+        "El alquimista necesita bienes del Nether: {list}."
+      ]
+    },
+    "leatherworker": {
+      "names": [
+        "Peletero",
+        "Encargo de la curtiduría"
+      ],
+      "descriptions": [
+        "La curtiduría está ocupada: {list}."
+      ]
+    },
+    "copper_age": {
+      "names": [
+        "Edad del cobre",
+        "Obras de cobre"
+      ],
+      "descriptions": [
+        "Cobre por todas partes: {list}."
+      ]
+    },
+    "nether_builder": {
+      "names": [
+        "Constructor del Nether",
+        "Albañil de fortaleza"
+      ],
+      "descriptions": [
+        "Construye como los piglins: {list}."
+      ]
+    },
+    "stable_hand": {
+      "names": [
+        "Mozo de cuadra",
+        "Rancho de caballos"
+      ],
+      "descriptions": [
+        "El establo necesita trabajo: {list}."
+      ]
+    },
+    "library_project": {
+      "names": [
+        "Proyecto de biblioteca",
+        "Ratón de biblioteca"
+      ],
+      "descriptions": [
+        "El bibliotecario necesita libros: {list}."
+      ]
+    },
+    "lamplighter": {
+      "names": [
+        "Farolero",
+        "Guardián del faro",
+        "Noches brillantes"
+      ],
+      "descriptions": [
+        "Ilumina los caminos antes de que oscurezca: {list}."
+      ]
+    },
+    "glassblower": {
+      "names": [
+        "Soplador de vidrio",
+        "Vidriería",
+        "Vista despejada"
+      ],
+      "descriptions": [
+        "Al vidriero se le acabó la arena: {list}."
+      ]
+    },
+    "potter": {
+      "names": [
+        "Torno de alfarero",
+        "Obras de arcilla",
+        "Día de horno"
+      ],
+      "descriptions": [
+        "El horno del alfarero espera: {list}."
+      ]
+    },
+    "pet_shop": {
+      "names": [
+        "Tienda de mascotas",
+        "Amigos animales",
+        "Cuidado de animales"
+      ],
+      "descriptions": [
+        "La tienda de mascotas necesita nuevos amigos: {list}."
+      ]
+    },
+    "mushroom_forager": {
+      "names": [
+        "Recolector de setas",
+        "Caza de hongos",
+        "Temporada de esporas"
+      ],
+      "descriptions": [
+        "El cocinero quiere setas: {list}."
+      ]
+    },
+    "cave_garden": {
+      "names": [
+        "Jardín de cuevas",
+        "Cuevas frondosas",
+        "Verde bajo tierra"
+      ],
+      "descriptions": [
+        "Algo crece bajo tierra: {list}."
+      ]
+    },
+    "rock_collector": {
+      "names": [
+        "Coleccionista de rocas",
+        "Maestro cantero",
+        "Estudio de rocas"
+      ],
+      "descriptions": [
+        "El geólogo quiere muestras: {list}."
+      ]
+    },
+    "diamond_smith": {
+      "names": [
+        "Herrero de diamante",
+        "Maestro herrero",
+        "Equipo reluciente"
+      ],
+      "descriptions": [
+        "Solo vale lo mejor: {list}."
+      ]
+    },
+    "bake_sale": {
+      "names": [
+        "Venta de pasteles",
+        "Goloso",
+        "Puesto del mercado"
+      ],
+      "descriptions": [
+        "La venta de pasteles del pueblo te necesita: {list}."
+      ]
+    },
+    "nether_gardener": {
+      "names": [
+        "Jardinero del Nether",
+        "Arboleda fúngica",
+        "Cosecha carmesí"
+      ],
+      "descriptions": [
+        "Hasta el Nether tiene un jardín: {list}."
+      ]
+    },
+    "camp_setup": {
+      "names": [
+        "Montar el campamento",
+        "Campamento base",
+        "Campamento nocturno"
+      ],
+      "descriptions": [
+        "Monta el campamento antes del anochecer: {list}."
+      ]
+    },
+    "workshop_setup": {
+      "names": [
+        "Montar el taller",
+        "Nuevo taller",
+        "Rincón de trabajo"
+      ],
+      "descriptions": [
+        "Todo pueblo necesita un taller: {list}."
+      ]
+    },
+    "adventurers_kit": {
+      "names": [
+        "Equipo de aventurero",
+        "Listo para partir",
+        "Equipo de viaje"
+      ],
+      "descriptions": [
+        "Prepara el equipaje: {list}."
+      ]
+    },
+    "treasure_hunter": {
+      "names": [
+        "Cazatesoros",
+        "Riquezas profundas",
+        "Buscador de gemas"
+      ],
+      "descriptions": [
+        "Las riquezas yacen bajo tierra: {list}."
+      ]
+    },
+    "fd_farmers_market": {
+      "names": [
+        "Mercado de agricultores",
+        "Día de mercado",
+        "Productos frescos"
+      ],
+      "descriptions": [
+        "El mercado necesita productos frescos: {list}."
+      ]
+    },
+    "fd_harvest_festival": {
+      "names": [
+        "Fiesta de la cosecha",
+        "Tiempo de cosecha"
+      ],
+      "descriptions": [
+        "¡Recoge la cosecha! {list}."
+      ]
+    },
+    "fd_chefs_special": {
+      "names": [
+        "Especialidad del chef",
+        "Prisa en la cocina",
+        "Servicio de cena"
+      ],
+      "descriptions": [
+        "El menú de esta noche: {list}."
+      ]
+    },
+    "fd_butcher": {
+      "names": [
+        "Encargo del carnicero",
+        "Mercado de carne"
+      ],
+      "descriptions": [
+        "El carnicero necesita ayuda: {list}."
+      ]
+    },
+    "fd_kitchen_setup": {
+      "names": [
+        "Montar la cocina",
+        "Cocina nueva"
+      ],
+      "descriptions": [
+        "Todo cocinero necesita utensilios: {list}."
+      ]
+    },
+    "fd_wild_forager": {
+      "names": [
+        "Recolector silvestre",
+        "Paseo del recolector"
+      ],
+      "descriptions": [
+        "Busca en la naturaleza: {list}."
+      ]
+    },
+    "fd_village_bakery": {
+      "names": [
+        "Panadería del pueblo",
+        "Pan recién hecho"
+      ],
+      "descriptions": [
+        "A la panadería le falta personal: {list}."
+      ]
+    },
+    "fd_breakfast_club": {
+      "names": [
+        "Club del desayuno",
+        "Menú matutino"
+      ],
+      "descriptions": [
+        "El desayuno está servido: {list}."
+      ]
+    },
+    "fd_picnic": {
+      "names": [
+        "Cesta de pícnic",
+        "Día de pícnic"
+      ],
+      "descriptions": [
+        "Prepara la cesta de pícnic: {list}."
+      ]
+    },
+    "fd_rope_maker": {
+      "names": [
+        "Cordelero",
+        "Trabajo con paja"
+      ],
+      "descriptions": [
+        "Convierte la paja en algo útil: {list}."
+      ]
+    },
+    "fd_crate_stock": {
+      "names": [
+        "Reserva de cajones",
+        "Despensa llena"
+      ],
+      "descriptions": [
+        "Llena la despensa: {list}."
+      ]
+    },
+    "fd_fishmonger": {
+      "names": [
+        "Pescadero",
+        "Mercado de pescado"
+      ],
+      "descriptions": [
+        "El pescadero necesita género: {list}."
+      ]
+    },
+    "create_zinc_rush": {
+      "names": [
+        "Fiebre del cinc",
+        "Suministro de cinc",
+        "Buscador de cinc"
+      ],
+      "descriptions": [
+        "El taller funciona con cinc: {list}."
+      ]
+    },
+    "create_first_steps": {
+      "names": [
+        "Inicio del ingeniero",
+        "Primer artilugio",
+        "A toda máquina"
+      ],
+      "descriptions": [
+        "Toda máquina empieza pequeña: {list}."
+      ]
+    },
+    "create_water_mill": {
+      "names": [
+        "Molino de agua",
+        "Obras del molino"
+      ],
+      "descriptions": [
+        "Construye un molino junto al río: {list}."
+      ]
+    },
+    "create_stone_layers": {
+      "names": [
+        "Estratos de piedra",
+        "Estratos profundos",
+        "Estudio de rocas"
+      ],
+      "descriptions": [
+        "Estudia los estratos de piedra bajo tierra: {list}."
+      ]
+    },
+    "create_metalworks": {
+      "names": [
+        "Metalurgia",
+        "Hierro y cinc",
+        "Encargo de fundición"
+      ],
+      "descriptions": [
+        "La fundición necesita metal: {list}."
+      ]
+    },
+    "create_logistics_line": {
+      "names": [
+        "Línea logística",
+        "Montaje de cintas"
+      ],
+      "descriptions": [
+        "Mueve objetos automáticamente: {list}."
+      ]
+    },
+    "create_contraption_crew": {
+      "names": [
+        "Equipo de artilugios",
+        "Piezas móviles"
+      ],
+      "descriptions": [
+        "Construye algo que se mueva: {list}."
+      ]
+    },
+    "create_masonry_works": {
+      "names": [
+        "Albañilería en capas",
+        "Taller de piedra"
+      ],
+      "descriptions": [
+        "Decora con piedra de Create: {list}."
+      ]
+    },
+    "create_andesite_age": {
+      "names": [
+        "Edad de la andesita",
+        "Fundición de aleación"
+      ],
+      "descriptions": [
+        "Todo empieza con andesita: {list}."
+      ]
+    },
+    "create_engineers_kit": {
+      "names": [
+        "Equipo de ingeniero",
+        "Herramientas de taller"
+      ],
+      "descriptions": [
+        "Todo ingeniero necesita equipo: {list}."
+      ]
+    },
+    "mek_osmium_rush": {
+      "names": [
+        "Fiebre del osmio",
+        "Metal azul",
+        "Suministro de osmio"
+      ],
+      "descriptions": [
+        "Toda máquina de Mekanism necesita osmio: {list}."
+      ]
+    },
+    "mek_first_machine": {
+      "names": [
+        "Primera máquina",
+        "Montar el infusor",
+        "Inicio técnico"
+      ],
+      "descriptions": [
+        "Pon en marcha el taller: {list}."
+      ]
+    },
+    "mek_metal_survey": {
+      "names": [
+        "Estudio de metales",
+        "Estudio de menas",
+        "Metales nuevos"
+      ],
+      "descriptions": [
+        "Localiza las nuevas menas bajo tierra: {list}."
+      ]
+    },
+    "mek_radiation_safety": {
+      "names": [
+        "Seguridad radiológica",
+        "Equipo de protección",
+        "Blindaje de plomo"
+      ],
+      "descriptions": [
+        "Prepárate antes de que algo brille: {list}."
+      ]
+    },
+    "tf_expedition": {
+      "names": [
+        "Expedición crepuscular",
+        "Hacia el crepúsculo",
+        "El bosque del más allá"
+      ],
+      "descriptions": [
+        "El Bosque crepuscular espera: {list}."
+      ]
+    },
+    "tf_hunters": {
+      "names": [
+        "Caza crepuscular",
+        "Patrulla forestal",
+        "Problemas con trasgos"
+      ],
+      "descriptions": [
+        "Despeja los caminos del Bosque crepuscular: {list}."
+      ]
+    },
+    "tf_ironwood_smith": {
+      "names": [
+        "Herrero de madera de hierro",
+        "Metal vivo",
+        "Raíz y hierro"
+      ],
+      "descriptions": [
+        "La madera de hierro nace de raíces y hierro: {list}."
+      ]
+    },
+    "tf_venison_feast": {
+      "names": [
+        "Festín de venado",
+        "Cena del cazador"
+      ],
+      "descriptions": [
+        "La cena viene del bosque crepuscular: {list}."
+      ]
+    },
+    "bot_first_steps": {
+      "names": [
+        "Inicio del botánico",
+        "Magia del jardín",
+        "Poder floral"
+      ],
+      "descriptions": [
+        "Todo botánico empieza en un prado: {list}."
+      ]
+    },
+    "bot_florist": {
+      "names": [
+        "Florista",
+        "Ramo",
+        "Recolector de pétalos"
+      ],
+      "descriptions": [
+        "El florista quiere color: {list}."
+      ]
+    },
+    "ae2_meteor_hunt": {
+      "names": [
+        "Caza de meteoritos",
+        "Estrella caída",
+        "Piedra del cielo"
+      ],
+      "descriptions": [
+        "Un meteorito cayó cerca: {list}."
+      ]
+    },
+    "ae2_engineer": {
+      "names": [
+        "Ingeniero de redes",
+        "Todo cableado",
+        "Materia a energía"
+      ],
+      "descriptions": [
+        "Toda red empieza en una mesa de trabajo: {list}."
+      ]
+    },
+    "ie_prospector": {
+      "names": [
+        "Prospector",
+        "Estudio de menas",
+        "Ingeniero de campo"
+      ],
+      "descriptions": [
+        "Un ingeniero necesita metal antes que máquinas: {list}."
+      ]
+    },
+    "ie_workshop_setup": {
+      "names": [
+        "Montar el taller",
+        "Hora del martillo",
+        "Ladrillos y hierro"
+      ],
+      "descriptions": [
+        "Monta el taller: {list}."
+      ]
+    },
+    "bop_explorer": {
+      "names": [
+        "Saltabiomas",
+        "Mucho que ver",
+        "Ganas de viajar"
+      ],
+      "descriptions": [
+        "El mundo se ha hecho más grande: {list}."
+      ]
+    },
+    "bop_florist": {
+      "names": [
+        "Ramo silvestre",
+        "Colores del prado",
+        "Caza de flores"
+      ],
+      "descriptions": [
+        "Recoge las flores silvestres: {list}."
+      ]
+    },
+    "bop_carpenter": {
+      "names": [
+        "Carpintero exótico",
+        "Madera fina"
+      ],
+      "descriptions": [
+        "Madera exótica para el taller: {list}."
+      ]
+    },
+    "am_safari": {
+      "names": [
+        "Safari",
+        "Reino salvaje",
+        "Hacia lo salvaje"
+      ],
+      "descriptions": [
+        "Los animales salvajes tienen mucho que dar: {list}."
+      ]
+    },
+    "am_hunter": {
+      "names": [
+        "Caza mayor",
+        "Cazador supremo",
+        "Patrulla de depredadores"
+      ],
+      "descriptions": [
+        "Animales peligrosos recorren la naturaleza: {list}."
+      ]
+    },
+    "tc_tinker": {
+      "names": [
+        "Aprendiz de Tinker",
+        "Banco de Tinker",
+        "Moldes y piezas"
+      ],
+      "descriptions": [
+        "Todo Tinker empieza con un molde: {list}."
+      ]
+    },
+    "tc_smelter": {
+      "names": [
+        "Constructor de fundición",
+        "Refractario y listo",
+        "Planes fundidos"
+      ],
+      "descriptions": [
+        "Una fundición se construye ladrillo a ladrillo: {list}."
+      ]
+    },
+    "an_apprentice": {
+      "names": [
+        "Aprendiz de mago",
+        "Primeros hechizos",
+        "Estudios arcanos"
+      ],
+      "descriptions": [
+        "Todo mago empieza con un tomo: {list}."
+      ]
+    },
+    "an_woodland": {
+      "names": [
+        "Arboleda de Archwood",
+        "Bosques mágicos"
+      ],
+      "descriptions": [
+        "El bosque de Archwood esconde más que madera: {list}."
+      ]
+    }
+  },
+  "tagNouns": {
+    "logs": "tronco",
+    "logs_block": "tronco",
+    "skeletons": "esqueleto",
+    "wool": "lana",
+    "beds": "cama",
+    "small_flowers": "flor",
+    "iron_ingots": "lingote de hierro",
+    "zinc_ingots": "lingote de cinc",
+    "wool_carpets": "alfombra",
+    "fishes": "pez",
+    "tomatoes": "tomate",
+    "osmium_ingots": "lingote de osmio",
+    "tin_ingots": "lingote de estaño",
+    "lead_ingots": "lingote de plomo"
+  },
+  "hints": {
+    "Chop any kind of tree.": "Tala cualquier tipo de árbol.",
+    "Plant saplings to regrow the forest.": "Planta brotes para que el bosque vuelva a crecer.",
+    "Smelt logs in a furnace.": "Funde troncos en un horno.",
+    "Mine stone with a pickaxe.": "Mina piedra con un pico.",
+    "Build something with it.": "Construye algo con ello.",
+    "Smelt cobblestone in a furnace.": "Funde roca en un horno.",
+    "Smelt stone a second time.": "Funde la piedra una segunda vez.",
+    "Craft from smelted stone.": "Se fabrica con piedra fundida.",
+    "Smelt cobbled deepslate.": "Funde pizarra profunda rocosa.",
+    "Smelt sandstone.": "Funde arenisca.",
+    "Dig sand with a shovel.": "Excava arena con una pala.",
+    "Smelt sand in a furnace.": "Funde arena en un horno.",
+    "Craft panes from smelted glass.": "Fabrica paneles con cristal fundido.",
+    "Gravel sometimes drops flint.": "La grava a veces suelta pedernal.",
+    "Dig clay in rivers and swamps.": "Excava arcilla en ríos y pantanos.",
+    "Smelt clay balls.": "Cuece bolas de arcilla.",
+    "Smelt clay blocks.": "Cuece bloques de arcilla.",
+    "Four bricks make a brick block.": "Cuatro ladrillos forman un bloque de ladrillos.",
+    "Dig snow with a shovel.": "Excava nieve con una pala.",
+    "Break tall grass anywhere.": "Rompe hierba alta en cualquier lugar.",
+    "Break grass to find seeds.": "Rompe hierba para encontrar semillas.",
+    "Mine coal ore.": "Mina menas de carbón.",
+    "Copper ore drops raw copper.": "La mena de cobre suelta cobre en bruto.",
+    "Smelt raw copper in a furnace.": "Funde cobre en bruto en un horno.",
+    "Iron ore drops raw iron.": "La mena de hierro suelta hierro en bruto.",
+    "Smelt raw iron in a furnace.": "Funde hierro en bruto en un horno.",
+    "Gold ore drops raw gold.": "La mena de oro suelta oro en bruto.",
+    "Smelt raw gold in a furnace.": "Funde oro en bruto en un horno.",
+    "Lapis ore drops several pieces.": "La mena de lapislázuli suelta varias piezas.",
+    "Redstone ore drops dust.": "La mena de redstone suelta polvo.",
+    "Dig deep, around y=-58.": "Cava hondo, cerca de y=-58.",
+    "Break amethyst clusters.": "Rompe cúmulos de amatista.",
+    "Pour water on lava pools, then mine it.": "Echa agua sobre lagos de lava y luego mina.",
+    "Harvest fully grown wheat.": "Cosecha trigo maduro.",
+    "Nine wheat make a hay bale.": "Nueve de trigo forman una bala de heno.",
+    "Bake potatoes in a furnace or smoker.": "Asa patatas en un horno o ahumador.",
+    "Six beetroots make a soup.": "Seis remolachas hacen un estofado.",
+    "Pumpkin, sugar and an egg.": "Calabaza, azúcar y un huevo.",
+    "Oak and dark oak leaves sometimes drop apples.": "Las hojas de roble y roble oscuro a veces sueltan manzanas.",
+    "Three sugar cane make three paper.": "Tres cañas de azúcar hacen tres de papel.",
+    "Smelt cactus.": "Funde cactus.",
+    "Bamboo and string.": "Bambú e hilo.",
+    "Smelt kelp.": "Seca algas en un horno.",
+    "A bowl with a red and a brown mushroom.": "Un cuenco con un champiñón rojo y uno marrón.",
+    "Pick flowers.": "Recoge flores.",
+    "Shear a full bee nest.": "Esquila una colmena llena.",
+    "Use a glass bottle on a full hive.": "Usa un frasco de cristal en un apiario lleno.",
+    "Bees breed with flowers.": "Las abejas se reproducen con flores.",
+    "Cows breed with wheat.": "Las vacas se reproducen con trigo.",
+    "Cook raw beef.": "Cocina filete crudo.",
+    "Pigs breed with carrots, potatoes or beetroots.": "Los cerdos se reproducen con zanahorias, patatas o remolachas.",
+    "Cook raw porkchops.": "Cocina chuletas de cerdo crudas.",
+    "Chickens breed with seeds.": "Los pollos se reproducen con semillas.",
+    "Chickens lay eggs over time.": "Los pollos ponen huevos con el tiempo.",
+    "Cook raw chicken.": "Cocina pollo crudo.",
+    "Sheep breed with wheat.": "Las ovejas se reproducen con trigo.",
+    "Shear sheep.": "Esquila ovejas.",
+    "Rabbits breed with carrots or dandelions.": "Los conejos se reproducen con zanahorias o dientes de león.",
+    "Goats breed with wheat.": "Las cabras se reproducen con trigo.",
+    "Llamas breed with hay bales.": "Las llamas se reproducen con balas de heno.",
+    "Turtles breed with seagrass.": "Las tortugas se reproducen con hierba marina.",
+    "Frogs breed with slimeballs.": "Las ranas se reproducen con bolas de slime.",
+    "Sneak up on foxes with sweet berries.": "Acércate agachado a los zorros con bayas dulces.",
+    "Armadillos breed with spider eyes.": "Los armadillos se reproducen con ojos de araña.",
+    "Camels breed with cactus.": "Los camellos se reproducen con cactus.",
+    "Horses breed with golden carrots or apples.": "Los caballos se reproducen con zanahorias doradas o manzanas.",
+    "Donkeys breed with golden carrots or apples.": "Los burros se reproducen con zanahorias doradas o manzanas.",
+    "Tame wolves with bones.": "Domestica lobos con huesos.",
+    "Tamed wolves breed with meat.": "Los lobos domesticados se reproducen con carne.",
+    "Tame stray cats with raw cod or salmon.": "Domestica gatos callejeros con bacalao o salmón crudo.",
+    "Tamed cats breed with raw fish.": "Los gatos domesticados se reproducen con pescado crudo.",
+    "Tame parrots with seeds.": "Domestica loros con semillas.",
+    "Squid drop ink sacs.": "Los calamares sueltan sacos de tinta.",
+    "Glow squid live in dark water.": "Los calamares luminosos viven en aguas oscuras.",
+    "Skeletons drop arrows.": "Los esqueletos sueltan flechas.",
+    "Five gunpowder and four sand.": "Cinco de pólvora y cuatro de arena.",
+    "Coal or charcoal on a stick.": "Carbón o carbón vegetal sobre un palo.",
+    "Build with oak planks.": "Construye con tablones de roble.",
+    "Three wheat make a loaf.": "Tres de trigo hacen un pan.",
+    "Wheat and cocoa beans.": "Trigo y semillas de cacao.",
+    "Needs milk, sugar, wheat and an egg.": "Necesita leche, azúcar, trigo y un huevo.",
+    "Each shelf needs three books.": "Cada librería necesita tres libros.",
+    "Flint, stick and feather.": "Pedernal, palo y pluma.",
+    "Build a railway.": "Construye una vía férrea.",
+    "Milk a cow with a bucket.": "Ordeña una vaca con un cubo.",
+    "Three wool and three planks.": "Tres de lana y tres tablones.",
+    "Smelt netherrack.": "Funde netherrack.",
+    "They attack as a group once angered.": "Una vez enfadados, atacan en grupo.",
+    "Blaze powder and an ender pearl.": "Polvo de blaze y una perla de ender.",
+    "Nine copper ingots.": "Nueve lingotes de cobre.",
+    "Four copper blocks make four cut copper.": "Cuatro bloques de cobre dan cuatro de cobre cortado.",
+    "Watch it oxidize over time.": "Mira cómo se oxida con el tiempo.",
+    "Cobblestone with vines or moss.": "Roca con enredaderas o musgo.",
+    "Stone bricks with vines or moss.": "Ladrillos de piedra con enredaderas o musgo.",
+    "Smelt stone bricks.": "Funde ladrillos de piedra.",
+    "Three smooth stone make six slabs.": "Tres de piedra lisa hacen seis losas.",
+    "Mud and wheat.": "Barro y trigo.",
+    "Four red sand.": "Cuatro de arena roja.",
+    "Terracotta around white dye.": "Terracota alrededor de tinte blanco.",
+    "Smelt white terracotta.": "Cuece terracota blanca.",
+    "Four snowballs.": "Cuatro bolas de nieve.",
+    "Cut them with a sword or shears.": "Córtalas con una espada o tijeras.",
+    "Move quietly: the warden listens.": "Muévete en silencio: el Warden escucha.",
+    "Sunflower plains are full of them.": "Las llanuras de girasoles están llenas.",
+    "From poppies, tulips or beetroot.": "De amapolas, tulipanes o remolacha.",
+    "From dandelions or sunflowers.": "De dientes de león o girasoles.",
+    "From bone meal or lilies of the valley.": "De polvo de hueso o convalarias.",
+    "From cornflowers or lapis lazuli.": "De acianos o lapislázuli.",
+    "From ink sacs or wither roses.": "De sacos de tinta o rosas del Wither.",
+    "One bone makes three bone meal.": "Un hueso da tres de polvo de hueso.",
+    "Leaves and dead bushes drop sticks.": "Las hojas y los arbustos muertos sueltan palos.",
+    "Mooshrooms breed with wheat.": "Los mooshrooms se reproducen con trigo.",
+    "Pandas breed with bamboo near bamboo.": "Los pandas se reproducen con bambú cerca de bambú.",
+    "Axolotls breed with a bucket of tropical fish.": "Los ajolotes se reproducen con un cubo con pez tropical.",
+    "Ocelots breed with raw cod or salmon.": "Los ocelotes se reproducen con bacalao o salmón crudo.",
+    "Striders breed with warped fungus.": "Los lavagantes se reproducen con hongos distorsionados.",
+    "Hoglins breed with crimson fungus; they fight back.": "Los hoglins se reproducen con hongos carmesí; se defienden.",
+    "Golden apples can be eaten any time.": "Las manzanas doradas se pueden comer en cualquier momento.",
+    "Baby turtles drop a scute when they grow up.": "Las tortugas bebé sueltan una escama al crecer.",
+    "They hide in infested stone in mountains and strongholds.": "Se esconden en piedra infestada en montañas y fortalezas.",
+    "Piglins attack players without gold armor.": "Los piglins atacan a jugadores sin armadura de oro.",
+    "Nether gold ore drops gold nuggets.": "La mena de oro del Nether suelta pepitas de oro.",
+    "Fossils in soul sand valleys.": "Fósiles en los valles de almas.",
+    "Four Nether brick items.": "Cuatro ladrillos del Nether.",
+    "Nether bricks and Nether wart.": "Ladrillos del Nether y verrugas del Nether.",
+    "Four Nether quartz.": "Cuatro de cuarzo del Nether.",
+    "One blaze rod makes two powder.": "Una vara de blaze da dos de polvo.",
+    "31 iron ingots.": "31 lingotes de hierro.",
+    "Needs a blaze rod from a Nether fortress.": "Necesita una vara de blaze de una fortaleza del Nether.",
+    "String and a slimeball.": "Hilo y una bola de slime.",
+    "Gold ingots, a stick and redstone.": "Lingotes de oro, un palo y redstone.",
+    "Spider eye, sugar and a brown mushroom.": "Ojo de araña, azúcar y un champiñón marrón.",
+    "Two wool make three carpets.": "Dos de lana hacen tres alfombras.",
+    "Crafted from sugar cane.": "Se fabrica con caña de azúcar.",
+    "Dry wet sponges from ocean monuments.": "Seca esponjas mojadas de los monumentos oceánicos.",
+    "Nine iron ingots.": "Nueve lingotes de hierro.",
+    "A stonecutter makes them one for one.": "Un cortapiedras los hace uno por uno.",
+    "Use a stonecutter on stone.": "Usa un cortapiedras con piedra.",
+    "Cut copper blocks on a stonecutter.": "Corta bloques de cobre en un cortapiedras.",
+    "Enchant books on an enchanting table; any enchantment counts.": "Encanta libros en una mesa de encantamientos; vale cualquier encantamiento.",
+    "Any enchantment counts.": "Vale cualquier encantamiento.",
+    "Shovel snow and throw the snowballs.": "Recoge nieve con la pala y lanza las bolas.",
+    "Chickens lay eggs.": "Los pollos ponen huevos.",
+    "Endermen drop ender pearls.": "Los endermen sueltan perlas de ender.",
+    "Use bone meal on crops or grass.": "Usa polvo de hueso en cultivos o hierba.",
+    "Craft rockets from paper and gunpowder.": "Fabrica cohetes con papel y pólvora.",
+    "Brew an Awkward Potion with sugar.": "Prepara una poción rara con azúcar.",
+    "Brew an Awkward Potion with a golden carrot.": "Prepara una poción rara con una zanahoria dorada.",
+    "Brew an Awkward Potion with magma cream.": "Prepara una poción rara con crema de magma.",
+    "Brew an Awkward Potion with blaze powder.": "Prepara una poción rara con polvo de blaze.",
+    "Brew an Awkward Potion with a pufferfish.": "Prepara una poción rara con un pez globo.",
+    "Cabbage seeds come from wild cabbages on beaches.": "Las semillas de col salen de coles silvestres en las playas.",
+    "Nine cabbages fill a crate.": "Nueve coles llenan un cajón.",
+    "Tomato seeds come from wild tomatoes in warm, dry biomes.": "Las semillas de tomate salen de tomates silvestres en biomas cálidos y secos.",
+    "Nine tomatoes fill a crate.": "Nueve tomates llenan un cajón.",
+    "Onions come from wild onions; replant them.": "Las cebollas salen de cebollas silvestres; vuelve a plantarlas.",
+    "Nine onions fill a crate.": "Nueve cebollas llenan un cajón.",
+    "Grow rice in shallow water.": "Cultiva arroz en agua poco profunda.",
+    "Wild rice grows in swamps and jungles.": "El arroz silvestre crece en pantanos y junglas.",
+    "Nine rice panicles make a bale.": "Nueve panículas de arroz forman una paca.",
+    "Wild cabbages grow on beaches.": "Las coles silvestres crecen en las playas.",
+    "Wild beetroots grow on beaches.": "Las remolachas silvestres crecen en las playas.",
+    "Wild tomatoes grow in warm, dry biomes.": "Los tomates silvestres crecen en biomas cálidos y secos.",
+    "Wild onions grow in most overworld biomes.": "Las cebollas silvestres crecen en casi todos los biomas del mundo normal.",
+    "Wild carrots grow in most overworld biomes.": "Las zanahorias silvestres crecen en casi todos los biomas del mundo normal.",
+    "Wild potatoes grow in most overworld biomes.": "Las patatas silvestres crecen en casi todos los biomas del mundo normal.",
+    "Cut grass or ripe wheat with a knife.": "Corta hierba o trigo maduro con un cuchillo.",
+    "Two straw make four rope.": "Dos de paja hacen cuatro cuerdas.",
+    "Four straw make a canvas.": "Cuatro de paja hacen una tela.",
+    "Hang rope down a cliff or well.": "Cuelga cuerda por un acantilado o un pozo.",
+    "Five iron ingots, bricks, a wooden shovel and water.": "Cinco lingotes de hierro, ladrillos, una pala de madera y agua.",
+    "Bricks, a campfire and iron.": "Ladrillos, una fogata y hierro.",
+    "Oak slabs and trapdoors.": "Losas y trampillas de roble.",
+    "Spruce slabs and trapdoors.": "Losas y trampillas de abeto.",
+    "Pigs killed with a knife drop ham.": "Los cerdos matados con cuchillo sueltan jamón.",
+    "Smoke ham in a smoker.": "Ahuma jamón en un ahumador.",
+    "Cut porkchops on a cutting board, then cook.": "Corta chuletas en una tabla de picar y luego cocínalas.",
+    "Mince beef on a cutting board, then cook.": "Pica carne en una tabla de picar y luego cocínala.",
+    "Cut chicken on a cutting board, then cook.": "Corta pollo en una tabla de picar y luego cocínalo.",
+    "Cut mutton on a cutting board, then cook.": "Corta cordero en una tabla de picar y luego cocínalo.",
+    "Slice cod on a cutting board, then cook.": "Corta bacalao en una tabla de picar y luego cocínalo.",
+    "Slice salmon on a cutting board, then cook.": "Corta salmón en una tabla de picar y luego cocínalo.",
+    "Rice, kelp and a carrot.": "Arroz, alga y una zanahoria.",
+    "Cook eggs in a furnace or skillet.": "Cocina huevos en un horno o una sartén.",
+    "Bread, a beef patty, cabbage, tomato and onion.": "Pan, una hamburguesa, col, tomate y cebolla.",
+    "Apple, melon, berries and a pumpkin slice.": "Manzana, sandía, bayas y una rodaja de calabaza.",
+    "Cabbage, tomato and beetroot in a bowl.": "Col, tomate y remolacha en un cuenco.",
+    "Crimson and warped fungi in a bowl.": "Hongos carmesí y distorsionados en un cuenco.",
+    "Needs a pie crust, apples and sugar.": "Necesita una corteza de tarta, manzanas y azúcar.",
+    "Melon slices, ice and a stick.": "Rodajas de sandía, hielo y un palo.",
+    "Cook it in a Cooking Pot.": "Cocínalo en una olla.",
+    "Cook rice in a Cooking Pot.": "Cocina arroz en una olla.",
+    "Steak, a baked potato, onion and cooked rice.": "Filete, una patata cocida, cebolla y arroz cocido.",
+    "Brew it in a Cooking Pot.": "Prepáralo en una olla.",
+    "Melon slices, sugar and a glass bottle.": "Rodajas de sandía, azúcar y un frasco de cristal.",
+    "Pour a milk bucket into glass bottles.": "Vierte un cubo con leche en frascos de cristal.",
+    "A feast to share.": "Un festín para compartir.",
+    "Wheat with an egg or water.": "Trigo con un huevo o agua.",
+    "Bake wheat dough in a furnace.": "Hornea masa de trigo en un horno.",
+    "Dirt, rotten flesh, straw and bone meal.": "Tierra, carne podrida, paja y polvo de hueso.",
+    "Salmon slices and cooked rice.": "Rodajas de salmón y arroz cocido.",
+    "Cod slices and cooked rice.": "Rodajas de bacalao y arroz cocido.",
+    "Tomato, onion and meat on a stick.": "Tomate, cebolla y carne en un palo.",
+    "Place a roast chicken and serve it into a bowl.": "Coloca un pollo asado y sírvelo en un cuenco.",
+    "Place a shepherd's pie and serve it into a bowl.": "Coloca un pastel de pastor y sírvelo en un cuenco.",
+    "Place a glazed ham and serve it into a bowl.": "Coloca un jamón glaseado y sírvelo en un cuenco.",
+    "Made from rope.": "Se fabrica con cuerda.",
+    "It slowly turns into rich soil.": "Se convierte poco a poco en suelo rico.",
+    "Zinc ore drops raw zinc.": "La mena de cinc suelta cinc en bruto.",
+    "Smelt raw zinc in a furnace.": "Funde cinc en bruto en un horno.",
+    "Cut limestone on a stonecutter, then build.": "Corta piedra caliza en un cortapiedras y luego construye.",
+    "Cut asurine on a stonecutter, then build.": "Corta azurina en un cortapiedras y luego construye.",
+    "Cut crimsite on a stonecutter, then build.": "Corta carmesita en un cortapiedras y luego construye.",
+    "Cut limestone on a stonecutter.": "Corta piedra caliza en un cortapiedras.",
+    "Cut asurine on a stonecutter.": "Corta azurina en un cortapiedras.",
+    "Cut granite on a stonecutter.": "Corta granito en un cortapiedras.",
+    "Cut diorite on a stonecutter.": "Corta diorita en un cortapiedras.",
+    "Cut andesite on a stonecutter.": "Corta andesita en un cortapiedras.",
+    "Cut tuff on a stonecutter.": "Corta toba en un cortapiedras.",
+    "Two andesite and two iron nuggets.": "Dos de andesita y dos pepitas de hierro.",
+    "Use andesite alloy on stripped logs to make casings.": "Usa aleación de andesita en troncos sin corteza para hacer revestimientos.",
+    "Five andesite alloy.": "Cinco de aleación de andesita.",
+    "Two andesite alloy make eight shafts.": "Dos de aleación de andesita hacen ocho ejes.",
+    "A shaft and wooden planks.": "Un eje y tablones de madera.",
+    "Four cogwheels and an andesite casing.": "Cuatro engranajes y un revestimiento de andesita.",
+    "A shaft surrounded by planks.": "Un eje rodeado de tablones.",
+    "Andesite alloy, sticks and wool.": "Aleación de andesita, palos y lana.",
+    "A cogwheel, stone and an andesite casing.": "Un engranaje, piedra y un revestimiento de andesita.",
+    "Six dried kelp.": "Seis de algas secas.",
+    "Andesite alloy and dried kelp.": "Aleación de andesita y algas secas.",
+    "An iron block, a shaft and an andesite casing.": "Un bloque de hierro, un eje y un revestimiento de andesita.",
+    "Needs a whisk made from iron sheets.": "Necesita una batidora hecha con láminas de hierro.",
+    "Needs a propeller made from iron sheets.": "Necesita una hélice hecha con láminas de hierro.",
+    "Needs golden sheets from a press.": "Necesita láminas de oro de una prensa.",
+    "Needs a golden sheet from a press.": "Necesita una lámina de oro de una prensa.",
+    "White wool on a wooden slab.": "Lana blanca sobre una losa de madera.",
+    "Made with a mixer and a press.": "Se hace con una mezcladora y una prensa.",
+    "Fill apples with honey using a spout.": "Rellena manzanas con miel usando un surtidor.",
+    "Brewed by a mixer, bottled by a spout.": "Se prepara en una mezcladora y se embotella con un surtidor.",
+    "Fill bread with milk using a spout.": "Rellena pan con leche usando un surtidor.",
+    "Nether quartz and eight redstone dust.": "Cuarzo del Nether y ocho de polvo de redstone.",
+    "Andesite alloy and logs.": "Aleación de andesita y troncos.",
+    "Andesite alloy and planks.": "Aleación de andesita y tablones.",
+    "Nine andesite alloy.": "Nueve de aleación de andesita.",
+    "A clock in an andesite casing.": "Un reloj en un revestimiento de andesita.",
+    "Iron sheets and netherrack.": "Láminas de hierro y netherrack.",
+    "Polish limestone on a stonecutter, then build.": "Pule piedra caliza en un cortapiedras y luego construye.",
+    "Osmium ore drops raw osmium.": "La mena de osmio suelta osmio en bruto.",
+    "Smelt raw osmium in a furnace.": "Funde osmio en bruto en un horno.",
+    "Tin ore drops raw tin.": "La mena de estaño suelta estaño en bruto.",
+    "Smelt raw tin in a furnace.": "Funde estaño en bruto en un horno.",
+    "Lead ore drops raw lead.": "La mena de plomo suelta plomo en bruto.",
+    "Smelt raw lead in a furnace.": "Funde plomo en bruto en un horno.",
+    "Smelt raw uranium in a furnace.": "Funde uranio en bruto en un horno.",
+    "Fluorite ore drops two to four gems.": "La mena de fluorita suelta de dos a cuatro gemas.",
+    "Salt forms in small patches under shallow water, like clay.": "La sal forma pequeñas vetas bajo agua poco profunda, como la arcilla.",
+    "Salt blocks drop salt.": "Los bloques de sal sueltan sal.",
+    "Iron, osmium, redstone and two furnaces: the first Mekanism machine.": "Hierro, osmio, redstone y dos hornos: la primera máquina de Mekanism.",
+    "An osmium ingot over five glass panes.": "Un lingote de osmio sobre cinco paneles de cristal.",
+    "Four tin ingots around a bowl.": "Cuatro lingotes de estaño alrededor de un cuenco.",
+    "Four lead ingots around redstone.": "Cuatro lingotes de plomo alrededor de redstone.",
+    "Five lead ingots and orange dye.": "Cinco lingotes de plomo y tinte naranja.",
+    "Nine charcoal.": "Nueve de carbón vegetal.",
+    "Nine tin ingots.": "Nueve lingotes de estaño.",
+    "Nine lead ingots.": "Nueve lingotes de plomo.",
+    "Steel ingots around a bucket; steel comes from the Metallurgic Infuser.": "Lingotes de acero alrededor de un cubo; el acero sale del infusor metalúrgico.",
+    "Steel ingots around an iron ingot; steel comes from the Metallurgic Infuser.": "Lingotes de acero alrededor de un lingote de hierro; el acero sale del infusor metalúrgico.",
+    "A steel casing, basic control circuits, redstone and lava buckets.": "Una carcasa de acero, circuitos de control básicos, redstone y cubos con lava.",
+    "Steel comes from the metallurgic infuser: infuse iron with carbon twice.": "El acero sale del infusor metalúrgico: infunde carbono en hierro dos veces.",
+    "A steel casing, basic alloys and a basic control circuit.": "Una carcasa de acero, aleaciones básicas y un circuito de control básico.",
+    "A steel casing, basic alloys, glass and a basic control circuit.": "Una carcasa de acero, aleaciones básicas, cristal y un circuito de control básico.",
+    "Iron, an osmium ingot and a steel ingot.": "Hierro, un lingote de osmio y un lingote de acero.",
+    "Throw a diamond into a two-by-two pool of water ringed with flowers or grass.": "Lanza un diamante a un estanque de 2×2 rodeado de flores o hierba.",
+    "Darkwood grows in the gloomy Dark Forest.": "La madera oscura crece en el lúgubre Bosque oscuro.",
+    "One twilight oak log makes four planks.": "Un tronco de roble crepuscular da cuatro tablones.",
+    "Twilight mangroves stand in the swamps.": "Los manglares crepusculares se alzan en los pantanos.",
+    "One canopy log makes four planks.": "Un tronco de dosel da cuatro tablones.",
+    "One darkwood log makes four planks.": "Un tronco de madera oscura da cuatro tablones.",
+    "Five twilight oak planks.": "Cinco tablones de roble crepuscular.",
+    "Six canopy planks and three books.": "Seis tablones de dosel y tres libros.",
+    "Ripe torchberries hang from cave ceilings in the Twilight Forest.": "Las bayas antorcha maduras cuelgan del techo de las cuevas del Bosque crepuscular.",
+    "Liveroot grows in the root tangles underground; break it without Silk Touch.": "La raíz viva crece en las marañas de raíces bajo tierra; rómpela sin Toque de seda.",
+    "Forest ravens drop feathers.": "Los cuervos del bosque sueltan plumas.",
+    "Mushglooms glow in the Mushroom Forest.": "Los hongos sombríos brillan en el Bosque de setas.",
+    "Deer drop venison.": "Los ciervos sueltan carne de venado.",
+    "Cook raw venison in a furnace, smoker or campfire.": "Cocina venado crudo en un horno, ahumador o fogata.",
+    "Deer breed with wheat.": "Los ciervos se reproducen con trigo.",
+    "Boars breed like pigs: carrots, potatoes or beetroots.": "Los jabalíes se reproducen como los cerdos: zanahorias, patatas o remolachas.",
+    "Bighorn sheep breed with wheat.": "Los carneros de las Rocosas se reproducen con trigo.",
+    "Kobolds roam the Twilight Forest in packs.": "Los kobolds recorren el Bosque crepuscular en grupos.",
+    "Redcaps lurk around the hollow hills.": "Los gorros rojos acechan alrededor de las colinas huecas.",
+    "Skeleton druids haunt the swamps and forests.": "Los druidas esqueleto rondan los pantanos y bosques.",
+    "Hedge spiders hide in hedge mazes.": "Las arañas de seto se esconden en los laberintos de setos.",
+    "Swarm spiders pour out of hedge mazes.": "Las arañas de enjambre salen a montones de los laberintos de setos.",
+    "Slime beetles crawl through the Twilight Forest at night.": "Los escarabajos de slime recorren el Bosque crepuscular de noche.",
+    "Fire beetles crawl through the Twilight Forest at night.": "Los escarabajos de fuego recorren el Bosque crepuscular de noche.",
+    "Pinch beetles crawl through the Twilight Forest at night.": "Los escarabajos pinza recorren el Bosque crepuscular de noche.",
+    "Minotaurs guard the labyrinths below the swamp.": "Los minotauros vigilan los laberintos bajo el pantano.",
+    "The Naga coils in a stone courtyard in the forest.": "La Naga se enrosca en un patio de piedra del bosque.",
+    "Dropped by the Naga.": "Lo suelta la Naga.",
+    "The Lich rules the tallest tower.": "El Liche gobierna la torre más alta.",
+    "Minotaurs in the labyrinths drop meef.": "Los minotauros de los laberintos sueltan carne de meef.",
+    "Cook raw meef in a furnace, smoker or campfire.": "Cocina meef crudo en un horno, ahumador o fogata.",
+    "Liveroot, raw iron and a gold nugget.": "Raíz viva, hierro en bruto y una pepita de oro.",
+    "Smelt raw ironwood in a furnace.": "Funde material de madera de hierro en un horno.",
+    "A raven feather, torchberries and glowstone dust.": "Una pluma de cuervo, bayas antorcha y polvo de piedra luminosa.",
+    "A magic map focus surrounded by paper.": "Un foco de mapa mágico rodeado de papel.",
+    "Mystical flowers grow in forests, plains and meadows.": "Las flores místicas crecen en bosques, llanuras y praderas.",
+    "One mystical flower makes two petals.": "Una flor mística da dos pétalos.",
+    "Nine mystical white petals.": "Nueve pétalos místicos blancos.",
+    "Nine mystical red petals.": "Nueve pétalos místicos rojos.",
+    "Mossy cobblestone around a mystical petal.": "Roca musgosa alrededor de un pétalo místico.",
+    "A book and any sapling.": "Un libro y cualquier brote.",
+    "Cobblestone around a mystical petal.": "Roca alrededor de un pétalo místico.",
+    "Six wool and a mystical petal.": "Seis de lana y un pétalo místico.",
+    "Shimmering mushrooms glow in caves.": "Las setas brillantes relucen en las cuevas.",
+    "A Pure Daisy turns logs placed around it into livingwood.": "Una margarita pura convierte los troncos a su alrededor en madera viviente.",
+    "A livingwood twig and two petals; livingwood comes from a Pure Daisy.": "Una ramita de madera viviente y dos pétalos; la madera viviente sale de una margarita pura.",
+    "Manasteel ingots and livingwood twigs; iron becomes manasteel in a mana pool.": "Lingotes de manacero y ramitas de madera viviente; el hierro se vuelve manacero en una pila de maná.",
+    "Manasteel ingots and a livingwood twig; iron becomes manasteel in a mana pool.": "Lingotes de manacero y una ramita de madera viviente; el hierro se vuelve manacero en una pila de maná.",
+    "Two livingwood logs from a Pure Daisy.": "Dos troncos de madera viviente de una margarita pura.",
+    "Livingwood and glowstone dust.": "Madera viviente y polvo de piedra luminosa.",
+    "Dreamwood comes from the elves through an Elven Gateway.": "La madera onírica viene de los elfos a través de un portal élfico.",
+    "Elementium ingots and dreamwood twigs, both traded with the elves.": "Lingotes de elementio y ramitas de madera onírica, ambos intercambiados con los elfos.",
+    "Five livingrock; a Pure Daisy turns stone into livingrock.": "Cinco de piedra viviente; una margarita pura convierte la piedra en piedra viviente.",
+    "Meteorites are craters of sky stone; a meteorite compass points to the nearest one.": "Los meteoritos son cráteres de piedra del cielo; una brújula de meteoritos señala el más cercano.",
+    "Certus clusters grow on the budding quartz inside meteorites.": "Los cúmulos de certus crecen sobre el cuarzo brotante dentro de los meteoritos.",
+    "Smelt sky stone in a furnace.": "Funde piedra del cielo en un horno.",
+    "Four sky stone blocks (smelted sky stone).": "Cuatro bloques de piedra del cielo (piedra del cielo fundida).",
+    "Eight sky stone.": "Ocho de piedra del cielo.",
+    "Five certus quartz crystals.": "Cinco cristales de cuarzo certus.",
+    "A stick, an iron ingot and certus quartz.": "Un palo, un lingote de hierro y cuarzo certus.",
+    "Five nether quartz.": "Cinco de cuarzo del Nether.",
+    "Three certus quartz crystals and two sticks.": "Tres cristales de cuarzo certus y dos palos.",
+    "Two certus quartz crystals and a stick.": "Dos cristales de cuarzo certus y un palo.",
+    "Charged certus quartz, redstone and nether quartz dropped into water turn into fluix.": "Cuarzo certus cargado, redstone y cuarzo del Nether arrojados al agua se vuelven fluix.",
+    "Four fluix crystals.": "Cuatro cristales de fluix.",
+    "An ender pearl surrounded by fluix crystals and fluix dust.": "Una perla de ender rodeada de cristales y polvo de fluix.",
+    "Iron and copper ingots.": "Lingotes de hierro y cobre.",
+    "Iron ingots, pistons and a copper ingot.": "Lingotes de hierro, pistones y un lingote de cobre.",
+    "Iron, quartz glass and copper.": "Hierro, cristal de cuarzo y cobre.",
+    "Glass and quartz dust, which the Inscriber grinds from quartz.": "Cristal y polvo de cuarzo, que la prensa muele a partir de cuarzo.",
+    "Quartz fiber and two fluix crystals.": "Fibra de cuarzo y dos cristales de fluix.",
+    "Iron, engineering processors and fluix cables; processors come from the Inscriber.": "Hierro, procesadores de ingeniería y cables de fluix; los procesadores salen de la prensa.",
+    "Quartz glass, redstone and iron.": "Cristal de cuarzo, redstone y hierro.",
+    "Certus quartz, redstone and a logic processor from the Inscriber.": "Cuarzo certus, redstone y un procesador lógico de la prensa.",
+    "Bauxite ore drops raw bauxite.": "La mena de bauxita suelta bauxita en bruto.",
+    "Smelt raw bauxite in a furnace.": "Funde bauxita en bruto en un horno.",
+    "Silver ore drops raw silver.": "La mena de plata suelta plata en bruto.",
+    "Smelt raw silver in a furnace.": "Funde plata en bruto en un horno.",
+    "Smelt raw nickel in a furnace.": "Funde níquel en bruto en un horno.",
+    "Nickel ore drops raw nickel.": "La mena de níquel suelta níquel en bruto.",
+    "Breaking tall grass sometimes drops hemp seeds.": "Romper hierba alta a veces suelta semillas de cáñamo.",
+    "Grown hemp drops fiber.": "El cáñamo crecido suelta fibra.",
+    "Hemp fiber around a stick.": "Fibra de cáñamo alrededor de un palo.",
+    "Iron ingots, string and sticks.": "Lingotes de hierro, hilo y palos.",
+    "A book and a lever.": "Un libro y una palanca.",
+    "Clay, bricks and sandstone.": "Arcilla, ladrillos y arenisca.",
+    "Two bricks and two sandstone.": "Dos ladrillos y dos de arenisca.",
+    "Treated wood slabs, treated sticks and a crafting table.": "Losas de madera tratada, palos de madera tratada y una mesa de trabajo.",
+    "An iron ingot hit with the Engineer's Hammer.": "Un lingote de hierro golpeado con el martillo del ingeniero.",
+    "Iron ingots in a column.": "Lingotes de hierro en columna.",
+    "A copper plate and the Engineer's Wire Cutters.": "Una placa de cobre y el cortacables del ingeniero.",
+    "Iron plates and a copper ingot.": "Placas de hierro y un lingote de cobre.",
+    "Leather, iron and redstone.": "Cuero, hierro y redstone.",
+    "Two treated wood planks; planks soak creosote from a coke oven.": "Dos tablones de madera tratada; los tablones absorben creosota de un horno de coque.",
+    "Treated wood planks and treated sticks.": "Tablones de madera tratada y palos de madera tratada.",
+    "Firs grow in coniferous forests.": "Los abetos blancos crecen en los bosques de coníferas.",
+    "Redwoods tower in redwood forests.": "Las secuoyas se alzan en los bosques de secuoyas.",
+    "Jacarandas bloom in jacaranda glades.": "Los jacarandás florecen en los claros de jacarandás.",
+    "Mahogany grows in rainforests.": "La caoba crece en las selvas tropicales.",
+    "Willows hang over bayous and marshes.": "Los sauces cuelgan sobre bayous y marismas.",
+    "Palms line tropical beaches.": "Las palmeras bordean las playas tropicales.",
+    "Dead trees stand in wastelands and dead forests.": "Los árboles muertos se alzan en baldíos y bosques muertos.",
+    "Magic trees glow blue in mystic groves.": "Los árboles mágicos brillan en azul en las arboledas místicas.",
+    "One fir log makes four planks.": "Un tronco de abeto blanco da cuatro tablones.",
+    "One redwood log makes four planks.": "Un tronco de secoya da cuatro tablones.",
+    "One jacaranda log makes four planks.": "Un tronco de jacarandá da cuatro tablones.",
+    "Five fir planks.": "Cinco tablones de abeto blanco.",
+    "Five redwood planks.": "Cinco tablones de secoya.",
+    "Lavender fields are purple from afar.": "Los campos de lavanda se ven morados desde lejos.",
+    "Biomes O' Plenty adds it in its own biomes.": "Biomes O' Plenty lo añade en sus propios biomas.",
+    "Goldenrod grows in prairies and fields.": "La vara de oro crece en praderas y campos.",
+    "Hibiscus grows in tropical biomes.": "El hibisco crece en biomas tropicales.",
+    "Glowflowers light up mystic groves.": "Las flores luminosas iluminan las arboledas místicas.",
+    "Wilted lilies droop in eerie, foggy biomes.": "Los lirios marchitos cuelgan en biomas brumosos y siniestros.",
+    "White sand covers tropical beaches.": "La arena blanca cubre las playas tropicales.",
+    "Orange sand covers lush deserts.": "La arena naranja cubre los desiertos frondosos.",
+    "Black sand covers volcanic beaches.": "La arena negra cubre las playas volcánicas.",
+    "Four white sand.": "Cuatro de arena blanca.",
+    "Four orange sand.": "Cuatro de arena naranja.",
+    "Smelt white sandstone in a furnace.": "Funde arenisca blanca en un horno.",
+    "Cattails grow at the edges of marshes.": "Las totoras crecen en los bordes de las marismas.",
+    "Reeds stand in shallow water.": "Los carrizos crecen en agua poco profunda.",
+    "Spanish moss hangs from bayou trees.": "El musgo español cuelga de los árboles de los bayous.",
+    "Watergrass grows under water in wetlands.": "La hierba acuática crece bajo el agua en los humedales.",
+    "Wild barley grows on the prairie.": "La cebada silvestre crece en la pradera.",
+    "Glowshrooms light up glowing grottos and caves.": "Los champiñones luminosos iluminan grutas brillantes y cuevas.",
+    "Rose quartz clusters grow in crystal caves underground.": "Los cúmulos de cuarzo rosa crecen en cuevas de cristal subterráneas.",
+    "Rose quartz clusters drop chunks.": "Los cúmulos de cuarzo rosa sueltan fragmentos.",
+    "Four rose quartz chunks.": "Cuatro fragmentos de cuarzo rosa.",
+    "Brimstone crusts the fumaroles of Nether biomes.": "El azufre cubre las fumarolas de los biomas del Nether.",
+    "Flesh covers the Visceral Heap.": "La carne cubre el Cúmulo visceral.",
+    "Hellbark grows in the Nether's undergrowth.": "La corteza infernal crece en la infraflora del Nether.",
+    "Burning blossoms grow in the Nether.": "Las flores ardientes crecen en el Nether.",
+    "Kangaroos hop around savannas and deserts.": "Los canguros saltan por sabanas y desiertos.",
+    "Kangaroos drop meat.": "Los canguros sueltan carne.",
+    "Roadrunners race across badlands and deserts.": "Los correcaminos corren por tierras baldías y desiertos.",
+    "Emus roam savannas and badlands.": "Los emús recorren sabanas y tierras baldías.",
+    "Moose roam snowy forests.": "Los alces recorren los bosques nevados.",
+    "Moose drop ribs.": "Los alces sueltan costillas.",
+    "Grizzly bears live in forests and taigas.": "Los osos pardos viven en bosques y taigas.",
+    "Bison roam snowy plains.": "Los bisontes recorren las llanuras nevadas.",
+    "Cook kangaroo meat in a furnace, smoker or campfire.": "Cocina carne de canguro en un horno, ahumador o fogata.",
+    "Cook moose ribs in a furnace, smoker or campfire.": "Cocina costillas de alce en un horno, ahumador o fogata.",
+    "Lobsters crawl on beaches; cook their tails.": "Las langostas caminan por las playas; cocina sus colas.",
+    "Cooked kangaroo meat between two breads.": "Carne de canguro cocinada entre dos panes.",
+    "Crocodiles lurk in swamps, rivers and mangroves.": "Los cocodrilos acechan en pantanos, ríos y manglares.",
+    "Rattlesnakes coil in deserts and badlands.": "Las serpientes de cascabel se enroscan en desiertos y tierras baldías.",
+    "Komodo dragons hunt in jungles.": "Los dragones de Komodo cazan en las junglas.",
+    "Cave centipedes crawl in dark caves.": "Los ciempiés de cueva se arrastran por cuevas oscuras.",
+    "Crocodiles drop scutes.": "Los cocodrilos sueltan escamas.",
+    "Roadrunner feathers, leather boots and chiseled sandstone.": "Plumas de correcaminos, botas de cuero y arenisca cincelada.",
+    "Moose antlers, an iron ingot and string.": "Astas de alce, un lingote de hierro e hilo.",
+    "Seven crocodile scutes.": "Siete escamas de cocodrilo.",
+    "A shark tooth, a stick and kelp.": "Un diente de tiburón, un palo y alga.",
+    "Crimson mosquitoes buzz in crimson forests.": "Los mosquitos carmesí zumban en los bosques carmesí.",
+    "Soul vultures circle soul sand valleys.": "Los buitres de almas sobrevuelan los valles de almas.",
+    "Dropbears hang from the ceilings of Nether wastes.": "Los koalas asesinos cuelgan de los techos de los páramos del Nether.",
+    "Clay, sand and gravel.": "Arcilla, arena y grava.",
+    "Smelt grout in a furnace.": "Cuece mezcla de construcción en un horno.",
+    "Four seared bricks.": "Cuatro ladrillos refractarios.",
+    "Two planks and two sticks.": "Dos tablones y dos palos.",
+    "A pattern on top of a log or crafting table.": "Un molde sobre un tronco o una mesa de trabajo.",
+    "Two patterns on top of two planks.": "Dos moldes sobre dos tablones.",
+    "Three patterns on top of planks.": "Tres moldes sobre tablones.",
+    "A book and a pattern.": "Un libro y un molde.",
+    "Eight seared bricks.": "Ocho ladrillos refractarios.",
+    "Three seared bricks.": "Tres ladrillos refractarios.",
+    "Seven seared bricks.": "Siete ladrillos refractarios.",
+    "Seared bricks around a seared tank.": "Ladrillos refractarios alrededor de un tanque refractario.",
+    "Skyroot grows on the sky slime islands floating high up.": "El skyroot crece en las islas de slime celeste que flotan en lo alto.",
+    "Sky slimes on the slime islands drop skyslime balls.": "Los slimes celestes de las islas de slime sueltan bolas de slime celeste.",
+    "Skyslimes bounce on the sky slime islands.": "Los slimes celestes rebotan en las islas de slime celeste.",
+    "Nine skyslime balls.": "Nueve bolas de slime celeste.",
+    "Greenheart grows on earth slime islands in the sea.": "El greenheart crece en las islas de slime terrestre del mar.",
+    "Cobalt ore hides in the Nether's netherrack, high and low.": "La mena de cobalto se esconde en el netherrack del Nether, arriba y abajo.",
+    "Cobalt ore drops raw cobalt.": "La mena de cobalto suelta cobalto crudo.",
+    "Archwood trees grow in archwood forests.": "Los árboles de Archwood crecen en los bosques de Archwood.",
+    "One archwood log makes four planks.": "Un tronco de Archwood da cuatro tablones.",
+    "Sourceberry bushes grow in taigas and archwood forests.": "Los arbustos de bayas fuente crecen en taigas y bosques de Archwood.",
+    "Magebloom grows from magebloom seeds; its flower drops when harvested.": "La flor de mago crece de sus semillas; la flor cae al cosecharla.",
+    "One magebloom.": "Una flor de mago.",
+    "A book and lapis lazuli.": "Un libro y lapislázuli.",
+    "A book and four iron tools: shovel, pickaxe, axe and sword.": "Un libro y cuatro herramientas de hierro: pala, pico, hacha y espada.",
+    "A gold ingot and archwood planks.": "Un lingote de oro y tablones de Archwood.",
+    "Archwood slabs, gold nuggets and archwood logs.": "Losas de Archwood, pepitas de oro y troncos de Archwood.",
+    "Archwood planks and gold ingots.": "Tablones de Archwood y lingotes de oro.",
+    "Archwood planks around a gold nugget.": "Tablones de Archwood alrededor de una pepita de oro.",
+    "Archwood slabs and glass.": "Losas de Archwood y cristal.",
+    "Paper surrounded by magebloom fiber.": "Papel rodeado de fibra de flor de mago.",
+    "Wilden hunters prowl archwood forests at night.": "Los cazadores Wilden merodean de noche por los bosques de Archwood.",
+    "Wilden stalkers swoop down from above.": "Los acechadores Wilden se lanzan desde arriba.",
+    "Wilden guardians roll up behind their spikes.": "Los guardianes Wilden se enrollan tras sus pinchos.",
+    "Wilden hunters drop horns.": "Los cazadores Wilden sueltan cuernos.",
+    "Wilden guardians drop spikes.": "Los guardianes Wilden sueltan pinchos.",
+    "Wilden stalkers drop wings.": "Los acechadores Wilden sueltan alas."
+  },
+  "messages": [
+    "¡El pueblo te lo agradece!",
+    "Tus hazañas corren de boca en boca.",
+    "Bien hecho, aventurero.",
+    "Otro trabajo bien hecho.",
+    "El tablón de misiones tiene un nuevo héroe.",
+    "Alguien compondrá canciones sobre esto.",
+    "Los comerciantes están impresionados.",
+    "Buen trabajo. Descansa un rato."
+  ],
+  "names": {
+    "ae2:cell_component_1k": "1k ME Componente de Almacenamiento",
+    "ae2:certus_quartz_crystal": "Cristal de Cuarzo Certus",
+    "ae2:certus_quartz_cutting_knife": "Cuchillo de Corte de Cuarzo Certus",
+    "ae2:certus_quartz_pickaxe": "Pico de Cuarzo Certus",
+    "ae2:certus_quartz_sword": "Espada de Cuarzo Certus",
+    "ae2:certus_quartz_wrench": "Llave de Cuarzo Certus",
+    "ae2:charger": "Cargador",
+    "ae2:drive": "ME Rack Discos",
+    "ae2:energy_acceptor": "Conector de Energía",
+    "ae2:fluix_block": "Bloque de Fluix",
+    "ae2:fluix_crystal": "Cristal de Fluix",
+    "ae2:fluix_glass_cable": "Fluix ME Cable de Cristal",
+    "ae2:fluix_pearl": "Perla de Fluix",
+    "ae2:inscriber": "Prensa",
+    "ae2:item_cell_housing": "ME Carcasa de Almacenamiento",
+    "ae2:nether_quartz_wrench": "LLave de Cuarzo",
+    "ae2:quartz_cluster": "Racimo de Cuarzo Certus",
+    "ae2:quartz_glass": "Cristal de Cuarzo",
+    "ae2:sky_stone_block": "Piedra del Cielo",
+    "ae2:sky_stone_brick": "Ladrillo Piedra del Cielo",
+    "ae2:sky_stone_chest": "Cofre de Piedra del Cielo",
+    "ae2:smooth_sky_stone_block": "Bloque de Piedra del Cielo",
+    "alexsmobs:bear_fur": "Pelaje de oso",
+    "alexsmobs:bison_fur": "Pelaje de bisonte",
+    "alexsmobs:centipede_head": "Ciempiés de cueva",
+    "alexsmobs:cooked_kangaroo_meat": "Carne de canguro asada",
+    "alexsmobs:cooked_lobster_tail": "Cola de langosta cocinada",
+    "alexsmobs:cooked_moose_ribs": "Costillas de alce asadas",
+    "alexsmobs:crimson_mosquito": "Mosquito carmesí",
+    "alexsmobs:crocodile": "Cocodrilo",
+    "alexsmobs:crocodile_chestplate": "Peto de cocodrilo",
+    "alexsmobs:crocodile_scute": "Escama de cocodrilo",
+    "alexsmobs:dropbear": "Koala asesino",
+    "alexsmobs:emu_feather": "Pluma de emú",
+    "alexsmobs:kangaroo_burger": "Hamburguesa de canguro",
+    "alexsmobs:kangaroo_hide": "Piel de canguro",
+    "alexsmobs:kangaroo_meat": "Carne de canguro cruda",
+    "alexsmobs:komodo_dragon": "Dragón de Komodo",
+    "alexsmobs:moose_antler": "Asta de alce",
+    "alexsmobs:moose_headgear": "Tocado de asta",
+    "alexsmobs:moose_ribs": "Costillas de alce crudas",
+    "alexsmobs:rattlesnake": "Serpiente de cascabel",
+    "alexsmobs:roadrunner_boots": "Botas de correcaminos",
+    "alexsmobs:roadrunner_feather": "Pluma de correcaminos",
+    "alexsmobs:shark_tooth_arrow": "Flecha de diente de tiburón",
+    "alexsmobs:soul_vulture": "Buitre de almas",
+    "ars_nouveau:archwood_chest": "Arco de madera",
+    "ars_nouveau:archwood_planks": "Tablones de Archwood",
+    "ars_nouveau:blank_parchment": "Pergamino Vacío",
+    "ars_nouveau:blue_archwood_log": "Tronco de Archwood Cascadeante",
+    "ars_nouveau:dowsing_rod": "Varilla de Zahorí",
+    "ars_nouveau:green_archwood_log": "Tronco de Archwood Floreciente",
+    "ars_nouveau:imbuement_chamber": "Cámara de imbuir",
+    "ars_nouveau:magebloom": "flor de mago",
+    "ars_nouveau:magebloom_fiber": "Fibra Magebloom",
+    "ars_nouveau:novice_spell_book": "Grimorio de Novato",
+    "ars_nouveau:purple_archwood_log": "Tronco de Archwood Irritante",
+    "ars_nouveau:red_archwood_log": "Tronco de Archwood Flameante",
+    "ars_nouveau:scribes_table": "Mesa de Escriba",
+    "ars_nouveau:source_jar": "Frasco de Fuente",
+    "ars_nouveau:sourceberry_bush": "Bayas Fuente",
+    "ars_nouveau:wilden_guardian": "Wilden Defensor",
+    "ars_nouveau:wilden_horn": "Cuerno de Wilden",
+    "ars_nouveau:wilden_hunter": "Wilden Cazador",
+    "ars_nouveau:wilden_spike": "Pincho de Wilden",
+    "ars_nouveau:wilden_stalker": "Wilden Acechador",
+    "ars_nouveau:wilden_wing": "Ala de Wilden",
+    "ars_nouveau:worn_notebook": "Libreta Gastada",
+    "biomesoplenty:barley": "Cebada",
+    "biomesoplenty:black_sand": "Arena Negra",
+    "biomesoplenty:blue_hydrangea": "Hortensia azul",
+    "biomesoplenty:brimstone": "Azufre",
+    "biomesoplenty:burning_blossom": "Flor ardiente",
+    "biomesoplenty:cattail": "Totora",
+    "biomesoplenty:dead_log": "Tronco muerto",
+    "biomesoplenty:fir_boat": "Barca de abeto blanco",
+    "biomesoplenty:fir_log": "Tronco de abeto blanco",
+    "biomesoplenty:fir_planks": "Tablones de abeto blanco",
+    "biomesoplenty:flesh": "Carne",
+    "biomesoplenty:glowflower": "Flor luminosa",
+    "biomesoplenty:glowshroom": "Champiñón luminoso",
+    "biomesoplenty:goldenrod": "Vara de oro",
+    "biomesoplenty:hellbark_log": "Tronco de corteza infernal",
+    "biomesoplenty:jacaranda_log": "Tronco de jacarandá",
+    "biomesoplenty:jacaranda_planks": "Tablones de jacarandá",
+    "biomesoplenty:lavender": "Lavanda",
+    "biomesoplenty:magic_log": "Tronco mágico",
+    "biomesoplenty:mahogany_log": "Tronco de caoba",
+    "biomesoplenty:orange_cosmos": "Cosmos naranja",
+    "biomesoplenty:orange_sand": "Arena naranja",
+    "biomesoplenty:orange_sandstone": "Arenisca naranja",
+    "biomesoplenty:palm_log": "Tronco de palmera",
+    "biomesoplenty:pink_daffodil": "Narciso rosa",
+    "biomesoplenty:pink_hibiscus": "Hibisco rosa",
+    "biomesoplenty:redwood_boat": "Barco de secuoya",
+    "biomesoplenty:redwood_log": "Tronco de secoya",
+    "biomesoplenty:redwood_planks": "Tablones de secoya",
+    "biomesoplenty:reed": "Carrizo",
+    "biomesoplenty:rose_quartz_block": "Bloque de cuarzo rosa",
+    "biomesoplenty:rose_quartz_chunk": "Fragmento de cuarzo rosa",
+    "biomesoplenty:rose_quartz_cluster": "Cúmulo de cuarzo rosa",
+    "biomesoplenty:smooth_white_sandstone": "Arenisca blanca lisa",
+    "biomesoplenty:spanish_moss": "Musgo español",
+    "biomesoplenty:violet": "Violeta",
+    "biomesoplenty:watergrass": "Hierba acuática",
+    "biomesoplenty:white_sand": "Arena blanca",
+    "biomesoplenty:white_sandstone": "Arenisca blanca",
+    "biomesoplenty:willow_log": "Tronco de sauce",
+    "biomesoplenty:wilted_lily": "Lirio marchito",
+    "botania:apothecary_default": "Botica de pétalos",
+    "botania:apothecary_mossy": "Botica de pétalos musgosa",
+    "botania:blue_mushroom": "Seta brillante azul",
+    "botania:blue_mystical_flower": "Flor mística azul",
+    "botania:blue_petal": "Pétalo místico azul",
+    "botania:dreamwood_planks": "Tablas de madera onírica",
+    "botania:elementium_pickaxe": "Pico de elementio",
+    "botania:flower_bag": "Bolsa de flores",
+    "botania:glimmering_livingwood": "Madera viviente centelleante",
+    "botania:lexicon": "Lexica Botania",
+    "botania:livingwood_planks": "Tabla de madera viviente",
+    "botania:livingwood_twig": "Ramita de madera viviente",
+    "botania:mana_pool": "Pila de maná",
+    "botania:manasteel_pick": "Pico de manacero",
+    "botania:manasteel_sword": "Espada manacero",
+    "botania:pink_mystical_flower": "Flor mística rosa",
+    "botania:pink_petal": "Pétalo místico rosa",
+    "botania:purple_mushroom": "Seta brillante púrpura",
+    "botania:purple_mystical_flower": "Flor mística púrpura",
+    "botania:purple_petal": "Pétalo místico púrpura",
+    "botania:red_mushroom": "Seta brillante rojo",
+    "botania:red_mystical_flower": "Flor mística roja",
+    "botania:red_petal": "Pétalo místico rojo",
+    "botania:red_petal_block": "Bloque de pétalos rojos",
+    "botania:twig_wand": "Varita del bosque",
+    "botania:white_mushroom": "Seta brillante blanca",
+    "botania:white_mystical_flower": "Flor mística blanca",
+    "botania:white_petal": "Pétalo místico blanco",
+    "botania:white_petal_block": "Bloque de pétalos blancos",
+    "botania:yellow_mystical_flower": "Flor mística amarilla",
+    "botania:yellow_petal": "Pétalo místico amarillo",
+    "create:andesite_alloy": "Aleación de andesita",
+    "create:andesite_alloy_block": "Bloque de aleación de andesita",
+    "create:andesite_casing": "Revestimiento de Andesita",
+    "create:andesite_funnel": "Embudo de andesita",
+    "create:andesite_tunnel": "Túnel de andesita",
+    "create:asurine": "Azurina",
+    "create:bar_of_chocolate": "Barra de chocolate",
+    "create:basin": "Cuenca",
+    "create:belt_connector": "Cinta mecánica",
+    "create:builders_tea": "Té del Constructor",
+    "create:cart_assembler": "Ensamblador de vagonetas",
+    "create:chocolate_glazed_berries": "Bayas Bañadas en chocolate",
+    "create:cogwheel": "Engranaje",
+    "create:crimsite": "Carmesita",
+    "create:cuckoo_clock": "Reloj de cuco",
+    "create:cut_andesite": "Andesita cortada",
+    "create:cut_asurine": "Azurina cortada",
+    "create:cut_crimsite": "Carmesita cortada",
+    "create:cut_diorite": "Diorita cortada",
+    "create:cut_granite": "Granito cortado",
+    "create:cut_limestone": "Piedra caliza cortada",
+    "create:cut_tuff": "Toba cortada",
+    "create:deepslate_zinc_ore": "Mena de cinc de pizarra profunda",
+    "create:depot": "Depósito",
+    "create:empty_blaze_burner": "Quemador de blaze vacío",
+    "create:encased_chain_drive": "Cadena de transmisión revestida",
+    "create:encased_fan": "Ventilador revestido",
+    "create:fluid_tank": "Depósito de fluidos",
+    "create:gearbox": "Caja de transmisión",
+    "create:goggles": "Gafas del ingeniero",
+    "create:hand_crank": "Manivela",
+    "create:honeyed_apple": "Manzana con miel",
+    "create:item_vault": "Bóveda de objetos",
+    "create:large_cogwheel": "Engranaje grande",
+    "create:large_water_wheel": "Rueda hidráulica grande",
+    "create:limestone": "Piedra caliza",
+    "create:linear_chassis": "Chasis lineal",
+    "create:mechanical_bearing": "Rodamiento mecánico",
+    "create:mechanical_drill": "Taladro mecánico",
+    "create:mechanical_mixer": "Mezcladora mecánica",
+    "create:mechanical_piston": "Pistón mecánico",
+    "create:mechanical_press": "Prensa mecánica",
+    "create:mechanical_saw": "Sierra mecánica",
+    "create:millstone": "Muela",
+    "create:ochrum": "Ocre",
+    "create:piston_extension_pole": "Pértiga de extensión de pistón",
+    "create:polished_cut_limestone": "Piedra caliza cortada pulida",
+    "create:polished_cut_ochrum": "Ocre cortado pulido",
+    "create:polished_cut_veridium": "Veridio cortado pulido",
+    "create:radial_chassis": "Chasis radial",
+    "create:raw_zinc": "Cinc en Bruto",
+    "create:rose_quartz": "Cuarzo rosado",
+    "create:scorchia": "Escoria oscura",
+    "create:scoria": "Escoria",
+    "create:shaft": "Eje",
+    "create:sticker": "Pegador",
+    "create:super_glue": "Pegamento",
+    "create:sweet_roll": "Ensaimada",
+    "create:turntable": "Plataforma giratoria mecánica",
+    "create:veridium": "Veridio",
+    "create:water_wheel": "Rueda hidráulica mecánica",
+    "create:white_sail": "Vela de molino",
+    "create:white_seat": "Asiento blanco",
+    "create:windmill_bearing": "Rodamiento de molino de viento",
+    "create:wooden_bracket": "Soporte de madera para ejes",
+    "create:wrench": "Llave inglesa",
+    "create:zinc_block": "Bloque de cinc",
+    "create:zinc_ingot": "Lingote de cinc",
+    "create:zinc_ore": "Mena de cinc",
+    "farmersdelight:acacia_cabinet": "Despensa de acacia",
+    "farmersdelight:apple_cider": "Sidra de manzana",
+    "farmersdelight:apple_pie": "Tarta de manzana",
+    "farmersdelight:bacon_and_eggs": "Tocino con huevos",
+    "farmersdelight:bacon_sandwich": "Sándwich de tocino",
+    "farmersdelight:baked_cod_stew": "Estofado de bacalao al horno",
+    "farmersdelight:bamboo_basket": "Cesta de bambú",
+    "farmersdelight:barbecue_stick": "Brocheta de carne asada",
+    "farmersdelight:beef_patty": "Hamburguesa",
+    "farmersdelight:beef_stew": "Estofado de carne",
+    "farmersdelight:birch_cabinet": "Despensa de abedul",
+    "farmersdelight:cabbage": "Col",
+    "farmersdelight:cabbage_crate": "Cajón de coles",
+    "farmersdelight:cabbage_rolls": "Rollos de col",
+    "farmersdelight:canvas": "Tela",
+    "farmersdelight:canvas_rug": "Alfombra de tela",
+    "farmersdelight:chicken_sandwich": "Sándwich de pollo",
+    "farmersdelight:chicken_soup": "Sopa de pollo",
+    "farmersdelight:cod_roll": "Rollos de bacalao",
+    "farmersdelight:cooked_bacon": "Tocino cocido",
+    "farmersdelight:cooked_chicken_cuts": "Cortes de pollo cocidos",
+    "farmersdelight:cooked_cod_slice": "Rebanada de bacalao cocido",
+    "farmersdelight:cooked_mutton_chops": "Chuletas de cordero cocidas",
+    "farmersdelight:cooked_rice": "Arroz cocido",
+    "farmersdelight:cooked_salmon_slice": "Rebanada de salmón cocido",
+    "farmersdelight:cooking_pot": "Olla",
+    "farmersdelight:cutting_board": "Tabla de picar",
+    "farmersdelight:dark_oak_cabinet": "Despensa de roble oscuro",
+    "farmersdelight:diamond_knife": "Cuchillo de diamante",
+    "farmersdelight:dumplings": "Albóndigas",
+    "farmersdelight:egg_sandwich": "Sándwich de huevo",
+    "farmersdelight:fish_stew": "Estofado de pescado",
+    "farmersdelight:fried_egg": "Huevo frito",
+    "farmersdelight:fried_rice": "Arroz frito",
+    "farmersdelight:fruit_salad": "Ensalada de frutas",
+    "farmersdelight:glow_berry_custard": "Natilla de bayas luminosas",
+    "farmersdelight:grilled_salmon": "Salmón a la parrilla",
+    "farmersdelight:ham": "Jamón",
+    "farmersdelight:hamburger": "Hamburguesa",
+    "farmersdelight:honey_cookie": "Galleta de miel",
+    "farmersdelight:honey_glazed_ham": "Plato de jamón glaseado con miel",
+    "farmersdelight:honey_glazed_ham_block": "Jamón glaseado con miel",
+    "farmersdelight:hot_cocoa": "Chocolate caliente",
+    "farmersdelight:iron_knife": "Cuchillo de hierro",
+    "farmersdelight:jungle_cabinet": "Despensa de jungla",
+    "farmersdelight:kelp_roll": "Rollos de sargazo",
+    "farmersdelight:kelp_roll_slice": "Rebanada de rollo de sargazo",
+    "farmersdelight:melon_juice": "Zumo de melón",
+    "farmersdelight:melon_popsicle": "Palito de melón",
+    "farmersdelight:milk_bottle": "Frasco con leche",
+    "farmersdelight:mixed_salad": "Ensalada mixta",
+    "farmersdelight:mushroom_rice": "Arroz con champiñones",
+    "farmersdelight:mutton_wrap": "Wrap de cordero",
+    "farmersdelight:nether_salad": "Ensalada del Nether",
+    "farmersdelight:noodle_soup": "Sopa de fideos",
+    "farmersdelight:oak_cabinet": "Despensa de roble",
+    "farmersdelight:onion": "Cebolla",
+    "farmersdelight:onion_crate": "Cajón de cebollas",
+    "farmersdelight:onion_soup": "Sopa de cebolla",
+    "farmersdelight:organic_compost": "Abono orgánico",
+    "farmersdelight:pasta_with_meatballs": "Pasta con albóndigas",
+    "farmersdelight:pie_crust": "Corteza de tarta",
+    "farmersdelight:pumpkin_soup": "Sopa de calabaza",
+    "farmersdelight:ratatouille": "Ratatouille",
+    "farmersdelight:rice": "Arroz",
+    "farmersdelight:rice_bale": "Paca de arroz",
+    "farmersdelight:rice_panicle": "Panícula de arroz",
+    "farmersdelight:rice_roll_medley_block": "Rollos de arroz",
+    "farmersdelight:roast_chicken": "Plato de pollo asado",
+    "farmersdelight:roast_chicken_block": "Pollo asado",
+    "farmersdelight:roasted_mutton_chops": "Chuletas de cordero asadas",
+    "farmersdelight:rope": "Cuerda",
+    "farmersdelight:safety_net": "Red de seguridad",
+    "farmersdelight:salmon_roll": "Rollos de salmon",
+    "farmersdelight:shepherds_pie": "Plato de Pastel de Pastor",
+    "farmersdelight:shepherds_pie_block": "Pastel de pastor",
+    "farmersdelight:skillet": "Sartén",
+    "farmersdelight:smoked_ham": "Jamón cocido",
+    "farmersdelight:spruce_cabinet": "Despensa de abeto",
+    "farmersdelight:squid_ink_pasta": "Pasta con tinta de calamar",
+    "farmersdelight:steak_and_potatoes": "Bistec y patatas",
+    "farmersdelight:stove": "Parrilla",
+    "farmersdelight:straw": "Paja",
+    "farmersdelight:straw_bale": "Paca de paja",
+    "farmersdelight:stuffed_potato": "Patata rellena",
+    "farmersdelight:sweet_berry_cheesecake": "Tarta de bayas dulces",
+    "farmersdelight:sweet_berry_cookie": "Galleta de bayas dulces",
+    "farmersdelight:tatami": "Tatami",
+    "farmersdelight:tomato": "Tomate",
+    "farmersdelight:tomato_crate": "Cajón de tomates",
+    "farmersdelight:vegetable_soup": "Sopa de verduras",
+    "farmersdelight:wheat_dough": "Masa de trigo",
+    "farmersdelight:wild_beetroots": "Remolacha de mar silvestre",
+    "farmersdelight:wild_cabbages": "Col silvestre",
+    "farmersdelight:wild_carrots": "Zanahoria silvestre",
+    "farmersdelight:wild_onions": "Cebolla silvestre",
+    "farmersdelight:wild_potatoes": "Patata silvestre",
+    "farmersdelight:wild_rice": "Arroz silvestre",
+    "farmersdelight:wild_tomatoes": "Vides de tomate silvestre",
+    "farmersdelight:wooden_basket": "Cesta",
+    "immersiveengineering:alloybrick": "Ladrillos refractarios para horno de fusión",
+    "immersiveengineering:cokebrick": "Ladrillos refractarios para horno de coque",
+    "immersiveengineering:component_iron": "Componente mecánico de hierro",
+    "immersiveengineering:conveyor_basic": "Cinta transportadora",
+    "immersiveengineering:craftingtable": "Mesa de trabajo del ingeniero",
+    "immersiveengineering:deepslate_ore_aluminum": "Mena de bauxita de pizarra profunda",
+    "immersiveengineering:hammer": "Martillo del ingeniero",
+    "immersiveengineering:hemp_fabric": "Tela resistente",
+    "immersiveengineering:hemp_fiber": "Fibra de cáñamo industrial",
+    "immersiveengineering:ingot_aluminum": "Lingote de aluminio",
+    "immersiveengineering:ingot_lead": "Lingote de plomo",
+    "immersiveengineering:ingot_nickel": "Lingote de níquel",
+    "immersiveengineering:ingot_silver": "Lingote de plata",
+    "immersiveengineering:manual": "Manual del ingeniero",
+    "immersiveengineering:ore_aluminum": "Mena de bauxita",
+    "immersiveengineering:ore_lead": "Mena de plomo",
+    "immersiveengineering:ore_nickel": "Mena de níquel",
+    "immersiveengineering:ore_silver": "Mena de plata",
+    "immersiveengineering:plate_iron": "Placa de hierro",
+    "immersiveengineering:raw_aluminum": "Bauxita en bruto",
+    "immersiveengineering:raw_lead": "Plomo en bruto",
+    "immersiveengineering:raw_nickel": "Níquel en bruto",
+    "immersiveengineering:raw_silver": "Plata en bruto",
+    "immersiveengineering:seed": "Semillas de cáñamo industrial",
+    "immersiveengineering:stick_iron": "Barra de hierro",
+    "immersiveengineering:stick_treated": "Palo de madera tratada",
+    "immersiveengineering:treated_fence": "Valla de madera tratada",
+    "immersiveengineering:treated_scaffold": "Andamio de madera tratada",
+    "immersiveengineering:wire_copper": "Alambre de cobre",
+    "mekanism:block_charcoal": "Bloque de Carbón Vegetal",
+    "mekanism:block_fluorite": "Bloque de Fluorita",
+    "mekanism:block_lead": "Bloque de Plomo",
+    "mekanism:block_osmium": "Bloque de Osmio",
+    "mekanism:block_salt": "Bloque de Sal",
+    "mekanism:block_tin": "Bloque de Estaño",
+    "mekanism:boiler_casing": "Carcasa de Caldera",
+    "mekanism:canteen": "Cantimplora",
+    "mekanism:configurator": "Configurador",
+    "mekanism:crusher": "Triturador",
+    "mekanism:deepslate_fluorite_ore": "Mena de Fluorita de Pizarra Profunda",
+    "mekanism:deepslate_lead_ore": "Mena de Plomo de Pizarra Profunda",
+    "mekanism:deepslate_osmium_ore": "Mena de Osmio de Pizarra Profunda",
+    "mekanism:deepslate_tin_ore": "Mena de Estaño de Pizarra Profunda",
+    "mekanism:deepslate_uranium_ore": "Mena de Uranio de Pizarra Profunda",
+    "mekanism:dosimeter": "Dosímetro",
+    "mekanism:dynamic_tank": "Tanque Dinámico",
+    "mekanism:energized_smelter": "Fundidor Eléctrico",
+    "mekanism:enrichment_chamber": "Cámara de Enriquecimiento",
+    "mekanism:fluorite_gem": "Fluorita",
+    "mekanism:fluorite_ore": "Mena de Fluorita",
+    "mekanism:gauge_dropper": "Cuenta Gotas",
+    "mekanism:hazmat_mask": "Máscara de Materiales Peligrosos",
+    "mekanism:ingot_lead": "Lingote de Plomo",
+    "mekanism:ingot_osmium": "Lingote de Osmio",
+    "mekanism:ingot_tin": "Lingote de Estaño",
+    "mekanism:ingot_uranium": "Lingote de Uranio",
+    "mekanism:lead_ore": "Mena de Plomo",
+    "mekanism:metallurgic_infuser": "Infusor Metalúrgico",
+    "mekanism:osmium_ore": "Mena de osmio",
+    "mekanism:raw_lead": "Plomo en Bruto",
+    "mekanism:raw_osmium": "Osmio en Bruto",
+    "mekanism:raw_tin": "Estaño en Bruto",
+    "mekanism:salt": "Sal",
+    "mekanism:steel_casing": "Carcasa de Acero",
+    "mekanism:tin_ore": "Mena de Estaño",
+    "mekanism:uranium_ore": "Mena de Uranio",
+    "minecraft:acacia_log": "Tronco de acacia",
+    "minecraft:acacia_sapling": "Brote de acacia",
+    "minecraft:allium": "Allium",
+    "minecraft:amethyst_shard": "Fragmento de amatista",
+    "minecraft:ancient_debris": "Escombros ancestrales",
+    "minecraft:andesite": "Andesita",
+    "minecraft:anvil": "Yunque",
+    "minecraft:apple": "Manzana",
+    "minecraft:armadillo": "Armadillo",
+    "minecraft:armor_stand": "Soporte para armadura",
+    "minecraft:arrow": "Flecha",
+    "minecraft:axolotl": "Ajolote",
+    "minecraft:azure_bluet": "Azure bluet",
+    "minecraft:baked_potato": "Patata cocida",
+    "minecraft:bamboo": "Bambú",
+    "minecraft:barrel": "Barril",
+    "minecraft:basalt": "Basalto",
+    "minecraft:bee": "Abeja",
+    "minecraft:beef": "Filete crudo",
+    "minecraft:beehive": "Apiario",
+    "minecraft:beetroot": "Remolacha",
+    "minecraft:beetroot_seeds": "Semillas de remolacha",
+    "minecraft:beetroot_soup": "Estofado de remolacha",
+    "minecraft:birch_log": "Tronco de abedul",
+    "minecraft:birch_sapling": "Brote de abedul",
+    "minecraft:black_dye": "Tinte negro",
+    "minecraft:blackstone": "Piedra negra",
+    "minecraft:blast_furnace": "Alto horno",
+    "minecraft:blaze": "Blaze",
+    "minecraft:blaze_powder": "Polvo de blaze",
+    "minecraft:blaze_rod": "Vara de blaze",
+    "minecraft:blue_dye": "Tinte azul",
+    "minecraft:blue_orchid": "Orquídea azul",
+    "minecraft:bogged": "Ciénago",
+    "minecraft:bone": "Hueso",
+    "minecraft:bone_block": "Bloque de huesos",
+    "minecraft:bone_meal": "Polvo de hueso",
+    "minecraft:book": "Libro",
+    "minecraft:bookshelf": "Librería",
+    "minecraft:bow": "Arco",
+    "minecraft:bread": "Pan",
+    "minecraft:breeze": "Breeze",
+    "minecraft:brewing_stand": "Soporte para pociones",
+    "minecraft:brick": "Ladrillo",
+    "minecraft:bricks": "Ladrillos",
+    "minecraft:brown_mushroom": "Champiñón marrón",
+    "minecraft:brown_mushroom_block": "Bloque de champiñón marrón",
+    "minecraft:bucket": "Cubo",
+    "minecraft:cactus": "Cactus",
+    "minecraft:cake": "Tarta",
+    "minecraft:calcite": "Calcita",
+    "minecraft:camel": "Camello",
+    "minecraft:campfire": "Hoguera",
+    "minecraft:candle": "Vela",
+    "minecraft:carrot": "Zanahoria",
+    "minecraft:cartography_table": "Mesa de cartografía",
+    "minecraft:cat": "Gato",
+    "minecraft:cauldron": "Caldero",
+    "minecraft:cave_spider": "Araña de cueva",
+    "minecraft:chain": "Cadena",
+    "minecraft:charcoal": "Carbón vegetal",
+    "minecraft:cherry_log": "Tronco de cerezo",
+    "minecraft:cherry_sapling": "Brote de cerezo",
+    "minecraft:chest": "Cofre",
+    "minecraft:chicken": "Pollo",
+    "minecraft:chiseled_bookshelf": "Estantería",
+    "minecraft:chiseled_stone_bricks": "Ladrillos de piedra cincelados",
+    "minecraft:chorus_fruit": "Fruta chorus",
+    "minecraft:chorus_plant": "Planta chorus",
+    "minecraft:clay": "Bloque de arcilla",
+    "minecraft:clay_ball": "Bola de arcilla",
+    "minecraft:clock": "Reloj",
+    "minecraft:coal": "Carbón",
+    "minecraft:coal_block": "Bloque de carbón",
+    "minecraft:coal_ore": "Mena de carbón",
+    "minecraft:cobbled_deepslate": "Pizarra profunda rocosa",
+    "minecraft:cobblestone": "Roca",
+    "minecraft:cobweb": "Telaraña",
+    "minecraft:cocoa_beans": "Semillas de cacao",
+    "minecraft:cod": "Bacalao crudo",
+    "minecraft:compass": "Brújula",
+    "minecraft:composter": "Compostador",
+    "minecraft:cooked_beef": "Filete asado",
+    "minecraft:cooked_chicken": "Pollo asado",
+    "minecraft:cooked_cod": "Bacalao cocinado",
+    "minecraft:cooked_mutton": "Cordero asado",
+    "minecraft:cooked_porkchop": "Chuleta de cerdo cocinada",
+    "minecraft:cooked_rabbit": "Conejo asado",
+    "minecraft:cooked_salmon": "Salmón ahumado",
+    "minecraft:cookie": "Galleta",
+    "minecraft:copper_block": "Bloque de cobre",
+    "minecraft:copper_door": "Puerta de cobre",
+    "minecraft:copper_grate": "Rejilla de cobre",
+    "minecraft:copper_ingot": "Lingote de cobre",
+    "minecraft:copper_ore": "Mena de cobre",
+    "minecraft:cornflower": "Aciano",
+    "minecraft:cow": "Vaca",
+    "minecraft:cracked_deepslate_bricks": "Ladrillos de pizarra profunda agrietados",
+    "minecraft:cracked_stone_bricks": "Ladrillos de piedra agrietados",
+    "minecraft:creeper": "Creeper",
+    "minecraft:crimson_fungus": "Hongo carmesí",
+    "minecraft:crimson_nylium": "Necelio carmesí",
+    "minecraft:crimson_stem": "Tallo carmesí",
+    "minecraft:crossbow": "Ballesta",
+    "minecraft:crying_obsidian": "Obsidiana llorosa",
+    "minecraft:cut_copper": "Cobre cortado",
+    "minecraft:cut_sandstone": "Arenisca cortada",
+    "minecraft:dandelion": "Diente de león",
+    "minecraft:dark_oak_log": "Tronco de roble oscuro",
+    "minecraft:dark_oak_sapling": "Brote de roble oscuro",
+    "minecraft:decorated_pot": "Vasija decorada",
+    "minecraft:deepslate": "Pizarra profunda",
+    "minecraft:deepslate_bricks": "Ladrillos de pizarra profunda",
+    "minecraft:deepslate_coal_ore": "Mena de carbón de pizarra profunda",
+    "minecraft:deepslate_copper_ore": "Mena de cobre de pizarra profunda",
+    "minecraft:deepslate_diamond_ore": "Mena de diamante de pizarra profunda",
+    "minecraft:deepslate_gold_ore": "Mena de oro de pizarra profunda",
+    "minecraft:deepslate_iron_ore": "Mena de hierro de pizarra profunda",
+    "minecraft:deepslate_lapis_ore": "Mena de lapislázuli de pizarra profunda",
+    "minecraft:deepslate_redstone_ore": "Mena de redstone de pizarra profunda",
+    "minecraft:deepslate_tiles": "Baldosas de pizarra profunda",
+    "minecraft:detector_rail": "Raíl detector",
+    "minecraft:diamond": "Diamante",
+    "minecraft:diamond_boots": "Botas de diamante",
+    "minecraft:diamond_helmet": "Casco de diamante",
+    "minecraft:diamond_pickaxe": "Pico de diamante",
+    "minecraft:diamond_sword": "Espada de diamante",
+    "minecraft:diorite": "Diorita",
+    "minecraft:dirt": "Tierra",
+    "minecraft:dispenser": "Dispensador",
+    "minecraft:donkey": "Burro",
+    "minecraft:dried_kelp": "Algas secas",
+    "minecraft:dried_kelp_block": "Bloque de algas secas",
+    "minecraft:dripstone_block": "Bloque de caliza",
+    "minecraft:dropper": "Soltador",
+    "minecraft:drowned": "Ahogado",
+    "minecraft:egg": "Huevo",
+    "minecraft:emerald_ore": "Mena de esmeralda",
+    "minecraft:enchanted_book": "Libro",
+    "minecraft:enchanting_table": "Mesa de encantamientos",
+    "minecraft:end_stone": "Piedra del End",
+    "minecraft:ender_chest": "Cofre de ender",
+    "minecraft:ender_eye": "Ojo de ender",
+    "minecraft:ender_pearl": "Perla de ender",
+    "minecraft:enderman": "Enderman",
+    "minecraft:feather": "Pluma",
+    "minecraft:fermented_spider_eye": "Ojo de araña fermentado",
+    "minecraft:firework_rocket": "Cohete de fuegos artificiales",
+    "minecraft:fishing_rod": "Caña de pescar",
+    "minecraft:fletching_table": "Mesa de flechas",
+    "minecraft:flint": "Pedernal",
+    "minecraft:flint_and_steel": "Mechero",
+    "minecraft:flower_pot": "Maceta",
+    "minecraft:fox": "Zorro",
+    "minecraft:frog": "Rana",
+    "minecraft:furnace": "Horno",
+    "minecraft:ghast": "Ghast",
+    "minecraft:ghast_tear": "Lágrima de ghast",
+    "minecraft:glass": "Cristal",
+    "minecraft:glass_bottle": "Frasco de cristal",
+    "minecraft:glass_pane": "Panel de cristal",
+    "minecraft:glistering_melon_slice": "Rodaja de sandía reluciente",
+    "minecraft:glow_berries": "Bayas luminosas",
+    "minecraft:glow_ink_sac": "Saco de tinta luminosa",
+    "minecraft:glow_item_frame": "Marco luminoso",
+    "minecraft:glow_lichen": "Liquen luminoso",
+    "minecraft:glowstone": "Piedra luminosa",
+    "minecraft:glowstone_dust": "Polvo de piedra luminosa",
+    "minecraft:goat": "Cabra",
+    "minecraft:gold_ingot": "Lingote de oro",
+    "minecraft:gold_nugget": "Pepita de oro",
+    "minecraft:gold_ore": "Mena de oro",
+    "minecraft:golden_apple": "Manzana dorada",
+    "minecraft:golden_carrot": "Zanahoria dorada",
+    "minecraft:granite": "Granito",
+    "minecraft:grass": "Hierba",
+    "minecraft:gravel": "Grava",
+    "minecraft:green_dye": "Tinte verde",
+    "minecraft:grindstone": "Afiladora",
+    "minecraft:guardian": "Guardián",
+    "minecraft:gunpowder": "Pólvora",
+    "minecraft:hay_block": "Bala de heno",
+    "minecraft:hoglin": "Hoglin",
+    "minecraft:honey_block": "Bloque de miel",
+    "minecraft:honey_bottle": "Frasco con miel",
+    "minecraft:honeycomb": "Panal",
+    "minecraft:hopper": "Tolva",
+    "minecraft:horse": "Caballo",
+    "minecraft:husk": "Disecado",
+    "minecraft:ice": "Hielo",
+    "minecraft:ink_sac": "Saco de tinta",
+    "minecraft:iron_axe": "Hacha de hierro",
+    "minecraft:iron_bars": "Barrotes de hierro",
+    "minecraft:iron_block": "Bloque de hierro",
+    "minecraft:iron_boots": "Botas de hierro",
+    "minecraft:iron_chain": "Cadena de hierro",
+    "minecraft:iron_chestplate": "Peto de hierro",
+    "minecraft:iron_helmet": "Casco de hierro",
+    "minecraft:iron_ingot": "Lingote de hierro",
+    "minecraft:iron_leggings": "Grebas de hierro",
+    "minecraft:iron_ore": "Mena de hierro",
+    "minecraft:iron_pickaxe": "Pico de hierro",
+    "minecraft:iron_shovel": "Pala de hierro",
+    "minecraft:iron_sword": "Espada de hierro",
+    "minecraft:item_frame": "Marco",
+    "minecraft:jukebox": "Tocadiscos",
+    "minecraft:jungle_log": "Tronco de jungla",
+    "minecraft:jungle_sapling": "Brote de jungla",
+    "minecraft:kelp": "Alga",
+    "minecraft:ladder": "Escalera de mano",
+    "minecraft:lantern": "Farol",
+    "minecraft:lapis_block": "Bloque de lapislázuli",
+    "minecraft:lapis_lazuli": "Lapislázuli",
+    "minecraft:lapis_ore": "Mena de lapislázuli",
+    "minecraft:lead": "Rienda",
+    "minecraft:leather": "Cuero",
+    "minecraft:leather_boots": "Botas de cuero",
+    "minecraft:leather_chestplate": "Túnica de cuero",
+    "minecraft:leather_helmet": "Sombrero de cuero",
+    "minecraft:leather_leggings": "Pantalones de cuero",
+    "minecraft:lectern": "Atril",
+    "minecraft:lightning_rod": "Pararrayos",
+    "minecraft:lilac": "Lila",
+    "minecraft:lily_of_the_valley": "Convalaria",
+    "minecraft:lily_pad": "Nenúfar",
+    "minecraft:llama": "Llama",
+    "minecraft:loom": "Telar",
+    "minecraft:magma_block": "Bloque de magma",
+    "minecraft:magma_cream": "Crema de magma",
+    "minecraft:magma_cube": "Cubo de magma",
+    "minecraft:mangrove_log": "Tronco de mangle",
+    "minecraft:mangrove_roots": "Raíces de mangle",
+    "minecraft:map": "Mapa en blanco",
+    "minecraft:melon": "Sandía",
+    "minecraft:melon_slice": "Rodaja de sandía",
+    "minecraft:milk_bucket": "Cubo con leche",
+    "minecraft:minecart": "Vagoneta",
+    "minecraft:mooshroom": "Mooshroom",
+    "minecraft:moss_block": "Bloque de musgo",
+    "minecraft:mossy_cobblestone": "Roca musgosa",
+    "minecraft:mossy_stone_bricks": "Ladrillos de piedra musgosos",
+    "minecraft:mud": "Barro",
+    "minecraft:mud_bricks": "Ladrillos de adobe",
+    "minecraft:mushroom_stew": "Estofado de champiñones",
+    "minecraft:mutton": "Cordero crudo",
+    "minecraft:nether_brick": "Ladrillo del Nether",
+    "minecraft:nether_bricks": "Ladrillos del Nether",
+    "minecraft:nether_gold_ore": "Mena de oro del Nether",
+    "minecraft:nether_quartz_ore": "Mena de cuarzo del Nether",
+    "minecraft:nether_wart": "Verruga del Nether",
+    "minecraft:nether_wart_block": "Bloque de verrugas del Nether",
+    "minecraft:netherite_scrap": "Fragmentos de netherita",
+    "minecraft:netherrack": "Netherrack",
+    "minecraft:note_block": "Bloque musical",
+    "minecraft:oak_boat": "Barca de roble",
+    "minecraft:oak_fence": "Valla de roble",
+    "minecraft:oak_log": "Tronco de roble",
+    "minecraft:oak_planks": "Tablones de roble",
+    "minecraft:oak_sapling": "Brote de roble",
+    "minecraft:obsidian": "Obsidiana",
+    "minecraft:ocelot": "Ocelote",
+    "minecraft:oxeye_daisy": "Margarita",
+    "minecraft:packed_ice": "Hielo compacto",
+    "minecraft:packed_mud": "Adobe",
+    "minecraft:painting": "Cuadro",
+    "minecraft:pale_oak_log": "Tronco de roble pálido",
+    "minecraft:panda": "Panda",
+    "minecraft:paper": "Papel",
+    "minecraft:parrot": "Loro",
+    "minecraft:peony": "Peonía",
+    "minecraft:phantom": "Fantasma",
+    "minecraft:phantom_membrane": "Membrana de fantasma",
+    "minecraft:pig": "Cerdo",
+    "minecraft:piglin": "Piglin",
+    "minecraft:pillager": "Saqueador",
+    "minecraft:piston": "Pistón",
+    "minecraft:pointed_dripstone": "Caliza puntiaguda",
+    "minecraft:polished_andesite": "Andesita pulida",
+    "minecraft:polished_blackstone": "Piedra negra pulida",
+    "minecraft:polished_deepslate": "Pizarra profunda pulida",
+    "minecraft:polished_diorite": "Diorita pulida",
+    "minecraft:polished_granite": "Granito pulido",
+    "minecraft:popped_chorus_fruit": "Fruta chorus horneada",
+    "minecraft:poppy": "Amapola",
+    "minecraft:porkchop": "Chuleta de cerdo cruda",
+    "minecraft:potato": "Patata",
+    "minecraft:potion{minecraft:fire_resistance}": "Poción de cuerpo ignífugo",
+    "minecraft:potion{minecraft:night_vision}": "Poción de visión nocturna",
+    "minecraft:potion{minecraft:strength}": "Poción de fuerza",
+    "minecraft:potion{minecraft:swiftness}": "Poción de rapidez",
+    "minecraft:potion{minecraft:water_breathing}": "Poción de apnea",
+    "minecraft:powered_rail": "Raíl propulsor",
+    "minecraft:prismarine": "Prismarina",
+    "minecraft:prismarine_crystals": "Cristales de prismarina",
+    "minecraft:prismarine_shard": "Fragmento de prismarina",
+    "minecraft:pumpkin": "Calabaza",
+    "minecraft:pumpkin_pie": "Tarta de calabaza",
+    "minecraft:purpur_block": "Bloque de purpur",
+    "minecraft:quartz": "Cuarzo del Nether",
+    "minecraft:quartz_block": "Cuarzo",
+    "minecraft:rabbit": "Conejo",
+    "minecraft:rabbit_hide": "Piel de conejo",
+    "minecraft:rabbit_stew": "Estofado de conejo",
+    "minecraft:rail": "Raíl",
+    "minecraft:raw_copper": "Cobre en bruto",
+    "minecraft:raw_gold": "Oro en bruto",
+    "minecraft:raw_iron": "Hierro en bruto",
+    "minecraft:red_dye": "Tinte rojo",
+    "minecraft:red_mushroom": "Champiñón rojo",
+    "minecraft:red_mushroom_block": "Bloque de champiñón rojo",
+    "minecraft:red_nether_bricks": "Ladrillos del Nether rojos",
+    "minecraft:red_sand": "Arena roja",
+    "minecraft:red_sandstone": "Arenisca roja",
+    "minecraft:red_tulip": "Tulipán rojo",
+    "minecraft:redstone": "Polvo de redstone",
+    "minecraft:redstone_block": "Bloque de redstone",
+    "minecraft:redstone_ore": "Mena de redstone",
+    "minecraft:redstone_torch": "Antorcha de redstone",
+    "minecraft:repeater": "Repetidor de redstone",
+    "minecraft:rotten_flesh": "Carne podrida",
+    "minecraft:salmon": "Salmón crudo",
+    "minecraft:sand": "Arena",
+    "minecraft:sandstone": "Arenisca",
+    "minecraft:scaffolding": "Andamio",
+    "minecraft:sculk": "Sculk",
+    "minecraft:sculk_sensor": "Sensor de sculk",
+    "minecraft:scute": "Escama",
+    "minecraft:sea_lantern": "Linterna marina",
+    "minecraft:sea_pickle": "Pepino de mar",
+    "minecraft:seagrass": "Hierba marina",
+    "minecraft:shears": "Tijeras",
+    "minecraft:sheep": "Oveja",
+    "minecraft:shield": "Escudo",
+    "minecraft:short_grass": "Hierba corta",
+    "minecraft:shroomlight": "Brillongo",
+    "minecraft:shulker": "Shulker",
+    "minecraft:shulker_shell": "Caparazón de shulker",
+    "minecraft:silverfish": "Lepisma",
+    "minecraft:skeleton": "Esqueleto",
+    "minecraft:slime": "Slime",
+    "minecraft:slime_ball": "Bola de slime",
+    "minecraft:smithing_table": "Mesa de herrería",
+    "minecraft:smoker": "Ahumador",
+    "minecraft:smooth_quartz": "Bloque de cuarzo liso",
+    "minecraft:smooth_red_sandstone": "Arenisca roja lisa",
+    "minecraft:smooth_sandstone": "Arenisca lisa",
+    "minecraft:smooth_stone": "Piedra lisa",
+    "minecraft:smooth_stone_slab": "Losa de piedra lisa",
+    "minecraft:snow_block": "Bloque de nieve",
+    "minecraft:snowball": "Bola de nieve",
+    "minecraft:soul_lantern": "Farol de almas",
+    "minecraft:soul_sand": "Arena de almas",
+    "minecraft:soul_soil": "Tierra de almas",
+    "minecraft:soul_torch": "Antorcha de almas",
+    "minecraft:spectral_arrow": "Flecha espectral",
+    "minecraft:spider": "Araña",
+    "minecraft:spider_eye": "Ojo de araña",
+    "minecraft:sponge": "Esponja",
+    "minecraft:spruce_log": "Tronco de abeto",
+    "minecraft:spruce_sapling": "Brote de abeto",
+    "minecraft:spyglass": "Catalejo",
+    "minecraft:stick": "Palo",
+    "minecraft:stone": "Piedra",
+    "minecraft:stone_brick_stairs": "Escaleras de ladrillos de piedra",
+    "minecraft:stone_bricks": "Ladrillos de piedra",
+    "minecraft:stonecutter": "Cortapiedras",
+    "minecraft:stray": "Errante",
+    "minecraft:strider": "Lavagante",
+    "minecraft:string": "Hilo",
+    "minecraft:sugar": "Azúcar",
+    "minecraft:sugar_cane": "Caña de azúcar",
+    "minecraft:sunflower": "Girasol",
+    "minecraft:sweet_berries": "Bayas dulces",
+    "minecraft:target": "Diana",
+    "minecraft:terracotta": "Terracota",
+    "minecraft:tnt": "Dinamita",
+    "minecraft:torch": "Antorcha",
+    "minecraft:trapped_chest": "Cofre trampa",
+    "minecraft:tripwire_hook": "Gancho de cuerda",
+    "minecraft:tuff": "Toba",
+    "minecraft:turtle": "Tortuga",
+    "minecraft:turtle_scute": "Escama de tortuga",
+    "minecraft:vine": "Enredaderas",
+    "minecraft:warped_fungus": "Hongo distorsionado",
+    "minecraft:warped_stem": "Tallo distorsionado",
+    "minecraft:warped_wart_block": "Bloque de verrugas distorsionadas",
+    "minecraft:wheat": "Trigo",
+    "minecraft:wheat_seeds": "Semillas de trigo",
+    "minecraft:white_banner": "Estandarte blanco",
+    "minecraft:white_bed": "Cama blanca",
+    "minecraft:white_carpet": "Alfombra blanca",
+    "minecraft:white_dye": "Tinte blanco",
+    "minecraft:white_glazed_terracotta": "Azulejo blanco",
+    "minecraft:white_stained_glass": "Cristal tintado de blanco",
+    "minecraft:white_terracotta": "Terracota blanca",
+    "minecraft:white_wool": "Lana blanca",
+    "minecraft:witch": "Bruja",
+    "minecraft:wither_skeleton": "Esqueleto del Wither",
+    "minecraft:wolf": "Lobo",
+    "minecraft:yellow_dye": "Tinte amarillo",
+    "minecraft:zombie": "Zombi",
+    "minecraft:zombie_villager": "Aldeano zombi",
+    "minecraft:zombified_piglin": "Piglin zombificado",
+    "tconstruct:cobalt_ore": "Mineral de Cobalto del Nether",
+    "tconstruct:crafting_station": "Estación de trabajo",
+    "tconstruct:greenheart_log": "Tronco de Greenheart",
+    "tconstruct:grout": "Mezcla de Construcción",
+    "tconstruct:materials_and_you": "Materiales y Tú",
+    "tconstruct:part_builder": "Constructor de piezas",
+    "tconstruct:pattern": "Molde",
+    "tconstruct:raw_cobalt": "Cobalto Crudo",
+    "tconstruct:seared_basin": "Crisol de Fundición Refractario",
+    "tconstruct:seared_brick": "Ladrillo Refractario",
+    "tconstruct:seared_bricks": "Ladrillos Refractarios",
+    "tconstruct:seared_faucet": "Grifo Refractario",
+    "tconstruct:seared_heater": "Calentador de Piedra Refractaria",
+    "tconstruct:seared_melter": "Fundidor Refractario",
+    "tconstruct:seared_table": "Mesa de Fundición Refractaria",
+    "tconstruct:sky_slime": "Baba Celeste",
+    "tconstruct:sky_slime_ball": "Bola de Babacielo",
+    "tconstruct:skyroot_log": "Tronco de Skyroot",
+    "tconstruct:tinker_station": "Estación de Tinkers",
+    "twilightforest:bighorn_sheep": "Carnero de las Rocosas",
+    "twilightforest:boar": "Jabalí",
+    "twilightforest:canopy_bookshelf": "Librería de dosel",
+    "twilightforest:canopy_log": "Tronco de dosel",
+    "twilightforest:canopy_planks": "Tablones de dosel",
+    "twilightforest:cooked_meef": "Filete de meef",
+    "twilightforest:cooked_venison": "Filete de venado",
+    "twilightforest:dark_log": "Tronco de madera oscura",
+    "twilightforest:dark_planks": "Tablones de madera oscura",
+    "twilightforest:deer": "Ciervo",
+    "twilightforest:fire_beetle": "Escarabajo de fuego",
+    "twilightforest:hedge_spider": "Araña de seto",
+    "twilightforest:hostile_wolf": "Lobo Hostil",
+    "twilightforest:ironwood_ingot": "Lingote de madera de hierro",
+    "twilightforest:kobold": "Kobold",
+    "twilightforest:lich": "Liche",
+    "twilightforest:liveroot": "Raíz viva",
+    "twilightforest:magic_map": "Mapa mágico en blanco",
+    "twilightforest:magic_map_focus": "Foco de mapa mágico",
+    "twilightforest:mangrove_log": "Tronco de Manglar",
+    "twilightforest:minotaur": "Minotauro",
+    "twilightforest:mushgloom": "Hongo sombrío",
+    "twilightforest:naga": "Naga",
+    "twilightforest:naga_scale": "Escama de naga",
+    "twilightforest:pinch_beetle": "Escarabajo pinza",
+    "twilightforest:raven_feather": "Pluma de cuervo",
+    "twilightforest:raw_ironwood": "Material de madera de hierro",
+    "twilightforest:raw_meef": "Meef crudo",
+    "twilightforest:raw_venison": "Venado crudo",
+    "twilightforest:redcap": "Gorro rojo",
+    "twilightforest:skeleton_druid": "Druida esqueleto",
+    "twilightforest:slime_beetle": "Escarabajo de slime",
+    "twilightforest:swarm_spider": "Araña de enjambre",
+    "twilightforest:torchberries": "Bayas antorcha",
+    "twilightforest:twilight_oak_boat": "Bote de roble crepuscular",
+    "twilightforest:twilight_oak_log": "Tronco de roble crepuscular",
+    "twilightforest:twilight_oak_planks": "Tablones de roble crepuscular"
+  }
+}

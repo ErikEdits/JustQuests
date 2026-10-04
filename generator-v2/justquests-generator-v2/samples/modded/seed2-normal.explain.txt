@@ -2,6 +2,14 @@
 
 Generator v2: enabled, difficulty normal, 10 current + 0 retained, cycle 1790510400 (next rotation 2026-09-28 00:00), 0 claimed, Nether unlocked, End unlocked, profiles [vanilla, farmersdelight, create, mekanism, twilightforest, botania], Minecraft 1.21.1 (neoforge)
 
+justquests:gen/1790510400_7  "Mystical Red Petal Job"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective craft_item botania:red_petal ×32
+  effort 0.20 min/unit → 6.4 min (target 8.9, range 8–20 min)
+  tier 1 (always available), family bot_petals, profile botania
+estimated 6.4 min (quick)
+reward give_item minecraft:redstone_block ×3 (value 5.4) + xp 31 (value 2.6)  → 8.0 / budget 8.0
+state: AVAILABLE
+
 justquests:gen/1790510400_0  "Bring Dark Oak Logs"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
 objective collect_item minecraft:dark_oak_log ×64
   effort 0.10 min/unit (×1.30 dark_forest) → 8.3 min (target 9.2, range 8–20 min)
@@ -19,30 +27,20 @@ reward give_item minecraft:iron_ingot ×12 (value 7.2) + xp 29 (value 2.4)  → 
 rejected alternatives: craft_item create:crushing_wheel (mechanical crafter only, not counted)
 state: AVAILABLE
 
-justquests:gen/1790510400_5  "Fluorite Supply"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective collect_item mekanism:fluorite_gem ×24
-  effort 0.32 min/unit → 7.7 min (target 8.5, range 8–20 min)
-  tier 1 (always available), family mek_fluorite, profile mekanism, tool stone, hints caves
-estimated 7.7 min (quick)
-reward give_item minecraft:experience_bottle ×6 (value 7.2) + xp 24 (value 2.0)  → 9.2 / budget 9.2
-rejected alternatives: craft_item mekanism:block_fluorite (tier 1 above NORMAL cap)
+justquests:gen/1790510400_5  "Break Salt Blocks"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective mine_block mekanism:block_salt ×24
+  effort 0.35 min/unit → 8.4 min (target 8.5, range 8–20 min)
+  tier 0 (always available), family mek_salt, profile mekanism, tool wood, hints river
+estimated 8.4 min (quick)
+reward give_item minecraft:gold_ingot ×6 (value 7.8) + xp 27 (value 2.3)  → 10.1 / budget 10.1
 state: AVAILABLE
 
-justquests:gen/1790510400_9  "Egg Volley"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+justquests:gen/1790510400_6  "Egg Volley"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
 objective use_item minecraft:egg ×16
-  effort 0.60 min/unit → 9.6 min (target 10.7, range 8–20 min)
+  effort 0.60 min/unit → 9.6 min (target 15.5, range 8–20 min)
   tier 0 (always available), family use_items, profile vanilla, hints farm/throw
 estimated 9.6 min (quick)
-reward give_item mekanism:ingot_lead ×9 (value 8.5) + xp 36 (value 3.0)  → 11.5 / budget 11.5
-state: AVAILABLE
-
-justquests:gen/1790510400_8  "Venison Steak Feast"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective consume_item twilightforest:cooked_venison ×6
-  effort 1.10 min/unit → 6.6 min (target 19.8, range 8–20 min)
-  tier 2 (always available), family tf_game, profile twilightforest, twilightforest:twilight_forest
-travel overhead 5.0 min
-estimated 11.6 min (quick)
-reward give_item create:bar_of_chocolate ×3 (value 9.0) + xp 60 (value 5.0)  → 14.0 / budget 13.9
+reward give_item minecraft:cooked_salmon ×10 (value 9.0) + xp 30 (value 2.5)  → 11.5 / budget 11.5
 state: AVAILABLE
 
 justquests:gen/1790510400_2  "Raw Cod Pickup"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
@@ -53,21 +51,21 @@ estimated 12.8 min
 reward give_item minecraft:cooked_beef ×16 (value 8.0) + xp 90 (value 7.5)  → 15.5 / budget 15.4
 state: AVAILABLE
 
-justquests:gen/1790510400_6  "Goat Family"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective breed_animal minecraft:goat ×6
-  effort 2.00 min/unit (×1.30 mountains) → 15.6 min (target 16.1, range 8–20 min)
-  tier 0 (always available), family wild_animals, profile vanilla, hints mountains
-estimated 15.6 min
-reward give_item minecraft:music_disc_13 ×1 (value 6.0) + give_item minecraft:pumpkin_pie ×8 (value 8.0) + xp 55 (value 4.6)  → 18.6 / budget 18.7
+justquests:gen/1790510400_8  "Smelt Venison Steaks"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective smelt_item twilightforest:cooked_venison ×8
+  effort 1.00 min/unit → 8.0 min (target 14.7, range 8–20 min)
+  tier 2 (always available), family tf_game, profile twilightforest, twilightforest:twilight_forest
+travel overhead 5.0 min
+estimated 13.0 min
+reward give_item minecraft:prismarine_crystals ×8 (value 12.0) + xp 43 (value 3.6)  → 15.6 / budget 15.6
 state: AVAILABLE
 
-justquests:gen/1790510400_7  "Make Livingwood Planks"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
-objective craft_item botania:livingwood_planks ×16
-  effort 1.00 min/unit → 16.0 min (target 19.5, range 8–20 min)
-  tier 2 (always available), family bot_livingwood, profile botania
-estimated 16.0 min
-reward give_item create:large_cogwheel ×16 (value 5.6) + give_item farmersdelight:cooking_pot ×1 (value 5.0) + xp 105 (value 8.8)  → 19.4 / budget 19.2
-rejected alternatives: collect_item botania:livingwood_log (a Pure Daisy converts logs in place; nothing is picked up)
+justquests:gen/1790510400_9  "Frog Nursery"  (NORMAL, cycle 1790510400, seed 0xDC9F…)
+objective breed_animal minecraft:frog ×5
+  effort 2.50 min/unit (×1.30 swamp) → 16.3 min (target 16.7, range 8–20 min)
+  tier 1 (always available), family wild_animals, profile vanilla, hints swamp
+estimated 16.3 min
+reward give_item mekanism:ingot_osmium ×16 (value 14.4) + xp 60 (value 5.0)  → 19.4 / budget 19.5
 state: AVAILABLE
 
 justquests:gen/1790510400_4  "Monster Duty"  (NORMAL, cycle 1790510400, seed 0xDC9F…)

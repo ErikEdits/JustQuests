@@ -1,0 +1,41 @@
+{
+  "_format": "Index-aligned with templates.json. {Name}/{name} = official item name, {count} = number, {Dimension} = dimension name, {dimension_to}/{dimension_in} = travel/location phrase.",
+  "grammar": {"sentenceEnd": ".", "sentenceSep": " ", "listSep": ", ", "listAnd": " und ", "lowerNames": false, "lowerAfterColon": false},
+  "titles": {
+    "collect_item": ["Ausbeute: {Name}", "Sammeltour: {Name}", "{Name} sammeln", "Vorrat: {Name}", "Nachschub: {Name}", "Sammelauftrag: {Name}", "Abholung: {Name}", "{Name} bringen", "Lieferung: {Name}", "{Name} einsammeln", "{Name} gesucht", "Bündel: {Name}"],
+    "mine_block": ["Abbau: {Name}", "{Name} abbauen", "Grabung: {Name}", "Steinbruch: {Name}", "{Name} abtragen", "Ausgrabung: {Name}", "Schicht: {Name}", "{Name} knacken", "{Name} ausgraben"],
+    "craft_item": ["Bestellung: {Name}", "{Name} herstellen", "Werkstatt: {Name}", "Handwerk: {Name}", "{Name} anfertigen", "Auftrag: {Name}", "Charge: {Name}", "{Name} bauen", "Anfrage: {Name}", "Montage: {Name}", "{Name} fertigen"],
+    "smelt_item": ["Nachschub: {Name}", "{Name} schmelzen", "Schmelzerei: {Name}", "Glühend: {Name}", "Charge: {Name}", "Ofen: {Name}", "Hitze: {Name}", "Feuer frei: {Name}"],
+    "kill_mob": ["Jagd: {Name}", "Patrouille: {Name}", "{Name} dezimieren", "Kopfgeld: {Name}", "{Name}-Bezwinger", "Ärger: {Name}", "Säuberung: {Name}", "Bedrohung: {Name}", "{Name} aufhalten", "{Name} jagen", "Wache: {Name}"],
+    "breed_animal": ["Züchter: {Name}", "Nachwuchs: {Name}", "Ranch: {Name}", "Familie: {Name}", "{Name} züchten", "Herde: {Name}", "Jungtiere: {Name}", "Kinderstube: {Name}", "Hof: {Name}"],
+    "tame_animal": ["Neuer Freund", "{Name} zähmen", "Gefährte: {Name}", "{Name}-Flüsterer", "Treue: {Name}", "Freund: {Name}"],
+    "consume_item": ["Festmahl: {Name}", "{Name} probieren", "Verkostung: {Name}", "Snack: {Name}", "Pause: {Name}", "Mittagessen: {Name}", "Hunger auf {Name}", "Mahlzeit: {Name}", "Abendbrot: {Name}"],
+    "place_block": ["Baumeister: {Name}", "Bauen mit {Name}", "{Name} platzieren", "Projekt: {Name}", "Bauwerk: {Name}", "Grundriss: {Name}", "Dekorieren: {Name}", "Bau: {Name}", "Entwurf: {Name}"],
+    "visit_dimension": ["Ausflug: {Dimension}", "Besuch: {Dimension}", "Reise: {Dimension}", "Aufbruch: {Dimension}", "Portal: {Dimension}", "Expedition: {Dimension}"],
+    "enchant_item": ["Verzauberer: {Name}", "Verzaubert: {Name}", "Arkan: {Name}", "Verzauberung: {Name}", "Gebannt: {Name}", "Magie: {Name}"],
+    "use_item": ["Übung: {Name}", "{Name} benutzen", "Drill: {Name}", "Praktisch: {Name}", "Training: {Name}"]
+  },
+  "phrases": {
+    "collect_item": ["Sammle {count}× {name}", "Trage {count}× {name} zusammen", "Hebe {count}× {name} auf"],
+    "mine_block": ["Baue {count}× {name} ab", "Zerstöre {count}× {name}"],
+    "craft_item": ["Stelle {count}× {name} her", "Fertige {count}× {name} an"],
+    "smelt_item": ["Schmelze {count}× {name}"],
+    "kill_mob": ["Besiege {count}× {name}", "Jage {count}× {name}", "Erlege {count}× {name}"],
+    "breed_animal": ["Züchte {count}× {name}"],
+    "tame_animal": ["Zähme {count}× {name}"],
+    "consume_item": ["Iss {count}× {name}"],
+    "enchant_item": ["Verzaubere {count}× {name}"],
+    "use_item": ["Benutze {count}× {name}"],
+    "place_block": ["Platziere {count}× {name}", "Baue mit {count}× {name}"],
+    "visit_dimension": ["Reise {dimension_to}", "Begib dich {dimension_to}"]
+  },
+  "variants": {
+    "throw": {"phrases": ["Wirf {count}× {name}"], "titles": ["Wurf: {Name}", "{Name} werfen", "Salve: {Name}", "Weitwurf: {Name}"]},
+    "launch": {"phrases": ["Zünde {count}× {name}"], "titles": ["Show: {Name}", "{Name} zünden", "Am Himmel: {Name}"]},
+    "drink": {"phrases": ["Trink {count}× {name}"], "titles": ["Pause: {Name}", "{Name} probieren", "Runde: {Name}"]},
+    "cook": {"phrases": ["Bereite {count}× {name} zu"], "titles": ["{Name} zubereiten", "Charge: {Name}", "Frisch: {Name}", "Küche: {Name}", "Bestellung: {Name}"]}
+  },
+  "fallbackTitles": ["Aufgabe: {Name}", "Job: {Name}", "Besorgung: {Name}", "Pflicht: {Name}", "Mission: {Name}", "Arbeit: {Name}"],
+  "comboTitles": ["Auftrag: {Family}", "Besorgung: {Family}", "Job: {Family}", "Vorräte: {Family}", "Dienst: {Family}", "Arbeiten: {Family}"],
+  "sentences": {"tag": "Jede Sorte zählt.", "dimension": "Zu finden {dimension_in}.", "list": "{list}"}
+}

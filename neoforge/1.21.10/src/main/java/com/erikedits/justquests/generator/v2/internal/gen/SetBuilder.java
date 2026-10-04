@@ -676,6 +676,7 @@ public final class SetBuilder {
         }
         d.title = title;
         d.description = text.description(d, d.themeDescriptions, rng);
+        text.localize(d);
         explain(d);
         JsonObject json = QuestJson.build(d);
         List<String> problems = SchemaCheck.check(json, caps);

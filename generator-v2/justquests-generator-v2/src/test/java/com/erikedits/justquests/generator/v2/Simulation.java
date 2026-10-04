@@ -6,6 +6,7 @@ import com.erikedits.justquests.generator.v2.api.Difficulty;
 import com.erikedits.justquests.generator.v2.api.GeneratorConfig;
 import com.erikedits.justquests.generator.v2.api.RotationResult;
 import com.erikedits.justquests.generator.v2.internal.state.V1Migration;
+import com.erikedits.justquests.generator.v2.internal.util.Json;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -191,7 +192,7 @@ public final class Simulation {
             while (fam.find()) {
                 families.merge(fam.group(1), 1, Integer::sum);
             }
-            sb.append("- **").append(q.get("title").getAsString()).append("** (").append(q.get("sort").getAsInt())
+            sb.append("- **").append(Json.text(q, "title", "")).append("** (").append(q.get("sort").getAsInt())
                 .append(" min) — ").append(String.join("; ", objs)).append('\n');
         }
     }

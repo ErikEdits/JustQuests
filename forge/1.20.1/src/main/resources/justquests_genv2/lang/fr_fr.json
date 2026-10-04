@@ -1,0 +1,2687 @@
+{
+  "format": 1,
+  "language": "fr_fr",
+  "grammar": {
+    "sentenceEnd": ".",
+    "sentenceSep": " ",
+    "listSep": ", ",
+    "listAnd": " et ",
+    "lowerNames": true,
+    "lowerAfterColon": true
+  },
+  "templates": {
+    "titles": {
+      "collect_item": [
+        "Butin : {name}",
+        "Tournée : {name}",
+        "Récolte {de_name}",
+        "Réserve {de_name}",
+        "Stock {de_name}",
+        "Collecte {de_name}",
+        "Ramassage : {name}",
+        "Apporter : {name}",
+        "Livraison {de_name}",
+        "Récupérer : {name}",
+        "On cherche : {name}",
+        "Lot {de_name}"
+      ],
+      "mine_block": [
+        "Mineur {de_name}",
+        "Extraction {de_name}",
+        "Fouille : {name}",
+        "Carrière {de_name}",
+        "Casser : {name}",
+        "Excavation : {name}",
+        "Corvée {de_name}",
+        "Briseur {de_name}",
+        "Creuser : {name}"
+      ],
+      "craft_item": [
+        "Commande {de_name}",
+        "Fabriquer : {name}",
+        "Atelier : {name}",
+        "Artisan : {name}",
+        "Façonner : {name}",
+        "Commission : {name}",
+        "Fournée {de_name}",
+        "Construire : {name}",
+        "Demande : {name}",
+        "Assemblage : {name}",
+        "Fabrication : {name}"
+      ],
+      "smelt_item": [
+        "Stock {de_name}",
+        "Faire fondre : {name}",
+        "Fonderie : {name}",
+        "Brûlant : {name}",
+        "Fournée {de_name}",
+        "Fourneau : {name}",
+        "Chaleur : {name}",
+        "Allumez : {name}"
+      ],
+      "kill_mob": [
+        "Chasse : {name}",
+        "Patrouille : {name}",
+        "Éliminer : {name}",
+        "Prime : {name}",
+        "Tueur {de_name}",
+        "Ennuis : {name}",
+        "Nettoyage : {name}",
+        "Menace : {name}",
+        "Stopper : {name}",
+        "Traquer : {name}",
+        "Veille : {name}"
+      ],
+      "breed_animal": [
+        "Éleveur : {name}",
+        "Portée : {name}",
+        "Ranch : {name}",
+        "Famille : {name}",
+        "Élever : {name}",
+        "Troupeau : {name}",
+        "Petits : {name}",
+        "Nurserie : {name}",
+        "Ferme : {name}"
+      ],
+      "tame_animal": [
+        "Nouvel ami",
+        "Apprivoiser : {name}",
+        "Compagnon : {name}",
+        "Murmureur : {name}",
+        "Fidèle : {name}",
+        "Ami : {name}"
+      ],
+      "consume_item": [
+        "Festin : {name}",
+        "Goûter : {name}",
+        "Dégustation : {name}",
+        "En-cas : {name}",
+        "Pause : {name}",
+        "Déjeuner : {name}",
+        "Envie {de_name}",
+        "Repas : {name}",
+        "Souper : {name}"
+      ],
+      "place_block": [
+        "Bâtisseur : {name}",
+        "Bâtir en {name}",
+        "Poser : {name}",
+        "Projet : {name}",
+        "Ouvrage : {name}",
+        "Plan : {name}",
+        "Décorer : {name}",
+        "Chantier : {name}",
+        "Design : {name}"
+      ],
+      "visit_dimension": [
+        "Voyage : {Dimension}",
+        "Visite : {Dimension}",
+        "Périple : {Dimension}",
+        "En route : {Dimension}",
+        "Porte : {Dimension}",
+        "Expédition : {Dimension}"
+      ],
+      "enchant_item": [
+        "Enchanteur : {name}",
+        "Enchanté : {name}",
+        "Arcane : {name}",
+        "Enchantement : {name}",
+        "Ensorcelé : {name}",
+        "Magie : {name}"
+      ],
+      "use_item": [
+        "Pratique : {name}",
+        "Utiliser : {name}",
+        "Exercice : {name}",
+        "Astuce : {name}",
+        "Entraînement : {name}"
+      ]
+    },
+    "phrases": {
+      "collect_item": [
+        "Récoltez {count}× {name}",
+        "Rassemblez {count}× {name}",
+        "Ramassez {count}× {name}"
+      ],
+      "mine_block": [
+        "Minez {count}× {name}",
+        "Cassez {count}× {name}"
+      ],
+      "craft_item": [
+        "Fabriquez {count}× {name}",
+        "Façonnez {count}× {name}"
+      ],
+      "smelt_item": [
+        "Faites fondre {count}× {name}"
+      ],
+      "kill_mob": [
+        "Vainquez {count}× {name}",
+        "Chassez {count}× {name}",
+        "Terrassez {count}× {name}"
+      ],
+      "breed_animal": [
+        "Élevez {count}× {name}"
+      ],
+      "tame_animal": [
+        "Apprivoisez {count}× {name}"
+      ],
+      "consume_item": [
+        "Mangez {count}× {name}"
+      ],
+      "enchant_item": [
+        "Enchantez {count}× {name}"
+      ],
+      "use_item": [
+        "Utilisez {count}× {name}"
+      ],
+      "place_block": [
+        "Posez {count}× {name}",
+        "Construisez avec {count}× {name}"
+      ],
+      "visit_dimension": [
+        "Rendez-vous {dimension_to}",
+        "Entrez {dimension_to}"
+      ]
+    },
+    "variants": {
+      "throw": {
+        "phrases": [
+          "Lancez {count}× {name}"
+        ],
+        "titles": [
+          "Lancer : {name}",
+          "Jeter : {name}",
+          "Volée : {name}",
+          "Tir : {name}"
+        ]
+      },
+      "launch": {
+        "phrases": [
+          "Tirez {count}× {name}"
+        ],
+        "titles": [
+          "Spectacle : {name}",
+          "Lancement : {name}",
+          "Ciel : {name}"
+        ]
+      },
+      "drink": {
+        "phrases": [
+          "Buvez {count}× {name}"
+        ],
+        "titles": [
+          "Pause : {name}",
+          "Goûter : {name}",
+          "Tournée : {name}"
+        ]
+      },
+      "cook": {
+        "phrases": [
+          "Cuisinez {count}× {name}"
+        ],
+        "titles": [
+          "Cuisiner : {name}",
+          "Fournée {de_name}",
+          "Tout chaud : {name}",
+          "Cuisine : {name}",
+          "Commande {de_name}"
+        ]
+      }
+    },
+    "fallbackTitles": [
+      "Tâche : {name}",
+      "Boulot : {name}",
+      "Course : {name}",
+      "Devoir : {name}",
+      "Mission : {name}",
+      "Travail : {name}"
+    ],
+    "comboTitles": [
+      "Commande : {Family}",
+      "Course : {Family}",
+      "Boulot : {Family}",
+      "Fournitures : {Family}",
+      "Service : {Family}",
+      "Corvées : {Family}"
+    ],
+    "sentences": {
+      "tag": "Toutes les variétés comptent.",
+      "dimension": "Se trouve {dimension_in}.",
+      "list": "{list}"
+    },
+    "tools": {
+      "stone": "Il faut au moins une pioche en pierre",
+      "iron": "Il faut au moins une pioche en fer",
+      "diamond": "Il faut une pioche en diamant",
+      "netherite": "Il faut une pioche en netherite",
+      "shears": "Utilisez des cisailles",
+      "silk_touch": "Il faut Toucher de soie",
+      "fishing_rod": "Utilisez une canne à pêche",
+      "knife": "Utilisez un couteau de Farmer's Delight",
+      "shovel": "Utilisez une pelle"
+    },
+    "hints": {
+      "night": "Ils apparaissent la nuit et dans les grottes sombres.",
+      "desert": "Cherchez dans les déserts.",
+      "swamp": "Cherchez dans les marais.",
+      "jungle": "Cherchez dans les jungles.",
+      "taiga": "Cherchez dans les taïgas.",
+      "snowy": "Cherchez dans les biomes enneigés.",
+      "ocean": "Cherchez dans les océans et à proximité.",
+      "beach": "Cherchez le long des plages.",
+      "savanna": "Cherchez dans les savanes.",
+      "badlands": "Cherchez dans les badlands.",
+      "mountains": "Cherchez dans les montagnes.",
+      "plains": "Courant dans les plaines.",
+      "flower_forest": "Les forêts fleuries en ont le plus.",
+      "dark_forest": "Les forêts sombres en regorgent.",
+      "mushroom_fields": "Cherchez sur les îles aux champignons.",
+      "lush_caves": "Cherchez dans les cavernes luxuriantes.",
+      "dripstone_caves": "Cherchez dans les cavernes de spéléothèmes.",
+      "cherry_grove": "Cherchez dans les bosquets de cerisiers.",
+      "mangrove_swamp": "Cherchez dans les marais à mangroves.",
+      "pale_garden": "Cherchez dans les jardins pâles.",
+      "caves": "Se trouve dans les grottes.",
+      "deep": "Se trouve en profondeur.",
+      "geode": "Cherchez dans les géodes d'améthyste.",
+      "village": "Les villages en ont souvent.",
+      "farm": "Cultivez-les dans une ferme.",
+      "bees": "Il faut des abeilles et des fleurs.",
+      "rare": "Rare, alors prenez votre temps.",
+      "river": "Cherchez le long des rivières.",
+      "fortress": "Se trouve dans les forteresses du Nether.",
+      "bastion": "Se trouve dans les vestiges de bastion.",
+      "crimson_forest": "Se trouve dans les forêts carmin.",
+      "warped_forest": "Se trouve dans les forêts biscornues.",
+      "soul_sand_valley": "Se trouve dans les vallées des âmes.",
+      "basalt_deltas": "Se trouve dans les deltas de basalte.",
+      "end_city": "Se trouve dans les cités de l'End.",
+      "outer_islands": "Pousse sur les îles extérieures de l'End.",
+      "mineshaft": "Se trouve dans les puits de mine abandonnés.",
+      "outpost": "Se trouve aux avant-postes de pillards.",
+      "monument": "Se trouve dans les monuments sous-marins.",
+      "trial_chambers": "Se trouve dans les chambres des épreuves.",
+      "layers": "Se trouve dans les épaisses couches de roche souterraines.",
+      "warm_ocean": "Cherchez sur les récifs coralliens des océans chauds.",
+      "ruined_portal": "Cherchez autour des portails en ruine.",
+      "deep_dark": "Se trouve dans les Abîmes."
+    },
+    "familyNames": {
+      "wood": "Bois",
+      "forestry": "Sylviculture",
+      "stone": "Carrière",
+      "stonework": "Maçonnerie",
+      "sand": "Sable",
+      "glass": "Verrerie",
+      "soil": "Terrassement",
+      "badlands": "Badlands",
+      "lush": "Caverne luxuriante",
+      "snow": "Hiver",
+      "plants": "Jardinage",
+      "coal": "Charbon",
+      "metals": "Métal",
+      "gems": "Gemmes",
+      "redstone": "Redstone",
+      "amethyst": "Améthyste",
+      "obsidian": "Obsidienne",
+      "crops": "Ferme",
+      "fruit": "Verger",
+      "mushrooms": "Champignons",
+      "flowers": "Fleurs",
+      "bees": "Apiculture",
+      "livestock": "Ranch",
+      "wool": "Laine",
+      "wild_animals": "Faune",
+      "horses": "Écurie",
+      "pets": "Compagnons",
+      "villagers": "Village",
+      "fishing": "Pêche",
+      "ocean": "Navigation",
+      "undead": "Morts-vivants",
+      "arthropods": "Araignées",
+      "monsters": "Monstres",
+      "illagers": "Illageois",
+      "trial": "Épreuve",
+      "lighting": "Éclairage",
+      "woodwork": "Menuiserie",
+      "baking": "Boulangerie",
+      "library": "Bibliothèque",
+      "archery": "Flécherie",
+      "iron_tools": "Outilleur",
+      "iron_armor": "Armurier",
+      "iron_works": "Ferronnerie",
+      "decor": "Décoration",
+      "copper_works": "Cuivre",
+      "golden_food": "Doré",
+      "diamond_gear": "Diamant",
+      "nether_travel": "Nether",
+      "nether_blocks": "Pierre du Nether",
+      "nether_ores": "Mines du Nether",
+      "nether_plants": "Jardin du Nether",
+      "nether_mobs": "Chasse du Nether",
+      "end_travel": "End",
+      "end_blocks": "Pierre de l'End",
+      "end_plants": "Chorus",
+      "end_mobs": "Chasse de l'End",
+      "end_prep": "Fort",
+      "fd_crops": "Primeurs",
+      "fd_wild": "Cueillette",
+      "fd_straw": "Paille",
+      "fd_tools": "Coutellerie",
+      "fd_kitchen": "Cuisine",
+      "fd_furniture": "Armoire",
+      "fd_butchery": "Boucherie",
+      "fd_seafood": "Fruits de mer",
+      "fd_breakfast": "Petit-déjeuner",
+      "fd_meals": "Sandwich",
+      "fd_salads": "Salade",
+      "fd_sweets": "Dessert",
+      "fd_stews": "Ragoût",
+      "fd_plates": "Dîner",
+      "fd_drinks": "Boissons",
+      "fd_feasts": "Festin",
+      "fd_soil": "Compost",
+      "fd_snacks": "En-cas",
+      "create_contraptions": "Machinerie",
+      "create_zinc": "Zinc",
+      "create_stone": "Strate",
+      "create_masonry": "Maçonnerie",
+      "create_alloy": "Alliage",
+      "create_kinetics": "Cinétique",
+      "create_power": "Moulin",
+      "create_logistics": "Logistique",
+      "create_machines": "Machine",
+      "create_tools": "Ingénieur",
+      "create_decor": "Sièges",
+      "create_sweets": "Friandise",
+      "create_quartz": "Quartz rose",
+      "deep_dark": "Abîmes",
+      "dyes": "Teinture",
+      "stone_tools": "Tailleur de pierre",
+      "leather_armor": "Maroquinerie",
+      "workstations": "Atelier",
+      "transport": "Transport",
+      "brewing": "Alchimie",
+      "enchanting": "Enchantement",
+      "use_items": "Terrain",
+      "exploration": "Explorateur",
+      "nether_animals": "Ranch du Nether",
+      "nether_crafts": "Maçon du Nether",
+      "storage_blocks": "Trésor",
+      "mek_osmium": "Osmium",
+      "mek_tin": "Étain",
+      "mek_lead": "Plomb",
+      "mek_uranium": "Uranium",
+      "mek_fluorite": "Fluorite",
+      "mek_salt": "Sel",
+      "mek_gear": "Atelier",
+      "mek_radiation": "Radioprotection",
+      "mek_machines": "Machine",
+      "mek_blocks": "Blocs de métal",
+      "tf_travel": "Crépuscule",
+      "tf_wood": "Bois du Crépuscule",
+      "tf_forage": "Cueillette du Crépuscule",
+      "tf_game": "Gibier",
+      "tf_ranch": "Ranch du Crépuscule",
+      "tf_monsters": "Chasse du Crépuscule",
+      "tf_bosses": "Boss",
+      "tf_ironwood": "Bois de fer",
+      "tf_maps": "Cartographe",
+      "bot_flowers": "Fleuriste",
+      "bot_petals": "Pétales",
+      "bot_start": "Botaniste",
+      "bot_mushrooms": "Champignons chatoyants",
+      "bot_livingwood": "Vifbois",
+      "bot_mana": "Mana",
+      "bot_decor": "Déco de pétales",
+      "bot_alfheim": "Alfheim",
+      "ae2_meteor": "Météorite",
+      "ae2_skystone": "Pierre de ciel",
+      "ae2_quartz_tools": "Forgeron de quartz",
+      "ae2_fluix": "Fluix",
+      "ae2_power": "Énergie",
+      "ae2_network": "Réseau",
+      "ie_bauxite": "Bauxite",
+      "ie_lead": "Plomb",
+      "ie_silver": "Argent",
+      "ie_nickel": "Nickel",
+      "ie_hemp": "Chanvre",
+      "ie_workshop": "Atelier",
+      "ie_metalwork": "Métallerie",
+      "ie_treated": "Bois traité",
+      "bop_timber": "Bois exotique",
+      "bop_carpentry": "Charpenterie",
+      "bop_bouquet": "Fleurs sauvages",
+      "bop_sands": "Sable",
+      "bop_wetlands": "Zone humide",
+      "bop_rose_quartz": "Quartz rose",
+      "bop_nether": "Botanique du Nether",
+      "am_savanna": "Savane",
+      "am_northlands": "Grand Nord",
+      "am_cookout": "Cuisine de brousse",
+      "am_predators": "Prédateurs",
+      "am_gear": "Équipement",
+      "am_nether": "Chasseur du Nether",
+      "tc_grout": "Fondu",
+      "tc_stations": "Bricoleur",
+      "tc_smeltery": "Fonderie",
+      "tc_slime_isles": "Île de slime",
+      "tc_cobalt": "Cobalt",
+      "an_archwood": "Archwood",
+      "an_forage": "Baie de source",
+      "an_first_spells": "Apprenti",
+      "an_workshop": "Arcanes",
+      "an_wilden": "Wilden"
+    },
+    "dimensionNames": {
+      "minecraft:overworld": "Surface",
+      "minecraft:the_nether": "Nether",
+      "minecraft:the_end": "End",
+      "twilightforest:twilight_forest": "Forêt du Crépuscule"
+    },
+    "dimensionTo": {
+      "minecraft:overworld": "à la Surface",
+      "minecraft:the_nether": "dans le Nether",
+      "minecraft:the_end": "dans l'End",
+      "twilightforest:twilight_forest": "dans la Forêt du Crépuscule"
+    },
+    "dimensionIn": {
+      "minecraft:overworld": "à la Surface",
+      "minecraft:the_nether": "dans le Nether",
+      "minecraft:the_end": "dans l'End",
+      "twilightforest:twilight_forest": "dans la Forêt du Crépuscule"
+    }
+  },
+  "themes": {
+    "blacksmith_order": {
+      "names": [
+        "Commande du forgeron",
+        "Travail de forge",
+        "Fournitures de forge"
+      ],
+      "descriptions": [
+        "La forge a besoin d'aide : {list}."
+      ]
+    },
+    "harvest_festival": {
+      "names": [
+        "Fête des moissons",
+        "Temps des récoltes",
+        "Récolte record"
+      ],
+      "descriptions": [
+        "Rentrez la récolte : {list}."
+      ]
+    },
+    "monster_patrol": {
+      "names": [
+        "Patrouille anti-monstres",
+        "Garde de nuit",
+        "Purge des morts-vivants"
+      ],
+      "descriptions": [
+        "Sécurisez les routes : {list}."
+      ]
+    },
+    "ranch_hand": {
+      "names": [
+        "Garçon de ferme",
+        "Corvées de la ferme",
+        "Service à l'étable"
+      ],
+      "descriptions": [
+        "Le ranch a besoin d'un coup de main : {list}."
+      ]
+    },
+    "nether_expedition": {
+      "names": [
+        "Expédition dans le Nether",
+        "Dans le feu",
+        "Raid sur la forteresse"
+      ],
+      "descriptions": [
+        "Rapportez des trésors du Nether : {list}."
+      ]
+    },
+    "mining_expedition": {
+      "names": [
+        "Expédition minière",
+        "Fouille profonde",
+        "Relevé des grottes"
+      ],
+      "descriptions": [
+        "Descendez sous terre : {list}."
+      ]
+    },
+    "lumberjack": {
+      "names": [
+        "Bûcheron",
+        "Attention, ça tombe !",
+        "Coupeur de bois"
+      ],
+      "descriptions": [
+        "La scierie attend : {list}."
+      ]
+    },
+    "ocean_voyage": {
+      "names": [
+        "Voyage en mer",
+        "Récolte marine",
+        "Travail des marées"
+      ],
+      "descriptions": [
+        "Prenez la mer : {list}."
+      ]
+    },
+    "camp_cook": {
+      "names": [
+        "Cuisinier du camp",
+        "Dîner au feu de camp",
+        "L'heure du souper"
+      ],
+      "descriptions": [
+        "Nourrissez le camp : {list}."
+      ]
+    },
+    "builders_order": {
+      "names": [
+        "Commande du bâtisseur",
+        "Travaux de construction",
+        "Travail de maçonnerie"
+      ],
+      "descriptions": [
+        "Les bâtisseurs ont besoin de matériaux : {list}."
+      ]
+    },
+    "desert_trek": {
+      "names": [
+        "Traversée du désert",
+        "Sable et soleil"
+      ],
+      "descriptions": [
+        "Bravez le désert : {list}."
+      ]
+    },
+    "end_expedition": {
+      "names": [
+        "Expédition dans l'End",
+        "Au-delà du vide"
+      ],
+      "descriptions": [
+        "Explorez l'End : {list}."
+      ]
+    },
+    "beekeeper": {
+      "names": [
+        "Apiculteur",
+        "Abeilles affairées"
+      ],
+      "descriptions": [
+        "Occupez-vous des ruches : {list}."
+      ]
+    },
+    "winter_prep": {
+      "names": [
+        "Préparatifs d'hiver",
+        "Vague de froid",
+        "Bloqué par la neige"
+      ],
+      "descriptions": [
+        "Préparez-vous au froid : {list}."
+      ]
+    },
+    "tool_upgrade": {
+      "names": [
+        "Outils améliorés",
+        "Âge du fer",
+        "De meilleurs outils"
+      ],
+      "descriptions": [
+        "Place à de meilleurs outils : {list}."
+      ]
+    },
+    "railway_builder": {
+      "names": [
+        "Constructeur de voies",
+        "Ligne ferroviaire",
+        "Équipe de voie"
+      ],
+      "descriptions": [
+        "Posez une nouvelle ligne : {list}."
+      ]
+    },
+    "redstone_workshop": {
+      "names": [
+        "Atelier de redstone",
+        "Bâtisseur de circuits"
+      ],
+      "descriptions": [
+        "Câblez l'atelier : {list}."
+      ]
+    },
+    "enchanters_study": {
+      "names": [
+        "Cabinet de l'enchanteur",
+        "Bibliothèque arcanique"
+      ],
+      "descriptions": [
+        "L'enchanteur a besoin de fournitures : {list}."
+      ]
+    },
+    "night_hunter": {
+      "names": [
+        "Chasseur nocturne",
+        "Chasse au clair de lune",
+        "Après la tombée de la nuit"
+      ],
+      "descriptions": [
+        "Quand le soleil se couche : {list}."
+      ]
+    },
+    "fishermans_day": {
+      "names": [
+        "Journée du pêcheur",
+        "Pêche du jour",
+        "Partie de pêche"
+      ],
+      "descriptions": [
+        "Une journée au bord de l'eau : {list}."
+      ]
+    },
+    "florist": {
+      "names": [
+        "Fleuriste",
+        "Marché aux fleurs",
+        "Bouquet"
+      ],
+      "descriptions": [
+        "Des fleurs fraîches pour le marché : {list}."
+      ]
+    },
+    "village_fair": {
+      "names": [
+        "Fête du village",
+        "Foire du marché",
+        "Marché des récoltes"
+      ],
+      "descriptions": [
+        "La foire ouvre bientôt : {list}."
+      ]
+    },
+    "stonemason": {
+      "names": [
+        "Tailleur de pierre",
+        "Travail de maçon",
+        "Ouvrages en pierre"
+      ],
+      "descriptions": [
+        "Le tailleur de pierre a besoin d'aide : {list}."
+      ]
+    },
+    "deep_dark_delve": {
+      "names": [
+        "Plongée dans les Abîmes",
+        "Profondeurs silencieuses"
+      ],
+      "descriptions": [
+        "Descendez dans les Abîmes : {list}."
+      ]
+    },
+    "brewers_supplies": {
+      "names": [
+        "Fournitures d'alchimiste",
+        "Ingrédients de potion"
+      ],
+      "descriptions": [
+        "L'alchimiste a besoin de produits du Nether : {list}."
+      ]
+    },
+    "leatherworker": {
+      "names": [
+        "Maroquinier",
+        "Commande de tannerie"
+      ],
+      "descriptions": [
+        "La tannerie est débordée : {list}."
+      ]
+    },
+    "copper_age": {
+      "names": [
+        "Âge du cuivre",
+        "Ouvrages en cuivre"
+      ],
+      "descriptions": [
+        "Du cuivre partout : {list}."
+      ]
+    },
+    "nether_builder": {
+      "names": [
+        "Bâtisseur du Nether",
+        "Maçon de forteresse"
+      ],
+      "descriptions": [
+        "Bâtissez comme les piglins : {list}."
+      ]
+    },
+    "stable_hand": {
+      "names": [
+        "Palefrenier",
+        "Ranch équestre"
+      ],
+      "descriptions": [
+        "L'écurie a besoin de bras : {list}."
+      ]
+    },
+    "library_project": {
+      "names": [
+        "Projet de bibliothèque",
+        "Rat de bibliothèque"
+      ],
+      "descriptions": [
+        "Le bibliothécaire a besoin de livres : {list}."
+      ]
+    },
+    "lamplighter": {
+      "names": [
+        "Allumeur de réverbères",
+        "Gardien de phare",
+        "Nuits claires"
+      ],
+      "descriptions": [
+        "Éclairez les chemins avant la nuit : {list}."
+      ]
+    },
+    "glassblower": {
+      "names": [
+        "Souffleur de verre",
+        "Verrerie",
+        "Vue dégagée"
+      ],
+      "descriptions": [
+        "Le souffleur de verre n'a plus de sable : {list}."
+      ]
+    },
+    "potter": {
+      "names": [
+        "Tour de potier",
+        "Travail de l'argile",
+        "Jour de cuisson"
+      ],
+      "descriptions": [
+        "Le four du potier attend : {list}."
+      ]
+    },
+    "pet_shop": {
+      "names": [
+        "Animalerie",
+        "Amis des bêtes",
+        "Soins des animaux"
+      ],
+      "descriptions": [
+        "L'animalerie cherche de nouveaux amis : {list}."
+      ]
+    },
+    "mushroom_forager": {
+      "names": [
+        "Cueilleur de champignons",
+        "Chasse aux champignons",
+        "Saison des spores"
+      ],
+      "descriptions": [
+        "Le cuisinier veut des champignons : {list}."
+      ]
+    },
+    "cave_garden": {
+      "names": [
+        "Jardin souterrain",
+        "Cavernes luxuriantes",
+        "Verdure souterraine"
+      ],
+      "descriptions": [
+        "Quelque chose pousse sous terre : {list}."
+      ]
+    },
+    "rock_collector": {
+      "names": [
+        "Collectionneur de roches",
+        "Maître carrier",
+        "Étude des roches"
+      ],
+      "descriptions": [
+        "Le géologue veut des échantillons : {list}."
+      ]
+    },
+    "diamond_smith": {
+      "names": [
+        "Forgeron de diamant",
+        "Maître forgeron",
+        "Équipement étincelant"
+      ],
+      "descriptions": [
+        "Seul le meilleur fera l'affaire : {list}."
+      ]
+    },
+    "bake_sale": {
+      "names": [
+        "Vente de pâtisseries",
+        "Bec sucré",
+        "Étal du marché"
+      ],
+      "descriptions": [
+        "La vente de pâtisseries du village a besoin de vous : {list}."
+      ]
+    },
+    "nether_gardener": {
+      "names": [
+        "Jardinier du Nether",
+        "Bosquet fongique",
+        "Récolte carmin"
+      ],
+      "descriptions": [
+        "Même le Nether a son jardin : {list}."
+      ]
+    },
+    "camp_setup": {
+      "names": [
+        "Installation du camp",
+        "Camp de base",
+        "Camp de nuit"
+      ],
+      "descriptions": [
+        "Installez le camp avant la nuit : {list}."
+      ]
+    },
+    "workshop_setup": {
+      "names": [
+        "Installation de l'atelier",
+        "Nouvel atelier",
+        "Coin bricolage"
+      ],
+      "descriptions": [
+        "Chaque village a besoin d'un atelier : {list}."
+      ]
+    },
+    "adventurers_kit": {
+      "names": [
+        "Kit d'aventurier",
+        "Prêt à partir",
+        "Équipement de voyage"
+      ],
+      "descriptions": [
+        "Préparez vos bagages : {list}."
+      ]
+    },
+    "treasure_hunter": {
+      "names": [
+        "Chasseur de trésors",
+        "Richesses profondes",
+        "Chercheur de gemmes"
+      ],
+      "descriptions": [
+        "Les richesses dorment sous terre : {list}."
+      ]
+    },
+    "fd_farmers_market": {
+      "names": [
+        "Marché fermier",
+        "Jour de marché",
+        "Produits frais"
+      ],
+      "descriptions": [
+        "Le marché a besoin de produits frais : {list}."
+      ]
+    },
+    "fd_harvest_festival": {
+      "names": [
+        "Fête des moissons",
+        "Temps des récoltes"
+      ],
+      "descriptions": [
+        "Rentrez la récolte ! {list}."
+      ]
+    },
+    "fd_chefs_special": {
+      "names": [
+        "Spécialité du chef",
+        "Coup de feu",
+        "Service du soir"
+      ],
+      "descriptions": [
+        "Au menu ce soir : {list}."
+      ]
+    },
+    "fd_butcher": {
+      "names": [
+        "Commande du boucher",
+        "Marché de la viande"
+      ],
+      "descriptions": [
+        "Le boucher a besoin d'aide : {list}."
+      ]
+    },
+    "fd_kitchen_setup": {
+      "names": [
+        "Installation de cuisine",
+        "Nouvelle cuisine"
+      ],
+      "descriptions": [
+        "Tout cuisinier a besoin d'ustensiles : {list}."
+      ]
+    },
+    "fd_wild_forager": {
+      "names": [
+        "Cueilleur sauvage",
+        "Balade du cueilleur"
+      ],
+      "descriptions": [
+        "Fouillez la nature : {list}."
+      ]
+    },
+    "fd_village_bakery": {
+      "names": [
+        "Boulangerie du village",
+        "Pain frais"
+      ],
+      "descriptions": [
+        "La boulangerie manque de bras : {list}."
+      ]
+    },
+    "fd_breakfast_club": {
+      "names": [
+        "Club du petit-déjeuner",
+        "Menu du matin"
+      ],
+      "descriptions": [
+        "Le petit-déjeuner est servi : {list}."
+      ]
+    },
+    "fd_picnic": {
+      "names": [
+        "Panier de pique-nique",
+        "Jour de pique-nique"
+      ],
+      "descriptions": [
+        "Préparez le panier de pique-nique : {list}."
+      ]
+    },
+    "fd_rope_maker": {
+      "names": [
+        "Cordier",
+        "Travail de la paille"
+      ],
+      "descriptions": [
+        "Tressez la paille en quelque chose d'utile : {list}."
+      ]
+    },
+    "fd_crate_stock": {
+      "names": [
+        "Stock de caisses",
+        "Garde-manger"
+      ],
+      "descriptions": [
+        "Remplissez le garde-manger : {list}."
+      ]
+    },
+    "fd_fishmonger": {
+      "names": [
+        "Poissonnier",
+        "Marché aux poissons"
+      ],
+      "descriptions": [
+        "Le poissonnier a besoin de marchandise : {list}."
+      ]
+    },
+    "create_zinc_rush": {
+      "names": [
+        "Ruée vers le zinc",
+        "Stock de zinc",
+        "Prospecteur de zinc"
+      ],
+      "descriptions": [
+        "L'atelier tourne au zinc : {list}."
+      ]
+    },
+    "create_first_steps": {
+      "names": [
+        "Débuts de l'ingénieur",
+        "Première machine",
+        "En route les engrenages"
+      ],
+      "descriptions": [
+        "Toute machine commence petite : {list}."
+      ]
+    },
+    "create_water_mill": {
+      "names": [
+        "Moulin à eau",
+        "Travaux du moulin"
+      ],
+      "descriptions": [
+        "Construisez un moulin près de la rivière : {list}."
+      ]
+    },
+    "create_stone_layers": {
+      "names": [
+        "Strates rocheuses",
+        "Strates profondes",
+        "Étude des roches"
+      ],
+      "descriptions": [
+        "Étudiez les strates rocheuses souterraines : {list}."
+      ]
+    },
+    "create_metalworks": {
+      "names": [
+        "Métallurgie",
+        "Fer et zinc",
+        "Commande de fonderie"
+      ],
+      "descriptions": [
+        "La fonderie a besoin de métal : {list}."
+      ]
+    },
+    "create_logistics_line": {
+      "names": [
+        "Ligne logistique",
+        "Installation de convoyeurs"
+      ],
+      "descriptions": [
+        "Déplacez les objets automatiquement : {list}."
+      ]
+    },
+    "create_contraption_crew": {
+      "names": [
+        "Équipe des machines",
+        "Pièces mobiles"
+      ],
+      "descriptions": [
+        "Construisez quelque chose qui bouge : {list}."
+      ]
+    },
+    "create_masonry_works": {
+      "names": [
+        "Maçonnerie en strates",
+        "Atelier de pierre"
+      ],
+      "descriptions": [
+        "Décorez avec la pierre de Create : {list}."
+      ]
+    },
+    "create_andesite_age": {
+      "names": [
+        "Âge de l'andésite",
+        "Fonderie d'alliage"
+      ],
+      "descriptions": [
+        "Tout commence par l'andésite : {list}."
+      ]
+    },
+    "create_engineers_kit": {
+      "names": [
+        "Kit d'ingénieur",
+        "Outils d'atelier"
+      ],
+      "descriptions": [
+        "Tout ingénieur a besoin d'équipement : {list}."
+      ]
+    },
+    "mek_osmium_rush": {
+      "names": [
+        "Ruée vers l'osmium",
+        "Métal bleu",
+        "Stock d'osmium"
+      ],
+      "descriptions": [
+        "Toute machine Mekanism a besoin d'osmium : {list}."
+      ]
+    },
+    "mek_first_machine": {
+      "names": [
+        "Première machine",
+        "Montage de l'infuseur",
+        "Débuts techniques"
+      ],
+      "descriptions": [
+        "Lancez l'atelier : {list}."
+      ]
+    },
+    "mek_metal_survey": {
+      "names": [
+        "Étude des métaux",
+        "Étude des minerais",
+        "Nouveaux métaux"
+      ],
+      "descriptions": [
+        "Cartographiez les nouveaux minerais souterrains : {list}."
+      ]
+    },
+    "mek_radiation_safety": {
+      "names": [
+        "Sécurité radiologique",
+        "Préparation anti-radiations",
+        "Blindage en plomb"
+      ],
+      "descriptions": [
+        "Soyez prêt avant que ça brille : {list}."
+      ]
+    },
+    "tf_expedition": {
+      "names": [
+        "Expédition crépusculaire",
+        "Vers le Crépuscule",
+        "La forêt au-delà"
+      ],
+      "descriptions": [
+        "La Forêt du Crépuscule vous attend : {list}."
+      ]
+    },
+    "tf_hunters": {
+      "names": [
+        "Chasse crépusculaire",
+        "Patrouille forestière",
+        "Ennuis de gobelins"
+      ],
+      "descriptions": [
+        "Dégagez les chemins de la Forêt du Crépuscule : {list}."
+      ]
+    },
+    "tf_ironwood_smith": {
+      "names": [
+        "Forgeron du bois de fer",
+        "Métal vivant",
+        "Racine et fer"
+      ],
+      "descriptions": [
+        "Le bois de fer naît des racines et du fer : {list}."
+      ]
+    },
+    "tf_venison_feast": {
+      "names": [
+        "Festin de gibier",
+        "Souper du chasseur"
+      ],
+      "descriptions": [
+        "Le souper vient des bois du Crépuscule : {list}."
+      ]
+    },
+    "bot_first_steps": {
+      "names": [
+        "Débuts du botaniste",
+        "Magie du jardin",
+        "Pouvoir des fleurs"
+      ],
+      "descriptions": [
+        "Tout botaniste commence dans une prairie : {list}."
+      ]
+    },
+    "bot_florist": {
+      "names": [
+        "Fleuriste",
+        "Bouquet",
+        "Cueilleur de pétales"
+      ],
+      "descriptions": [
+        "Le fleuriste veut de la couleur : {list}."
+      ]
+    },
+    "ae2_meteor_hunt": {
+      "names": [
+        "Chasse aux météorites",
+        "Étoile tombée",
+        "Pierre de ciel"
+      ],
+      "descriptions": [
+        "Une météorite est tombée non loin : {list}."
+      ]
+    },
+    "ae2_engineer": {
+      "names": [
+        "Ingénieur réseau",
+        "Tout câblé",
+        "De la matière à l'énergie"
+      ],
+      "descriptions": [
+        "Tout réseau commence sur un établi : {list}."
+      ]
+    },
+    "ie_prospector": {
+      "names": [
+        "Prospecteur",
+        "Étude des minerais",
+        "Ingénieur de terrain"
+      ],
+      "descriptions": [
+        "Un ingénieur a besoin de métal avant les machines : {list}."
+      ]
+    },
+    "ie_workshop_setup": {
+      "names": [
+        "Installation de l'atelier",
+        "L'heure du marteau",
+        "Briques et fer"
+      ],
+      "descriptions": [
+        "Installez l'atelier : {list}."
+      ]
+    },
+    "bop_explorer": {
+      "names": [
+        "Globe-trotteur",
+        "Tant à voir",
+        "Envie d'ailleurs"
+      ],
+      "descriptions": [
+        "Le monde s'est agrandi : {list}."
+      ]
+    },
+    "bop_florist": {
+      "names": [
+        "Bouquet sauvage",
+        "Couleurs des prés",
+        "Chasse aux fleurs"
+      ],
+      "descriptions": [
+        "Cueillez les fleurs sauvages : {list}."
+      ]
+    },
+    "bop_carpenter": {
+      "names": [
+        "Charpentier exotique",
+        "Bois de qualité"
+      ],
+      "descriptions": [
+        "Du bois exotique pour l'atelier : {list}."
+      ]
+    },
+    "am_safari": {
+      "names": [
+        "Safari",
+        "Royaume sauvage",
+        "Vers la nature"
+      ],
+      "descriptions": [
+        "Les animaux sauvages ont beaucoup à offrir : {list}."
+      ]
+    },
+    "am_hunter": {
+      "names": [
+        "Gros gibier",
+        "Super-prédateur",
+        "Patrouille anti-prédateurs"
+      ],
+      "descriptions": [
+        "Des bêtes dangereuses rôdent : {list}."
+      ]
+    },
+    "tc_tinker": {
+      "names": [
+        "Apprenti bricoleur",
+        "Établi du bricoleur",
+        "Modèles et pièces"
+      ],
+      "descriptions": [
+        "Tout bricoleur commence par un modèle : {list}."
+      ]
+    },
+    "tc_smelter": {
+      "names": [
+        "Bâtisseur de fonderie",
+        "Fondu et prêt",
+        "Projets en fusion"
+      ],
+      "descriptions": [
+        "Une fonderie se bâtit brique par brique : {list}."
+      ]
+    },
+    "an_apprentice": {
+      "names": [
+        "Apprenti mage",
+        "Premiers sorts",
+        "Études arcaniques"
+      ],
+      "descriptions": [
+        "Tout mage commence par un grimoire : {list}."
+      ]
+    },
+    "an_woodland": {
+      "names": [
+        "Bosquet d'Archwood",
+        "Bois magiques"
+      ],
+      "descriptions": [
+        "La forêt d'Archwood cache plus que du bois : {list}."
+      ]
+    }
+  },
+  "tagNouns": {
+    "logs": "bûche",
+    "logs_block": "bûche",
+    "skeletons": "squelette",
+    "wool": "laine",
+    "beds": "lit",
+    "small_flowers": "fleur",
+    "iron_ingots": "lingot de fer",
+    "zinc_ingots": "lingot de zinc",
+    "wool_carpets": "tapis",
+    "fishes": "poisson",
+    "tomatoes": "tomate",
+    "osmium_ingots": "lingot d'osmium",
+    "tin_ingots": "lingot d'étain",
+    "lead_ingots": "lingot de plomb"
+  },
+  "hints": {
+    "Chop any kind of tree.": "Abattez n'importe quel arbre.",
+    "Plant saplings to regrow the forest.": "Plantez des pousses pour faire repousser la forêt.",
+    "Smelt logs in a furnace.": "Faites cuire des bûches dans un fourneau.",
+    "Mine stone with a pickaxe.": "Minez de la roche avec une pioche.",
+    "Build something with it.": "Construisez quelque chose avec.",
+    "Smelt cobblestone in a furnace.": "Faites cuire des pierres dans un fourneau.",
+    "Smelt stone a second time.": "Faites cuire la roche une seconde fois.",
+    "Craft from smelted stone.": "Se fabrique à partir de roche cuite.",
+    "Smelt cobbled deepslate.": "Faites cuire des pierres des abîmes.",
+    "Smelt sandstone.": "Faites cuire du grès.",
+    "Dig sand with a shovel.": "Creusez du sable avec une pelle.",
+    "Smelt sand in a furnace.": "Faites fondre du sable dans un fourneau.",
+    "Craft panes from smelted glass.": "Fabriquez des vitres avec du verre fondu.",
+    "Gravel sometimes drops flint.": "Le gravier donne parfois du silex.",
+    "Dig clay in rivers and swamps.": "Creusez de l'argile dans les rivières et les marais.",
+    "Smelt clay balls.": "Faites cuire des mottes d'argile.",
+    "Smelt clay blocks.": "Faites cuire des blocs d'argile.",
+    "Four bricks make a brick block.": "Quatre briques font un bloc de briques.",
+    "Dig snow with a shovel.": "Creusez de la neige avec une pelle.",
+    "Break tall grass anywhere.": "Cassez des hautes herbes n'importe où.",
+    "Break grass to find seeds.": "Cassez des herbes pour trouver des graines.",
+    "Mine coal ore.": "Minez du minerai de charbon.",
+    "Copper ore drops raw copper.": "Le minerai de cuivre donne du cuivre brut.",
+    "Smelt raw copper in a furnace.": "Faites fondre du cuivre brut dans un fourneau.",
+    "Iron ore drops raw iron.": "Le minerai de fer donne du fer brut.",
+    "Smelt raw iron in a furnace.": "Faites fondre du fer brut dans un fourneau.",
+    "Gold ore drops raw gold.": "Le minerai d'or donne de l'or brut.",
+    "Smelt raw gold in a furnace.": "Faites fondre de l'or brut dans un fourneau.",
+    "Lapis ore drops several pieces.": "Le minerai de lapis-lazuli en donne plusieurs.",
+    "Redstone ore drops dust.": "Le minerai de redstone donne de la poudre.",
+    "Dig deep, around y=-58.": "Creusez profond, vers y=-58.",
+    "Break amethyst clusters.": "Cassez des amas d'améthyste.",
+    "Pour water on lava pools, then mine it.": "Versez de l'eau sur des lacs de lave, puis minez.",
+    "Harvest fully grown wheat.": "Récoltez du blé arrivé à maturité.",
+    "Nine wheat make a hay bale.": "Neuf blés font une botte de paille.",
+    "Bake potatoes in a furnace or smoker.": "Faites cuire des pommes de terre au fourneau ou au fumoir.",
+    "Six beetroots make a soup.": "Six betteraves font une soupe.",
+    "Pumpkin, sugar and an egg.": "Citrouille, sucre et un œuf.",
+    "Oak and dark oak leaves sometimes drop apples.": "Les feuilles de chêne et de chêne noir donnent parfois des pommes.",
+    "Three sugar cane make three paper.": "Trois cannes à sucre font trois papiers.",
+    "Smelt cactus.": "Faites cuire des cactus.",
+    "Bamboo and string.": "Bambou et ficelle.",
+    "Smelt kelp.": "Faites sécher des algues au fourneau.",
+    "A bowl with a red and a brown mushroom.": "Un bol avec un champignon rouge et un champignon brun.",
+    "Pick flowers.": "Cueillez des fleurs.",
+    "Shear a full bee nest.": "Tondez un nid d'abeilles plein.",
+    "Use a glass bottle on a full hive.": "Utilisez une fiole sur une ruche pleine.",
+    "Bees breed with flowers.": "Les abeilles se reproduisent avec des fleurs.",
+    "Cows breed with wheat.": "Les vaches se reproduisent avec du blé.",
+    "Cook raw beef.": "Faites cuire du bœuf cru.",
+    "Pigs breed with carrots, potatoes or beetroots.": "Les cochons se reproduisent avec carottes, pommes de terre ou betteraves.",
+    "Cook raw porkchops.": "Faites cuire des côtelettes de porc crues.",
+    "Chickens breed with seeds.": "Les poules se reproduisent avec des graines.",
+    "Chickens lay eggs over time.": "Les poules pondent des œufs avec le temps.",
+    "Cook raw chicken.": "Faites cuire du poulet cru.",
+    "Sheep breed with wheat.": "Les moutons se reproduisent avec du blé.",
+    "Shear sheep.": "Tondez des moutons.",
+    "Rabbits breed with carrots or dandelions.": "Les lapins se reproduisent avec des carottes ou des pissenlits.",
+    "Goats breed with wheat.": "Les chèvres se reproduisent avec du blé.",
+    "Llamas breed with hay bales.": "Les lamas se reproduisent avec des bottes de paille.",
+    "Turtles breed with seagrass.": "Les tortues se reproduisent avec de l'herbe aquatique.",
+    "Frogs breed with slimeballs.": "Les grenouilles se reproduisent avec des boules de slime.",
+    "Sneak up on foxes with sweet berries.": "Approchez les renards accroupi avec des baies sucrées.",
+    "Armadillos breed with spider eyes.": "Les tatous se reproduisent avec des yeux d'araignée.",
+    "Camels breed with cactus.": "Les dromadaires se reproduisent avec des cactus.",
+    "Horses breed with golden carrots or apples.": "Les chevaux se reproduisent avec des carottes dorées ou des pommes.",
+    "Donkeys breed with golden carrots or apples.": "Les ânes se reproduisent avec des carottes dorées ou des pommes.",
+    "Tame wolves with bones.": "Apprivoisez les loups avec des os.",
+    "Tamed wolves breed with meat.": "Les loups apprivoisés se reproduisent avec de la viande.",
+    "Tame stray cats with raw cod or salmon.": "Apprivoisez les chats errants avec de la morue ou du saumon cru.",
+    "Tamed cats breed with raw fish.": "Les chats apprivoisés se reproduisent avec du poisson cru.",
+    "Tame parrots with seeds.": "Apprivoisez les perroquets avec des graines.",
+    "Squid drop ink sacs.": "Les poulpes donnent des poches d'encre.",
+    "Glow squid live in dark water.": "Les poulpes luisants vivent dans les eaux sombres.",
+    "Skeletons drop arrows.": "Les squelettes donnent des flèches.",
+    "Five gunpowder and four sand.": "Cinq poudres à canon et quatre sables.",
+    "Coal or charcoal on a stick.": "Du charbon ou du charbon de bois sur un bâton.",
+    "Build with oak planks.": "Construisez avec des planches de chêne.",
+    "Three wheat make a loaf.": "Trois blés font un pain.",
+    "Wheat and cocoa beans.": "Du blé et des fèves de cacao.",
+    "Needs milk, sugar, wheat and an egg.": "Il faut du lait, du sucre, du blé et un œuf.",
+    "Each shelf needs three books.": "Chaque bibliothèque demande trois livres.",
+    "Flint, stick and feather.": "Silex, bâton et plume.",
+    "Build a railway.": "Construisez une voie ferrée.",
+    "Milk a cow with a bucket.": "Traiez une vache avec un seau.",
+    "Three wool and three planks.": "Trois laines et trois planches.",
+    "Smelt netherrack.": "Faites cuire de la netherrack.",
+    "They attack as a group once angered.": "Une fois en colère, ils attaquent en groupe.",
+    "Blaze powder and an ender pearl.": "De la poudre de Blaze et une perle de l'Ender.",
+    "Nine copper ingots.": "Neuf lingots de cuivre.",
+    "Four copper blocks make four cut copper.": "Quatre blocs de cuivre donnent quatre cuivres taillés.",
+    "Watch it oxidize over time.": "Regardez-le s'oxyder avec le temps.",
+    "Cobblestone with vines or moss.": "Des pierres avec des lianes ou de la mousse.",
+    "Stone bricks with vines or moss.": "De la pierre taillée avec des lianes ou de la mousse.",
+    "Smelt stone bricks.": "Faites cuire de la pierre taillée.",
+    "Three smooth stone make six slabs.": "Trois roches lisses font six dalles.",
+    "Mud and wheat.": "De la boue et du blé.",
+    "Four red sand.": "Quatre sables rouges.",
+    "Terracotta around white dye.": "De la terre cuite autour de teinture blanche.",
+    "Smelt white terracotta.": "Faites cuire de la terre cuite blanche.",
+    "Four snowballs.": "Quatre boules de neige.",
+    "Cut them with a sword or shears.": "Coupez-les avec une épée ou des cisailles.",
+    "Move quietly: the warden listens.": "Restez discret : le Warden écoute.",
+    "Sunflower plains are full of them.": "Les plaines de tournesols en sont pleines.",
+    "From poppies, tulips or beetroot.": "À partir de coquelicots, de tulipes ou de betteraves.",
+    "From dandelions or sunflowers.": "À partir de pissenlits ou de tournesols.",
+    "From bone meal or lilies of the valley.": "À partir de poudre d'os ou de muguet.",
+    "From cornflowers or lapis lazuli.": "À partir de bleuets ou de lapis-lazuli.",
+    "From ink sacs or wither roses.": "À partir de poches d'encre ou de roses de Wither.",
+    "One bone makes three bone meal.": "Un os donne trois poudres d'os.",
+    "Leaves and dead bushes drop sticks.": "Les feuilles et les buissons morts donnent des bâtons.",
+    "Mooshrooms breed with wheat.": "Les mooshrooms se reproduisent avec du blé.",
+    "Pandas breed with bamboo near bamboo.": "Les pandas se reproduisent avec du bambou, près de bambous.",
+    "Axolotls breed with a bucket of tropical fish.": "Les axolotls se reproduisent avec un poisson tropical dans un seau.",
+    "Ocelots breed with raw cod or salmon.": "Les ocelots se reproduisent avec de la morue ou du saumon cru.",
+    "Striders breed with warped fungus.": "Les arpenteurs se reproduisent avec des champignons biscornus.",
+    "Hoglins breed with crimson fungus; they fight back.": "Les hoglins se reproduisent avec des champignons carmin ; ils se défendent.",
+    "Golden apples can be eaten any time.": "Les pommes dorées se mangent à tout moment.",
+    "Baby turtles drop a scute when they grow up.": "Les bébés tortues laissent une écaille en grandissant.",
+    "They hide in infested stone in mountains and strongholds.": "Ils se cachent dans la roche infestée des montagnes et des forts.",
+    "Piglins attack players without gold armor.": "Les piglins attaquent les joueurs sans armure en or.",
+    "Nether gold ore drops gold nuggets.": "Le minerai d'or du Nether donne des pépites d'or.",
+    "Fossils in soul sand valleys.": "Des fossiles dans les vallées des âmes.",
+    "Four Nether brick items.": "Quatre briques du Nether.",
+    "Nether bricks and Nether wart.": "Des briques du Nether et des verrues du Nether.",
+    "Four Nether quartz.": "Quatre quartz du Nether.",
+    "One blaze rod makes two powder.": "Un bâton de Blaze donne deux poudres.",
+    "31 iron ingots.": "31 lingots de fer.",
+    "Needs a blaze rod from a Nether fortress.": "Il faut un bâton de Blaze d'une forteresse du Nether.",
+    "String and a slimeball.": "De la ficelle et une boule de slime.",
+    "Gold ingots, a stick and redstone.": "Des lingots d'or, un bâton et de la redstone.",
+    "Spider eye, sugar and a brown mushroom.": "Œil d'araignée, sucre et un champignon brun.",
+    "Two wool make three carpets.": "Deux laines font trois tapis.",
+    "Crafted from sugar cane.": "Se fabrique à partir de canne à sucre.",
+    "Dry wet sponges from ocean monuments.": "Faites sécher des éponges mouillées des monuments sous-marins.",
+    "Nine iron ingots.": "Neuf lingots de fer.",
+    "A stonecutter makes them one for one.": "Un tailleur de pierre les fait un pour un.",
+    "Use a stonecutter on stone.": "Utilisez un tailleur de pierre sur de la roche.",
+    "Cut copper blocks on a stonecutter.": "Taillez des blocs de cuivre au tailleur de pierre.",
+    "Enchant books on an enchanting table; any enchantment counts.": "Enchantez des livres sur une table d'enchantement ; tout enchantement compte.",
+    "Any enchantment counts.": "Tout enchantement compte.",
+    "Shovel snow and throw the snowballs.": "Pelletez de la neige et lancez les boules.",
+    "Chickens lay eggs.": "Les poules pondent des œufs.",
+    "Endermen drop ender pearls.": "Les Endermen donnent des perles de l'Ender.",
+    "Use bone meal on crops or grass.": "Utilisez de la poudre d'os sur des cultures ou de l'herbe.",
+    "Craft rockets from paper and gunpowder.": "Fabriquez des fusées avec du papier et de la poudre à canon.",
+    "Brew an Awkward Potion with sugar.": "Préparez une potion étrange avec du sucre.",
+    "Brew an Awkward Potion with a golden carrot.": "Préparez une potion étrange avec une carotte dorée.",
+    "Brew an Awkward Potion with magma cream.": "Préparez une potion étrange avec de la crème de magma.",
+    "Brew an Awkward Potion with blaze powder.": "Préparez une potion étrange avec de la poudre de Blaze.",
+    "Brew an Awkward Potion with a pufferfish.": "Préparez une potion étrange avec un poisson-globe.",
+    "Cabbage seeds come from wild cabbages on beaches.": "Les graines de chou viennent des choux sauvages des plages.",
+    "Nine cabbages fill a crate.": "Neuf choux remplissent une caisse.",
+    "Tomato seeds come from wild tomatoes in warm, dry biomes.": "Les graines de tomates viennent des tomates sauvages des biomes chauds et secs.",
+    "Nine tomatoes fill a crate.": "Neuf tomates remplissent une caisse.",
+    "Onions come from wild onions; replant them.": "Les oignons viennent des oignons sauvages ; replantez-les.",
+    "Nine onions fill a crate.": "Neuf oignons remplissent une caisse.",
+    "Grow rice in shallow water.": "Cultivez du riz en eau peu profonde.",
+    "Wild rice grows in swamps and jungles.": "Le riz sauvage pousse dans les marais et les jungles.",
+    "Nine rice panicles make a bale.": "Neuf panicules de riz font un ballot.",
+    "Wild cabbages grow on beaches.": "Les choux sauvages poussent sur les plages.",
+    "Wild beetroots grow on beaches.": "Les betteraves sauvages poussent sur les plages.",
+    "Wild tomatoes grow in warm, dry biomes.": "Les tomates sauvages poussent dans les biomes chauds et secs.",
+    "Wild onions grow in most overworld biomes.": "Les oignons sauvages poussent dans la plupart des biomes de la Surface.",
+    "Wild carrots grow in most overworld biomes.": "Les carottes sauvages poussent dans la plupart des biomes de la Surface.",
+    "Wild potatoes grow in most overworld biomes.": "Les pommes de terre sauvages poussent dans la plupart des biomes de la Surface.",
+    "Cut grass or ripe wheat with a knife.": "Coupez de l'herbe ou du blé mûr avec un couteau.",
+    "Two straw make four rope.": "Deux pailles font quatre cordes.",
+    "Four straw make a canvas.": "Quatre pailles font une toile.",
+    "Hang rope down a cliff or well.": "Faites descendre une corde d'une falaise ou d'un puits.",
+    "Five iron ingots, bricks, a wooden shovel and water.": "Cinq lingots de fer, des briques, une pelle en bois et de l'eau.",
+    "Bricks, a campfire and iron.": "Des briques, un feu de camp et du fer.",
+    "Oak slabs and trapdoors.": "Des dalles et des trappes en chêne.",
+    "Spruce slabs and trapdoors.": "Des dalles et des trappes en sapin.",
+    "Pigs killed with a knife drop ham.": "Les cochons tués au couteau donnent du jambon.",
+    "Smoke ham in a smoker.": "Fumez du jambon dans un fumoir.",
+    "Cut porkchops on a cutting board, then cook.": "Découpez des côtelettes sur une planche à découper, puis faites cuire.",
+    "Mince beef on a cutting board, then cook.": "Hachez du bœuf sur une planche à découper, puis faites cuire.",
+    "Cut chicken on a cutting board, then cook.": "Découpez du poulet sur une planche à découper, puis faites cuire.",
+    "Cut mutton on a cutting board, then cook.": "Découpez du mouton sur une planche à découper, puis faites cuire.",
+    "Slice cod on a cutting board, then cook.": "Tranchez de la morue sur une planche à découper, puis faites cuire.",
+    "Slice salmon on a cutting board, then cook.": "Tranchez du saumon sur une planche à découper, puis faites cuire.",
+    "Rice, kelp and a carrot.": "Du riz, des algues et une carotte.",
+    "Cook eggs in a furnace or skillet.": "Faites cuire des œufs au fourneau ou à la poêle.",
+    "Bread, a beef patty, cabbage, tomato and onion.": "Du pain, un steak haché, du chou, une tomate et un oignon.",
+    "Apple, melon, berries and a pumpkin slice.": "Une pomme, du melon, des baies et une tranche de citrouille.",
+    "Cabbage, tomato and beetroot in a bowl.": "Du chou, une tomate et une betterave dans un bol.",
+    "Crimson and warped fungi in a bowl.": "Des champignons carmin et biscornus dans un bol.",
+    "Needs a pie crust, apples and sugar.": "Il faut un fond de tarte, des pommes et du sucre.",
+    "Melon slices, ice and a stick.": "Des tranches de melon, de la glace et un bâton.",
+    "Cook it in a Cooking Pot.": "Préparez-le dans une marmite.",
+    "Cook rice in a Cooking Pot.": "Faites cuire du riz dans une marmite.",
+    "Steak, a baked potato, onion and cooked rice.": "Un steak, une pomme de terre cuite, un oignon et du riz cuit.",
+    "Brew it in a Cooking Pot.": "Préparez-le dans une marmite.",
+    "Melon slices, sugar and a glass bottle.": "Des tranches de melon, du sucre et une fiole.",
+    "Pour a milk bucket into glass bottles.": "Versez un seau de lait dans des fioles.",
+    "A feast to share.": "Un festin à partager.",
+    "Wheat with an egg or water.": "Du blé avec un œuf ou de l'eau.",
+    "Bake wheat dough in a furnace.": "Faites cuire de la pâte de blé au fourneau.",
+    "Dirt, rotten flesh, straw and bone meal.": "De la terre, de la chair putréfiée, de la paille et de la poudre d'os.",
+    "Salmon slices and cooked rice.": "Des tranches de saumon et du riz cuit.",
+    "Cod slices and cooked rice.": "Des tranches de morue et du riz cuit.",
+    "Tomato, onion and meat on a stick.": "Une tomate, un oignon et de la viande sur un bâton.",
+    "Place a roast chicken and serve it into a bowl.": "Posez un poulet rôti et servez-le dans un bol.",
+    "Place a shepherd's pie and serve it into a bowl.": "Posez un pâté chinois et servez-le dans un bol.",
+    "Place a glazed ham and serve it into a bowl.": "Posez un jambon glacé et servez-le dans un bol.",
+    "Made from rope.": "Se fabrique avec de la corde.",
+    "It slowly turns into rich soil.": "Il se transforme lentement en terre fertile.",
+    "Zinc ore drops raw zinc.": "Le minerai de zinc donne du zinc brut.",
+    "Smelt raw zinc in a furnace.": "Faites fondre du zinc brut dans un fourneau.",
+    "Cut limestone on a stonecutter, then build.": "Taillez du calcaire au tailleur de pierre, puis construisez.",
+    "Cut asurine on a stonecutter, then build.": "Taillez de l'asurine au tailleur de pierre, puis construisez.",
+    "Cut crimsite on a stonecutter, then build.": "Taillez de la crimsite au tailleur de pierre, puis construisez.",
+    "Cut limestone on a stonecutter.": "Taillez du calcaire au tailleur de pierre.",
+    "Cut asurine on a stonecutter.": "Taillez de l'asurine au tailleur de pierre.",
+    "Cut granite on a stonecutter.": "Taillez du granite au tailleur de pierre.",
+    "Cut diorite on a stonecutter.": "Taillez de la diorite au tailleur de pierre.",
+    "Cut andesite on a stonecutter.": "Taillez de l'andésite au tailleur de pierre.",
+    "Cut tuff on a stonecutter.": "Taillez du tuf au tailleur de pierre.",
+    "Two andesite and two iron nuggets.": "Deux andésites et deux pépites de fer.",
+    "Use andesite alloy on stripped logs to make casings.": "Utilisez de l'alliage d'andésite sur des bûches écorcées pour faire des boîtiers.",
+    "Five andesite alloy.": "Cinq alliages d'andésite.",
+    "Two andesite alloy make eight shafts.": "Deux alliages d'andésite font huit rotors.",
+    "A shaft and wooden planks.": "Un rotor et des planches.",
+    "Four cogwheels and an andesite casing.": "Quatre roues dentées et un boîtier d'andésite.",
+    "A shaft surrounded by planks.": "Un rotor entouré de planches.",
+    "Andesite alloy, sticks and wool.": "De l'alliage d'andésite, des bâtons et de la laine.",
+    "A cogwheel, stone and an andesite casing.": "Une roue dentée, de la roche et un boîtier d'andésite.",
+    "Six dried kelp.": "Six algues séchées.",
+    "Andesite alloy and dried kelp.": "De l'alliage d'andésite et des algues séchées.",
+    "An iron block, a shaft and an andesite casing.": "Un bloc de fer, un rotor et un boîtier d'andésite.",
+    "Needs a whisk made from iron sheets.": "Il faut un fouet fait de plaques de fer.",
+    "Needs a propeller made from iron sheets.": "Il faut une hélice faite de plaques de fer.",
+    "Needs golden sheets from a press.": "Il faut des plaques d'or faites à la presse.",
+    "Needs a golden sheet from a press.": "Il faut une plaque d'or faite à la presse.",
+    "White wool on a wooden slab.": "De la laine blanche sur une dalle en bois.",
+    "Made with a mixer and a press.": "Se fabrique avec un mixeur et une presse.",
+    "Fill apples with honey using a spout.": "Remplissez des pommes de miel avec un bec verseur.",
+    "Brewed by a mixer, bottled by a spout.": "Préparé au mixeur, mis en bouteille au bec verseur.",
+    "Fill bread with milk using a spout.": "Remplissez du pain de lait avec un bec verseur.",
+    "Nether quartz and eight redstone dust.": "Du quartz du Nether et huit poudres de redstone.",
+    "Andesite alloy and logs.": "De l'alliage d'andésite et des bûches.",
+    "Andesite alloy and planks.": "De l'alliage d'andésite et des planches.",
+    "Nine andesite alloy.": "Neuf alliages d'andésite.",
+    "A clock in an andesite casing.": "Une horloge dans un boîtier d'andésite.",
+    "Iron sheets and netherrack.": "Des plaques de fer et de la netherrack.",
+    "Polish limestone on a stonecutter, then build.": "Polissez du calcaire au tailleur de pierre, puis construisez.",
+    "Osmium ore drops raw osmium.": "Le minerai d'osmium donne de l'osmium brut.",
+    "Smelt raw osmium in a furnace.": "Faites fondre de l'osmium brut dans un fourneau.",
+    "Tin ore drops raw tin.": "Le minerai d'étain donne de l'étain brut.",
+    "Smelt raw tin in a furnace.": "Faites fondre de l'étain brut dans un fourneau.",
+    "Lead ore drops raw lead.": "Le minerai de plomb donne du plomb brut.",
+    "Smelt raw lead in a furnace.": "Faites fondre du plomb brut dans un fourneau.",
+    "Smelt raw uranium in a furnace.": "Faites fondre de l'uranium brut dans un fourneau.",
+    "Fluorite ore drops two to four gems.": "Le minerai de fluorite donne deux à quatre gemmes.",
+    "Salt forms in small patches under shallow water, like clay.": "Le sel forme de petites plaques sous l'eau peu profonde, comme l'argile.",
+    "Salt blocks drop salt.": "Les blocs de sel donnent du sel.",
+    "Iron, osmium, redstone and two furnaces: the first Mekanism machine.": "Du fer, de l'osmium, de la redstone et deux fourneaux : la première machine Mekanism.",
+    "An osmium ingot over five glass panes.": "Un lingot d'osmium au-dessus de cinq vitres.",
+    "Four tin ingots around a bowl.": "Quatre lingots d'étain autour d'un bol.",
+    "Four lead ingots around redstone.": "Quatre lingots de plomb autour de redstone.",
+    "Five lead ingots and orange dye.": "Cinq lingots de plomb et de la teinture orange.",
+    "Nine charcoal.": "Neuf charbons de bois.",
+    "Nine tin ingots.": "Neuf lingots d'étain.",
+    "Nine lead ingots.": "Neuf lingots de plomb.",
+    "Steel ingots around a bucket; steel comes from the Metallurgic Infuser.": "Des lingots d'acier autour d'un seau ; l'acier vient de l'infuseur métallurgique.",
+    "Steel ingots around an iron ingot; steel comes from the Metallurgic Infuser.": "Des lingots d'acier autour d'un lingot de fer ; l'acier vient de l'infuseur métallurgique.",
+    "A steel casing, basic control circuits, redstone and lava buckets.": "Un boîtier en acier, des circuits de contrôle de base, de la redstone et des seaux de lave.",
+    "Steel comes from the metallurgic infuser: infuse iron with carbon twice.": "L'acier vient de l'infuseur métallurgique : infusez deux fois du carbone dans du fer.",
+    "A steel casing, basic alloys and a basic control circuit.": "Un boîtier en acier, des alliages de base et un circuit de contrôle de base.",
+    "A steel casing, basic alloys, glass and a basic control circuit.": "Un boîtier en acier, des alliages de base, du verre et un circuit de contrôle de base.",
+    "Iron, an osmium ingot and a steel ingot.": "Du fer, un lingot d'osmium et un lingot d'acier.",
+    "Throw a diamond into a two-by-two pool of water ringed with flowers or grass.": "Jetez un diamant dans un bassin d'eau de 2×2 entouré de fleurs ou d'herbe.",
+    "Darkwood grows in the gloomy Dark Forest.": "Le bois sombre pousse dans la lugubre Forêt Sombre.",
+    "One twilight oak log makes four planks.": "Une bûche de bois du Crépuscule donne quatre planches.",
+    "Twilight mangroves stand in the swamps.": "Les palétuviers du Crépuscule se dressent dans les marais.",
+    "One canopy log makes four planks.": "Une bûche de canopée donne quatre planches.",
+    "One darkwood log makes four planks.": "Une bûche de bois sombre donne quatre planches.",
+    "Five twilight oak planks.": "Cinq planches de chêne du Crépuscule.",
+    "Six canopy planks and three books.": "Six planches de canopée et trois livres.",
+    "Ripe torchberries hang from cave ceilings in the Twilight Forest.": "Les baies-torches mûres pendent au plafond des grottes de la Forêt du Crépuscule.",
+    "Liveroot grows in the root tangles underground; break it without Silk Touch.": "La racine vivante pousse dans les racines enchevêtrées sous terre ; cassez-la sans Toucher de soie.",
+    "Forest ravens drop feathers.": "Les corbeaux de la forêt donnent des plumes.",
+    "Mushglooms glow in the Mushroom Forest.": "Les champignons lumineux brillent dans la Forêt de Champignons.",
+    "Deer drop venison.": "Les cerfs donnent du chevreuil.",
+    "Cook raw venison in a furnace, smoker or campfire.": "Faites cuire du chevreuil cru au fourneau, au fumoir ou au feu de camp.",
+    "Deer breed with wheat.": "Les cerfs se reproduisent avec du blé.",
+    "Boars breed like pigs: carrots, potatoes or beetroots.": "Les sangliers se reproduisent comme les cochons : carottes, pommes de terre ou betteraves.",
+    "Bighorn sheep breed with wheat.": "Les mouflons se reproduisent avec du blé.",
+    "Kobolds roam the Twilight Forest in packs.": "Les kobolds parcourent la Forêt du Crépuscule en bande.",
+    "Redcaps lurk around the hollow hills.": "Les bonnets rouges rôdent autour des collines creuses.",
+    "Skeleton druids haunt the swamps and forests.": "Les squelettes druides hantent les marais et les forêts.",
+    "Hedge spiders hide in hedge mazes.": "Les araignées des haies se cachent dans les labyrinthes de haies.",
+    "Swarm spiders pour out of hedge mazes.": "Les araignées d'essaim sortent en masse des labyrinthes de haies.",
+    "Slime beetles crawl through the Twilight Forest at night.": "Les coléoptères visqueux rampent la nuit dans la Forêt du Crépuscule.",
+    "Fire beetles crawl through the Twilight Forest at night.": "Les coléoptères de feu rampent la nuit dans la Forêt du Crépuscule.",
+    "Pinch beetles crawl through the Twilight Forest at night.": "Les coléoptères pinceurs rampent la nuit dans la Forêt du Crépuscule.",
+    "Minotaurs guard the labyrinths below the swamp.": "Les minotaures gardent les labyrinthes sous le marais.",
+    "The Naga coils in a stone courtyard in the forest.": "Le Nâga se love dans une cour de pierre en forêt.",
+    "Dropped by the Naga.": "Lâché par le Nâga.",
+    "The Lich rules the tallest tower.": "La Liche règne sur la plus haute tour.",
+    "Minotaurs in the labyrinths drop meef.": "Les minotaures des labyrinthes donnent de la viande de Meef.",
+    "Cook raw meef in a furnace, smoker or campfire.": "Faites cuire de la viande de Meef crue au fourneau, au fumoir ou au feu de camp.",
+    "Liveroot, raw iron and a gold nugget.": "De la racine vivante, du fer brut et une pépite d'or.",
+    "Smelt raw ironwood in a furnace.": "Faites fondre des matériaux en bois de fer dans un fourneau.",
+    "A raven feather, torchberries and glowstone dust.": "Une plume de corbeau, des baies-torches et de la poudre lumineuse.",
+    "A magic map focus surrounded by paper.": "Un foyer de carte magique entouré de papier.",
+    "Mystical flowers grow in forests, plains and meadows.": "Les fleurs mystiques poussent dans les forêts, les plaines et les prairies.",
+    "One mystical flower makes two petals.": "Une fleur mystique donne deux pétales.",
+    "Nine mystical white petals.": "Neuf pétales mystiques blancs.",
+    "Nine mystical red petals.": "Neuf pétales mystiques rouges.",
+    "Mossy cobblestone around a mystical petal.": "Des pierres moussues autour d'un pétale mystique.",
+    "A book and any sapling.": "Un livre et n'importe quelle pousse.",
+    "Cobblestone around a mystical petal.": "Des pierres autour d'un pétale mystique.",
+    "Six wool and a mystical petal.": "Six laines et un pétale mystique.",
+    "Shimmering mushrooms glow in caves.": "Les champignons chatoyants brillent dans les grottes.",
+    "A Pure Daisy turns logs placed around it into livingwood.": "Une pâquerette pure transforme les bûches posées autour d'elle en vifbois.",
+    "A livingwood twig and two petals; livingwood comes from a Pure Daisy.": "Une brindille de vifbois et deux pétales ; le vifbois vient d'une pâquerette pure.",
+    "Manasteel ingots and livingwood twigs; iron becomes manasteel in a mana pool.": "Des lingots de manacier et des brindilles de vifbois ; le fer devient manacier dans un bassin de mana.",
+    "Manasteel ingots and a livingwood twig; iron becomes manasteel in a mana pool.": "Des lingots de manacier et une brindille de vifbois ; le fer devient manacier dans un bassin de mana.",
+    "Two livingwood logs from a Pure Daisy.": "Deux bûches de vifbois issues d'une pâquerette pure.",
+    "Livingwood and glowstone dust.": "Du vifbois et de la poudre lumineuse.",
+    "Dreamwood comes from the elves through an Elven Gateway.": "Le boisrêve vient des elfes par un portail elfique.",
+    "Elementium ingots and dreamwood twigs, both traded with the elves.": "Des lingots d'élémentium et des brindilles de boisrêve, échangés avec les elfes.",
+    "Five livingrock; a Pure Daisy turns stone into livingrock.": "Cinq viveroches ; une pâquerette pure transforme la roche en viveroche.",
+    "Meteorites are craters of sky stone; a meteorite compass points to the nearest one.": "Les météorites sont des cratères de pierre de ciel ; une boussole à météorite indique la plus proche.",
+    "Certus clusters grow on the budding quartz inside meteorites.": "Les amas de certus poussent sur le quartz bourgeonnant des météorites.",
+    "Smelt sky stone in a furnace.": "Faites cuire de la pierre de ciel dans un fourneau.",
+    "Four sky stone blocks (smelted sky stone).": "Quatre blocs en pierre de ciel (pierre de ciel cuite).",
+    "Eight sky stone.": "Huit pierres de ciel.",
+    "Five certus quartz crystals.": "Cinq cristaux de quartz certus.",
+    "A stick, an iron ingot and certus quartz.": "Un bâton, un lingot de fer et du quartz certus.",
+    "Five nether quartz.": "Cinq quartz du Nether.",
+    "Three certus quartz crystals and two sticks.": "Trois cristaux de quartz certus et deux bâtons.",
+    "Two certus quartz crystals and a stick.": "Deux cristaux de quartz certus et un bâton.",
+    "Charged certus quartz, redstone and nether quartz dropped into water turn into fluix.": "Du quartz certus chargé, de la redstone et du quartz du Nether jetés dans l'eau deviennent du fluix.",
+    "Four fluix crystals.": "Quatre cristaux de fluix.",
+    "An ender pearl surrounded by fluix crystals and fluix dust.": "Une perle de l'Ender entourée de cristaux et de poussière de fluix.",
+    "Iron and copper ingots.": "Des lingots de fer et de cuivre.",
+    "Iron ingots, pistons and a copper ingot.": "Des lingots de fer, des pistons et un lingot de cuivre.",
+    "Iron, quartz glass and copper.": "Du fer, du verre de quartz et du cuivre.",
+    "Glass and quartz dust, which the Inscriber grinds from quartz.": "Du verre et de la poussière de quartz, que la presse broie à partir de quartz.",
+    "Quartz fiber and two fluix crystals.": "De la fibre de quartz et deux cristaux de fluix.",
+    "Iron, engineering processors and fluix cables; processors come from the Inscriber.": "Du fer, des processeurs d'ingénierie et des câbles de fluix ; les processeurs viennent de la presse.",
+    "Quartz glass, redstone and iron.": "Du verre de quartz, de la redstone et du fer.",
+    "Certus quartz, redstone and a logic processor from the Inscriber.": "Du quartz certus, de la redstone et un processeur logique de la presse.",
+    "Bauxite ore drops raw bauxite.": "Le minerai de bauxite donne de la bauxite brute.",
+    "Smelt raw bauxite in a furnace.": "Faites fondre de la bauxite brute dans un fourneau.",
+    "Silver ore drops raw silver.": "Le minerai d'argent donne de l'argent brut.",
+    "Smelt raw silver in a furnace.": "Faites fondre de l'argent brut dans un fourneau.",
+    "Smelt raw nickel in a furnace.": "Faites fondre du nickel brut dans un fourneau.",
+    "Nickel ore drops raw nickel.": "Le minerai de nickel donne du nickel brut.",
+    "Breaking tall grass sometimes drops hemp seeds.": "Casser des hautes herbes donne parfois des graines de chanvre.",
+    "Grown hemp drops fiber.": "Le chanvre mûr donne de la fibre.",
+    "Hemp fiber around a stick.": "De la fibre de chanvre autour d'un bâton.",
+    "Iron ingots, string and sticks.": "Des lingots de fer, de la ficelle et des bâtons.",
+    "A book and a lever.": "Un livre et un levier.",
+    "Clay, bricks and sandstone.": "De l'argile, des briques et du grès.",
+    "Two bricks and two sandstone.": "Deux briques et deux grès.",
+    "Treated wood slabs, treated sticks and a crafting table.": "Des dalles de bois traité, des bâtons traités et un établi.",
+    "An iron ingot hit with the Engineer's Hammer.": "Un lingot de fer frappé au marteau de l'ingénieur.",
+    "Iron ingots in a column.": "Des lingots de fer en colonne.",
+    "A copper plate and the Engineer's Wire Cutters.": "Une plaque de cuivre et le coupe-fils de l'ingénieur.",
+    "Iron plates and a copper ingot.": "Des plaques de fer et un lingot de cuivre.",
+    "Leather, iron and redstone.": "Du cuir, du fer et de la redstone.",
+    "Two treated wood planks; planks soak creosote from a coke oven.": "Deux planches de bois traité ; les planches s'imprègnent de créosote d'un four à coke.",
+    "Treated wood planks and treated sticks.": "Des planches de bois traité et des bâtons traités.",
+    "Firs grow in coniferous forests.": "Les pins poussent dans les forêts de conifères.",
+    "Redwoods tower in redwood forests.": "Les séquoias se dressent dans les forêts de séquoias.",
+    "Jacarandas bloom in jacaranda glades.": "Les jacarandas fleurissent dans les clairières de jacarandas.",
+    "Mahogany grows in rainforests.": "L'acajou pousse dans les forêts tropicales.",
+    "Willows hang over bayous and marshes.": "Les saules pendent au-dessus des bayous et des marais.",
+    "Palms line tropical beaches.": "Les palmiers bordent les plages tropicales.",
+    "Dead trees stand in wastelands and dead forests.": "Les arbres morts se dressent dans les terres désolées et les forêts mortes.",
+    "Magic trees glow blue in mystic groves.": "Les arbres magiques brillent en bleu dans les bosquets mystiques.",
+    "One fir log makes four planks.": "Une bûche de pin donne quatre planches.",
+    "One redwood log makes four planks.": "Une bûche de séquoia donne quatre planches.",
+    "One jacaranda log makes four planks.": "Une bûche de jacaranda donne quatre planches.",
+    "Five fir planks.": "Cinq planches de pin.",
+    "Five redwood planks.": "Cinq planches de séquoia.",
+    "Lavender fields are purple from afar.": "Les champs de lavande sont violets de loin.",
+    "Biomes O' Plenty adds it in its own biomes.": "Biomes O' Plenty l'ajoute dans ses propres biomes.",
+    "Goldenrod grows in prairies and fields.": "La verge d'or pousse dans les prairies et les champs.",
+    "Hibiscus grows in tropical biomes.": "L'hibiscus pousse dans les biomes tropicaux.",
+    "Glowflowers light up mystic groves.": "Les fleurs lumineuses éclairent les bosquets mystiques.",
+    "Wilted lilies droop in eerie, foggy biomes.": "Les lys fanés s'affaissent dans les biomes brumeux et sinistres.",
+    "White sand covers tropical beaches.": "Le sable blanc couvre les plages tropicales.",
+    "Orange sand covers lush deserts.": "Le sable orange couvre les déserts luxuriants.",
+    "Black sand covers volcanic beaches.": "Le sable noir couvre les plages volcaniques.",
+    "Four white sand.": "Quatre sables blancs.",
+    "Four orange sand.": "Quatre sables orange.",
+    "Smelt white sandstone in a furnace.": "Faites cuire du grès blanc dans un fourneau.",
+    "Cattails grow at the edges of marshes.": "Les quenouilles poussent au bord des marais.",
+    "Reeds stand in shallow water.": "Les roseaux poussent en eau peu profonde.",
+    "Spanish moss hangs from bayou trees.": "La mousse espagnole pend des arbres des bayous.",
+    "Watergrass grows under water in wetlands.": "L'herbe d'eau pousse sous l'eau dans les zones humides.",
+    "Wild barley grows on the prairie.": "L'orge sauvage pousse dans la prairie.",
+    "Glowshrooms light up glowing grottos and caves.": "Les champignons lumineux éclairent les grottes lumineuses et les cavernes.",
+    "Rose quartz clusters grow in crystal caves underground.": "Les amas de quartz rose poussent dans les grottes de cristal souterraines.",
+    "Rose quartz clusters drop chunks.": "Les amas de quartz rose donnent des éclats.",
+    "Four rose quartz chunks.": "Quatre éclats de quartz rose.",
+    "Brimstone crusts the fumaroles of Nether biomes.": "La pierre de soufre recouvre les fumerolles des biomes du Nether.",
+    "Flesh covers the Visceral Heap.": "La chair recouvre le Tas de viscères.",
+    "Hellbark grows in the Nether's undergrowth.": "L'écorce de l'enfer pousse dans les sous-bois du Nether.",
+    "Burning blossoms grow in the Nether.": "Les fleurs brûlantes poussent dans le Nether.",
+    "Kangaroos hop around savannas and deserts.": "Les kangourous sautillent dans les savanes et les déserts.",
+    "Kangaroos drop meat.": "Les kangourous donnent de la viande.",
+    "Roadrunners race across badlands and deserts.": "Les géocoucous filent à travers les badlands et les déserts.",
+    "Emus roam savannas and badlands.": "Les émeus parcourent les savanes et les badlands.",
+    "Moose roam snowy forests.": "Les élans parcourent les forêts enneigées.",
+    "Moose drop ribs.": "Les élans donnent des côtes.",
+    "Grizzly bears live in forests and taigas.": "Les grizzlis vivent dans les forêts et les taïgas.",
+    "Bison roam snowy plains.": "Les bisons parcourent les plaines enneigées.",
+    "Cook kangaroo meat in a furnace, smoker or campfire.": "Faites cuire de la viande de kangourou au fourneau, au fumoir ou au feu de camp.",
+    "Cook moose ribs in a furnace, smoker or campfire.": "Faites cuire des côtes d'élan au fourneau, au fumoir ou au feu de camp.",
+    "Lobsters crawl on beaches; cook their tails.": "Les homards rampent sur les plages ; faites cuire leurs queues.",
+    "Cooked kangaroo meat between two breads.": "De la viande de kangourou cuite entre deux pains.",
+    "Crocodiles lurk in swamps, rivers and mangroves.": "Les crocodiles rôdent dans les marais, les rivières et les mangroves.",
+    "Rattlesnakes coil in deserts and badlands.": "Les crotales se lovent dans les déserts et les badlands.",
+    "Komodo dragons hunt in jungles.": "Les dragons de Komodo chassent dans les jungles.",
+    "Cave centipedes crawl in dark caves.": "Les mille-pattes des cavernes rampent dans les grottes sombres.",
+    "Crocodiles drop scutes.": "Les crocodiles donnent des écailles.",
+    "Roadrunner feathers, leather boots and chiseled sandstone.": "Des plumes de géocoucou, des bottes en cuir et du grès sculpté.",
+    "Moose antlers, an iron ingot and string.": "Des bois d'élan, un lingot de fer et de la ficelle.",
+    "Seven crocodile scutes.": "Sept écailles de crocodile.",
+    "A shark tooth, a stick and kelp.": "Une dent de requin, un bâton et des algues.",
+    "Crimson mosquitoes buzz in crimson forests.": "Les moustiques cramoisis bourdonnent dans les forêts carmin.",
+    "Soul vultures circle soul sand valleys.": "Les vautours des âmes tournoient au-dessus des vallées des âmes.",
+    "Dropbears hang from the ceilings of Nether wastes.": "Les dropbears pendent au plafond des terres désolées du Nether.",
+    "Clay, sand and gravel.": "De l'argile, du sable et du gravier.",
+    "Smelt grout in a furnace.": "Faites cuire du coulis durcissant dans un fourneau.",
+    "Four seared bricks.": "Quatre briques fondues.",
+    "Two planks and two sticks.": "Deux planches et deux bâtons.",
+    "A pattern on top of a log or crafting table.": "Un modèle au-dessus d'une bûche ou d'un établi.",
+    "Two patterns on top of two planks.": "Deux modèles au-dessus de deux planches.",
+    "Three patterns on top of planks.": "Trois modèles au-dessus de planches.",
+    "A book and a pattern.": "Un livre et un modèle.",
+    "Eight seared bricks.": "Huit briques fondues.",
+    "Three seared bricks.": "Trois briques fondues.",
+    "Seven seared bricks.": "Sept briques fondues.",
+    "Seared bricks around a seared tank.": "Des briques fondues autour d'un réservoir fondu.",
+    "Skyroot grows on the sky slime islands floating high up.": "Le célébène pousse sur les îles de slime céleste qui flottent très haut.",
+    "Sky slimes on the slime islands drop skyslime balls.": "Les slimes célestes des îles de slime donnent des boules de slime céleste.",
+    "Skyslimes bounce on the sky slime islands.": "Les slimes célestes rebondissent sur les îles de slime céleste.",
+    "Nine skyslime balls.": "Neuf boules de slime céleste.",
+    "Greenheart grows on earth slime islands in the sea.": "Le cœurvert pousse sur les îles de slime terrestre en mer.",
+    "Cobalt ore hides in the Nether's netherrack, high and low.": "Le minerai de cobalt se cache dans la netherrack du Nether, en haut comme en bas.",
+    "Cobalt ore drops raw cobalt.": "Le minerai de cobalt donne du cobalt brut.",
+    "Archwood trees grow in archwood forests.": "Les arbres d'Archwood poussent dans les forêts d'Archwood.",
+    "One archwood log makes four planks.": "Une bûche d'Archwood donne quatre planches.",
+    "Sourceberry bushes grow in taigas and archwood forests.": "Les buissons de baies de source poussent dans les taïgas et les forêts d'Archwood.",
+    "Magebloom grows from magebloom seeds; its flower drops when harvested.": "La magefleur pousse à partir de graines de magefleur ; la fleur tombe à la récolte.",
+    "One magebloom.": "Une magefleur.",
+    "A book and lapis lazuli.": "Un livre et du lapis-lazuli.",
+    "A book and four iron tools: shovel, pickaxe, axe and sword.": "Un livre et quatre outils en fer : pelle, pioche, hache et épée.",
+    "A gold ingot and archwood planks.": "Un lingot d'or et des planches d'Archwood.",
+    "Archwood slabs, gold nuggets and archwood logs.": "Des dalles d'Archwood, des pépites d'or et des bûches d'Archwood.",
+    "Archwood planks and gold ingots.": "Des planches d'Archwood et des lingots d'or.",
+    "Archwood planks around a gold nugget.": "Des planches d'Archwood autour d'une pépite d'or.",
+    "Archwood slabs and glass.": "Des dalles d'Archwood et du verre.",
+    "Paper surrounded by magebloom fiber.": "Du papier entouré de fibre de magefleur.",
+    "Wilden hunters prowl archwood forests at night.": "Les chasseurs sauvages rôdent la nuit dans les forêts d'Archwood.",
+    "Wilden stalkers swoop down from above.": "Les traqueurs sauvages fondent du ciel.",
+    "Wilden guardians roll up behind their spikes.": "Les gardiens sauvages se roulent en boule derrière leurs pointes.",
+    "Wilden hunters drop horns.": "Les chasseurs sauvages donnent des cornes.",
+    "Wilden guardians drop spikes.": "Les gardiens sauvages donnent des pointes.",
+    "Wilden stalkers drop wings.": "Les traqueurs sauvages donnent des ailes."
+  },
+  "messages": [
+    "Le village vous remercie !",
+    "Vos exploits font parler d'eux.",
+    "Bien joué, aventurier.",
+    "Encore un travail bien fait.",
+    "Le tableau des quêtes a un nouveau héros.",
+    "On en fera des chansons.",
+    "Les marchands sont impressionnés.",
+    "Beau travail. Reposez-vous un peu."
+  ],
+  "names": {
+    "ae2:cell_component_1k": "Composant de stockage ME 1k",
+    "ae2:certus_quartz_crystal": "Cristal de Quartz Certus",
+    "ae2:certus_quartz_cutting_knife": "Couteau en Quartz Certus",
+    "ae2:certus_quartz_pickaxe": "Pioche en Quartz Certus",
+    "ae2:certus_quartz_sword": "Epée en Quartz Certus",
+    "ae2:certus_quartz_wrench": "Clef en Quartz Certus",
+    "ae2:charger": "Chargeur",
+    "ae2:drive": "Range-disque ME",
+    "ae2:energy_acceptor": "Acceptateur énergétique",
+    "ae2:fluix_block": "Bloc de Fluix",
+    "ae2:fluix_crystal": "Cristal de Fluix",
+    "ae2:fluix_glass_cable": "Câble de verre ME en fluix",
+    "ae2:fluix_pearl": "Perle de Fluix",
+    "ae2:inscriber": "Presse",
+    "ae2:item_cell_housing": "Boîtier de stockage ME",
+    "ae2:nether_quartz_wrench": "Clef en Quartz du Nether",
+    "ae2:quartz_cluster": "Amas de Certus Quartz",
+    "ae2:quartz_glass": "Verre de Quartz",
+    "ae2:sky_stone_block": "Pierre de ciel",
+    "ae2:sky_stone_brick": "Brique en pierre de ciel",
+    "ae2:sky_stone_chest": "Coffre de pierre de ciel",
+    "ae2:smooth_sky_stone_block": "Bloc en pierre de ciel",
+    "alexsmobs:bear_fur": "Fourrure d'ours",
+    "alexsmobs:bison_fur": "Fourrure de bison",
+    "alexsmobs:centipede_head": "Tête de mille-pattes des cavernes",
+    "alexsmobs:cooked_kangaroo_meat": "Viande de kangourou cuisinée",
+    "alexsmobs:cooked_lobster_tail": "Queue de homard cuite",
+    "alexsmobs:cooked_moose_ribs": "Côtes d'élan cuites",
+    "alexsmobs:crimson_mosquito": "Moustique cramoisi",
+    "alexsmobs:crocodile": "Crocodile",
+    "alexsmobs:crocodile_chestplate": "Plastron de crocodile",
+    "alexsmobs:crocodile_scute": "Écaille de crocodile",
+    "alexsmobs:dropbear": "Dropbear",
+    "alexsmobs:emu_feather": "Plume d'émeu",
+    "alexsmobs:kangaroo_burger": "Burger kangourou",
+    "alexsmobs:kangaroo_hide": "Peau de kangourou",
+    "alexsmobs:kangaroo_meat": "Viande de kangourou",
+    "alexsmobs:komodo_dragon": "Dragon de Komodo",
+    "alexsmobs:moose_antler": "Bois d'élan",
+    "alexsmobs:moose_headgear": "Casque d'antler",
+    "alexsmobs:moose_ribs": "Côtes d'élan",
+    "alexsmobs:rattlesnake": "Crotale",
+    "alexsmobs:roadrunner_boots": "Bottes de géocoucou",
+    "alexsmobs:roadrunner_feather": "Plume de géocoucou",
+    "alexsmobs:shark_tooth_arrow": "Flèche de dent de requin",
+    "alexsmobs:soul_vulture": "Vautour des âmes",
+    "ars_nouveau:archwood_chest": "Coffre Archwood",
+    "ars_nouveau:archwood_planks": "Planches Archwood",
+    "ars_nouveau:blank_parchment": "Parchemin vierge",
+    "ars_nouveau:blue_archwood_log": "Bûche Archwood en cascade",
+    "ars_nouveau:dowsing_rod": "Baguette de radiesthésie",
+    "ars_nouveau:green_archwood_log": "Bûche d'Archwood florissante",
+    "ars_nouveau:imbuement_chamber": "Chambre d'imprégnation",
+    "ars_nouveau:magebloom": "Magefleur",
+    "ars_nouveau:magebloom_fiber": "Fibre de magefleur",
+    "ars_nouveau:novice_spell_book": "Livre de sorts novice",
+    "ars_nouveau:purple_archwood_log": "Bûche vexante d'Archwood",
+    "ars_nouveau:red_archwood_log": "Rondin d'Archwood flamboyant",
+    "ars_nouveau:scribes_table": "Table de scribe",
+    "ars_nouveau:source_jar": "Pot source",
+    "ars_nouveau:sourceberry_bush": "Baie de source",
+    "ars_nouveau:wilden_guardian": "Défenseur sauvage",
+    "ars_nouveau:wilden_horn": "Corne sauvage",
+    "ars_nouveau:wilden_hunter": "Chasseur sauvage",
+    "ars_nouveau:wilden_spike": "Pointe sauvage",
+    "ars_nouveau:wilden_stalker": "Traqueur sauvage",
+    "ars_nouveau:wilden_wing": "Aile sauvage",
+    "ars_nouveau:worn_notebook": "Cahier usé",
+    "biomesoplenty:barley": "Orge",
+    "biomesoplenty:black_sand": "Sable noir",
+    "biomesoplenty:blue_hydrangea": "Hortensia bleu",
+    "biomesoplenty:brimstone": "Pierre de soufre",
+    "biomesoplenty:burning_blossom": "Fleur brûlante",
+    "biomesoplenty:cattail": "Quenouille",
+    "biomesoplenty:dead_log": "Bûche de bois mort",
+    "biomesoplenty:fir_boat": "Bateau en pin",
+    "biomesoplenty:fir_log": "Bûche de pin",
+    "biomesoplenty:fir_planks": "Planches de pin",
+    "biomesoplenty:flesh": "Chair",
+    "biomesoplenty:glowflower": "Fleur lumineuse",
+    "biomesoplenty:glowshroom": "Champignon lumineux",
+    "biomesoplenty:goldenrod": "Verge d'or",
+    "biomesoplenty:hellbark_log": "Bûche d'écorce de l'enfer",
+    "biomesoplenty:jacaranda_log": "Bûche de jacaranda",
+    "biomesoplenty:jacaranda_planks": "Planches de jacaranda",
+    "biomesoplenty:lavender": "Lavande",
+    "biomesoplenty:magic_log": "Bûche de bois magique",
+    "biomesoplenty:mahogany_log": "Bûche d'acajou d'amérique",
+    "biomesoplenty:orange_cosmos": "Cosmos orange",
+    "biomesoplenty:orange_sand": "Sable orange",
+    "biomesoplenty:orange_sandstone": "Grès orange",
+    "biomesoplenty:palm_log": "Bûche de palmier",
+    "biomesoplenty:pink_daffodil": "Jonquille rose",
+    "biomesoplenty:pink_hibiscus": "Hibiscus rose",
+    "biomesoplenty:redwood_boat": "Bateau en séquoia",
+    "biomesoplenty:redwood_log": "Bûche de séquoia",
+    "biomesoplenty:redwood_planks": "Planches de séquoia",
+    "biomesoplenty:reed": "Roseau",
+    "biomesoplenty:rose_quartz_block": "Bloc de quartz rose",
+    "biomesoplenty:rose_quartz_chunk": "Éclat de quartz rose",
+    "biomesoplenty:rose_quartz_cluster": "Amas de quartz rose",
+    "biomesoplenty:smooth_white_sandstone": "Grès blanc lisse",
+    "biomesoplenty:spanish_moss": "Mousse espagnole",
+    "biomesoplenty:violet": "Violette",
+    "biomesoplenty:watergrass": "Herbe d'eau",
+    "biomesoplenty:white_sand": "Sable blanc",
+    "biomesoplenty:white_sandstone": "Grès blanc",
+    "biomesoplenty:willow_log": "Bûche de saule",
+    "biomesoplenty:wilted_lily": "Lys fané",
+    "botania:apothecary_default": "Apothicaire de pétales",
+    "botania:apothecary_mossy": "Apothicaire moussu",
+    "botania:blue_mushroom": "Champignon bleu",
+    "botania:blue_mystical_flower": "Fleur mystique bleue",
+    "botania:blue_petal": "Pétale mystique bleu",
+    "botania:dreamwood_planks": "Planches de boisrêve",
+    "botania:elementium_pickaxe": "Pioche en élémentium",
+    "botania:flower_bag": "Sacoche à fleurs",
+    "botania:glimmering_livingwood": "Vifbois scintillant",
+    "botania:lexicon": "Lexica Botania",
+    "botania:livingwood_planks": "Planches de vifbois",
+    "botania:livingwood_twig": "Brindille de vifbois",
+    "botania:mana_pool": "Bassin de mana",
+    "botania:manasteel_pick": "Pioche en manacier",
+    "botania:manasteel_sword": "Épée en manacier",
+    "botania:pink_mystical_flower": "Fleur mystique rose",
+    "botania:pink_petal": "Pétale mystique rose",
+    "botania:purple_mushroom": "Champignon violet",
+    "botania:purple_mystical_flower": "Fleur mystique violette",
+    "botania:purple_petal": "Pétale mystique violet",
+    "botania:red_mushroom": "Champignon rouge",
+    "botania:red_mystical_flower": "Fleur mystique rouge",
+    "botania:red_petal": "Pétale mystique rouge",
+    "botania:red_petal_block": "Bloc de pétales rouges",
+    "botania:twig_wand": "Baguette sylvestre",
+    "botania:white_mushroom": "Champignon blanc",
+    "botania:white_mystical_flower": "Fleur mystique blanche",
+    "botania:white_petal": "Pétale mystique blanc",
+    "botania:white_petal_block": "Bloc de pétales blancs",
+    "botania:yellow_mystical_flower": "Fleur mystique jaune",
+    "botania:yellow_petal": "Pétale mystique jaune",
+    "create:andesite_alloy": "Alliage d'andésite",
+    "create:andesite_alloy_block": "Bloc d'alliage d'andésite",
+    "create:andesite_casing": "Boitier d'andésite",
+    "create:andesite_funnel": "Entonnoir d'andésite",
+    "create:andesite_tunnel": "Tunnel d'andésite",
+    "create:asurine": "Asurine",
+    "create:bar_of_chocolate": "Barre de chocolat",
+    "create:basin": "Bassin",
+    "create:belt_connector": "Tapis roulant",
+    "create:builders_tea": "Thé du constructeur",
+    "create:cart_assembler": "Assembleur de wagonnet",
+    "create:chocolate_glazed_berries": "Baies sucrées au chocolat",
+    "create:cogwheel": "Roue dentée",
+    "create:crimsite": "Crimsite",
+    "create:cuckoo_clock": "Horloge à coucou",
+    "create:cut_andesite": "Andésite coupée",
+    "create:cut_asurine": "Asurine coupée",
+    "create:cut_crimsite": "Crimsite coupée",
+    "create:cut_diorite": "Diorite coupée",
+    "create:cut_granite": "Granite coupé",
+    "create:cut_limestone": "Calcaire coupé",
+    "create:cut_tuff": "Tuf coupé",
+    "create:deepslate_zinc_ore": "Minerai de zinc des abîmes",
+    "create:depot": "Dépôt",
+    "create:empty_blaze_burner": "Brûleur à Blaze vide",
+    "create:encased_chain_drive": "Chaine de transmission",
+    "create:encased_fan": "Ventilateur enchâssé",
+    "create:fluid_tank": "Réservoir à fluide",
+    "create:gearbox": "Boîte à roues dentées",
+    "create:goggles": "Lunettes d'ingénieur",
+    "create:hand_crank": "Manivelle",
+    "create:honeyed_apple": "Pomme au miel",
+    "create:item_vault": "Coffre à objet renforcé",
+    "create:large_cogwheel": "Grande roue dentée",
+    "create:large_water_wheel": "Grande roue à eau",
+    "create:limestone": "Calcaire",
+    "create:linear_chassis": "Châssis linéaire",
+    "create:mechanical_bearing": "Roulement mécanique",
+    "create:mechanical_drill": "Perceuse mécanique",
+    "create:mechanical_mixer": "Mixeur mécanique",
+    "create:mechanical_piston": "Piston mécanique",
+    "create:mechanical_press": "Presse mécanique",
+    "create:mechanical_saw": "Scie mécanique",
+    "create:millstone": "Meule",
+    "create:ochrum": "Ochrum",
+    "create:piston_extension_pole": "Barre d'extension de piston",
+    "create:polished_cut_limestone": "Calcaire coupé poli",
+    "create:polished_cut_ochrum": "Ochrum coupé poli",
+    "create:polished_cut_veridium": "Veridium coupé poli",
+    "create:radial_chassis": "Châssis radial",
+    "create:raw_zinc": "Zinc brut",
+    "create:rose_quartz": "Quartz rose",
+    "create:scorchia": "Scorchia",
+    "create:scoria": "Scorie",
+    "create:shaft": "Rotor",
+    "create:sticker": "Colleur",
+    "create:super_glue": "Colle extra-forte",
+    "create:sweet_roll": "Pain sucré",
+    "create:turntable": "Plaque tournante",
+    "create:veridium": "Veridium",
+    "create:water_wheel": "Roue à eau",
+    "create:white_sail": "Voile de moulin à vent",
+    "create:white_seat": "Siège blanc",
+    "create:windmill_bearing": "Support de moulin à vent",
+    "create:wooden_bracket": "Support en bois",
+    "create:wrench": "Clé",
+    "create:zinc_block": "Bloc de zinc",
+    "create:zinc_ingot": "Lingot de zinc",
+    "create:zinc_ore": "Minerai de zinc",
+    "farmersdelight:acacia_cabinet": "Armoire en acacia",
+    "farmersdelight:apple_cider": "Cidre de pommes",
+    "farmersdelight:apple_pie": "Tarte aux pommes",
+    "farmersdelight:bacon_and_eggs": "Bacon et œufs",
+    "farmersdelight:bacon_sandwich": "Sandwich au bacon",
+    "farmersdelight:baked_cod_stew": "Ragoût de morue",
+    "farmersdelight:bamboo_basket": "Panier de bambou",
+    "farmersdelight:barbecue_stick": "Brochette",
+    "farmersdelight:beef_patty": "Steack haché",
+    "farmersdelight:beef_stew": "Ragoût de boeuf",
+    "farmersdelight:birch_cabinet": "Armoire en boulot",
+    "farmersdelight:cabbage": "Chou",
+    "farmersdelight:cabbage_crate": "Caisse de choux",
+    "farmersdelight:cabbage_rolls": "Rouleaux de chou",
+    "farmersdelight:canvas": "Toile",
+    "farmersdelight:canvas_rug": "Tapis en toile",
+    "farmersdelight:chicken_sandwich": "Sandwich au poulet",
+    "farmersdelight:chicken_soup": "Soupe de poulet",
+    "farmersdelight:cod_roll": "Rouleau de morue",
+    "farmersdelight:cooked_bacon": "Bacon cuit",
+    "farmersdelight:cooked_chicken_cuts": "Escalopes de poulet cuites",
+    "farmersdelight:cooked_cod_slice": "Filet de morue cuit",
+    "farmersdelight:cooked_mutton_chops": "Côtelettes de mouton cuites",
+    "farmersdelight:cooked_rice": "Riz cuit",
+    "farmersdelight:cooked_salmon_slice": "Filet de saumon cuit",
+    "farmersdelight:cooking_pot": "Marmite",
+    "farmersdelight:cutting_board": "Planche à découper",
+    "farmersdelight:dark_oak_cabinet": "Armoire en chêne noir",
+    "farmersdelight:diamond_knife": "Couteau en diamant",
+    "farmersdelight:dumplings": "Raviolis",
+    "farmersdelight:egg_sandwich": "Sandwich aux œufs",
+    "farmersdelight:fish_stew": "Soupe de poisson",
+    "farmersdelight:fried_egg": "Œuf au plat",
+    "farmersdelight:fried_rice": "Riz sauté",
+    "farmersdelight:fruit_salad": "Salade de fruits",
+    "farmersdelight:glow_berry_custard": "Crème aux baies lumineuses",
+    "farmersdelight:grilled_salmon": "Saumon grillé",
+    "farmersdelight:ham": "Jambon",
+    "farmersdelight:hamburger": "Hamburger",
+    "farmersdelight:honey_cookie": "Cookie au miel",
+    "farmersdelight:honey_glazed_ham": "Assiette de jambon glacé au miel",
+    "farmersdelight:honey_glazed_ham_block": "Jambon laqué au miel",
+    "farmersdelight:hot_cocoa": "Chocolat chaud",
+    "farmersdelight:iron_knife": "Couteau en fer",
+    "farmersdelight:jungle_cabinet": "Armoire en acajou",
+    "farmersdelight:kelp_roll": "Rouleau aux algues",
+    "farmersdelight:kelp_roll_slice": "Tranche de rouleau aux algues",
+    "farmersdelight:melon_juice": "Jus de melon",
+    "farmersdelight:melon_popsicle": "Glace à la pastèque",
+    "farmersdelight:milk_bottle": "Bouteille de lait",
+    "farmersdelight:mixed_salad": "Salade composée",
+    "farmersdelight:mushroom_rice": "Riz aux champignons",
+    "farmersdelight:mutton_wrap": "Wrap de mouton",
+    "farmersdelight:nether_salad": "Salade du Nether",
+    "farmersdelight:noodle_soup": "Soupe de nouilles",
+    "farmersdelight:oak_cabinet": "Armoire en chêne",
+    "farmersdelight:onion": "Oignon",
+    "farmersdelight:onion_crate": "Caisse d'oignons",
+    "farmersdelight:onion_soup": "Soupe à l'oignon",
+    "farmersdelight:organic_compost": "Composte organique",
+    "farmersdelight:pasta_with_meatballs": "Spaghettis bolognaise",
+    "farmersdelight:pie_crust": "Fond de tarte",
+    "farmersdelight:pumpkin_soup": "Soupe de citrouille",
+    "farmersdelight:ratatouille": "Ratatouille",
+    "farmersdelight:rice": "Riz",
+    "farmersdelight:rice_bale": "Ballot de riz",
+    "farmersdelight:rice_panicle": "Panicule de riz",
+    "farmersdelight:rice_roll_medley_block": "Assortiment de rouleaux de riz",
+    "farmersdelight:roast_chicken": "Assiette de poulet rôti",
+    "farmersdelight:roast_chicken_block": "Poulet rôti",
+    "farmersdelight:roasted_mutton_chops": "Côtelettes de mouton rôties",
+    "farmersdelight:rope": "Corde",
+    "farmersdelight:safety_net": "Filet",
+    "farmersdelight:salmon_roll": "Roulés au saumon",
+    "farmersdelight:shepherds_pie": "Assiette de pâté chinois",
+    "farmersdelight:shepherds_pie_block": "Pâté chinois",
+    "farmersdelight:skillet": "Poêle à frire",
+    "farmersdelight:smoked_ham": "Jambon fumé",
+    "farmersdelight:spruce_cabinet": "Armoire en sapin",
+    "farmersdelight:squid_ink_pasta": "Pâtes à l'encre de seiche",
+    "farmersdelight:steak_and_potatoes": "Steak et pommes de terre",
+    "farmersdelight:stove": "Four",
+    "farmersdelight:straw": "Paille",
+    "farmersdelight:straw_bale": "Botte de paille",
+    "farmersdelight:stuffed_potato": "Pomme de terre farcie",
+    "farmersdelight:sweet_berry_cheesecake": "Cheesecake aux fruits rouges",
+    "farmersdelight:sweet_berry_cookie": "Cookie aux baies sucrées",
+    "farmersdelight:tatami": "Bloc de tatami",
+    "farmersdelight:tomato": "Tomate",
+    "farmersdelight:tomato_crate": "Caisse de tomates",
+    "farmersdelight:vegetable_soup": "Soupe de légumes",
+    "farmersdelight:wheat_dough": "Pâte de blé",
+    "farmersdelight:wild_beetroots": "Betterave sauvage",
+    "farmersdelight:wild_cabbages": "Chou sauvage",
+    "farmersdelight:wild_carrots": "Carotte sauvage",
+    "farmersdelight:wild_onions": "Oignon sauvage",
+    "farmersdelight:wild_potatoes": "Pomme de terre sauvage",
+    "farmersdelight:wild_rice": "Riz sauvage",
+    "farmersdelight:wild_tomatoes": "Tomate sauvage",
+    "farmersdelight:wooden_basket": "Panier",
+    "immersiveengineering:alloybrick": "Brique de kiln",
+    "immersiveengineering:cokebrick": "Brique de coke",
+    "immersiveengineering:component_iron": "Composant méchanique en fer",
+    "immersiveengineering:conveyor_basic": "Tapis roulant",
+    "immersiveengineering:craftingtable": "Table de l'ingénieur",
+    "immersiveengineering:deepslate_ore_aluminum": "Minerai de bauxite des abîmes",
+    "immersiveengineering:hammer": "Marteau de l'ingénieur",
+    "immersiveengineering:hemp_fabric": "Tissu résistant",
+    "immersiveengineering:hemp_fiber": "Fibre de chanvre industriel",
+    "immersiveengineering:ingot_aluminum": "Lingot d'aluminium",
+    "immersiveengineering:ingot_lead": "Lingot de plomb",
+    "immersiveengineering:ingot_nickel": "Lingot de nickel",
+    "immersiveengineering:ingot_silver": "Lingot d'argent",
+    "immersiveengineering:manual": "Manuel de l'ingénieur",
+    "immersiveengineering:ore_aluminum": "Minerai de bauxite",
+    "immersiveengineering:ore_lead": "Minerai de plomb",
+    "immersiveengineering:ore_nickel": "Minerai de nickel",
+    "immersiveengineering:ore_silver": "Minerai d'argent",
+    "immersiveengineering:plate_iron": "Plaque de fer",
+    "immersiveengineering:raw_aluminum": "Bauxite brute",
+    "immersiveengineering:raw_lead": "Plomb brut",
+    "immersiveengineering:raw_nickel": "Nickel brut",
+    "immersiveengineering:raw_silver": "Argent brut",
+    "immersiveengineering:seed": "Graines de chanvre industriel",
+    "immersiveengineering:stick_iron": "Barre de fer",
+    "immersiveengineering:stick_treated": "Bâton traité",
+    "immersiveengineering:treated_fence": "Barrière en bois traité",
+    "immersiveengineering:treated_scaffold": "Échaffaudage en bois traité",
+    "immersiveengineering:wire_copper": "Câble en cuivre",
+    "mekanism:block_charcoal": "Bloc de charbon de bois",
+    "mekanism:block_fluorite": "Bloc de Fluorite",
+    "mekanism:block_lead": "Bloc de Plomb",
+    "mekanism:block_osmium": "Bloc d'Osmium",
+    "mekanism:block_salt": "Bloc de sel",
+    "mekanism:block_tin": "Bloc d'Étain",
+    "mekanism:boiler_casing": "Bloc de chaudière",
+    "mekanism:canteen": "Gourde",
+    "mekanism:configurator": "Configurateur",
+    "mekanism:crusher": "Broyeur",
+    "mekanism:deepslate_fluorite_ore": "Minerais de fluorite des abîmes",
+    "mekanism:deepslate_lead_ore": "Minerais de plomb des abîmes",
+    "mekanism:deepslate_osmium_ore": "Minerais d'osmium des abîmes",
+    "mekanism:deepslate_tin_ore": "Minerais d'étain des abîmes",
+    "mekanism:deepslate_uranium_ore": "Minerais d'uranium des abîmes",
+    "mekanism:dosimeter": "Dosimètre",
+    "mekanism:dynamic_tank": "Réservoir dynamique",
+    "mekanism:energized_smelter": "Fonderie électrique",
+    "mekanism:enrichment_chamber": "Chambre d'enrichissement",
+    "mekanism:fluorite_gem": "Fluorite",
+    "mekanism:fluorite_ore": "Minerai de fluorite",
+    "mekanism:gauge_dropper": "Compte-gouttes",
+    "mekanism:hazmat_mask": "Masque hazmat",
+    "mekanism:ingot_lead": "Lingot de plomb",
+    "mekanism:ingot_osmium": "Lingot d'Osmium",
+    "mekanism:ingot_tin": "Lingot d'étain",
+    "mekanism:ingot_uranium": "Lingot d'uranium",
+    "mekanism:lead_ore": "Minerai de plomb",
+    "mekanism:metallurgic_infuser": "Infuseur métallurgique",
+    "mekanism:osmium_ore": "Minerai d'osmium",
+    "mekanism:raw_lead": "Plomb brut",
+    "mekanism:raw_osmium": "Osmium brut",
+    "mekanism:raw_tin": "Étain brut",
+    "mekanism:salt": "Sel",
+    "mekanism:steel_casing": "Boîtier en acier",
+    "mekanism:tin_ore": "Minerai d'étain",
+    "mekanism:uranium_ore": "Minerai d'uranium",
+    "minecraft:acacia_log": "Bûche d'acacia",
+    "minecraft:acacia_sapling": "Pousse d'acacia",
+    "minecraft:allium": "Allium",
+    "minecraft:amethyst_shard": "Éclat d'améthyste",
+    "minecraft:ancient_debris": "Débris antiques",
+    "minecraft:andesite": "Andésite",
+    "minecraft:anvil": "Enclume",
+    "minecraft:apple": "Pomme",
+    "minecraft:armadillo": "Tatou",
+    "minecraft:armor_stand": "Porte-armure",
+    "minecraft:arrow": "Flèche",
+    "minecraft:axolotl": "Axolotl",
+    "minecraft:azure_bluet": "Houstonie bleue",
+    "minecraft:baked_potato": "Pomme de terre cuite",
+    "minecraft:bamboo": "Bambou",
+    "minecraft:barrel": "Tonneau",
+    "minecraft:basalt": "Basalte",
+    "minecraft:bee": "Abeille",
+    "minecraft:beef": "Boeuf cru",
+    "minecraft:beehive": "Ruche",
+    "minecraft:beetroot": "Betterave",
+    "minecraft:beetroot_seeds": "Graines de betterave",
+    "minecraft:beetroot_soup": "Soupe de betteraves",
+    "minecraft:birch_log": "Bûche de bouleau",
+    "minecraft:birch_sapling": "Pousse de bouleau",
+    "minecraft:black_dye": "Teinture noire",
+    "minecraft:blackstone": "Roche noire",
+    "minecraft:blast_furnace": "Haut fourneau",
+    "minecraft:blaze": "Blaze",
+    "minecraft:blaze_powder": "Poudre de Blaze",
+    "minecraft:blaze_rod": "Bâton de Blaze",
+    "minecraft:blue_dye": "Teinture bleue",
+    "minecraft:blue_orchid": "Orchidée bleue",
+    "minecraft:bogged": "Embourbé",
+    "minecraft:bone": "Os",
+    "minecraft:bone_block": "Bloc d'os",
+    "minecraft:bone_meal": "Poudre d'os",
+    "minecraft:book": "Livre",
+    "minecraft:bookshelf": "Bibliothèque",
+    "minecraft:bow": "Arc",
+    "minecraft:bread": "Pain",
+    "minecraft:breeze": "Breeze",
+    "minecraft:brewing_stand": "Alambic",
+    "minecraft:brick": "Brique",
+    "minecraft:bricks": "Briques",
+    "minecraft:brown_mushroom": "Champignon brun",
+    "minecraft:brown_mushroom_block": "Bloc de champignon brun",
+    "minecraft:bucket": "Seau",
+    "minecraft:cactus": "Cactus",
+    "minecraft:cake": "Gâteau",
+    "minecraft:calcite": "Calcite",
+    "minecraft:camel": "Dromadaire",
+    "minecraft:campfire": "Feu de camp",
+    "minecraft:candle": "Bougie",
+    "minecraft:carrot": "Carotte",
+    "minecraft:cartography_table": "Table de cartographie",
+    "minecraft:cat": "Chat",
+    "minecraft:cauldron": "Chaudron",
+    "minecraft:cave_spider": "Araignée venimeuse",
+    "minecraft:chain": "Chaîne",
+    "minecraft:charcoal": "Charbon de bois",
+    "minecraft:cherry_log": "Bûche de cerisier",
+    "minecraft:cherry_sapling": "Pousse de cerisier",
+    "minecraft:chest": "Coffre",
+    "minecraft:chicken": "Poule",
+    "minecraft:chiseled_bookshelf": "Bibliothèque sculptée",
+    "minecraft:chiseled_stone_bricks": "Pierre sculptée",
+    "minecraft:chorus_fruit": "Chorus",
+    "minecraft:chorus_plant": "Plante de chorus",
+    "minecraft:clay": "Argile",
+    "minecraft:clay_ball": "Motte d'argile",
+    "minecraft:clock": "Montre",
+    "minecraft:coal": "Charbon",
+    "minecraft:coal_block": "Bloc de charbon",
+    "minecraft:coal_ore": "Minerai de charbon",
+    "minecraft:cobbled_deepslate": "Pierres des abîmes",
+    "minecraft:cobblestone": "Pierres",
+    "minecraft:cobweb": "Toile d'araignée",
+    "minecraft:cocoa_beans": "Fèves de cacao",
+    "minecraft:cod": "Morue crue",
+    "minecraft:compass": "Boussole",
+    "minecraft:composter": "Composteur",
+    "minecraft:cooked_beef": "Steak",
+    "minecraft:cooked_chicken": "Poulet rôti",
+    "minecraft:cooked_cod": "Morue cuite",
+    "minecraft:cooked_mutton": "Mouton cuit",
+    "minecraft:cooked_porkchop": "Côtelette de porc cuite",
+    "minecraft:cooked_rabbit": "Lapin cuit",
+    "minecraft:cooked_salmon": "Saumon cuit",
+    "minecraft:cookie": "Cookie",
+    "minecraft:copper_block": "Bloc de cuivre",
+    "minecraft:copper_door": "Porte en cuivre",
+    "minecraft:copper_grate": "Grille en cuivre",
+    "minecraft:copper_ingot": "Lingot de cuivre",
+    "minecraft:copper_ore": "Minerai de cuivre",
+    "minecraft:cornflower": "Bleuet",
+    "minecraft:cow": "Vache",
+    "minecraft:cracked_deepslate_bricks": "Ardoise des abîmes taillée craquelée",
+    "minecraft:cracked_stone_bricks": "Pierre taillée craquelée",
+    "minecraft:creeper": "Creeper",
+    "minecraft:crimson_fungus": "Champignon carmin",
+    "minecraft:crimson_nylium": "Nylium carmin",
+    "minecraft:crimson_stem": "Tige carmin",
+    "minecraft:crossbow": "Arbalète",
+    "minecraft:crying_obsidian": "Obsidienne pleureuse",
+    "minecraft:cut_copper": "Cuivre taillé",
+    "minecraft:cut_sandstone": "Grès taillé",
+    "minecraft:dandelion": "Pissenlit",
+    "minecraft:dark_oak_log": "Bûche de chêne noir",
+    "minecraft:dark_oak_sapling": "Pousse de chêne noir",
+    "minecraft:decorated_pot": "Vase décoré",
+    "minecraft:deepslate": "Ardoise des abîmes",
+    "minecraft:deepslate_bricks": "Ardoise des abîmes taillée",
+    "minecraft:deepslate_coal_ore": "Minerai de charbon des abîmes",
+    "minecraft:deepslate_copper_ore": "Minerai de cuivre des abîmes",
+    "minecraft:deepslate_diamond_ore": "Minerai de diamant des abîmes",
+    "minecraft:deepslate_gold_ore": "Minerai d'or des abîmes",
+    "minecraft:deepslate_iron_ore": "Minerai de fer des abîmes",
+    "minecraft:deepslate_lapis_ore": "Minerai de lapis-lazuli des abîmes",
+    "minecraft:deepslate_redstone_ore": "Minerai de redstone des abîmes",
+    "minecraft:deepslate_tiles": "Ardoise des abîmes carrelée",
+    "minecraft:detector_rail": "Rails détecteurs",
+    "minecraft:diamond": "Diamant",
+    "minecraft:diamond_boots": "Bottes en diamant",
+    "minecraft:diamond_helmet": "Casque en diamant",
+    "minecraft:diamond_pickaxe": "Pioche en diamant",
+    "minecraft:diamond_sword": "Épée en diamant",
+    "minecraft:diorite": "Diorite",
+    "minecraft:dirt": "Terre",
+    "minecraft:dispenser": "Distributeur",
+    "minecraft:donkey": "Âne",
+    "minecraft:dried_kelp": "Algue séchée",
+    "minecraft:dried_kelp_block": "Bloc d'algues séchées",
+    "minecraft:dripstone_block": "Bloc de spéléothème",
+    "minecraft:dropper": "Dropper",
+    "minecraft:drowned": "Noyé",
+    "minecraft:egg": "Oeuf",
+    "minecraft:emerald_ore": "Minerai d'émeraude",
+    "minecraft:enchanted_book": "Livre",
+    "minecraft:enchanting_table": "Table d'enchantement",
+    "minecraft:end_stone": "Pierre de l'End",
+    "minecraft:ender_chest": "Coffre de l'Ender",
+    "minecraft:ender_eye": "Oeil de l'Ender",
+    "minecraft:ender_pearl": "Perle de l'Ender",
+    "minecraft:enderman": "Enderman",
+    "minecraft:feather": "Plume",
+    "minecraft:fermented_spider_eye": "Oeil d'araignée fermenté",
+    "minecraft:firework_rocket": "Fusée de feu d'artifice",
+    "minecraft:fishing_rod": "Canne à pêche",
+    "minecraft:fletching_table": "Table d'archerie",
+    "minecraft:flint": "Silex",
+    "minecraft:flint_and_steel": "Briquet",
+    "minecraft:flower_pot": "Pot de fleurs",
+    "minecraft:fox": "Renard",
+    "minecraft:frog": "Grenouille",
+    "minecraft:furnace": "Fourneau",
+    "minecraft:ghast": "Ghast",
+    "minecraft:ghast_tear": "Larme de Ghast",
+    "minecraft:glass": "Verre",
+    "minecraft:glass_bottle": "Fiole",
+    "minecraft:glass_pane": "Vitre",
+    "minecraft:glistering_melon_slice": "Tranche de pastèque scintillante",
+    "minecraft:glow_berries": "Baies lumineuses",
+    "minecraft:glow_ink_sac": "Poche d'encre luisante",
+    "minecraft:glow_item_frame": "Cadre luisant",
+    "minecraft:glow_lichen": "Lichen lumineux",
+    "minecraft:glowstone": "Pierre lumineuse",
+    "minecraft:glowstone_dust": "Poudre lumineuse",
+    "minecraft:goat": "Chèvre",
+    "minecraft:gold_ingot": "Lingot d'or",
+    "minecraft:gold_nugget": "Pépite d'or",
+    "minecraft:gold_ore": "Minerai d'or",
+    "minecraft:golden_apple": "Pomme dorée",
+    "minecraft:golden_carrot": "Carotte dorée",
+    "minecraft:granite": "Granite",
+    "minecraft:grass": "Herbe",
+    "minecraft:gravel": "Gravier",
+    "minecraft:green_dye": "Teinture verte",
+    "minecraft:grindstone": "Meule",
+    "minecraft:guardian": "Gardien",
+    "minecraft:gunpowder": "Poudre à canon",
+    "minecraft:hay_block": "Botte de paille",
+    "minecraft:hoglin": "Hoglin",
+    "minecraft:honey_block": "Bloc de miel",
+    "minecraft:honey_bottle": "Fiole de miel",
+    "minecraft:honeycomb": "Rayon de miel",
+    "minecraft:hopper": "Entonnoir",
+    "minecraft:horse": "Cheval",
+    "minecraft:husk": "Momifié",
+    "minecraft:ice": "Glace",
+    "minecraft:ink_sac": "Poche d'encre",
+    "minecraft:iron_axe": "Hache en fer",
+    "minecraft:iron_bars": "Barreaux de fer",
+    "minecraft:iron_block": "Bloc de fer",
+    "minecraft:iron_boots": "Bottes en fer",
+    "minecraft:iron_chain": "Chaîne en fer",
+    "minecraft:iron_chestplate": "Plastron en fer",
+    "minecraft:iron_helmet": "Casque en fer",
+    "minecraft:iron_ingot": "Lingot de fer",
+    "minecraft:iron_leggings": "Jambières en fer",
+    "minecraft:iron_ore": "Minerai de fer",
+    "minecraft:iron_pickaxe": "Pioche en fer",
+    "minecraft:iron_shovel": "Pelle en fer",
+    "minecraft:iron_sword": "Épée en fer",
+    "minecraft:item_frame": "Cadre",
+    "minecraft:jukebox": "Jukebox",
+    "minecraft:jungle_log": "Bûche d'acajou",
+    "minecraft:jungle_sapling": "Pousse d'acajou",
+    "minecraft:kelp": "Algue",
+    "minecraft:ladder": "Échelle",
+    "minecraft:lantern": "Lanterne",
+    "minecraft:lapis_block": "Bloc de lapis-lazuli",
+    "minecraft:lapis_lazuli": "Lapis-lazuli",
+    "minecraft:lapis_ore": "Minerai de lapis-lazuli",
+    "minecraft:lead": "Laisse",
+    "minecraft:leather": "Cuir",
+    "minecraft:leather_boots": "Bottes en cuir",
+    "minecraft:leather_chestplate": "Tunique en cuir",
+    "minecraft:leather_helmet": "Chapeau en cuir",
+    "minecraft:leather_leggings": "Pantalon en cuir",
+    "minecraft:lectern": "Pupitre",
+    "minecraft:lightning_rod": "Paratonnerre",
+    "minecraft:lilac": "Lilas",
+    "minecraft:lily_of_the_valley": "Muguet",
+    "minecraft:lily_pad": "Nénuphar",
+    "minecraft:llama": "Lama",
+    "minecraft:loom": "Métier à tisser",
+    "minecraft:magma_block": "Bloc de magma",
+    "minecraft:magma_cream": "Crème de magma",
+    "minecraft:magma_cube": "Cube de magma",
+    "minecraft:mangrove_log": "Bûche de palétuvier",
+    "minecraft:mangrove_roots": "Racines de palétuvier",
+    "minecraft:map": "Carte vierge",
+    "minecraft:melon": "Pastèque",
+    "minecraft:melon_slice": "Tranche de pastèque",
+    "minecraft:milk_bucket": "Seau de lait",
+    "minecraft:minecart": "Wagonnet",
+    "minecraft:mooshroom": "Mooshroom",
+    "minecraft:moss_block": "Bloc de mousse",
+    "minecraft:mossy_cobblestone": "Pierres moussues",
+    "minecraft:mossy_stone_bricks": "Pierre taillée moussue",
+    "minecraft:mud": "Boue",
+    "minecraft:mud_bricks": "Briques de terre crue",
+    "minecraft:mushroom_stew": "Soupe de champignons",
+    "minecraft:mutton": "Mouton cru",
+    "minecraft:nether_brick": "Brique du Nether",
+    "minecraft:nether_bricks": "Briques du Nether",
+    "minecraft:nether_gold_ore": "Minerai d'or du Nether",
+    "minecraft:nether_quartz_ore": "Minerai de quartz du Nether",
+    "minecraft:nether_wart": "Verrues du Nether",
+    "minecraft:nether_wart_block": "Bloc de verrues du Nether",
+    "minecraft:netherite_scrap": "Fragments de netherite",
+    "minecraft:netherrack": "Netherrack",
+    "minecraft:note_block": "Bloc musical",
+    "minecraft:oak_boat": "Bateau en chêne",
+    "minecraft:oak_fence": "Barrière en chêne",
+    "minecraft:oak_log": "Bûche de chêne",
+    "minecraft:oak_planks": "Planches de chêne",
+    "minecraft:oak_sapling": "Pousse de chêne",
+    "minecraft:obsidian": "Obsidienne",
+    "minecraft:ocelot": "Ocelot",
+    "minecraft:oxeye_daisy": "Marguerite",
+    "minecraft:packed_ice": "Glace compactée",
+    "minecraft:packed_mud": "Terre crue",
+    "minecraft:painting": "Tableau",
+    "minecraft:pale_oak_log": "Bûche de chêne pâle",
+    "minecraft:panda": "Panda",
+    "minecraft:paper": "Papier",
+    "minecraft:parrot": "Perroquet",
+    "minecraft:peony": "Pivoine",
+    "minecraft:phantom": "Phantom",
+    "minecraft:phantom_membrane": "Membrane de Phantom",
+    "minecraft:pig": "Cochon",
+    "minecraft:piglin": "Piglin",
+    "minecraft:pillager": "Pillard",
+    "minecraft:piston": "Piston",
+    "minecraft:pointed_dripstone": "Spéléothème pointu",
+    "minecraft:polished_andesite": "Andésite polie",
+    "minecraft:polished_blackstone": "Pierre noire",
+    "minecraft:polished_deepslate": "Ardoise des abîmes polie",
+    "minecraft:polished_diorite": "Diorite polie",
+    "minecraft:polished_granite": "Granite poli",
+    "minecraft:popped_chorus_fruit": "Chorus éclaté",
+    "minecraft:poppy": "Coquelicot",
+    "minecraft:porkchop": "Côtelette de porc crue",
+    "minecraft:potato": "Pomme de terre",
+    "minecraft:potion{minecraft:fire_resistance}": "Potion de résistance au feu",
+    "minecraft:potion{minecraft:night_vision}": "Potion de vision nocturne",
+    "minecraft:potion{minecraft:strength}": "Potion de force",
+    "minecraft:potion{minecraft:swiftness}": "Potion de rapidité",
+    "minecraft:potion{minecraft:water_breathing}": "Potion de respiration aquatique",
+    "minecraft:powered_rail": "Rails de propulsion",
+    "minecraft:prismarine": "Prismarine",
+    "minecraft:prismarine_crystals": "Cristaux de prismarine",
+    "minecraft:prismarine_shard": "Éclat de prismarine",
+    "minecraft:pumpkin": "Citrouille",
+    "minecraft:pumpkin_pie": "Tarte à la citrouille",
+    "minecraft:purpur_block": "Bloc de purpur",
+    "minecraft:quartz": "Quartz du Nether",
+    "minecraft:quartz_block": "Bloc de quartz",
+    "minecraft:rabbit": "Lapin",
+    "minecraft:rabbit_hide": "Peau de lapin",
+    "minecraft:rabbit_stew": "Ragoût de lapin",
+    "minecraft:rail": "Rails",
+    "minecraft:raw_copper": "Cuivre brut",
+    "minecraft:raw_gold": "Or brut",
+    "minecraft:raw_iron": "Fer brut",
+    "minecraft:red_dye": "Teinture rouge",
+    "minecraft:red_mushroom": "Champignon rouge",
+    "minecraft:red_mushroom_block": "Bloc de champignon rouge",
+    "minecraft:red_nether_bricks": "Briques rouges du Nether",
+    "minecraft:red_sand": "Sable rouge",
+    "minecraft:red_sandstone": "Grès rouge",
+    "minecraft:red_tulip": "Tulipe rouge",
+    "minecraft:redstone": "Poudre de redstone",
+    "minecraft:redstone_block": "Bloc de redstone",
+    "minecraft:redstone_ore": "Minerai de redstone",
+    "minecraft:redstone_torch": "Torche de redstone",
+    "minecraft:repeater": "Répéteur de redstone",
+    "minecraft:rotten_flesh": "Chair putréfiée",
+    "minecraft:salmon": "Saumon cru",
+    "minecraft:sand": "Sable",
+    "minecraft:sandstone": "Grès",
+    "minecraft:scaffolding": "Échafaudage",
+    "minecraft:sculk": "Sculk",
+    "minecraft:sculk_sensor": "Capteur sculk",
+    "minecraft:scute": "Écaille",
+    "minecraft:sea_lantern": "Lanterne aquatique",
+    "minecraft:sea_pickle": "Cornichon de mer",
+    "minecraft:seagrass": "Herbe aquatique",
+    "minecraft:shears": "Cisailles",
+    "minecraft:sheep": "Mouton",
+    "minecraft:shield": "Bouclier",
+    "minecraft:short_grass": "Herbes courtes",
+    "minecraft:shroomlight": "Champilampe",
+    "minecraft:shulker": "Shulker",
+    "minecraft:shulker_shell": "Carapace de Shulker",
+    "minecraft:silverfish": "Poisson d'argent",
+    "minecraft:skeleton": "Squelette",
+    "minecraft:slime": "Slime",
+    "minecraft:slime_ball": "Boule de slime",
+    "minecraft:smithing_table": "Table de forge",
+    "minecraft:smoker": "Fumoir",
+    "minecraft:smooth_quartz": "Bloc de quartz lisse",
+    "minecraft:smooth_red_sandstone": "Grès rouge lisse",
+    "minecraft:smooth_sandstone": "Grès lisse",
+    "minecraft:smooth_stone": "Roche lisse",
+    "minecraft:smooth_stone_slab": "Dalle de roche lisse",
+    "minecraft:snow_block": "Bloc de neige",
+    "minecraft:snowball": "Boule de neige",
+    "minecraft:soul_lantern": "Lanterne des âmes",
+    "minecraft:soul_sand": "Sable des âmes",
+    "minecraft:soul_soil": "Terre des âmes",
+    "minecraft:soul_torch": "Torche des âmes",
+    "minecraft:spectral_arrow": "Flèche spectrale",
+    "minecraft:spider": "Araignée",
+    "minecraft:spider_eye": "Oeil d'araignée",
+    "minecraft:sponge": "Éponge",
+    "minecraft:spruce_log": "Bûche de sapin",
+    "minecraft:spruce_sapling": "Pousse de sapin",
+    "minecraft:spyglass": "Longue-vue",
+    "minecraft:stick": "Bâton",
+    "minecraft:stone": "Roche",
+    "minecraft:stone_brick_stairs": "Escalier en pierre taillée",
+    "minecraft:stone_bricks": "Pierre taillée",
+    "minecraft:stonecutter": "Tailleur de pierre",
+    "minecraft:stray": "Vagabond",
+    "minecraft:strider": "Arpenteur",
+    "minecraft:string": "Ficelle",
+    "minecraft:sugar": "Sucre",
+    "minecraft:sugar_cane": "Canne à sucre",
+    "minecraft:sunflower": "Tournesol",
+    "minecraft:sweet_berries": "Baies sucrées",
+    "minecraft:target": "Cible",
+    "minecraft:terracotta": "Terre cuite",
+    "minecraft:tnt": "TNT",
+    "minecraft:torch": "Torche",
+    "minecraft:trapped_chest": "Coffre piégé",
+    "minecraft:tripwire_hook": "Crochet",
+    "minecraft:tuff": "Tuf",
+    "minecraft:turtle": "Tortue",
+    "minecraft:turtle_scute": "Écaille de tortue",
+    "minecraft:vine": "Lianes",
+    "minecraft:warped_fungus": "Champignon biscornu",
+    "minecraft:warped_stem": "Tige biscornue",
+    "minecraft:warped_wart_block": "Bloc de verrues biscornues",
+    "minecraft:wheat": "Blé",
+    "minecraft:wheat_seeds": "Graines de blé",
+    "minecraft:white_banner": "Bannière blanche",
+    "minecraft:white_bed": "Lit blanc",
+    "minecraft:white_carpet": "Tapis blanc",
+    "minecraft:white_dye": "Teinture blanche",
+    "minecraft:white_glazed_terracotta": "Terre cuite émaillée blanche",
+    "minecraft:white_stained_glass": "Verre blanc",
+    "minecraft:white_terracotta": "Terre cuite blanche",
+    "minecraft:white_wool": "Laine blanche",
+    "minecraft:witch": "Sorcière",
+    "minecraft:wither_skeleton": "Wither squelette",
+    "minecraft:wolf": "Loup",
+    "minecraft:yellow_dye": "Teinture jaune",
+    "minecraft:zombie": "Zombie",
+    "minecraft:zombie_villager": "Zombie-villageois",
+    "minecraft:zombified_piglin": "Piglin zombifié",
+    "tconstruct:cobalt_ore": "Minerai de cobalt du Nether",
+    "tconstruct:crafting_station": "Poste d'artisanat",
+    "tconstruct:greenheart_log": "Bûche de coeurvert",
+    "tconstruct:grout": "Coulis durcissant",
+    "tconstruct:materials_and_you": "Les matériaux et vous",
+    "tconstruct:part_builder": "Fabricant de pièces",
+    "tconstruct:pattern": "modèle",
+    "tconstruct:raw_cobalt": "Cobalt brut",
+    "tconstruct:seared_basin": "Bassin de coulée fondu",
+    "tconstruct:seared_brick": "Brique fondue",
+    "tconstruct:seared_bricks": "Briques fondues",
+    "tconstruct:seared_faucet": "Robinet fondu",
+    "tconstruct:seared_heater": "Chauffe-bloc fondu",
+    "tconstruct:seared_melter": "Creuset fondu",
+    "tconstruct:seared_table": "Table de coulée fondue",
+    "tconstruct:sky_slime": "Céletslime",
+    "tconstruct:sky_slime_ball": "Boule de céletslime",
+    "tconstruct:skyroot_log": "Bûche de célébène",
+    "tconstruct:tinker_station": "Atelier de bricoleur",
+    "twilightforest:bighorn_sheep": "Mouflon d'Amérique",
+    "twilightforest:boar": "Sanglier",
+    "twilightforest:canopy_bookshelf": "Bibliothèque de canopée",
+    "twilightforest:canopy_log": "Bûche d'arbre canopée",
+    "twilightforest:canopy_planks": "Planches de canopée",
+    "twilightforest:cooked_meef": "Steak de Meef",
+    "twilightforest:cooked_venison": "Steak de chevreuil",
+    "twilightforest:dark_log": "Bûche de bois sombre",
+    "twilightforest:dark_planks": "Planches de bois sombre",
+    "twilightforest:deer": "Cerf",
+    "twilightforest:fire_beetle": "Coléoptère de feu",
+    "twilightforest:hedge_spider": "Araignée des haies",
+    "twilightforest:hostile_wolf": "Loup hostile",
+    "twilightforest:ironwood_ingot": "Lingot en bois de fer",
+    "twilightforest:kobold": "Kobold",
+    "twilightforest:lich": "Liche",
+    "twilightforest:liveroot": "Racine vivante",
+    "twilightforest:magic_map": "Carte magique vierge",
+    "twilightforest:magic_map_focus": "Foyer de carte magique",
+    "twilightforest:mangrove_log": "Bûche de Mangrove",
+    "twilightforest:minotaur": "Minotaure",
+    "twilightforest:mushgloom": "Champignon lumineux",
+    "twilightforest:naga": "Nâga",
+    "twilightforest:naga_scale": "Écailles de Nâga",
+    "twilightforest:pinch_beetle": "Coléoptère pinceur",
+    "twilightforest:raven_feather": "Plume de corbeau",
+    "twilightforest:raw_ironwood": "Matériaux en bois de fer bruts",
+    "twilightforest:raw_meef": "Viande de Meef crue",
+    "twilightforest:raw_venison": "Chevreuil cru",
+    "twilightforest:redcap": "Bonnet rouge",
+    "twilightforest:skeleton_druid": "Squelette de druide",
+    "twilightforest:slime_beetle": "Coléoptère visqueux",
+    "twilightforest:swarm_spider": "Araignée d'essaim",
+    "twilightforest:torchberries": "Baies-torches",
+    "twilightforest:twilight_oak_boat": "Bateau en chêne du Crépuscule",
+    "twilightforest:twilight_oak_log": "Bûche de bois du Crépuscule",
+    "twilightforest:twilight_oak_planks": "Planches de chêne du Crépuscule"
+  }
+}

@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_3": {
-    "title": "Glassblower",
-    "description": "The glassblower is out of sand: collect 128 sand and smelt 64 glass. Dig sand with a shovel. Look along beaches. Smelt sand in a furnace.",
+    "title": {
+      "en_us": "Glassblower",
+      "de_de": "Glasbläser",
+      "fr_fr": "Souffleur de verre",
+      "es_es": "Soplador de vidrio",
+      "ja_jp": "ガラス職人"
+    },
+    "description": {
+      "en_us": "The glassblower is out of sand: collect 128 sand and smelt 64 glass. Dig sand with a shovel. Look along beaches. Smelt sand in a furnace.",
+      "de_de": "Dem Glasbläser ist der Sand ausgegangen: Sammle 128× Sand und schmelze 64× Glas. Grabe Sand mit einer Schaufel. Suche an Stränden.",
+      "fr_fr": "Le souffleur de verre n'a plus de sable : récoltez 128× sable et faites fondre 64× verre. Creusez du sable avec une pelle.",
+      "es_es": "Al vidriero se le acabó la arena: recoge 128× arena y funde 64× cristal. Excava arena con una pala. Busca en las playas.",
+      "ja_jp": "ガラス職人の砂が切れた：砂128個の収集とガラス64個の製錬。シャベルで砂を掘る。砂浜を探そう。砂をかまどで焼く。"
+    },
     "category": "generated",
     "sort": 13,
     "mode": "all",
@@ -35,8 +47,20 @@
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Redstone Dust Bundle",
-    "description": "Gather 64 redstone dust. Redstone ore drops dust. Needs an iron pickaxe or better. Found deep underground.",
+    "title": {
+      "en_us": "Redstone Dust Bundle",
+      "de_de": "Bündel: Redstone-Staub",
+      "fr_fr": "Lot de poudre de redstone",
+      "es_es": "Lote de polvo de redstone",
+      "ja_jp": "レッドストーンダストの束"
+    },
+    "description": {
+      "en_us": "Gather 64 redstone dust. Redstone ore drops dust. Needs an iron pickaxe or better. Found deep underground.",
+      "de_de": "Trage 64× Redstone-Staub zusammen. Redstone-Erz lässt Staub fallen. Braucht mindestens eine Eisenspitzhacke. Tief unter der Erde zu finden.",
+      "fr_fr": "Rassemblez 64× poudre de redstone. Le minerai de redstone donne de la poudre. Il faut au moins une pioche en fer. Se trouve en profondeur.",
+      "es_es": "Reúne 64× polvo de redstone. La mena de redstone suelta polvo. Necesita un pico de hierro o mejor. Se encuentra a gran profundidad.",
+      "ja_jp": "レッドストーンダスト64個の採集をこなそう。レッドストーン鉱石からダストが出る。鉄のツルハシ以上が必要。地下深くで見つかる。"
+    },
     "category": "generated",
     "sort": 14,
     "objectives": [
@@ -59,8 +83,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Woodcutter",
-    "description": "The sawmill is waiting: pick up 64 dark oak logs and make 16 chests. Dark forests have plenty.",
+    "title": {
+      "en_us": "Woodcutter",
+      "de_de": "Holzhacker",
+      "fr_fr": "Coupeur de bois",
+      "es_es": "Talador",
+      "ja_jp": "きこり仕事"
+    },
+    "description": {
+      "en_us": "The sawmill is waiting: pick up 64 dark oak logs and make 16 chests. Dark forests have plenty.",
+      "de_de": "Das Sägewerk wartet: Hebe 64× Schwarzeichenstamm auf und fertige 16× Truhe an. Dunkle Wälder haben jede Menge.",
+      "fr_fr": "La scierie attend : ramassez 64× bûche de chêne noir et façonnez 16× coffre. Les forêts sombres en regorgent.",
+      "es_es": "El aserradero espera: recolecta 64× tronco de roble oscuro y haz 16× cofre. Los bosques oscuros tienen muchos.",
+      "ja_jp": "製材所が待っている：ダークオークの原木64個の回収とチェスト16個の製作。暗い森にたくさんある。"
+    },
     "category": "generated",
     "sort": 14,
     "mode": "all",
@@ -94,8 +130,20 @@
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "Hoglin Herd",
-    "description": "Breed 3 hoglins. Hoglins breed with crimson fungus; they fight back. Found in crimson forests. Found in the Nether.",
+    "title": {
+      "en_us": "Hoglin Herd",
+      "de_de": "Herde: Hoglin",
+      "fr_fr": "Troupeau : hoglin",
+      "es_es": "Rebaño de hoglin",
+      "ja_jp": "ホグリンの群れ"
+    },
+    "description": {
+      "en_us": "Breed 3 hoglins. Hoglins breed with crimson fungus; they fight back. Found in crimson forests. Found in the Nether.",
+      "de_de": "Züchte 3× Hoglin. Hoglins vermehren sich mit Karmesinpilzen; sie wehren sich. In Karmesinwäldern zu finden. Zu finden im Nether.",
+      "fr_fr": "Élevez 3× hoglin. Les hoglins se reproduisent avec des champignons carmin ; ils se défendent. Se trouve dans les forêts carmin.",
+      "es_es": "Cría 3× hoglin. Los hoglins se reproducen con hongos carmesí; se defienden. Se encuentra en bosques carmesí. Se encuentra en el Nether.",
+      "ja_jp": "ホグリン3匹の繁殖をこなそう。ホグリンは真紅のキノコで繁殖する。反撃してくるので注意。真紅の森で見つかる。ネザーで見つかる。"
+    },
     "category": "generated",
     "sort": 17,
     "objectives": [
@@ -122,8 +170,20 @@
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "Mine Nether Quartz Ore",
-    "description": "Mine 48 Nether quartz ore. Found in the Nether.",
+    "title": {
+      "en_us": "Mine Nether Quartz Ore",
+      "de_de": "Netherquarzerz abbauen",
+      "fr_fr": "Minerai de quartz du Nether",
+      "es_es": "Minar mena de cuarzo del Nether",
+      "ja_jp": "ネザークォーツ鉱石を掘ろう"
+    },
+    "description": {
+      "en_us": "Mine 48 Nether quartz ore. Found in the Nether.",
+      "de_de": "Baue 48× Netherquarzerz ab. Zu finden im Nether.",
+      "fr_fr": "Minez 48× minerai de quartz du Nether. Se trouve dans le Nether.",
+      "es_es": "Mina 48× mena de cuarzo del Nether. Se encuentra en el Nether.",
+      "ja_jp": "ネザークォーツ鉱石48個の採掘をこなそう。ネザーで見つかる。"
+    },
     "category": "generated",
     "sort": 17,
     "objectives": [
@@ -146,8 +206,20 @@
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Prismarine Breaker",
-    "description": "Mine 32 prismarine. Needs an iron pickaxe or better. Found at ocean monuments.",
+    "title": {
+      "en_us": "Prismarine Breaker",
+      "de_de": "Prismarin knacken",
+      "fr_fr": "Briseur de prismarine",
+      "es_es": "Rompedor de prismarina",
+      "ja_jp": "プリズマリンブレイカー"
+    },
+    "description": {
+      "en_us": "Mine 32 prismarine. Needs an iron pickaxe or better. Found at ocean monuments.",
+      "de_de": "Baue 32× Prismarin ab. Braucht mindestens eine Eisenspitzhacke. An Ozeanmonumenten zu finden.",
+      "fr_fr": "Minez 32× prismarine. Il faut au moins une pioche en fer. Se trouve dans les monuments sous-marins.",
+      "es_es": "Mina 32× prismarina. Necesita un pico de hierro o mejor. Se encuentra en monumentos oceánicos.",
+      "ja_jp": "プリズマリン32個の採掘をこなそう。鉄のツルハシ以上が必要。海底神殿で見つかる。"
+    },
     "category": "generated",
     "sort": 18,
     "objectives": [
@@ -174,8 +246,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Busy Bees",
-    "description": "Tend the hives: breed 5 bees and make 6 candles. Bees breed with flowers. Needs bees and flowers.",
+    "title": {
+      "en_us": "Busy Bees",
+      "de_de": "Fleißige Bienen",
+      "fr_fr": "Abeilles affairées",
+      "es_es": "Abejas atareadas",
+      "ja_jp": "働き者のミツバチ"
+    },
+    "description": {
+      "en_us": "Tend the hives: breed 5 bees and make 6 candles. Bees breed with flowers. Needs bees and flowers.",
+      "de_de": "Kümmere dich um die Bienenstöcke: Züchte 5× Biene und fertige 6× Kerze an. Bienen vermehren sich mit Blumen. Braucht Bienen und Blumen.",
+      "fr_fr": "Occupez-vous des ruches : élevez 5× abeille et façonnez 6× bougie. Les abeilles se reproduisent avec des fleurs.",
+      "es_es": "Cuida las colmenas: cría 5× abeja y haz 6× vela. Las abejas se reproducen con flores. Necesita abejas y flores.",
+      "ja_jp": "巣箱の世話をしよう：ミツバチ5匹の繁殖とろうそく6個の製作。ミツバチは花で繁殖する。ミツバチと花が必要。"
+    },
     "category": "generated",
     "sort": 18,
     "mode": "all",
@@ -208,8 +292,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Copper Age",
-    "description": "Copper everywhere: gather 96 raw copper and craft 8 copper blocks. Copper ore drops raw copper. Needs a stone pickaxe or better.",
+    "title": {
+      "en_us": "Copper Age",
+      "de_de": "Kupferzeit",
+      "fr_fr": "Âge du cuivre",
+      "es_es": "Edad del cobre",
+      "ja_jp": "銅の時代"
+    },
+    "description": {
+      "en_us": "Copper everywhere: gather 96 raw copper and craft 8 copper blocks. Copper ore drops raw copper. Needs a stone pickaxe or better.",
+      "de_de": "Überall Kupfer: Trage 96× Rohkupfer zusammen und stelle 8× Kupferblock her. Kupfererz lässt Rohkupfer fallen. In Höhlen zu finden.",
+      "fr_fr": "Du cuivre partout : rassemblez 96× cuivre brut et fabriquez 8× bloc de cuivre. Le minerai de cuivre donne du cuivre brut.",
+      "es_es": "Cobre por todas partes: reúne 96× cobre en bruto y fabrica 8× bloque de cobre. La mena de cobre suelta cobre en bruto.",
+      "ja_jp": "どこもかしこも銅だらけ：銅の原石96個の採集と銅ブロック8個の作成。銅鉱石から銅の原石が出る。石のツルハシ以上が必要。洞窟で見つかる。銅インゴット9個。"
+    },
     "category": "generated",
     "sort": 20,
     "mode": "all",
@@ -243,8 +339,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Wildlife Order",
-    "description": "Eat 4 cooked rabbit and breed 3 ocelots. Look in deserts. Ocelots breed with raw cod or salmon. Look in jungles.",
+    "title": {
+      "en_us": "Wildlife Order",
+      "de_de": "Auftrag: Wildtiere",
+      "fr_fr": "Commande : Faune",
+      "es_es": "Pedido: Fauna",
+      "ja_jp": "野生動物の注文"
+    },
+    "description": {
+      "en_us": "Eat 4 cooked rabbit and breed 3 ocelots. Look in deserts. Ocelots breed with raw cod or salmon. Look in jungles.",
+      "de_de": "Iss 4× Gebratenes Kaninchen und züchte 3× Ozelot. Suche in Wüsten. Ozelots vermehren sich mit rohem Kabeljau oder Lachs.",
+      "fr_fr": "Mangez 4× lapin cuit et élevez 3× ocelot. Cherchez dans les déserts. Les ocelots se reproduisent avec de la morue ou du saumon cru.",
+      "es_es": "Come 4× conejo asado y cría 3× ocelote. Busca en desiertos. Los ocelotes se reproducen con bacalao o salmón crudo. Busca en junglas.",
+      "ja_jp": "焼き兎肉4個の実食とヤマネコ3匹の繁殖をこなそう。砂漠を探そう。ヤマネコは生鱈か生鮭で繁殖する。ジャングルを探そう。"
+    },
     "category": "generated",
     "sort": 25,
     "mode": "all",
@@ -273,8 +381,20 @@
     ]
   },
   "justquests:gen/1790510400_8": {
-    "title": "Sand and Sun",
-    "description": "Brave the desert: smelt 48 green dyes and defeat 12 husks. Smelt cactus. Look in deserts. They spawn at night and in dark caves.",
+    "title": {
+      "en_us": "Sand and Sun",
+      "de_de": "Sand und Sonne",
+      "fr_fr": "Sable et soleil",
+      "es_es": "Arena y sol",
+      "ja_jp": "砂と太陽"
+    },
+    "description": {
+      "en_us": "Brave the desert: smelt 48 green dyes and defeat 12 husks. Smelt cactus. Look in deserts. They spawn at night and in dark caves.",
+      "de_de": "Trotze der Wüste: Schmelze 48× Grüner Farbstoff und besiege 12× Wüstenzombie. Schmelze Kaktus. Suche in Wüsten.",
+      "fr_fr": "Bravez le désert : faites fondre 48× teinture verte et vainquez 12× momifié. Faites cuire des cactus. Cherchez dans les déserts.",
+      "es_es": "Desafía el desierto: funde 48× tinte verde y derrota 12× disecado. Funde cactus. Busca en desiertos. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "砂漠に挑もう：緑色の染料48個の製錬とハスク12体の討伐。サボテンを焼く。砂漠を探そう。夜や暗い洞窟に出現する。"
+    },
     "category": "generated",
     "sort": 26,
     "mode": "all",

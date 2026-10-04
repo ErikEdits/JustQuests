@@ -7,9 +7,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * Strict structural check mirroring §6 for generated quests. The core runs it before the host's
@@ -20,6 +22,7 @@ public final class SchemaCheck {
     public static final int DESCRIPTION_MAX = 140;
     private static final Set<String> QUEST_KEYS = Set.of("title", "description", "category", "mode", "sort",
         "objectives", "rewards");
+    private static final Pattern LANGUAGE = Pattern.compile("[a-z]{2,3}_[a-z]{2,4}");
     private static final Set<String> REWARD_TYPES = Set.of("justquests:give_item", "justquests:xp",
         "justquests:effect", "justquests:loot_table", "justquests:message");
 
@@ -38,27 +41,34 @@ public final class SchemaCheck {
                 p.add("unknown key " + k);
             }
         }
-        String title = str(q, "title");
-        if (title == null || title.isBlank()) {
+        Map<String, String> titles = texts(q.get("title"));
+        if (titles == null || titles.get("en_us").isBlank()) {
             p.add("missing title");
         } else {
-            if (title.length() > TITLE_MAX) {
-                p.add("title too long: " + title);
-            }
-            if (title.contains("{") || title.contains("}")) {
-                p.add("placeholder in title: " + title);
+            for (String title : titles.values()) {
+                if (title.isBlank()) {
+                    p.add("blank title");
+                }
+                if (title.length() > TITLE_MAX) {
+                    p.add("title too long: " + title);
+                }
+                if (title.contains("{") || title.contains("}")) {
+                    p.add("placeholder in title: " + title);
+                }
             }
         }
         if (q.has("description")) {
-            String d = str(q, "description");
-            if (d == null) {
-                p.add("description not a string");
+            Map<String, String> descriptions = texts(q.get("description"));
+            if (descriptions == null) {
+                p.add("description not a string or language map");
             } else {
-                if (d.length() > DESCRIPTION_MAX) {
-                    p.add("description too long (" + d.length() + ")");
-                }
-                if (d.contains("{") || d.contains("}")) {
-                    p.add("placeholder in description: " + d);
+                for (String d : descriptions.values()) {
+                    if (d.length() > DESCRIPTION_MAX) {
+                        p.add("description too long (" + d.length() + ")");
+                    }
+                    if (d.contains("{") || d.contains("}")) {
+                        p.add("placeholder in description: " + d);
+                    }
                 }
             }
         }
@@ -194,12 +204,44 @@ public final class SchemaCheck {
                 }
                 break;
             default:
-                String m = str(o, "message");
-                if (m == null || m.isBlank() || m.contains("{")) {
+                Map<String, String> m = texts(o.get("message"));
+                if (m == null) {
                     p.add("bad message");
+                } else {
+                    for (String s : m.values()) {
+                        if (s.isBlank() || s.contains("{")) {
+                            p.add("bad message");
+                        }
+                    }
                 }
                 break;
         }
+    }
+
+    /**
+     * A text field: a string, or a per-language map of strings that has {@code en_us}. Returns
+     * language → text ({@code en_us} for a plain string), or null if malformed.
+     */
+    static Map<String, String> texts(JsonElement e) {
+        if (e == null) {
+            return null;
+        }
+        Map<String, String> out = new LinkedHashMap<>();
+        if (e.isJsonPrimitive() && e.getAsJsonPrimitive().isString()) {
+            out.put("en_us", e.getAsString());
+            return out;
+        }
+        if (!e.isJsonObject()) {
+            return null;
+        }
+        for (Map.Entry<String, JsonElement> x : e.getAsJsonObject().entrySet()) {
+            JsonElement v = x.getValue();
+            if (!LANGUAGE.matcher(x.getKey()).matches() || !v.isJsonPrimitive() || !v.getAsJsonPrimitive().isString()) {
+                return null;
+            }
+            out.put(x.getKey(), v.getAsString());
+        }
+        return out.containsKey("en_us") ? out : null;
     }
 
     private static String str(JsonObject o, String k) {

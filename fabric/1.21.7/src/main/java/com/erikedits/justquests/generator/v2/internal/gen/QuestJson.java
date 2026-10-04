@@ -1,7 +1,11 @@
 package com.erikedits.justquests.generator.v2.internal.gen;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
+import java.util.Map;
 
 /** Emits the quest JSON contract of §6 (and nothing else). */
 public final class QuestJson {
@@ -10,9 +14,9 @@ public final class QuestJson {
 
     public static JsonObject build(QuestDraft d) {
         JsonObject q = new JsonObject();
-        q.addProperty("title", d.title);
+        q.add("title", text(d.title, d.titles));
         if (d.description != null && !d.description.isEmpty()) {
-            q.addProperty("description", d.description);
+            q.add("description", text(d.description, d.descriptions));
         }
         q.addProperty("category", "generated");
         q.addProperty("sort", Math.max(0, (int) Math.round(d.estMinutes)));
@@ -60,7 +64,7 @@ public final class QuestJson {
                     j.addProperty("loot_table", r.id());
                     break;
                 case "message":
-                    j.addProperty("message", r.text());
+                    j.add("message", text(r.text(), d.messageTexts));
                     break;
                 default:
                     throw new IllegalStateException("unknown reward type " + r.type());
@@ -69,5 +73,20 @@ public final class QuestJson {
         }
         q.add("rewards", rewards);
         return q;
+    }
+
+    /** A plain string, or a per-language map ({@code en_us} first) when other languages are present. */
+    private static JsonElement text(String english, Map<String, String> all) {
+        if (all == null || all.size() <= 1) {
+            return new JsonPrimitive(english);
+        }
+        JsonObject o = new JsonObject();
+        o.addProperty("en_us", english);
+        for (Map.Entry<String, String> e : all.entrySet()) {
+            if (!e.getKey().equals("en_us") && e.getValue() != null && !e.getValue().isEmpty()) {
+                o.addProperty(e.getKey(), e.getValue());
+            }
+        }
+        return o;
     }
 }

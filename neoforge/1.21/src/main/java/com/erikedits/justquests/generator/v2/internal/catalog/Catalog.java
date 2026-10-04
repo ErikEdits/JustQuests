@@ -18,10 +18,19 @@ public final class Catalog {
     public final Templates templates;
     public final Balance balance;
     public final List<String> loadWarnings;
+    /** Extra languages for generated quest text (lang/*.json); may be empty. */
+    public final List<Localization> languages;
 
     public Catalog(List<ProfileDef> profiles, List<RewardDefs.Item> items, List<RewardDefs.Effect> effects,
                    List<RewardDefs.Loot> loot, List<String> messages, List<ThemeDef> themes,
                    Map<String, TagConcept> tags, Templates templates, Balance balance, List<String> loadWarnings) {
+        this(profiles, items, effects, loot, messages, themes, tags, templates, balance, loadWarnings, List.of());
+    }
+
+    public Catalog(List<ProfileDef> profiles, List<RewardDefs.Item> items, List<RewardDefs.Effect> effects,
+                   List<RewardDefs.Loot> loot, List<String> messages, List<ThemeDef> themes,
+                   Map<String, TagConcept> tags, Templates templates, Balance balance, List<String> loadWarnings,
+                   List<Localization> languages) {
         this.profiles = List.copyOf(profiles);
         this.items = List.copyOf(items);
         this.effects = List.copyOf(effects);
@@ -32,6 +41,7 @@ public final class Catalog {
         this.templates = templates;
         this.balance = balance;
         this.loadWarnings = List.copyOf(loadWarnings);
+        this.languages = List.copyOf(languages);
     }
 
     public ProfileDef profile(String id) {

@@ -1,93 +1,33 @@
 {
-  "justquests:gen/1790510400_4": {
-    "title": "Gather Logs",
-    "description": "Gather 48 logs. Chop any kind of tree. Any log counts.",
-    "category": "generated",
-    "sort": 4,
-    "objectives": [
-      {
-        "type": "justquests:collect_item",
-        "item": "#minecraft:logs",
-        "count": 48
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "farmersdelight:bacon_sandwich",
-        "count": 2
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 9
-      }
-    ]
-  },
-  "justquests:gen/1790510400_6": {
-    "title": "Dig Deepslate Tin Ore",
-    "description": "Break 5 deepslate tin ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
-    "category": "generated",
-    "sort": 4,
-    "objectives": [
-      {
-        "type": "justquests:mine_block",
-        "block": "mekanism:deepslate_tin_ore",
-        "count": 5
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "farmersdelight:carrot_crate",
-        "count": 2
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 17
-      }
-    ]
-  },
-  "justquests:gen/1790510400_2": {
-    "title": "Make Lecterns",
-    "description": "Craft a lectern.",
+  "justquests:gen/1790510400_0": {
+    "title": {
+      "en_us": "Mystical Red Petal Job",
+      "de_de": "Job: Mystisches Red Blütenblatt",
+      "fr_fr": "Boulot : pétale mystique rouge",
+      "es_es": "Trabajo: pétalo místico rojo",
+      "ja_jp": "赤色の神秘的な花びらの仕事"
+    },
+    "description": {
+      "en_us": "Craft 24 mystical red petals. One mystical flower makes two petals.",
+      "de_de": "Stelle 24× Mystisches Red Blütenblatt her. Eine mystische Blume ergibt zwei Blütenblätter.",
+      "fr_fr": "Fabriquez 24× pétale mystique rouge. Une fleur mystique donne deux pétales.",
+      "es_es": "Fabrica 24× pétalo místico rojo. Una flor mística da dos pétalos.",
+      "ja_jp": "赤色の神秘的な花びら24個の作成をこなそう。神秘の花1本で花びらが2枚できる。"
+    },
     "category": "generated",
     "sort": 5,
     "objectives": [
       {
         "type": "justquests:craft_item",
-        "item": "minecraft:lectern",
-        "count": 1
+        "item": "botania:red_petal",
+        "count": 24
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:hay_block",
-        "count": 3
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 10
-      }
-    ]
-  },
-  "justquests:gen/1790510400_3": {
-    "title": "Andesite Miner",
-    "description": "Mine 96 andesite.",
-    "category": "generated",
-    "sort": 5,
-    "objectives": [
-      {
-        "type": "justquests:mine_block",
-        "block": "minecraft:andesite",
-        "count": 96
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:bread",
-        "count": 8
+        "item": "minecraft:lapis_block",
+        "count": 2
       },
       {
         "type": "justquests:xp",
@@ -95,23 +35,235 @@
       }
     ]
   },
-  "justquests:gen/1790510400_0": {
-    "title": "Mystical Purple Flower Run",
-    "description": "Pick up 16 mystical purple flowers. Mystical flowers grow in forests, plains and meadows.",
+  "justquests:gen/1790510400_4": {
+    "title": {
+      "en_us": "Jungle Log Shift",
+      "de_de": "Schicht: Tropenbaumstamm",
+      "fr_fr": "Corvée de bûche d'acajou",
+      "es_es": "Turno de tronco de jungla",
+      "ja_jp": "ジャングルの原木採掘シフト"
+    },
+    "description": {
+      "en_us": "Break 40 jungle logs. Look in jungles.",
+      "de_de": "Zerstöre 40× Tropenbaumstamm. Suche in Dschungeln.",
+      "fr_fr": "Cassez 40× bûche d'acajou. Cherchez dans les jungles.",
+      "es_es": "Rompe 40× tronco de jungla. Busca en junglas.",
+      "ja_jp": "ジャングルの原木40個の破壊をこなそう。ジャングルを探そう。"
+    },
     "category": "generated",
     "sort": 6,
     "objectives": [
       {
-        "type": "justquests:collect_item",
-        "item": "botania:purple_mystical_flower",
-        "count": 16
+        "type": "justquests:mine_block",
+        "block": "minecraft:jungle_log",
+        "count": 40
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:lead",
+        "item": "minecraft:coal",
+        "count": 17
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 16
+      }
+    ]
+  },
+  "justquests:gen/1790510400_7": {
+    "title": {
+      "en_us": "Need Cabbage",
+      "de_de": "Weißkohl gesucht",
+      "fr_fr": "On cherche : chou",
+      "es_es": "Se busca: col",
+      "ja_jp": "キャベツ求む"
+    },
+    "description": {
+      "en_us": "Pick up 48 cabbage. Cabbage seeds come from wild cabbages on beaches. Grow them on a farm.",
+      "de_de": "Hebe 48× Weißkohl auf. Weißkohlsamen stammen von wildem Kohl an Stränden. Baue sie auf einem Feld an.",
+      "fr_fr": "Ramassez 48× chou. Les graines de chou viennent des choux sauvages des plages. Cultivez-les dans une ferme.",
+      "es_es": "Recolecta 48× col. Las semillas de col salen de coles silvestres en las playas. Cultívalos en una granja.",
+      "ja_jp": "キャベツ48個の回収をこなそう。キャベツの種は砂浜の野生のキャベツから取れる。畑で育てよう。"
+    },
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "farmersdelight:cabbage",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "mekanism:ingot_tin",
+        "count": 6
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 25
+      },
+      {
+        "type": "justquests:message",
+        "message": {
+          "en_us": "Word of your deeds spreads.",
+          "de_de": "Deine Taten sprechen sich herum.",
+          "fr_fr": "Vos exploits font parler d'eux.",
+          "es_es": "Tus hazañas corren de boca en boca.",
+          "ja_jp": "あなたの活躍が噂になっている。"
+        }
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": {
+      "en_us": "Melon Slice Run",
+      "de_de": "Sammeltour: Melonenscheibe",
+      "fr_fr": "Tournée : tranche de pastèque",
+      "es_es": "Ronda de rodaja de sandía",
+      "ja_jp": "スイカの薄切り集めの旅"
+    },
+    "description": {
+      "en_us": "Pick up 96 melon slices. Look in jungles.",
+      "de_de": "Hebe 96× Melonenscheibe auf. Suche in Dschungeln.",
+      "fr_fr": "Ramassez 96× tranche de pastèque. Cherchez dans les jungles.",
+      "es_es": "Recolecta 96× rodaja de sandía. Busca en junglas.",
+      "ja_jp": "スイカの薄切り96個の回収をこなそう。ジャングルを探そう。"
+    },
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:melon_slice",
+        "count": 96
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "create:linear_chassis",
+        "count": 10
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 25
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": {
+      "en_us": "Donkey Breeder",
+      "de_de": "Züchter: Esel",
+      "fr_fr": "Éleveur : âne",
+      "es_es": "Criador de burro",
+      "ja_jp": "ロバブリーダー"
+    },
+    "description": {
+      "en_us": "Breed 2 donkeys. Donkeys breed with golden carrots or apples. Common in plains.",
+      "de_de": "Züchte 2× Esel. Esel vermehren sich mit goldenen Karotten oder Äpfeln. Häufig in Ebenen.",
+      "fr_fr": "Élevez 2× âne. Les ânes se reproduisent avec des carottes dorées ou des pommes. Courant dans les plaines.",
+      "es_es": "Cría 2× burro. Los burros se reproducen con zanahorias doradas o manzanas. Común en llanuras.",
+      "ja_jp": "ロバ2匹の繁殖をこなそう。ロバは金のニンジンかリンゴで繁殖する。平原によくある。"
+    },
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:donkey",
         "count": 2
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:pumpkin_pie",
+        "count": 6
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 24
+      },
+      {
+        "type": "justquests:message",
+        "message": {
+          "en_us": "The village thanks you!",
+          "de_de": "Das Dorf dankt dir!",
+          "fr_fr": "Le village vous remercie !",
+          "es_es": "¡El pueblo te lo agradece!",
+          "ja_jp": "村のみんなが感謝しているよ！"
+        }
+      }
+    ]
+  },
+  "justquests:gen/1790510400_6": {
+    "title": {
+      "en_us": "Deepslate Lead Ore Dig",
+      "de_de": "Grabung: Tiefenschiefer Bleierz",
+      "fr_fr": "Minerais de plomb des abîmes",
+      "es_es": "Mena de Plomo de Pizarra",
+      "ja_jp": "深層鉛鉱石掘り"
+    },
+    "description": {
+      "en_us": "Break 8 deepslate lead ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
+      "de_de": "Zerstöre 8× Tiefenschiefer Bleierz. Braucht mindestens eine Steinspitzhacke. In Höhlen zu finden. Tief unter der Erde zu finden.",
+      "fr_fr": "Cassez 8× minerais de plomb des abîmes. Il faut au moins une pioche en pierre. Se trouve dans les grottes. Se trouve en profondeur.",
+      "es_es": "Rompe 8× mena de plomo de pizarra profunda. Necesita un pico de piedra o mejor. Se encuentra en cuevas. Se encuentra a gran profundidad.",
+      "ja_jp": "深層鉛鉱石8個の破壊をこなそう。石のツルハシ以上が必要。洞窟で見つかる。地下深くで見つかる。"
+    },
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "mekanism:deepslate_lead_ore",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:lantern",
+        "count": 7
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 28
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": {
+      "en_us": "Bring Gunpowder",
+      "de_de": "Schwarzpulver bringen",
+      "fr_fr": "Apporter : poudre à canon",
+      "es_es": "Traer pólvora",
+      "ja_jp": "火薬を届けよう"
+    },
+    "description": {
+      "en_us": "Pick up 8 gunpowder. They spawn at night and in dark caves.",
+      "de_de": "Hebe 8× Schwarzpulver auf. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Ramassez 8× poudre à canon. Ils apparaissent la nuit et dans les grottes sombres.",
+      "es_es": "Recolecta 8× pólvora. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "火薬8個の回収をこなそう。夜や暗い洞窟に出現する。"
+    },
+    "category": "generated",
+    "sort": 8,
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:gunpowder",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:cooked_porkchop",
+        "count": 12
       },
       {
         "type": "justquests:xp",
@@ -119,51 +271,35 @@
       }
     ]
   },
-  "justquests:gen/1790510400_1": {
-    "title": "Lantern Crafter",
-    "description": "Craft 8 lanterns.",
+  "justquests:gen/1790510400_5": {
+    "title": {
+      "en_us": "Cut Limestone Builder",
+      "de_de": "Aufgabe: Geschnittener Kalkstein",
+      "fr_fr": "Bâtisseur : calcaire coupé",
+      "es_es": "Tarea: piedra caliza cortada",
+      "ja_jp": "研がれた石灰岩の建築家"
+    },
+    "description": {
+      "en_us": "Build with 48 cut limestone. Cut limestone on a stonecutter, then build. Found in thick stone layers underground.",
+      "de_de": "Baue mit 48× Geschnittener Kalkstein. Schneide Kalkstein auf der Steinsäge und baue dann.",
+      "fr_fr": "Construisez avec 48× calcaire coupé. Taillez du calcaire au tailleur de pierre, puis construisez.",
+      "es_es": "Construye con 48× piedra caliza cortada. Corta piedra caliza en un cortapiedras y luego construye.",
+      "ja_jp": "研がれた石灰岩48個での建築をこなそう。石切台で石灰岩を加工してから建てる。地下の厚い岩の層で見つかる。"
+    },
     "category": "generated",
-    "sort": 6,
+    "sort": 9,
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:lantern",
-        "count": 8
+        "type": "justquests:place_block",
+        "block": "create:cut_limestone",
+        "count": 48
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "farmersdelight:onion",
-        "count": 32
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 19
-      },
-      {
-        "type": "justquests:message",
-        "message": "Well done, adventurer."
-      }
-    ]
-  },
-  "justquests:gen/1790510400_7": {
-    "title": "Vegetable Soup Snack",
-    "description": "Eat 3 vegetable soup. Cook it in a Cooking Pot.",
-    "category": "generated",
-    "sort": 7,
-    "objectives": [
-      {
-        "type": "justquests:consume_item",
-        "item": "farmersdelight:vegetable_soup",
+        "item": "minecraft:coal_block",
         "count": 3
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:iron_ingot",
-        "count": 8
       },
       {
         "type": "justquests:xp",
@@ -172,78 +308,79 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Cut Copper Request",
-    "description": "Make 5 cut copper. Four copper blocks make four cut copper.",
+    "title": {
+      "en_us": "Llama Family",
+      "de_de": "Familie: Lama",
+      "fr_fr": "Famille : lama",
+      "es_es": "Familia de llama",
+      "ja_jp": "ラマファミリー"
+    },
+    "description": {
+      "en_us": "Breed 3 llamas. Llamas breed with hay bales. Look in savannas.",
+      "de_de": "Züchte 3× Lama. Lamas vermehren sich mit Strohballen. Suche in Savannen.",
+      "fr_fr": "Élevez 3× lama. Les lamas se reproduisent avec des bottes de paille. Cherchez dans les savanes.",
+      "es_es": "Cría 3× llama. Las llamas se reproducen con balas de heno. Busca en sabanas.",
+      "ja_jp": "ラマ3匹の繁殖をこなそう。ラマは干草の俵で繁殖する。サバンナを探そう。"
+    },
     "category": "generated",
-    "sort": 7,
+    "sort": 9,
     "objectives": [
       {
-        "type": "justquests:craft_item",
-        "item": "minecraft:cut_copper",
-        "count": 5
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:cooked_porkchop",
-        "count": 11
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 18
-      }
-    ]
-  },
-  "justquests:gen/1790510400_5": {
-    "title": "Polished Cut Veridium Builder",
-    "description": "Build with 40 polished cut veridium. Found in thick stone layers underground.",
-    "category": "generated",
-    "sort": 8,
-    "objectives": [
-      {
-        "type": "justquests:place_block",
-        "block": "create:polished_cut_veridium",
-        "count": 40
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "farmersdelight:bacon_sandwich",
+        "type": "justquests:breed_animal",
+        "entity": "minecraft:llama",
         "count": 3
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:experience_bottle",
+        "count": 6
       },
       {
         "type": "justquests:xp",
-        "amount": 35
-      },
-      {
-        "type": "justquests:message",
-        "message": "The village thanks you!"
+        "amount": 22
       }
     ]
   },
-  "justquests:gen/1790510400_8": {
-    "title": "Cooked Salmon Order",
-    "description": "Cook 5 salmon. Use a fishing rod.",
+  "justquests:gen/1790510400_1": {
+    "title": {
+      "en_us": "Cave Spider Slayer",
+      "de_de": "Höhlenspinne-Bezwinger",
+      "fr_fr": "Tueur d'araignée venimeuse",
+      "es_es": "Cazador de araña de cueva",
+      "ja_jp": "洞窟グモスレイヤー"
+    },
+    "description": {
+      "en_us": "Hunt 5 cave spiders. Found in abandoned mineshafts.",
+      "de_de": "Jage 5× Höhlenspinne. In verlassenen Minen zu finden.",
+      "fr_fr": "Chassez 5× araignée venimeuse. Se trouve dans les puits de mine abandonnés.",
+      "es_es": "Caza 5× araña de cueva. Se encuentra en minas abandonadas.",
+      "ja_jp": "洞窟グモ5体の狩猟をこなそう。廃坑で見つかる。"
+    },
     "category": "generated",
-    "sort": 8,
+    "sort": 10,
     "objectives": [
       {
-        "type": "justquests:smelt_item",
-        "item": "minecraft:cooked_salmon",
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:cave_spider",
         "count": 5
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:cooked_porkchop",
-        "count": 11
+        "item": "minecraft:glass",
+        "count": 32
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:rice",
+        "count": 32
       },
       {
         "type": "justquests:xp",
-        "amount": 24
+        "amount": 33
       }
     ]
   }

@@ -36,6 +36,16 @@ public final class QuestDraft {
     public final List<String> explain = new ArrayList<>();
     public String title;
     public String description;
+    /** Per-language titles, descriptions and message reward text ({@code en_us} first); see TextBuilder.localize. */
+    public java.util.Map<String, String> titles = java.util.Map.of();
+    public java.util.Map<String, String> descriptions = java.util.Map.of();
+    public java.util.Map<String, String> messageTexts = java.util.Map.of();
+    /** Where the English title came from (TextBuilder.SRC_*) and its index, for rendering other languages. */
+    public int titleSource = -1;
+    public int titleIndex = -1;
+    /** Phrase template index per objective (-1 = default phrase) and theme description index (-1 = none). */
+    public int[] phraseChoice;
+    public int themeDescriptionChoice = -1;
     public String themeKey;
     public List<String> themeNames = List.of();
     public List<String> themeDescriptions = List.of();

@@ -1,222 +1,170 @@
 {
-  "justquests:gen/1790510400_3": {
-    "title": "Lumber Chores",
-    "description": "Mine 40 oak logs and break 24 cherry logs. Chop any kind of tree. Look in cherry groves.",
+  "justquests:gen/1790510400_9": {
+    "title": {
+      "en_us": "Mystical Blue Petal Commission",
+      "de_de": "Mystisches Blaues Blütenblatt",
+      "fr_fr": "Tâche : pétale mystique bleu",
+      "es_es": "Encargo de pétalo místico azul",
+      "ja_jp": "青色の神秘的な花びらの依頼"
+    },
+    "description": {
+      "en_us": "Make 32 mystical blue petals. One mystical flower makes two petals.",
+      "de_de": "Fertige 32× Mystisches Blaues Blütenblatt an. Eine mystische Blume ergibt zwei Blütenblätter.",
+      "fr_fr": "Façonnez 32× pétale mystique bleu. Une fleur mystique donne deux pétales.",
+      "es_es": "Haz 32× pétalo místico azul. Una flor mística da dos pétalos.",
+      "ja_jp": "青色の神秘的な花びら32個の製作をこなそう。神秘の花1本で花びらが2枚できる。"
+    },
     "category": "generated",
-    "sort": 7,
-    "mode": "all",
+    "sort": 6,
     "objectives": [
       {
-        "type": "justquests:mine_block",
-        "block": "minecraft:oak_log",
-        "count": 40
-      },
-      {
-        "type": "justquests:mine_block",
-        "block": "minecraft:cherry_log",
-        "count": 24
+        "type": "justquests:craft_item",
+        "item": "botania:blue_petal",
+        "count": 32
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:cooked_chicken",
-        "count": 14
+        "item": "create:experience_nugget",
+        "count": 20
       },
       {
         "type": "justquests:xp",
-        "amount": 30
+        "amount": 24
+      }
+    ]
+  },
+  "justquests:gen/1790510400_4": {
+    "title": {
+      "en_us": "Bone Meal Training",
+      "de_de": "Training: Knochenmehl",
+      "fr_fr": "Entraînement : poudre d'os",
+      "es_es": "Entrenamiento: polvo de hueso",
+      "ja_jp": "骨粉トレーニング"
+    },
+    "description": {
+      "en_us": "Use 48 bone meal. Use bone meal on crops or grass. They spawn at night and in dark caves.",
+      "de_de": "Benutze 48× Knochenmehl. Benutze Knochenmehl an Pflanzen oder Gras. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Utilisez 48× poudre d'os. Utilisez de la poudre d'os sur des cultures ou de l'herbe. Ils apparaissent la nuit et dans les grottes sombres.",
+      "es_es": "Usa 48× polvo de hueso. Usa polvo de hueso en cultivos o hierba. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "骨粉48個の使用をこなそう。作物や草に骨粉を使う。夜や暗い洞窟に出現する。"
+    },
+    "category": "generated",
+    "sort": 7,
+    "objectives": [
+      {
+        "type": "justquests:use_item",
+        "item": "minecraft:bone_meal",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:bacon_sandwich",
+        "count": 4
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 17
       }
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "Liveroot Delivery",
-    "description": "Collect 8 liveroot. Liveroot grows in the root tangles underground; break it without Silk Touch. Found in the Twilight Forest.",
+    "title": {
+      "en_us": "More Bighorn Sheep",
+      "de_de": "Nachwuchs: Dickhornschaf",
+      "fr_fr": "Portée : mouflon d'Amérique",
+      "es_es": "Camada de carnero de las Rocosas",
+      "ja_jp": "オオツノヒツジを増やそう"
+    },
+    "description": {
+      "en_us": "Breed 2 bighorn sheep. Bighorn sheep breed with wheat. Found in the Twilight Forest.",
+      "de_de": "Züchte 2× Dickhornschaf. Dickhornschafe vermehren sich mit Weizen. Zu finden im Dämmerwald.",
+      "fr_fr": "Élevez 2× mouflon d'Amérique. Les mouflons se reproduisent avec du blé. Se trouve dans la Forêt du Crépuscule.",
+      "es_es": "Cría 2× carnero de las Rocosas. Los carneros de las Rocosas se reproducen con trigo. Se encuentra en el Bosque crepuscular.",
+      "ja_jp": "オオツノヒツジ2匹の繁殖をこなそう。オオツノヒツジは小麦で繁殖する。黄昏の森で見つかる。"
+    },
     "category": "generated",
     "sort": 9,
     "objectives": [
       {
-        "type": "justquests:collect_item",
-        "item": "twilightforest:liveroot",
-        "count": 8
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "twilightforest:cooked_venison",
-        "count": 8
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 30
-      }
-    ]
-  },
-  "justquests:gen/1790510400_1": {
-    "title": "Wheat Bundle",
-    "description": "Pick up 64 wheat. Harvest fully grown wheat. Grow them on a farm.",
-    "category": "generated",
-    "sort": 10,
-    "objectives": [
-      {
-        "type": "justquests:collect_item",
-        "item": "minecraft:wheat",
-        "count": 64
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:string",
-        "count": 16
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 60
-      }
-    ]
-  },
-  "justquests:gen/1790510400_5": {
-    "title": "Andesite Alloy Block Project",
-    "description": "Place 3 andesite alloy blocks.",
-    "category": "generated",
-    "sort": 10,
-    "objectives": [
-      {
-        "type": "justquests:place_block",
-        "block": "create:andesite_alloy_block",
-        "count": 3
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:slime_ball",
-        "count": 6
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 30
-      }
-    ]
-  },
-  "justquests:gen/1790510400_8": {
-    "title": "Ender Pearl Toss",
-    "description": "Throw 4 ender pearls. Endermen drop ender pearls. They spawn at night and in dark caves.",
-    "category": "generated",
-    "sort": 10,
-    "objectives": [
-      {
-        "type": "justquests:use_item",
-        "item": "minecraft:ender_pearl",
-        "count": 4
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "farmersdelight:hot_cocoa",
-        "count": 4
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 65
-      }
-    ]
-  },
-  "justquests:gen/1790510400_7": {
-    "title": "Mutton Wrap Order",
-    "description": "Make 6 mutton wraps.",
-    "category": "generated",
-    "sort": 11,
-    "objectives": [
-      {
-        "type": "justquests:craft_item",
-        "item": "farmersdelight:mutton_wrap",
-        "count": 6
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:lapis_lazuli",
-        "count": 32
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 85
-      },
-      {
-        "type": "justquests:message",
-        "message": "The village thanks you!"
-      }
-    ]
-  },
-  "justquests:gen/1790510400_2": {
-    "title": "Ranch Duty",
-    "description": "Breed 8 chickens and cook 16 steak. Chickens breed with seeds. Cook raw beef. Common in plains.",
-    "category": "generated",
-    "sort": 13,
-    "mode": "all",
-    "objectives": [
-      {
         "type": "justquests:breed_animal",
-        "entity": "minecraft:chicken",
-        "count": 8
-      },
-      {
-        "type": "justquests:smelt_item",
-        "item": "minecraft:cooked_beef",
-        "count": 16
+        "entity": "twilightforest:bighorn_sheep",
+        "count": 2
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:experience_bottle",
-        "count": 11
+        "item": "minecraft:honeycomb",
+        "count": 8
       },
       {
         "type": "justquests:xp",
-        "amount": 44
+        "amount": 34
       }
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Raw Lead Haul",
-    "description": "Collect 16 raw lead. Lead ore drops raw lead. Needs a stone pickaxe or better. Found in caves.",
+    "title": {
+      "en_us": "Fluorite Collector",
+      "de_de": "Sammelauftrag: Fluorit",
+      "fr_fr": "Collecte de fluorite",
+      "es_es": "Acopio de fluorita",
+      "ja_jp": "蛍石コレクター"
+    },
+    "description": {
+      "en_us": "Collect 32 fluorite. Fluorite ore drops two to four gems. Needs a stone pickaxe or better. Found in caves.",
+      "de_de": "Sammle 32× Fluorit. Fluoriterz lässt zwei bis vier Edelsteine fallen. Braucht mindestens eine Steinspitzhacke. In Höhlen zu finden.",
+      "fr_fr": "Récoltez 32× fluorite. Le minerai de fluorite donne deux à quatre gemmes. Il faut au moins une pioche en pierre. Se trouve dans les grottes.",
+      "es_es": "Recoge 32× fluorita. La mena de fluorita suelta de dos a cuatro gemas. Necesita un pico de piedra o mejor. Se encuentra en cuevas.",
+      "ja_jp": "蛍石32個の収集をこなそう。蛍石鉱石から宝石が2〜4個出る。石のツルハシ以上が必要。洞窟で見つかる。"
+    },
     "category": "generated",
-    "sort": 13,
+    "sort": 10,
     "objectives": [
       {
         "type": "justquests:collect_item",
-        "item": "mekanism:raw_lead",
-        "count": 16
+        "item": "mekanism:fluorite_gem",
+        "count": 32
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:golden_carrot",
-        "count": 8
+        "item": "minecraft:music_disc_13",
+        "count": 1
       },
       {
         "type": "justquests:xp",
-        "amount": 40
+        "amount": 75
       }
     ]
   },
-  "justquests:gen/1790510400_9": {
-    "title": "Make Livingwood Planks",
-    "description": "Craft 16 livingwood planks. A Pure Daisy turns logs placed around it into livingwood.",
+  "justquests:gen/1790510400_7": {
+    "title": {
+      "en_us": "Salmon Roll Request",
+      "de_de": "Anfrage: Lachsrolle",
+      "fr_fr": "Demande : roulés au saumon",
+      "es_es": "Solicitud de rollos de salmon",
+      "ja_jp": "サーモンの握り寿司のリクエスト"
+    },
+    "description": {
+      "en_us": "Make 6 salmon rolls. Salmon slices and cooked rice.",
+      "de_de": "Fertige 6× Lachsrolle an. Lachsscheiben und gekochter Reis.",
+      "fr_fr": "Façonnez 6× roulés au saumon. Des tranches de saumon et du riz cuit.",
+      "es_es": "Haz 6× rollos de salmon. Rodajas de salmón y arroz cocido.",
+      "ja_jp": "サーモンの握り寿司6個の製作をこなそう。鮭の切り身とご飯。"
+    },
     "category": "generated",
-    "sort": 16,
+    "sort": 10,
     "objectives": [
       {
         "type": "justquests:craft_item",
-        "item": "botania:livingwood_planks",
-        "count": 16
+        "item": "farmersdelight:salmon_roll",
+        "count": 6
       }
     ],
     "rewards": [
@@ -226,37 +174,214 @@
         "count": 16
       },
       {
-        "type": "justquests:give_item",
-        "item": "minecraft:honey_bottle",
-        "count": 5
-      },
-      {
         "type": "justquests:xp",
-        "amount": 60
+        "amount": 42
       }
     ]
   },
-  "justquests:gen/1790510400_4": {
-    "title": "Craft Copper Grates",
-    "description": "Make 16 copper grates.",
+  "justquests:gen/1790510400_8": {
+    "title": {
+      "en_us": "Book Order",
+      "de_de": "Bestellung: Buch",
+      "fr_fr": "Commande de livre",
+      "es_es": "Pedido de libro",
+      "ja_jp": "本の注文"
+    },
+    "description": {
+      "en_us": "Make 8 books.",
+      "de_de": "Fertige 8× Buch an.",
+      "fr_fr": "Façonnez 8× livre.",
+      "es_es": "Haz 8× libro.",
+      "ja_jp": "本8個の製作をこなそう。"
+    },
     "category": "generated",
-    "sort": 22,
+    "sort": 10,
     "objectives": [
       {
         "type": "justquests:craft_item",
-        "item": "minecraft:copper_grate",
-        "count": 16
+        "item": "minecraft:book",
+        "count": 8
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "create:zinc_ingot",
-        "count": 22
+        "item": "minecraft:hay_block",
+        "count": 6
       },
       {
         "type": "justquests:xp",
-        "amount": 85
+        "amount": 37
+      }
+    ]
+  },
+  "justquests:gen/1790510400_3": {
+    "title": {
+      "en_us": "Lumber Chores",
+      "de_de": "Arbeiten: Holz",
+      "fr_fr": "Corvées : Bois",
+      "es_es": "Tareas: Madera",
+      "ja_jp": "木材の雑用"
+    },
+    "description": {
+      "en_us": "Mine 40 cherry logs and collect 80 logs. Look in cherry groves. Chop any kind of tree. Any log counts.",
+      "de_de": "Baue 40× Kirschstamm ab und sammle 80× Stamm. Suche in Kirschberghainen. Fälle Bäume jeder Art. Jede Sorte zählt.",
+      "fr_fr": "Minez 40× bûche de cerisier et récoltez 80× bûche. Cherchez dans les bosquets de cerisiers. Abattez n'importe quel arbre.",
+      "es_es": "Mina 40× tronco de cerezo y recoge 80× tronco. Busca en cerezales. Tala cualquier tipo de árbol. Vale cualquier tipo.",
+      "ja_jp": "サクラの原木40個の採掘と原木80個の収集をこなそう。サクラの林を探そう。種類を問わず木を切る。原木なら種類は問わない。"
+    },
+    "category": "generated",
+    "sort": 13,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:cherry_log",
+        "count": 40
+      },
+      {
+        "type": "justquests:collect_item",
+        "item": "#minecraft:logs",
+        "count": 80
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:copper_ingot",
+        "count": 32
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/village/village_weaponsmith"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 65
+      }
+    ]
+  },
+  "justquests:gen/1790510400_5": {
+    "title": {
+      "en_us": "Polished Cut Veridium Design",
+      "de_de": "Poliertes geschnittenes Veridium",
+      "fr_fr": "Design : veridium coupé poli",
+      "es_es": "Diseño de veridio cortado pulido",
+      "ja_jp": "磨かれた研がれた緑青岩デザイン"
+    },
+    "description": {
+      "en_us": "Build with 64 polished cut veridium. Found in thick stone layers underground.",
+      "de_de": "Baue mit 64× Poliertes geschnittenes Veridium. In dicken Gesteinsschichten unter der Erde zu finden.",
+      "fr_fr": "Construisez avec 64× veridium coupé poli. Se trouve dans les épaisses couches de roche souterraines.",
+      "es_es": "Construye con 64× veridio cortado pulido. Se encuentra en gruesas capas de roca subterráneas.",
+      "ja_jp": "磨かれた研がれた緑青岩64個での建築をこなそう。地下の厚い岩の層で見つかる。"
+    },
+    "category": "generated",
+    "sort": 13,
+    "objectives": [
+      {
+        "type": "justquests:place_block",
+        "block": "create:polished_cut_veridium",
+        "count": 64
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:coal_block",
+        "count": 3
+      },
+      {
+        "type": "justquests:loot_table",
+        "loot_table": "minecraft:chests/abandoned_mineshaft"
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 25
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": {
+      "en_us": "Slime Watch",
+      "de_de": "Wache: Schleim",
+      "fr_fr": "Veille : slime",
+      "es_es": "Vigilancia: slime",
+      "ja_jp": "スライムの見張り"
+    },
+    "description": {
+      "en_us": "Hunt 8 slimes. Look in swamps.",
+      "de_de": "Jage 8× Schleim. Suche in Sümpfen.",
+      "fr_fr": "Chassez 8× slime. Cherchez dans les marais.",
+      "es_es": "Caza 8× slime. Busca en pantanos.",
+      "ja_jp": "スライム8体の狩猟をこなそう。沼地を探そう。"
+    },
+    "category": "generated",
+    "sort": 16,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:slime",
+        "count": 8
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:lantern",
+        "count": 8
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:haste",
+        "seconds": 360,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 90
+      }
+    ]
+  },
+  "justquests:gen/1790510400_2": {
+    "title": {
+      "en_us": "Catch of the Day",
+      "de_de": "Fang des Tages",
+      "fr_fr": "Pêche du jour",
+      "es_es": "Pesca del día",
+      "ja_jp": "本日の釣果"
+    },
+    "description": {
+      "en_us": "A day by the water: pick up 6 raw salmon and cook 6 salmon. Use a fishing rod.",
+      "de_de": "Ein Tag am Wasser: Hebe 6× Roher Lachs auf und bereite 6× Gebratener Lachs zu. Benutze eine Angel.",
+      "fr_fr": "Une journée au bord de l'eau : ramassez 6× saumon cru et cuisinez 6× saumon cuit. Utilisez une canne à pêche.",
+      "es_es": "Un día junto al agua: recolecta 6× salmón crudo y cocina 6× salmón ahumado. Usa una caña de pescar.",
+      "ja_jp": "水辺で過ごす一日：生鮭6個の回収と焼き鮭6個の調理。釣竿を使う。"
+    },
+    "category": "generated",
+    "sort": 17,
+    "mode": "all",
+    "objectives": [
+      {
+        "type": "justquests:collect_item",
+        "item": "minecraft:salmon",
+        "count": 6
+      },
+      {
+        "type": "justquests:smelt_item",
+        "item": "minecraft:cooked_salmon",
+        "count": 6
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:barbecue_stick",
+        "count": 8
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 150
       }
     ]
   }

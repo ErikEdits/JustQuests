@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_0": {
-    "title": "Red Tulip Gathering",
-    "description": "Gather 16 red tulips. Flower forests have the most.",
+    "title": {
+      "en_us": "Red Tulip Gathering",
+      "de_de": "Rote Tulpe einsammeln",
+      "fr_fr": "Récupérer : tulipe rouge",
+      "es_es": "Recolección de tulipán rojo",
+      "ja_jp": "赤色のチューリップ集め"
+    },
+    "description": {
+      "en_us": "Gather 16 red tulips. Flower forests have the most.",
+      "de_de": "Trage 16× Rote Tulpe zusammen. Blumenwälder haben am meisten.",
+      "fr_fr": "Rassemblez 16× tulipe rouge. Les forêts fleuries en ont le plus.",
+      "es_es": "Reúne 16× tulipán rojo. Los bosques florales tienen más.",
+      "ja_jp": "赤色のチューリップ16個の採集をこなそう。花の森に一番多い。"
+    },
     "category": "generated",
     "sort": 7,
     "objectives": [
@@ -28,8 +40,20 @@
     ]
   },
   "justquests:gen/1790510400_6": {
-    "title": "Make Enchanting Tables",
-    "description": "Craft an enchanting table.",
+    "title": {
+      "en_us": "Make Enchanting Tables",
+      "de_de": "Zaubertisch anfertigen",
+      "fr_fr": "Façonner : table d'enchantement",
+      "es_es": "Hacer mesa de encantamientos",
+      "ja_jp": "エンチャントテーブル作り"
+    },
+    "description": {
+      "en_us": "Craft an enchanting table.",
+      "de_de": "Stelle 1× Zaubertisch her.",
+      "fr_fr": "Fabriquez 1× table d'enchantement.",
+      "es_es": "Fabrica 1× mesa de encantamientos.",
+      "ja_jp": "エンチャントテーブル1個の作成をこなそう。"
+    },
     "category": "generated",
     "sort": 16,
     "objectives": [
@@ -58,8 +82,20 @@
     ]
   },
   "justquests:gen/1790510400_8": {
-    "title": "Stop the Slimes",
-    "description": "Defeat 8 slimes. Look in swamps.",
+    "title": {
+      "en_us": "Stop the Slimes",
+      "de_de": "Schleim aufhalten",
+      "fr_fr": "Stopper : slime",
+      "es_es": "Detener: slime",
+      "ja_jp": "スライムを止めろ"
+    },
+    "description": {
+      "en_us": "Defeat 8 slimes. Look in swamps.",
+      "de_de": "Besiege 8× Schleim. Suche in Sümpfen.",
+      "fr_fr": "Vainquez 8× slime. Cherchez dans les marais.",
+      "es_es": "Derrota 8× slime. Busca en pantanos.",
+      "ja_jp": "スライム8体の討伐をこなそう。沼地を探そう。"
+    },
     "category": "generated",
     "sort": 16,
     "objectives": [
@@ -87,8 +123,20 @@
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "Hoglin Bounty",
-    "description": "Slay 6 hoglins. Found in crimson forests. Found in the Nether.",
+    "title": {
+      "en_us": "Hoglin Bounty",
+      "de_de": "Kopfgeld: Hoglin",
+      "fr_fr": "Prime : hoglin",
+      "es_es": "Recompensa: hoglin",
+      "ja_jp": "ホグリンの懸賞金"
+    },
+    "description": {
+      "en_us": "Slay 6 hoglins. Found in crimson forests. Found in the Nether.",
+      "de_de": "Erlege 6× Hoglin. In Karmesinwäldern zu finden. Zu finden im Nether.",
+      "fr_fr": "Terrassez 6× hoglin. Se trouve dans les forêts carmin. Se trouve dans le Nether.",
+      "es_es": "Abate 6× hoglin. Se encuentra en bosques carmesí. Se encuentra en el Nether.",
+      "ja_jp": "ホグリン6体の撃破をこなそう。真紅の森で見つかる。ネザーで見つかる。"
+    },
     "category": "generated",
     "sort": 17,
     "objectives": [
@@ -117,8 +165,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Supper Time",
-    "description": "Feed the camp: cook 24 chicken and eat 6 steak. Cook raw chicken. Common in plains.",
+    "title": {
+      "en_us": "Supper Time",
+      "de_de": "Zeit fürs Abendbrot",
+      "fr_fr": "L'heure du souper",
+      "es_es": "Hora de cenar",
+      "ja_jp": "夕食の時間"
+    },
+    "description": {
+      "en_us": "Feed the camp: cook 24 chicken and eat 6 steak. Cook raw chicken. Common in plains.",
+      "de_de": "Versorge das Lager: Bereite 24× Gebratenes Hühnchen zu und iss 6× Steak. Brate rohes Hühnchen. Häufig in Ebenen.",
+      "fr_fr": "Nourrissez le camp : cuisinez 24× poulet rôti et mangez 6× steak. Faites cuire du poulet cru. Courant dans les plaines.",
+      "es_es": "Alimenta el campamento: cocina 24× pollo asado y come 6× filete asado. Cocina pollo crudo. Común en llanuras.",
+      "ja_jp": "キャンプのみんなに食事を：焼き鳥24個の調理とステーキ6個の実食。生の鶏肉を焼く。平原によくある。"
+    },
     "category": "generated",
     "sort": 17,
     "mode": "all",
@@ -152,8 +212,20 @@
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Lumber Order",
-    "description": "Smelt 64 charcoal and break 64 acacia logs. Smelt logs in a furnace. Look in savannas.",
+    "title": {
+      "en_us": "Lumber Order",
+      "de_de": "Auftrag: Holz",
+      "fr_fr": "Commande : Bois",
+      "es_es": "Pedido: Madera",
+      "ja_jp": "木材の注文"
+    },
+    "description": {
+      "en_us": "Smelt 64 charcoal and break 64 acacia logs. Smelt logs in a furnace. Look in savannas.",
+      "de_de": "Schmelze 64× Holzkohle und zerstöre 64× Akazienstamm. Brenne Stämme im Ofen. Suche in Savannen.",
+      "fr_fr": "Faites fondre 64× charbon de bois et cassez 64× bûche d'acacia. Faites cuire des bûches dans un fourneau. Cherchez dans les savanes.",
+      "es_es": "Funde 64× carbón vegetal y rompe 64× tronco de acacia. Funde troncos en un horno. Busca en sabanas.",
+      "ja_jp": "木炭64個の製錬とアカシアの原木64個の破壊をこなそう。原木をかまどで焼く。サバンナを探そう。"
+    },
     "category": "generated",
     "sort": 17,
     "mode": "all",
@@ -187,8 +259,20 @@
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Gold Ore Dig",
-    "description": "Break 16 gold ore. Needs an iron pickaxe or better. Found deep underground.",
+    "title": {
+      "en_us": "Gold Ore Dig",
+      "de_de": "Grabung: Golderz",
+      "fr_fr": "Fouille : minerai d'or",
+      "es_es": "Excavación de mena de oro",
+      "ja_jp": "金鉱石掘り"
+    },
+    "description": {
+      "en_us": "Break 16 gold ore. Needs an iron pickaxe or better. Found deep underground.",
+      "de_de": "Zerstöre 16× Golderz. Braucht mindestens eine Eisenspitzhacke. Tief unter der Erde zu finden.",
+      "fr_fr": "Cassez 16× minerai d'or. Il faut au moins une pioche en fer. Se trouve en profondeur.",
+      "es_es": "Rompe 16× mena de oro. Necesita un pico de hierro o mejor. Se encuentra a gran profundidad.",
+      "ja_jp": "金鉱石16個の破壊をこなそう。鉄のツルハシ以上が必要。地下深くで見つかる。"
+    },
     "category": "generated",
     "sort": 21,
     "objectives": [
@@ -217,8 +301,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Sea Harvest",
-    "description": "Head out to sea: pick up 8 glow ink sacs and cook 8 salmon. Glow squid live in dark water. Look in and near oceans. Use a fishing rod.",
+    "title": {
+      "en_us": "Sea Harvest",
+      "de_de": "Meeresernte",
+      "fr_fr": "Récolte marine",
+      "es_es": "Cosecha marina",
+      "ja_jp": "海の恵み"
+    },
+    "description": {
+      "en_us": "Head out to sea: pick up 8 glow ink sacs and cook 8 salmon. Glow squid live in dark water. Look in and near oceans. Use a fishing rod.",
+      "de_de": "Stich in See: Hebe 8× Leuchttintenbeutel auf und bereite 8× Gebratener Lachs zu. Leuchttintenfische leben in dunklem Wasser.",
+      "fr_fr": "Prenez la mer : ramassez 8× poche d'encre luisante et cuisinez 8× saumon cuit. Les poulpes luisants vivent dans les eaux sombres.",
+      "es_es": "Hazte a la mar: recolecta 8× saco de tinta luminosa y cocina 8× salmón ahumado. Los calamares luminosos viven en aguas oscuras.",
+      "ja_jp": "海へ出よう：輝くイカスミ8個の回収と焼き鮭8個の調理。ヒカリイカは暗い水中にいる。海の中や近くを探そう。釣竿を使う。"
+    },
     "category": "generated",
     "sort": 22,
     "mode": "all",
@@ -252,8 +348,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Nether Gardener",
-    "description": "Even the Nether has a garden: break 64 crimson nylium and gather 16 shroomlights. Found in crimson forests. Found in the Nether.",
+    "title": {
+      "en_us": "Nether Gardener",
+      "de_de": "Nethergärtner",
+      "fr_fr": "Jardinier du Nether",
+      "es_es": "Jardinero del Nether",
+      "ja_jp": "ネザーの庭師"
+    },
+    "description": {
+      "en_us": "Even the Nether has a garden: break 64 crimson nylium and gather 16 shroomlights. Found in crimson forests. Found in the Nether.",
+      "de_de": "Sogar der Nether hat einen Garten: Zerstöre 64× Karmesin-Nezel und trage 16× Pilzlicht zusammen. In Karmesinwäldern zu finden.",
+      "fr_fr": "Même le Nether a son jardin : cassez 64× nylium carmin et rassemblez 16× champilampe. Se trouve dans les forêts carmin.",
+      "es_es": "Hasta el Nether tiene un jardín: rompe 64× necelio carmesí y reúne 16× brillongo. Se encuentra en bosques carmesí.",
+      "ja_jp": "ネザーにも庭はある：真紅のナイリウム64個の破壊とシュルームライト16個の採集。真紅の森で見つかる。ネザーで見つかる。"
+    },
     "category": "generated",
     "sort": 25,
     "mode": "all",
@@ -286,8 +394,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Market Fair",
-    "description": "The fair opens soon: make 32 bread and breed 12 sheep. Three wheat make a loaf. Sheep breed with wheat.",
+    "title": {
+      "en_us": "Market Fair",
+      "de_de": "Jahrmarkt",
+      "fr_fr": "Foire du marché",
+      "es_es": "Feria del mercado",
+      "ja_jp": "市場の縁日"
+    },
+    "description": {
+      "en_us": "The fair opens soon: make 32 bread and breed 12 sheep. Three wheat make a loaf. Sheep breed with wheat.",
+      "de_de": "Der Markt öffnet bald: Fertige 32× Brot an und züchte 12× Schaf. Drei Weizen ergeben ein Brot. Schafe vermehren sich mit Weizen.",
+      "fr_fr": "La foire ouvre bientôt : façonnez 32× pain et élevez 12× mouton. Trois blés font un pain. Les moutons se reproduisent avec du blé.",
+      "es_es": "La feria abre pronto: haz 32× pan y cría 12× oveja. Tres de trigo hacen un pan. Las ovejas se reproducen con trigo.",
+      "ja_jp": "もうすぐお祭りが始まる：パン32個の製作とヒツジ12匹の繁殖。小麦3個でパンが1個できる。ヒツジは小麦で繁殖する。"
+    },
     "category": "generated",
     "sort": 26,
     "mode": "all",

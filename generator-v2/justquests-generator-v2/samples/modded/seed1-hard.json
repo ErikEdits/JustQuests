@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_0": {
-    "title": "Red Tulip Gathering",
-    "description": "Gather 16 red tulips. Flower forests have the most.",
+    "title": {
+      "en_us": "Red Tulip Gathering",
+      "de_de": "Rote Tulpe einsammeln",
+      "fr_fr": "Récupérer : tulipe rouge",
+      "es_es": "Recolección de tulipán rojo",
+      "ja_jp": "赤色のチューリップ集め"
+    },
+    "description": {
+      "en_us": "Gather 16 red tulips. Flower forests have the most.",
+      "de_de": "Trage 16× Rote Tulpe zusammen. Blumenwälder haben am meisten.",
+      "fr_fr": "Rassemblez 16× tulipe rouge. Les forêts fleuries en ont le plus.",
+      "es_es": "Reúne 16× tulipán rojo. Los bosques florales tienen más.",
+      "ja_jp": "赤色のチューリップ16個の採集をこなそう。花の森に一番多い。"
+    },
     "category": "generated",
     "sort": 7,
     "objectives": [
@@ -27,43 +39,57 @@
       }
     ]
   },
-  "justquests:gen/1790510400_7": {
-    "title": "Engineer Chores",
-    "description": "Make 2 fluid tanks and make 2 super glues.",
+  "justquests:gen/1790510400_4": {
+    "title": {
+      "en_us": "Make Manasteel Swords",
+      "de_de": "Manastahlschwert anfertigen",
+      "fr_fr": "Façonner : épée en manacier",
+      "es_es": "Hacer espada manacero",
+      "ja_jp": "マナスチールの剣作り"
+    },
+    "description": {
+      "en_us": "Make a manasteel sword. Manasteel ingots and a livingwood twig; iron becomes manasteel in a mana pool.",
+      "de_de": "Fertige 1× Manastahlschwert an. Manastahlbarren und ein Lebeholzzweig; Eisen wird im Manabecken zu Manastahl.",
+      "fr_fr": "Façonnez 1× épée en manacier. Des lingots de manacier et une brindille de vifbois ; le fer devient manacier dans un bassin de mana.",
+      "es_es": "Haz 1× espada manacero. Lingotes de manacero y una ramita de madera viviente; el hierro se vuelve manacero en una pila de maná.",
+      "ja_jp": "マナスチールの剣1個の製作をこなそう。マナスチールインゴットとリビングウッドの小枝。鉄はマナプールでマナスチールになる。"
+    },
     "category": "generated",
     "sort": 13,
-    "mode": "all",
     "objectives": [
       {
         "type": "justquests:craft_item",
-        "item": "create:fluid_tank",
-        "count": 2
-      },
-      {
-        "type": "justquests:craft_item",
-        "item": "create:super_glue",
-        "count": 2
+        "item": "botania:manasteel_sword",
+        "count": 1
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:string",
-        "count": 16
-      },
-      {
-        "type": "justquests:loot_table",
-        "loot_table": "minecraft:chests/desert_pyramid"
+        "item": "minecraft:experience_bottle",
+        "count": 12
       },
       {
         "type": "justquests:xp",
-        "amount": 75
+        "amount": 60
       }
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Bake Sale",
-    "description": "The village bake sale needs you: craft 64 cookies and collect 64 sweet berries. Wheat and cocoa beans. Look in taigas.",
+    "title": {
+      "en_us": "Bake Sale",
+      "de_de": "Kuchenbasar",
+      "fr_fr": "Vente de pâtisseries",
+      "es_es": "Venta de pasteles",
+      "ja_jp": "焼き菓子バザー"
+    },
+    "description": {
+      "en_us": "The village bake sale needs you: craft 64 cookies and collect 64 sweet berries. Wheat and cocoa beans. Look in taigas.",
+      "de_de": "Der Kuchenbasar im Dorf braucht dich: Stelle 64× Keks her und sammle 64× Süßbeeren. Weizen und Kakaobohnen. Suche in Taigas.",
+      "fr_fr": "La vente de pâtisseries du village a besoin de vous : fabriquez 64× cookie et récoltez 64× baies sucrées. Du blé et des fèves de cacao.",
+      "es_es": "La venta de pasteles del pueblo te necesita: fabrica 64× galleta y recoge 64× bayas dulces. Trigo y semillas de cacao. Busca en taigas.",
+      "ja_jp": "村の焼き菓子バザーがあなたを待っている：クッキー64個の作成とスイートベリー64個の収集。小麦とカカオ豆。タイガを探そう。"
+    },
     "category": "generated",
     "sort": 16,
     "mode": "all",
@@ -97,104 +123,40 @@
       }
     ]
   },
-  "justquests:gen/1790510400_4": {
-    "title": "Make Livingwood Planks",
-    "description": "Make 16 livingwood planks. A Pure Daisy turns logs placed around it into livingwood.",
+  "justquests:gen/1790510400_5": {
+    "title": {
+      "en_us": "Lighthouse Keeper",
+      "de_de": "Leuchtturmwärter",
+      "fr_fr": "Gardien de phare",
+      "es_es": "Guardián del faro",
+      "ja_jp": "灯台守"
+    },
+    "description": {
+      "en_us": "Light up the paths before dark: break 32 coal ore and make a sea lantern. Found in caves. Found at ocean monuments.",
+      "de_de": "Erhelle die Wege vor der Dunkelheit: Zerstöre 32× Steinkohle und fertige 1× Seelaterne an. In Höhlen zu finden.",
+      "fr_fr": "Éclairez les chemins avant la nuit : cassez 32× minerai de charbon et façonnez 1× lanterne aquatique. Se trouve dans les grottes.",
+      "es_es": "Ilumina los caminos antes de que oscurezca: rompe 32× mena de carbón y haz 1× linterna marina. Se encuentra en cuevas.",
+      "ja_jp": "暗くなる前に道を照らそう：石炭鉱石32個の破壊とシーランタン1個の製作。洞窟で見つかる。海底神殿で見つかる。"
+    },
     "category": "generated",
-    "sort": 16,
-    "objectives": [
-      {
-        "type": "justquests:craft_item",
-        "item": "botania:livingwood_planks",
-        "count": 16
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "minecraft:nautilus_shell",
-        "count": 2
-      },
-      {
-        "type": "justquests:loot_table",
-        "loot_table": "minecraft:chests/nether_bridge"
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 24
-      }
-    ]
-  },
-  "justquests:gen/1790510400_6": {
-    "title": "More Horses",
-    "description": "Breed 4 horses. Horses breed with golden carrots or apples. Common in plains.",
-    "category": "generated",
-    "sort": 16,
-    "objectives": [
-      {
-        "type": "justquests:breed_animal",
-        "entity": "minecraft:horse",
-        "count": 4
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "mekanism:ingot_tin",
-        "count": 21
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 75
-      }
-    ]
-  },
-  "justquests:gen/1790510400_9": {
-    "title": "Masonry Work",
-    "description": "The builders need material: smelt 64 glass and place 10 bricks. Smelt sand in a furnace.",
-    "category": "generated",
-    "sort": 16,
+    "sort": 17,
     "mode": "all",
     "objectives": [
       {
-        "type": "justquests:smelt_item",
-        "item": "minecraft:glass",
-        "count": 64
+        "type": "justquests:mine_block",
+        "block": "minecraft:coal_ore",
+        "count": 32
       },
       {
-        "type": "justquests:place_block",
-        "block": "minecraft:bricks",
-        "count": 10
+        "type": "justquests:craft_item",
+        "item": "minecraft:sea_lantern",
+        "count": 1
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "minecraft:slime_ball",
-        "count": 8
-      },
-      {
-        "type": "justquests:xp",
-        "amount": 170
-      }
-    ]
-  },
-  "justquests:gen/1790510400_8": {
-    "title": "Breed Boars",
-    "description": "Breed 6 boars. Boars breed like pigs: carrots, potatoes or beetroots. Found in the Twilight Forest.",
-    "category": "generated",
-    "sort": 17,
-    "objectives": [
-      {
-        "type": "justquests:breed_animal",
-        "entity": "twilightforest:boar",
-        "count": 6
-      }
-    ],
-    "rewards": [
-      {
-        "type": "justquests:give_item",
-        "item": "twilightforest:ironwood_ingot",
+        "item": "minecraft:ender_pearl",
         "count": 8
       },
       {
@@ -203,9 +165,99 @@
       }
     ]
   },
+  "justquests:gen/1790510400_6": {
+    "title": {
+      "en_us": "Dig Nether Quartz Ore",
+      "de_de": "Netherquarzerz ausgraben",
+      "fr_fr": "Minerai de quartz du Nether",
+      "es_es": "Cavar mena de cuarzo del Nether",
+      "ja_jp": "ネザークォーツ鉱石を掘り出そう"
+    },
+    "description": {
+      "en_us": "Mine 48 Nether quartz ore. Found in the Nether.",
+      "de_de": "Baue 48× Netherquarzerz ab. Zu finden im Nether.",
+      "fr_fr": "Minez 48× minerai de quartz du Nether. Se trouve dans le Nether.",
+      "es_es": "Mina 48× mena de cuarzo del Nether. Se encuentra en el Nether.",
+      "ja_jp": "ネザークォーツ鉱石48個の採掘をこなそう。ネザーで見つかる。"
+    },
+    "category": "generated",
+    "sort": 17,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "minecraft:nether_quartz_ore",
+        "count": 48
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:blaze_powder",
+        "count": 16
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 140
+      }
+    ]
+  },
+  "justquests:gen/1790510400_1": {
+    "title": {
+      "en_us": "Dig Deepslate Fluorite Ore",
+      "de_de": "Job: Tiefenschiefer Fluoriterz",
+      "fr_fr": "Minerais de fluorite des abîmes",
+      "es_es": "Mena de Fluorita de Pizarra",
+      "ja_jp": "深層蛍石鉱石を掘り出そう"
+    },
+    "description": {
+      "en_us": "Break 16 deepslate fluorite ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
+      "de_de": "Zerstöre 16× Tiefenschiefer Fluoriterz. Braucht mindestens eine Steinspitzhacke. In Höhlen zu finden. Tief unter der Erde zu finden.",
+      "fr_fr": "Cassez 16× minerais de fluorite des abîmes. Il faut au moins une pioche en pierre. Se trouve dans les grottes. Se trouve en profondeur.",
+      "es_es": "Rompe 16× mena de fluorita de pizarra profunda. Necesita un pico de piedra o mejor. Se encuentra en cuevas. Se encuentra a gran profundidad.",
+      "ja_jp": "深層蛍石鉱石16個の破壊をこなそう。石のツルハシ以上が必要。洞窟で見つかる。地下深くで見つかる。"
+    },
+    "category": "generated",
+    "sort": 18,
+    "objectives": [
+      {
+        "type": "justquests:mine_block",
+        "block": "mekanism:deepslate_fluorite_ore",
+        "count": 16
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "farmersdelight:fried_rice",
+        "count": 4
+      },
+      {
+        "type": "justquests:effect",
+        "effect": "minecraft:luck",
+        "seconds": 600,
+        "amplifier": 0
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 165
+      }
+    ]
+  },
   "justquests:gen/1790510400_2": {
-    "title": "Produce Supplies",
-    "description": "Pick up 48 rice and make 4 rice bales. Wild rice grows in swamps and jungles. Look in swamps. Nine rice panicles make a bale.",
+    "title": {
+      "en_us": "Produce Supplies",
+      "de_de": "Vorräte: Gemüse",
+      "fr_fr": "Fournitures : Primeurs",
+      "es_es": "Suministros: Hortalizas",
+      "ja_jp": "野菜の物資"
+    },
+    "description": {
+      "en_us": "Pick up 48 rice and make 4 rice bales. Wild rice grows in swamps and jungles. Look in swamps. Nine rice panicles make a bale.",
+      "de_de": "Hebe 48× Reis auf und fertige 4× Reisbündel an. Wildreis wächst in Sümpfen und Dschungeln. Suche in Sümpfen.",
+      "fr_fr": "Ramassez 48× riz et façonnez 4× ballot de riz. Le riz sauvage pousse dans les marais et les jungles. Cherchez dans les marais.",
+      "es_es": "Recolecta 48× arroz y haz 4× paca de arroz. El arroz silvestre crece en pantanos y junglas. Busca en pantanos.",
+      "ja_jp": "米48個の回収と稲の俵4個の製作をこなそう。野生の稲は沼地やジャングルに生える。沼地を探そう。稲9個で俵になる。"
+    },
     "category": "generated",
     "sort": 19,
     "mode": "all",
@@ -239,68 +291,133 @@
       }
     ]
   },
-  "justquests:gen/1790510400_1": {
-    "title": "Dig Deepslate Uranium Ore",
-    "description": "Break 16 deepslate uranium ore. Needs a stone pickaxe or better. Found in caves. Found deep underground.",
+  "justquests:gen/1790510400_9": {
+    "title": {
+      "en_us": "Undead Order",
+      "de_de": "Auftrag: Untote",
+      "fr_fr": "Commande : Morts-vivants",
+      "es_es": "Pedido: No muertos",
+      "ja_jp": "アンデッドの注文"
+    },
+    "description": {
+      "en_us": "Defeat 3 phantoms and defeat 4 bogged. They spawn at night and in dark caves. Look in swamps.",
+      "de_de": "Besiege 3× Phantom und besiege 4× Sumpfskelett. Sie erscheinen nachts und in dunklen Höhlen. Suche in Sümpfen.",
+      "fr_fr": "Vainquez 3× phantom et vainquez 4× embourbé. Ils apparaissent la nuit et dans les grottes sombres. Cherchez dans les marais.",
+      "es_es": "Derrota 3× fantasma y derrota 4× ciénago. Aparecen de noche y en cuevas oscuras. Busca en pantanos.",
+      "ja_jp": "ファントム3体の討伐とボグド4体の討伐をこなそう。夜や暗い洞窟に出現する。沼地を探そう。"
+    },
     "category": "generated",
-    "sort": 21,
+    "sort": 19,
+    "mode": "all",
     "objectives": [
       {
-        "type": "justquests:mine_block",
-        "block": "mekanism:deepslate_uranium_ore",
-        "count": 16
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:phantom",
+        "count": 3
+      },
+      {
+        "type": "justquests:kill_mob",
+        "entity": "minecraft:bogged",
+        "count": 4
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "create:zinc_ingot",
-        "count": 24
+        "item": "minecraft:bookshelf",
+        "count": 4
       },
       {
         "type": "justquests:effect",
-        "effect": "minecraft:luck",
-        "seconds": 600,
+        "effect": "minecraft:resistance",
+        "seconds": 300,
         "amplifier": 0
       },
       {
         "type": "justquests:xp",
-        "amount": 85
+        "amount": 110
       }
     ]
   },
-  "justquests:gen/1790510400_5": {
-    "title": "Sand and Sun",
-    "description": "Brave the desert: smelt 48 green dyes and hunt 12 husks. Smelt cactus. Look in deserts. They spawn at night and in dark caves.",
+  "justquests:gen/1790510400_7": {
+    "title": {
+      "en_us": "Furnace: Zinc Ingot",
+      "de_de": "Ofen: Zinkbarren",
+      "fr_fr": "Fourneau : lingot de zinc",
+      "es_es": "Horno: lingote de cinc",
+      "ja_jp": "かまど：亜鉛インゴット"
+    },
+    "description": {
+      "en_us": "Smelt 24 zinc ingots. Smelt raw zinc in a furnace. Any zinc ingot counts. Needs an iron pickaxe or better. Found in caves.",
+      "de_de": "Schmelze 24× Zinkbarren. Schmelze Rohzink im Ofen. Jede Sorte zählt. Braucht mindestens eine Eisenspitzhacke. In Höhlen zu finden.",
+      "fr_fr": "Faites fondre 24× lingot de zinc. Faites fondre du zinc brut dans un fourneau. Toutes les variétés comptent. Se trouve dans les grottes.",
+      "es_es": "Funde 24× lingote de cinc. Funde cinc en bruto en un horno. Vale cualquier tipo. Necesita un pico de hierro o mejor. Se encuentra en cuevas.",
+      "ja_jp": "亜鉛インゴット24個の製錬をこなそう。亜鉛の原石をかまどで製錬する。亜鉛インゴットなら種類は問わない。鉄のツルハシ以上が必要。洞窟で見つかる。"
+    },
     "category": "generated",
-    "sort": 26,
-    "mode": "all",
+    "sort": 20,
     "objectives": [
       {
         "type": "justquests:smelt_item",
-        "item": "minecraft:green_dye",
-        "count": 48
-      },
-      {
-        "type": "justquests:kill_mob",
-        "entity": "minecraft:husk",
-        "count": 12
+        "item": "#c:ingots/zinc",
+        "count": 24
       }
     ],
     "rewards": [
       {
         "type": "justquests:give_item",
-        "item": "farmersdelight:fried_rice",
+        "item": "minecraft:redstone_block",
         "count": 4
       },
       {
         "type": "justquests:give_item",
-        "item": "minecraft:coal_block",
-        "count": 4
+        "item": "minecraft:diamond",
+        "count": 3
       },
       {
         "type": "justquests:xp",
-        "amount": 280
+        "amount": 100
+      }
+    ]
+  },
+  "justquests:gen/1790510400_8": {
+    "title": {
+      "en_us": "Naga Menace",
+      "de_de": "Bedrohung: Naga",
+      "fr_fr": "Menace : nâga",
+      "es_es": "Amenaza: naga",
+      "ja_jp": "ナーガの脅威"
+    },
+    "description": {
+      "en_us": "Defeat a naga. The Naga coils in a stone courtyard in the forest. Found in the Twilight Forest.",
+      "de_de": "Besiege 1× Naga. Die Naga ringelt sich in einem steinernen Hof im Wald. Zu finden im Dämmerwald.",
+      "fr_fr": "Vainquez 1× nâga. Le Nâga se love dans une cour de pierre en forêt. Se trouve dans la Forêt du Crépuscule.",
+      "es_es": "Derrota 1× naga. La Naga se enrosca en un patio de piedra del bosque. Se encuentra en el Bosque crepuscular.",
+      "ja_jp": "ナーガ1体の討伐をこなそう。ナーガは森の石の中庭でとぐろを巻いている。黄昏の森で見つかる。"
+    },
+    "category": "generated",
+    "sort": 23,
+    "objectives": [
+      {
+        "type": "justquests:kill_mob",
+        "entity": "twilightforest:naga",
+        "count": 1
+      }
+    ],
+    "rewards": [
+      {
+        "type": "justquests:give_item",
+        "item": "minecraft:leather",
+        "count": 16
+      },
+      {
+        "type": "justquests:give_item",
+        "item": "botania:mana_pearl",
+        "count": 2
+      },
+      {
+        "type": "justquests:xp",
+        "amount": 215
       }
     ]
   }

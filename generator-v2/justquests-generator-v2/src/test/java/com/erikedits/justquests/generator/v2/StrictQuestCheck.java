@@ -44,13 +44,27 @@ final class StrictQuestCheck {
         if (q.has("requires") || q.has("repeatable") || q.has("cooldown_hours")) {
             p.add("forbidden quest field");
         }
-        String title = s(q, "title");
-        if (title == null || title.isBlank() || title.length() > 32 || title.contains("{")) {
-            p.add("bad title " + title);
+        List<String> titles = texts(q.get("title"));
+        if (titles == null) {
+            p.add("bad title " + q.get("title"));
+        } else {
+            for (String title : titles) {
+                if (title.isBlank() || title.length() > 32 || title.contains("{")) {
+                    p.add("bad title " + title);
+                }
+            }
         }
-        String desc = s(q, "description");
-        if (q.has("description") && (desc == null || desc.length() > 140 || desc.contains("{") || desc.contains("}"))) {
-            p.add("bad description " + desc);
+        if (q.has("description")) {
+            List<String> descs = texts(q.get("description"));
+            if (descs == null) {
+                p.add("bad description " + q.get("description"));
+            } else {
+                for (String desc : descs) {
+                    if (desc.length() > 140 || desc.contains("{") || desc.contains("}")) {
+                        p.add("bad description " + desc);
+                    }
+                }
+            }
         }
         if (!"generated".equals(s(q, "category"))) {
             p.add("category");
@@ -145,6 +159,27 @@ final class StrictQuestCheck {
             }
         }
         return p;
+    }
+
+    /** Values of a string or a language map with en_us (keys like de_de); null if malformed. */
+    static List<String> texts(JsonElement e) {
+        if (e == null) {
+            return null;
+        }
+        if (e.isJsonPrimitive() && e.getAsJsonPrimitive().isString()) {
+            return List.of(e.getAsString());
+        }
+        if (!e.isJsonObject() || !e.getAsJsonObject().has("en_us")) {
+            return null;
+        }
+        List<String> out = new ArrayList<>();
+        for (Map.Entry<String, JsonElement> x : e.getAsJsonObject().entrySet()) {
+            if (!x.getKey().matches("[a-z]{2}_[a-z]{2}") || !x.getValue().isJsonPrimitive()) {
+                return null;
+            }
+            out.add(x.getValue().getAsString());
+        }
+        return out;
     }
 
     private static String s(JsonObject o, String k) {

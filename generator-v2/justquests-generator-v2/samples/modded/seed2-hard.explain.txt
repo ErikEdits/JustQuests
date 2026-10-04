@@ -28,13 +28,22 @@ reward give_item mekanism:ingot_lead ×19 (value 18.1) + xp 70 (value 5.8)  → 
 rejected alternatives: craft_item create:bar_of_chocolate (made by mixing and compacting, not a crafting grid)
 state: AVAILABLE
 
-justquests:gen/1790510400_7  "Make Livingwood Planks"  (HARD, cycle 1790510400, seed 0xDC9F…)
-objective craft_item botania:livingwood_planks ×16
-  effort 1.00 min/unit → 16.0 min (target 25.6, range 15–35 min)
-  tier 2 (always available), family bot_livingwood, profile botania
+justquests:gen/1790510400_7  "Mana Pool Crafting"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective craft_item botania:mana_pool ×1
+  effort 16.00 min/unit → 16.0 min (target 25.7, range 15–35 min)
+  tier 2 (always available), family bot_mana, profile botania
 estimated 16.0 min (quick)
-reward give_item mekanism:raw_osmium ×26 (value 18.2) + xp 70 (value 5.8)  → 24.0 / budget 24.0
-rejected alternatives: collect_item botania:livingwood_log (a Pure Daisy converts logs in place; nothing is picked up)
+reward give_item mekanism:ingot_osmium ×20 (value 18.0) + xp 70 (value 5.8)  → 23.8 / budget 24.0
+rejected alternatives: craft_item botania:mana_spreader (its grid recipe varies between versions)
+state: AVAILABLE
+
+justquests:gen/1790510400_8  "Raw Meef Collector"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective collect_item twilightforest:raw_meef ×6
+  effort 2.00 min/unit → 12.0 min (target 18.4, range 15–35 min)
+  tier 3 (unlocked: 100% online have minecraft:story/enter_the_nether), family tf_game, profile twilightforest, twilightforest:twilight_forest
+travel overhead 5.0 min
+estimated 17.0 min (quick)
+reward give_item minecraft:golden_carrot ×13 (value 19.5) + xp 70 (value 5.8)  → 25.3 / budget 25.5
 state: AVAILABLE
 
 justquests:gen/1790510400_2  "Nether Mason Errand"  (HARD, cycle 1790510400, seed 0xDC9F…)
@@ -63,40 +72,31 @@ reward give_item minecraft:pumpkin_pie ×8 (value 8.0) + give_item mekanism:fluo
 rejected alternatives: craft_item minecraft:glass_pane (max count takes only 3.2 min)
 state: AVAILABLE
 
-justquests:gen/1790510400_6  "Stop the Endermen"  (HARD, cycle 1790510400, seed 0xDC9F…)
-objective kill_mob minecraft:enderman ×8
-  effort 2.50 min/unit → 20.0 min (target 20.1, range 15–35 min)
-  tier 2 (always available), family monsters, profile vanilla, hints night
-estimated 20.0 min (quick)
-reward give_item mekanism:ingot_steel ×8 (value 24.0) + xp 70 (value 5.8)  → 29.8 / budget 30.0
+justquests:gen/1790510400_9  "Enchanted Books"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective enchant_item minecraft:enchanted_book ×5
+  effort 3.50 min/unit → 17.5 min (target 25.7, range 15–35 min)
+  tier 2 (always available), family enchanting, profile vanilla, tool iron
+estimated 17.5 min (quick)
+reward give_item minecraft:ghast_tear ×4 (value 16.0) + xp 125 (value 10.4)  → 26.4 / budget 26.3
 state: AVAILABLE
 
-justquests:gen/1790510400_8  "Naga Scale Collector"  (HARD, cycle 1790510400, seed 0xDC9F…)
-objective collect_item twilightforest:naga_scale ×6
-  effort 2.60 min/unit → 15.6 min (target 19.5, range 15–35 min)
-  tier 4 (unlocked: 50% online have minecraft:story/enter_the_end), family tf_bosses, profile twilightforest, twilightforest:twilight_forest
-travel overhead 5.0 min
-estimated 20.6 min (quick)
-reward give_item twilightforest:cooked_venison ×16 (value 17.6) + xp 160 (value 13.3)  → 30.9 / budget 30.9
+justquests:gen/1790510400_6  "Copper Grate Order"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective craft_item minecraft:copper_grate ×16
+  effort 1.40 min/unit → 22.4 min (target 21.2, range 15–35 min)
+  tier 1 (always available), family copper_works, profile vanilla
+estimated 22.4 min
+reward give_item mekanism:ingot_steel ×8 (value 24.0) + xp 115 (value 9.6)  → 33.6 / budget 33.6
 state: AVAILABLE
 
-justquests:gen/1790510400_9  "Breed Pandas"  (HARD, cycle 1790510400, seed 0xDC9F…)
-objective breed_animal minecraft:panda ×3
-  effort 5.00 min/unit (×1.40 jungle ×1.60 rare) → 33.6 min (target 32.3, range 15–35 min)
-  tier 0 (always available), family wild_animals, profile vanilla, hints jungle/rare
-estimated 33.6 min
-reward give_item mekanism:ingot_tin ×32 (value 27.2) + xp 280 (value 23.3)  → 50.5 / budget 50.4
-state: AVAILABLE
-
-justquests:gen/1790510400_5  "Uranium Job"  (HARD, cycle 1790510400, seed 0xDC9F…)
-objective mine_block mekanism:uranium_ore ×16
-  effort 1.10 min/unit → 17.6 min (target 33.4, range 15–35 min)
-  tier 2 (always available), family mek_uranium, profile mekanism, tool stone, hints caves
-objective smelt_item mekanism:ingot_uranium ×16
-  effort 1.20 min/unit → 19.2 min (target 33.4, range 15–35 min)
-  tier 2 (always available), family mek_uranium, profile mekanism, tool stone, hints caves
-combo within family mek_uranium
-estimated 36.8 min
-reward give_item minecraft:gold_ingot ×16 (value 20.8) + give_item botania:mana_pearl ×2 (value 10.0) + xp 350 (value 29.2)  → 60.0 / budget 60.0
+justquests:gen/1790510400_5  "Fluorite Job"  (HARD, cycle 1790510400, seed 0xDC9F…)
+objective mine_block mekanism:fluorite_ore ×16
+  effort 0.90 min/unit → 14.4 min (target 33.4, range 15–35 min)
+  tier 1 (always available), family mek_fluorite, profile mekanism, tool stone, hints caves
+objective collect_item mekanism:fluorite_gem ×48
+  effort 0.32 min/unit → 15.4 min (target 33.4, range 15–35 min)
+  tier 1 (always available), family mek_fluorite, profile mekanism, tool stone, hints caves
+combo within family mek_fluorite
+estimated 29.8 min
+reward give_item minecraft:iron_ingot ×24 (value 14.4) + give_item botania:manasteel_ingot ×6 (value 21.0) + xp 165 (value 13.8)  → 49.2 / budget 49.1
 state: AVAILABLE
 

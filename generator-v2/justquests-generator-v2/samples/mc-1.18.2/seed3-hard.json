@@ -1,7 +1,19 @@
 {
   "justquests:gen/1790510400_6": {
-    "title": "Mine Glowstones",
-    "description": "Break 32 glowstones. Found in the Nether.",
+    "title": {
+      "en_us": "Mine Glowstones",
+      "de_de": "Leuchtstein abbauen",
+      "fr_fr": "Extraction de pierre lumineuse",
+      "es_es": "Minar piedra luminosa",
+      "ja_jp": "グロウストーンを掘ろう"
+    },
+    "description": {
+      "en_us": "Break 32 glowstones. Found in the Nether.",
+      "de_de": "Zerstöre 32× Leuchtstein. Zu finden im Nether.",
+      "fr_fr": "Cassez 32× pierre lumineuse. Se trouve dans le Nether.",
+      "es_es": "Rompe 32× piedra luminosa. Se encuentra en el Nether.",
+      "ja_jp": "グロウストーン32個の破壊をこなそう。ネザーで見つかる。"
+    },
     "category": "generated",
     "sort": 13,
     "objectives": [
@@ -30,8 +42,20 @@
     ]
   },
   "justquests:gen/1790510400_8": {
-    "title": "Fisherman's Day",
-    "description": "A day by the water: collect 8 raw cod and eat 6 cooked cod. Use a fishing rod.",
+    "title": {
+      "en_us": "Fisherman's Day",
+      "de_de": "Anglertag",
+      "fr_fr": "Journée du pêcheur",
+      "es_es": "Día del pescador",
+      "ja_jp": "漁師の一日"
+    },
+    "description": {
+      "en_us": "A day by the water: collect 8 raw cod and eat 6 cooked cod. Use a fishing rod.",
+      "de_de": "Ein Tag am Wasser: Sammle 8× Roher Kabeljau und iss 6× Gebratener Kabeljau. Benutze eine Angel.",
+      "fr_fr": "Une journée au bord de l'eau : récoltez 8× morue crue et mangez 6× morue cuite. Utilisez une canne à pêche.",
+      "es_es": "Un día junto al agua: recoge 8× bacalao crudo y come 6× bacalao cocinado. Usa una caña de pescar.",
+      "ja_jp": "水辺で過ごす一日：生鱈8個の収集と焼き鱈6個の実食。釣竿を使う。"
+    },
     "category": "generated",
     "sort": 15,
     "mode": "all",
@@ -66,8 +90,20 @@
     ]
   },
   "justquests:gen/1790510400_0": {
-    "title": "Blaze Rod Delivery",
-    "description": "Collect 8 blaze rods. Found in Nether fortresses. Found in the Nether.",
+    "title": {
+      "en_us": "Blaze Rod Delivery",
+      "de_de": "Lieferung: Lohenrute",
+      "fr_fr": "Livraison de bâton de blaze",
+      "es_es": "Entrega de vara de blaze",
+      "ja_jp": "ブレイズロッドの配達"
+    },
+    "description": {
+      "en_us": "Collect 8 blaze rods. Found in Nether fortresses. Found in the Nether.",
+      "de_de": "Sammle 8× Lohenrute. In Netherfestungen zu finden. Zu finden im Nether.",
+      "fr_fr": "Récoltez 8× bâton de blaze. Se trouve dans les forteresses du Nether. Se trouve dans le Nether.",
+      "es_es": "Recoge 8× vara de blaze. Se encuentra en fortalezas del Nether. Se encuentra en el Nether.",
+      "ja_jp": "ブレイズロッド8個の収集をこなそう。ネザー要塞で見つかる。ネザーで見つかる。"
+    },
     "category": "generated",
     "sort": 17,
     "objectives": [
@@ -90,8 +126,20 @@
     ]
   },
   "justquests:gen/1790510400_7": {
-    "title": "Popped Chorus Fruit Supply",
-    "description": "Smelt 40 popped chorus fruit. Grows on the outer End islands. Found in the End.",
+    "title": {
+      "en_us": "Popped Chorus Fruit Supply",
+      "de_de": "Aufgabe: Geplatzte Chorusfrucht",
+      "fr_fr": "Stock de chorus éclaté",
+      "es_es": "Tarea: fruta chorus horneada",
+      "ja_jp": "焼いたコーラスフルーツの補給"
+    },
+    "description": {
+      "en_us": "Smelt 40 popped chorus fruit. Grows on the outer End islands. Found in the End.",
+      "de_de": "Schmelze 40× Geplatzte Chorusfrucht. Wächst auf den äußeren Endinseln. Zu finden im Ende.",
+      "fr_fr": "Faites fondre 40× chorus éclaté. Pousse sur les îles extérieures de l'End. Se trouve dans l'End.",
+      "es_es": "Funde 40× fruta chorus horneada. Crece en las islas exteriores del End. Se encuentra en el End.",
+      "ja_jp": "焼いたコーラスフルーツ40個の製錬をこなそう。エンドの外縁の島に生える。エンドで見つかる。"
+    },
     "category": "generated",
     "sort": 18,
     "objectives": [
@@ -119,8 +167,20 @@
     ]
   },
   "justquests:gen/1790510400_9": {
-    "title": "Desert Trek",
-    "description": "Brave the desert: break 64 sandstone and hunt 10 husks. Look in deserts. They spawn at night and in dark caves.",
+    "title": {
+      "en_us": "Desert Trek",
+      "de_de": "Wüstentrek",
+      "fr_fr": "Traversée du désert",
+      "es_es": "Travesía del desierto",
+      "ja_jp": "砂漠横断"
+    },
+    "description": {
+      "en_us": "Brave the desert: break 64 sandstone and hunt 10 husks. Look in deserts. They spawn at night and in dark caves.",
+      "de_de": "Trotze der Wüste: Zerstöre 64× Sandstein und jage 10× Wüstenzombie. Suche in Wüsten. Sie erscheinen nachts und in dunklen Höhlen.",
+      "fr_fr": "Bravez le désert : cassez 64× grès et chassez 10× momifié. Cherchez dans les déserts. Ils apparaissent la nuit et dans les grottes sombres.",
+      "es_es": "Desafía el desierto: rompe 64× arenisca y caza 10× disecado. Busca en desiertos. Aparecen de noche y en cuevas oscuras.",
+      "ja_jp": "砂漠に挑もう：砂岩64個の破壊とハスク10体の狩猟。砂漠を探そう。夜や暗い洞窟に出現する。"
+    },
     "category": "generated",
     "sort": 18,
     "mode": "all",
@@ -153,8 +213,20 @@
     ]
   },
   "justquests:gen/1790510400_3": {
-    "title": "Fungus Hunt",
-    "description": "The cook wants mushrooms: gather 32 brown mushrooms and break 48 red mushroom blocks. Dark forests have plenty.",
+    "title": {
+      "en_us": "Fungus Hunt",
+      "de_de": "Pilzjagd",
+      "fr_fr": "Chasse aux champignons",
+      "es_es": "Caza de hongos",
+      "ja_jp": "キノコ狩り"
+    },
+    "description": {
+      "en_us": "The cook wants mushrooms: gather 32 brown mushrooms and break 48 red mushroom blocks. Dark forests have plenty.",
+      "de_de": "Der Koch will Pilze: Trage 32× Brauner Pilz zusammen und zerstöre 48× Roter Pilzblock. Dunkle Wälder haben jede Menge.",
+      "fr_fr": "Le cuisinier veut des champignons : rassemblez 32× champignon brun et cassez 48× bloc de champignon rouge. Les forêts sombres en regorgent.",
+      "es_es": "El cocinero quiere setas: reúne 32× champiñón marrón y rompe 48× bloque de champiñón rojo. Los bosques oscuros tienen muchos.",
+      "ja_jp": "料理人がキノコを欲しがっている：茶色のキノコ32個の採集と赤色のキノコブロック48個の破壊。暗い森にたくさんある。"
+    },
     "category": "generated",
     "sort": 22,
     "mode": "all",
@@ -183,8 +255,20 @@
     ]
   },
   "justquests:gen/1790510400_1": {
-    "title": "Builder's Order",
-    "description": "The builders need material: make 16 bricks and place 64 stone bricks. Four bricks make a brick block.",
+    "title": {
+      "en_us": "Builder's Order",
+      "de_de": "Bauauftrag",
+      "fr_fr": "Commande du bâtisseur",
+      "es_es": "Encargo del constructor",
+      "ja_jp": "建築家の注文"
+    },
+    "description": {
+      "en_us": "The builders need material: make 16 bricks and place 64 stone bricks. Four bricks make a brick block.",
+      "de_de": "Die Bauleute brauchen Material: Fertige 16× Ziegelsteine an und platziere 64× Steinziegel. Vier Ziegel ergeben einen Ziegelsteinblock.",
+      "fr_fr": "Les bâtisseurs ont besoin de matériaux : façonnez 16× briques et posez 64× pierre taillée. Quatre briques font un bloc de briques.",
+      "es_es": "Los constructores necesitan material: haz 16× ladrillos y coloca 64× ladrillos de piedra. Cuatro ladrillos forman un bloque de ladrillos.",
+      "ja_jp": "建築家たちが資材を求めている：レンガ16個の製作と石レンガ64個の設置。レンガ4個でレンガブロックになる。"
+    },
     "category": "generated",
     "sort": 24,
     "mode": "all",
@@ -218,8 +302,20 @@
     ]
   },
   "justquests:gen/1790510400_5": {
-    "title": "Brewer Errand",
-    "description": "Drink 2 potions of water breathing and craft 8 glistering melon slices. Brew an Awkward Potion with a pufferfish. Look in and near oceans.",
+    "title": {
+      "en_us": "Brewer Errand",
+      "de_de": "Besorgung: Brauer",
+      "fr_fr": "Course : Alchimie",
+      "es_es": "Recado: Alquimia",
+      "ja_jp": "醸造のおつかい"
+    },
+    "description": {
+      "en_us": "Drink 2 potions of water breathing and craft 8 glistering melon slices. Brew an Awkward Potion with a pufferfish. Look in and near oceans.",
+      "de_de": "Trink 2× Trank der Unterwasseratmung und stelle 8× Glitzernde Melonenscheibe her. Braue einen Seltsamen Trank mit einem Kugelfisch.",
+      "fr_fr": "Buvez 2× potion de respiration aquatique et fabriquez 8× tranche de pastèque scintillante. Cherchez dans les océans et à proximité.",
+      "es_es": "Bebe 2× poción de apnea y fabrica 8× rodaja de sandía reluciente. Prepara una poción rara con un pez globo.",
+      "ja_jp": "水中呼吸のポーション2個の飲用ときらめくスイカの薄切り8個の作成をこなそう。奇妙なポーションにフグを加えて醸造する。海の中や近くを探そう。"
+    },
     "category": "generated",
     "sort": 24,
     "mode": "all",
@@ -256,8 +352,20 @@
     ]
   },
   "justquests:gen/1790510400_2": {
-    "title": "Beyond the Void",
-    "description": "Explore the End: mine 128 End stone, hunt 3 shulkers and enter the End. Found in the End. Found in End cities.",
+    "title": {
+      "en_us": "Beyond the Void",
+      "de_de": "Jenseits der Leere",
+      "fr_fr": "Au-delà du vide",
+      "es_es": "Más allá del vacío",
+      "ja_jp": "奈落の彼方へ"
+    },
+    "description": {
+      "en_us": "Explore the End: mine 128 End stone, hunt 3 shulkers and enter the End. Found in the End. Found in End cities.",
+      "de_de": "Erkunde das Ende: Baue 128× Endstein ab, jage 3× Shulker und begib dich ins Ende. Zu finden im Ende. In Endsiedlungen zu finden.",
+      "fr_fr": "Explorez l'End : minez 128× pierre de l'End, chassez 3× shulker et entrez dans l'End. Se trouve dans l'End.",
+      "es_es": "Explora el End: mina 128× piedra del End, caza 3× shulker y entra en el End. Se encuentra en el End. Se encuentra en ciudades del End.",
+      "ja_jp": "エンドを探索しよう：エンドストーン128個の採掘、シュルカー3体の狩猟とエンドへの突入。エンドで見つかる。エンドシティで見つかる。"
+    },
     "category": "generated",
     "sort": 27,
     "mode": "all",
@@ -296,8 +404,20 @@
     ]
   },
   "justquests:gen/1790510400_4": {
-    "title": "Potion Ingredients",
-    "description": "The brewer needs Nether goods: gather 24 Nether wart and craft 16 red Nether bricks. Found in Nether fortresses. Found in the Nether.",
+    "title": {
+      "en_us": "Potion Ingredients",
+      "de_de": "Trankzutaten",
+      "fr_fr": "Ingrédients de potion",
+      "es_es": "Ingredientes de pociones",
+      "ja_jp": "ポーションの素材"
+    },
+    "description": {
+      "en_us": "The brewer needs Nether goods: gather 24 Nether wart and craft 16 red Nether bricks. Found in Nether fortresses. Found in the Nether.",
+      "de_de": "Der Brauer braucht Waren aus dem Nether: Trage 24× Netherwarze zusammen und stelle 16× Rote Netherziegel her. In Netherfestungen zu finden.",
+      "fr_fr": "L'alchimiste a besoin de produits du Nether : rassemblez 24× verrues du Nether et fabriquez 16× briques rouges du Nether.",
+      "es_es": "El alquimista necesita bienes del Nether: reúne 24× verruga del Nether y fabrica 16× ladrillos del Nether rojos. Se encuentra en el Nether.",
+      "ja_jp": "醸造家がネザーの品を求めている：ネザーウォート24個の採集と赤いネザーレンガ16個の作成。ネザー要塞で見つかる。ネザーで見つかる。ネザーレンガとネザーウォート。"
+    },
     "category": "generated",
     "sort": 31,
     "mode": "all",
