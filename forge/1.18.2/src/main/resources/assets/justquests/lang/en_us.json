@@ -135,7 +135,7 @@
   "justquests.admin.view_done": "  §a%s §7(done)",
   "justquests.admin.reset_all": "§aReset all quest progress for %s.",
   "justquests.admin.reset_one": "§aReset %s for %s.",
-  "justquests.admin.complete": "§aForce-completed %s for %s (rewards granted).",
+  "justquests.admin.complete": "§aForce-completed %s for %s.",
   "justquests.hint.link_hover": "Click to open the Discord invite",
   "justquests.hint.welcome_title": "§6> JustQuests §7- thanks for playing!\n",
   "justquests.hint.welcome_join": "§fJoin the community Discord to:\n",
