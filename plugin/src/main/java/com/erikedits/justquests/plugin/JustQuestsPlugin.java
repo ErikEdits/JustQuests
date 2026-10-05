@@ -1,12 +1,14 @@
 package com.erikedits.justquests.plugin;
 
 import com.erikedits.justquests.plugin.book.QuestBook;
+import com.erikedits.justquests.plugin.book.QuestNpc;
 import com.erikedits.justquests.plugin.command.QuestCommand;
 import com.erikedits.justquests.plugin.data.PlayerData;
 import com.erikedits.justquests.plugin.data.PlayerStore;
 import com.erikedits.justquests.plugin.gen.PluginGenerator;
 import com.erikedits.justquests.plugin.gui.Menu;
 import com.erikedits.justquests.plugin.gui.MenuListener;
+import com.erikedits.justquests.plugin.hook.Placeholders;
 import com.erikedits.justquests.plugin.progress.GeneratedQuests;
 import com.erikedits.justquests.plugin.progress.ProgressService;
 import com.erikedits.justquests.plugin.progress.QuestListener;
@@ -53,6 +55,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     private QuestListener listener;
     private Tracker tracker;
     private QuestBook book;
+    private QuestNpc npc;
     private Community community;
     private GeneratedQuests generated = GeneratedQuests.NONE;
     private PluginGenerator generator;
@@ -77,6 +80,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         listener = new QuestListener(this);
         tracker = new Tracker(this);
         book = new QuestBook(this);
+        npc = new QuestNpc(this);
         community = new Community(this, data.resolve("seen-players.json"));
         generator = new PluginGenerator(this, data.resolve("generator"));
         generated = generator;
@@ -87,7 +91,13 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         pm.registerEvents(listener, this);
         pm.registerEvents(new MenuListener(), this);
         pm.registerEvents(book, this);
+        pm.registerEvents(npc, this);
+        pm.registerEvents(generator.fireworks(), this);
         pm.registerEvents(this, this);
+        if (pm.isPluginEnabled("PlaceholderAPI")) {
+            Placeholders.hook(this);
+            getLogger().info("PlaceholderAPI found: the %justquests_...% placeholders are ready");
+        }
         PluginCommand cmd = getCommand("quest");
         if (cmd != null) {
             QuestCommand executor = new QuestCommand(this);
@@ -251,6 +261,8 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     public Tracker tracker() { return tracker; }
 
     public QuestBook book() { return book; }
+
+    public QuestNpc npc() { return npc; }
 
     public GeneratedQuests generated() { return generated; }
 

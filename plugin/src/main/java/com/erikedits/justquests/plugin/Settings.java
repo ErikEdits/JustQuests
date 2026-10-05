@@ -21,6 +21,10 @@ public final class Settings {
     public boolean bossbar = true;
     public BarColor bossbarColor = BarColor.YELLOW;
     public BarStyle bossbarStyle = BarStyle.SEGMENTED_10;
+    public boolean announceBoard = true;
+    public boolean announceWeekly = true;
+    public boolean announceGoal = true;
+    public boolean goalFireworks = true;
 
     // --- generator
     public boolean generator = true;
@@ -66,6 +70,10 @@ public final class Settings {
         bossbar = c.getBoolean("bossbar.enabled", true);
         bossbarColor = parse(BarColor.class, c.getString("bossbar.color"), BarColor.YELLOW);
         bossbarStyle = parse(BarStyle.class, c.getString("bossbar.style"), BarStyle.SEGMENTED_10);
+        announceBoard = c.getBoolean("announcements.newBoard", true);
+        announceWeekly = c.getBoolean("announcements.newWeekly", true);
+        announceGoal = c.getBoolean("announcements.newGoal", true);
+        goalFireworks = c.getBoolean("announcements.goalFireworks", true);
 
         generator = c.getBoolean("generator.enabled", true);
         difficulty = c.getString("generator.difficulty", "normal").toLowerCase(Locale.ROOT);

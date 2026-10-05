@@ -18,6 +18,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.text.SimpleDateFormat;
@@ -40,7 +41,7 @@ import java.util.stream.Collectors;
 public final class QuestCommand implements TabExecutor {
     public static final List<String> PLAYER = List.of("open", "list", "categories", "stats", "leaderboard", "progress",
         "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "discord");
-    public static final List<String> ADMIN = List.of("reload", "reroll", "mainquests", "difficulty", "generator", "test", "admin");
+    public static final List<String> ADMIN = List.of("reload", "reroll", "mainquests", "difficulty", "generator", "npc", "test", "admin");
 
     private final JustQuestsPlugin plugin;
 
@@ -117,6 +118,7 @@ public final class QuestCommand implements TabExecutor {
                 }
             }
             case "generator" -> generator(sender, label, rest);
+            case "npc" -> withPlayer(sender, p -> npc(p, label, rest));
             case "reload" -> {
                 int n = plugin.reload();
                 say(sender, "justquests.plugin.reload.done", n);
@@ -408,6 +410,30 @@ public final class QuestCommand implements TabExecutor {
         for (String line : text.split("\n")) say(src, Text.lit(line.startsWith("§") ? line : "§7" + line));
     }
 
+    /** /quest npc set [name] | remove: the mob the operator looks at opens the quest book. */
+    private void npc(Player p, String label, String[] rest) {
+        String sub = rest.length == 0 ? "" : rest[0].toLowerCase(Locale.ROOT);
+        if (!sub.equals("set") && !sub.equals("remove")) {
+            say(p, "justquests.plugin.usage", "/" + label + " npc set [name] | remove");
+            return;
+        }
+        Entity target = plugin.npc().target(p);
+        if (target == null) {
+            say(p, "justquests.plugin.npc.none");
+            return;
+        }
+        BaseComponent what = Text.entity(target.getType());
+        if (sub.equals("set")) {
+            plugin.npc().set(target, rest.length > 1 ? String.join(" ", java.util.Arrays.copyOfRange(rest, 1, rest.length)) : null);
+            say(p, "justquests.plugin.npc.set", what);
+        } else if (!plugin.npc().is(target)) {
+            say(p, "justquests.plugin.npc.not");
+        } else {
+            plugin.npc().remove(target);
+            say(p, "justquests.plugin.npc.removed", what);
+        }
+    }
+
     private void mainQuests(CommandSender src, String[] rest) {
         String lang = Lang.of(src);
         if (rest.length == 0) {
@@ -513,6 +539,7 @@ public final class QuestCommand implements TabExecutor {
                     case "mainquests", "bossbar" -> out.addAll(List.of("on", "off"));
                     case "difficulty" -> out.addAll(List.of("easy", "normal", "hard"));
                     case "generator" -> out.addAll(List.of("status", "stats", "preview", "explain", "release"));
+                    case "npc" -> out.addAll(List.of("set", "remove"));
                     case "admin" -> { if (plugin.allowed(sender, "justquests.admin.admin", true)) out.addAll(List.of("view", "reset", "complete")); }
                     default -> { }
                 }

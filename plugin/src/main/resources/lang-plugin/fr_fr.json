@@ -81,6 +81,15 @@
   "justquests.plugin.help.reroll": "de nouvelles quêtes sur le tableau tout de suite",
   "justquests.plugin.help.difficulty": "difficulté des quêtes générées",
   "justquests.plugin.help.generator": "état, aperçu, explication et libération du générateur",
+  "justquests.plugin.announce.board": "§6✦ De nouvelles quêtes sur le tableau ! §7Cliquez pour voir.",
+  "justquests.plugin.announce.weekly": "§d✦ Les nouvelles quêtes hebdomadaires sont là ! §7Cliquez pour voir.",
+  "justquests.plugin.announce.goal": "§6✦ Nouvel objectif du serveur : §f%s §7– tout le monde peut aider !",
+  "justquests.plugin.announce.hover": "§eOuvrir le livre de quêtes",
+  "justquests.plugin.npc.none": "§cRegardez un mob, un villageois ou un porte-armure (jusqu'à 6 blocs).",
+  "justquests.plugin.npc.set": "§aC'est fait : un clic droit sur §f%s§a ouvre maintenant le livre de quêtes.",
+  "justquests.plugin.npc.removed": "§7Un clic droit sur §f%s§7 n'ouvre plus le livre de quêtes.",
+  "justquests.plugin.npc.not": "§cCe n'est pas un donneur de quêtes.",
+  "justquests.plugin.help.npc": "le mob regardé ouvre le livre de quêtes",
   "justquests.category.personal": "Personnelles",
   "justquests.category.weekly": "Hebdomadaires"
 }

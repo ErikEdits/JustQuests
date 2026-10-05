@@ -81,6 +81,15 @@
   "justquests.plugin.help.reroll": "new quests on the board right now",
   "justquests.plugin.help.difficulty": "difficulty of the generated quests",
   "justquests.plugin.help.generator": "generator status, preview, explain, release",
+  "justquests.plugin.announce.board": "§6✦ New quests on the board! §7Click to look.",
+  "justquests.plugin.announce.weekly": "§d✦ New weekly quests are here! §7Click to look.",
+  "justquests.plugin.announce.goal": "§6✦ New server goal: §f%s §7- everyone can help!",
+  "justquests.plugin.announce.hover": "§eOpen the quest book",
+  "justquests.plugin.npc.none": "§cLook at a mob, villager or armor stand (up to 6 blocks away).",
+  "justquests.plugin.npc.set": "§aDone: right-clicking the §f%s§a now opens the quest book.",
+  "justquests.plugin.npc.removed": "§7Right-clicking the §f%s§7 no longer opens the quest book.",
+  "justquests.plugin.npc.not": "§cThat is not a quest giver.",
+  "justquests.plugin.help.npc": "make the mob you look at open the quest book",
   "justquests.category.personal": "Personal",
   "justquests.category.weekly": "Weekly"
 }

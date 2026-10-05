@@ -55,6 +55,7 @@ final class ServerGoal {
 
     private final JustQuestsPlugin plugin;
     private final Path file;
+    private final Fireworks fireworks;
     private long week = -1;
     private JsonObject json;
     private Quest quest;
@@ -68,9 +69,10 @@ final class ServerGoal {
     private final Map<Long, JsonArray> pendingRewards = new LinkedHashMap<>();
     private boolean dirty;
 
-    ServerGoal(JustQuestsPlugin plugin, Path file) {
+    ServerGoal(JustQuestsPlugin plugin, Path file, Fireworks fireworks) {
         this.plugin = plugin;
         this.file = file;
+        this.fireworks = fireworks;
     }
 
     boolean active() {
@@ -105,9 +107,9 @@ final class ServerGoal {
         return week;
     }
 
-    /** A new goal when a new week began. */
-    void rollIfDue(long now, QuestGeneratorV2 gen, Difficulty difficulty, int activePlayers, PluginGenerator owner) {
-        if (!plugin.settings().serverGoal || now == week) return;
+    /** A new goal when a new week began; true if there is one. */
+    boolean rollIfDue(long now, QuestGeneratorV2 gen, Difficulty difficulty, int activePlayers, PluginGenerator owner) {
+        if (!plugin.settings().serverGoal || now == week) return false;
         int players = Math.max(1, activePlayers);
         double minutes = players * (double) plugin.settings().goalMinutesPerPlayer;
         double budget = Math.max(0.01, Math.min(1.0, REWARD_VALUE / (minutes * 1.2)));
@@ -131,6 +133,7 @@ final class ServerGoal {
         }
         dirty = true;
         save();
+        return quest != null;
     }
 
     private Quest parse(JsonObject j) {
@@ -182,6 +185,7 @@ final class ServerGoal {
                 pendingRewards.put(week, json.getAsJsonArray("rewards").deepCopy());
             }
         }
+        if (plugin.settings().goalFireworks) fireworks.celebrate();
         dirty = true;
         save();
     }
@@ -229,8 +233,7 @@ final class ServerGoal {
         out.add(Text.lit(bar(pct) + " §f" + total + "/" + req + " §7(" + pct + "%)"));
         if (viewer != null) out.add(Text.tr(lang, "justquests.plugin.goal.yours", contribution(viewer)));
         out.add(Text.tr(lang, "justquests.plugin.goal.helpers", helpers()));
-        out.add(done ? Text.tr(lang, "justquests.plugin.goal.done")
-            : Text.tr(lang, "justquests.plugin.goal.left", duration(lang, GenTime.weekLeft(week, plugin.settings().weeklyHour))));
+        out.add(done ? Text.tr(lang, "justquests.plugin.goal.done") : Text.tr(lang, "justquests.plugin.goal.left", timeLeft(lang)));
         out.add(Text.tr(lang, "justquests.plugin.goal.rewards"));
         for (Reward r : quest.rewards()) {
             BaseComponent line = Text.lit(" §a");
@@ -238,6 +241,11 @@ final class ServerGoal {
             out.add(line);
         }
         return out;
+    }
+
+    /** "3d 4h" (or "25m") until the goal's week ends. */
+    BaseComponent timeLeft(String lang) {
+        return duration(lang, GenTime.weekLeft(week, plugin.settings().weeklyHour));
     }
 
     private static String bar(int pct) {

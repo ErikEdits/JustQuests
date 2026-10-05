@@ -81,6 +81,15 @@
   "justquests.plugin.help.reroll": "sofort neue Quests auf dem Brett",
   "justquests.plugin.help.difficulty": "Schwierigkeit der generierten Quests",
   "justquests.plugin.help.generator": "Generator-Status, Vorschau, Erklärung, Freigabe",
+  "justquests.plugin.announce.board": "§6✦ Neue Quests am Brett! §7Klick zum Ansehen.",
+  "justquests.plugin.announce.weekly": "§d✦ Neue Wochen-Quests sind da! §7Klick zum Ansehen.",
+  "justquests.plugin.announce.goal": "§6✦ Neues Server-Ziel: §f%s §7– alle können helfen!",
+  "justquests.plugin.announce.hover": "§eQuestbuch öffnen",
+  "justquests.plugin.npc.none": "§cSchau einen Mob, Dorfbewohner oder Rüstungsständer an (bis 6 Blöcke weit).",
+  "justquests.plugin.npc.set": "§aFertig: Ein Rechtsklick auf §f%s§a öffnet jetzt das Questbuch.",
+  "justquests.plugin.npc.removed": "§7Ein Rechtsklick auf §f%s§7 öffnet das Questbuch nicht mehr.",
+  "justquests.plugin.npc.not": "§cDas ist kein Quest-Geber.",
+  "justquests.plugin.help.npc": "der angeschaute Mob öffnet das Questbuch",
   "justquests.category.personal": "Persönlich",
   "justquests.category.weekly": "Wöchentlich"
 }

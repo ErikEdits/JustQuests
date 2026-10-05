@@ -21,6 +21,10 @@ Built step by step; test builds go to a local folder until the release.
   weekly server goal everyone works on together, with the same reward for every helper; and
   better rewards: a choice of three, a lucky bonus, a streak bonus for personal quests, loot on
   weekly quests and goals, a reward multiplier, and money through an economy plugin's command.
+- **Plugin extras:** announcements for a new board, new weekly quests and a new server goal, with
+  harmless fireworks when the goal is reached; quest givers (`/quest npc set [name]`: the mob, villager
+  or armor stand you look at opens the quest book); and PlaceholderAPI placeholders
+  (`%justquests_completed%`, `%justquests_tracked%`, `%justquests_goal_percent%` and more).
 - **Minecraft 26.1 – 26.3:** Fabric builds for 26.1, 26.1.1, 26.1.2, 26.2 and 26.3, and NeoForge
   builds for 26.1.2 and 26.2 (NeoForge 26.3 follows once it leaves beta). JustQuests now has 43
   builds. Minecraft 26.x needs Java 25.

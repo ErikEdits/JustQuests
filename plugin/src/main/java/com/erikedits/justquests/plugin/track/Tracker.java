@@ -51,21 +51,16 @@ public final class Tracker {
         if (id != null) {
             Quest quest = plugin.quests().get(id);
             long need = 0, have = 0;
-            int done = 0;
             double best = 0;
             for (int i = 0; i < quest.objectives().size(); i++) {
                 Objective o = quest.objectives().get(i);
                 int p = Math.min(data.progress(id, i), o.requiredCount());
                 need += o.requiredCount();
                 have += p;
-                if (p >= o.requiredCount()) done++;
                 best = Math.max(best, p / (double) o.requiredCount());
             }
             fill = quest.any() ? best : need == 0 ? 0 : have / (double) need;
-            String count = quest.objectives().size() == 1
-                ? have + "/" + need
-                : done + "/" + quest.objectives().size();
-            title = Text.legacy(lang, "justquests.plugin.bossbar", quest.title().get(lang), count);
+            title = Text.legacy(lang, "justquests.plugin.bossbar", quest.title().get(lang), count(quest, data));
         } else if (!data.pendingClaim.isEmpty()) {
             title = Text.legacy(lang, "justquests.hud.rewards", data.pendingClaim.size());
             fill = 1;
@@ -86,6 +81,20 @@ public final class Tracker {
         bar.setStyle(plugin.settings().bossbarStyle);
         bar.setProgress(Math.max(0, Math.min(1, fill)));
         bar.setVisible(true);
+    }
+
+    /** "12/32" for a quest with one goal, else "1/3" goals done. */
+    public static String count(Quest quest, PlayerData data) {
+        String id = quest.id();
+        if (quest.objectives().size() == 1) {
+            int need = quest.objectives().get(0).requiredCount();
+            return Math.min(data.progress(id, 0), need) + "/" + need;
+        }
+        int done = 0;
+        for (int i = 0; i < quest.objectives().size(); i++) {
+            if (data.progress(id, i) >= quest.objectives().get(i).requiredCount()) done++;
+        }
+        return done + "/" + quest.objectives().size();
     }
 
     public void remove(Player player) {

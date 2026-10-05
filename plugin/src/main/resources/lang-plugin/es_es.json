@@ -81,6 +81,15 @@
   "justquests.plugin.help.reroll": "nuevas misiones en el tablón ahora mismo",
   "justquests.plugin.help.difficulty": "dificultad de las misiones generadas",
   "justquests.plugin.help.generator": "estado, vista previa, explicación y liberación del generador",
+  "justquests.plugin.announce.board": "§6✦ ¡Nuevas misiones en el tablón! §7Haz clic para verlas.",
+  "justquests.plugin.announce.weekly": "§d✦ ¡Ya están aquí las nuevas misiones semanales! §7Haz clic para verlas.",
+  "justquests.plugin.announce.goal": "§6✦ Nuevo objetivo del servidor: §f%s §7– ¡todos pueden ayudar!",
+  "justquests.plugin.announce.hover": "§eAbrir el libro de misiones",
+  "justquests.plugin.npc.none": "§cMira a una criatura, un aldeano o un soporte para armaduras (hasta 6 bloques).",
+  "justquests.plugin.npc.set": "§aHecho: un clic derecho en §f%s§a ahora abre el libro de misiones.",
+  "justquests.plugin.npc.removed": "§7Un clic derecho en §f%s§7 ya no abre el libro de misiones.",
+  "justquests.plugin.npc.not": "§cEso no es un dador de misiones.",
+  "justquests.plugin.help.npc": "la criatura que miras abre el libro de misiones",
   "justquests.category.personal": "Personales",
   "justquests.category.weekly": "Semanales"
 }

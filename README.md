@@ -112,6 +112,29 @@ goal. Operators have `/quest reroll`, `/quest difficulty` and `/quest generator 
 Everything is set in the `generator:` section of `config.yml`; the state lives in
 `plugins/JustQuests/generator/`.
 
+**Announcements.** Everyone online hears about a new board, new weekly quests and a new server goal
+(a click on the message opens the quest book), and when the server goal is reached, fireworks go up
+around every player - they hurt nobody. Each is a switch in the `announcements:` section.
+
+**Quest givers.** Look at a villager, any mob or an armor stand and type `/quest npc set [name]`
+(`&` colour codes work in the name): from then on a right-click on it opens the quest book instead
+of trading. It stands still, stays silent, can't be hurt and never despawns. `/quest npc remove`
+makes it ordinary again. Citizens NPCs: give them the command `quest` with Citizens' own
+`/npc command add`, run as the player.
+
+**PlaceholderAPI.** With [PlaceholderAPI](https://placeholderapi.com/) on the server, scoreboards,
+tab lists and chat plugins can show:
+
+| Placeholder | Shows |
+|---|---|
+| `%justquests_completed%` | quests the player has completed (as on the leaderboard) |
+| `%justquests_active%` / `%justquests_claimable%` / `%justquests_available%` | active quests / rewards waiting / quests to take now |
+| `%justquests_rank%` | the player's place on the leaderboard |
+| `%justquests_tracked%` / `%justquests_tracked_progress%` | the quest in the boss bar and its progress ("12/32") |
+| `%justquests_streak%` | days in a row with a personal quest done |
+| `%justquests_goal%` / `%justquests_goal_progress%` / `%justquests_goal_percent%` | the server goal, "640/1000", "64" |
+| `%justquests_goal_left%` / `%justquests_goal_yours%` | time left ("3d 4h"), the player's part |
+
 Files in `plugins/JustQuests/`:
 
 | File | What it is |
@@ -269,7 +292,7 @@ With LuckPerms (or another permission mod) every command has a node:
 | the `permission` of a quest, e.g. `myserver.vip` | operators (level 2) |
 
 The plugin adds `open`, `track`, `bossbar`, `book` and `goal` to the player nodes; its operator
-commands are `reload`, `reroll`, `mainquests`, `difficulty`, `generator`, `test` and `admin`.
+commands are `reload`, `reroll`, `mainquests`, `difficulty`, `generator`, `npc`, `test` and `admin`.
 `justquests.admin.*` gives all operator commands. A quest with a `permission` is hidden from
 `/quest list`, the quest book and tab completion for players without the node. NeoForge and Forge
 learn the quest nodes at server start, so a node added to a quest while the server runs works

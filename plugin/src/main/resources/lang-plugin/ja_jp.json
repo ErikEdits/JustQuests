@@ -81,6 +81,15 @@
   "justquests.plugin.help.reroll": "掲示板のクエストを今すぐ入れ替える",
   "justquests.plugin.help.difficulty": "生成クエストの難易度",
   "justquests.plugin.help.generator": "生成器の状態・プレビュー・説明・解放",
+  "justquests.plugin.announce.board": "§6✦ 掲示板に新しいクエスト! §7クリックで確認",
+  "justquests.plugin.announce.weekly": "§d✦ 新しい週間クエストが届きました! §7クリックで確認",
+  "justquests.plugin.announce.goal": "§6✦ 新しいサーバー目標: §f%s §7– 誰でも協力できます!",
+  "justquests.plugin.announce.hover": "§eクエストブックを開く",
+  "justquests.plugin.npc.none": "§cモブ・村人・防具立てを見てください(6ブロック以内)。",
+  "justquests.plugin.npc.set": "§a完了: §f%s§a を右クリックするとクエストブックが開きます。",
+  "justquests.plugin.npc.removed": "§f%s§7 を右クリックしてもクエストブックは開かなくなりました。",
+  "justquests.plugin.npc.not": "§cそれはクエスト受付ではありません。",
+  "justquests.plugin.help.npc": "見ているモブでクエストブックを開けるようにする",
   "justquests.category.personal": "個人",
   "justquests.category.weekly": "週間"
 }

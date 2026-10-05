@@ -44,6 +44,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -63,6 +64,7 @@ public final class PluginGenerator implements GeneratedQuests {
     private final PersonalQuests personal;
     private final WeeklyQuests weekly;
     private final ServerGoal goal;
+    private final Fireworks fireworks;
     private final Random random = new Random();
     private QuestGeneratorV2 board;
     private int activePlayers = -1;
@@ -74,7 +76,13 @@ public final class PluginGenerator implements GeneratedQuests {
         this.host = new BukkitHost(plugin, dir);
         this.personal = new PersonalQuests(plugin, dir.resolve("personal.json"));
         this.weekly = new WeeklyQuests(plugin, dir.resolve("weekly.json"));
-        this.goal = new ServerGoal(plugin, dir.resolve("goal.json"));
+        this.fireworks = new Fireworks(plugin);
+        this.goal = new ServerGoal(plugin, dir.resolve("goal.json"), fireworks);
+    }
+
+    /** The listener that keeps the goal's fireworks harmless. */
+    public Fireworks fireworks() {
+        return fireworks;
     }
 
     // --- life cycle ----------------------------------------------------------------------------
@@ -121,6 +129,9 @@ public final class PluginGenerator implements GeneratedQuests {
             if (size != board.config().questsPerCycle()) board.updateConfig(config());
             RotationResult r = board.tick();
             applyExpired(r.expiredClaims());
+            if (r.changed() && !r.added().isEmpty() && plugin.settings().announceBoard) {
+                announce("justquests.plugin.announce.board", null);
+            }
             for (Player p : Bukkit.getOnlinePlayers()) changed |= personal.ensure(p, board, difficulty(), this);
             if (changed || r.changed()) register();
             personal.saveIfDirty();
@@ -133,8 +144,23 @@ public final class PluginGenerator implements GeneratedQuests {
     /** Weekly quests and the server goal of a new week. */
     private boolean renewals() {
         boolean changed = weekly.rollIfDue(board, difficulty(), this);
-        goal.rollIfDue(weekly.currentWeek(), board, difficulty(), activePlayers(), this);
+        if (changed && !weekly.all().isEmpty() && plugin.settings().announceWeekly) {
+            announce("justquests.plugin.announce.weekly", null);
+        }
+        if (goal.rollIfDue(weekly.currentWeek(), board, difficulty(), activePlayers(), this) && plugin.settings().announceGoal) {
+            announce("justquests.plugin.announce.goal", lang -> goal.quest().objectives().get(0).display(lang));
+        }
         return changed;
+    }
+
+    /** A line for everyone online that opens the quest book when clicked. */
+    private void announce(String key, Function<String, BaseComponent> argument) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            String lang = Lang.of(p);
+            BaseComponent text = argument == null ? Text.tr(lang, key) : Text.tr(lang, key, argument.apply(lang));
+            p.spigot().sendMessage(Text.button(text, "/quest", Text.tr(lang, "justquests.plugin.announce.hover")));
+            p.playSound(p.getLocation(), "minecraft:block.note_block.bell", org.bukkit.SoundCategory.MASTER, 0.7f, 1.2f);
+        }
     }
 
     public void stop() {
@@ -163,6 +189,7 @@ public final class PluginGenerator implements GeneratedQuests {
         if (board == null || !board.config().enabled()) return -1;
         board.reroll();
         register();
+        if (plugin.settings().announceBoard) announce("justquests.plugin.announce.board", null);
         return board.servedQuests().size();
     }
 
@@ -507,6 +534,27 @@ public final class PluginGenerator implements GeneratedQuests {
 
     public boolean goalDone() {
         return goal.done();
+    }
+
+    /** The goal's objective ("Mine 1,000x Copper Ore"), or null without a goal. */
+    public BaseComponent goalObjective(String lang) {
+        return goalActive() ? goal.quest().objectives().get(0).display(lang) : null;
+    }
+
+    public long goalTotal() {
+        return goal.total();
+    }
+
+    public long goalRequired() {
+        return goal.required();
+    }
+
+    public long goalContribution(UUID player) {
+        return goal.contribution(player);
+    }
+
+    public BaseComponent goalLeft(String lang) {
+        return goal.timeLeft(lang);
     }
 
     public Material goalIcon() {

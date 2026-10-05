@@ -22,11 +22,14 @@ repositories {
     mavenCentral()
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }   // bungeecord-chat
+    maven { url = 'https://repo.extendedclip.com/releases/' }   // PlaceholderAPI
 }
 
 dependencies {
     // The server provides the API (with Gson and the BungeeCord chat components) at runtime.
     compileOnly "org.spigotmc:spigot-api:${spigotApi}"
+    // Optional: placeholders when the server has PlaceholderAPI (an old, stable API level).
+    compileOnly 'me.clip:placeholderapi:2.11.6'
 }
 
 tasks.withType(JavaCompile).configureEach {
