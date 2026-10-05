@@ -109,10 +109,19 @@ final class PersonalQuests {
         return true;
     }
 
-    /** All personal quests of every player, for the quest registry. */
+    /**
+     * All personal quests of every player, for the quest registry. Switched off, only finished
+     * quests whose rewards still wait stay; switched on again the same day, the rest come back.
+     */
     Map<String, JsonObject> all() {
         Map<String, JsonObject> out = new LinkedHashMap<>();
-        for (Entry e : entries.values()) out.putAll(e.quests);
+        boolean on = plugin.settings().personal;
+        for (Map.Entry<UUID, Entry> e : entries.entrySet()) {
+            PlayerData data = on ? null : plugin.store().peek(e.getKey());
+            e.getValue().quests.forEach((id, json) -> {
+                if (on || (data != null && data.isClaimable(id))) out.put(id, json);
+            });
+        }
         return out;
     }
 

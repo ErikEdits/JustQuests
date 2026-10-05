@@ -49,7 +49,7 @@ public final class MainMenu extends Menu {
             else byCategory.computeIfAbsent(q.category(), k -> new ArrayList<>()).add(q);
         }
 
-        set(4, stats(data, quests.size()));
+        set(4, stats(data, quests));
         if (plugin.settings().personal && plugin.generator().running()) {
             List<BaseComponent> lore = new ArrayList<>();
             lore.add(tr("justquests.plugin.gui.personal_lore"));
@@ -139,6 +139,18 @@ public final class MainMenu extends Menu {
         return n;
     }
 
+    /**
+     * How many of these quests the player has completed - not all completions, which include past
+     * personal, weekly and board quests and would read "57 of 40".
+     */
+    public static int completedOf(PlayerData data, Collection<Quest> quests) {
+        int n = 0;
+        for (Quest q : quests) {
+            if (data != null && data.isCompleted(q.id())) n++;
+        }
+        return n;
+    }
+
     /** Something to take or to claim among the quests. */
     private static boolean hasWork(PlayerData data, List<Quest> list) {
         for (Quest q : list) {
@@ -147,8 +159,9 @@ public final class MainMenu extends Menu {
         return false;
     }
 
-    private org.bukkit.inventory.ItemStack stats(PlayerData data, int total) {
-        int completed = data == null ? 0 : data.completed.size();
+    private org.bukkit.inventory.ItemStack stats(PlayerData data, Collection<Quest> quests) {
+        int total = quests.size();
+        int completed = completedOf(data, quests);
         int active = data == null ? 0 : data.active.size();
         int pct = total > 0 ? Math.min(100, completed * 100 / total) : 0;
         List<BaseComponent> lore = new ArrayList<>();

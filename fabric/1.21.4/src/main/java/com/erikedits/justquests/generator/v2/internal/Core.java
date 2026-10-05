@@ -99,6 +99,14 @@ public final class Core {
     // =================================================================== lifecycle
 
     public StartResult start(Map<String, ? extends Collection<UUID>> active) {
+        return start(active, null);
+    }
+
+    /**
+     * @param waiting quest id → players whose rewards for it wait to be claimed, or null if the host
+     *                does not say (then the stored waiting players are kept as they are)
+     */
+    public StartResult start(Map<String, ? extends Collection<UUID>> active, Map<String, ? extends Collection<UUID>> waiting) {
         if (stopped) {
             log.warn("[GenV2] start() after stop() ignored");
             return new StartResult(List.of(), List.of(), noneResult);
@@ -118,7 +126,7 @@ public final class Core {
         long now = now();
         List<String> dead = new ArrayList<>();
         List<ExpiredClaim> released = new ArrayList<>();
-        reconcile(normalize(active), now, dead, released);
+        reconcile(normalize(active), waiting == null ? null : normalize(waiting), now, dead, released);
         v1Data = null;
         RotationResult rotation = noneResult;
         if (config.enabled()) {
@@ -332,8 +340,10 @@ public final class Core {
 
     // =================================================================== reconciliation (§10.5)
 
-    private void reconcile(Map<String, Set<UUID>> active, long now, List<String> dead, List<ExpiredClaim> released) {
-        // (a) claims whose holder no longer has the quest active are released
+    private void reconcile(Map<String, Set<UUID>> active, Map<String, Set<UUID>> waiting, long now, List<String> dead,
+                           List<ExpiredClaim> released) {
+        // (a) claims whose holder no longer has the quest active are released; finishers whose
+        //     rewards no longer wait (claimed while the generator was off, reset) stop waiting
         for (QuestRecord r : new ArrayList<>(state.served())) {
             Set<UUID> holdersNow = active.getOrDefault(r.id, Set.of());
             for (UUID h : new ArrayList<>(r.claim.holders.keySet())) {
@@ -342,7 +352,10 @@ public final class Core {
                     released.add(new ExpiredClaim(r.id, h));
                 }
             }
-            if (state.isRetained(r.id) && r.claim.holders.isEmpty()) {
+            if (waiting != null) {
+                r.claim.awaiting.keySet().retainAll(waiting.getOrDefault(r.id, Set.of()));
+            }
+            if (state.isRetained(r.id) && !r.claim.isNeeded()) {
                 state.retained.remove(r.id);
                 servedRevision++;
             }
@@ -413,7 +426,7 @@ public final class Core {
     private RotationResult rotate(long newCycle, String reason, long now, List<ExpiredClaim> expired) {
         List<String> removed = new ArrayList<>();
         for (QuestRecord r : new ArrayList<>(state.current.values())) {
-            if (!r.claim.holders.isEmpty()) {
+            if (r.claim.isNeeded()) {
                 state.retained.put(r.id, r);
             } else {
                 removed.add(r.id);
@@ -421,7 +434,7 @@ public final class Core {
         }
         state.current.clear();
         for (QuestRecord r : new ArrayList<>(state.retained.values())) {
-            if (r.claim.holders.isEmpty()) {
+            if (!r.claim.isNeeded()) {
                 state.retained.remove(r.id);
                 removed.add(r.id);
             }
@@ -708,10 +721,14 @@ public final class Core {
 
     public Map<String, JsonObject> servedQuests() {
         Map<String, JsonObject> out = new LinkedHashMap<>();
-        if (!started || !config.enabled()) {
+        if (!started) {
             return out;
         }
         List<QuestRecord> list = state.served();
+        if (!config.enabled()) {
+            // switched off, finished quests stay until their rewards are claimed
+            list.removeIf(r -> r.claim.awaiting.isEmpty());
+        }
         list.sort(Comparator.comparingInt((QuestRecord r) -> Json.integer(r.json, "sort", 0)).thenComparing(r -> r.id));
         for (QuestRecord r : list) {
             out.put(r.id, r.json.deepCopy());
@@ -775,14 +792,15 @@ public final class Core {
     }
 
     /**
-     * Removes one holder. Retained quests disappear once nobody holds them; current-cycle quests
-     * become available again, or leave the set when {@code makeAvailable} is false.
+     * Removes one holder. Retained quests disappear once nobody holds them or waits for their
+     * rewards; current-cycle quests become available again, or leave the set when
+     * {@code makeAvailable} is false.
      *
      * @return true if the quest left the served set
      */
     private boolean release(QuestRecord r, UUID player, boolean makeAvailable) {
         r.claim.holders.remove(player);
-        if (!r.claim.holders.isEmpty()) {
+        if (r.claim.isNeeded()) {
             return false;
         }
         if (state.isRetained(r.id)) {
@@ -799,6 +817,11 @@ public final class Core {
     }
 
     public void onComplete(String questId, UUID player) {
+        onComplete(questId, player, false);
+    }
+
+    /** @param rewardsWaiting the player claims the rewards later: the quest stays served until {@link #onRewardsClaimed} */
+    public void onComplete(String questId, UUID player, boolean rewardsWaiting) {
         QuestRecord r = started ? state.find(questId) : null;
         if (r == null) {
             if (Ids.isGeneratedQuestId(questId) && warnedOnce.add("complete:" + questId)) {
@@ -812,10 +835,31 @@ public final class Core {
             log.warn("[GenV2] " + questId + " completed by a player without a claim; recording anyway");
         }
         r.claim.completions.put(player, now);
+        if (rewardsWaiting) {
+            r.claim.awaiting.put(player, now);
+        }
         double minutes = claimedAt == null ? 0 : (now - claimedAt) / 60000.0;
         stats.onCompleted(questId, now, minutes);
         refreshTimers();
         save();
+    }
+
+    /** The player claimed the waiting rewards (or they were dropped): a retained quest nobody needs leaves. */
+    public void onRewardsClaimed(String questId, UUID player) {
+        QuestRecord r = started ? state.find(questId) : null;
+        if (r == null || r.claim.awaiting.remove(player) == null) {
+            return;
+        }
+        dropIfUnneeded(r);
+        save();
+    }
+
+    /** Removes a retained quest nobody holds or waits for any more. */
+    private void dropIfUnneeded(QuestRecord r) {
+        if (state.isRetained(r.id) && !r.claim.isNeeded()) {
+            state.retained.remove(r.id);
+            servedRevision++;
+        }
     }
 
     public List<String> releaseAllFor(UUID player) {
@@ -823,13 +867,20 @@ public final class Core {
         if (!started) {
             return out;
         }
+        boolean changed = false;
         for (QuestRecord r : new ArrayList<>(state.served())) {
+            if (r.claim.awaiting.remove(player) != null) {
+                changed = true;
+                if (!r.claim.holders.containsKey(player)) {
+                    dropIfUnneeded(r);
+                }
+            }
             if (r.claim.holders.containsKey(player)) {
                 out.add(r.id);
                 release(r, player, config.releaseOnAbandon());
             }
         }
-        if (!out.isEmpty()) {
+        if (changed || !out.isEmpty()) {
             refreshTimers();
             save();
         }
@@ -889,6 +940,15 @@ public final class Core {
     public List<UUID> holders(String questId) {
         QuestRecord r = started ? state.find(questId) : null;
         return r == null ? List.of() : List.copyOf(r.claim.holders.keySet());
+    }
+
+    public List<UUID> awaitingRewards(String questId) {
+        QuestRecord r = started ? state.find(questId) : null;
+        return r == null ? List.of() : List.copyOf(r.claim.awaiting.keySet());
+    }
+
+    public boolean isRetained(String questId) {
+        return started && state.isRetained(questId);
     }
 
     // =================================================================== debug & stats
@@ -953,6 +1013,9 @@ public final class Core {
         if (state.isRetained(r.id)) {
             sb.append("  (retained from an older cycle)");
         }
+        if (!r.claim.awaiting.isEmpty()) {
+            sb.append("  (rewards of ").append(r.claim.awaiting.size()).append(" player(s) to claim)");
+        }
         List<UUID> hs = holders(r.id);
         if (hs.size() > 1) {
             sb.append("  (").append(hs.size()).append(" holders)");
@@ -994,12 +1057,19 @@ public final class Core {
                     .format(STAMP)).append(")");
         }
         int claimed = 0;
+        int awaiting = 0;
         for (QuestRecord r : state.served()) {
             if (!r.claim.holders.isEmpty()) {
                 claimed++;
             }
+            if (!r.claim.awaiting.isEmpty()) {
+                awaiting++;
+            }
         }
         sb.append(", ").append(claimed).append(" claimed");
+        if (awaiting > 0) {
+            sb.append(", ").append(awaiting).append(" with rewards to claim");
+        }
         sb.append(", Nether ").append(state.progression.nether() ? "unlocked" : "locked")
             .append(", End ").append(state.progression.end() ? "unlocked" : "locked");
         if (catalog != null) {

@@ -670,7 +670,7 @@ public class QuestCommand {
                 if (data.isActive(id)) com.erikedits.justquests.generator.GenV2.abandoned(id, target.getUUID());
                 data.active.remove(id);
                 data.completed.remove(id);
-                data.pendingClaim.remove(id);
+                if (data.pendingClaim.remove(id) != null) com.erikedits.justquests.generator.GenV2.rewardsClaimed(id, target.getUUID());
                 store.markDirty();
             }
         }

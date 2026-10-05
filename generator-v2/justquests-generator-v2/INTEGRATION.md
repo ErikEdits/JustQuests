@@ -201,10 +201,16 @@ reference adapters show the wiring for every loader (`reference-adapter/README.m
 ```java
 gen = new QuestGeneratorV2(new GenV2Host(server), GenV2Config.fromSettings());
 Map<String, Set<UUID>> active = new HashMap<>();
-WorldQuestStore.get().allPlayers().forEach((uuid, data) -> data.active.keySet().forEach(id -> {
-    if (gen.isGenerated(id.toString())) active.computeIfAbsent(id.toString(), k -> new HashSet<>()).add(uuid);
-}));
-StartResult r = gen.startWithHolders(active);   // or start(Map<String, UUID>) if you prefer the spec signature
+Map<String, Set<UUID>> waiting = new HashMap<>();
+WorldQuestStore.get().allPlayers().forEach((uuid, data) -> {
+    data.active.keySet().forEach(id -> {
+        if (gen.isGenerated(id.toString())) active.computeIfAbsent(id.toString(), k -> new HashSet<>()).add(uuid);
+    });
+    data.pendingClaim.keySet().forEach(id -> {   // finished, rewards not claimed yet (see 3.5)
+        if (gen.isGenerated(id.toString())) waiting.computeIfAbsent(id.toString(), k -> new HashSet<>()).add(uuid);
+    });
+});
+StartResult r = gen.startWithHolders(active, waiting);   // or start(Map<String, UUID>) if you prefer the spec signature
 for (String dead : r.deadQuestIds()) {            // definitions that no longer exist
     ResourceLocation rl = ResourceLocation.parse(dead);
     WorldQuestStore.get().allPlayers().values().forEach(d -> d.abandon(rl));
@@ -232,7 +238,8 @@ static void registerServed(MinecraftServer server) {
 
 `startWithHolders` is an addition to the spec'd `start(Map<String, UUID>)`: a plain map can carry only
 one holder per quest, but legacy data (or exclusive claims switched off) can have two. Both methods
-exist; prefer `startWithHolders`.
+exist; prefer `startWithHolders`. The two-map form also passes whose rewards wait to be claimed, so a
+finished quest is kept only while that is still true (without it, the stored list is kept as is).
 
 ### 3.2 Periodic tick — replaces `GeneratedQuestStore.tickCheck()`
 
@@ -291,17 +298,27 @@ if (gen.servedRevision() != before) registerServed(server);   // a retained ques
 
 ### 3.5 Completion — `QuestProgressService`
 
-In the completion loop, right after `data.complete(questId)` and the reward grants:
+In the completion loop, right after `data.complete(questId)`, telling whether the rewards wait for
+the player's Claim button (`pendingClaim`) or were granted at once:
 
 ```java
 if (GenV2.get() != null && GenV2.get().isGenerated(questId.toString())) {
-    GenV2.get().onComplete(questId.toString(), player.getUUID());
+    GenV2.get().onComplete(questId.toString(), player.getUUID(), rewardsWait);
 }
 ```
 
+When the player claims them (and when an admin reset drops them), right after the rewards are paid:
+
+```java
+long before = gen.servedRevision();
+gen.onRewardsClaimed(questId.toString(), player.getUUID());
+if (gen.servedRevision() != before) registerServed(server);   // a finished quest from an older cycle left
+```
+
 Do the same in `QuestCommand.adminComplete`. Completed generated quests stay registered until the
-next rotation (the player's `completed` map keeps its entry; it is harmless if the definition later
-disappears).
+next rotation, and quests whose rewards still wait stay past it (retained, shown as completed) until
+they are claimed - a rotation must not take the rewards away. The player's `completed` map keeps its
+entry; it is harmless if the definition later disappears.
 
 ### 3.6 `/quest reroll` — `QuestCommand.reroll`
 
@@ -317,10 +334,11 @@ difficulty applies.
 
 ### 3.7 Admin reset — `QuestCommand.adminResetAll` / `adminResetOne`
 
-- `adminResetAll(player)`: before clearing `data.active`, call `gen.releaseAllFor(uuid)`, then
-  `registerServed(server)` if `servedRevision()` changed.
+- `adminResetAll(player)`: before clearing `data.active`, call `gen.releaseAllFor(uuid)` (it also
+  drops the rewards the player waited for), then `registerServed(server)` if `servedRevision()` changed.
 - `adminResetOne(player, id)`: if `gen.isGenerated(id)` and the player holds it, call
-  `gen.onAbandon(id, uuid)` (same as a player abandon).
+  `gen.onAbandon(id, uuid)` (same as a player abandon); if its rewards waited, call
+  `gen.onRewardsClaimed(id, uuid)`.
 
 ### 3.8 `/quest reload` and settings changes
 
@@ -345,11 +363,12 @@ if (gen != null) { gen.stop(); gen = null; }
 
 ```
 server start ─► WorldQuestStore/Settings/Custom loaded ─► new QuestGeneratorV2(host, cfg)
-             ─► startWithHolders(active) ─► remove deadQuestIds ─► registerServed + syncAll
+             ─► startWithHolders(active, waiting) ─► remove deadQuestIds ─► registerServed + syncAll
 every 6000 t ─► tick() ─► apply expiredClaims ─► if changed: registerServed + syncAll
 /quest accept ─► mod checks ─► tryClaim ─► proceed? data.accept : deny message
 /quest abandon ─► data.abandon ─► onAbandon ─► re-register if servedRevision changed
-completion ─► data.complete + rewards ─► onComplete
+completion ─► data.complete (+ rewards or pendingClaim) ─► onComplete(id, player, rewardsWait)
+/quest claim ─► rewards ─► onRewardsClaimed ─► re-register if servedRevision changed
 /quest reroll ─► reroll() ─► registerServed + syncAll
 /quest reload, settings ─► updateConfig(cfg) ─► re-register if enabled flag flipped
 admin reset ─► releaseAllFor / onAbandon

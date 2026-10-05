@@ -27,7 +27,7 @@ public final class GenState {
     public String difficulty = "NORMAL";
     /** Quests of the current cycle, in generation order. */
     public final LinkedHashMap<String, QuestRecord> current = new LinkedHashMap<>();
-    /** Claimed, unfinished quests from older cycles. */
+    /** Quests from older cycles someone still needs: claimed and unfinished, or finished with rewards to claim. */
     public final LinkedHashMap<String, QuestRecord> retained = new LinkedHashMap<>();
     /** Signature → last used epoch ms (6-day window). */
     public final TreeMap<String, Long> history = new TreeMap<>();

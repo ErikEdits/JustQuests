@@ -119,8 +119,9 @@ public final class QuestProgressService {
      */
     public static boolean finish(ServerPlayer player, PlayerQuestData data, ResourceLocation id, Quest quest) {
         data.complete(id);
-        com.erikedits.justquests.generator.GenV2.completed(id, player.getUUID());
-        if (WorldSettings.claimRewards() || ChoiceReward.of(quest) != null) {
+        boolean waits = WorldSettings.claimRewards() || ChoiceReward.of(quest) != null;
+        com.erikedits.justquests.generator.GenV2.completed(id, player.getUUID(), waits);
+        if (waits) {
             data.pendingClaim.put(id, System.currentTimeMillis());
             return true;
         }
@@ -137,9 +138,9 @@ public final class QuestProgressService {
     public static boolean claim(ServerPlayer player, PlayerQuestData data, ResourceLocation id, int pick) {
         if (data.pendingClaim.remove(id) == null) return false;
         Quest quest = QuestManager.INSTANCE.get(id);
-        if (quest == null) return false;
-        grant(player, quest, pick);
-        return true;
+        if (quest != null) grant(player, quest, pick);
+        com.erikedits.justquests.generator.GenV2.rewardsClaimed(id, player.getUUID());
+        return quest != null;
     }
 
     private static void grant(ServerPlayer player, Quest quest, int pick) {

@@ -96,6 +96,23 @@ public final class QuestGeneratorV2 {
     }
 
     /**
+     * Same as {@link #startWithHolders(Map)}, also telling whose rewards wait to be claimed (see
+     * {@link #onComplete(String, UUID, boolean)}): finished quests stay served for those players
+     * only while their rewards really wait.
+     *
+     * @param activeGeneratedQuests questId → every player UUID that has the quest active (not null)
+     * @param waitingRewards        questId → every player UUID whose rewards for it wait to be claimed (not null)
+     * @return see {@link #start(Map)}
+     */
+    public StartResult startWithHolders(Map<String, ? extends Collection<UUID>> activeGeneratedQuests,
+                                        Map<String, ? extends Collection<UUID>> waitingRewards) {
+        Objects.requireNonNull(activeGeneratedQuests, "activeGeneratedQuests");
+        Objects.requireNonNull(waitingRewards, "waitingRewards");
+        return guard("start", () -> core.start(activeGeneratedQuests, waitingRewards),
+            () -> new StartResult(List.of(), List.of(), RotationResult.none(0)));
+    }
+
+    /**
      * Call periodically (the mod calls it every ~5 minutes). O(1) when nothing is due. Rotates when a
      * cycle boundary passed (once, even after long downtime: reason {@code "catch-up"}); releases
      * expired claims if claim expiry is configured.
@@ -171,8 +188,9 @@ public final class QuestGeneratorV2 {
 
     /**
      * Everything the mod must register right now: the current cycle's quests plus RETAINED quests
-     * (claimed, not yet finished, from older cycles). Iteration order is stable (by {@code sort}, then
-     * id). Empty if disabled or not started. Returns defensive copies.
+     * from older cycles (claimed and not yet finished, or finished with rewards still to claim).
+     * Iteration order is stable (by {@code sort}, then id). Disabled, only finished quests whose
+     * rewards wait are left; empty if not started. Returns defensive copies.
      *
      * @return questId ({@code "justquests:gen/..."}) → quest JSON (§6)
      */
@@ -242,16 +260,47 @@ public final class QuestGeneratorV2 {
      * @param player  the player (not null)
      */
     public void onComplete(String questId, UUID player) {
+        onComplete(questId, player, false);
+    }
+
+    /**
+     * Player completed the quest. With {@code rewardsWaiting} the player claims the rewards later
+     * (the mod's Claim button): the quest then stays served, also past its cycle, until
+     * {@link #onRewardsClaimed} - otherwise a rotation would take the quest and its rewards away.
+     *
+     * @param questId        quest id (not null)
+     * @param player         the player (not null)
+     * @param rewardsWaiting true if the rewards wait to be claimed, false if they were granted
+     */
+    public void onComplete(String questId, UUID player, boolean rewardsWaiting) {
         Objects.requireNonNull(questId, "questId");
         Objects.requireNonNull(player, "player");
         guard("onComplete", () -> {
-            core.onComplete(questId, player);
+            core.onComplete(questId, player, rewardsWaiting);
             return null;
         }, () -> null);
     }
 
     /**
-     * Release every claim held by this player (admin reset of player data), with abandon semantics.
+     * The player claimed the waiting rewards of a completed quest (or they were dropped, e.g. by an
+     * admin reset). A quest from an older cycle that nobody needs any more leaves the served set;
+     * compare {@link #servedRevision()} to re-register.
+     *
+     * @param questId quest id (not null)
+     * @param player  the player (not null)
+     */
+    public void onRewardsClaimed(String questId, UUID player) {
+        Objects.requireNonNull(questId, "questId");
+        Objects.requireNonNull(player, "player");
+        guard("onRewardsClaimed", () -> {
+            core.onRewardsClaimed(questId, player);
+            return null;
+        }, () -> null);
+    }
+
+    /**
+     * Release every claim held by this player (admin reset of player data), with abandon semantics;
+     * rewards the player waited for are dropped too.
      *
      * @param player the player (not null)
      * @return ids of the released quests
@@ -302,6 +351,29 @@ public final class QuestGeneratorV2 {
     public List<UUID> holders(String questId) {
         Objects.requireNonNull(questId, "questId");
         return guard("holders", () -> core.holders(questId), List::of);
+    }
+
+    /**
+     * Players who finished the quest and still have to claim its rewards.
+     *
+     * @param questId quest id (not null)
+     * @return those players; empty if none/unknown
+     */
+    public List<UUID> awaitingRewards(String questId) {
+        Objects.requireNonNull(questId, "questId");
+        return guard("awaitingRewards", () -> core.awaitingRewards(questId), List::of);
+    }
+
+    /**
+     * Whether a served quest is from an older cycle, kept only for its holders or for players whose
+     * rewards wait (a host may show it to those players only).
+     *
+     * @param questId quest id (not null)
+     * @return true for a retained quest
+     */
+    public boolean isRetained(String questId) {
+        Objects.requireNonNull(questId, "questId");
+        return guard("isRetained", () -> core.isRetained(questId), () -> false);
     }
 
     /**

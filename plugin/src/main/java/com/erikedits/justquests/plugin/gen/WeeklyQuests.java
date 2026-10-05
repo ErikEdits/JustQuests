@@ -53,18 +53,12 @@ final class WeeklyQuests {
         return week;
     }
 
-    /** Renews the set when a new week began; true if it changed. */
+    /** Renews the set when a new week began; true if it changed. Switched off, nothing is renewed. */
     boolean rollIfDue(QuestGeneratorV2 gen, Difficulty base, PluginGenerator owner) {
-        if (!plugin.settings().weekly) {
-            if (quests.isEmpty()) return false;
-            quests.clear();
-            save();
-            return true;
-        }
+        if (!plugin.settings().weekly) return false;
         long now = currentWeek();
         if (now == week) return false;
-        Set<String> waiting = new LinkedHashSet<>();
-        for (PlayerData d : plugin.store().all().values()) waiting.addAll(d.pendingClaim.keySet());
+        Set<String> waiting = waiting();
         List<String> gone = new ArrayList<>();
         for (String id : new ArrayList<>(quests.keySet())) {
             if (!waiting.contains(id) && !id.startsWith(PREFIX + now + "_")) {
@@ -109,8 +103,25 @@ final class WeeklyQuests {
         };
     }
 
+    /**
+     * The week's quests, for the quest registry. Switched off, only finished quests whose rewards
+     * still wait stay; switched on again the same week, the rest come back.
+     */
     Map<String, JsonObject> all() {
-        return quests;
+        if (plugin.settings().weekly) return quests;
+        Set<String> waiting = waiting();
+        Map<String, JsonObject> out = new LinkedHashMap<>();
+        quests.forEach((id, json) -> {
+            if (waiting.contains(id)) out.put(id, json);
+        });
+        return out;
+    }
+
+    /** Quest ids whose rewards some player still has to claim. */
+    private Set<String> waiting() {
+        Set<String> waiting = new LinkedHashSet<>();
+        for (PlayerData d : plugin.store().all().values()) waiting.addAll(d.pendingClaim.keySet());
+        return waiting;
     }
 
     boolean isWeekly(String id) {

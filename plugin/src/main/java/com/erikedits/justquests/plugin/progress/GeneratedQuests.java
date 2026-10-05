@@ -21,7 +21,11 @@ public interface GeneratedQuests {
 
     default void abandoned(String id, UUID player) {}
 
-    default void completed(String id, UUID player) {}
+    /** {@code rewardsWait}: the rewards wait to be claimed, so the quest must stay until then. */
+    default void completed(String id, UUID player, boolean rewardsWait) {}
+
+    /** The player claimed a finished quest's rewards (or an admin reset dropped them). */
+    default void rewardsClaimed(String id, UUID player) {}
 
     /** A short tag for the quest list ("[taken by X]"), or null. */
     default BaseComponent tag(String id, UUID viewer, String lang) {

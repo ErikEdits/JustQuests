@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 
@@ -26,8 +27,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -61,7 +62,10 @@ final class ServerGoal {
     private int milestones;
     private boolean done;
     private final Map<UUID, Long> contributions = new LinkedHashMap<>();
-    private final Set<UUID> pending = new HashSet<>();
+    /** helpers who were offline when a goal was reached -> the weeks of those goals */
+    private final Map<UUID, Set<Long>> pending = new LinkedHashMap<>();
+    /** the rewards of reached goals while a helper still waits for them, by week */
+    private final Map<Long, JsonArray> pendingRewards = new LinkedHashMap<>();
     private boolean dirty;
 
     ServerGoal(JustQuestsPlugin plugin, Path file) {
@@ -138,9 +142,11 @@ final class ServerGoal {
         }
     }
 
-    /** Every game event: what it adds to the goal. */
+    /** Every game event: what it adds to the goal (not in creative or spectator mode, not from NPCs). */
     void offer(Player player, ProgressService.Test test) {
         if (!active() || done) return;
+        if (player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR) return;
+        if (player.hasMetadata("NPC")) return;   // Citizens and similar mark their fake players so
         Objective obj = quest.objectives().get(0);
         int n = test.amount(obj);
         if (n <= 0) return;
@@ -169,28 +175,45 @@ final class ServerGoal {
         done = true;
         for (UUID id : contributions.keySet()) {
             Player p = Bukkit.getPlayer(id);
-            if (p != null && p.isOnline()) reward(p);
-            else pending.add(id);
+            if (p != null && p.isOnline()) {
+                reward(p, quest.rewards());
+            } else {
+                pending.computeIfAbsent(id, k -> new LinkedHashSet<>()).add(week);
+                pendingRewards.put(week, json.getAsJsonArray("rewards").deepCopy());
+            }
         }
         dirty = true;
         save();
     }
 
     /** Pays a helper's goal reward: the same for everyone who helped. */
-    private void reward(Player p) {
-        if (quest == null) return;
-        for (Reward r : quest.rewards()) r.grant(p);
+    private void reward(Player p, List<Reward> rewards) {
+        for (Reward r : rewards) r.grant(p);
         String lang = Lang.of(p);
         p.spigot().sendMessage(Text.tr(lang, "justquests.plugin.goal.rewarded"));
         p.playSound(p.getLocation(), "minecraft:ui.toast.challenge_complete", SoundCategory.MASTER, 1f, 1f);
     }
 
-    /** A helper who was offline when the goal was reached gets the reward now. */
+    /** A helper who was offline when a goal was reached gets that goal's reward now. */
     void onJoin(Player p) {
-        if (pending.remove(p.getUniqueId())) {
-            reward(p);
-            dirty = true;
+        Set<Long> weeks = pending.remove(p.getUniqueId());
+        if (weeks == null) return;
+        for (long w : weeks) {
+            JsonArray rewards = pendingRewards.get(w);
+            if (rewards == null) continue;
+            List<Reward> list = new ArrayList<>();
+            for (JsonElement e : rewards) {
+                try {
+                    list.add(Reward.parse(e.getAsJsonObject()));
+                } catch (RuntimeException ex) {
+                    plugin.getLogger().warning("[Generator] a server goal reward could not be read: " + ex.getMessage());
+                }
+            }
+            reward(p, list);
         }
+        // rewards nobody waits for any more are dropped
+        pendingRewards.keySet().removeIf(w -> pending.values().stream().noneMatch(s -> s.contains(w)));
+        dirty = true;
     }
 
     /** Lines about the goal for /quest goal and the quest book. */
@@ -246,8 +269,23 @@ final class ServerGoal {
                     contributions.put(UUID.fromString(e.getKey()), e.getValue().getAsLong());
                 }
             }
-            if (root.has("pending")) {
-                for (JsonElement e : root.getAsJsonArray("pending")) pending.add(UUID.fromString(e.getAsString()));
+            if (root.has("pendingRewards")) {
+                for (Map.Entry<String, JsonElement> e : root.getAsJsonObject("pendingRewards").entrySet()) {
+                    pendingRewards.put(Long.parseLong(e.getKey()), e.getValue().getAsJsonArray());
+                }
+            }
+            if (root.has("pending") && root.get("pending").isJsonObject()) {
+                for (Map.Entry<String, JsonElement> e : root.getAsJsonObject("pending").entrySet()) {
+                    Set<Long> weeks = new LinkedHashSet<>();
+                    for (JsonElement w : e.getValue().getAsJsonArray()) weeks.add(w.getAsLong());
+                    pending.put(UUID.fromString(e.getKey()), weeks);
+                }
+            } else if (root.has("pending") && json != null && json.has("rewards")) {
+                // the first version kept only the players: they wait for this week's goal
+                for (JsonElement e : root.getAsJsonArray("pending")) {
+                    pending.computeIfAbsent(UUID.fromString(e.getAsString()), k -> new LinkedHashSet<>()).add(week);
+                }
+                if (!pending.isEmpty()) pendingRewards.put(week, json.getAsJsonArray("rewards").deepCopy());
             }
         } catch (Exception e) {
             plugin.getLogger().warning("[Generator] could not read " + file.getFileName() + ": " + e.getMessage());
@@ -268,9 +306,16 @@ final class ServerGoal {
         JsonObject c = new JsonObject();
         contributions.forEach((k, v) -> c.addProperty(k.toString(), v));
         root.add("contributions", c);
-        JsonArray p = new JsonArray();
-        pending.forEach(id -> p.add(id.toString()));
+        JsonObject p = new JsonObject();
+        pending.forEach((id, weeks) -> {
+            JsonArray a = new JsonArray();
+            weeks.forEach(a::add);
+            p.add(id.toString(), a);
+        });
         root.add("pending", p);
+        JsonObject pr = new JsonObject();
+        pendingRewards.forEach((w, rewards) -> pr.add(String.valueOf(w), rewards));
+        root.add("pendingRewards", pr);
         try {
             Files.createDirectories(file.getParent());
             Files.writeString(file, GSON.toJson(root));

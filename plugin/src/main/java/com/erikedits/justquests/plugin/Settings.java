@@ -78,14 +78,15 @@ public final class Settings {
         oneActivePerPlayer = c.getBoolean("generator.board.oneActivePerPlayer", true);
         releaseOnAbandon = c.getBoolean("generator.board.releaseOnAbandon", true);
         claimExpiryHours = clamp(c.getInt("generator.board.claimExpiryHours", 0), 0, 24 * 365);
-        personal = c.getBoolean("generator.personal.enabled", true);
+        // generator.enabled switches the whole generator: board, personal and weekly quests, server goal
+        personal = generator && c.getBoolean("generator.personal.enabled", true);
         personalQuests = clamp(c.getInt("generator.personal.quests", 3), 1, 10);
         personalResetHour = clamp(c.getInt("generator.personal.resetHour", 0), 0, 23);
-        weekly = c.getBoolean("generator.weekly.enabled", true);
+        weekly = generator && c.getBoolean("generator.weekly.enabled", true);
         weeklyQuests = clamp(c.getInt("generator.weekly.quests", 4), 1, 10);
         weeklyDay = parse(DayOfWeek.class, c.getString("generator.weekly.day"), DayOfWeek.MONDAY);
         weeklyHour = clamp(c.getInt("generator.weekly.hour", 0), 0, 23);
-        serverGoal = c.getBoolean("generator.serverGoal.enabled", true);
+        serverGoal = generator && c.getBoolean("generator.serverGoal.enabled", true);
         goalMinutesPerPlayer = clamp(c.getInt("generator.serverGoal.minutesPerPlayer", 60), 5, 1440);
         rewardChoice = c.getBoolean("generator.rewards.choice", true);
         rewardMultiplier = Math.max(0.1, Math.min(10.0, c.getDouble("generator.rewards.multiplier", 1.0)));

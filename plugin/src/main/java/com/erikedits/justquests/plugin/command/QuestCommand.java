@@ -22,6 +22,7 @@ import org.bukkit.entity.Player;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -139,6 +140,11 @@ public final class QuestCommand implements TabExecutor {
         return s.contains(":") ? s : "justquests:" + s;
     }
 
+    /** The quests a player sees (not other players' personal quests); all of them for the console. */
+    private Collection<Quest> quests(CommandSender sender) {
+        return sender instanceof Player p ? plugin.visibleQuests(p) : plugin.quests().all().values();
+    }
+
     private static int parseInt(String s) {
         try {
             return Integer.parseInt(s);
@@ -168,7 +174,7 @@ public final class QuestCommand implements TabExecutor {
         String lang = Lang.of(src);
         Player viewer = src instanceof Player p ? p : null;
         PlayerData data = viewer == null ? null : plugin.store().peek(viewer.getUniqueId());
-        List<Quest> entries = (viewer != null ? plugin.visibleQuests(viewer) : plugin.quests().all().values()).stream()
+        List<Quest> entries = quests(src).stream()
             .filter(q -> category == null || q.category().equalsIgnoreCase(category))
             .sorted(Comparator.comparing(Quest::category, String.CASE_INSENSITIVE_ORDER).thenComparingInt(Quest::sort).thenComparing(Quest::id))
             .collect(Collectors.toList());
@@ -224,7 +230,7 @@ public final class QuestCommand implements TabExecutor {
     private void categories(CommandSender src) {
         String lang = Lang.of(src);
         Map<String, Integer> counts = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-        for (Quest q : plugin.quests().all().values()) counts.merge(q.category(), 1, Integer::sum);
+        for (Quest q : quests(src)) counts.merge(q.category(), 1, Integer::sum);
         if (counts.isEmpty()) {
             say(src, "justquests.list.none");
             return;
@@ -236,8 +242,9 @@ public final class QuestCommand implements TabExecutor {
     private void stats(Player player) {
         String lang = Lang.of(player);
         PlayerData data = plugin.store().peek(player.getUniqueId());
-        int total = plugin.visibleQuests(player).size();
-        int completed = data == null ? 0 : data.completed.size();
+        Collection<Quest> visible = plugin.visibleQuests(player);
+        int total = visible.size();
+        int completed = MainMenu.completedOf(data, visible);
         int active = data == null ? 0 : data.active.size();
         int pct = total > 0 ? Math.min(100, completed * 100 / total) : 0;
         say(player, "justquests.stats.header");
@@ -443,7 +450,7 @@ public final class QuestCommand implements TabExecutor {
                         if (data.isActive(id)) plugin.generated().abandoned(id, uuid);
                         data.active.remove(id);
                         data.completed.remove(id);
-                        data.pendingClaim.remove(id);
+                        if (data.pendingClaim.remove(id) != null) plugin.generated().rewardsClaimed(id, uuid);
                         if (id.equals(data.pinned)) data.pinned = null;
                         plugin.store().markDirty(uuid);
                     }
@@ -496,13 +503,13 @@ public final class QuestCommand implements TabExecutor {
             if (args.length == 2) {
                 switch (sub) {
                     case "accept" -> {
-                        for (Quest q : p != null ? plugin.visibleQuests(p) : plugin.quests().all().values()) {
+                        for (Quest q : quests(sender)) {
                             if (p == null || QuestStatus.of(plugin, p.getUniqueId(), data, q) == QuestStatus.AVAILABLE) out.add(q.id());
                         }
                     }
                     case "abandon", "track" -> { if (data != null) out.addAll(data.active.keySet()); }
                     case "claim" -> { if (data != null) out.addAll(data.pendingClaim.keySet()); }
-                    case "list" -> plugin.quests().all().values().stream().map(Quest::category).distinct().sorted().forEach(out::add);
+                    case "list" -> quests(sender).stream().map(Quest::category).distinct().sorted().forEach(out::add);
                     case "mainquests", "bossbar" -> out.addAll(List.of("on", "off"));
                     case "difficulty" -> out.addAll(List.of("easy", "normal", "hard"));
                     case "generator" -> out.addAll(List.of("status", "stats", "preview", "explain", "release"));

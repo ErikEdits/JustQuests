@@ -87,10 +87,17 @@ public final class PluginGenerator implements GeneratedQuests {
             board = new QuestGeneratorV2(host, config());
             board.setRewardOptions(rewardOptions());
             Map<String, Set<UUID>> active = new HashMap<>();
-            plugin.store().all().forEach((uuid, data) -> data.active.keySet().forEach(id -> {
-                if (board.isGenerated(id)) active.computeIfAbsent(id, k -> new HashSet<>()).add(uuid);
-            }));
-            StartResult r = board.startWithHolders(active);
+            Map<String, Set<UUID>> waiting = new HashMap<>();
+            plugin.store().all().forEach((uuid, data) -> {
+                data.active.keySet().forEach(id -> {
+                    if (board.isGenerated(id)) active.computeIfAbsent(id, k -> new HashSet<>()).add(uuid);
+                });
+                // finished board quests whose rewards wait: the generator keeps them until they are claimed
+                data.pendingClaim.keySet().forEach(id -> {
+                    if (board.isGenerated(id)) waiting.computeIfAbsent(id, k -> new HashSet<>()).add(uuid);
+                });
+            });
+            StartResult r = board.startWithHolders(active, waiting);
             dropFromPlayers(r.deadQuestIds());
             applyExpired(r.releasedClaims());
             personal.load();
@@ -268,10 +275,13 @@ public final class PluginGenerator implements GeneratedQuests {
         return q;
     }
 
-    /** Hands the board, personal and weekly quests to the quest registry. */
+    /**
+     * Hands the board, personal and weekly quests to the quest registry (switched off, the board
+     * serves only finished quests whose rewards wait).
+     */
     void register() {
         Map<String, Quest> map = new LinkedHashMap<>();
-        if (board != null && board.config().enabled()) {
+        if (board != null) {
             board.servedQuests().forEach((id, json) -> put(map, id, augment(json, board.rewardValue(id), null, null, false)));
         }
         personal.all().forEach((id, json) -> put(map, id, json));
@@ -368,9 +378,17 @@ public final class PluginGenerator implements GeneratedQuests {
     }
 
     @Override
-    public void completed(String id, UUID player) {
+    public void completed(String id, UUID player, boolean rewardsWait) {
         if (personal.isPersonal(id)) personal.completed(player, id);
-        if (board != null && board.isGenerated(id)) board.onComplete(id, player);
+        if (board != null && board.isGenerated(id)) board.onComplete(id, player, rewardsWait);
+    }
+
+    @Override
+    public void rewardsClaimed(String id, UUID player) {
+        if (board == null || !board.isGenerated(id)) return;
+        long rev = board.servedRevision();
+        board.onRewardsClaimed(id, player);
+        if (rev != board.servedRevision()) register();   // a finished quest from an older board left
     }
 
     @Override
@@ -415,11 +433,17 @@ public final class PluginGenerator implements GeneratedQuests {
         return view.state() == ClaimState.AVAILABLE || view.holder() == null ? null : view;
     }
 
+    /** Personal quests for their owner; quests from older boards for their holders and for whom their rewards wait. */
     @Override
     public boolean visible(String id, UUID viewer) {
-        if (!personal.isPersonal(id)) return true;
-        UUID owner = personal.owner(id);
-        return owner != null && owner.equals(viewer);
+        if (personal.isPersonal(id)) {
+            UUID owner = personal.owner(id);
+            return owner != null && owner.equals(viewer);
+        }
+        if (board != null && board.isGenerated(id) && board.isRetained(id)) {
+            return board.holders(id).contains(viewer) || board.awaitingRewards(id).contains(viewer);
+        }
+        return true;
     }
 
     @Override
@@ -562,7 +586,7 @@ public final class PluginGenerator implements GeneratedQuests {
         for (String id : plugin.quests().all().keySet()) {
             if (board.isGenerated(id)) registered.add(id);
         }
-        if (board.config().enabled() && !registered.equals(served)) {
+        if (!registered.equals(served)) {
             problems.add("registered board quests (" + registered.size() + ") differ from the board (" + served.size() + ")");
         }
         return problems;

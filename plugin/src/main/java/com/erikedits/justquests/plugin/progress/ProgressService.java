@@ -121,8 +121,9 @@ public final class ProgressService {
     public boolean finish(Player player, PlayerData data, String id, Quest quest) {
         data.complete(id);
         if (id.equals(data.pinned)) data.pinned = null;
-        plugin.generated().completed(id, player.getUniqueId());
-        if (plugin.settings().claimRewards || Reward.Choice.of(quest) != null) {
+        boolean waits = plugin.settings().claimRewards || Reward.Choice.of(quest) != null;
+        plugin.generated().completed(id, player.getUniqueId(), waits);
+        if (waits) {
             data.pendingClaim.put(id, System.currentTimeMillis());
             return true;
         }
@@ -134,10 +135,10 @@ public final class ProgressService {
     public boolean claim(Player player, PlayerData data, String id, int pick) {
         if (data.pendingClaim.remove(id) == null) return false;
         Quest quest = plugin.quests().get(id);
-        if (quest == null) return false;
-        grant(player, quest, pick);
+        if (quest != null) grant(player, quest, pick);
+        plugin.generated().rewardsClaimed(id, player.getUniqueId());
         plugin.store().markDirty(player.getUniqueId());
-        return true;
+        return quest != null;
     }
 
     private void grant(Player player, Quest quest, int pick) {

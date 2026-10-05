@@ -30,7 +30,8 @@ Built step by step; test builds go to a local folder until the release.
   under "Rewards ready", the HUD reminds you of them, and `/quest progress` and `/quest list`
   mark them too. On Minecraft 1.18–1.19 (no quest book) the chat button and the command do it.
   Server owners who prefer the old way set `"claimRewards": false` in `settings.json`; then
-  rewards arrive the moment a quest is finished, as before.
+  rewards arrive the moment a quest is finished, as before. A finished generated quest stays until
+  its rewards are claimed, also when the generator puts up a new set in the meantime.
 - **Choice rewards** (`justquests:choice`): a quest can offer several rewards of which the player
   picks one when claiming: in the quest book by clicking an option, in chat with the `[1]` `[2]`
   buttons, or with `/quest claim <id> <number>`. Quests with a choice always wait to be claimed.

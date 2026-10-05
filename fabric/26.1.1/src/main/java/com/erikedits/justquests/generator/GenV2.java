@@ -54,13 +54,20 @@ public final class GenV2 {
             server = srv;
             gen = new QuestGeneratorV2(new GenV2Host(srv), configFromSettings());
             Map<String, Set<UUID>> active = new HashMap<>();
+            Map<String, Set<UUID>> waiting = new HashMap<>();
             WorldQuestStore store = WorldQuestStore.get();
             if (store != null) {
-                store.allPlayers().forEach((uuid, data) -> data.active.keySet().forEach(id -> {
-                    if (gen.isGenerated(id.toString())) active.computeIfAbsent(id.toString(), k -> new HashSet<>()).add(uuid);
-                }));
+                store.allPlayers().forEach((uuid, data) -> {
+                    data.active.keySet().forEach(id -> {
+                        if (gen.isGenerated(id.toString())) active.computeIfAbsent(id.toString(), k -> new HashSet<>()).add(uuid);
+                    });
+                    // finished quests whose rewards wait: the generator keeps them until they are claimed
+                    data.pendingClaim.keySet().forEach(id -> {
+                        if (gen.isGenerated(id.toString())) waiting.computeIfAbsent(id.toString(), k -> new HashSet<>()).add(uuid);
+                    });
+                });
             }
-            StartResult r = gen.startWithHolders(active);
+            StartResult r = gen.startWithHolders(active, waiting);
             removeFromPlayers(r.deadQuestIds());
             applyExpired(r.releasedClaims());
             registerServed();
@@ -133,11 +140,19 @@ public final class GenV2 {
         else syncClaims(player);
     }
 
-    /** The player completed the quest (rewards already granted). */
-    public static void completed(Identifier id, UUID player) {
+    /** The player completed the quest; {@code rewardsWait}: its rewards wait to be claimed (kept until then). */
+    public static void completed(Identifier id, UUID player, boolean rewardsWait) {
         if (gen == null || !gen.isGenerated(id.toString())) return;
-        gen.onComplete(id.toString(), player);
+        gen.onComplete(id.toString(), player, rewardsWait);
         syncClaims(player);
+    }
+
+    /** The player claimed a finished quest's rewards (or an admin reset dropped them). */
+    public static void rewardsClaimed(Identifier id, UUID player) {
+        if (gen == null || !gen.isGenerated(id.toString())) return;
+        long rev = gen.servedRevision();
+        gen.onRewardsClaimed(id.toString(), player);
+        if (rev != gen.servedRevision()) registerServed();   // a finished quest from an older cycle left
     }
 
     /** Admin reset of a player's data. */
