@@ -33,6 +33,8 @@ Features:
 - `ex_multilang` — `title`/`description` as a per-language map.
 - `ex_icon` — `icon`: the item the quest book shows (default: from the first goal).
 - `ex_choice` — a `choice` reward: the player picks one of three rewards when claiming.
+- `ex_team` — a team quest (`"team": true`): the whole team mines together and every member claims
+  the reward. Make a team with `/quest team create <name>` first.
 - `ex_item_filter` — `item` as an object with `potion` / `enchantments`
   (also `name` for an anvil name). Filters work on every version.
 

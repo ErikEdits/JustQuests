@@ -44,7 +44,7 @@ public class QuestCommand {
         ServerPlayer player = (ctx.getSource().getEntity() instanceof ServerPlayer __p ? __p : null);
         WorldQuestStore store = WorldQuestStore.get();
         if (player != null && store != null) {
-            PlayerQuestData data = store.peek(player.getUUID());
+            PlayerQuestData data = com.erikedits.justquests.team.TeamQuests.view(player, store.peek(player.getUUID()));
             if (data != null) {
                 return SharedSuggestionProvider.suggestResource(data.active.keySet(), builder);
             }
@@ -96,6 +96,20 @@ public class QuestCommand {
                     .then(Commands.argument("reward", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1))
                         .executes(ctx -> claim(ctx, ResourceLocationArgument.getId(ctx, "id"),
                             com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "reward"))))))
+            .then(Commands.literal("team").requires(Perms.command("team"))
+                .executes(ctx -> team(ctx, "info", null))
+                .then(Commands.literal("info").executes(ctx -> team(ctx, "info", null)))
+                .then(Commands.literal("create")
+                    .then(Commands.argument("name", StringArgumentType.word())
+                        .executes(ctx -> team(ctx, "create", StringArgumentType.getString(ctx, "name")))))
+                .then(Commands.literal("invite")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .executes(ctx -> team(ctx, "invite", EntityArgument.getPlayer(ctx, "player").getName().getString()))))
+                .then(Commands.literal("accept").executes(ctx -> team(ctx, "accept", null)))
+                .then(Commands.literal("leave").executes(ctx -> team(ctx, "leave", null)))
+                .then(Commands.literal("kick")
+                    .then(Commands.argument("name", StringArgumentType.word())
+                        .executes(ctx -> team(ctx, "kick", StringArgumentType.getString(ctx, "name"))))))
             .then(Commands.literal("discord").requires(Perms.command("discord")).executes(QuestCommand::discord))
             .then(Commands.literal("reload")
                 .requires(Perms.admin("reload"))
@@ -166,7 +180,7 @@ public class QuestCommand {
         ServerPlayer viewer = (src.getEntity() instanceof ServerPlayer __p ? __p : null);
         if (viewer != null) {
             WorldQuestStore store = WorldQuestStore.get();
-            if (store != null) self = store.peek(viewer.getUUID());
+            if (store != null) self = com.erikedits.justquests.team.TeamQuests.view(viewer, store.peek(viewer.getUUID()));
         }
         final PlayerQuestData data = self;
 
@@ -265,7 +279,7 @@ public class QuestCommand {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
         CommandSourceStack src = ctx.getSource();
         WorldQuestStore store = WorldQuestStore.get();
-        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        PlayerQuestData data = com.erikedits.justquests.team.TeamQuests.view(player, store == null ? null : store.peek(player.getUUID()));
 
         int total = QuestManager.INSTANCE.getQuests().size();
         int completed = data == null ? 0 : data.completed.size();
@@ -339,7 +353,7 @@ public class QuestCommand {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
         String lang = com.erikedits.justquests.data.LocalizedText.DEFAULT_LANG;
         WorldQuestStore store = WorldQuestStore.get();
-        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        PlayerQuestData data = com.erikedits.justquests.team.TeamQuests.view(player, store == null ? null : store.peek(player.getUUID()));
         rewardsReady(ctx.getSource(), data, lang);
 
         if (data == null || data.active.isEmpty()) {
@@ -382,6 +396,7 @@ public class QuestCommand {
             ctx.getSource().sendFailure(Msg.tr("justquests.accept.no_permission"));
             return 0;
         }
+        if (quest.team()) return teamReply(ctx, com.erikedits.justquests.team.TeamQuests.accept(player, id, quest));
 
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null) {
@@ -452,6 +467,8 @@ public class QuestCommand {
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
         if (data == null || !data.isActive(id)) {
+            com.erikedits.justquests.team.TeamQuests.Result team = com.erikedits.justquests.team.TeamQuests.abandon(player, id);
+            if (team != null) return teamReply(ctx, team);
             ctx.getSource().sendFailure(Msg.tr("justquests.abandon.not_active"));
             return 0;
         }
@@ -618,6 +635,20 @@ public class QuestCommand {
         String summary = SelfTest.run(ctx.getSource());
         ctx.getSource().sendSuccess(new net.minecraft.network.chat.TextComponent(summary), false);
         return 1;
+    }
+
+    /** /quest team: teams for team quests. */
+    private static int team(CommandContext<CommandSourceStack> ctx, String sub, String arg) throws CommandSyntaxException {
+        return teamReply(ctx, com.erikedits.justquests.team.TeamQuests.command(ctx.getSource().getPlayerOrException(), sub, arg));
+    }
+
+    /** A team result's lines: as feedback when it worked, as an error otherwise. */
+    private static int teamReply(CommandContext<CommandSourceStack> ctx, com.erikedits.justquests.team.TeamQuests.Result result) {
+        for (Component line : result.lines()) {
+            if (result.ok()) ctx.getSource().sendSuccess(line, false);
+            else ctx.getSource().sendFailure(line);
+        }
+        return result.ok() ? 1 : 0;
     }
 
     private static int discord(CommandContext<CommandSourceStack> ctx) {

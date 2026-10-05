@@ -118,7 +118,22 @@ public final class Teams {
 
     // --- persistence ---------------------------------------------------------------------------
 
-    public void load() {
+    /** @param modWorld the main world's justquests folder: a world played with the mod brings its teams along */
+    public void load(Path modWorld) {
+        if (modWorld != null) {
+            for (String name : new String[]{"teams.json", "team-progress.json"}) {
+                Path own = name.equals("teams.json") ? parties.file() : file;
+                try {
+                    if (!Files.exists(own) && Files.exists(modWorld.resolve(name))) {
+                        Files.createDirectories(own.getParent());
+                        Files.copy(modWorld.resolve(name), own);
+                        plugin.getLogger().info("Took over the mod's " + name);
+                    }
+                } catch (Exception e) {
+                    plugin.getLogger().warning("Could not take over the mod's " + name + ": " + e.getMessage());
+                }
+            }
+        }
         parties.load();
         progress.clear();
         if (!Files.exists(file)) return;

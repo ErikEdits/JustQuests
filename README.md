@@ -165,6 +165,7 @@ main world, so a world played in singleplayer with the mod keeps its quests on t
 | `/quest progress` | Your active quests and how far along you are |
 | `/quest claim [id]` | Take the rewards of a finished quest (without an id: all waiting rewards) |
 | `/quest stats` / `/quest leaderboard` | Your stats / the server's top 10 |
+| `/quest team [create <name>\|invite <player>\|accept\|leave\|kick <name>]` | Make a team for team quests; without more, shows your team |
 | `/quest discord` | The community Discord invite |
 
 Operator commands (permission level 2, or the node from [Permissions](#permissions)):
@@ -206,8 +207,16 @@ with the same id.
 `mode` (`all` or `any`), `requires` (list of quest ids), `repeatable`, `cooldown_hours`,
 `icon` (an item id for the quest book; taken from the first objective when left out),
 `permission` (a permission node; only players with it see and take the quest, see below),
-`objectives`, `rewards`. `title` and `description` can be a string or a per-language map
-(`{"en_us": "...", "de_de": "..."}`); players see their own language with English as fallback.
+`team` (`true`: a team quest, see below), `objectives`, `rewards`. `title` and `description` can
+be a string or a per-language map (`{"en_us": "...", "de_de": "..."}`); players see their own
+language with English as fallback.
+
+**Team quests.** A quest with `"team": true` (category `team` unless it names one) belongs to a
+whole team: any member takes it, everyone's actions count towards it, the quest book and tracker
+show the shared progress, and when it is done every member claims the rewards for themselves -
+also members who were offline. A player's team is the one made with `/quest team` (create,
+invite, accept, leave, kick, info; up to 8 players), else their scoreboard team (`/team`). The
+teams live with the world in `justquests/teams.json` and `team-progress.json`.
 
 ### Objectives
 
@@ -293,7 +302,7 @@ With LuckPerms (or another permission mod) every command has a node:
 
 | Node | Default without a permission mod |
 |---|---|
-| `justquests.command.<name>` — `list`, `categories`, `stats`, `leaderboard`, `progress`, `accept`, `abandon`, `claim`, `discord` | everyone |
+| `justquests.command.<name>` — `list`, `categories`, `stats`, `leaderboard`, `progress`, `accept`, `abandon`, `claim`, `team`, `discord` | everyone |
 | `justquests.admin.<name>` — `reload`, `reroll`, `mainquests`, `difficulty`, `generator`, `test`, `admin` | operators (level 2) |
 | the `permission` of a quest, e.g. `myserver.vip` | operators (level 2) |
 

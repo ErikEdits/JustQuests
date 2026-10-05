@@ -84,7 +84,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         store = new PlayerStore(data.resolve("players"), getLogger());
         store.load(modWorld == null ? null : modWorld.resolve("progress.json"));
         teams = new Teams(this, data);
-        teams.load();
+        teams.load(modWorld);
 
         progress = new ProgressService(this);
         listener = new QuestListener(this);

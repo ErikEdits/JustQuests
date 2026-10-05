@@ -40,6 +40,7 @@ public final class QuestProgressService {
     }
 
     public static void advance(ServerPlayer player, ObjectiveTest test) {
+        com.erikedits.justquests.team.TeamQuests.advance(player, test);
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null) return;
 

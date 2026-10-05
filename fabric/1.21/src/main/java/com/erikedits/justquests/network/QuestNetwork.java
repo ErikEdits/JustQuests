@@ -66,7 +66,7 @@ public final class QuestNetwork {
             root.add("quests", quests);
         }
         WorldQuestStore store = WorldQuestStore.get();
-        PlayerQuestData data = store != null ? store.peek(player.getUUID()) : null;
+        PlayerQuestData data = com.erikedits.justquests.team.TeamQuests.view(player, store != null ? store.peek(player.getUUID()) : null);
         if (data != null) {
             PlayerQuestData.CODEC.encodeStart(JsonOps.INSTANCE, data).result()
                 .ifPresent(j -> root.add("progress", j));

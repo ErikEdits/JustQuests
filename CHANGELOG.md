@@ -8,6 +8,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 Built step by step; test builds go to a local folder until the release.
 
 ### Added
+- **Team quests:** a quest with `"team": true` belongs to a whole team - any member takes it,
+  everyone's actions count, the quest book and tracker show the shared progress, and when it is
+  done every member claims the rewards (also members who were offline). A team is made with
+  `/quest team create <name>` (then `invite`, `accept`, `leave`, `kick`, `info`; up to 8 players),
+  or a player's scoreboard team (`/team`) counts. Mod and plugin alike; a world moving to the
+  plugin brings its teams along.
 - **Server plugin for Spigot, Paper and Purpur** (1.19 – 1.21.11 and 26.1 – 26.3, on the plain
   Spigot API; one jar each for 1.19 – 1.20.6, 1.21 – 1.21.11 and 26.1 – 26.3): players join with a
   vanilla client. The quest book is a chest menu (opened with the

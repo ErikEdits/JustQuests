@@ -1,0 +1,16 @@
+{
+  "title": "Example: a team quest",
+  "description": "Mine 64 iron ore together - everyone in your team helps, and everyone claims the reward.",
+  "team": true,
+  "objectives": [
+    {
+      "type": "justquests:mine_block",
+      "block": "#minecraft:iron_ores",
+      "count": 64
+    }
+  ],
+  "rewards": [
+    { "type": "justquests:give_item", "item": "minecraft:iron_block", "count": 4 },
+    { "type": "justquests:xp", "amount": 50 }
+  ]
+}

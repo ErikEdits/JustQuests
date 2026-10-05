@@ -12,7 +12,7 @@ import java.util.Optional;
 public record Quest(LocalizedText title, LocalizedText description, String category, QuestMode mode,
                     List<ResourceLocation> requires, boolean repeatable, Optional<Integer> cooldownHours,
                     int sort, List<QuestObjective> objectives, List<QuestReward> rewards,
-                    Optional<ResourceLocation> icon, Optional<String> permission) {
+                    Optional<ResourceLocation> icon, Optional<String> permission, boolean team) {
     public static final Codec<Quest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         LocalizedText.CODEC.fieldOf("title").forGetter(Quest::title),
         LocalizedText.CODEC.optionalFieldOf("description", LocalizedText.EMPTY).forGetter(Quest::description),
@@ -30,6 +30,13 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         // item shown in the quest book and the HUD; picked from the first objective when absent
         ResourceLocation.CODEC.optionalFieldOf("icon").forGetter(Quest::icon),
         // permission node needed to see and take the quest (LuckPerms etc.; operators by default)
-        Codec.STRING.optionalFieldOf("permission").forGetter(Quest::permission)
+        Codec.STRING.optionalFieldOf("permission").forGetter(Quest::permission),
+        // a quest for a whole team: every member's actions count, every member claims the rewards
+        Codec.BOOL.optionalFieldOf("team", false).forGetter(Quest::team)
     ).apply(instance, Quest::new));
+
+    public Quest {
+        // team quests have their own category unless they name one
+        if (team && "datapack".equals(category)) category = "team";
+    }
 }

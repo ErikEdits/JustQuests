@@ -37,6 +37,10 @@ public final class Parties {
         this.log = log;
     }
 
+    Path file() {
+        return file;
+    }
+
     public Party of(UUID player) {
         return byMember.get(player);
     }

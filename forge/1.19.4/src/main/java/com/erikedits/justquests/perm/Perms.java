@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 public final class Perms {
     /** Subcommands everyone may use unless a permission mod says otherwise. */
     public static final List<String> PLAYER = List.of("list", "categories", "stats", "leaderboard", "progress",
-        "accept", "abandon", "claim", "discord");
+        "accept", "abandon", "claim", "team", "discord");
     /** Subcommands for operators (level 2) unless a permission mod says otherwise. */
     public static final List<String> ADMIN = List.of("reload", "reroll", "mainquests", "difficulty", "generator",
         "test", "admin");

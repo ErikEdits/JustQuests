@@ -62,6 +62,7 @@ public class WorldQuestStore {
             JustQuests.LOG.error("Could not read progress.json", e);
         }
         instance = store;
+        com.erikedits.justquests.team.TeamStore.load(store.file.getParent());
         JustQuests.LOG.info("Loaded quest progress for {} player(s)", store.players.size());
     }
 
@@ -70,6 +71,7 @@ public class WorldQuestStore {
         if (dirty) {
             save();
         }
+        if (com.erikedits.justquests.team.TeamStore.get() != null) com.erikedits.justquests.team.TeamStore.get().saveIfDirty();
     }
 
     public void save() {
@@ -104,6 +106,7 @@ public class WorldQuestStore {
         if (instance != null) {
             instance.save();
             instance = null;
+            com.erikedits.justquests.team.TeamStore.unload();
         }
     }
 
