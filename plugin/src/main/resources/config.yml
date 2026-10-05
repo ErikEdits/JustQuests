@@ -40,6 +40,16 @@ announcements:
   # fireworks for everyone online when the server goal is reached
   goalFireworks: true
 
+# Team quests ("team": true in a quest) belong to a whole team: any member takes one, everyone's
+# actions count, and every member claims the reward (also members who were offline).
+teams:
+  # teams players make themselves: /quest team create, invite, accept, leave, kick, info
+  parties: true
+  # without such a team, a player's scoreboard team (/team) is their team
+  scoreboardTeams: true
+  # players per /quest team team
+  maxMembers: 8
+
 # The quest generator: a shared board everyone picks from, personal daily quests, weekly quests and a
 # weekly server goal. Generated quests come in the five languages, like the built-in ones.
 generator:

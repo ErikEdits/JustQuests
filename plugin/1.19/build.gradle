@@ -1,0 +1,5 @@
+// Minecraft 1.19 - 1.20.6 (Java 17; newer methods of the range are looked up at runtime in Compat)
+ext.pluginApi = '1.19'
+ext.spigotApi = '1.19-R0.1-SNAPSHOT'
+ext.pluginJava = 17
+apply from: '../common.gradle'

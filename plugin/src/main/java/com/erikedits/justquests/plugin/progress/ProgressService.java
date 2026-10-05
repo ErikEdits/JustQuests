@@ -5,6 +5,7 @@ import com.erikedits.justquests.plugin.data.PlayerData;
 import com.erikedits.justquests.plugin.quest.Objective;
 import com.erikedits.justquests.plugin.quest.Quest;
 import com.erikedits.justquests.plugin.quest.Reward;
+import com.erikedits.justquests.plugin.team.Teams.TeamRef;
 import com.erikedits.justquests.plugin.text.Lang;
 import com.erikedits.justquests.plugin.text.Text;
 import net.md_5.bungee.api.ChatMessageType;
@@ -17,6 +18,8 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * The one place that moves quests forward, as in the mod: every game event asks how much it adds to
@@ -40,16 +43,54 @@ public final class ProgressService {
         this.plugin = plugin;
     }
 
+    /** What an event did to a set of active quests. */
+    private record Step(boolean changed, BaseComponent toast, List<String> completing) {}
+
     public void advance(Player player, Test test) {
         plugin.generated().progress(player, test);
-        PlayerData data = plugin.store().peek(player.getUniqueId());
-        if (data == null || data.active.isEmpty()) return;
         String lang = Lang.of(player);
+        boolean changed = false, completed = false;
+        BaseComponent toast = null;
+
+        PlayerData data = plugin.store().peek(player.getUniqueId());
+        if (data != null && !data.active.isEmpty()) {
+            Step s = step(data.active, test, lang);
+            for (String id : s.completing()) {
+                Quest quest = plugin.quests().get(id);
+                announce(player, quest, finish(player, data, id, quest));
+            }
+            if (s.changed()) plugin.store().markDirty(player.getUniqueId());
+            changed = s.changed();
+            completed = !s.completing().isEmpty();
+            toast = s.toast();
+        }
+
+        TeamRef team = plugin.teams().of(player.getUniqueId());
+        PlayerData teamData = plugin.teams().peek(team);
+        if (teamData != null && !teamData.active.isEmpty()) {
+            Step s = step(teamData.active, test, lang);
+            for (String id : s.completing()) finishTeam(player, team, teamData, id, plugin.quests().get(id));
+            if (s.changed()) {
+                plugin.teams().markDirty(team);
+                for (Player member : plugin.teams().onlineMembers(team)) plugin.tracker().update(member);
+            }
+            changed |= s.changed();
+            completed |= !s.completing().isEmpty();
+            if (s.toast() != null) toast = s.toast();
+        }
+
+        if (changed) {
+            if (toast != null && !completed) player.spigot().sendMessage(ChatMessageType.ACTION_BAR, toast);
+            plugin.tracker().update(player);
+        }
+    }
+
+    /** Adds what the event counts to each active quest; the quests now complete come back. */
+    private Step step(Map<String, Map<Integer, Integer>> active, Test test, String lang) {
         boolean changed = false;
         BaseComponent toast = null;
         List<String> completing = new ArrayList<>();
-
-        for (Map.Entry<String, Map<Integer, Integer>> entry : data.active.entrySet()) {
+        for (Map.Entry<String, Map<Integer, Integer>> entry : active.entrySet()) {
             Quest quest = plugin.quests().get(entry.getKey());
             if (quest == null) continue;
             Map<Integer, Integer> progress = entry.getValue();
@@ -71,28 +112,44 @@ public final class ProgressService {
             }
             if (quest.any() ? any : all) completing.add(entry.getKey());
         }
+        return new Step(changed, toast, completing);
+    }
 
-        for (String id : completing) {
-            Quest quest = plugin.quests().get(id);
-            if (quest == null) continue;
-            boolean claim = finish(player, data, id, quest);
-            announce(player, quest, claim);
-            toast = null;
-            changed = true;
+    /**
+     * A team quest is done: it counts as completed for the team, and every member - also who is
+     * offline - finds the rewards waiting to be claimed.
+     */
+    private void finishTeam(Player player, TeamRef team, PlayerData teamData, String id, Quest quest) {
+        teamData.complete(id);
+        long now = System.currentTimeMillis();
+        Set<UUID> members = plugin.teams().members(team);
+        members.add(player.getUniqueId());
+        for (UUID member : members) {
+            PlayerData d = plugin.store().get(member);
+            d.complete(id);
+            d.pendingClaim.put(id, now);
+            if (id.equals(d.pinned)) d.pinned = null;
+            plugin.store().markDirty(member);
+            Player online = Bukkit.getPlayer(member);
+            if (online != null) {
+                notifyDone(online, quest, true, "justquests.team.completed");
+                plugin.tracker().update(online);
+            }
         }
-
-        if (changed) {
-            plugin.store().markDirty(player.getUniqueId());
-            if (toast != null) player.spigot().sendMessage(ChatMessageType.ACTION_BAR, toast);
-            plugin.tracker().update(player);
-        }
+        broadcast(player, quest);
     }
 
     private void announce(Player player, Quest quest, boolean claim) {
+        notifyDone(player, quest, claim, "justquests.complete.chat");
+        broadcast(player, quest);
+    }
+
+    /** The finished quest in chat (with the claim button), the sound and the toast. */
+    private void notifyDone(Player player, Quest quest, boolean claim, String key) {
         String lang = Lang.of(player);
         String title = quest.title().get(lang);
         TextComponent chat = new TextComponent("");
-        chat.addExtra(Text.tr(lang, "justquests.complete.chat", title));
+        chat.addExtra(Text.tr(lang, key, title));
         if (claim) {
             chat.addExtra(" ");
             chat.addExtra(claimButton(lang, quest.id()));
@@ -104,6 +161,9 @@ public final class ProgressService {
         if (plugin.settings().completionToast) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, Text.tr(lang, "justquests.complete.toast", title));
         }
+    }
+
+    private void broadcast(Player player, Quest quest) {
         if (plugin.settings().announceCompletions) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 p.spigot().sendMessage(Text.tr(Lang.of(p), "justquests.complete.broadcast", player.getName(), quest.title().get(Lang.of(p))));
@@ -183,6 +243,7 @@ public final class ProgressService {
         Quest quest = plugin.quests().get(id);
         if (quest == null) return new Result(false, Text.tr(lang, "justquests.error.unknown_quest", id));
         if (!plugin.canSee(player, quest)) return new Result(false, Text.tr(lang, "justquests.accept.no_permission"));
+        if (quest.team()) return acceptTeam(player, quest, lang);
         PlayerData data = plugin.store().get(player.getUniqueId());
         if (data.isActive(id)) return new Result(false, Text.tr(lang, "justquests.accept.already_active"));
         if (data.isClaimable(id)) return new Result(false, Text.tr(lang, "justquests.accept.claim_first", id));
@@ -202,14 +263,69 @@ public final class ProgressService {
         return new Result(true, Text.tr(lang, "justquests.accept.ok", quest.title().get(lang)));
     }
 
+    /** A team quest is taken for the whole team; the others hear about it. */
+    private Result acceptTeam(Player player, Quest quest, String lang) {
+        String id = quest.id();
+        TeamRef team = plugin.teams().of(player.getUniqueId());
+        if (team == null) return new Result(false, Text.tr(lang, "justquests.team.none"));
+        PlayerData data = plugin.store().get(player.getUniqueId());
+        PlayerData teamData = plugin.teams().progress(team);
+        if (teamData.isActive(id)) return new Result(false, Text.tr(lang, "justquests.accept.already_active"));
+        if (data.isClaimable(id)) return new Result(false, Text.tr(lang, "justquests.accept.claim_first", id));
+        String missing = missingRequirement(data, quest);
+        if (missing != null) return new Result(false, Text.tr(lang, "justquests.accept.locked", title(missing, lang)));
+        PlayerData view = plugin.view(player.getUniqueId());
+        if (view != null && view.isCompleted(id)) {
+            if (!quest.repeatable()) return new Result(false, Text.tr(lang, "justquests.accept.done"));
+            long left = cooldownLeft(view, quest);
+            if (left > 0) return new Result(false, Text.tr(lang, "justquests.accept.cooldown", duration(lang, left)));
+        }
+        teamData.accept(id);
+        plugin.teams().markDirty(team);
+        if (data.pinned == null) data.pinned = id;
+        plugin.store().markDirty(player.getUniqueId());
+        for (Player member : plugin.teams().onlineMembers(team)) {
+            if (!member.equals(player)) {
+                member.spigot().sendMessage(Text.tr(Lang.of(member), "justquests.team.accepted", player.getName(),
+                    quest.title().get(Lang.of(member))));
+            }
+            plugin.tracker().update(member);
+        }
+        plugin.tracker().update(player);
+        return new Result(true, Text.tr(lang, "justquests.accept.ok", quest.title().get(lang)));
+    }
+
     public Result abandon(Player player, String id) {
         String lang = Lang.of(player);
         PlayerData data = plugin.store().peek(player.getUniqueId());
-        if (data == null || !data.isActive(id)) return new Result(false, Text.tr(lang, "justquests.abandon.not_active"));
+        if (data == null || !data.isActive(id)) return abandonTeam(player, id, lang);
         data.abandon(id);
         if (id.equals(data.pinned)) data.pinned = null;
         plugin.generated().abandoned(id, player.getUniqueId());
         plugin.store().markDirty(player.getUniqueId());
+        plugin.tracker().update(player);
+        return new Result(true, Text.tr(lang, "justquests.abandon.ok", title(id, lang)));
+    }
+
+    /** Any member may give up a team quest; it ends for the whole team. */
+    private Result abandonTeam(Player player, String id, String lang) {
+        TeamRef team = plugin.teams().of(player.getUniqueId());
+        PlayerData teamData = plugin.teams().peek(team);
+        if (teamData == null || !teamData.isActive(id)) return new Result(false, Text.tr(lang, "justquests.abandon.not_active"));
+        teamData.abandon(id);
+        plugin.teams().markDirty(team);
+        for (Player member : plugin.teams().onlineMembers(team)) {
+            PlayerData d = plugin.store().peek(member.getUniqueId());
+            if (d != null && id.equals(d.pinned)) {
+                d.pinned = null;
+                plugin.store().markDirty(member.getUniqueId());
+            }
+            if (!member.equals(player)) {
+                member.spigot().sendMessage(Text.tr(Lang.of(member), "justquests.team.abandoned", player.getName(),
+                    title(id, Lang.of(member))));
+            }
+            plugin.tracker().update(member);
+        }
         plugin.tracker().update(player);
         return new Result(true, Text.tr(lang, "justquests.abandon.ok", title(id, lang)));
     }

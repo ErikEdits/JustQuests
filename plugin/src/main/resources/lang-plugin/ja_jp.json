@@ -81,6 +81,7 @@
   "justquests.plugin.help.reroll": "掲示板のクエストを今すぐ入れ替える",
   "justquests.plugin.help.difficulty": "生成クエストの難易度",
   "justquests.plugin.help.generator": "生成器の状態・プレビュー・説明・解放",
+  "justquests.plugin.help.team": "チームクエスト用のチーム: create, invite, accept, leave, kick, info",
   "justquests.plugin.announce.board": "§6✦ 掲示板に新しいクエスト! §7クリックで確認",
   "justquests.plugin.announce.weekly": "§d✦ 新しい週間クエストが届きました! §7クリックで確認",
   "justquests.plugin.announce.goal": "§6✦ 新しいサーバー目標: §f%s §7– 誰でも協力できます!",

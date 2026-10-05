@@ -9,6 +9,8 @@ import com.erikedits.justquests.plugin.progress.QuestStatus;
 import com.erikedits.justquests.plugin.quest.Objective;
 import com.erikedits.justquests.plugin.quest.Quest;
 import com.erikedits.justquests.plugin.quest.Reward;
+import com.erikedits.justquests.plugin.team.Parties;
+import com.erikedits.justquests.plugin.team.Party;
 import com.erikedits.justquests.plugin.text.Lang;
 import com.erikedits.justquests.plugin.text.Text;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -40,7 +42,7 @@ import java.util.stream.Collectors;
  */
 public final class QuestCommand implements TabExecutor {
     public static final List<String> PLAYER = List.of("open", "list", "categories", "stats", "leaderboard", "progress",
-        "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "discord");
+        "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "team", "discord");
     public static final List<String> ADMIN = List.of("reload", "reroll", "mainquests", "difficulty", "generator", "npc", "test", "admin");
 
     private final JustQuestsPlugin plugin;
@@ -103,6 +105,7 @@ public final class QuestCommand implements TabExecutor {
                 if (!plugin.generator().goalActive()) say(sender, "justquests.plugin.goal.none");
                 else plugin.generator().goalLines(Lang.of(sender), sender instanceof Player p ? p.getUniqueId() : null).forEach(l -> say(sender, l));
             }
+            case "team" -> withPlayer(sender, p -> team(p, label, rest));
             case "discord" -> say(sender, Community.discord(Lang.of(sender)));
             case "reroll" -> {
                 int n = plugin.generator().reroll();
@@ -175,7 +178,7 @@ public final class QuestCommand implements TabExecutor {
     private void list(CommandSender src, String category) {
         String lang = Lang.of(src);
         Player viewer = src instanceof Player p ? p : null;
-        PlayerData data = viewer == null ? null : plugin.store().peek(viewer.getUniqueId());
+        PlayerData data = viewer == null ? null : plugin.view(viewer.getUniqueId());
         List<Quest> entries = quests(src).stream()
             .filter(q -> category == null || q.category().equalsIgnoreCase(category))
             .sorted(Comparator.comparing(Quest::category, String.CASE_INSENSITIVE_ORDER).thenComparingInt(Quest::sort).thenComparing(Quest::id))
@@ -199,6 +202,7 @@ public final class QuestCommand implements TabExecutor {
             TextComponent line = new TextComponent("");
             line.addExtra(Text.tr(lang, "justquests.list.entry", q.id(), q.title().get(lang)));
             if (q.repeatable()) line.addExtra(Text.tr(lang, "justquests.list.repeatable"));
+            if (q.team()) line.addExtra(Text.tr(lang, "justquests.team.tag"));
             if (viewer != null) {
                 BaseComponent tag = plugin.generated().tag(q.id(), viewer.getUniqueId(), lang);
                 if (tag != null) line.addExtra(tag);
@@ -243,7 +247,7 @@ public final class QuestCommand implements TabExecutor {
 
     private void stats(Player player) {
         String lang = Lang.of(player);
-        PlayerData data = plugin.store().peek(player.getUniqueId());
+        PlayerData data = plugin.view(player.getUniqueId());
         Collection<Quest> visible = plugin.visibleQuests(player);
         int total = visible.size();
         int completed = MainMenu.completedOf(data, visible);
@@ -293,7 +297,7 @@ public final class QuestCommand implements TabExecutor {
 
     private void progress(Player player) {
         String lang = Lang.of(player);
-        PlayerData data = plugin.store().peek(player.getUniqueId());
+        PlayerData data = plugin.view(player.getUniqueId());
         rewardsReady(player, data, lang);
         if (data == null || data.active.isEmpty()) {
             say(player, "justquests.progress.none");
@@ -389,6 +393,114 @@ public final class QuestCommand implements TabExecutor {
         plugin.store().markDirty(player.getUniqueId());
         plugin.tracker().update(player);
         say(player, Text.tr(lang, "justquests.plugin.track.ok", plugin.progress().title(id, lang)));
+    }
+
+    /** /quest team [info | create <name> | invite <player> | accept | leave | kick <player>]: teams for team quests. */
+    private void team(Player p, String label, String[] rest) {
+        Parties parties = plugin.teams().parties();
+        String sub = rest.length == 0 ? "info" : rest[0].toLowerCase(Locale.ROOT);
+        UUID me = p.getUniqueId();
+        Party mine = parties.of(me);
+        int max = plugin.settings().teamMaxMembers;
+        if (!sub.equals("info") && !plugin.settings().teamParties) {
+            say(p, "justquests.team.parties_off");
+            return;
+        }
+        switch (sub) {
+            case "info" -> teamInfo(p, mine);
+            case "create" -> {
+                if (rest.length < 2) say(p, "justquests.plugin.usage", "/" + label + " team create <name>");
+                else if (mine != null) say(p, "justquests.team.already");
+                else if (!Parties.validName(rest[1])) say(p, "justquests.team.bad_name");
+                else if (parties.byName(rest[1]) != null) say(p, "justquests.team.name_taken");
+                else {
+                    say(p, "justquests.team.created", parties.create(rest[1], me).name());
+                    plugin.tracker().update(p);
+                }
+            }
+            case "invite" -> {
+                Player target = rest.length < 2 ? null : Bukkit.getPlayerExact(rest[1]);
+                if (rest.length < 2) say(p, "justquests.plugin.usage", "/" + label + " team invite <player>");
+                else if (mine == null) say(p, "justquests.team.not_in");
+                else if (target == null) say(p, "justquests.plugin.unknown_player", rest[1]);
+                else if (mine.members().contains(target.getUniqueId())) say(p, "justquests.team.already_member", target.getName());
+                else if (mine.members().size() >= max) say(p, "justquests.team.full", max);
+                else {
+                    parties.invite(mine, target.getUniqueId());
+                    say(p, "justquests.team.invited", target.getName());
+                    String tl = Lang.of(target);
+                    TextComponent msg = new TextComponent("");
+                    msg.addExtra(Text.tr(tl, "justquests.team.invite", p.getName(), mine.name()));
+                    msg.addExtra(" ");
+                    msg.addExtra(Text.button(Text.tr(tl, "justquests.team.accept_button"), "/quest team accept",
+                        Text.tr(tl, "justquests.team.accept_hover")));
+                    target.spigot().sendMessage(msg);
+                }
+            }
+            case "accept" -> {
+                Party party = mine == null ? parties.takeInvite(me) : null;
+                if (mine != null) say(p, "justquests.team.already");
+                else if (party == null) say(p, "justquests.team.no_invite");
+                else if (party.members().size() >= max) say(p, "justquests.team.full", max);
+                else {
+                    parties.join(party, me);
+                    tellTeam(party, "justquests.team.joined", p.getName(), party.name());
+                }
+            }
+            case "leave" -> {
+                if (mine == null) {
+                    say(p, "justquests.team.not_in");
+                    return;
+                }
+                tellTeam(mine, "justquests.team.left", p.getName(), mine.name());
+                parties.leave(me);
+                plugin.tracker().update(p);
+            }
+            case "kick" -> {
+                UUID target = mine == null || rest.length < 2 ? null : memberByName(mine, rest[1]);
+                if (rest.length < 2) say(p, "justquests.plugin.usage", "/" + label + " team kick <player>");
+                else if (mine == null) say(p, "justquests.team.not_in");
+                else if (!mine.leader().equals(me)) say(p, "justquests.team.leader_only");
+                else if (target == null || target.equals(me)) say(p, "justquests.team.not_member", rest[1]);
+                else {
+                    tellTeam(mine, "justquests.team.kicked", name(target), mine.name());
+                    parties.leave(target);
+                    Player kicked = Bukkit.getPlayer(target);
+                    if (kicked != null) plugin.tracker().update(kicked);
+                }
+            }
+            default -> say(p, "justquests.plugin.usage", "/" + label + " team [info|create <name>|invite <player>|accept|leave|kick <player>]");
+        }
+    }
+
+    private void teamInfo(Player p, Party mine) {
+        String lang = Lang.of(p);
+        if (mine == null) {
+            org.bukkit.scoreboard.Team sb = plugin.settings().teamScoreboard ? plugin.teams().scoreboardTeam(p.getUniqueId()) : null;
+            say(p, sb != null ? Text.tr(lang, "justquests.team.scoreboard", sb.getName()) : Text.tr(lang, "justquests.team.not_in"));
+            return;
+        }
+        say(p, "justquests.team.info_header", mine.name(), mine.members().size());
+        for (UUID m : mine.members()) {
+            say(p, Text.tr(lang, "justquests.team.info_member", name(m),
+                m.equals(mine.leader()) ? Text.tr(lang, "justquests.team.info_leader") : "",
+                Bukkit.getPlayer(m) != null ? Text.tr(lang, "justquests.team.info_online") : ""));
+        }
+    }
+
+    /** A line for everyone of the team who is online, each in their own language. */
+    private void tellTeam(Party party, String key, Object... args) {
+        for (UUID m : party.members()) {
+            Player online = Bukkit.getPlayer(m);
+            if (online != null) say(online, key, args);
+        }
+    }
+
+    private static UUID memberByName(Party party, String name) {
+        for (UUID m : party.members()) {
+            if (name.equalsIgnoreCase(name(m))) return m;
+        }
+        return null;
     }
 
     // --- operator subcommands -----------------------------------------------------------------
@@ -525,7 +637,7 @@ public final class QuestCommand implements TabExecutor {
         } else {
             String sub = args[0].toLowerCase(Locale.ROOT);
             Player p = sender instanceof Player pl ? pl : null;
-            PlayerData data = p == null ? null : plugin.store().peek(p.getUniqueId());
+            PlayerData data = p == null ? null : plugin.view(p.getUniqueId());
             if (args.length == 2) {
                 switch (sub) {
                     case "accept" -> {
@@ -540,11 +652,17 @@ public final class QuestCommand implements TabExecutor {
                     case "difficulty" -> out.addAll(List.of("easy", "normal", "hard"));
                     case "generator" -> out.addAll(List.of("status", "stats", "preview", "explain", "release"));
                     case "npc" -> out.addAll(List.of("set", "remove"));
+                    case "team" -> out.addAll(List.of("info", "create", "invite", "accept", "leave", "kick"));
                     case "admin" -> { if (plugin.allowed(sender, "justquests.admin.admin", true)) out.addAll(List.of("view", "reset", "complete")); }
                     default -> { }
                 }
             } else if (sub.equals("generator") && args.length == 3 && List.of("explain", "release").contains(args[1].toLowerCase(Locale.ROOT))) {
                 out.addAll(plugin.generator().boardIds());
+            } else if (sub.equals("team") && args.length == 3 && args[1].equalsIgnoreCase("invite")) {
+                for (Player online : Bukkit.getOnlinePlayers()) out.add(online.getName());
+            } else if (sub.equals("team") && args.length == 3 && args[1].equalsIgnoreCase("kick") && p != null) {
+                Party party = plugin.teams().parties().of(p.getUniqueId());
+                if (party != null) party.members().forEach(m -> out.add(name(m)));
             } else if (sub.equals("admin") && args.length == 3) {
                 for (Player online : Bukkit.getOnlinePlayers()) out.add(online.getName());
             } else if (sub.equals("admin") && args.length == 4) {

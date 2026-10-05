@@ -81,6 +81,7 @@
   "justquests.plugin.help.reroll": "nuevas misiones en el tablón ahora mismo",
   "justquests.plugin.help.difficulty": "dificultad de las misiones generadas",
   "justquests.plugin.help.generator": "estado, vista previa, explicación y liberación del generador",
+  "justquests.plugin.help.team": "equipos para misiones de equipo: create, invite, accept, leave, kick, info",
   "justquests.plugin.announce.board": "§6✦ ¡Nuevas misiones en el tablón! §7Haz clic para verlas.",
   "justquests.plugin.announce.weekly": "§d✦ ¡Ya están aquí las nuevas misiones semanales! §7Haz clic para verlas.",
   "justquests.plugin.announce.goal": "§6✦ Nuevo objetivo del servidor: §f%s §7– ¡todos pueden ayudar!",

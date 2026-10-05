@@ -1,0 +1,67 @@
+// --- the server plugin for Spigot, Paper and Purpur: one jar per range of Minecraft versions ---
+// Each plugin/<version>/build.gradle sets
+//   ext.pluginApi   = '1.21'                 api-version in plugin.yml, and part of the jar name
+//   ext.spigotApi   = '1.21-R0.1-SNAPSHOT'   the oldest API of its range, so it never calls anything newer
+//   ext.pluginJava  = 21                     the oldest Java its servers run on
+// and applies this file. The plugin's code lives once in plugin/src; a jar adds only its own
+// compat/Compat.java (what differs between server versions) from plugin/<version>/src.
+apply plugin: 'java'
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = "${mod_name}-plugin-${pluginApi}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(pluginJava)
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }   // bungeecord-chat
+    maven { url = 'https://repo.extendedclip.com/releases/' }   // PlaceholderAPI
+}
+
+dependencies {
+    // The server provides the API (with Gson and the BungeeCord chat components) at runtime.
+    compileOnly "org.spigotmc:spigot-api:${spigotApi}"
+    // Optional: placeholders when the server has PlaceholderAPI (an old, stable API level).
+    compileOnly 'me.clip:placeholderapi:2.11.6'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = pluginJava
+    options.compilerArgs += ['-Xlint:deprecation']
+}
+
+// The shared plugin code, and the quest generator core (generator-v2: Java 17, Gson only) from its
+// own project.
+def shared = rootProject.file('plugin/src/main')
+def generatorCore = rootProject.file('generator-v2/justquests-generator-v2/src/main')
+sourceSets {
+    main {
+        java.srcDirs(new File(shared, 'java'), new File(generatorCore, 'java'))
+        resources.srcDirs(new File(shared, 'resources'), new File(generatorCore, 'resources'))
+    }
+}
+
+// The shared language files and the bundled quests come from the mod, so they never drift apart.
+def bundledQuests = rootProject.file('fabric/1.21.11/src/main/resources/data/justquests/justquests/quests')
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [version: mod_version, api_version: pluginApi, mod_authors: mod_authors]
+    inputs.properties replaceProperties
+    filesMatching('plugin.yml') {
+        expand replaceProperties
+    }
+    from(rootProject.file('lang')) {
+        into 'lang'
+    }
+    from(bundledQuests) {
+        into 'quests'
+    }
+}

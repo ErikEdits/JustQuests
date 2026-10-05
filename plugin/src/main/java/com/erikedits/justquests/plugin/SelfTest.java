@@ -1,5 +1,6 @@
 package com.erikedits.justquests.plugin;
 
+import com.erikedits.justquests.plugin.compat.Compat;
 import com.erikedits.justquests.plugin.quest.Objective;
 import com.erikedits.justquests.plugin.quest.Quest;
 import com.erikedits.justquests.plugin.quest.Reward;
@@ -24,7 +25,8 @@ final class SelfTest {
 
     static List<String> run(JustQuestsPlugin plugin) {
         List<String> out = new ArrayList<>();
-        out.add("§eJustQuests self-test §7(" + Bukkit.getName() + " " + Bukkit.getBukkitVersion() + ")");
+        out.add("§eJustQuests self-test §7(" + Bukkit.getName() + " " + Bukkit.getBukkitVersion()
+            + ", plugin jar for " + Compat.RANGE + ")");
         int quests = 0, items = 0, problems = 0;
         boolean components = true;
         String sample = null;

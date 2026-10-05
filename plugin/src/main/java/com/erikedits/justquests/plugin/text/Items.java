@@ -1,5 +1,6 @@
 package com.erikedits.justquests.plugin.text;
 
+import com.erikedits.justquests.plugin.compat.Compat;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -17,12 +18,14 @@ import java.util.logging.Logger;
 /**
  * Menu items with a component name and lore. The plain Spigot API only takes strings there, so the
  * item is built from the same text the /give command reads, and names stay translation keys the
- * client translates. 1.21.5 changed how that text writes a component (SNBT instead of a JSON
- * string); both forms are written here. Should the server reject one, the item falls back to plain
- * strings with English names.
+ * client translates. That text changed twice: NBT with JSON strings before 1.20.5, item components
+ * with JSON strings until 1.21.4, item components with SNBT from 1.21.5; all three are written here.
+ * Should the server reject one, the item falls back to plain strings with English names.
  */
 public final class Items {
-    private static boolean snbt;
+    private enum Format { NBT, COMPONENTS, SNBT }
+
+    private static Format format = Format.SNBT;
     private static boolean warned;
     private static Logger log;
 
@@ -35,7 +38,16 @@ public final class Items {
 
     public static void init(Logger logger) {
         log = logger;
-        snbt = atLeast(Bukkit.getBukkitVersion(), 1, 21, 5);
+        String v = Bukkit.getBukkitVersion();
+        format = atLeast(v, 1, 21, 5) ? Format.SNBT : atLeast(v, 1, 20, 5) ? Format.COMPONENTS : Format.NBT;
+    }
+
+    /** "1.21.4-R0.1-SNAPSHOT" is at least "1.21" (missing parts count as 0). */
+    public static boolean atLeast(String version, String min) {
+        String[] p = min.split("\\.");
+        int[] n = new int[3];
+        for (int i = 0; i < 3 && i < p.length; i++) n[i] = Integer.parseInt(p[i]);
+        return atLeast(version, n[0], n[1], n[2]);
     }
 
     /** "1.21.4-R0.1-SNAPSHOT" (or "26.1-...") is at least major.minor.patch. */
@@ -59,19 +71,8 @@ public final class Items {
         if (material == null || material.isAir() || !material.isItem()) material = Material.PAPER;
         ItemStack stack;
         try {
-            StringBuilder sb = new StringBuilder(material.getKey().toString()).append('[');
-            sb.append("minecraft:custom_name=").append(text(name, ChatColor.WHITE));
-            if (!lore.isEmpty()) {
-                sb.append(",minecraft:lore=[");
-                for (int i = 0; i < lore.size(); i++) {
-                    if (i > 0) sb.append(',');
-                    sb.append(text(lore.get(i), ChatColor.GRAY));
-                }
-                sb.append(']');
-            }
-            if (glow) sb.append(",minecraft:enchantment_glint_override=true");
-            sb.append(']');
-            stack = Bukkit.getItemFactory().createItemStack(sb.toString());
+            String id = Compat.key(material).toString();
+            stack = Bukkit.getItemFactory().createItemStack(format == Format.NBT ? nbt(id, name, lore, glow) : components(id, name, lore, glow));
         } catch (RuntimeException e) {
             if (!warned && log != null) {
                 warned = true;
@@ -88,6 +89,38 @@ public final class Items {
         return stack;
     }
 
+    /** 1.20.5 and newer: "id[minecraft:custom_name=...,minecraft:lore=[...]]". */
+    private static String components(String id, BaseComponent name, List<BaseComponent> lore, boolean glow) {
+        StringBuilder sb = new StringBuilder(id).append('[');
+        sb.append("minecraft:custom_name=").append(text(name, ChatColor.WHITE));
+        if (!lore.isEmpty()) {
+            sb.append(",minecraft:lore=[");
+            for (int i = 0; i < lore.size(); i++) {
+                if (i > 0) sb.append(',');
+                sb.append(text(lore.get(i), ChatColor.GRAY));
+            }
+            sb.append(']');
+        }
+        if (glow) sb.append(",minecraft:enchantment_glint_override=true");
+        return sb.append(']').toString();
+    }
+
+    /** Before 1.20.5: "id{display:{Name:'...',Lore:['...']}}", the glow from a (hidden) enchantment. */
+    private static String nbt(String id, BaseComponent name, List<BaseComponent> lore, boolean glow) {
+        StringBuilder sb = new StringBuilder(id).append("{display:{Name:").append(text(name, ChatColor.WHITE));
+        if (!lore.isEmpty()) {
+            sb.append(",Lore:[");
+            for (int i = 0; i < lore.size(); i++) {
+                if (i > 0) sb.append(',');
+                sb.append(text(lore.get(i), ChatColor.GRAY));
+            }
+            sb.append(']');
+        }
+        sb.append('}');
+        if (glow) sb.append(",Enchantments:[{id:\"minecraft:unbreaking\",lvl:1s}]");
+        return sb.append('}').toString();
+    }
+
     private static ItemStack plain(Material material, BaseComponent name, List<BaseComponent> lore, boolean glow) {
         ItemStack stack = new ItemStack(material);
         ItemMeta meta = stack.getItemMeta();
@@ -96,7 +129,7 @@ public final class Items {
             List<String> lines = new ArrayList<>();
             for (BaseComponent l : lore) lines.add(ChatColor.GRAY + l.toLegacyText());
             meta.setLore(lines);
-            if (glow) meta.setEnchantmentGlintOverride(true);
+            if (glow) Compat.glint(meta);
             stack.setItemMeta(meta);
         }
         return stack;
@@ -109,7 +142,7 @@ public final class Items {
         root.setColor(color);
         root.addExtra(line);
         String json = ComponentSerializer.toString(root);
-        if (snbt) return json;   // a JSON object is valid SNBT
+        if (format == Format.SNBT) return json;   // a JSON object is valid SNBT
         return "'" + json.replace("\\", "\\\\").replace("'", "\\'") + "'";
     }
 }

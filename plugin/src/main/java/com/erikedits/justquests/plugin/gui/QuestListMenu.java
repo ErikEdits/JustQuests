@@ -7,6 +7,7 @@ import com.erikedits.justquests.plugin.quest.Objective;
 import com.erikedits.justquests.plugin.quest.Quest;
 import com.erikedits.justquests.plugin.quest.Reward;
 import com.erikedits.justquests.plugin.progress.ProgressService;
+import com.erikedits.justquests.plugin.team.Teams.TeamRef;
 import com.erikedits.justquests.plugin.text.Items;
 import com.erikedits.justquests.plugin.text.Text;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -61,7 +62,7 @@ public final class QuestListMenu extends Menu {
     @Override
     protected void render() {
         frame();
-        PlayerData data = plugin.store().peek(player.getUniqueId());
+        PlayerData data = plugin.view(player.getUniqueId());
         boolean hideDone = plugin.hidesCompleted(player.getUniqueId()) && filter.status() != QuestStatus.COMPLETED;
         List<Quest> list = new ArrayList<>();
         for (Quest q : plugin.visibleQuests(player)) {
@@ -78,7 +79,7 @@ public final class QuestListMenu extends Menu {
         for (int i = 0; i < 45 && p * 45 + i < list.size(); i++) {
             Quest q = list.get(p * 45 + i);
             set(i, questItem(plugin, player, lang, data, q, true), click -> {
-                if (click.isShiftClick() && QuestStatus.of(plugin, player.getUniqueId(), plugin.store().peek(player.getUniqueId()), q) == QuestStatus.AVAILABLE) {
+                if (click.isShiftClick() && QuestStatus.of(plugin, player.getUniqueId(), plugin.view(player.getUniqueId()), q) == QuestStatus.AVAILABLE) {
                     player.spigot().sendMessage(plugin.progress().accept(player, q.id()).message());
                     redraw();
                 } else {
@@ -116,6 +117,10 @@ public final class QuestListMenu extends Menu {
         lore.add(Text.lit(s.color + Text.legacy(lang, s.key) + " §8· §7" + plugin.categoryName(lang, q.category())));
         String gen = plugin.generated().bookLine(q.id(), player.getUniqueId(), lang);
         if (gen != null) lore.add(Text.lit("§8" + gen));
+        if (q.team()) {
+            TeamRef team = plugin.teams().of(player.getUniqueId());
+            lore.add(team == null ? Text.tr(lang, "justquests.team.line_none") : Text.tr(lang, "justquests.team.line", team.name()));
+        }
         for (String line : wrap(q.description().get(lang), 38)) lore.add(Text.lit("§7§o" + line));
 
         String missing = plugin.progress().missingRequirement(data, q);

@@ -38,7 +38,7 @@ public final class Tracker {
     }
 
     public void update(Player player) {
-        PlayerData data = plugin.store().peek(player.getUniqueId());
+        PlayerData data = plugin.view(player.getUniqueId());
         if (!plugin.settings().bossbar || data == null || !data.bossbar) {
             remove(player);
             return;

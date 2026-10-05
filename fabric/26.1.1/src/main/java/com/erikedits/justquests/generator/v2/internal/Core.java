@@ -131,7 +131,9 @@ public final class Core {
         RotationResult rotation = noneResult;
         if (config.enabled()) {
             rotation = rotateIfDue(now, true);
-            if (!rotation.changed() && dropped > 0) {
+            // also an empty set: a run that failed while generating must not leave the board empty
+            // until the next rotation
+            if (!rotation.changed() && (dropped > 0 || state.current.isEmpty())) {
                 topUp(now);
             }
         }

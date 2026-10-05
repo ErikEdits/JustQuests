@@ -3,6 +3,7 @@ package com.erikedits.justquests.plugin;
 import com.erikedits.justquests.plugin.book.QuestBook;
 import com.erikedits.justquests.plugin.book.QuestNpc;
 import com.erikedits.justquests.plugin.command.QuestCommand;
+import com.erikedits.justquests.plugin.compat.Compat;
 import com.erikedits.justquests.plugin.data.PlayerData;
 import com.erikedits.justquests.plugin.data.PlayerStore;
 import com.erikedits.justquests.plugin.gen.PluginGenerator;
@@ -14,6 +15,7 @@ import com.erikedits.justquests.plugin.progress.ProgressService;
 import com.erikedits.justquests.plugin.progress.QuestListener;
 import com.erikedits.justquests.plugin.quest.Quest;
 import com.erikedits.justquests.plugin.quest.QuestRegistry;
+import com.erikedits.justquests.plugin.team.Teams;
 import com.erikedits.justquests.plugin.text.Items;
 import com.erikedits.justquests.plugin.text.Lang;
 import com.erikedits.justquests.plugin.text.Text;
@@ -51,6 +53,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     private final Settings settings = new Settings();
     private QuestRegistry quests;
     private PlayerStore store;
+    private Teams teams;
     private ProgressService progress;
     private QuestListener listener;
     private Tracker tracker;
@@ -63,6 +66,11 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        String version = Bukkit.getBukkitVersion();
+        if (!Items.atLeast(version, Compat.FIRST) || Items.atLeast(version, Compat.BEYOND)) {
+            getLogger().warning("This JustQuests jar is made for Minecraft " + Compat.RANGE + ", but the server runs "
+                + version + ". Please use the JustQuests plugin jar for your version.");
+        }
         saveDefaultConfig();
         settings.read(getConfig());
         Lang.load();
@@ -75,6 +83,8 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         quests.loadAll();
         store = new PlayerStore(data.resolve("players"), getLogger());
         store.load(modWorld == null ? null : modWorld.resolve("progress.json"));
+        teams = new Teams(this, data);
+        teams.load();
 
         progress = new ProgressService(this);
         listener = new QuestListener(this);
@@ -114,7 +124,10 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
                 tracker.updateAll();
             }
         }, 100L, 100L);
-        getServer().getScheduler().runTaskTimer(this, () -> store.saveDirty(), 1200L, 1200L);
+        getServer().getScheduler().runTaskTimer(this, () -> {
+            store.saveDirty();
+            teams.saveDirty();
+        }, 1200L, 1200L);
         getServer().getScheduler().runTaskTimer(this, generator::tick, 1200L, 1200L);
         for (Player p : Bukkit.getOnlinePlayers()) tracker.update(p);   // after /reload
     }
@@ -127,6 +140,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         if (tracker != null) tracker.clear();
         if (generator != null) generator.stop();
         if (store != null) store.saveDirty();
+        if (teams != null) teams.saveDirty();
     }
 
     /** custom-quests.json: the mod's file from a world played with the mod, else the template. */
@@ -239,6 +253,28 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         return new int[]{better + 1, count};
     }
 
+    /**
+     * What the player's quest book shows: their own quests plus their team's (team quests active
+     * for the team, and the ones it completed). For reading only; changes go to the store or the
+     * team. Null when the player has nothing yet.
+     */
+    public PlayerData view(UUID player) {
+        PlayerData own = store.peek(player);
+        PlayerData team = teams.peek(teams.of(player));
+        if (team == null || (team.active.isEmpty() && team.completed.isEmpty())) return own;
+        PlayerData v = new PlayerData();
+        if (own != null) {
+            v.active.putAll(own.active);
+            v.pendingClaim.putAll(own.pendingClaim);
+            v.completed.putAll(own.completed);
+            v.pinned = own.pinned;
+            v.bossbar = own.bossbar;
+        }
+        team.active.forEach(v.active::putIfAbsent);
+        team.completed.forEach((id, at) -> v.completed.merge(id, at, Math::max));
+        return v;
+    }
+
     public boolean hidesCompleted(UUID player) {
         return hideCompleted.contains(player);
     }
@@ -255,6 +291,8 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     public QuestRegistry quests() { return quests; }
 
     public PlayerStore store() { return store; }
+
+    public Teams teams() { return teams; }
 
     public ProgressService progress() { return progress; }
 

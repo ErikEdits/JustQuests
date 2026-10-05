@@ -81,6 +81,7 @@
   "justquests.plugin.help.reroll": "de nouvelles quêtes sur le tableau tout de suite",
   "justquests.plugin.help.difficulty": "difficulté des quêtes générées",
   "justquests.plugin.help.generator": "état, aperçu, explication et libération du générateur",
+  "justquests.plugin.help.team": "équipes pour les quêtes d'équipe : create, invite, accept, leave, kick, info",
   "justquests.plugin.announce.board": "§6✦ De nouvelles quêtes sur le tableau ! §7Cliquez pour voir.",
   "justquests.plugin.announce.weekly": "§d✦ Les nouvelles quêtes hebdomadaires sont là ! §7Cliquez pour voir.",
   "justquests.plugin.announce.goal": "§6✦ Nouvel objectif du serveur : §f%s §7– tout le monde peut aider !",

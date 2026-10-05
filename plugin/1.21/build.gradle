@@ -1,0 +1,5 @@
+// Minecraft 1.21 - 1.21.11 (Spigot made InventoryView an interface in 1.21)
+ext.pluginApi = '1.21'
+ext.spigotApi = '1.21-R0.1-SNAPSHOT'
+ext.pluginJava = 21
+apply from: '../common.gradle'

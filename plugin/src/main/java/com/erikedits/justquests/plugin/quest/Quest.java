@@ -19,10 +19,13 @@ import java.util.Locale;
  * @param sort       order within the category (lower first)
  * @param icon       item shown in the quest book; null = the first objective's item
  * @param permission node needed to see and take the quest; null = everyone
+ * @param team       a team quest: one for the whole team, every member's actions count and every
+ *                   member claims the rewards (category "team" unless one is given)
  */
 public record Quest(String id, LocalizedText title, LocalizedText description, String category, boolean any,
                     List<String> requires, boolean repeatable, int cooldownHours, int sort,
-                    List<Objective> objectives, List<Reward> rewards, Material icon, String permission) {
+                    List<Objective> objectives, List<Reward> rewards, Material icon, String permission,
+                    boolean team) {
 
     public static Quest parse(String id, JsonObject o) {
         if (!o.has("title")) throw new IllegalArgumentException("missing \"title\"");
@@ -47,17 +50,18 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
             icon = Registry.MATERIAL.get(Matchers.key(o.get("icon").getAsString()));
             if (icon != null && !icon.isItem()) icon = null;
         }
+        boolean team = o.has("team") && o.get("team").getAsBoolean();
         return new Quest(id,
             LocalizedText.parse(o.get("title")),
             o.has("description") ? LocalizedText.parse(o.get("description")) : LocalizedText.EMPTY,
-            o.has("category") ? o.get("category").getAsString() : "datapack",
+            o.has("category") ? o.get("category").getAsString() : team ? "team" : "datapack",
             o.has("mode") && "any".equalsIgnoreCase(o.get("mode").getAsString()),
             List.copyOf(requires),
             o.has("repeatable") && o.get("repeatable").getAsBoolean(),
             o.has("cooldown_hours") ? o.get("cooldown_hours").getAsInt() : 0,
             o.has("sort") ? o.get("sort").getAsInt() : 0,
             List.copyOf(objectives), List.copyOf(rewards), icon,
-            o.has("permission") ? o.get("permission").getAsString() : null);
+            o.has("permission") ? o.get("permission").getAsString() : null, team);
     }
 
     static String string(JsonObject o, String field) {

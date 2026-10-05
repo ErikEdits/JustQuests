@@ -51,7 +51,7 @@ public final class QuestMenu extends Menu {
             set(22, item(Material.BARRIER, tr("justquests.error.unknown_quest", id), List.of()));
             return;
         }
-        PlayerData data = plugin.store().peek(player.getUniqueId());
+        PlayerData data = plugin.view(player.getUniqueId());
         QuestStatus status = QuestStatus.of(plugin, player.getUniqueId(), data, q);
         set(4, QuestListMenu.questItem(plugin, player, lang, data, q, false));
 

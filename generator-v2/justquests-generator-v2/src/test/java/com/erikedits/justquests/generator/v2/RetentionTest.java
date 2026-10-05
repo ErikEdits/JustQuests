@@ -4,7 +4,9 @@ import com.erikedits.justquests.generator.v2.api.ClaimResult;
 import com.erikedits.justquests.generator.v2.api.ClaimState;
 import com.erikedits.justquests.generator.v2.api.Difficulty;
 import com.erikedits.justquests.generator.v2.api.RotationResult;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -146,6 +148,21 @@ class RetentionTest {
         assertTrue(g.servedQuests().containsKey(q));
         g.releaseAllFor(P);
         assertFalse(g.servedQuests().containsKey(q));
+    }
+
+    @Test
+    void anEmptyBoardIsFilledAgainAtStart() {
+        FakeHost host = new FakeHost();
+        QuestGeneratorV2 g = new QuestGeneratorV2(host, TestSupport.config(Difficulty.NORMAL, 5));
+        g.start(Map.of());
+        g.stop();
+        // a run that failed while generating saved the cycle without quests
+        JsonObject state = JsonParser.parseString(host.store.files.get("generator_v2.json")).getAsJsonObject();
+        state.add("quests", new JsonArray());
+        host.store.files.put("generator_v2.json", state.toString());
+        QuestGeneratorV2 g2 = new QuestGeneratorV2(host, TestSupport.config(Difficulty.NORMAL, 5));
+        g2.start(Map.of());
+        assertEquals(5, g2.servedQuests().size());
     }
 
     @Test

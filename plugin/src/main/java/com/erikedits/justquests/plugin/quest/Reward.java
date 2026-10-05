@@ -1,5 +1,6 @@
 package com.erikedits.justquests.plugin.quest;
 
+import com.erikedits.justquests.plugin.compat.Compat;
 import com.erikedits.justquests.plugin.text.Lang;
 import com.erikedits.justquests.plugin.text.Text;
 import com.google.gson.JsonElement;
@@ -54,7 +55,7 @@ public sealed interface Reward {
             case "justquests:loot_table" -> new Loot(Matchers.ns(Quest.string(o, "loot_table")));
             case "justquests:xp" -> new Xp(o.get("amount").getAsInt());
             case "justquests:effect" -> {
-                PotionEffectType e = Registry.EFFECT.get(Matchers.key(Quest.string(o, "effect")));
+                PotionEffectType e = Compat.effect(Matchers.key(Quest.string(o, "effect")));
                 if (e == null) throw new IllegalArgumentException("unknown effect: " + Quest.string(o, "effect"));
                 yield new Effect(e, o.has("seconds") ? o.get("seconds").getAsInt() : 30,
                     o.has("amplifier") ? o.get("amplifier").getAsInt() : 0);
@@ -92,7 +93,7 @@ public sealed interface Reward {
             for (int left = count; left > 0; left -= max) give(player, new ItemStack(item, Math.min(left, max)));
         }
 
-        public String label() { return count + "x " + item.getKey(); }
+        public String label() { return count + "x " + Compat.key(item); }
         public BaseComponent display(String lang) { return Text.tr(lang, "justquests.reward.item", count, Text.item(item)); }
         public Material icon() { return item; }
         public int iconCount() { return count; }
@@ -176,7 +177,7 @@ public sealed interface Reward {
     record Effect(PotionEffectType effect, int seconds, int amplifier) implements Reward {
         public String typeId() { return "justquests:effect"; }
         public void grant(Player player) { player.addPotionEffect(new PotionEffect(effect, seconds * 20, amplifier)); }
-        public String label() { return "Effect " + effect.getKey() + " (" + seconds + "s)"; }
+        public String label() { return "Effect " + Compat.key(effect) + " (" + seconds + "s)"; }
         public BaseComponent display(String lang) { return Text.tr(lang, "justquests.reward.effect", Text.effect(effect), seconds); }
         public Material icon() { return Material.POTION; }
     }

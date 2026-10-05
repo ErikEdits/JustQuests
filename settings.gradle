@@ -53,6 +53,11 @@ rootProject.name = 'JustQuests'
     project(":${name}").projectDir = file("forge/${v}")
 }
 
-// --- Server plugin (0.4.0+): one jar on the plain Spigot API for Spigot, Paper and
-// Purpur. It has no Minecraft code to remap, so it is a plain Java project. ---
-include 'plugin'
+// --- Server plugin (0.4.0+) on the plain Spigot API for Spigot, Paper and Purpur: one jar per
+// range of versions (named by the range's first version), from the shared code in plugin/src.
+// It has no Minecraft code to remap, so these are plain Java projects. ---
+['1.19', '1.21', '26.1'].each { v ->
+    def name = "plugin-${v.replace('.', '_')}"
+    include name
+    project(":${name}").projectDir = file("plugin/${v}")
+}

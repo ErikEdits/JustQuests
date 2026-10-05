@@ -81,6 +81,7 @@
   "justquests.plugin.help.reroll": "sofort neue Quests auf dem Brett",
   "justquests.plugin.help.difficulty": "Schwierigkeit der generierten Quests",
   "justquests.plugin.help.generator": "Generator-Status, Vorschau, Erklärung, Freigabe",
+  "justquests.plugin.help.team": "Teams für Team-Quests: create, invite, accept, leave, kick, info",
   "justquests.plugin.announce.board": "§6✦ Neue Quests am Brett! §7Klick zum Ansehen.",
   "justquests.plugin.announce.weekly": "§d✦ Neue Wochen-Quests sind da! §7Klick zum Ansehen.",
   "justquests.plugin.announce.goal": "§6✦ Neues Server-Ziel: §f%s §7– alle können helfen!",

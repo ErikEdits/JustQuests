@@ -86,7 +86,7 @@ public final class Placeholders extends PlaceholderExpansion {
             default -> { }
         }
         if (player == null) return "";
-        PlayerData data = plugin.store().peek(player.getUniqueId());
+        PlayerData data = plugin.view(player.getUniqueId());
         return switch (key) {
             case "completed" -> String.valueOf(data == null ? 0 : data.completed.size());
             case "active" -> String.valueOf(data == null ? 0 : data.active.size());

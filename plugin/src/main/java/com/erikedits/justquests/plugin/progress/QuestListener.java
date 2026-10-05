@@ -168,7 +168,7 @@ public final class QuestListener implements Listener {
 
     /** reach_location and reach_level: checked once a second for players with active quests. */
     public void tick(Player player) {
-        PlayerData data = plugin.store().peek(player.getUniqueId());
+        PlayerData data = plugin.view(player.getUniqueId());
         if (data == null || data.active.isEmpty()) return;
         progress().advance(player, o -> {
             if (o instanceof Objective.Location l && l.isAt(player)) return 1;

@@ -71,8 +71,9 @@ public final class QuestBook implements Listener {
         if (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if (!is(e.getItem())) return;
         Block block = e.getClickedBlock();
+        // (the chiseled bookshelf by name: it came with 1.20)
         if (block != null && !e.getPlayer().isSneaking() && block.getType().isInteractable()
-            && block.getType() != Material.CHISELED_BOOKSHELF && block.getType() != Material.LECTERN) {
+            && !block.getType().name().equals("CHISELED_BOOKSHELF") && block.getType() != Material.LECTERN) {
             e.setUseItemInHand(Event.Result.DENY);   // chests, doors, ... still open normally
             return;
         }

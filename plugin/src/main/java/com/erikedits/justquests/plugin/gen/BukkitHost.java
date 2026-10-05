@@ -11,6 +11,7 @@ import com.erikedits.justquests.generator.v2.api.TriState;
 import com.erikedits.justquests.generator.v2.api.ValidationResult;
 import com.erikedits.justquests.generator.v2.api.WorldContext;
 import com.erikedits.justquests.plugin.JustQuestsPlugin;
+import com.erikedits.justquests.plugin.compat.Compat;
 import com.erikedits.justquests.plugin.quest.Quest;
 import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
@@ -86,7 +87,7 @@ public final class BukkitHost implements GeneratorHost {
     private static boolean enabled(Material m) {
         World w = mainWorld();
         try {
-            return w == null || m.isEnabledByFeature(w);
+            return w == null || Compat.enabled(m, w);
         } catch (RuntimeException | LinkageError e) {
             return true;
         }
@@ -95,7 +96,7 @@ public final class BukkitHost implements GeneratorHost {
     private static boolean enabled(EntityType t) {
         World w = mainWorld();
         try {
-            return w == null || t.isEnabledByFeature(w);
+            return w == null || Compat.enabled(t, w);
         } catch (RuntimeException | LinkageError e) {
             return true;
         }
@@ -108,7 +109,7 @@ public final class BukkitHost implements GeneratorHost {
         try {
             Tag<T> tag = Bukkit.getTag(registry, k, type);
             if (tag != null) {
-                for (T t : tag.getValues()) out.add(t.getKey().toString());
+                for (T t : tag.getValues()) out.add(Compat.key(t).toString());
             }
         } catch (RuntimeException e) {
             // an unknown tag has no members

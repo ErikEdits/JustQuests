@@ -53,7 +53,7 @@ jobs:
             neoforge/**/build/libs/*.jar
             fabric/**/build/libs/*.jar
             forge/**/build/libs/*.jar
-            plugin/build/libs/*.jar
+            plugin/*/build/libs/*.jar
             !**/*-sources.jar
           if-no-files-found: error
           retention-days: 14

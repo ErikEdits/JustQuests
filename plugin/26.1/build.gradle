@@ -1,0 +1,5 @@
+// Minecraft 26.1 - 26.3 (Java 25)
+ext.pluginApi = '26.1'
+ext.spigotApi = '26.1-R0.1-SNAPSHOT'
+ext.pluginJava = 25
+apply from: '../common.gradle'

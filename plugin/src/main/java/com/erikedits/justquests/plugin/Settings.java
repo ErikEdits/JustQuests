@@ -25,6 +25,9 @@ public final class Settings {
     public boolean announceWeekly = true;
     public boolean announceGoal = true;
     public boolean goalFireworks = true;
+    public boolean teamParties = true;
+    public boolean teamScoreboard = true;
+    public int teamMaxMembers = 8;
 
     // --- generator
     public boolean generator = true;
@@ -74,6 +77,9 @@ public final class Settings {
         announceWeekly = c.getBoolean("announcements.newWeekly", true);
         announceGoal = c.getBoolean("announcements.newGoal", true);
         goalFireworks = c.getBoolean("announcements.goalFireworks", true);
+        teamParties = c.getBoolean("teams.parties", true);
+        teamScoreboard = c.getBoolean("teams.scoreboardTeams", true);
+        teamMaxMembers = clamp(c.getInt("teams.maxMembers", 8), 2, 100);
 
         generator = c.getBoolean("generator.enabled", true);
         difficulty = c.getString("generator.difficulty", "normal").toLowerCase(Locale.ROOT);

@@ -36,7 +36,7 @@ public final class MainMenu extends Menu {
     protected void render() {
         frame();
         plugin.generator().ensurePersonal(player);
-        PlayerData data = plugin.store().peek(player.getUniqueId());
+        PlayerData data = plugin.view(player.getUniqueId());
         Collection<Quest> quests = plugin.visibleQuests(player);
         Map<QuestStatus, Integer> byStatus = new EnumMap<>(QuestStatus.class);
         Map<String, List<Quest>> byCategory = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);

@@ -1,5 +1,6 @@
 package com.erikedits.justquests.plugin.quest;
 
+import com.erikedits.justquests.plugin.compat.Compat;
 import com.erikedits.justquests.plugin.text.Text;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -8,7 +9,6 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.TranslatableComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,7 +91,7 @@ public final class Matchers {
 
         @Override
         public String label() {
-            return item.getKey().toString();
+            return Compat.key(item).toString();
         }
 
         @Override
@@ -167,19 +166,16 @@ public final class Matchers {
             if (!enchantments.isEmpty()) {
                 Map<String, Integer> on = new HashMap<>();
                 if (meta != null) {
-                    meta.getEnchants().forEach((e, lvl) -> on.merge(e.getKey().toString(), lvl, Math::max));
+                    meta.getEnchants().forEach((e, lvl) -> on.merge(Compat.key(e).toString(), lvl, Math::max));
                     if (meta instanceof EnchantmentStorageMeta book) {
-                        book.getStoredEnchants().forEach((e, lvl) -> on.merge(e.getKey().toString(), lvl, Math::max));
+                        book.getStoredEnchants().forEach((e, lvl) -> on.merge(Compat.key(e).toString(), lvl, Math::max));
                     }
                 }
                 for (Map.Entry<String, Integer> e : enchantments.entrySet()) {
                     if (on.getOrDefault(e.getKey(), 0) < e.getValue()) return false;
                 }
             }
-            if (potion != null) {
-                PotionType type = meta instanceof PotionMeta p ? p.getBasePotionType() : null;
-                if (type == null || !potion.equals(((Keyed) type).getKey().toString())) return false;
-            }
+            if (potion != null && !(meta instanceof PotionMeta p && potion.equals(Compat.basePotion(p)))) return false;
             if (customName != null) {
                 String shown = meta != null && meta.hasDisplayName() ? ChatColor.stripColor(meta.getDisplayName()) : null;
                 return customName.equals(shown);
@@ -259,7 +255,7 @@ public final class Matchers {
 
         @Override
         public String label() {
-            return block.getKey().toString();
+            return Compat.key(block).toString();
         }
 
         @Override
@@ -327,7 +323,8 @@ public final class Matchers {
     }
 
     static Material egg(EntityType t) {
-        Material m = Registry.MATERIAL.get(new NamespacedKey(t.getKey().getNamespace(), t.getKey().getKey() + "_spawn_egg"));
+        NamespacedKey key = NamespacedKey.fromString(Compat.key(t) + "_spawn_egg");
+        Material m = key == null ? null : Registry.MATERIAL.get(key);
         return m != null ? m : Material.SPAWNER;
     }
 
@@ -339,7 +336,7 @@ public final class Matchers {
 
         @Override
         public String label() {
-            return type.getKey().toString();
+            return Compat.key(type).toString();
         }
 
         @Override

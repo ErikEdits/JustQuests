@@ -1,5 +1,6 @@
 package com.erikedits.justquests.plugin.text;
 
+import com.erikedits.justquests.plugin.compat.Compat;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -32,7 +33,7 @@ public final class Text {
 
     public static BaseComponent lit(String legacyText) {
         TextComponent root = new TextComponent("");
-        root.addExtra(TextComponent.fromLegacy(legacyText));
+        root.addExtra(Compat.legacy(legacyText));
         return root;
     }
 
@@ -82,7 +83,7 @@ public final class Text {
 
     private static void flush(TextComponent root, StringBuilder chunk) {
         if (chunk.length() == 0) return;
-        root.addExtra(TextComponent.fromLegacy(chunk.toString()));
+        root.addExtra(Compat.legacy(chunk.toString()));
         chunk.setLength(0);
     }
 
@@ -141,26 +142,26 @@ public final class Text {
     // --- names the client translates -------------------------------------------------------
 
     public static BaseComponent item(Material m) {
-        String key = m.isItem() ? m.getItemTranslationKey() : m.getBlockTranslationKey();
-        return key == null ? new TextComponent(pretty(m.getKey().getKey())) : new TranslatableComponent(key);
+        String key = m.isItem() ? Compat.itemKey(m) : Compat.blockKey(m);
+        return key == null ? new TextComponent(pretty(Compat.key(m).getKey())) : new TranslatableComponent(key);
     }
 
     public static BaseComponent block(Material m) {
-        String key = m.isBlock() ? m.getBlockTranslationKey() : m.getItemTranslationKey();
-        return key == null ? new TextComponent(pretty(m.getKey().getKey())) : new TranslatableComponent(key);
+        String key = m.isBlock() ? Compat.blockKey(m) : Compat.itemKey(m);
+        return key == null ? new TextComponent(pretty(Compat.key(m).getKey())) : new TranslatableComponent(key);
     }
 
     public static BaseComponent entity(EntityType t) {
-        String key = t.getTranslationKey();
-        return key == null ? new TextComponent(pretty(t.getKey().getKey())) : new TranslatableComponent(key);
+        String key = Compat.entityKey(t);
+        return key == null ? new TextComponent(pretty(Compat.key(t).getKey())) : new TranslatableComponent(key);
     }
 
     public static BaseComponent effect(PotionEffectType t) {
-        return new TranslatableComponent(t.getTranslationKey());
+        return new TranslatableComponent(Compat.effectKey(t));
     }
 
     public static BaseComponent enchantment(Enchantment e) {
-        return new TranslatableComponent(e.getTranslationKey());
+        return new TranslatableComponent(Compat.enchantmentKey(e));
     }
 
     /** A vanilla advancement's title ("Acquire Hardware"); the id where the client has no title for it. */
@@ -168,7 +169,7 @@ public final class Text {
         NamespacedKey key = NamespacedKey.fromString(id);
         if (key == null || !NamespacedKey.MINECRAFT.equals(key.getNamespace())) return new TextComponent(id);
         TranslatableComponent t = new TranslatableComponent("advancements." + key.getKey().replace('/', '.') + ".title");
-        t.setFallback(id);
+        Compat.fallback(t, id);
         return t;
     }
 

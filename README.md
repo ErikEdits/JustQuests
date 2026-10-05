@@ -46,7 +46,7 @@ Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
 | NeoForge | 1.20.4, 1.20.6, 1.21 – 1.21.11, 26.1.2, 26.2 | yes |
 | Fabric (needs [Fabric API](https://modrinth.com/mod/fabric-api)) | 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4, 1.20.6, 1.21 – 1.21.11, 26.1 – 26.3 | 1.20.1 and newer |
 | Forge | 1.18.2, 1.19.2, 1.19.4, 1.20.1 | 1.20.1 |
-| Spigot / Paper / Purpur (server plugin) | 1.21 – 1.21.11 | chest menu |
+| Spigot / Paper / Purpur (server plugin) | 1.19 – 1.21.11, 26.1 – 26.3 | chest menu |
 
 On 1.18 and 1.19 JustQuests is command-only; quests, tracking and rewards work the same.
 Install the mod on the server **and** the clients (both are required). The plugin is
@@ -63,11 +63,17 @@ server-only - see [Server plugin](#server-plugin-spigot-paper-purpur).
 
 ## Server plugin (Spigot, Paper, Purpur)
 
-JustQuests also comes as a plugin for Spigot, Paper and Purpur 1.21 – 1.21.11
-(`JustQuests-plugin-1.21-<version>.jar`, one jar for all of them). Players join with a plain
-vanilla client - nothing to install on their side.
+JustQuests also comes as a plugin for Spigot, Paper and Purpur. Players join with a plain vanilla
+client - nothing to install on their side. There is one jar per range of versions:
 
-1. Put the jar into the server's `plugins/` folder and start the server.
+| Server version | Jar | Java |
+|---|---|---|
+| 1.19 – 1.20.6 | `JustQuests-plugin-1.19-<version>.jar` | 17 or newer |
+| 1.21 – 1.21.11 | `JustQuests-plugin-1.21-<version>.jar` | 21 or newer |
+| 26.1 – 26.3 | `JustQuests-plugin-26.1-<version>.jar` | 25 |
+
+1. Put the jar for your server version into the `plugins/` folder and start the server (a jar for
+   another range says so in the console).
 2. New players get a **quest book**; right-click it (or type `/quest`, `/quests` or `/jq`) to open
    the quests. `/quest book` gives a new one.
 
@@ -307,11 +313,11 @@ Needs JDK 17, JDK 21 and JDK 25 (Gradle picks the right one per Minecraft versio
 git clone https://github.com/ErikEdits/JustQuests.git
 cd JustQuests
 ./gradlew :neoforge-1_21_1:build      # one version
-./gradlew :plugin:build              # the server plugin
-./gradlew build                       # all 43 mod builds and the plugin (slow the first time)
+./gradlew :plugin-1_21:build         # the server plugin for 1.21.x (also plugin-1_19, plugin-26_1)
+./gradlew build                       # all 43 mod builds and the 3 plugin jars (slow the first time)
 ```
 
-Jars end up in `<loader>/<version>/build/libs/` (the plugin in `plugin/build/libs/`). GitHub
+Jars end up in `<loader>/<version>/build/libs/` (the plugin in `plugin/<version>/build/libs/`). GitHub
 Actions builds everything on every push and
 publishes a release with every jar for each `v*` tag.
 
@@ -321,7 +327,8 @@ publishes a release with every jar for each `v*` tag.
 neoforge/<version>/   16 NeoForge builds   ─┐
 fabric/<version>/     23 Fabric builds      ├─ one source tree per Minecraft version
 forge/<version>/       4 Forge builds      ─┘
-plugin/               the Spigot/Paper/Purpur plugin (plain Spigot API, one jar for 1.21.x)
+plugin/               the Spigot/Paper/Purpur plugin (plain Spigot API): shared code in src/,
+                      plugin/<version>/ adds one jar per version range (1.19, 1.21, 26.1)
 generator-v2/         the quest generator core (Java 17, own tests), copied into every build
                       by scripts/sync_generator_v2.py
 docs/                 example datapack, design notes, roadmap (build-todo.md)
