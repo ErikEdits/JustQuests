@@ -128,6 +128,7 @@ public final class Teams {
                         Files.createDirectories(own.getParent());
                         Files.copy(modWorld.resolve(name), own);
                         plugin.getLogger().info("Took over the mod's " + name);
+                        if (name.equals("teams.json")) takeOverOwed(modWorld.resolve(name));
                     }
                 } catch (Exception e) {
                     plugin.getLogger().warning("Could not take over the mod's " + name + ": " + e.getMessage());
@@ -144,6 +145,39 @@ public final class Teams {
             }
         } catch (Exception e) {
             plugin.getLogger().warning("Could not read " + file.getFileName() + ": " + e.getMessage());
+        }
+    }
+
+    /**
+     * The mod keeps the rewards of team quests that scoreboard-team members missed while offline in
+     * teams.json ("owed", by uuid or lower-case name); here they wait in the player's own data.
+     */
+    private void takeOverOwed(Path modTeams) {
+        try {
+            JsonObject root = JsonParser.parseString(Files.readString(modTeams)).getAsJsonObject();
+            if (!root.has("owed") || !root.get("owed").isJsonObject()) return;
+            Map<String, UUID> byName = new HashMap<>();
+            for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
+                if (p.getName() != null) byName.put(p.getName().toLowerCase(Locale.ROOT), p.getUniqueId());
+            }
+            long now = System.currentTimeMillis();
+            for (Map.Entry<String, JsonElement> e : root.getAsJsonObject("owed").entrySet()) {
+                UUID who;
+                try {
+                    who = UUID.fromString(e.getKey());
+                } catch (IllegalArgumentException notUuid) {
+                    who = byName.get(e.getKey().toLowerCase(Locale.ROOT));
+                }
+                if (who == null || !e.getValue().isJsonArray()) continue;
+                PlayerData data = plugin.store().get(who);
+                for (JsonElement id : e.getValue().getAsJsonArray()) {
+                    data.completed.put(id.getAsString(), now);
+                    data.pendingClaim.put(id.getAsString(), now);
+                }
+                plugin.store().markDirty(who);
+            }
+        } catch (Exception e) {
+            plugin.getLogger().warning("Could not take over the mod's waiting team rewards: " + e.getMessage());
         }
     }
 
