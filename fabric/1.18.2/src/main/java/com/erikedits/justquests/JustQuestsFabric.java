@@ -83,8 +83,10 @@ public class JustQuestsFabric implements ModInitializer {
         });
 
         // Login: one-time Discord welcome (0.1.5)
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
-            CommunityHints.onLogin(handler.player));
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            CommunityHints.onLogin(handler.player);
+            com.erikedits.justquests.team.TeamQuests.settle(handler.player);   // team rewards from while they were away
+        });
 
         // mine_block
         PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, be) -> {

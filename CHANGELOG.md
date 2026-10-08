@@ -10,7 +10,8 @@ Built step by step; test builds go to a local folder until the release.
 ### Added
 - **Team quests:** a quest with `"team": true` belongs to a whole team - any member takes it,
   everyone's actions count, the quest book and tracker show the shared progress, and when it is
-  done every member claims the rewards (also members who were offline). A team is made with
+  done every member gets the rewards like for their own quests (members who were offline when
+  they come back). A team is made with
   `/quest team create <name>` (then `invite`, `accept`, `leave`, `kick`, `info`; up to 8 players),
   or a player's scoreboard team (`/team`) counts. Mod and plugin alike; a world moving to the
   plugin brings its teams along.

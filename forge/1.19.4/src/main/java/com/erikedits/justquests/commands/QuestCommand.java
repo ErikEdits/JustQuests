@@ -488,6 +488,7 @@ public class QuestCommand {
     /** /quest claim <id> [n]: n picks the reward of a quest with a choice (1 = first option). */
     private static int claim(CommandContext<CommandSourceStack> ctx, ResourceLocation id, int pick) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
+        com.erikedits.justquests.team.TeamQuests.settle(player);   // team rewards from while they were away
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
         Quest quest = QuestManager.INSTANCE.get(id);
@@ -510,6 +511,7 @@ public class QuestCommand {
     /** /quest claim without an id: every waiting reward at once; quests with a choice ask for the pick. */
     private static int claimAll(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
+        com.erikedits.justquests.team.TeamQuests.settle(player);   // team rewards from while they were away
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
         String lang = lang(ctx.getSource());

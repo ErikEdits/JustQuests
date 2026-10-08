@@ -25,7 +25,10 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabricLoader}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricApi}"
     // permission checks for LuckPerms & co., bundled inside the jar
-    include(modImplementation("me.lucko:fabric-permissions-api:0.6.1"))
+    include(modImplementation("me.lucko:fabric-permissions-api:0.6.1") {
+        // its pom brings the Fabric API it was built against: keep the one of this version
+        exclude group: 'net.fabricmc.fabric-api'
+    })
 }
 
 java {

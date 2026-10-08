@@ -92,8 +92,12 @@ public final class TeamQuests {
         return v;
     }
 
-    /** The rewards of team quests finished while the player was offline. */
-    private static void settle(ServerPlayer player) {
+    /**
+     * The rewards of team quests finished while the player was offline, paid like their own
+     * quests (waiting to be claimed, or at once with claimRewards off). Called on login, before
+     * /quest claim and with every quest-book update.
+     */
+    public static void settle(ServerPlayer player) {
         TeamStore teams = TeamStore.get();
         WorldQuestStore store = WorldQuestStore.get();
         if (teams == null || store == null) return;
@@ -101,13 +105,11 @@ public final class TeamQuests {
         ids.addAll(teams.takeOwed(player.getScoreboardName().toLowerCase(Locale.ROOT)));
         if (ids.isEmpty()) return;
         PlayerQuestData data = store.get(player.getUUID());
-        long now = System.currentTimeMillis();
         for (String s : ids) {
             Identifier id = Identifier.tryParse(s);
-            if (id == null) continue;
-            data.completed.put(id, now);
-            data.pendingClaim.put(id, now);
-            send(player, completed(player, id));
+            Quest quest = id == null ? null : QuestManager.INSTANCE.get(id);
+            if (quest == null) continue;   // removed since
+            send(player, completed(player, id, QuestProgressService.finish(player, data, id, quest)));
         }
         store.markDirty();
     }
@@ -153,35 +155,44 @@ public final class TeamQuests {
         }
     }
 
-    /** Done: completed for the team, and every member's rewards wait to be claimed. */
+    /**
+     * Done: completed for the team. Members online get the rewards like for their own quests
+     * (waiting to be claimed, or at once with claimRewards off); members offline get them when they
+     * come back ({@link #settle}).
+     */
     private static void finish(ServerPlayer player, Team team, PlayerQuestData teamData, Identifier id) {
         teamData.complete(id);
-        WorldQuestStore store = WorldQuestStore.get();
+        TeamStore teams = TeamStore.get();
         MinecraftServer server = server(player);
-        Set<UUID> members = new LinkedHashSet<>();
-        members.add(player.getUUID());
+        List<ServerPlayer> online = new ArrayList<>();
+        online.add(player);
         if (team.party() != null) {
-            members.addAll(team.party().members);
+            for (UUID m : team.party().members) {
+                ServerPlayer p = server.getPlayerList().getPlayer(m);
+                if (p == null) teams.owe(m.toString(), id.toString());
+                else if (!online.contains(p)) online.add(p);
+            }
         } else {
             for (String name : team.scoreboard().getPlayers()) {
-                ServerPlayer online = server.getPlayerList().getPlayerByName(name);
-                if (online != null) members.add(online.getUUID());
-                else TeamStore.get().owe(name.toLowerCase(Locale.ROOT), id.toString());
+                ServerPlayer p = server.getPlayerList().getPlayerByName(name);
+                // scoreboard teams can hold mobs too (by uuid): only player names are owed
+                if (p == null && name.matches("\\w{1,16}")) teams.owe(name.toLowerCase(Locale.ROOT), id.toString());
+                else if (p != null && !online.contains(p)) online.add(p);
             }
         }
-        long now = System.currentTimeMillis();
-        for (UUID m : members) {
-            PlayerQuestData d = store.get(m);
-            d.complete(id);
-            d.pendingClaim.put(id, now);
-            ServerPlayer online = server.getPlayerList().getPlayer(m);
-            if (online != null) send(online, completed(online, id));
+        WorldQuestStore store = WorldQuestStore.get();
+        Quest quest = QuestManager.INSTANCE.get(id);
+        if (store == null || quest == null) return;
+        for (ServerPlayer p : online) {
+            send(p, completed(p, id, QuestProgressService.finish(p, store.get(p.getUUID()), id, quest)));
         }
         store.markDirty();
     }
 
-    private static Component completed(ServerPlayer p, Identifier id) {
-        return Msg.tr("justquests.team.completed", title(id, p)).append(" ").append(QuestProgressService.claimButton(id));
+    /** "Team quest completed: X", with the claim button while the rewards wait. */
+    private static Component completed(ServerPlayer p, Identifier id, boolean claim) {
+        var line = Msg.tr("justquests.team.completed", title(id, p));
+        return claim ? line.append(" ").append(QuestProgressService.claimButton(id)) : line;
     }
 
     private static String title(Identifier id, ServerPlayer p) {

@@ -213,8 +213,9 @@ language with English as fallback.
 
 **Team quests.** A quest with `"team": true` (category `team` unless it names one) belongs to a
 whole team: any member takes it, everyone's actions count towards it, the quest book and tracker
-show the shared progress, and when it is done every member claims the rewards for themselves -
-also members who were offline. A player's team is the one made with `/quest team` (create,
+show the shared progress, and when it is done every member gets the rewards for themselves, the
+same way as for their own quests (to claim, or at once with `claimRewards` off) - members who were
+offline get them when they come back. A player's team is the one made with `/quest team` (create,
 invite, accept, leave, kick, info; up to 8 players), else their scoreboard team (`/team`). The
 teams live with the world in `justquests/teams.json` and `team-progress.json`.
 

@@ -116,8 +116,9 @@ public final class ProgressService {
     }
 
     /**
-     * A team quest is done: it counts as completed for the team, and every member - also who is
-     * offline - finds the rewards waiting to be claimed.
+     * A team quest is done: it counts as completed for the team. Members online get the rewards
+     * like for their own quests (waiting to be claimed, or at once with claimRewards off); members
+     * offline find them waiting to be claimed.
      */
     private void finishTeam(Player player, TeamRef team, PlayerData teamData, String id, Quest quest) {
         teamData.complete(id);
@@ -126,15 +127,16 @@ public final class ProgressService {
         members.add(player.getUniqueId());
         for (UUID member : members) {
             PlayerData d = plugin.store().get(member);
-            d.complete(id);
-            d.pendingClaim.put(id, now);
-            if (id.equals(d.pinned)) d.pinned = null;
-            plugin.store().markDirty(member);
             Player online = Bukkit.getPlayer(member);
             if (online != null) {
-                notifyDone(online, quest, true, "justquests.team.completed");
+                notifyDone(online, quest, finish(online, d, id, quest), "justquests.team.completed");
                 plugin.tracker().update(online);
+            } else {
+                d.complete(id);
+                d.pendingClaim.put(id, now);
+                if (id.equals(d.pinned)) d.pinned = null;
             }
+            plugin.store().markDirty(member);
         }
         broadcast(player, quest);
     }
