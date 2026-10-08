@@ -35,7 +35,7 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Glue between this build (neoforge 1.21.10) and the generator v2 core (core INTEGRATION.md
+ * Glue between this build (neoforge 26.2) and the generator v2 core (core INTEGRATION.md
  * sections 3-4). Holds the one generator of the running server; everything runs on the server
  * thread. Failures are logged and never take the server down: without a generator, generated
  * quests are simply absent.

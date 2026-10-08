@@ -76,6 +76,12 @@ Built step by step; test builds go to a local folder until the release.
   "any logs"; dimension goals name the vanilla dimensions ("Visit the Nether").
 - The Discord welcome no longer talks about voting on the v0.2 GUI.
 
+### Fixed
+- **NeoForge 1.20.4:** the mod did not load at all. Its jar only had the newer
+  `neoforge.mods.toml`, which NeoForge 20.4 does not read, and it needed Java 21. It now has
+  `mods.toml` and runs on Java 17 like Minecraft 1.20.4.
+- `/quest generator status` named the wrong Minecraft version on 1.21.11 and 26.x.
+
 ## [0.3.5] - 2026-10-04
 
 ### Added

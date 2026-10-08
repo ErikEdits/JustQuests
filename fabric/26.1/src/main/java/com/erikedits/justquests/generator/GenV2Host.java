@@ -44,7 +44,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
- * Host adapter for the generator v2 core on fabric 1.21.10 (core INTEGRATION.md section 2).
+ * Host adapter for the generator v2 core on fabric 26.1 (core INTEGRATION.md section 2).
  * One per server; every method runs on the server thread and never throws.
  *
  * <p>The same choices in every build: recipe, animal-class and consumable checks answer
@@ -54,7 +54,7 @@ import java.util.stream.Stream;
  */
 public final class GenV2Host implements GeneratorHost {
     static final String LOADER = "fabric";
-    static final String MINECRAFT = "1.21.10";
+    static final String MINECRAFT = "26.1";
 
     private final MinecraftServer server;
     private final Content content = new Content();

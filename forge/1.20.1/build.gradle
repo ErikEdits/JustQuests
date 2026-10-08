@@ -21,6 +21,13 @@ legacyForge {
             sourceSet sourceSets.main
         }
     }
+
+    // dev server for testing: gradlew :forge-<version>:runServer
+    runs {
+        server {
+            server()
+        }
+    }
 }
 
 // Expand ${file.jarVersion} in mods.toml at build time.
