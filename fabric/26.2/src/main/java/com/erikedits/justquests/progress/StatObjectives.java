@@ -52,9 +52,12 @@ public final class StatObjectives {
 
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        // the player's own quests and their team's: a team quest counts every member's statistics
+        Set<Identifier> ids = new HashSet<>(com.erikedits.justquests.team.TeamQuests.activeIds(player));
+        if (data != null) ids.addAll(data.active.keySet());
         Set<Object> watched = new HashSet<>();
-        if (data != null) {
-            for (Identifier id : data.active.keySet()) {
+        if (!ids.isEmpty()) {
+            for (Identifier id : ids) {
                 Quest quest = QuestManager.INSTANCE.get(id);
                 if (quest == null) continue;
                 for (QuestObjective obj : quest.objectives()) {

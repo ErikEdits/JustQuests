@@ -384,7 +384,8 @@ public final class QuestCommand implements TabExecutor {
             else say(player, "justquests.progress.none");
             return;
         }
-        if (!data.isActive(id)) {
+        PlayerData view = plugin.view(player.getUniqueId());   // team quests can be tracked too
+        if (view == null || !view.isActive(id)) {
             say(player, "justquests.plugin.track.not_active");
             return;
         }

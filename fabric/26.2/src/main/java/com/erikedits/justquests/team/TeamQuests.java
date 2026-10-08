@@ -112,6 +112,13 @@ public final class TeamQuests {
         store.markDirty();
     }
 
+    /** The quests the player's team has active (the polled statistics objectives need them). */
+    public static Set<Identifier> activeIds(ServerPlayer player) {
+        Team team = of(player);
+        PlayerQuestData data = team == null ? null : TeamStore.get().peekProgress(team.key());
+        return data == null ? Set.of() : data.active.keySet();
+    }
+
     /** Every event: what it adds to the team's quests. */
     public static void advance(ServerPlayer player, QuestProgressService.ObjectiveTest test) {
         Team team = of(player);

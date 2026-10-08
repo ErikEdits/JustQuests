@@ -672,7 +672,6 @@ public class QuestScreen extends Screen {
                     Status st = status(selected, q);
                     if (st == Status.ACTIVE) send("quest abandon " + selected);
                     else if (st == Status.AVAILABLE) send("quest accept " + selected);
-                    else if (st == Status.CLAIM) send("quest claim " + selected);
                     else if (st == Status.CLAIM && ChoiceReward.of(q) == null) send("quest claim " + selected);
                     else if (st == Status.CLAIM && pick >= 0) send("quest claim " + selected + " " + (pick + 1));
                 }
