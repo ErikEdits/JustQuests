@@ -3,9 +3,7 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [0.4.0] - in progress
-
-Built step by step; test builds go to a local folder until the release.
+## [0.4.0] - 2026-10-12
 
 ### Added
 - **Team quests:** a quest with `"team": true` belongs to a whole team - any member takes it,

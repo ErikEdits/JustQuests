@@ -1,239 +1,150 @@
 # JustQuests
 
-**A lightweight quest book for NeoForge, Fabric & Forge.**
-No GUI bloat, no heavy dependencies — just quests and a handful of commands.
-Built as a focused, server-friendly alternative to FTB Quests and HQM for
-packs that want questing without the weight.
+**A lightweight quest book for NeoForge, Fabric & Forge — and a server plugin for Paper, Spigot & Purpur.**
+No GUI bloat, no heavy dependencies — datapack-driven quests, an in-game quest book, a rotating board of generated quests, team quests and a handful of commands. A focused, server-friendly alternative to FTB Quests and HQM.
 
-> **Now on three loaders** — NeoForge, Fabric and Forge — across
-> **Minecraft 1.18 – 1.21**. In-game quest book (press **J**) on 1.20.1 and
-> newer; older versions are command-only. Singleplayer **and** servers.
->
-> The GUI is an early, interim version — the final design is being chosen by a
-> community **[Discord poll](https://discord.gg/cMTGE9QCja)**. Come vote!
+> **43 mod builds** for NeoForge, Fabric and Forge across **Minecraft 1.18.2 – 26.3**, plus a **server plugin** for Spigot, Paper and Purpur **1.19 – 26.3** that works with plain vanilla clients. Singleplayer **and** servers.
 
 ---
 
-## 💬 Join the community — help shape the GUI
+## ✨ Features
 
-The big **in-game GUI** is being designed **by the community**: its style,
-layout and features will be decided by polls on the Discord. The more people
-vote, the better the GUI everyone gets.
-
-**👉 [Join the JustQuests Discord](https://discord.gg/cMTGE9QCja)** to:
-
-- 🗳️ **Vote on the upcoming GUI** — style, layout and which features land first
-- 🛟 Get **support**, report bugs and follow update news
-- 👀 See **sneak peeks** and try **early builds** before release
-
-In-game you can run `/quest discord` anytime to get the invite.
-
----
-
-## ✨ What JustQuests does
-
-- **In-game quest book (GUI)** — press **J** to browse quests, track objective
-  progress, and accept with a click (**MC 1.20.1+**, singleplayer and servers).
-  Grouped by category or status, a pixel icon for every quest, a search
-  field and a stats page. The full `/quest` command set works everywhere.
-- **Quest tracker** — your pinned (or newest) active quests and their goals
-  in a corner of the screen; press **H** to turn it on or off.
-- **Ready to play** — ships with a built-in quest progression you can start
-  right away, no setup required.
-- **Lightweight** — tiny and fast, with no heavy dependencies.
-- **Make your own quests** — drop them in a simple per-world JSON file or a
-  datapack. No restart needed: the file reloads automatically as you edit it.
-- **Speaks the player's language** — quest text can be written in multiple
-  languages, and item/mob/block names show up translated for each player
-  automatically (per-player language on 1.20.2+; English on older versions).
-- **Persistent progress** — saved per world, kept across sessions and
-  through death.
-- **Server-friendly** — runs server-side with per-world storage; stays out
-  of the way of other mods and UI overhauls.
+- **📖 Quest book** — press **J** to browse quests, follow progress bars and accept, abandon or claim with a click. Grouped by category or status, a pixel icon for every quest, a search field and a stats page.
+- **📍 Quest tracker** — your pinned (or newest) quests and their goals in a corner of the screen. **H** turns it on or off, a button in the quest book moves it to another corner.
+- **🎁 Claim your rewards** — a finished quest waits with its rewards until you claim them: in the quest book, with the button in chat or with `/quest claim`. Quests can offer a **choice of rewards** — you pick one when claiming. Server owners who want the old way switch to instant rewards.
+- **👥 Team quests** — a quest marked `"team": true` belongs to a whole team: anyone takes it, everyone's actions count, and every member gets the rewards — also members who were offline. Make a team with `/quest team`, or use your scoreboard team (`/team`).
+- **🎒 Ready to play** — 25 built-in quests. Server owners can hide them with `/quest mainquests off`.
+- **🎲 Generated quests** — a fresh board every 12 hours. Every quest is checked to be doable on your version and mod set, sized to a sensible amount of play time and paid with a fitting reward: gather, mine, craft, hunt, enchant, brew and more. Nether and End quests appear once players have been there. Three difficulty levels.
+- **🧩 Mod support** — with **Farmer's Delight, Create, Mekanism, The Twilight Forest, Botania, Applied Energistics 2, Immersive Engineering, Biomes O' Plenty, Alex's Mobs, Tinkers' Construct** or **Ars Nouveau** installed, the board also offers quests for their content.
+- **🏁 First come, first served** — on servers a generated quest someone accepted is taken. The quest book shows *Taken by Steve* or *Reserved for you*.
+- **🌍 Five languages** — the quest book, every chat message, the built-in quests and the generated quests come in **English, German, French, Spanish and Japanese**. Every player reads their own game language.
+- **✍️ Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads by itself while you edit it. 15 objective types, 8 reward types, item tags and item filters (enchantments, potions, names).
+- **🔐 Permissions** — LuckPerms & co. get a node for every command, and a quest can be limited to players with a permission.
+- **🔗 Quest logic** — prerequisites and chains, repeatable quests with cooldowns, "all" or "any" objectives, categories.
+- **🛠️ For server owners** — completion broadcast, stats and leaderboard, admin commands, a self-test and a per-world `settings.json`.
 
 ---
 
-## 🧩 Objective & reward types
+## 🖥️ Server plugin (Spigot, Paper, Purpur)
 
-Quests are built from these objectives — mix and match, and choose whether a
-quest needs **all** objectives or just **any one** of them:
+The same quests on a plugin server — players join with a **plain vanilla client**, nothing to install.
 
-- **collect_item** – gather items (mining, harvesting, mob drops)
-- **mine_block** – break blocks of a type
-- **craft_item** – craft a given item (crafting table or stonecutter)
-- **smelt_item** – smelt items in a furnace
+- **Quest book as a chest menu** — new players get a quest book item; right-click it or type `/quest`. The tracker is a **boss bar**.
+- **The same quests** — built-in quests, datapack quests, `custom-quests.json`, all objective and reward types, claiming, reward choices, team quests, permissions and the five languages.
+- **A bigger generator for servers** — a board that grows with your player count, **personal daily quests** for every player, harder **weekly quests**, and a **weekly server goal** everyone works on together, with the same reward for every helper. Rewards with a choice of three, a lucky bonus, streak bonuses and money through your economy plugin.
+- **Extras** — announcements with harmless fireworks, **quest givers** (`/quest npc set`: a villager or armor stand opens the quest book) and **PlaceholderAPI** placeholders for scoreboards and tab lists.
+- **Moving from the mod** — a world played with the mod keeps its progress, custom quests and teams on the plugin server.
+
+Pick the jar for your server version:
+
+- `JustQuests-plugin-1.19` — Minecraft 1.19 – 1.20.6 (Java 17+)
+- `JustQuests-plugin-1.21` — Minecraft 1.21 – 1.21.11 (Java 21+)
+- `JustQuests-plugin-26.1` — Minecraft 26.1 – 26.3 (Java 25)
+
+---
+
+## 🧩 Objectives & rewards
+
+**Objectives:**
+- **collect_item** – pick up items (mining, harvesting, mob drops)
+- **craft_item** – craft an item (crafting table or stonecutter)
+- **smelt_item** – take items out of a furnace
 - **consume_item** – eat or drink an item
-- **enchant_item** – enchant items at an enchanting table
-- **use_item** – use an item (throw, place, apply, look through…) — only uses that do something count
+- **enchant_item** – enchant an item at an enchanting table
+- **use_item** – use an item (throw, place, apply…)
+- **mine_block** – break blocks
 - **place_block** – place blocks
-- **kill_mob** – defeat entities of a type
+- **kill_mob** – defeat mobs
 - **tame_animal** – tame animals
-- **breed_animal** – breed animals of a type
+- **breed_animal** – breed animals
 - **reach_level** – reach an XP level
-- **reach_location** – arrive at a position (optionally in a set dimension)
-- **visit_dimension** – enter a dimension (vanilla **or** modded, by id)
+- **reach_location** – arrive at a position
+- **visit_dimension** – enter a dimension (vanilla **or** modded)
 - **gain_advancement** – earn an advancement
 
-Item, block and mob objectives accept a single id (`minecraft:oak_log`) or a **tag**
-(`#minecraft:logs`); item objectives can also be narrowed by **enchantments**, **potion** or
-**custom name** — the same JSON on every Minecraft version.
+Items, blocks and mobs accept an id (`minecraft:oak_log`) or a **tag** (`#minecraft:logs`); items can also filter by enchantments, potion or name.
 
-Rewards:
-
+**Rewards:**
 - **give_item** – hand over items
-- **loot_table** – roll a loot table for a random reward
-- **xp** – give experience points
-- **effect** – apply a potion effect
-- **message** – send the player a message (per-language supported)
-- **title** – a big on-screen title with optional subtitle
-- **command** – run any command as the player (`{player}` is substituted) —
-  covers economy payouts, effects and more with **no** hard dependency
-
-**Quest logic:** quests can require other quests first (`requires` →
-chains, with a locked teaser until unlocked), and can be **repeatable**
-with an optional cooldown (e.g. daily quests).
+- **loot_table** – roll a loot table
+- **xp** – experience points
+- **effect** – a potion effect
+- **message** – a chat message (per-language)
+- **title** – a big on-screen title
+- **command** – run any command for the player (`{player}` is replaced) — economy payouts and more, with **no** hard dependency
+- **choice** – the player picks one of several rewards
 
 ---
 
 ## 🎮 Commands
 
-| Command | What it does |
-|---------|--------------|
-| `/quest list [category]` | List all quests (grouped by category), or just one category |
-| `/quest categories` | List the categories and how many quests each has |
-| `/quest stats` | Your personal stats (completed %, per category, dates) |
-| `/quest leaderboard` | Server top 10 by quests completed |
-| `/quest accept <id>` | Start a quest (with tab completion) |
-| `/quest progress` | Show your active quests and how far along you are |
-| `/quest abandon <id>` | Drop an active quest (suggests your active ones) |
-| `/quest discord` | Get the community Discord invite (vote on the GUI!) |
-| `/quest reload` | *(OP)* reload custom quests |
-| `/quest test` | *(OP)* run a self-test and write a diagnostics report |
-| `/quest admin view\|reset\|complete <player>` | *(OP)* manage a player's quest progress |
+- `/quest list [category]` – all quests, grouped by category
+- `/quest accept <id>` / `/quest abandon <id>` – start or drop a quest
+- `/quest progress` – your active quests
+- `/quest claim [id]` – take the rewards of finished quests
+- `/quest team [create|invite|accept|leave|kick]` – your team for team quests
+- `/quest stats` / `/quest leaderboard` – your stats / the server's top 10
+- `/quest discord` – the community Discord invite
 
-**Server admins:** quest completions are announced to everyone by default
-(toggle in `<world>/justquests/settings.json`).
+**Operators:**
+- `/quest reload` – reload custom quests and settings
+- `/quest mainquests on|off` – show or hide the built-in quests
+- `/quest difficulty [easy|normal|hard]` – difficulty of generated quests
+- `/quest reroll` – a new board of generated quests now
+- `/quest generator status|stats|preview|explain|release` – inspect the generator, free a taken quest
+- `/quest admin view|reset|complete <player>` – manage a player's progress
+- `/quest test` – self-test with a diagnostics report
 
-Quest ids support **tab completion** — `accept` suggests every available
-quest, `abandon` suggests only the ones you've taken.
+The plugin adds `/quest track`, `/quest bossbar`, `/quest book`, `/quest goal` and `/quest npc`.
 
 ---
 
 ## ✍️ Custom quests
 
-On first launch, JustQuests writes a `custom-quests.json` file into your
-world folder (`<world>/justquests/`) with an explained example and blank
-slots to fill in. Save the file and your quests appear in-game within a few
-seconds — no restart. A custom quest overrides a datapack quest with the
-same id.
+On first start JustQuests writes `<world>/justquests/custom-quests.json` with an explained example and blank slots. Save the file and your quests appear in-game within seconds — no restart. A custom quest overrides a datapack quest with the same id.
 
-Quest titles and descriptions can be a plain string:
+Titles and descriptions can be a plain string or a per-language map:
 
 ```json
-"title": "Mining Trip",
-"description": "Mine 20 iron ore."
+"title": { "en_us": "Mining Trip", "de_de": "Bergbau-Ausflug" }
 ```
 
-…**or** a per-language map keyed by language code (`en_us`, `de_de`,
-`fr_fr`, …), so a single quest reads correctly for everyone:
-
-```json
-"title": { "en_us": "Mining Trip", "de_de": "<German title here>" },
-"description": { "en_us": "Mine 20 iron ore.", "de_de": "<German text here>" }
-```
-
-Each player sees their own client language, falling back to English.
-
----
-
-## 📦 Built-in quests
-
-JustQuests ships with **25 ready-to-play quests** across categories
-(gathering, farming, combat, building, crafting, exploration, challenges,
-survival, daily) — each in **English, German, French and Spanish** out of
-the box, so you can jump in right away. A sample:
-
-| Quest | Goal | Reward |
-|-------|------|--------|
-| First Steps | 16 oak logs | 4 bread |
-| Stone Age | 32 cobblestone | 16 torches, stone pickaxe |
-| Master Miner | mine 64 stone | iron pickaxe |
-| Home Builder | place 64 oak planks | 16 torches |
-| Animal Friend | tame a wolf | 16 bones |
-| Into the Nether | enter the Nether | 4 obsidian |
-| Level Up | reach XP level 20 | XP + Strength |
-| Prospector | mine 3 diamond ore | mystery loot |
-| Daily Bread | eat 3 bread (repeatable, 24h) | emerald |
-| …and 16 more | | |
-
-> **Good to know:** `collect_item` counts items **picked up** (mining,
-> harvesting, mob drops). To track items the player makes, use `craft_item`.
->
-> **Want to make your own?** A full
-> [example datapack](https://github.com/ErikEdits/JustQuests/tree/main/docs/example-datapack)
-> with one quest per objective & reward type is on GitHub.
+A full [example datapack](https://github.com/ErikEdits/JustQuests/tree/main/docs/example-datapack) with one quest for every objective and reward type is on GitHub, and the [README](https://github.com/ErikEdits/JustQuests#readme) explains every field and setting.
 
 ---
 
 ## 📥 Installation
 
-1. Install your loader for your Minecraft version:
-   **NeoForge**, **Fabric** (+ **[Fabric API](https://modrinth.com/mod/fabric-api)**),
-   or **Forge**.
-2. Download the JustQuests jar that matches **your loader and version** — the
-   file name says which, e.g. `JustQuests-fabric-1.20.1-0.2.1.jar` or
-   `JustQuests-neoforge-1.21.1-0.2.1.jar` — into your `mods` folder.
-3. Launch the game, press **J** for the quest book (1.20.1+) or run
-   `/quest list`.
+**Mod:**
+1. Install **NeoForge**, **Fabric** (+ **Fabric API**) or **Forge** for your Minecraft version.
+2. Download the jar for **your loader and exact version** — the file name says which, e.g. `JustQuests-fabric-1.21.1-0.4.0.jar` — into your `mods` folder.
+3. Start the game and press **J**, or run `/quest list`.
+
+Install the mod on the server **and** on the clients.
+
+**Plugin:** put the plugin jar for your server version into `plugins/` and start the server. Players need nothing.
 
 ---
 
 ## ✅ Compatibility
 
-Pick the jar for your loader **and** exact Minecraft version:
-
-- **NeoForge:** 1.20.4, 1.20.6, and 1.21 – 1.21.11
-- **Fabric** *(requires Fabric API)*: 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4,
-  1.20.6, and 1.21 – 1.21.11
+- **NeoForge:** 1.20.4, 1.20.6, 1.21 – 1.21.11, 26.1.2, 26.2
+- **Fabric** *(needs Fabric API)*: 1.18.2, 1.19.2, 1.19.4, 1.20.1, 1.20.4, 1.20.6, 1.21 – 1.21.11, 26.1 – 26.3
 - **Forge:** 1.18.2, 1.19.2, 1.19.4, 1.20.1
-
-- **Environment:** singleplayer **and** servers (runs server-side)
-- **GUI:** on 1.20.1 and newer; 1.18/1.19 are **command-only** (the full
-  `/quest` set and all quest tracking still work)
-
-*Why the gaps?* NeoForge only exists from 1.20.2 up, so 1.18–1.20.1 are
-covered by Fabric/Forge. Forge and NeoForge split at 1.20.1, so 1.20.2+ is
-served by NeoForge (and Fabric) rather than duplicating it on Forge.
+- **Spigot / Paper / Purpur (plugin):** 1.19 – 1.21.11, 26.1 – 26.3
+- **Quest book** on 1.20.1 and newer. 1.18 and 1.19 are command-only — quests, tracking and rewards work the same.
+- Minecraft 26.x needs **Java 25**.
 
 ---
 
-## 🗺️ Roadmap
+## 💬 Community
 
-JustQuests is built step by step. Already shipped: a deep set of objective
-and reward types, item tags, quest modes & categories, per-world custom
-quests with live reload, multi-language quest text, and now **NeoForge,
-Fabric and Forge** across 1.18–1.21.
-
-Planned next:
-
-- **Final GUI design**: chosen from 3 mockups by a
-  [Discord](https://discord.gg/cMTGE9QCja) community vote, with the polished
-  textures, a claim button, choice rewards, an optional HUD tracker — and
-  **multiplayer** support (the current GUI is singleplayer)
-- **Server & QoL**: difficulty settings and permission gating
-- **Automatic quest generator**: rotating, registry-aware generated quests
-- **Wider reach**: a Paper/Bukkit plugin edition
-
-Feedback shapes the priorities — bug reports and suggestions are very
-welcome on the [issue tracker](https://github.com/ErikEdits/JustQuests/issues).
+**[Join the JustQuests Discord](https://discord.gg/cMTGE9QCja)** for support, update news and sneak peeks — or run `/quest discord` in-game. Bug reports and ideas are very welcome on the [issue tracker](https://github.com/ErikEdits/JustQuests/issues) or on Discord.
 
 ---
 
 ## 📄 License
 
-Released under the **GNU LGPL v3**. Free to use in any modpack, no
-permission needed. Modified versions and forks must stay open source
-under the same license.
+Released under the **GNU LGPL v3**. Free to use in any modpack, no permission needed. Modified versions must stay open source under the same license.
 
-**💬 Community & GUI polls:** https://discord.gg/cMTGE9QCja
 **Source & issues:** https://github.com/ErikEdits/JustQuests

@@ -8,7 +8,7 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.3.5** — see the [changelog](CHANGELOG.md).
+Current version: **0.4.0** — see the [changelog](CHANGELOG.md).
 
 ## Features
 
@@ -58,7 +58,7 @@ server-only - see [Server plugin](#server-plugin-spigot-paper-purpur).
 2. Download the jar for **your loader and exact version** from
    [Modrinth](https://modrinth.com/mod/justquests) or the
    [GitHub releases](https://github.com/ErikEdits/JustQuests/releases) — the file name says which,
-   e.g. `JustQuests-fabric-1.21.1-0.3.5.jar` — and put it into `mods/`.
+   e.g. `JustQuests-fabric-1.21.1-0.4.0.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
 ## Server plugin (Spigot, Paper, Purpur)
