@@ -27,6 +27,17 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
                     List<Objective> objectives, List<Reward> rewards, Material icon, String permission,
                     boolean team) {
 
+    /**
+     * The first folder of a quest's path, used as its category when it names none: "ns:mining/iron"
+     * (data/ns/justquests/quests/mining/iron.json or quests/mining/iron.json) is in "mining". Null
+     * for a quest that is not in a folder.
+     */
+    static String folder(String id) {
+        String path = id.substring(id.indexOf(':') + 1);
+        int slash = path.indexOf('/');
+        return slash > 0 ? path.substring(0, slash) : null;
+    }
+
     public static Quest parse(String id, JsonObject o) {
         if (!o.has("title")) throw new IllegalArgumentException("missing \"title\"");
         List<Objective> objectives = new ArrayList<>();
@@ -54,7 +65,7 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
         return new Quest(id,
             LocalizedText.parse(o.get("title")),
             o.has("description") ? LocalizedText.parse(o.get("description")) : LocalizedText.EMPTY,
-            o.has("category") ? o.get("category").getAsString() : team ? "team" : "datapack",
+            o.has("category") ? o.get("category").getAsString() : folder(id) != null ? folder(id) : team ? "team" : "datapack",
             o.has("mode") && "any".equalsIgnoreCase(o.get("mode").getAsString()),
             List.copyOf(requires),
             o.has("repeatable") && o.get("repeatable").getAsBoolean(),

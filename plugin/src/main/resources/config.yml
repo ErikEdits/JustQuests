@@ -13,8 +13,8 @@ completionToast: true
 # /quest claim). false pays rewards out the moment a quest is finished. Quests with a reward
 # choice always wait, since the player has to pick.
 claimRewards: true
-# The quests that come with JustQuests (and quests from datapacks). false hides them; custom and
-# generated quests stay. Also /quest mainquests on|off.
+# The 25 quests that come with JustQuests. false hides them; your datapack, custom and generated
+# quests stay. Also /quest mainquests on|off.
 mainQuests: true
 
 questBook:

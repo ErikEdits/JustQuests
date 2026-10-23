@@ -42,11 +42,23 @@ public class QuestManager extends SimpleJsonResourceReloadListener<Quest> {
             } else if (quest.objectives().stream().anyMatch(o -> o.requiredCount() <= 0)) {
                 JustQuests.LOG.warn("Quest {} has an objective with count <= 0 - skipping", id);
             } else {
-                loaded.put(id, quest);
+                loaded.put(id, quest.withFolderCategory(id.getPath()));
             }
         });
         this.datapackQuests = loaded;
         JustQuests.LOG.info("Loaded {} quests", loaded.size());
+    }
+
+    /** The quests bundled with the mod (data/justquests/justquests/quests/): the ones mainQuests hides. */
+    private static final java.util.Set<String> BUILT_IN = java.util.Set.of(
+        "achiever", "animal_friend", "cattle_rancher", "craftsman", "daily_bread", "deep_down",
+        "ender_seeker", "first_steps", "fuel_for_the_fire", "green_thumb", "hearty_meal",
+        "home_builder", "hot_stuff", "into_the_nether", "iron_harvest", "level_up", "lumberjack",
+        "master_miner", "monster_hunter", "prospector", "seasoned_miner", "shine_bright", "slayer",
+        "stone_age", "the_smelter");
+
+    private static boolean builtIn(Identifier id) {
+        return "justquests".equals(id.getNamespace()) && BUILT_IN.contains(id.getPath());
     }
 
     /** Replaces the custom (world-file) quests. Precedence: custom > datapack. */
@@ -62,9 +74,8 @@ public class QuestManager extends SimpleJsonResourceReloadListener<Quest> {
     /** All quests, custom overriding datapack on a shared id. */
     public Map<Identifier, Quest> getQuests() {
         Map<Identifier, Quest> merged = new HashMap<>();
-        if (com.erikedits.justquests.storage.WorldSettings.mainQuests()) {
-            merged.putAll(datapackQuests);
-        }
+        boolean main = com.erikedits.justquests.storage.WorldSettings.mainQuests();
+        datapackQuests.forEach((id, q) -> { if (main || !builtIn(id)) merged.put(id, q); });
         merged.putAll(customQuests);   // custom overrides datapack on a shared id
         merged.putAll(generatedQuests);
         return Collections.unmodifiableMap(merged);
@@ -73,7 +84,7 @@ public class QuestManager extends SimpleJsonResourceReloadListener<Quest> {
     public Quest get(Identifier id) {
         Quest custom = customQuests.get(id);
         if (custom != null) return custom;
-        if (com.erikedits.justquests.storage.WorldSettings.mainQuests()) {
+        if (com.erikedits.justquests.storage.WorldSettings.mainQuests() || !builtIn(id)) {
             Quest datapack = datapackQuests.get(id);
             if (datapack != null) return datapack;
         }

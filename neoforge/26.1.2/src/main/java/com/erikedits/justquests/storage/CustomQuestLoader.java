@@ -75,7 +75,7 @@ public final class CustomQuestLoader {
                                 : Identifier.fromNamespaceAndPath("justquests", key);
                             Quest.CODEC.parse(JsonOps.INSTANCE, obj)
                                 .resultOrPartial(err -> JustQuests.LOG.error("Custom quest {} invalid: {}", key, err))
-                                .ifPresent(q -> custom.put(id, q));
+                                .ifPresent(q -> custom.put(id, q.withFolderCategory(id.getPath())));
                         } catch (Exception ex) {
                             JustQuests.LOG.error("Custom quest {} failed: {}", key, ex.getMessage());
                         }

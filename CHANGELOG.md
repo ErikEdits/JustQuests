@@ -3,6 +3,24 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.1] - in progress
+
+### Added
+- **Settings for every world: `config/justquests.json`.** Any key of a world's `settings.json`
+  set there applies to every world of the game or server and wins over the world's own file, so a
+  modpack can ship, for example, `"generatedQuests": false`. Commands can't change a key set there
+  and say so. The file is created with an explanation on first start. (Requested on GitHub.)
+- **Folders are categories:** a quest in a sub-folder of a datapack's `justquests/quests/` (also
+  the plugin's `quests/` folder, or a key like `"mining/iron"` in `custom-quests.json`) that names
+  no `category` gets the folder as its category - `quests/mining/iron.json` is in "mining". Deeper
+  folders only sort the files. (Requested on GitHub.)
+
+### Changed
+- `mainQuests: false` (and `/quest mainquests off`) now hides only the 25 built-in quests; quests
+  from your own datapacks stay. Before, it hid every datapack quest. Mod and plugin.
+- A category without a translation reads in chat as it does in the quest book: "mob_drops" shows as
+  "Mob drops".
+
 ## [0.4.0] - 2026-10-12
 
 ### Added

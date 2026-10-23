@@ -122,6 +122,7 @@
   "justquests.claim.expired": "§eYour generated quest expired and was released: §f%s",
   "justquests.difficulty.show": "§7Generated-quest difficulty: §f%s§7. Change it with /quest difficulty easy|normal|hard.",
   "justquests.difficulty.set": "§aDifficulty set to %s §7- applies from the next rotation or /quest reroll.",
+  "justquests.settings.global": "%s is set for every world in config/justquests.json - change it there.",
   "justquests.mainquests.status": "§7Main quests are currently %s§7. Use /quest mainquests on|off to change.",
   "justquests.mainquests.enabled": "§aMain quests enabled.",
   "justquests.mainquests.disabled": "§eMain quests disabled §7(hidden from /quest list and the quest book).",

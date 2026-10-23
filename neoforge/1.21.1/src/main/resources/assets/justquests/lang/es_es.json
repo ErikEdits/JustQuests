@@ -122,6 +122,7 @@
   "justquests.claim.expired": "§eTu misión generada caducó y fue liberada: §f%s",
   "justquests.difficulty.show": "§7Dificultad de las misiones generadas: §f%s§7. Cámbiala con /quest difficulty easy|normal|hard.",
   "justquests.difficulty.set": "§aDificultad ajustada a %s §7- se aplica desde la próxima rotación o /quest reroll.",
+  "justquests.settings.global": "%s está fijado para todos los mundos en config/justquests.json; cámbialo allí.",
   "justquests.mainquests.status": "§7Las misiones principales están ahora %s§7. Usa /quest mainquests on|off para cambiarlo.",
   "justquests.mainquests.enabled": "§aMisiones principales activadas.",
   "justquests.mainquests.disabled": "§eMisiones principales desactivadas §7(ocultas en /quest list y en el libro de misiones).",

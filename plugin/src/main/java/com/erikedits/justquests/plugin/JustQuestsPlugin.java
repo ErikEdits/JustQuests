@@ -237,7 +237,10 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     /** A category's name: translated for the bundled ones, the id itself for pack-defined ones. */
     public String categoryName(String lang, String category) {
         String key = "justquests.category." + category.toLowerCase(Locale.ROOT);
-        return Lang.has(key) ? Text.legacy(lang, key) : category;
+        if (Lang.has(key)) return Text.legacy(lang, key);
+        // a pack's own category (also a datapack folder): "mob_drops" -> "Mob drops", as in the mod
+        String s = category.replace('_', ' ');
+        return s.isEmpty() ? s : Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
     /** {rank, players} by completed quests, or null without any. */

@@ -594,6 +594,10 @@ public class QuestCommand {
     }
 
     private static int difficultySet(CommandContext<CommandSourceStack> ctx, String value) {
+        if (com.erikedits.justquests.storage.WorldSettings.global("difficulty")) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.settings.global", "difficulty"));
+            return 0;
+        }
         com.erikedits.justquests.storage.WorldSettings.setDifficulty(value);
         net.minecraft.server.MinecraftServer server = ctx.getSource().getServer();
         if (server != null) com.erikedits.justquests.storage.WorldSettings.save(server);
@@ -614,6 +618,10 @@ public class QuestCommand {
     }
 
     private static int setMainQuests(CommandContext<CommandSourceStack> ctx, boolean enabled) {
+        if (com.erikedits.justquests.storage.WorldSettings.global("mainQuests")) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.settings.global", "mainQuests"));
+            return 0;
+        }
         com.erikedits.justquests.storage.WorldSettings.setMainQuests(enabled);
         net.minecraft.server.MinecraftServer server = ctx.getSource().getServer();
         if (server != null) {

@@ -23,7 +23,7 @@ import java.util.List;
  * singleplayer and on servers (singleplayer uses the integrated server's world path).
  */
 public final class WorldSettings {
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     private static boolean discordWelcome = true;
     private static boolean announceCompletions = true;
@@ -46,7 +46,16 @@ public final class WorldSettings {
     private static boolean generatorAdaptiveBalancing = false;
     private static boolean generatorStats = true;
 
+    /** the world's settings.json as read (its own values, kept when config/justquests.json overrides one) */
+    private static JsonObject world = new JsonObject();
+    /** config/justquests.json: settings for every world of this game or server */
+    private static JsonObject global = new JsonObject();
+
     private WorldSettings() {}
+
+    private static Path globalFile() {
+        return net.minecraftforge.fml.loading.FMLPaths.CONFIGDIR.get().resolve("justquests.json");
+    }
 
     private static Path file(MinecraftServer server) {
         return server.getWorldPath(LevelResource.ROOT).resolve("justquests").resolve("settings.json");
@@ -54,35 +63,16 @@ public final class WorldSettings {
 
     public static void load(MinecraftServer server) {
         reset(); // defaults first, in case a previous world set them
+        world = new JsonObject();
+        global = new JsonObject();
         Path file = file(server);
         try {
             if (Files.exists(file)) {
                 JsonElement root = JsonParser.parseString(Files.readString(file));
                 if (root.isJsonObject()) {
                     JsonObject o = root.getAsJsonObject();
-                    if (o.has("discordWelcome")) discordWelcome = o.get("discordWelcome").getAsBoolean();
-                    if (o.has("announceCompletions")) announceCompletions = o.get("announceCompletions").getAsBoolean();
-                    if (o.has("completionSound")) completionSound = o.get("completionSound").getAsBoolean();
-                    if (o.has("completionToast")) completionToast = o.get("completionToast").getAsBoolean();
-                    if (o.has("claimRewards")) claimRewards = o.get("claimRewards").getAsBoolean();
-                    if (o.has("mainQuests")) mainQuests = o.get("mainQuests").getAsBoolean();
-                    if (o.has("generatedQuests")) generatedQuests = o.get("generatedQuests").getAsBoolean();
-                    if (o.has("generatedCount")) generatedCount = o.get("generatedCount").getAsInt();
-                    if (o.has("difficulty")) difficulty = o.get("difficulty").getAsString();
-                    if (o.has("generatorExclusiveClaims")) generatorExclusiveClaims = o.get("generatorExclusiveClaims").getAsBoolean();
-                    if (o.has("generatorOneActivePerPlayer")) generatorOneActivePerPlayer = o.get("generatorOneActivePerPlayer").getAsBoolean();
-                    if (o.has("generatorReleaseOnAbandon")) generatorReleaseOnAbandon = o.get("generatorReleaseOnAbandon").getAsBoolean();
-                    if (o.has("generatorClaimExpiryHours")) generatorClaimExpiryHours = o.get("generatorClaimExpiryHours").getAsInt();
-                    if (o.has("generatorCycleHours")) generatorCycleHours = o.get("generatorCycleHours").getAsInt();
-                    if (o.has("generatorCycleAnchorHour")) generatorCycleAnchorHour = o.get("generatorCycleAnchorHour").getAsInt();
-                    if (o.has("generatorModdedShare")) generatorModdedShare = o.get("generatorModdedShare").getAsDouble();
-                    if (o.has("generatorDisabledProfiles") && o.get("generatorDisabledProfiles").isJsonArray()) {
-                        List<String> list = new ArrayList<>();
-                        for (JsonElement e : o.getAsJsonArray("generatorDisabledProfiles")) list.add(e.getAsString());
-                        generatorDisabledProfiles = list;
-                    }
-                    if (o.has("generatorAdaptiveBalancing")) generatorAdaptiveBalancing = o.get("generatorAdaptiveBalancing").getAsBoolean();
-                    if (o.has("generatorStats")) generatorStats = o.get("generatorStats").getAsBoolean();
+                    world = o;
+                    read(o);
                     // options added by a newer version are written into the file, so owners see them
                     if (toJson().keySet().stream().anyMatch(k -> !o.has(k))) save(server);
                 }
@@ -93,6 +83,71 @@ public final class WorldSettings {
         } catch (Exception e) {
             JustQuests.LOG.error("Could not load settings.json", e);
         }
+        loadGlobal();
+    }
+
+    /**
+     * config/justquests.json: settings for every world of this game or server (a modpack can ship
+     * it). Each key there wins over the world's settings.json; keys left out are decided per world.
+     * A template is written when the file is missing.
+     */
+    private static void loadGlobal() {
+        Path file = globalFile();
+        try {
+            if (!Files.exists(file)) {
+                Files.createDirectories(file.getParent());
+                JsonObject template = new JsonObject();
+                template.addProperty("_help", GLOBAL_HELP);
+                Files.writeString(file, GSON.toJson(template));
+                return;
+            }
+            JsonElement root = JsonParser.parseString(Files.readString(file));
+            if (!root.isJsonObject()) return;
+            JsonObject known = toJson();
+            for (java.util.Map.Entry<String, JsonElement> e : root.getAsJsonObject().entrySet()) {
+                if (e.getKey().startsWith("_")) continue;
+                if (known.has(e.getKey())) global.add(e.getKey(), e.getValue());
+                else JustQuests.LOG.warn("config/justquests.json: unknown setting {}", e.getKey());
+            }
+            if (global.size() > 0) {
+                read(global);
+                JustQuests.LOG.info("config/justquests.json sets {} for every world", global.keySet());
+            }
+        } catch (Exception e) {
+            JustQuests.LOG.error("Could not read config/justquests.json", e);
+        }
+    }
+
+    /** Whether config/justquests.json sets this key for every world (commands can't change it then). */
+    public static boolean global(String key) {
+        return global.has(key);
+    }
+
+    /** One settings object (a world's settings.json or config/justquests.json) over the current values. */
+    private static void read(JsonObject o) {
+        if (o.has("discordWelcome")) discordWelcome = o.get("discordWelcome").getAsBoolean();
+        if (o.has("announceCompletions")) announceCompletions = o.get("announceCompletions").getAsBoolean();
+        if (o.has("completionSound")) completionSound = o.get("completionSound").getAsBoolean();
+        if (o.has("completionToast")) completionToast = o.get("completionToast").getAsBoolean();
+        if (o.has("claimRewards")) claimRewards = o.get("claimRewards").getAsBoolean();
+        if (o.has("mainQuests")) mainQuests = o.get("mainQuests").getAsBoolean();
+        if (o.has("generatedQuests")) generatedQuests = o.get("generatedQuests").getAsBoolean();
+        if (o.has("generatedCount")) generatedCount = o.get("generatedCount").getAsInt();
+        if (o.has("difficulty")) difficulty = o.get("difficulty").getAsString();
+        if (o.has("generatorExclusiveClaims")) generatorExclusiveClaims = o.get("generatorExclusiveClaims").getAsBoolean();
+        if (o.has("generatorOneActivePerPlayer")) generatorOneActivePerPlayer = o.get("generatorOneActivePerPlayer").getAsBoolean();
+        if (o.has("generatorReleaseOnAbandon")) generatorReleaseOnAbandon = o.get("generatorReleaseOnAbandon").getAsBoolean();
+        if (o.has("generatorClaimExpiryHours")) generatorClaimExpiryHours = o.get("generatorClaimExpiryHours").getAsInt();
+        if (o.has("generatorCycleHours")) generatorCycleHours = o.get("generatorCycleHours").getAsInt();
+        if (o.has("generatorCycleAnchorHour")) generatorCycleAnchorHour = o.get("generatorCycleAnchorHour").getAsInt();
+        if (o.has("generatorModdedShare")) generatorModdedShare = o.get("generatorModdedShare").getAsDouble();
+        if (o.has("generatorDisabledProfiles") && o.get("generatorDisabledProfiles").isJsonArray()) {
+            List<String> list = new ArrayList<>();
+            for (JsonElement e : o.getAsJsonArray("generatorDisabledProfiles")) list.add(e.getAsString());
+            generatorDisabledProfiles = list;
+        }
+        if (o.has("generatorAdaptiveBalancing")) generatorAdaptiveBalancing = o.get("generatorAdaptiveBalancing").getAsBoolean();
+        if (o.has("generatorStats")) generatorStats = o.get("generatorStats").getAsBoolean();
     }
 
     /** Persist the current settings back to the world file. */
@@ -100,10 +155,29 @@ public final class WorldSettings {
         Path file = file(server);
         try {
             Files.createDirectories(file.getParent());
-            Files.writeString(file, GSON.toJson(toJson()));
+            Files.writeString(file, GSON.toJson(worldJson()));
         } catch (Exception e) {
             JustQuests.LOG.error("Could not save settings.json", e);
         }
+    }
+
+    /** What the world's file keeps: the current values, but the world's own one for each key config/justquests.json sets. */
+    private static JsonObject worldJson() {
+        JsonObject o = toJson();
+        if (global.size() == 0) return o;
+        JsonObject defaults = defaults();
+        for (String k : global.keySet()) {
+            if (o.has(k)) o.add(k, world.has(k) ? world.get(k) : defaults.get(k));
+        }
+        return o;
+    }
+
+    private static JsonObject defaults() {
+        JsonObject now = toJson();
+        reset();
+        JsonObject d = toJson();
+        read(now);
+        return d;
     }
 
     private static JsonObject toJson() {
@@ -145,7 +219,10 @@ public final class WorldSettings {
 
     public static boolean mainQuests() { return mainQuests; }
 
-    public static void setMainQuests(boolean value) { mainQuests = value; }
+    public static void setMainQuests(boolean value) {
+        mainQuests = value;
+        world.addProperty("mainQuests", value);
+    }
 
     public static boolean generatedQuests() { return generatedQuests; }
 
@@ -153,7 +230,10 @@ public final class WorldSettings {
 
     public static String difficulty() { return difficulty; }
 
-    public static void setDifficulty(String value) { difficulty = value; }
+    public static void setDifficulty(String value) {
+        difficulty = value;
+        world.addProperty("difficulty", value);
+    }
 
     public static boolean generatorExclusiveClaims() { return generatorExclusiveClaims; }
 
@@ -204,7 +284,7 @@ public final class WorldSettings {
         + "completionSound: play a sound for the player on completion. "
         + "completionToast: show an action-bar toast on completion. "
         + "claimRewards: finished quests wait until the player claims their rewards (Claim button in the quest book, or /quest claim); false pays rewards out the moment a quest is finished. "
-        + "mainQuests: the built-in quests bundled with the mod; set false to hide them from /quest list and the quest book (custom + generated quests stay). Toggle in-game with /quest mainquests on|off (OP). "
+        + "mainQuests: the built-in quests bundled with the mod; set false to hide them from /quest list and the quest book (your own datapack quests, custom and generated quests stay). Toggle in-game with /quest mainquests on|off (OP). "
         + "generatedQuests: auto-generate a rotating set of quests (category 'generated'); set false to disable. "
         + "generatedCount: how many generated quests per cycle (1-20). "
         + "difficulty: easy, normal or hard - scales effort, content tiers, objectives and rewards of generated quests (OP: /quest difficulty). "
@@ -216,5 +296,12 @@ public final class WorldSettings {
         + "generatorModdedShare: share (0-1) of generated quests that use content from supported mods. "
         + "generatorDisabledProfiles: mod profiles to ignore, e.g. [\"create\"]. "
         + "generatorAdaptiveBalancing: let the generator tune its time estimates from how long quests really take. "
-        + "generatorStats: record anonymous statistics in justquests/generator_v2_stats.json.";
+        + "generatorStats: record anonymous statistics in justquests/generator_v2_stats.json. "
+        + "A key set in config/justquests.json applies to every world and wins over this file.";
+
+    private static final String GLOBAL_HELP =
+        "JustQuests settings for every world of this game or server. Put any key of a world's "
+        + "justquests/settings.json here, for example \"generatedQuests\": false or \"mainQuests\": false - it then "
+        + "applies to all worlds and wins over each world's own settings.json. Keys left out are decided per world. "
+        + "Modpacks can ship this file. After a change: /quest reload.";
 }

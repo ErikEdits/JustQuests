@@ -147,7 +147,7 @@ Files in `plugins/JustQuests/`:
 |---|---|
 | `config.yml` | the settings (the same names as the mod's `settings.json`), plus the quest book and boss bar options |
 | `custom-quests.json` | your own quests in the mod's format; reloads by itself when saved |
-| `quests/` | your own quests, one per file (`quests/my_quest.json` becomes `justquests:my_quest`) |
+| `quests/` | your own quests, one per file (`quests/my_quest.json` becomes `justquests:my_quest`; in a sub-folder, the folder is the category) |
 | `players/<uuid>.json` | each player's progress |
 | `generator/` | the generator's state: board, personal and weekly quests, server goal |
 
@@ -186,6 +186,13 @@ Put a quest file into a datapack at `data/<namespace>/justquests/quests/<id>.jso
 `/reload`), or add it to `<world>/justquests/custom-quests.json`, which is created on first start
 with an explained example and reloads automatically. A custom quest overrides a datapack quest
 with the same id.
+
+**Folders are categories.** Quests can be sorted into sub-folders: a quest in
+`data/<namespace>/justquests/quests/mining/iron.json` has the id `<namespace>:mining/iron`, and when
+it names no `category`, the folder is its category ("mining"; the quest book shows "Mining", a
+resource pack can translate it with the key `justquests.category.mining`). Deeper folders only sort
+the files - the first folder is the category. The same works for keys like `"mining/iron"` in
+`custom-quests.json` and for sub-folders of the plugin's `quests/` folder.
 
 ```json
 {
@@ -273,6 +280,17 @@ type, plus tags, filters, chains, repeatable and multi-language quests.
 Each world has `<world>/justquests/settings.json` (with a `_help` text inside). Change it and run
 `/quest reload`.
 
+**Settings for every world:** `config/justquests.json` (next to the other mod configs, created on
+first start) takes the same keys. A key set there applies to every world of the game or server and
+wins over each world's own `settings.json` - for example a modpack can ship
+
+```json
+{ "generatedQuests": false, "mainQuests": false }
+```
+
+to give its players only the pack's own quests. Keys left out are decided per world. A command can't
+change a key that is set there (`/quest mainquests`, `/quest difficulty` say so).
+
 Each player's own book and tracker options live in `config/justquests-client.json`: `hud`
 (tracker on/off), `hudCorner` (`top_left`, `top_right`, `bottom_left`, `bottom_right`), `hudMax`
 (quests shown, 1–5), `byStatus`, `hideCompleted` and `pinned` (also set by the book's buttons;
@@ -280,7 +298,7 @@ the corner button in the title bar moves the tracker).
 
 | Key | Default | Meaning |
 |---|---|---|
-| `mainQuests` | `true` | Show the built-in quests |
+| `mainQuests` | `true` | Show the 25 built-in quests (quests from your own datapacks always show) |
 | `announceCompletions` | `true` | Tell everyone when a player finishes a quest |
 | `completionSound` / `completionToast` | `true` | Sound and action-bar message on completion |
 | `claimRewards` | `true` | Finished quests wait until the player claims the rewards; `false` pays them out at once |

@@ -122,6 +122,7 @@
   "justquests.claim.expired": "§eあなたの自動生成クエストは期限切れで解放されました: §f%s",
   "justquests.difficulty.show": "§7自動生成クエストの難易度: §f%s§7。/quest difficulty easy|normal|hard で変更できます。",
   "justquests.difficulty.set": "§a難易度を%sにしました §7- 次のローテーションか /quest reroll から適用されます。",
+  "justquests.settings.global": "%s は config/justquests.json で全ワールド共通に設定されています。そちらで変更してください。",
   "justquests.mainquests.status": "§7メインクエストは現在%s§7です。/quest mainquests on|off で切り替えられます。",
   "justquests.mainquests.enabled": "§aメインクエストを有効にしました。",
   "justquests.mainquests.disabled": "§eメインクエストを無効にしました §7(/quest list とクエストブックに表示されません)。",

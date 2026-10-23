@@ -122,6 +122,7 @@
   "justquests.claim.expired": "§eDeine generierte Quest ist abgelaufen und wurde freigegeben: §f%s",
   "justquests.difficulty.show": "§7Schwierigkeit generierter Quests: §f%s§7. Ändern mit /quest difficulty easy|normal|hard.",
   "justquests.difficulty.set": "§aSchwierigkeit auf %s gesetzt §7- gilt ab der nächsten Rotation oder /quest reroll.",
+  "justquests.settings.global": "%s ist in config/justquests.json für alle Welten festgelegt – bitte dort ändern.",
   "justquests.mainquests.status": "§7Hauptquests sind gerade %s§7. Mit /quest mainquests on|off änderst du das.",
   "justquests.mainquests.enabled": "§aHauptquests eingeschaltet.",
   "justquests.mainquests.disabled": "§eHauptquests ausgeschaltet §7(nicht mehr in /quest list und im Questbuch).",

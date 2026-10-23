@@ -35,7 +35,7 @@ import java.util.zip.ZipFile;
  *   <li>generated quests (own namespace).</li>
  * </ul>
  * Custom quests override bundled and datapack quests with the same id. The main-quest switch hides
- * bundled and datapack quests, as in the mod.
+ * the bundled quests only, as in the mod; datapack quests stay.
  */
 public final class QuestRegistry {
     private static final String DATAPACK_DIR = "justquests/quests/";
@@ -69,13 +69,11 @@ public final class QuestRegistry {
         generated = Map.copyOf(quests);
     }
 
-    /** All visible quests: custom over datapack over bundled (those two only while main quests are on), plus generated. */
+    /** All visible quests: custom over datapack over bundled (only while main quests are on), plus generated. */
     public Map<String, Quest> all() {
         Map<String, Quest> merged = new HashMap<>();
-        if (mainQuests.getAsBoolean()) {
-            merged.putAll(bundled);
-            merged.putAll(datapack);
-        }
+        if (mainQuests.getAsBoolean()) merged.putAll(bundled);
+        merged.putAll(datapack);
         merged.putAll(custom);
         merged.putAll(generated);
         return Collections.unmodifiableMap(merged);
@@ -84,9 +82,9 @@ public final class QuestRegistry {
     public Quest get(String id) {
         Quest q = custom.get(id);
         if (q != null) return q;
+        q = datapack.get(id);
+        if (q != null) return q;
         if (mainQuests.getAsBoolean()) {
-            q = datapack.get(id);
-            if (q != null) return q;
             q = bundled.get(id);
             if (q != null) return q;
         }

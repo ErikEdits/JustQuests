@@ -122,6 +122,7 @@
   "justquests.claim.expired": "§eTa quête générée a expiré et a été libérée : §f%s",
   "justquests.difficulty.show": "§7Difficulté des quêtes générées : §f%s§7. Change-la avec /quest difficulty easy|normal|hard.",
   "justquests.difficulty.set": "§aDifficulté réglée sur %s §7- s'applique à la prochaine rotation ou après /quest reroll.",
+  "justquests.settings.global": "%s est défini pour tous les mondes dans config/justquests.json – modifiez-le là-bas.",
   "justquests.mainquests.status": "§7Les quêtes principales sont actuellement %s§7. Utilise /quest mainquests on|off pour changer.",
   "justquests.mainquests.enabled": "§aQuêtes principales activées.",
   "justquests.mainquests.disabled": "§eQuêtes principales désactivées §7(masquées dans /quest list et le livre de quêtes).",

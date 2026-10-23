@@ -36,7 +36,10 @@ public final class Msg {
     /** A category: translated for the bundled categories, the id itself for pack-defined ones. */
     public static MutableComponent category(String category) {
         String key = "justquests.category." + category.toLowerCase(Locale.ROOT);
-        return English.has(key) ? tr(key) : lit(category);
+        if (English.has(key)) return tr(key);
+        // a pack's own category (also a datapack folder): "mob_drops" -> "Mob drops", as in the quest book
+        String s = category.replace('_', ' ');
+        return lit(s.isEmpty() ? s : Character.toUpperCase(s.charAt(0)) + s.substring(1));
     }
 
     /** The vanilla dimensions by name ("the Nether"), others by id. */

@@ -39,4 +39,17 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         // team quests have their own category unless they name one
         if (team && "datapack".equals(category)) category = "team";
     }
+
+    /**
+     * A quest in a sub-folder that names no category gets the folder as its category:
+     * data/&lt;ns&gt;/justquests/quests/mining/iron.json (id path "mining/iron") is in "mining". Deeper
+     * folders only sort the files; the first one is the category.
+     */
+    public Quest withFolderCategory(String path) {
+        int slash = path.indexOf('/');
+        boolean named = !"datapack".equals(category) && !(team && "team".equals(category));
+        if (slash <= 0 || named) return this;
+        return new Quest(title, description, path.substring(0, slash), mode, requires, repeatable, cooldownHours,
+            sort, objectives, rewards, icon, permission, team);
+    }
 }
