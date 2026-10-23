@@ -3,7 +3,7 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [0.4.1] - in progress
+## [0.4.1] - 2026-10-23
 
 ### Added
 - **Settings for every world: `config/justquests.json`.** Any key of a world's `settings.json`
