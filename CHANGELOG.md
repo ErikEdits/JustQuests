@@ -25,6 +25,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 - Fabric: `collect_item` didn't count items picked up from the ground when the whole stack went
   into the inventory (only a part taken by a nearly full inventory counted). NeoForge, Forge and
   the plugin were not affected.
+- The `loot_table` reward gave nothing on every version (the loot was rolled without the player,
+  which the game refuses; the server log showed "Loot-table reward failed"). Mod only; the plugin
+  was not affected.
+- `gain_advancement` counts an advancement the player already had before taking the quest. Before,
+  such a quest could never be finished. Mod and plugin.
 - Quest book: quests added to or changed in `custom-quests.json` while the world runs show up in
   the book at once (the file reloaded by itself, but the book only got the new list after a
   rejoin or `/quest reload`).

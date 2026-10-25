@@ -23,6 +23,12 @@ public record GainAdvancementObjective(Identifier advancement) implements QuestO
         return id.equals(this.advancement);
     }
 
+    /** Whether the player has the advancement already - one earned before the quest was taken counts too. */
+    public boolean earnedBy(net.minecraft.server.level.ServerPlayer player) {
+        var adv = player.level().getServer().getAdvancements().get(advancement);
+        return adv != null && player.getAdvancements().getOrStartProgress(adv).isDone();
+    }
+
     @Override
     public int requiredCount() {
         return 1;

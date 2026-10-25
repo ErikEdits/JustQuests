@@ -180,6 +180,8 @@ public final class QuestListener implements Listener {
         progress().advance(player, o -> {
             if (o instanceof Objective.Location l && l.isAt(player)) return 1;
             if (o instanceof Objective.Level l && l.reached(player)) return 1;
+            // an advancement the player already has counts too, also one earned before the quest was taken
+            if (o instanceof Objective.Advancement a && a.earnedBy(player)) return 1;
             return 0;
         });
     }

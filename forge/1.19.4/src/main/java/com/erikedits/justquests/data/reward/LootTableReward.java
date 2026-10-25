@@ -35,6 +35,8 @@ public record LootTableReward(ResourceLocation table) implements QuestReward {
             LootTable lootTable = level.getServer().getLootTables().get(table);
             LootContext context = new LootContext.Builder(level)
                 .withParameter(LootContextParams.ORIGIN, player.position())
+                // the GIFT set needs the player as this_entity too, else create() throws and nothing is given
+                .withParameter(LootContextParams.THIS_ENTITY, player)
                 .create(LootContextParamSets.GIFT);
             lootTable.getRandomItems(context, stack -> {
                 if (!player.getInventory().add(stack)) {

@@ -177,6 +177,12 @@ public sealed interface Objective {
         public String label() { return "Earn advancement " + advancement; }
         public BaseComponent display(String lang) { return Text.tr(lang, "justquests.goal.advancement", Text.advancement(advancement)); }
         public Material icon() { return Material.KNOWLEDGE_BOOK; }
+
+        /** Whether the player has the advancement already - one earned before the quest was taken counts too. */
+        public boolean earnedBy(Player p) {
+            org.bukkit.advancement.Advancement adv = org.bukkit.Bukkit.getAdvancement(Matchers.key(advancement));
+            return adv != null && p.getAdvancementProgress(adv).isDone();
+        }
     }
 
     record Dimension(String dimension) implements Objective {

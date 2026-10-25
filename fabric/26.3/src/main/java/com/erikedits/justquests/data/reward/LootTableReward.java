@@ -37,6 +37,8 @@ public record LootTableReward(Identifier table) implements QuestReward {
             LootTable lootTable = level.getServer().reloadableRegistries().getLootTable(key);
             LootParams params = new LootParams.Builder(level)
                 .withParameter(LootContextParams.ORIGIN, player.position())
+                // the GIFT set needs the player as this_entity too, else create() throws and nothing is given
+                .withParameter(LootContextParams.THIS_ENTITY, player)
                 .create(LootContextParamSets.GIFT);
             lootTable.getRandomItems(params, stack -> {
                 if (!player.getInventory().add(stack)) {

@@ -197,6 +197,8 @@ public class PlayerQuestEvents {
             QuestProgressService.advance(player, obj -> {
                 if (obj instanceof ReachLocationObjective r && r.isAt(player)) return 1;
                 if (obj instanceof ReachLevelObjective l && l.reached(player)) return 1;
+            // an advancement the player already has counts too, also one earned before the quest was taken
+            if (obj instanceof GainAdvancementObjective g && g.earnedBy(player)) return 1;
                 return 0;
             });
         }
