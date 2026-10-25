@@ -11,12 +11,14 @@ import net.minecraft.world.item.ItemStack;
  * Collect X of an item (or any item in a tag). The "item" field accepts a
  * single id (`minecraft:oak_log`) or a tag (`#minecraft:logs`) — Q38.
  */
-public record CollectItemObjective(ItemMatcher item, int count) implements QuestObjective {
+public record CollectItemObjective(ItemMatcher item, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:collect_item";
 
     public static final MapCodec<CollectItemObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         ItemMatcher.CODEC.fieldOf("item").forGetter(CollectItemObjective::item),
-        Codec.INT.fieldOf("count").forGetter(CollectItemObjective::count)
+        Codec.INT.fieldOf("count").forGetter(CollectItemObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(CollectItemObjective::distinct)
     ).apply(instance, CollectItemObjective::new));
 
     @Override

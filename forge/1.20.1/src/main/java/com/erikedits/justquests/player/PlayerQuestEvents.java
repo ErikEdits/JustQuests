@@ -46,7 +46,7 @@ public class PlayerQuestEvents {
         if (!(event.getEntity() instanceof ServerPlayer serverPlayer)) return;
         ItemStack picked = event.getStack();
         if (picked.isEmpty()) return;
-        QuestProgressService.advance(serverPlayer, obj ->
+        QuestProgressService.advance(serverPlayer, QuestProgressService.kind(picked), obj ->
             (obj instanceof CollectItemObjective c && c.matches(picked)) ? picked.getCount() : 0);
     }
 
@@ -54,9 +54,11 @@ public class PlayerQuestEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onMobKill(LivingDeathEvent event) {
         if (event.isCanceled()) return;
+        // reset_on_death: quests with that option start over when the player dies
+        if (event.getEntity() instanceof ServerPlayer dead) QuestProgressService.died(dead);
         if (event.getSource().getEntity() instanceof ServerPlayer killer) {
             EntityType<?> type = event.getEntity().getType();
-            QuestProgressService.advance(killer, obj ->
+            QuestProgressService.advance(killer, QuestProgressService.kind(type), obj ->
                 (obj instanceof KillMobObjective k && k.matches(type)) ? 1 : 0);
         }
     }
@@ -67,7 +69,7 @@ public class PlayerQuestEvents {
         if (event.isCanceled()) return;
         if (event.getEntity() instanceof ServerPlayer player) {
             Block block = event.getPlacedBlock().getBlock();
-            QuestProgressService.advance(player, obj ->
+            QuestProgressService.advance(player, QuestProgressService.kind(block), obj ->
                 (obj instanceof PlaceBlockObjective p && p.matches(block)) ? 1 : 0);
         }
     }
@@ -78,7 +80,7 @@ public class PlayerQuestEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             ItemStack crafted = event.getCrafting();
             if (crafted.isEmpty()) return;
-            QuestProgressService.advance(player, obj ->
+            QuestProgressService.advance(player, QuestProgressService.kind(crafted), obj ->
                 (obj instanceof CraftItemObjective c && c.matches(crafted)) ? crafted.getCount() : 0);
         }
     }
@@ -89,7 +91,7 @@ public class PlayerQuestEvents {
         if (event.isCanceled()) return;
         if (event.getTamer() instanceof ServerPlayer player) {
             EntityType<?> type = event.getAnimal().getType();
-            QuestProgressService.advance(player, obj ->
+            QuestProgressService.advance(player, QuestProgressService.kind(type), obj ->
                 (obj instanceof TameAnimalObjective t && t.matches(type)) ? 1 : 0);
         }
     }
@@ -120,7 +122,7 @@ public class PlayerQuestEvents {
         if (event.isCanceled()) return;
         if (event.getPlayer() instanceof ServerPlayer player) {
             Block block = event.getState().getBlock();
-            QuestProgressService.advance(player, obj ->
+            QuestProgressService.advance(player, QuestProgressService.kind(block), obj ->
                 (obj instanceof MineBlockObjective m && m.matches(block)) ? 1 : 0);
         }
     }
@@ -131,7 +133,7 @@ public class PlayerQuestEvents {
         if (event.isCanceled()) return;
         if (event.getCausedByPlayer() instanceof ServerPlayer player && event.getParentA() != null) {
             EntityType<?> type = event.getParentA().getType();
-            QuestProgressService.advance(player, obj ->
+            QuestProgressService.advance(player, QuestProgressService.kind(type), obj ->
                 (obj instanceof BreedAnimalObjective b && b.matches(type)) ? 1 : 0);
         }
     }
@@ -142,7 +144,7 @@ public class PlayerQuestEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             ItemStack item = event.getItem();
             if (item.isEmpty()) return;
-            QuestProgressService.advance(player, obj ->
+            QuestProgressService.advance(player, QuestProgressService.kind(item), obj ->
                 (obj instanceof ConsumeItemObjective c && c.matches(item)) ? 1 : 0);
         }
     }
@@ -153,7 +155,7 @@ public class PlayerQuestEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             ItemStack smelted = event.getSmelting();
             if (smelted.isEmpty()) return;
-            QuestProgressService.advance(player, obj ->
+            QuestProgressService.advance(player, QuestProgressService.kind(smelted), obj ->
                 (obj instanceof SmeltItemObjective s && s.matches(smelted)) ? smelted.getCount() : 0);
         }
     }

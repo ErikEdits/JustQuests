@@ -29,6 +29,9 @@ Features:
 - `ex_block_mob_tags` — `#tag` for a block and a mob goal.
 - `ex_mode_any` — finish on **any** objective (`"mode": "any"`).
 - `ex_chain_1` + `ex_chain_2` — `requires` (a locked chain).
+- `ex_requires_min` — `requires_min`: unlocks once any 2 of 3 listed quests are done.
+- `ex_reset_on_death` — `reset_on_death`: dying sets the progress back to zero.
+- `ex_distinct` — `"distinct": true`: 5 *different* flowers, each kind counts once.
 - `ex_repeatable` — `repeatable` + `cooldown_hours`.
 - `ex_multilang` — `title`/`description` as a per-language map.
 - `ex_icon` — `icon`: the item the quest book shows (default: from the first goal).

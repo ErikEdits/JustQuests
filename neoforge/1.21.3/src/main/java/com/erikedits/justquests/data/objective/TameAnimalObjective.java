@@ -9,12 +9,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 
 /** Tame X animals of a given type. */
-public record TameAnimalObjective(EntityMatcher entity, int count) implements QuestObjective {
+public record TameAnimalObjective(EntityMatcher entity, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:tame_animal";
 
     public static final MapCodec<TameAnimalObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         EntityMatcher.CODEC.fieldOf("entity").forGetter(TameAnimalObjective::entity),
-        Codec.INT.fieldOf("count").forGetter(TameAnimalObjective::count)
+        Codec.INT.fieldOf("count").forGetter(TameAnimalObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(TameAnimalObjective::distinct)
     ).apply(instance, TameAnimalObjective::new));
 
     @Override

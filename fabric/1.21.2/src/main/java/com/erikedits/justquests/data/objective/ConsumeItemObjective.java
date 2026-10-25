@@ -8,12 +8,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 /** Eat or drink (finish using) X of an item, or any item in a tag. */
-public record ConsumeItemObjective(ItemMatcher item, int count) implements QuestObjective {
+public record ConsumeItemObjective(ItemMatcher item, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:consume_item";
 
     public static final MapCodec<ConsumeItemObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         ItemMatcher.CODEC.fieldOf("item").forGetter(ConsumeItemObjective::item),
-        Codec.INT.fieldOf("count").forGetter(ConsumeItemObjective::count)
+        Codec.INT.fieldOf("count").forGetter(ConsumeItemObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(ConsumeItemObjective::distinct)
     ).apply(instance, ConsumeItemObjective::new));
 
     @Override

@@ -43,6 +43,11 @@ public final class QuestListener implements Listener {
         return plugin.progress();
     }
 
+    /** The kind a distinct objective counts once: "minecraft:apple", "minecraft:zombie". */
+    private static String kind(org.bukkit.Keyed thing) {
+        return thing.getKey().toString();
+    }
+
     /** collect_item: what actually left the ground. */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPickup(EntityPickupItemEvent e) {
@@ -50,30 +55,32 @@ public final class QuestListener implements Listener {
         ItemStack stack = e.getItem().getItemStack();
         int picked = stack.getAmount() - Math.max(0, e.getRemaining());
         if (picked <= 0) return;
-        progress().advance(player, o -> o instanceof Objective.Collect c && c.item().matches(stack) ? picked : 0);
+        progress().advance(player, kind(stack.getType()), o -> o instanceof Objective.Collect c && c.item().matches(stack) ? picked : 0);
     }
 
     /** kill_mob */
     @EventHandler(priority = EventPriority.MONITOR)
     public void onDeath(EntityDeathEvent e) {
+        // reset_on_death: quests with that option start over when the player dies
+        if (e.getEntity() instanceof Player dead) progress().died(dead);
         Player killer = e.getEntity().getKiller();
         if (killer == null) return;
         EntityType type = e.getEntityType();
-        progress().advance(killer, o -> o instanceof Objective.Kill k && k.entity().matches(type) ? 1 : 0);
+        progress().advance(killer, kind(type), o -> o instanceof Objective.Kill k && k.entity().matches(type) ? 1 : 0);
     }
 
     /** place_block */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlace(BlockPlaceEvent e) {
         Material block = e.getBlockPlaced().getType();
-        progress().advance(e.getPlayer(), o -> o instanceof Objective.Place p && p.block().matches(block) ? 1 : 0);
+        progress().advance(e.getPlayer(), kind(block), o -> o instanceof Objective.Place p && p.block().matches(block) ? 1 : 0);
     }
 
     /** mine_block: the break itself, distinct from collect_item. */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBreak(BlockBreakEvent e) {
         Material block = e.getBlock().getType();
-        progress().advance(e.getPlayer(), o -> o instanceof Objective.Mine m && m.block().matches(block) ? 1 : 0);
+        progress().advance(e.getPlayer(), kind(block), o -> o instanceof Objective.Mine m && m.block().matches(block) ? 1 : 0);
     }
 
     /**
@@ -89,11 +96,11 @@ public final class QuestListener implements Listener {
         Material item = e.getMaterial();
         Player player = e.getPlayer();
         if (e.getStatistic() == Statistic.USE_ITEM) {
-            progress().advance(player, o -> o instanceof Objective.Use u && u.item().matchesType(item) ? gained : 0);
+            progress().advance(player, kind(item), o -> o instanceof Objective.Use u && u.item().matchesType(item) ? gained : 0);
         } else if (e.getStatistic() == Statistic.CRAFT_ITEM) {
             InventoryType open = player.getOpenInventory().getTopInventory().getType();
             if (open != InventoryType.CRAFTING && open != InventoryType.WORKBENCH && open != InventoryType.STONECUTTER) return;
-            progress().advance(player, o -> o instanceof Objective.Craft c && c.item().matchesType(item) ? gained : 0);
+            progress().advance(player, kind(item), o -> o instanceof Objective.Craft c && c.item().matchesType(item) ? gained : 0);
         }
     }
 
@@ -103,14 +110,14 @@ public final class QuestListener implements Listener {
         ItemStack stack = new ItemStack(e.getItemType());
         int n = e.getItemAmount();
         if (n <= 0) return;
-        progress().advance(e.getPlayer(), o -> o instanceof Objective.Smelt s && s.item().matches(stack) ? n : 0);
+        progress().advance(e.getPlayer(), kind(e.getItemType()), o -> o instanceof Objective.Smelt s && s.item().matches(stack) ? n : 0);
     }
 
     /** consume_item */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onConsume(PlayerItemConsumeEvent e) {
         ItemStack stack = e.getItem();
-        progress().advance(e.getPlayer(), o -> o instanceof Objective.Consume c && c.item().matches(stack) ? 1 : 0);
+        progress().advance(e.getPlayer(), kind(stack.getType()), o -> o instanceof Objective.Consume c && c.item().matches(stack) ? 1 : 0);
     }
 
     /** enchant_item: an enchanting-table enchant, matched on the item as it comes out. */
@@ -125,7 +132,7 @@ public final class QuestListener implements Listener {
             });
             result.setItemMeta(meta);
         }
-        progress().advance(e.getEnchanter(), o -> o instanceof Objective.Enchant en
+        progress().advance(e.getEnchanter(), kind(e.getItem().getType()), o -> o instanceof Objective.Enchant en
             && (en.item() == null || en.item().matches(result) || en.item().matches(e.getItem())) ? 1 : 0);
     }
 
@@ -134,7 +141,7 @@ public final class QuestListener implements Listener {
     public void onTame(EntityTameEvent e) {
         if (!(e.getOwner() instanceof Player player)) return;
         EntityType type = e.getEntityType();
-        progress().advance(player, o -> o instanceof Objective.Tame t && t.entity().matches(type) ? 1 : 0);
+        progress().advance(player, kind(type), o -> o instanceof Objective.Tame t && t.entity().matches(type) ? 1 : 0);
     }
 
     /** breed_animal: matched on the species of the parents. */
@@ -142,7 +149,7 @@ public final class QuestListener implements Listener {
     public void onBreed(EntityBreedEvent e) {
         if (!(e.getBreeder() instanceof Player player)) return;
         EntityType type = e.getMother().getType();
-        progress().advance(player, o -> o instanceof Objective.Breed b && b.entity().matches(type) ? 1 : 0);
+        progress().advance(player, kind(type), o -> o instanceof Objective.Breed b && b.entity().matches(type) ? 1 : 0);
     }
 
     /** gain_advancement */

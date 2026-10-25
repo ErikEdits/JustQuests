@@ -125,6 +125,11 @@ public final class QuestIcons {
 
     /** "Mine Iron Ore": the objective without its count (the book and the HUD show "5/8" in front). */
     public static Component label(QuestObjective o) {
+        Component goal = goal(o);
+        return o.distinct() ? Component.translatable("justquests.goal.distinct", goal) : goal;
+    }
+
+    private static Component goal(QuestObjective o) {
         if (o instanceof CollectItemObjective c) return verb("collect", c.item().name());
         if (o instanceof CraftItemObjective c) return verb("craft", c.item().name());
         if (o instanceof SmeltItemObjective s) return verb("smelt", s.item().name());

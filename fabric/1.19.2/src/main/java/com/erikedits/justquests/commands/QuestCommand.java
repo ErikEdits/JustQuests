@@ -217,9 +217,13 @@ public class QuestCommand {
                 src.sendSuccess(Msg.tr("justquests.list.category", Msg.category(cat)), false);
             }
 
-            // locked teaser: a prerequisite isn't completed yet (Q28)
+            // locked teaser: a prerequisite isn't completed yet (Q28); with requires_min, how many
+            if (data != null && !quest.unlocked(data::isCompleted) && quest.needed() < quest.requires().size()) {
+                src.sendSuccess(Msg.tr("justquests.list.locked_of", id, quest.title().get(lang), quest.needed(), quest.requires().size()), false);
+                continue;
+            }
             ResourceLocation missing = null;
-            if (data != null) {
+            if (data != null && !quest.unlocked(data::isCompleted)) {
                 for (ResourceLocation req : quest.requires()) {
                     if (!data.isCompleted(req)) { missing = req; break; }
                 }
@@ -232,8 +236,9 @@ public class QuestCommand {
             }
 
             Component repeatTag = quest.repeatable() ? Msg.tr("justquests.list.repeatable") : Msg.empty();
+            Component deathTag = quest.resetOnDeath() ? Msg.tr("justquests.list.reset_on_death") : Msg.empty();
             Component claimTag = viewer == null ? Msg.empty() : com.erikedits.justquests.generator.GenV2.claimTag(id, viewer.getUUID());
-            src.sendSuccess(Msg.tr("justquests.list.entry", id, quest.title().get(lang)).append(repeatTag).append(claimTag).append(rewardTag(data, id)), false);
+            src.sendSuccess(Msg.tr("justquests.list.entry", id, quest.title().get(lang)).append(repeatTag).append(deathTag).append(claimTag).append(rewardTag(data, id)), false);
             String desc = quest.description().get(lang);
             if (!desc.isBlank()) {
                 src.sendSuccess(Msg.tr("justquests.list.description", desc), false);
@@ -243,7 +248,7 @@ public class QuestCommand {
             List<QuestObjective> objs = quest.objectives();
             for (int i = 0; i < objs.size(); i++) {
                 if (i > 0) goals.append(Component.literal("§7, §f"));
-                goals.append(objs.get(i).display());
+                goals.append(QuestObjective.shown(objs.get(i)));
             }
             src.sendSuccess(goals, false);
 
@@ -253,7 +258,7 @@ public class QuestCommand {
                 if (i > 0) rewards.append(Component.literal("§7, §a"));
                 rewards.append(rs.get(i).display());
             }
-            src.sendSuccess(rewards, false);
+            if (!rs.isEmpty()) src.sendSuccess(rewards, false);   // no empty "Reward:" line
         }
         return entries.size();
     }
@@ -378,7 +383,7 @@ public class QuestCommand {
                 String bar = current >= needed ? "§a✓" : "§7" + current + "/" + needed;
                 final int idx = i;
                 ctx.getSource().sendSuccess(
-                    Component.literal("  " + bar + " §f").append(quest.objectives().get(idx).display()), false);
+                    Component.literal("  " + bar + " §f").append(QuestObjective.shown(quest.objectives().get(idx))), false);
             }
         }
         return data.active.size();
@@ -415,13 +420,20 @@ public class QuestCommand {
             return 0;
         }
 
-        // prerequisites must be completed first (Q28)
-        for (ResourceLocation req : quest.requires()) {
-            if (!data.isCompleted(req)) {
-                Quest reqQuest = QuestManager.INSTANCE.get(req);
-                String reqName = reqQuest != null ? reqQuest.title().get(lang) : req.toString();
-                ctx.getSource().sendFailure(Msg.tr("justquests.accept.locked", reqName));
+        // prerequisites must be completed first (Q28): all of them, or requires_min of them
+        if (!quest.unlocked(data::isCompleted)) {
+            if (quest.needed() < quest.requires().size()) {
+                ctx.getSource().sendFailure(Msg.tr("justquests.accept.locked_of", quest.needed(), quest.requires().size(),
+                    quest.requiredDone(data::isCompleted)));
                 return 0;
+            }
+            for (ResourceLocation req : quest.requires()) {
+                if (!data.isCompleted(req)) {
+                    Quest reqQuest = QuestManager.INSTANCE.get(req);
+                    String reqName = reqQuest != null ? reqQuest.title().get(lang) : req.toString();
+                    ctx.getSource().sendFailure(Msg.tr("justquests.accept.locked", reqName));
+                    return 0;
+                }
             }
         }
 

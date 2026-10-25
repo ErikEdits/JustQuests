@@ -8,12 +8,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 /** Craft X of an item (or any item in a tag). */
-public record CraftItemObjective(ItemMatcher item, int count) implements QuestObjective {
+public record CraftItemObjective(ItemMatcher item, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:craft_item";
 
     public static final MapCodec<CraftItemObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         ItemMatcher.CODEC.fieldOf("item").forGetter(CraftItemObjective::item),
-        Codec.INT.fieldOf("count").forGetter(CraftItemObjective::count)
+        Codec.INT.fieldOf("count").forGetter(CraftItemObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(CraftItemObjective::distinct)
     ).apply(instance, CraftItemObjective::new));
 
     @Override

@@ -122,7 +122,7 @@ public final class TeamQuests {
     }
 
     /** Every event: what it adds to the team's quests. */
-    public static void advance(ServerPlayer player, QuestProgressService.ObjectiveTest test) {
+    public static void advance(ServerPlayer player, String kind, QuestProgressService.ObjectiveTest test) {
         Team team = of(player);
         PlayerQuestData data = team == null ? null : TeamStore.get().peekProgress(team.key());
         if (data == null || data.active.isEmpty()) return;
@@ -135,7 +135,7 @@ public final class TeamQuests {
             boolean all = true, any = false;
             for (int i = 0; i < quest.objectives().size(); i++) {
                 QuestObjective obj = quest.objectives().get(i);
-                int add = test.amount(obj);
+                int add = QuestProgressService.counted(obj, progress, i, kind, test.amount(obj));
                 if (add > 0) {
                     int real = Math.min(add, obj.requiredCount() - progress.get(i));
                     if (real > 0) {
@@ -189,6 +189,26 @@ public final class TeamQuests {
         store.markDirty();
     }
 
+    /** reset_on_death: a member died, so the team's quests with that option start over for everyone. */
+    public static void died(ServerPlayer player) {
+        Team team = of(player);
+        PlayerQuestData data = team == null ? null : TeamStore.get().peekProgress(team.key());
+        if (data == null || data.active.isEmpty()) return;
+        List<Identifier> reset = new ArrayList<>();
+        for (Map.Entry<Identifier, QuestProgress> e : data.active.entrySet()) {
+            Quest quest = QuestManager.INSTANCE.get(e.getKey());
+            if (quest == null || !quest.resetOnDeath() || !e.getValue().hasProgress()) continue;
+            e.getValue().reset();
+            reset.add(e.getKey());
+        }
+        if (reset.isEmpty()) return;
+        TeamStore.get().markDirty();
+        for (ServerPlayer m : onlineMembers(player, team)) {
+            for (Identifier id : reset) send(m, Msg.tr("justquests.reset.death_team", title(id, m), player.getName().getString()));
+            sync(m);
+        }
+    }
+
     /** "Team quest completed: X", with the claim button while the rewards wait. */
     private static Component completed(ServerPlayer p, Identifier id, boolean claim) {
         var line = Msg.tr("justquests.team.completed", title(id, p));
@@ -210,8 +230,14 @@ public final class TeamQuests {
         PlayerQuestData data = TeamStore.get().progress(team.key());
         if (data.isActive(id)) return Result.fail(Msg.tr("justquests.accept.already_active"));
         if (own.isClaimable(id)) return Result.fail(Msg.tr("justquests.accept.claim_first", id.toString()));
-        for (Identifier req : quest.requires()) {
-            if (!own.isCompleted(req)) return Result.fail(Msg.tr("justquests.accept.locked", title(req, player)));
+        if (!quest.unlocked(own::isCompleted)) {
+            if (quest.needed() < quest.requires().size()) {
+                return Result.fail(Msg.tr("justquests.accept.locked_of", quest.needed(), quest.requires().size(),
+                    quest.requiredDone(own::isCompleted)));
+            }
+            for (Identifier req : quest.requires()) {
+                if (!own.isCompleted(req)) return Result.fail(Msg.tr("justquests.accept.locked", title(req, player)));
+            }
         }
         Long done = own.completed.get(id);
         Long teamDone = data.completed.get(id);

@@ -32,32 +32,32 @@ public final class FabricQuestHooks {
     /** collect_item */
     public static void onItemPickup(ServerPlayer player, ItemStack picked, int amount) {
         if (picked.isEmpty() || amount <= 0) return;
-        QuestProgressService.advance(player, obj ->
+        QuestProgressService.advance(player, QuestProgressService.kind(picked), obj ->
             (obj instanceof CollectItemObjective c && c.matches(picked)) ? amount : 0);
     }
 
     /** kill_mob */
     public static void onKill(ServerPlayer killer, EntityType<?> type) {
-        QuestProgressService.advance(killer, obj ->
+        QuestProgressService.advance(killer, QuestProgressService.kind(type), obj ->
             (obj instanceof KillMobObjective k && k.matches(type)) ? 1 : 0);
     }
 
     /** place_block */
     public static void onBlockPlace(ServerPlayer player, Block block) {
-        QuestProgressService.advance(player, obj ->
+        QuestProgressService.advance(player, QuestProgressService.kind(block), obj ->
             (obj instanceof PlaceBlockObjective p && p.matches(block)) ? 1 : 0);
     }
 
     /** craft_item */
     public static void onCraft(ServerPlayer player, ItemStack crafted) {
         if (crafted.isEmpty()) return;
-        QuestProgressService.advance(player, obj ->
+        QuestProgressService.advance(player, QuestProgressService.kind(crafted), obj ->
             (obj instanceof CraftItemObjective c && c.matches(crafted)) ? crafted.getCount() : 0);
     }
 
     /** tame_animal */
     public static void onTame(ServerPlayer player, EntityType<?> type) {
-        QuestProgressService.advance(player, obj ->
+        QuestProgressService.advance(player, QuestProgressService.kind(type), obj ->
             (obj instanceof TameAnimalObjective t && t.matches(type)) ? 1 : 0);
     }
 
@@ -75,27 +75,27 @@ public final class FabricQuestHooks {
 
     /** mine_block */
     public static void onBlockBreak(ServerPlayer player, Block block) {
-        QuestProgressService.advance(player, obj ->
+        QuestProgressService.advance(player, QuestProgressService.kind(block), obj ->
             (obj instanceof MineBlockObjective m && m.matches(block)) ? 1 : 0);
     }
 
     /** breed_animal */
     public static void onBreed(ServerPlayer player, EntityType<?> type) {
-        QuestProgressService.advance(player, obj ->
+        QuestProgressService.advance(player, QuestProgressService.kind(type), obj ->
             (obj instanceof BreedAnimalObjective b && b.matches(type)) ? 1 : 0);
     }
 
     /** consume_item */
     public static void onConsume(ServerPlayer player, ItemStack item) {
         if (item.isEmpty()) return;
-        QuestProgressService.advance(player, obj ->
+        QuestProgressService.advance(player, QuestProgressService.kind(item), obj ->
             (obj instanceof ConsumeItemObjective c && c.matches(item)) ? 1 : 0);
     }
 
     /** smelt_item */
     public static void onSmelt(ServerPlayer player, ItemStack smelted) {
         if (smelted.isEmpty()) return;
-        QuestProgressService.advance(player, obj ->
+        QuestProgressService.advance(player, QuestProgressService.kind(smelted), obj ->
             (obj instanceof SmeltItemObjective s && s.matches(smelted)) ? smelted.getCount() : 0);
     }
 

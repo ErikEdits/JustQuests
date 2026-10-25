@@ -150,13 +150,15 @@ public final class SelfTest {
             PlayerQuestData sample = new PlayerQuestData();
             QuestProgress p = new QuestProgress();
             p.increment(0, 7);
+            p.see(1, "minecraft:apple");   // a kind a distinct objective has counted
             sample.active.put(ResourceLocation.parse("justquests:_selftest"), p);
             sample.completed.put(ResourceLocation.parse("justquests:_done"), 123L);
             JsonElement enc = PlayerQuestData.CODEC.encodeStart(JsonOps.INSTANCE, sample).getOrThrow();
             PlayerQuestData dec = PlayerQuestData.CODEC.parse(JsonOps.INSTANCE, enc).getOrThrow();
             codecOk = dec.active.containsKey(ResourceLocation.parse("justquests:_selftest"))
                    && dec.completed.getOrDefault(ResourceLocation.parse("justquests:_done"), -1L) == 123L
-                   && dec.active.get(ResourceLocation.parse("justquests:_selftest")).get(0) == 7;
+                   && dec.active.get(ResourceLocation.parse("justquests:_selftest")).get(0) == 7
+                   && !dec.active.values().iterator().next().see(1, "minecraft:apple");
             codecMsg = codecOk ? "encode/decode equal" : "round-trip mismatch";
         } catch (Exception ex) { codecOk = false; codecMsg = ex.toString(); }
         check(results, tally, "Codec round-trip (PlayerQuestData)", codecOk, codecMsg);
@@ -238,6 +240,19 @@ public final class SelfTest {
         String rewErr = parsesAll(rewSamples, false);
         check(results, tally, "All reward types parse", rewErr == null,
             rewErr == null ? rewSamples.length + " samples ok" : rewErr);
+
+        // 0.4.2 quest options: requires_min, reset_on_death and a distinct objective
+        boolean optOk;
+        String optMsg;
+        try {
+            String json = "{\"title\":\"T\",\"requires\":[\"justquests:a\",\"justquests:b\",\"justquests:c\"],\"requires_min\":2,"
+                + "\"reset_on_death\":true,\"objectives\":[{\"type\":\"justquests:consume_item\",\"item\":\"minecraft:apple\",\"count\":3,\"distinct\":true}],\"rewards\":[]}";
+            Quest q = Quest.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(json)).getOrThrow();
+            boolean min = q.needed() == 2 && q.unlocked(rid -> !rid.getPath().equals("c")) && !q.unlocked(rid -> rid.getPath().equals("a"));
+            optOk = min && q.resetOnDeath() && q.objectives().get(0).distinct();
+            optMsg = optOk ? "ok" : "requires_min=" + min + " reset_on_death=" + q.resetOnDeath() + " distinct=" + q.objectives().get(0).distinct();
+        } catch (Exception ex) { optOk = false; optMsg = ex.toString(); }
+        check(results, tally, "Quest options (requires_min, reset_on_death, distinct)", optOk, optMsg);
 
         // localized title: plain string still works, per-language map resolves,
         // and an unknown language falls back to English (Q21)

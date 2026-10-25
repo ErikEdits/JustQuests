@@ -1,0 +1,20 @@
+{
+  "title": "Example: no deaths allowed (reset_on_death)",
+  "description": "Kill 10 zombies without dying - dying sets the progress back to zero.",
+  "category": "examples",
+  "reset_on_death": true,
+  "objectives": [
+    {
+      "type": "justquests:kill_mob",
+      "entity": "minecraft:zombie",
+      "count": 10
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:diamond",
+      "count": 2
+    }
+  ]
+}

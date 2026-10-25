@@ -47,6 +47,14 @@ public final class ProgressService {
     private record Step(boolean changed, BaseComponent toast, List<String> completing) {}
 
     public void advance(Player player, Test test) {
+        advance(player, null, test);
+    }
+
+    /**
+     * As {@link #advance(Player, Test)}, for an event about one kind of thing (the id of an item,
+     * block or mob): a distinct objective counts every kind only once.
+     */
+    public void advance(Player player, String kind, Test test) {
         plugin.generated().progress(player, test);
         String lang = Lang.of(player);
         boolean changed = false, completed = false;
@@ -54,7 +62,7 @@ public final class ProgressService {
 
         PlayerData data = plugin.store().peek(player.getUniqueId());
         if (data != null && !data.active.isEmpty()) {
-            Step s = step(data.active, test, lang);
+            Step s = step(data, kind, test, lang);
             for (String id : s.completing()) {
                 Quest quest = plugin.quests().get(id);
                 announce(player, quest, finish(player, data, id, quest));
@@ -68,7 +76,7 @@ public final class ProgressService {
         TeamRef team = plugin.teams().of(player.getUniqueId());
         PlayerData teamData = plugin.teams().peek(team);
         if (teamData != null && !teamData.active.isEmpty()) {
-            Step s = step(teamData.active, test, lang);
+            Step s = step(teamData, kind, test, lang);
             for (String id : s.completing()) finishTeam(player, team, teamData, id, plugin.quests().get(id));
             if (s.changed()) {
                 plugin.teams().markDirty(team);
@@ -86,11 +94,11 @@ public final class ProgressService {
     }
 
     /** Adds what the event counts to each active quest; the quests now complete come back. */
-    private Step step(Map<String, Map<Integer, Integer>> active, Test test, String lang) {
+    private Step step(PlayerData data, String kind, Test test, String lang) {
         boolean changed = false;
         BaseComponent toast = null;
         List<String> completing = new ArrayList<>();
-        for (Map.Entry<String, Map<Integer, Integer>> entry : active.entrySet()) {
+        for (Map.Entry<String, Map<Integer, Integer>> entry : data.active.entrySet()) {
             Quest quest = plugin.quests().get(entry.getKey());
             if (quest == null) continue;
             Map<Integer, Integer> progress = entry.getValue();
@@ -99,12 +107,16 @@ public final class ProgressService {
                 Objective obj = quest.objectives().get(i);
                 int add = test.amount(obj);
                 int have = progress.getOrDefault(i, 0);
+                if (add > 0 && have < obj.requiredCount() && obj.distinct()) {
+                    // a distinct objective counts a kind it has not counted yet, once
+                    add = kind != null && data.see(entry.getKey(), i, kind) ? 1 : 0;
+                }
                 if (add > 0 && have < obj.requiredCount()) {
                     have = Math.min(obj.requiredCount(), have + add);
                     progress.put(i, have);
                     changed = true;
                     if (obj.requiredCount() > 1) {
-                        toast = Text.tr(lang, "justquests.plugin.progress", obj.display(lang), have, obj.requiredCount());
+                        toast = Text.tr(lang, "justquests.plugin.progress", Objective.shown(obj, lang), have, obj.requiredCount());
                     }
                 }
                 if (have >= obj.requiredCount()) any = true;
@@ -113,6 +125,44 @@ public final class ProgressService {
             if (quest.any() ? any : all) completing.add(entry.getKey());
         }
         return new Step(changed, toast, completing);
+    }
+
+    /** reset_on_death: the player died, so their quests and their team's with that option start over. */
+    public void died(Player player) {
+        PlayerData data = plugin.store().peek(player.getUniqueId());
+        List<String> own = data == null ? List.of() : reset(data);
+        if (!own.isEmpty()) {
+            String lang = Lang.of(player);
+            for (String id : own) player.spigot().sendMessage(Text.tr(lang, "justquests.reset.death", title(id, lang)));
+            plugin.store().markDirty(player.getUniqueId());
+        }
+        TeamRef team = plugin.teams().of(player.getUniqueId());
+        PlayerData teamData = plugin.teams().peek(team);
+        List<String> shared = teamData == null ? List.of() : reset(teamData);
+        if (!shared.isEmpty()) {
+            plugin.teams().markDirty(team);
+            for (Player member : plugin.teams().onlineMembers(team)) {
+                String lang = Lang.of(member);
+                for (String id : shared) {
+                    member.spigot().sendMessage(Text.tr(lang, "justquests.reset.death_team", title(id, lang), player.getName()));
+                }
+                plugin.tracker().update(member);
+            }
+        }
+        if (!own.isEmpty()) plugin.tracker().update(player);
+    }
+
+    /** Sets the reset_on_death quests that have progress back to zero; their ids come back. */
+    private List<String> reset(PlayerData data) {
+        List<String> out = new ArrayList<>();
+        for (Map.Entry<String, Map<Integer, Integer>> e : data.active.entrySet()) {
+            Quest quest = plugin.quests().get(e.getKey());
+            if (quest == null || !quest.resetOnDeath() || (e.getValue().isEmpty() && !data.seen.containsKey(e.getKey()))) continue;
+            e.getValue().clear();
+            data.seen.remove(e.getKey());
+            out.add(e.getKey());
+        }
+        return out;
     }
 
     /**
@@ -220,12 +270,31 @@ public final class ProgressService {
 
     // --- actions shared by the commands and the quest book ------------------------------------
 
-    /** The prerequisite the player still misses, or null. */
+    /** A prerequisite the player still misses (the first), or null once enough are done (requires_min). */
     public String missingRequirement(PlayerData data, Quest quest) {
+        if (quest.needed() == 0 || (data != null && quest.unlocked(data::isCompleted))) return null;
         for (String req : quest.requires()) {
             if (data == null || !data.isCompleted(req)) return req;
         }
         return null;
+    }
+
+    /** The book's line for a locked quest: "Needs: X", or with requires_min "Needs 12 of 16 quests (5 done)". */
+    public String lockedLine(String lang, PlayerData data, Quest quest, String missing) {
+        if (quest.needed() < quest.requires().size()) {
+            return Text.legacy(lang, "justquests.book.needs_of", quest.needed(), quest.requires().size(),
+                data == null ? 0 : quest.requiredDone(data::isCompleted));
+        }
+        return Text.legacy(lang, "justquests.book.needs", title(missing, lang));
+    }
+
+    /** Why a quest cannot be accepted yet: the first missing quest, or with requires_min how many. */
+    private BaseComponent locked(String lang, PlayerData data, Quest quest, String missing) {
+        if (quest.needed() < quest.requires().size()) {
+            return Text.tr(lang, "justquests.accept.locked_of", quest.needed(), quest.requires().size(),
+                quest.requiredDone(data::isCompleted));
+        }
+        return Text.tr(lang, "justquests.accept.locked", title(missing, lang));
     }
 
     /** Milliseconds until a repeatable quest can be taken again (0 = now). */
@@ -250,7 +319,7 @@ public final class ProgressService {
         if (data.isActive(id)) return new Result(false, Text.tr(lang, "justquests.accept.already_active"));
         if (data.isClaimable(id)) return new Result(false, Text.tr(lang, "justquests.accept.claim_first", id));
         String missing = missingRequirement(data, quest);
-        if (missing != null) return new Result(false, Text.tr(lang, "justquests.accept.locked", title(missing, lang)));
+        if (missing != null) return new Result(false, locked(lang, data, quest, missing));
         if (data.isCompleted(id)) {
             if (!quest.repeatable()) return new Result(false, Text.tr(lang, "justquests.accept.done"));
             long left = cooldownLeft(data, quest);
@@ -275,7 +344,7 @@ public final class ProgressService {
         if (teamData.isActive(id)) return new Result(false, Text.tr(lang, "justquests.accept.already_active"));
         if (data.isClaimable(id)) return new Result(false, Text.tr(lang, "justquests.accept.claim_first", id));
         String missing = missingRequirement(data, quest);
-        if (missing != null) return new Result(false, Text.tr(lang, "justquests.accept.locked", title(missing, lang)));
+        if (missing != null) return new Result(false, locked(lang, data, quest, missing));
         PlayerData view = plugin.view(player.getUniqueId());
         if (view != null && view.isCompleted(id)) {
             if (!quest.repeatable()) return new Result(false, Text.tr(lang, "justquests.accept.done"));

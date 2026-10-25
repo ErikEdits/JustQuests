@@ -8,7 +8,7 @@
     "FurnaceResultSlotMixin",
     "LivingEntityConsumeMixin",
     "LivingEntityDeathMixin",
-    "LivingEntityTakeMixin",
+    "ItemEntityPickupMixin",
     "PlayerAdvancementsMixin",
     "ResultSlotMixin",
     "TamableAnimalMixin"

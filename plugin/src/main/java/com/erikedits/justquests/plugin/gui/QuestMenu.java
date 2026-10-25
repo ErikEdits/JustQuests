@@ -58,7 +58,7 @@ public final class QuestMenu extends Menu {
         if (status == QuestStatus.LOCKED) {
             String missing = plugin.progress().missingRequirement(data, q);
             List<BaseComponent> lore = new ArrayList<>();
-            if (missing != null) lore.add(Text.lit("§c" + legacy("justquests.book.needs", plugin.progress().title(missing, lang))));
+            if (missing != null) lore.add(Text.lit("§c" + plugin.progress().lockedLine(lang, data, q, missing)));
             String gen = plugin.generated().bookLine(id, player.getUniqueId(), lang);
             if (gen != null) lore.add(Text.lit("§7" + gen));
             set(49, item(Material.IRON_BARS, Text.lit("§8" + legacy("justquests.book.locked")), lore));
@@ -76,7 +76,7 @@ public final class QuestMenu extends Menu {
                 lore.add(Text.lit(bar(have, o.requiredCount())));
             }
             BaseComponent name = Text.lit(done ? "§a" : "§f");
-            name.addExtra(o.display(lang));
+            name.addExtra(Objective.shown(o, lang));
             set(GOAL_SLOTS[i], item(o.icon(), 1, name, lore, done));
         }
 

@@ -38,7 +38,7 @@ public class QuestScreen extends Screen {
     private static final int SEARCH_MIN = 15;
     // darker text reads clearly on the light-grey panes; full alpha, since 1.21.6+ skips text with alpha 0
     private static final int TITLE_DARK = 0xFF161616, TEXT = 0xFF282828, MUTED = 0xFF4C4C4C, HEAD = 0xFF24395C,
-        GOOD = 0xFF2E7D32, WHITE = 0xFFFFFFFF, LIGHT = 0xFFC6C6C6;
+        GOOD = 0xFF2E7D32, WHITE = 0xFFFFFFFF, LIGHT = 0xFFC6C6C6, BAD = 0xFF9E2A2A;
 
     /** Where a quest stands for this player; also the order of the status groups. */
     private enum Status {
@@ -70,6 +70,8 @@ public class QuestScreen extends Screen {
     private String query = "";
     /** The picked option of the selected quest's choice reward (-1 = none yet). */
     private int pick = -1;
+    /** How far the quest page is scrolled down, and how far it can go (found while drawing it). */
+    private int detailScroll, detailMax;
     /** The HUD is previewed in its corner until then (after a click on the corner button). */
     private long cornerPreviewUntil;
     /** Where the choice options were drawn this frame: x, y, w, h, option index. */
@@ -212,7 +214,7 @@ public class QuestScreen extends Screen {
         if (d.isActive(id)) return Status.ACTIVE;
         if (takenByOther(id)) return Status.LOCKED;
         if (d.isCompleted(id) && (!q.repeatable() || cooldownLeft(id, q) > 0)) return Status.COMPLETED;
-        if (!missing(q).isEmpty()) return Status.LOCKED;
+        if (!q.unlocked(data()::isCompleted)) return Status.LOCKED;
         return Status.AVAILABLE;
     }
 
@@ -255,6 +257,8 @@ public class QuestScreen extends Screen {
     private int detailW() { return W - 137 - 9; }
     private int actionX() { return detailX(); }
     private int actionY() { return top + H - 28; }
+    /** The quest page ends above the buttons; below that it scrolls. */
+    private int pageBottom() { return actionY() - 3; }
     private int pinX() { return actionX() + 76; }
     private int clearX() { return left + 44 + 74 - 12; }
     private boolean hasPrev() { return page > 0; }
@@ -395,6 +399,13 @@ public class QuestScreen extends Screen {
         QuestProgress prog = d.active.get(selected);
         Status st = status(selected, q);
 
+        // everything above the buttons scrolls with the mouse wheel once it is taller than the page
+        int viewTop = dy, viewBottom = pageBottom();
+        if (detailMax > 0) dw -= 4;   // room for the scroll bar
+        detailScroll = Math.min(detailScroll, detailMax);
+        g.enableScissor(dx, viewTop, dx + detailW(), viewBottom);
+        dy -= detailScroll;
+
         // icon + title (wraps next to the icon)
         g.renderItem(QuestIcons.of(selected, q), dx, dy);
         var titleLines = this.font.split(Component.literal(q.title().get(lang())), dw - 20);
@@ -419,9 +430,14 @@ public class QuestScreen extends Screen {
             note = I18n.get("justquests.book.claim_note");
             noteColor = GOOD;
         } else if (st == Status.LOCKED && !missing.isEmpty()) {
-            Quest req = ClientQuestData.get(missing.get(0));
-            note = I18n.get("justquests.book.needs", req != null ? req.title().get(lang()) : missing.get(0).getPath())
-                + (missing.size() > 1 ? " +" + (missing.size() - 1) : "");
+            if (q.needed() < q.requires().size()) {
+                // requires_min: any N of the listed quests
+                note = I18n.get("justquests.book.needs_of", q.needed(), q.requires().size(), q.requires().size() - missing.size());
+            } else {
+                Quest req = ClientQuestData.get(missing.get(0));
+                note = I18n.get("justquests.book.needs", req != null ? req.title().get(lang()) : missing.get(0).getPath())
+                    + (missing.size() > 1 ? " +" + (missing.size() - 1) : "");
+            }
         } else if (wait > 0) {
             note = I18n.get("justquests.book.again_in", duration(wait));
         } else if (st == Status.COMPLETED) {
@@ -429,9 +445,9 @@ public class QuestScreen extends Screen {
             note = I18n.get("justquests.book.rewards_received");
             noteColor = GOOD;
         }
-        if (note != null) {
-            g.drawString(this.font, fit(note, dw), dx, dy, noteColor, false);
-            dy += 11;
+        if (note != null) dy = lines(g, note, dx, dy, dw, noteColor) + 1;
+        if (q.resetOnDeath()) {
+            dy = lines(g, I18n.get(q.team() ? "justquests.book.reset_on_death_team" : "justquests.book.reset_on_death"), dx, dy, dw, BAD) + 1;
         }
 
         String desc = q.description().get(lang());
@@ -446,13 +462,13 @@ public class QuestScreen extends Screen {
         dy += 11;
         List<QuestObjective> objs = q.objectives();
         boolean finished = st == Status.COMPLETED || st == Status.CLAIM;
-        for (int i = 0; i < objs.size() && dy < actionY() - 12; i++) {
+        for (int i = 0; i < objs.size(); i++) {
             int need = objs.get(i).requiredCount();
             int cur = finished ? need : prog != null ? Math.min(prog.get(i), need) : 0;
             boolean done = cur >= need;
-            g.drawString(this.font, fit((done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString(), dw),
-                dx, dy, done ? GOOD : TEXT, false);
-            dy += 10;
+            // a long goal wraps onto the next line instead of being cut off
+            dy = lines(g, (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString(), dx, dy, dw,
+                done ? GOOD : TEXT);
             // progress bar
             int barW = Math.min(100, dw);
             blit(g, "progress_track", dx, dy, barW, 6);
@@ -460,30 +476,44 @@ public class QuestScreen extends Screen {
             if (fillW > 0) blitPart(g, "progress_fill", dx, dy, fillW, 6, 100, 6);
             dy += 9;
         }
-        dy += 2;
         ChoiceReward choice = ChoiceReward.of(q);
-        if (dy < actionY() - 10) {
+        if (!q.rewards().isEmpty()) {
+            dy += 2;
             g.drawString(this.font, Component.translatable("justquests.book.rewards"), dx, dy, HEAD, false);
             dy += 11;
             for (QuestReward r : q.rewards()) {
-                if (dy >= actionY() - 2) break;
                 if (r != choice) {
-                    g.drawString(this.font, fit(r.display().getString(), dw), dx, dy, TEXT, false);
-                    dy += 10;
+                    dy = lines(g, r.display().getString(), dx, dy, dw, TEXT);
                     continue;
                 }
                 // a choice: one line per option; while the rewards wait, a click picks one
                 g.drawString(this.font, Component.translatable("justquests.book.choose_one"), dx, dy, MUTED, false);
                 dy += 10;
-                for (int i = 0; i < choice.options().size() && dy < actionY() - 2; i++) {
+                for (int i = 0; i < choice.options().size(); i++) {
                     boolean open = st == Status.CLAIM, picked = open && i == pick;
-                    radio(g, dx + 1, dy, picked, open && in(mouseX, mouseY, dx, dy - 1, dw, 10));
-                    g.drawString(this.font, fit(choice.options().get(i).display().getString(), dw - 11), dx + 11, dy,
-                        picked ? GOOD : TEXT, false);
-                    if (open) optionHits.add(new int[] {dx, dy - 1, dw, 10, i});
-                    dy += 10;
+                    var optionLines = this.font.split(Component.literal(choice.options().get(i).display().getString()), dw - 11);
+                    int h = optionLines.size() * 10;
+                    // only an option that is wholly on the page can be picked
+                    boolean shown = dy - 1 >= viewTop && dy - 1 + h <= viewBottom;
+                    radio(g, dx + 1, dy, picked, open && shown && in(mouseX, mouseY, dx, dy - 1, dw, h));
+                    for (int l = 0; l < optionLines.size(); l++) {
+                        g.drawString(this.font, optionLines.get(l), dx + 11, dy + l * 10, picked ? GOOD : TEXT, false);
+                    }
+                    if (open && shown) optionHits.add(new int[] {dx, dy - 1, dw, h, i});
+                    dy += h;
                 }
             }
+        }
+        g.disableScissor();
+
+        // how far the page can scroll, and a scroll bar while it can
+        int contentH = dy + detailScroll - viewTop, viewH = viewBottom - viewTop;
+        detailMax = Math.max(0, contentH - viewH);
+        if (detailMax > 0) {
+            int barX = dx + detailW() - 2, thumbH = Math.max(8, viewH * viewH / contentH);
+            int thumbY = viewTop + (viewH - thumbH) * Math.min(detailScroll, detailMax) / detailMax;
+            g.fill(barX, viewTop, barX + 2, viewBottom, 0x30000000);
+            g.fill(barX, thumbY, barX + 2, thumbY + thumbH, 0xFF6B6B6B);
         }
 
         // claim / accept / abandon button
@@ -512,6 +542,15 @@ public class QuestScreen extends Screen {
             blit(g, "button_claim_disabled", actionX(), actionY(), 72, 20);
             centered(g, label, actionX() + 36, actionY() + 6, MUTED);
         }
+    }
+
+    /** Text wrapped to the width, 10 pixels a line; returns the y below it. */
+    private int lines(GuiGraphics g, String text, int x, int y, int w, int color) {
+        for (var line : this.font.split(Component.literal(text), w)) {
+            g.drawString(this.font, line, x, y, color, false);
+            y += 10;
+        }
+        return y;
     }
 
     /** The HUD corner from the client settings (an unknown value counts as top left). */
@@ -651,7 +690,11 @@ public class QuestScreen extends Screen {
             for (int i = 0; i < ROWS && start + i < entries.size(); i++) {
                 Entry e = entries.get(start + i);
                 if (e.isQuest() && in(mx, my, listX(), rowY(i), ROW_W, ROW_H)) {
-                    if (!e.id().equals(selected)) pick = -1;
+                    if (!e.id().equals(selected)) {
+                        pick = -1;
+                        detailScroll = 0;
+                        detailMax = 0;
+                    }
                     selected = e.id();
                     showStats = false;
                     return true;
@@ -681,12 +724,16 @@ public class QuestScreen extends Screen {
         return super.mouseClicked(mx, my, button);
     }
 
-    /** The mouse wheel over the list turns the pages. */
+    /** The mouse wheel over the list turns the pages; over a long quest page it scrolls the page. */
     @Override
     public boolean mouseScrolled(double mx, double my, double scrollY) {
         if (in(mx, my, listX(), rowY(0), ROW_W, ROWS * ROW_H)) {
             if (scrollY < 0 && hasNext()) page++;
             else if (scrollY > 0 && hasPrev()) page--;
+            return true;
+        }
+        if (!showStats && detailMax > 0 && scrollY != 0 && in(mx, my, detailX(), top + 24, detailW(), pageBottom() - top - 24)) {
+            detailScroll = Math.max(0, Math.min(detailMax, detailScroll + (scrollY < 0 ? 10 : -10)));
             return true;
         }
         return super.mouseScrolled(mx, my, scrollY);

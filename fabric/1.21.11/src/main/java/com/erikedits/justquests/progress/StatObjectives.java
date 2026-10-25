@@ -93,24 +93,20 @@ public final class StatObjectives {
         if (gained.isEmpty()) return;
 
         ItemStack enchanted = enchanting ? player.containerMenu.getSlot(0).getItem() : ItemStack.EMPTY;
-        QuestProgressService.advance(player, obj -> {
-            if (obj instanceof EnchantItemObjective e) {
-                return e.accepts(enchanted) ? gained.getOrDefault(ENCHANT, 0) : 0;
-            }
-            if (obj instanceof UseItemObjective u) {
-                int sum = 0;
-                for (Item item : u.item().items()) sum += gained.getOrDefault(item, 0);
-                return sum;
-            }
-            if (obj instanceof CraftItemObjective c) {
-                int sum = 0;
-                for (Item item : c.item().items()) {
-                    if (c.matches(new ItemStack(item))) sum += gained.getOrDefault(new Crafted(item), 0);
-                }
-                return sum;
-            }
-            return 0;
-        });
+        // one event per statistic that went up, so a distinct objective can count each kind once
+        for (Map.Entry<Object, Integer> entry : gained.entrySet()) {
+            Object key = entry.getKey();
+            int n = entry.getValue();
+            Item item = key instanceof Crafted made ? made.item() : key instanceof Item used ? used : null;
+            String kind = item != null ? QuestProgressService.kind(new ItemStack(item))
+                : enchanted.isEmpty() ? null : QuestProgressService.kind(enchanted);
+            QuestProgressService.advance(player, kind, obj -> {
+                if (key == ENCHANT && obj instanceof EnchantItemObjective e) return e.accepts(enchanted) ? n : 0;
+                if (key instanceof Item it && obj instanceof UseItemObjective u) return u.item().items().contains(it) ? n : 0;
+                if (key instanceof Crafted cf && obj instanceof CraftItemObjective c) return c.matches(new ItemStack(cf.item())) ? n : 0;
+                return 0;
+            });
+        }
     }
 
     /** Server stop. */

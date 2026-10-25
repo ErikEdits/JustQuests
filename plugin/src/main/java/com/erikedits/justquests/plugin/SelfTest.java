@@ -1,12 +1,14 @@
 package com.erikedits.justquests.plugin;
 
 import com.erikedits.justquests.plugin.compat.Compat;
+import com.erikedits.justquests.plugin.data.PlayerData;
 import com.erikedits.justquests.plugin.quest.Objective;
 import com.erikedits.justquests.plugin.quest.Quest;
 import com.erikedits.justquests.plugin.quest.Reward;
 import com.erikedits.justquests.plugin.text.Items;
 import com.erikedits.justquests.plugin.text.Lang;
 import com.erikedits.justquests.plugin.text.Text;
+import com.google.gson.JsonParser;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
@@ -70,6 +72,27 @@ final class SelfTest {
             for (String g : gen) out.add("§c  Generator: " + g);
             problems += gen.size();
             if (gen.isEmpty()) out.add("§7  Generator: §aOK");
+        }
+        // the 0.4.2 quest options, and how the kinds a distinct objective counted are saved
+        try {
+            Quest q = Quest.parse("justquests:_selftest", JsonParser.parseString("{\"title\":\"T\","
+                + "\"requires\":[\"justquests:a\",\"justquests:b\",\"justquests:c\"],\"requires_min\":2,\"reset_on_death\":true,"
+                + "\"objectives\":[{\"type\":\"consume_item\",\"item\":\"minecraft:apple\",\"count\":3,\"distinct\":true}]}").getAsJsonObject());
+            PlayerData d = new PlayerData();
+            d.accept(q.id());
+            d.see(q.id(), 0, "minecraft:apple");
+            PlayerData back = PlayerData.fromJson(d.toJson());
+            boolean ok = q.needed() == 2 && q.unlocked(id -> !id.equals("justquests:c")) && !q.unlocked(id -> id.equals("justquests:a"))
+                && q.resetOnDeath() && q.objectives().get(0).distinct() && !back.see(q.id(), 0, "minecraft:apple");
+            if (ok) {
+                out.add("§7  Quest options (requires_min, reset_on_death, distinct): §aOK");
+            } else {
+                problems++;
+                out.add("§c  Quest options (requires_min, reset_on_death, distinct): wrong result");
+            }
+        } catch (RuntimeException e) {
+            problems++;
+            out.add("§c  Quest options: " + e);
         }
         int missing = 0;
         for (String lang : Lang.CODES) missing += Lang.missing(lang);

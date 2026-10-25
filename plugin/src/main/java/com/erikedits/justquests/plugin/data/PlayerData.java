@@ -4,8 +4,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * One player's quests, in the same JSON shape as an entry of the mod's progress.json
@@ -15,6 +17,8 @@ public final class PlayerData {
     public String teamId;
     /** quest id -> objective index -> progress */
     public final Map<String, Map<Integer, Integer>> active = new LinkedHashMap<>();
+    /** distinct objectives: quest id -> objective index -> the kinds (item, block, mob ids) counted */
+    public final Map<String, Map<Integer, Set<String>>> seen = new LinkedHashMap<>();
     /** finished quests whose rewards wait to be claimed: quest id -> completion time */
     public final Map<String, Long> pendingClaim = new LinkedHashMap<>();
     /** quest id -> last completion time (epoch millis) */
@@ -41,16 +45,23 @@ public final class PlayerData {
     }
 
     public void accept(String id) {
-        active.putIfAbsent(id, new HashMap<>());
+        if (active.putIfAbsent(id, new HashMap<>()) == null) seen.remove(id);
     }
 
     public void abandon(String id) {
         active.remove(id);
+        seen.remove(id);
+    }
+
+    /** Remembers a kind for a distinct objective; false if it was counted before. */
+    public boolean see(String id, int objective, String kind) {
+        return seen.computeIfAbsent(id, k -> new HashMap<>()).computeIfAbsent(objective, k -> new HashSet<>()).add(kind);
     }
 
     /** Marks a quest finished: removes it from active and records the time. */
     public void complete(String id) {
         active.remove(id);
+        seen.remove(id);
         completed.put(id, System.currentTimeMillis());
     }
 
@@ -65,6 +76,7 @@ public final class PlayerData {
         active.forEach((id, prog) -> {
             JsonObject p = new JsonObject();
             prog.forEach((i, n) -> p.addProperty(String.valueOf(i), n));
+            seen.getOrDefault(id, Map.of()).forEach((i, kinds) -> kinds.forEach(kind -> p.addProperty(i + "/" + kind, 1)));
             act.add(id, p);
         });
         o.add("active", act);
@@ -88,7 +100,11 @@ public final class PlayerData {
                 if (e.getValue().isJsonObject()) {
                     for (Map.Entry<String, JsonElement> p : e.getValue().getAsJsonObject().entrySet()) {
                         try {
-                            prog.put(Integer.parseInt(p.getKey()), p.getValue().getAsInt());
+                            // "2/minecraft:apple": a kind objective 2 (distinct) has counted, as in the mod
+                            String key = p.getKey();
+                            int slash = key.indexOf('/');
+                            if (slash > 0) d.see(e.getKey(), Integer.parseInt(key.substring(0, slash)), key.substring(slash + 1));
+                            else prog.put(Integer.parseInt(key), p.getValue().getAsInt());
                         } catch (NumberFormatException ignored) {
                             // skip invalid keys
                         }

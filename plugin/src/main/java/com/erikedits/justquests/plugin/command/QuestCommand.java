@@ -196,12 +196,15 @@ public final class QuestCommand implements TabExecutor {
             }
             String missing = plugin.progress().missingRequirement(data, q);
             if (data != null && missing != null) {
-                say(src, Text.tr(lang, "justquests.list.locked", q.id(), q.title().get(lang), plugin.progress().title(missing, lang)));
+                say(src, q.needed() < q.requires().size()
+                    ? Text.tr(lang, "justquests.list.locked_of", q.id(), q.title().get(lang), q.needed(), q.requires().size())
+                    : Text.tr(lang, "justquests.list.locked", q.id(), q.title().get(lang), plugin.progress().title(missing, lang)));
                 continue;
             }
             TextComponent line = new TextComponent("");
             line.addExtra(Text.tr(lang, "justquests.list.entry", q.id(), q.title().get(lang)));
             if (q.repeatable()) line.addExtra(Text.tr(lang, "justquests.list.repeatable"));
+            if (q.resetOnDeath()) line.addExtra(Text.tr(lang, "justquests.list.reset_on_death"));
             if (q.team()) line.addExtra(Text.tr(lang, "justquests.team.tag"));
             if (viewer != null) {
                 BaseComponent tag = plugin.generated().tag(q.id(), viewer.getUniqueId(), lang);
@@ -221,7 +224,7 @@ public final class QuestCommand implements TabExecutor {
             BaseComponent goals = Text.tr(lang, "justquests.list.goal");
             for (int i = 0; i < q.objectives().size(); i++) {
                 if (i > 0) goals.addExtra(Text.lit("§7, §f"));
-                goals.addExtra(q.objectives().get(i).display(lang));
+                goals.addExtra(Objective.shown(q.objectives().get(i), lang));
             }
             say(src, goals);
             BaseComponent rewards = Text.tr(lang, "justquests.list.reward");
@@ -229,7 +232,7 @@ public final class QuestCommand implements TabExecutor {
                 if (i > 0) rewards.addExtra(Text.lit("§7, §a"));
                 rewards.addExtra(q.rewards().get(i).display(lang));
             }
-            say(src, rewards);
+            if (!q.rewards().isEmpty()) say(src, rewards);   // no empty "Reward:" line
         }
     }
 
@@ -313,7 +316,7 @@ public final class QuestCommand implements TabExecutor {
                 int have = Math.min(data.progress(id, i), obj.requiredCount());
                 TextComponent line = new TextComponent("");
                 line.addExtra(Text.lit("  " + (have >= obj.requiredCount() ? "§a✓" : "§7" + have + "/" + obj.requiredCount()) + " §f"));
-                line.addExtra(obj.display(lang));
+                line.addExtra(Objective.shown(obj, lang));
                 say(player, line);
             }
         }

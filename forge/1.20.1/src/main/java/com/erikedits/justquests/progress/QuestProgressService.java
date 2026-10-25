@@ -40,7 +40,15 @@ public final class QuestProgressService {
     }
 
     public static void advance(ServerPlayer player, ObjectiveTest test) {
-        com.erikedits.justquests.team.TeamQuests.advance(player, test);
+        advance(player, null, test);
+    }
+
+    /**
+     * As {@link #advance(ServerPlayer, ObjectiveTest)}, for an event about one kind of thing (the
+     * id of an item, block or mob): a distinct objective counts every kind only once.
+     */
+    public static void advance(ServerPlayer player, String kind, ObjectiveTest test) {
+        com.erikedits.justquests.team.TeamQuests.advance(player, kind, test);
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null) return;
 
@@ -61,7 +69,7 @@ public final class QuestProgressService {
 
             for (int i = 0; i < quest.objectives().size(); i++) {
                 QuestObjective obj = quest.objectives().get(i);
-                int add = test.amount(obj);
+                int add = counted(obj, progress, i, kind, test.amount(obj));
                 if (add > 0) {
                     int remaining = obj.requiredCount() - progress.get(i);
                     int real = Math.min(add, remaining);
@@ -106,6 +114,49 @@ public final class QuestProgressService {
             changed = true;
         }
 
+        if (changed) {
+            store.markDirty();
+            com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        }
+    }
+
+    /**
+     * What an event adds to an objective: the test's amount, or for a distinct objective 1 for a
+     * kind it has not counted yet (remembered from then on) and 0 for one it has.
+     */
+    public static int counted(QuestObjective obj, QuestProgress progress, int index, String kind, int amount) {
+        if (amount <= 0 || !obj.distinct()) return amount;
+        if (kind == null || progress.get(index) >= obj.requiredCount()) return 0;
+        return progress.see(index, kind) ? 1 : 0;
+    }
+
+    /** The kind a distinct objective counts once: the id of the item, block or mob. */
+    public static String kind(net.minecraft.world.item.ItemStack stack) {
+        return net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
+    }
+
+    public static String kind(net.minecraft.world.level.block.Block block) {
+        return net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(block).toString();
+    }
+
+    public static String kind(net.minecraft.world.entity.EntityType<?> type) {
+        return net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(type).toString();
+    }
+
+    /** reset_on_death: the player died, so their quests (and team quests) with that option start over. */
+    public static void died(ServerPlayer player) {
+        com.erikedits.justquests.team.TeamQuests.died(player);
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        if (data == null || data.active.isEmpty()) return;
+        boolean changed = false;
+        for (Map.Entry<ResourceLocation, QuestProgress> entry : data.active.entrySet()) {
+            Quest quest = QuestManager.INSTANCE.get(entry.getKey());
+            if (quest == null || !quest.resetOnDeath() || !entry.getValue().hasProgress()) continue;
+            entry.getValue().reset();
+            player.sendSystemMessage(Msg.tr("justquests.reset.death", quest.title().get(com.erikedits.justquests.data.LocalizedText.DEFAULT_LANG)));
+            changed = true;
+        }
         if (changed) {
             store.markDirty();
             com.erikedits.justquests.network.QuestNetwork.syncProgress(player);

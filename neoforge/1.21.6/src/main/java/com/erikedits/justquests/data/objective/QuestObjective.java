@@ -41,6 +41,16 @@ public interface QuestObjective {
 
     String typeId();
 
+    /** "distinct": every kind of item, block or mob counts only once (eat 10 different foods). */
+    default boolean distinct() {
+        return false;
+    }
+
+    /** {@link #display()}, marked "(all different)" for a distinct objective. */
+    static Component shown(QuestObjective o) {
+        return o.distinct() ? com.erikedits.justquests.text.Msg.tr("justquests.goal.distinct", o.display()) : o.display();
+    }
+
     int requiredCount();
 
     /** Plain English, for logs and diagnostics (Q22). */

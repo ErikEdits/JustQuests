@@ -1,0 +1,20 @@
+{
+  "title": "Example: 5 different flowers (distinct)",
+  "description": "Pick up 5 different kinds of flowers - each kind counts once.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:collect_item",
+      "item": "#minecraft:flowers",
+      "count": 5,
+      "distinct": true
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bone_meal",
+      "count": 16
+    }
+  ]
+}

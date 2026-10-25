@@ -12,7 +12,8 @@ import java.util.Optional;
 public record Quest(LocalizedText title, LocalizedText description, String category, QuestMode mode,
                     List<Identifier> requires, boolean repeatable, Optional<Integer> cooldownHours,
                     int sort, List<QuestObjective> objectives, List<QuestReward> rewards,
-                    Optional<Identifier> icon, Optional<String> permission, boolean team) {
+                    Optional<Identifier> icon, Optional<String> permission, boolean team,
+                    Optional<Integer> requiresMin, boolean resetOnDeath) {
     public static final Codec<Quest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         LocalizedText.CODEC.fieldOf("title").forGetter(Quest::title),
         LocalizedText.CODEC.optionalFieldOf("description", LocalizedText.EMPTY).forGetter(Quest::description),
@@ -32,7 +33,11 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         // permission node needed to see and take the quest (LuckPerms etc.; operators by default)
         Codec.STRING.optionalFieldOf("permission").forGetter(Quest::permission),
         // a quest for a whole team: every member's actions count, every member claims the rewards
-        Codec.BOOL.optionalFieldOf("team", false).forGetter(Quest::team)
+        Codec.BOOL.optionalFieldOf("team", false).forGetter(Quest::team),
+        // only this many of "requires" must be done first (any 12 of 16); all of them when left out
+        Codec.INT.optionalFieldOf("requires_min").forGetter(Quest::requiresMin),
+        // the progress goes back to zero when the player (for a team quest: any member) dies
+        Codec.BOOL.optionalFieldOf("reset_on_death", false).forGetter(Quest::resetOnDeath)
     ).apply(instance, Quest::new));
 
     public Quest {
@@ -50,6 +55,23 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         boolean named = !"datapack".equals(category) && !(team && "team".equals(category));
         if (slash <= 0 || named) return this;
         return new Quest(title, description, path.substring(0, slash), mode, requires, repeatable, cooldownHours,
-            sort, objectives, rewards, icon, permission, team);
+            sort, objectives, rewards, icon, permission, team, requiresMin, resetOnDeath);
+    }
+
+    /** How many of the required quests must be done first: all of them, or requires_min. */
+    public int needed() {
+        return requiresMin.map(n -> Math.max(0, Math.min(n, requires.size()))).orElse(requires.size());
+    }
+
+    /** How many of the required quests are done. */
+    public int requiredDone(java.util.function.Predicate<Identifier> done) {
+        int count = 0;
+        for (Identifier id : requires) if (done.test(id)) count++;
+        return count;
+    }
+
+    /** Whether enough of the required quests are done to take this one. */
+    public boolean unlocked(java.util.function.Predicate<Identifier> done) {
+        return requiredDone(done) >= needed();
     }
 }

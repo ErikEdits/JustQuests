@@ -12,12 +12,14 @@ import net.minecraft.network.chat.Component;
  * applied, a spyglass look, a placed block, a tool that mined. Statistics count per item type,
  * so filters (enchantments, potion, name) are ignored here.
  */
-public record UseItemObjective(ItemMatcher item, int count) implements QuestObjective {
+public record UseItemObjective(ItemMatcher item, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:use_item";
 
     public static final MapCodec<UseItemObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         ItemMatcher.CODEC.fieldOf("item").forGetter(UseItemObjective::item),
-        Codec.INT.fieldOf("count").forGetter(UseItemObjective::count)
+        Codec.INT.fieldOf("count").forGetter(UseItemObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(UseItemObjective::distinct)
     ).apply(instance, UseItemObjective::new));
 
     @Override

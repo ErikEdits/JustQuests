@@ -83,6 +83,10 @@ public class JustQuestsFabric implements ModInitializer {
         });
 
         // Login: one-time Discord welcome (0.1.5)
+        // reset_on_death: quests with that option start over once the player has died
+        net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+            if (!alive) com.erikedits.justquests.progress.QuestProgressService.died(newPlayer);
+        });
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             CommunityHints.onLogin(handler.player);
             com.erikedits.justquests.team.TeamQuests.settle(handler.player);   // team rewards from while they were away

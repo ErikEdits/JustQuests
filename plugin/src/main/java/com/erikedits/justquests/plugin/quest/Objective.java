@@ -29,21 +29,31 @@ public sealed interface Objective {
     /** An item to show for the goal in the quest book. */
     Material icon();
 
+    /** "distinct": every kind of item, block or mob counts only once (eat 10 different foods). */
+    default boolean distinct() {
+        return false;
+    }
+
+    /** {@link #display(String)}, marked "(all different)" for a distinct objective. */
+    static BaseComponent shown(Objective o, String lang) {
+        return o.distinct() ? Text.tr(lang, "justquests.goal.distinct", o.display(lang)) : o.display(lang);
+    }
+
     static Objective parse(JsonObject o) {
         String type = Quest.string(o, "type");
         if (!type.contains(":")) type = "justquests:" + type;
         return switch (type) {
-            case "justquests:collect_item" -> new Collect(ItemMatcher.parse(o.get("item")), count(o));
-            case "justquests:craft_item" -> new Craft(ItemMatcher.parse(o.get("item")), count(o));
-            case "justquests:smelt_item" -> new Smelt(ItemMatcher.parse(o.get("item")), count(o));
-            case "justquests:consume_item" -> new Consume(ItemMatcher.parse(o.get("item")), count(o));
-            case "justquests:use_item" -> new Use(ItemMatcher.parse(o.get("item")), count(o));
-            case "justquests:enchant_item" -> new Enchant(o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o));
-            case "justquests:mine_block" -> new Mine(BlockMatcher.parse(Quest.string(o, "block")), count(o));
-            case "justquests:place_block" -> new Place(BlockMatcher.parse(Quest.string(o, "block")), count(o));
-            case "justquests:kill_mob" -> new Kill(EntityMatcher.parse(Quest.string(o, "entity")), count(o));
-            case "justquests:tame_animal" -> new Tame(EntityMatcher.parse(Quest.string(o, "entity")), count(o));
-            case "justquests:breed_animal" -> new Breed(EntityMatcher.parse(Quest.string(o, "entity")), count(o));
+            case "justquests:collect_item" -> new Collect(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
+            case "justquests:craft_item" -> new Craft(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
+            case "justquests:smelt_item" -> new Smelt(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
+            case "justquests:consume_item" -> new Consume(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
+            case "justquests:use_item" -> new Use(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
+            case "justquests:enchant_item" -> new Enchant(o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o));
+            case "justquests:mine_block" -> new Mine(BlockMatcher.parse(Quest.string(o, "block")), count(o), distinct(o));
+            case "justquests:place_block" -> new Place(BlockMatcher.parse(Quest.string(o, "block")), count(o), distinct(o));
+            case "justquests:kill_mob" -> new Kill(EntityMatcher.parse(Quest.string(o, "entity")), count(o), distinct(o));
+            case "justquests:tame_animal" -> new Tame(EntityMatcher.parse(Quest.string(o, "entity")), count(o), distinct(o));
+            case "justquests:breed_animal" -> new Breed(EntityMatcher.parse(Quest.string(o, "entity")), count(o), distinct(o));
             case "justquests:gain_advancement" -> new Advancement(Matchers.ns(Quest.string(o, "advancement")));
             case "justquests:visit_dimension" -> new Dimension(Matchers.ns(Quest.string(o, "dimension")));
             case "justquests:reach_level" -> new Level(o.get("level").getAsInt());
@@ -60,11 +70,15 @@ public sealed interface Objective {
         return o.get("count").getAsInt();
     }
 
+    private static boolean distinct(JsonObject o) {
+        return o.has("distinct") && o.get("distinct").getAsBoolean();
+    }
+
     private static BaseComponent goal(String lang, String key, int count, BaseComponent name) {
         return Text.tr(lang, key, count, name);
     }
 
-    record Collect(ItemMatcher item, int count) implements Objective {
+    record Collect(ItemMatcher item, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:collect_item"; }
         public int requiredCount() { return count; }
         public String label() { return "Collect " + count + "x " + item.label(); }
@@ -72,7 +86,7 @@ public sealed interface Objective {
         public Material icon() { return item.icon(); }
     }
 
-    record Craft(ItemMatcher item, int count) implements Objective {
+    record Craft(ItemMatcher item, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:craft_item"; }
         public int requiredCount() { return count; }
         public String label() { return "Craft " + count + "x " + item.label(); }
@@ -80,7 +94,7 @@ public sealed interface Objective {
         public Material icon() { return item.icon(); }
     }
 
-    record Smelt(ItemMatcher item, int count) implements Objective {
+    record Smelt(ItemMatcher item, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:smelt_item"; }
         public int requiredCount() { return count; }
         public String label() { return "Smelt " + count + "x " + item.label(); }
@@ -88,7 +102,7 @@ public sealed interface Objective {
         public Material icon() { return item.icon(); }
     }
 
-    record Consume(ItemMatcher item, int count) implements Objective {
+    record Consume(ItemMatcher item, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:consume_item"; }
         public int requiredCount() { return count; }
         public String label() { return "Consume " + count + "x " + item.label(); }
@@ -97,7 +111,7 @@ public sealed interface Objective {
     }
 
     /** Counted from the item's "Times Used" statistic, as in the mod. */
-    record Use(ItemMatcher item, int count) implements Objective {
+    record Use(ItemMatcher item, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:use_item"; }
         public int requiredCount() { return count; }
         public String label() { return "Use " + count + "x " + item.label(); }
@@ -106,7 +120,7 @@ public sealed interface Objective {
     }
 
     /** Enchanting at an enchanting table, optionally only a given item. */
-    record Enchant(ItemMatcher item, int count) implements Objective {
+    record Enchant(ItemMatcher item, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:enchant_item"; }
         public int requiredCount() { return count; }
         public String label() { return "Enchant " + count + "x " + (item == null ? "any item" : item.label()); }
@@ -117,7 +131,7 @@ public sealed interface Objective {
         public Material icon() { return item != null ? item.icon() : Material.ENCHANTING_TABLE; }
     }
 
-    record Mine(BlockMatcher block, int count) implements Objective {
+    record Mine(BlockMatcher block, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:mine_block"; }
         public int requiredCount() { return count; }
         public String label() { return "Mine " + count + "x " + block.label(); }
@@ -125,7 +139,7 @@ public sealed interface Objective {
         public Material icon() { return block.icon(); }
     }
 
-    record Place(BlockMatcher block, int count) implements Objective {
+    record Place(BlockMatcher block, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:place_block"; }
         public int requiredCount() { return count; }
         public String label() { return "Place " + count + "x " + block.label(); }
@@ -133,7 +147,7 @@ public sealed interface Objective {
         public Material icon() { return block.icon(); }
     }
 
-    record Kill(EntityMatcher entity, int count) implements Objective {
+    record Kill(EntityMatcher entity, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:kill_mob"; }
         public int requiredCount() { return count; }
         public String label() { return "Kill " + count + "x " + entity.label(); }
@@ -141,7 +155,7 @@ public sealed interface Objective {
         public Material icon() { return entity.icon(); }
     }
 
-    record Tame(EntityMatcher entity, int count) implements Objective {
+    record Tame(EntityMatcher entity, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:tame_animal"; }
         public int requiredCount() { return count; }
         public String label() { return "Tame " + count + "x " + entity.label(); }
@@ -149,7 +163,7 @@ public sealed interface Objective {
         public Material icon() { return entity.icon(); }
     }
 
-    record Breed(EntityMatcher entity, int count) implements Objective {
+    record Breed(EntityMatcher entity, int count, boolean distinct) implements Objective {
         public String typeId() { return "justquests:breed_animal"; }
         public int requiredCount() { return count; }
         public String label() { return "Breed " + count + "x " + entity.label(); }

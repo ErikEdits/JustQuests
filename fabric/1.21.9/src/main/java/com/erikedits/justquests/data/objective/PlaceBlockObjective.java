@@ -9,12 +9,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 
 /** Place X blocks of a given type. */
-public record PlaceBlockObjective(BlockMatcher block, int count) implements QuestObjective {
+public record PlaceBlockObjective(BlockMatcher block, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:place_block";
 
     public static final MapCodec<PlaceBlockObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         BlockMatcher.CODEC.fieldOf("block").forGetter(PlaceBlockObjective::block),
-        Codec.INT.fieldOf("count").forGetter(PlaceBlockObjective::count)
+        Codec.INT.fieldOf("count").forGetter(PlaceBlockObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(PlaceBlockObjective::distinct)
     ).apply(instance, PlaceBlockObjective::new));
 
     @Override

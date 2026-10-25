@@ -1,0 +1,23 @@
+{
+  "title": "Example: any 2 of 3 (requires_min)",
+  "description": "Unlocks once any 2 of the collect, mine and craft examples are done.",
+  "category": "examples",
+  "requires": [
+    "justquests:ex_collect_item",
+    "justquests:ex_mine_block",
+    "justquests:ex_craft_item"
+  ],
+  "requires_min": 2,
+  "objectives": [
+    {
+      "type": "justquests:reach_level",
+      "level": 5
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

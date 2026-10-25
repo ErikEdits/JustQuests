@@ -122,11 +122,14 @@ public final class QuestListMenu extends Menu {
             lore.add(team == null ? Text.tr(lang, "justquests.team.line_none") : Text.tr(lang, "justquests.team.line", team.name()));
         }
         for (String line : wrap(q.description().get(lang), 38)) lore.add(Text.lit("§7§o" + line));
+        if (q.resetOnDeath()) {
+            lore.add(Text.lit("§c" + Text.legacy(lang, q.team() ? "justquests.book.reset_on_death_team" : "justquests.book.reset_on_death")));
+        }
 
         String missing = plugin.progress().missingRequirement(data, q);
         if (s == QuestStatus.LOCKED && missing != null) {
             lore.add(Text.lit(""));
-            lore.add(Text.lit("§c" + Text.legacy(lang, "justquests.book.needs", plugin.progress().title(missing, lang))));
+            lore.add(Text.lit("§c" + plugin.progress().lockedLine(lang, data, q, missing)));
             return Items.make(Material.IRON_BARS, 1, Text.lit("§8" + q.title().get(lang)), lore, false);
         }
 
@@ -164,7 +167,7 @@ public final class QuestListMenu extends Menu {
         if (active && have >= o.requiredCount()) line.addExtra(Text.lit(" §a✓ §7"));
         else if (active) line.addExtra(Text.lit(" §e" + have + "/" + o.requiredCount() + " §f"));
         else line.addExtra(Text.lit(" §8• §f"));
-        line.addExtra(o.display(lang));
+        line.addExtra(Objective.shown(o, lang));
         return line;
     }
 }

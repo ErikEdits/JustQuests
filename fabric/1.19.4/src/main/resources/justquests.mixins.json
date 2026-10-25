@@ -7,7 +7,7 @@
     "BlockItemPlaceMixin",
     "FurnaceResultSlotMixin",
     "LivingEntityConsumeMixin",
-    "LivingEntityTakeMixin",
+    "ItemEntityPickupMixin",
     "PlayerAdvancementsMixin",
     "ResultSlotMixin",
     "TamableAnimalMixin"

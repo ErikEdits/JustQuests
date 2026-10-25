@@ -20,7 +20,7 @@ No GUI bloat, no heavy dependencies — datapack-driven quests, an in-game quest
 - **🌍 Five languages** — the quest book, every chat message, the built-in quests and the generated quests come in **English, German, French, Spanish and Japanese**. Every player reads their own game language.
 - **✍️ Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads by itself while you edit it. 15 objective types, 8 reward types, item tags and item filters (enchantments, potions, names).
 - **🔐 Permissions** — LuckPerms & co. get a node for every command, and a quest can be limited to players with a permission.
-- **🔗 Quest logic** — prerequisites and chains, repeatable quests with cooldowns, "all" or "any" objectives, categories.
+- **🔗 Quest logic** — prerequisites and chains (or "any 12 of 16"), repeatable quests with cooldowns, "all" or "any" objectives, progress that resets on death, "10 different foods" goals, categories.
 - **🛠️ For server owners** — completion broadcast, stats and leaderboard, admin commands, a self-test and a per-world `settings.json`.
 
 ---

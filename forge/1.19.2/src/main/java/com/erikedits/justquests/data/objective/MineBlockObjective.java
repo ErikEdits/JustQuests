@@ -10,12 +10,14 @@ import net.minecraft.world.level.block.Block;
 
 /** Break (mine) X blocks of a given type. Distinct from collect_item, which
  *  counts items picked up — this counts the block-break itself. */
-public record MineBlockObjective(BlockMatcher block, int count) implements QuestObjective {
+public record MineBlockObjective(BlockMatcher block, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:mine_block";
 
     public static final MapCodec<MineBlockObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         BlockMatcher.CODEC.fieldOf("block").forGetter(MineBlockObjective::block),
-        Codec.INT.fieldOf("count").forGetter(MineBlockObjective::count)
+        Codec.INT.fieldOf("count").forGetter(MineBlockObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(MineBlockObjective::distinct)
     ).apply(instance, MineBlockObjective::new));
 
     @Override

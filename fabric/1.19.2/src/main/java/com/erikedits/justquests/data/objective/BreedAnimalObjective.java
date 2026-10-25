@@ -9,12 +9,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 
 /** Breed X animals of a given type. */
-public record BreedAnimalObjective(EntityMatcher entity, int count) implements QuestObjective {
+public record BreedAnimalObjective(EntityMatcher entity, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:breed_animal";
 
     public static final MapCodec<BreedAnimalObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         EntityMatcher.CODEC.fieldOf("entity").forGetter(BreedAnimalObjective::entity),
-        Codec.INT.fieldOf("count").forGetter(BreedAnimalObjective::count)
+        Codec.INT.fieldOf("count").forGetter(BreedAnimalObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(BreedAnimalObjective::distinct)
     ).apply(instance, BreedAnimalObjective::new));
 
     @Override

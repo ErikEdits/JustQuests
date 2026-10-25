@@ -9,12 +9,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 
 /** Kill X entities of a given type. */
-public record KillMobObjective(EntityMatcher entity, int count) implements QuestObjective {
+public record KillMobObjective(EntityMatcher entity, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:kill_mob";
 
     public static final MapCodec<KillMobObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         EntityMatcher.CODEC.fieldOf("entity").forGetter(KillMobObjective::entity),
-        Codec.INT.fieldOf("count").forGetter(KillMobObjective::count)
+        Codec.INT.fieldOf("count").forGetter(KillMobObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(KillMobObjective::distinct)
     ).apply(instance, KillMobObjective::new));
 
     @Override

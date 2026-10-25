@@ -8,7 +8,7 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.4.1** — see the [changelog](CHANGELOG.md).
+Current version: **0.4.2** — see the [changelog](CHANGELOG.md).
 
 ## Features
 
@@ -34,8 +34,9 @@ Current version: **0.4.1** — see the [changelog](CHANGELOG.md).
   in English, German, French, Spanish and Japanese; each player reads their own game language.
   Your own quests can use a per-language map too, and item, block and mob names are translated
   by the game.
-- **Quest logic** — prerequisites (`requires`), repeatable quests with cooldowns, "all" or "any"
-  objectives, categories and sort order.
+- **Quest logic** — prerequisites (`requires`, or any N of them with `requires_min`), repeatable
+  quests with cooldowns, "all" or "any" objectives, progress that resets on death, objectives that
+  count every kind once ("eat 10 different foods"), categories and sort order.
 - **For server owners** — completion broadcast, stats and leaderboard, admin commands, a
   self-test (`/quest test`) and per-world `settings.json`.
 
@@ -58,7 +59,7 @@ server-only - see [Server plugin](#server-plugin-spigot-paper-purpur).
 2. Download the jar for **your loader and exact version** from
    [Modrinth](https://modrinth.com/mod/justquests) or the
    [GitHub releases](https://github.com/ErikEdits/JustQuests/releases) — the file name says which,
-   e.g. `JustQuests-fabric-1.21.1-0.4.1.jar` — and put it into `mods/`.
+   e.g. `JustQuests-fabric-1.21.1-0.4.2.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
 ## Server plugin (Spigot, Paper, Purpur)
@@ -184,7 +185,8 @@ Operator commands (permission level 2, or the node from [Permissions](#permissio
 
 Put a quest file into a datapack at `data/<namespace>/justquests/quests/<id>.json` (then
 `/reload`), or add it to `<world>/justquests/custom-quests.json`, which is created on first start
-with an explained example and reloads automatically. A custom quest overrides a datapack quest
+with explained examples and reloads automatically. The examples' keys start with `_`, so they don't
+show up as quests: copy one and remove the `_` to use it. A custom quest overrides a datapack quest
 with the same id.
 
 **Folders are categories.** Quests can be sorted into sub-folders: a quest in
@@ -211,10 +213,14 @@ the files - the first folder is the category. The same works for keys like `"min
 ```
 
 **Quest fields:** `title` (required), `description`, `category` (default `datapack`), `sort`,
-`mode` (`all` or `any`), `requires` (list of quest ids), `repeatable`, `cooldown_hours`,
+`mode` (`all` or `any`), `requires` (list of quest ids), `requires_min` (only this many of the
+`requires` quests must be done, e.g. any 12 of 16; the quest book shows "Needs 12 of 16 quests"),
+`repeatable`, `cooldown_hours`,
 `icon` (an item id for the quest book; taken from the first objective when left out),
 `permission` (a permission node; only players with it see and take the quest, see below),
-`team` (`true`: a team quest, see below), `objectives`, `rewards`. `title` and `description` can
+`team` (`true`: a team quest, see below), `reset_on_death` (`true`: the progress goes back to zero
+when the player dies - for a team quest when any member dies; the quest book says so),
+`objectives`, `rewards`. `title` and `description` can
 be a string or a per-language map (`{"en_us": "...", "de_de": "..."}`); players see their own
 language with English as fallback.
 
@@ -254,6 +260,13 @@ teams live with the world in `justquests/teams.json` and `team-progress.json`.
 ```
 
 `block` and `entity` take an id or a tag as well (`#minecraft:logs`, `#minecraft:skeletons`).
+
+**Every kind once.** With `"distinct": true`, an objective with `item`, `block` or `entity` counts
+each kind only once, so this one needs 10 different foods (the goal reads "(all different)"):
+
+```json
+{ "type": "justquests:consume_item", "item": "#c:foods", "count": 10, "distinct": true }
+```
 
 `enchantments` are minimum levels, `name` is an anvil name. The same JSON works on every version.
 Filters are checked on the item the event is about, so they are most useful for `consume_item`,

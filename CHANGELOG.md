@@ -3,6 +3,35 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.2] - Unreleased
+
+### Added
+- **Soft requirements: `requires_min`.** Next to `requires`, a quest can say how many of those
+  quests must be done first: `"requires": [16 quests], "requires_min": 12` unlocks as soon as any
+  12 of them are done. The quest book shows "Needs 12 of 16 quests (5 done)". (Requested on GitHub.)
+- **`reset_on_death`:** a quest with `"reset_on_death": true` loses its progress when the player
+  dies (a team quest: when any member dies). The quest book and `/quest list` say so, and the
+  player gets a message when it happens. (Requested on GitHub.)
+- **Every kind once: `"distinct": true`** on an objective counts each kind of item, block or mob
+  only once - `consume_item` with `"item": "#c:foods"`, `"count": 10` and `"distinct": true`
+  needs 10 different foods. The goal reads "(all different)". (Requested on GitHub.)
+
+### Changed
+- The examples in a new `custom-quests.json` are only an explanation now: their keys start with
+  `_`, so they no longer show up as quests. Copy one and remove the `_` to use it. Files that
+  already exist stay as they are. (Reported on GitHub.)
+
+### Fixed
+- Fabric: `collect_item` didn't count items picked up from the ground when the whole stack went
+  into the inventory (only a part taken by a nearly full inventory counted). NeoForge, Forge and
+  the plugin were not affected.
+- Quest book: a quest page with a long description or many objectives scrolls with the mouse
+  wheel instead of cutting the rest off. (Reported on GitHub.)
+- Quest book: long objective names (advancements, tags) wrap onto the next line instead of being
+  cut off with "...". Reward lines and choice options wrap too. (Reported on GitHub.)
+- A quest without rewards no longer shows an empty "Rewards" heading in the quest book or an empty
+  "Reward:" line in `/quest list`. (Reported on GitHub.)
+
 ## [0.4.1] - 2026-10-23
 
 ### Added

@@ -14,12 +14,14 @@ import java.util.Optional;
  * filter object). Counted from the vanilla "Items Enchanted" statistic (see StatObjectives), so
  * an anvil doesn't count, the same as in the statistics screen.
  */
-public record EnchantItemObjective(Optional<ItemMatcher> item, int count) implements QuestObjective {
+public record EnchantItemObjective(Optional<ItemMatcher> item, int count, boolean distinct) implements QuestObjective {
     public static final String TYPE_ID = "justquests:enchant_item";
 
     public static final MapCodec<EnchantItemObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         ItemMatcher.CODEC.optionalFieldOf("item").forGetter(EnchantItemObjective::item),
-        Codec.INT.fieldOf("count").forGetter(EnchantItemObjective::count)
+        Codec.INT.fieldOf("count").forGetter(EnchantItemObjective::count),
+        // every kind of item, block or mob counts only once
+        Codec.BOOL.optionalFieldOf("distinct", false).forGetter(EnchantItemObjective::distinct)
     ).apply(instance, EnchantItemObjective::new));
 
     @Override
