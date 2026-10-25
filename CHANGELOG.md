@@ -25,6 +25,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 - Fabric: `collect_item` didn't count items picked up from the ground when the whole stack went
   into the inventory (only a part taken by a nearly full inventory counted). NeoForge, Forge and
   the plugin were not affected.
+- Quest book: quests added to or changed in `custom-quests.json` while the world runs show up in
+  the book at once (the file reloaded by itself, but the book only got the new list after a
+  rejoin or `/quest reload`).
 - Quest book: a quest page with a long description or many objectives scrolls with the mouse
   wheel instead of cutting the rest off. (Reported on GitHub.)
 - Quest book: long objective names (advancements, tags) wrap onto the next line instead of being

@@ -25,10 +25,12 @@ import java.util.Map;
 public final class CustomQuestLoader {
     private static Path file;
     private static long lastModified = -1L;
+    private static MinecraftServer server;
 
     private CustomQuestLoader() {}
 
     public static void init(MinecraftServer server) {
+        CustomQuestLoader.server = server;
         file = server.getWorldPath(LevelResource.ROOT).resolve("justquests").resolve("custom-quests.json");
         try {
             if (!Files.exists(file)) {
@@ -48,6 +50,8 @@ public final class CustomQuestLoader {
             long m = Files.exists(file) ? Files.getLastModifiedTime(file).toMillis() : -1L;
             if (m != lastModified) {
                 load();
+                // the quest book only knows the quests it was sent: send the changed list
+                if (server != null) com.erikedits.justquests.network.QuestNetwork.syncAll(server);
             }
         } catch (Exception ignored) {
             // transient FS error; try again next tick
@@ -91,6 +95,7 @@ public final class CustomQuestLoader {
 
     public static void clear() {
         file = null;
+        server = null;
         lastModified = -1L;
         QuestManager.INSTANCE.setCustomQuests(new HashMap<>());
     }
