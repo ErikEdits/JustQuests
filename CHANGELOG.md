@@ -3,7 +3,7 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [0.4.2] - Unreleased
+## [0.4.2] - 2026-10-25
 
 ### Added
 - **Soft requirements: `requires_min`.** Next to `requires`, a quest can say how many of those
