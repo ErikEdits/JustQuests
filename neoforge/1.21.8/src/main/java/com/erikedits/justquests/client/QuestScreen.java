@@ -440,7 +440,7 @@ public class QuestScreen extends Screen {
             }
         } else if (wait > 0) {
             note = I18n.get("justquests.book.again_in", duration(wait));
-        } else if (st == Status.COMPLETED) {
+        } else if (st == Status.COMPLETED && !q.rewards().isEmpty()) {
             // rewards are paid out the moment a quest completes (a claim button comes with 0.4.0)
             note = I18n.get("justquests.book.rewards_received");
             noteColor = GOOD;

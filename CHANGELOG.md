@@ -17,6 +17,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
   needs 10 different foods. The goal reads "(all different)". (Requested on GitHub.)
 
 ### Changed
+- A quest without rewards is simply done when it is finished: no Claim button and no "Rewards
+  received" for nothing to claim. Mod and plugin.
 - The examples in a new `custom-quests.json` are only an explanation now: their keys start with
   `_`, so they no longer show up as quests. Copy one and remove the `_` to use it. Files that
   already exist stay as they are. (Reported on GitHub.)

@@ -170,7 +170,8 @@ public final class QuestProgressService {
      */
     public static boolean finish(ServerPlayer player, PlayerQuestData data, ResourceLocation id, Quest quest) {
         data.complete(id);
-        boolean waits = WorldSettings.claimRewards() || ChoiceReward.of(quest) != null;
+        // a quest without rewards has nothing to claim: it is simply done
+        boolean waits = !quest.rewards().isEmpty() && (WorldSettings.claimRewards() || ChoiceReward.of(quest) != null);
         com.erikedits.justquests.generator.GenV2.completed(id, player.getUUID(), waits);
         if (waits) {
             data.pendingClaim.put(id, System.currentTimeMillis());

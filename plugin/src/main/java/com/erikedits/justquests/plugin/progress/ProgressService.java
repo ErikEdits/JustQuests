@@ -183,7 +183,7 @@ public final class ProgressService {
                 plugin.tracker().update(online);
             } else {
                 d.complete(id);
-                d.pendingClaim.put(id, now);
+                if (!quest.rewards().isEmpty()) d.pendingClaim.put(id, now);
                 if (id.equals(d.pinned)) d.pinned = null;
             }
             plugin.store().markDirty(member);
@@ -233,7 +233,8 @@ public final class ProgressService {
     public boolean finish(Player player, PlayerData data, String id, Quest quest) {
         data.complete(id);
         if (id.equals(data.pinned)) data.pinned = null;
-        boolean waits = plugin.settings().claimRewards || Reward.Choice.of(quest) != null;
+        // a quest without rewards has nothing to claim: it is simply done
+        boolean waits = !quest.rewards().isEmpty() && (plugin.settings().claimRewards || Reward.Choice.of(quest) != null);
         plugin.generated().completed(id, player.getUniqueId(), waits);
         if (waits) {
             data.pendingClaim.put(id, System.currentTimeMillis());

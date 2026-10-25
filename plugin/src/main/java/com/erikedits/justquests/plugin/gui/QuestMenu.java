@@ -154,7 +154,7 @@ public final class QuestMenu extends Menu {
                 long left = plugin.progress().cooldownLeft(data, q);
                 BaseComponent label = left > 0
                     ? Text.lit("§7" + legacy("justquests.book.again_in", ProgressService.duration(lang, left)))
-                    : Text.lit("§a" + legacy("justquests.book.rewards_received"));
+                    : Text.lit("§a" + legacy(q.rewards().isEmpty() ? "justquests.book.status.completed" : "justquests.book.rewards_received"));
                 set(49, item(Material.WRITTEN_BOOK, label, List.of()));
             }
             default -> { }
