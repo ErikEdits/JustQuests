@@ -9,7 +9,7 @@ No GUI bloat, no heavy dependencies — datapack-driven quests, an in-game quest
 
 ## ✨ Features
 
-- **📖 Quest book** — press **J** to browse quests, follow progress bars and accept, abandon or claim with a click. Grouped by category or status, a pixel icon for every quest, a search field and a stats page.
+- **📖 Quest book** — press **J** to browse quests, follow progress bars and accept, abandon or claim with a click. Grouped by category or status (fold a group with a click), a pixel icon for every quest, a search field, "Accept all" and a stats page.
 - **📍 Quest tracker** — your pinned (or newest) quests and their goals in a corner of the screen. **H** turns it on or off, a button in the quest book moves it to another corner.
 - **🎁 Claim your rewards** — a finished quest waits with its rewards until you claim them: in the quest book, with the button in chat or with `/quest claim`. Quests can offer a **choice of rewards** — you pick one when claiming. Server owners who want the old way switch to instant rewards.
 - **👥 Team quests** — a quest marked `"team": true` belongs to a whole team: anyone takes it, everyone's actions count, and every member gets the rewards — also members who were offline. Make a team with `/quest team`, or use your scoreboard team (`/team`).
@@ -20,7 +20,7 @@ No GUI bloat, no heavy dependencies — datapack-driven quests, an in-game quest
 - **🌍 Five languages** — the quest book, every chat message, the built-in quests and the generated quests come in **English, German, French, Spanish and Japanese**. Every player reads their own game language.
 - **✍️ Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads by itself while you edit it. 15 objective types, 8 reward types, item tags and item filters (enchantments, potions, names).
 - **🔐 Permissions** — LuckPerms & co. get a node for every command, and a quest can be limited to players with a permission.
-- **🔗 Quest logic** — prerequisites and chains (or "any 12 of 16"), repeatable quests with cooldowns, "all" or "any" objectives, progress that resets on death, "10 different foods" goals, categories.
+- **🔗 Quest logic** — prerequisites and chains (or "any 12 of 16"), quests that start by themselves once they unlock, repeatable quests with cooldowns, "all" or "any" objectives and alternatives ("craft it **or** find it"), progress that resets on death, "10 different foods" goals, categories.
 - **🛠️ For server owners** — completion broadcast, stats and leaderboard, admin commands, a self-test and a per-world `settings.json`.
 
 ---
@@ -80,6 +80,8 @@ Items, blocks and mobs accept an id (`minecraft:oak_log`) or a **tag** (`#minecr
 
 - `/quest list [category]` – all quests, grouped by category
 - `/quest accept <id>` / `/quest abandon <id>` – start or drop a quest
+- `/quest accept all` – start every quest you can take now
+- `/quest autoaccept on|off` – whether unlocked quests start by themselves (on by default)
 - `/quest progress` – your active quests
 - `/quest claim [id]` – take the rewards of finished quests
 - `/quest team [create|invite|accept|leave|kick]` – your team for team quests

@@ -246,5 +246,22 @@
   "justquests.team.info_leader": " §6(leader)",
   "justquests.team.info_online": " §a●",
   "justquests.team.scoreboard": "§7Your team is the scoreboard team §f%s§7.",
-  "justquests.team.parties_off": "§cTeams made with /quest team are off on this server; ask for a scoreboard team (/team)."
+  "justquests.team.parties_off": "§cTeams made with /quest team are off on this server; ask for a scoreboard team (/team).",
+  "justquests.goal.or": "or",
+  "justquests.book.or": "- or -",
+  "justquests.book.hint.fold": "Fold this group",
+  "justquests.book.hint.unfold": "Unfold this group",
+  "justquests.book.auto_accept": "Accept unlocked quests automatically",
+  "justquests.book.acceptable": "Ready to accept: %s",
+  "justquests.book.accept_all": "Accept all",
+  "justquests.unlocked": "§eNew quest unlocked: §f%s",
+  "justquests.unlocked.accepted": "§a✓ Unlocked and accepted: §f%s",
+  "justquests.unlocked.accept": "§a[Accept]",
+  "justquests.unlocked.accept_hover": "Click to accept this quest",
+  "justquests.unlocked.auto_off": "§7[Turn off]",
+  "justquests.unlocked.auto_off_hover": "Stop accepting unlocked quests automatically (/quest autoaccept off)",
+  "justquests.accept.all": "§a✓ Quests accepted: %s",
+  "justquests.accept.none": "§7No quests can be accepted right now.",
+  "justquests.autoaccept.on": "§aUnlocked quests are accepted automatically. §7Turn it off with /quest autoaccept off.",
+  "justquests.autoaccept.off": "§eUnlocked quests wait for you to accept them. §7Turn auto-accept on with /quest autoaccept on."
 }

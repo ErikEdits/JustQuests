@@ -16,6 +16,7 @@ public final class Settings {
     public boolean completionSound = true;
     public boolean completionToast = true;
     public boolean claimRewards = true;
+    public boolean autoAccept = true;
     public boolean mainQuests = true;
     public boolean giveBookOnFirstJoin = true;
     public boolean bossbar = true;
@@ -68,6 +69,7 @@ public final class Settings {
         completionSound = c.getBoolean("completionSound", true);
         completionToast = c.getBoolean("completionToast", true);
         claimRewards = c.getBoolean("claimRewards", true);
+        autoAccept = c.getBoolean("autoAccept", true);
         mainQuests = c.getBoolean("mainQuests", true);
         giveBookOnFirstJoin = c.getBoolean("questBook.giveOnFirstJoin", true);
         bossbar = c.getBoolean("bossbar.enabled", true);

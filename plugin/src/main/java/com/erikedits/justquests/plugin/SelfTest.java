@@ -94,6 +94,24 @@ final class SelfTest {
             problems++;
             out.add("§c  Quest options: " + e);
         }
+        // 0.4.4: the objectives of a "group" are alternatives
+        try {
+            Quest q = Quest.parse("justquests:_selftest_group", JsonParser.parseString("{\"title\":\"T\",\"objectives\":["
+                + "{\"type\":\"craft_item\",\"item\":\"minecraft:chest\",\"count\":1,\"group\":\"box\"},"
+                + "{\"type\":\"collect_item\",\"item\":\"minecraft:barrel\",\"count\":1,\"group\":\"box\"},"
+                + "{\"type\":\"reach_level\",\"level\":1}]}").getAsJsonObject());
+            boolean ok = q.done(i -> i != 0) && q.done(i -> i != 1) && !q.done(i -> i == 2) && !q.done(i -> i != 2)
+                && q.orBefore(1) && !q.orBefore(2);
+            if (ok) {
+                out.add("§7  Objective groups (one of a group is enough): §aOK");
+            } else {
+                problems++;
+                out.add("§c  Objective groups (one of a group is enough): wrong result");
+            }
+        } catch (RuntimeException e) {
+            problems++;
+            out.add("§c  Objective groups: " + e);
+        }
         int missing = 0;
         for (String lang : Lang.CODES) missing += Lang.missing(lang);
         out.add("§7  Quests: §f" + quests + "§7, items built: §f" + items

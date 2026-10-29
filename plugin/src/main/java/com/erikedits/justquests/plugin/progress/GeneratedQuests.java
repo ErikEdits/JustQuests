@@ -37,6 +37,11 @@ public interface GeneratedQuests {
         return null;
     }
 
+    /** Whether the quest is on the shared board of generated quests ("Accept all" leaves those alone). */
+    default boolean onBoard(String id) {
+        return false;
+    }
+
     /** Whether someone else holds the quest, so the viewer cannot take it. */
     default boolean takenByOther(String id, UUID viewer) {
         return false;

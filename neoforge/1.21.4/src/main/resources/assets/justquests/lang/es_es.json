@@ -246,5 +246,22 @@
   "justquests.team.info_leader": " §6(líder)",
   "justquests.team.info_online": " §a●",
   "justquests.team.scoreboard": "§7Tu equipo es el equipo del marcador §f%s§7.",
-  "justquests.team.parties_off": "§cLos equipos de /quest team están desactivados en este servidor; pide un equipo del marcador (/team)."
+  "justquests.team.parties_off": "§cLos equipos de /quest team están desactivados en este servidor; pide un equipo del marcador (/team).",
+  "justquests.goal.or": "o",
+  "justquests.book.or": "- o -",
+  "justquests.book.hint.fold": "Plegar este grupo",
+  "justquests.book.hint.unfold": "Desplegar este grupo",
+  "justquests.book.auto_accept": "Aceptar automáticamente las misiones desbloqueadas",
+  "justquests.book.acceptable": "Listas para aceptar: %s",
+  "justquests.book.accept_all": "Aceptar todas",
+  "justquests.unlocked": "§eNueva misión desbloqueada: §f%s",
+  "justquests.unlocked.accepted": "§a✓ Desbloqueada y aceptada: §f%s",
+  "justquests.unlocked.accept": "§a[Aceptar]",
+  "justquests.unlocked.accept_hover": "Haz clic para aceptar esta misión",
+  "justquests.unlocked.auto_off": "§7[Desactivar]",
+  "justquests.unlocked.auto_off_hover": "Dejar de aceptar automáticamente las misiones desbloqueadas (/quest autoaccept off)",
+  "justquests.accept.all": "§a✓ Misiones aceptadas: %s",
+  "justquests.accept.none": "§7Ahora mismo no se puede aceptar ninguna misión.",
+  "justquests.autoaccept.on": "§aLas misiones desbloqueadas se aceptan automáticamente. §7Desactívalo con /quest autoaccept off.",
+  "justquests.autoaccept.off": "§eLas misiones desbloqueadas esperan a que las aceptes. §7Actívalo con /quest autoaccept on."
 }

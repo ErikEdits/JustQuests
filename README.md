@@ -8,13 +8,14 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.4.3** — see the [changelog](CHANGELOG.md).
+Current version: **0.4.4** — see the [changelog](CHANGELOG.md).
 
 ## Features
 
 - **Quest book** — press **J** to browse quests, follow progress bars and accept or abandon with a
-  click (Minecraft 1.20.1 and newer). Grouped by category or by status, a pixel icon for every
-  quest, a search field, and a stats page. Works in singleplayer and on servers.
+  click (Minecraft 1.20.1 and newer). Grouped by category or by status (a click on a group's
+  header folds it), a pixel icon for every quest, a search field, an "Accept all" button and a
+  stats page. Works in singleplayer and on servers.
 - **Quest tracker** — your pinned (or newest) active quests and their goals in a corner of the
   screen; **H** turns it on or off.
 - **Ready to play** — 25 built-in quests in English, German, French, Spanish and Japanese.
@@ -34,9 +35,10 @@ Current version: **0.4.3** — see the [changelog](CHANGELOG.md).
   in English, German, French, Spanish and Japanese; each player reads their own game language.
   Your own quests can use a per-language map too, and item, block and mob names are translated
   by the game.
-- **Quest logic** — prerequisites (`requires`, or any N of them with `requires_min`), repeatable
-  quests with cooldowns, "all" or "any" objectives, progress that resets on death, objectives that
-  count every kind once ("eat 10 different foods"), categories and sort order.
+- **Quest logic** — prerequisites (`requires`, or any N of them with `requires_min`), quests that
+  are accepted by themselves once they unlock, repeatable quests with cooldowns, "all" or "any"
+  objectives and alternative objectives ("craft it **or** find it"), progress that resets on death,
+  objectives that count every kind once ("eat 10 different foods"), categories and sort order.
 - **For server owners** — completion broadcast, stats and leaderboard, admin commands, a
   self-test (`/quest test`) and per-world `settings.json`.
 
@@ -59,7 +61,7 @@ server-only - see [Server plugin](#server-plugin-spigot-paper-purpur).
 2. Download the jar for **your loader and exact version** from
    [Modrinth](https://modrinth.com/mod/justquests) or the
    [GitHub releases](https://github.com/ErikEdits/JustQuests/releases) — the file name says which,
-   e.g. `JustQuests-fabric-1.21.1-0.4.3.jar` — and put it into `mods/`.
+   e.g. `JustQuests-fabric-1.21.1-0.4.4.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
 ## Server plugin (Spigot, Paper, Purpur)
@@ -163,6 +165,8 @@ main world, so a world played in singleplayer with the mod keeps its quests on t
 | `/quest list [category]` | All quests, grouped by category (locked ones show what they need) |
 | `/quest categories` | Categories and how many quests each has |
 | `/quest accept <id>` / `/quest abandon <id>` | Start or drop a quest (tab completion) |
+| `/quest accept all` | Start every quest you can take now (not team quests and generated quests) |
+| `/quest autoaccept [on\|off]` | Whether quests start by themselves once they unlock (on by default) |
 | `/quest progress` | Your active quests and how far along you are |
 | `/quest claim [id]` | Take the rewards of a finished quest (without an id: all waiting rewards) |
 | `/quest stats` / `/quest leaderboard` | Your stats / the server's top 10 |
@@ -224,6 +228,14 @@ when the player dies - for a team quest when any member dies; the quest book say
 be a string or a per-language map (`{"en_us": "...", "de_de": "..."}`); players see their own
 language with English as fallback.
 
+**Unlocked quests start by themselves.** When a player finishes a quest, every quest that it
+unlocks (through `requires`) is accepted for them at once, with a line in the chat. A player who
+would rather choose turns it off with `/quest autoaccept off` (or the box on the quest book's start
+page); they then get the new quest in the chat with an Accept button. Server owners set the default
+with `autoAccept` in `settings.json`. Team quests are never accepted by themselves - the chat
+offers the Accept button. `/quest accept all` (or the book's "Accept all") takes every quest that
+is available.
+
 **Team quests.** A quest with `"team": true` (category `team` unless it names one) belongs to a
 whole team: any member takes it, everyone's actions count towards it, the quest book and tracker
 show the shared progress, and when it is done every member gets the rewards for themselves, the
@@ -260,6 +272,22 @@ teams live with the world in `justquests/teams.json` and `team-progress.json`.
 ```
 
 `block` and `entity` take an id or a tag as well (`#minecraft:logs`, `#minecraft:skeletons`).
+
+**Alternatives: `group`.** Objectives with the same `group` are alternatives - one of them is
+enough. Objectives without a group are all needed, so the two can be mixed. This quest needs a
+backpack, crafted **or** found, and 10 leather:
+
+```json
+"objectives": [
+  { "type": "justquests:craft_item", "item": "travelersbackpack:standard", "count": 1, "group": "backpack" },
+  { "type": "justquests:collect_item", "item": "#travelersbackpack:backpacks", "count": 1, "group": "backpack" },
+  { "type": "justquests:collect_item", "item": "minecraft:leather", "count": 10 }
+]
+```
+
+The quest book, the tracker and `/quest progress` show "- or -" between the alternatives (they are
+listed together, where the group's first one is). `"mode": "any"` still means that any one
+objective finishes the whole quest.
 
 **Every kind once.** With `"distinct": true`, an objective with `item`, `block` or `entity` counts
 each kind only once, so this one needs 10 different foods (the goal reads "(all different)"):
@@ -306,8 +334,8 @@ change a key that is set there (`/quest mainquests`, `/quest difficulty` say so)
 
 Each player's own book and tracker options live in `config/justquests-client.json`: `hud`
 (tracker on/off), `hudCorner` (`top_left`, `top_right`, `bottom_left`, `bottom_right`), `hudMax`
-(quests shown, 1–5), `byStatus`, `hideCompleted` and `pinned` (also set by the book's buttons;
-the corner button in the title bar moves the tracker).
+(quests shown, 1–5), `byStatus`, `hideCompleted`, `pinned` and `folded` (the folded groups; also
+set by the book's buttons; the corner button in the title bar moves the tracker).
 
 | Key | Default | Meaning |
 |---|---|---|
@@ -315,6 +343,7 @@ the corner button in the title bar moves the tracker).
 | `announceCompletions` | `true` | Tell everyone when a player finishes a quest |
 | `completionSound` / `completionToast` | `true` | Sound and action-bar message on completion |
 | `claimRewards` | `true` | Finished quests wait until the player claims the rewards; `false` pays them out at once |
+| `autoAccept` | `true` | A quest is accepted by itself once the quests it requires are done (each player can change it with `/quest autoaccept`) |
 | `discordWelcome` | `true` | One-time Discord invite on a player's first join |
 | `generatedQuests` / `generatedCount` | `true` / `5` | Generated quests on/off and how many per board (1–20) |
 | `difficulty` | `normal` | `easy`, `normal` or `hard` for generated quests |

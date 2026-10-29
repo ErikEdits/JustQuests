@@ -64,8 +64,6 @@ public final class QuestProgressService {
             if (quest == null) continue;
 
             QuestProgress progress = entry.getValue();
-            boolean allComplete = true;
-            boolean anyComplete = false;
 
             for (int i = 0; i < quest.objectives().size(); i++) {
                 QuestObjective obj = quest.objectives().get(i);
@@ -78,15 +76,9 @@ public final class QuestProgressService {
                         changed = true;
                     }
                 }
-                if (progress.get(i) >= obj.requiredCount()) {
-                    anyComplete = true;
-                } else {
-                    allComplete = false;
-                }
             }
 
-            boolean done = quest.mode() == QuestMode.ANY ? anyComplete : allComplete;
-            if (done) {
+            if (quest.done(i -> progress.get(i) >= quest.objectives().get(i).requiredCount())) {
                 completing.add(entry.getKey());
             }
         }
@@ -113,11 +105,61 @@ public final class QuestProgressService {
             }
             changed = true;
         }
+        unlocks(player);
 
         if (changed) {
             store.markDirty();
             com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
         }
+    }
+
+    /** Quests each player finished for the first time, until {@link #unlocks} looks at what they unlock. */
+    private static final Map<java.util.UUID, List<ResourceLocation>> FRESH = new java.util.HashMap<>();
+
+    /**
+     * The quests that the player's newly finished quests unlocked: with auto-accept on (the default)
+     * they are accepted at once, else the player gets an Accept button for each. Team quests only get
+     * the button. Called after the "completed" messages, so the chat reads in order.
+     */
+    public static void unlocks(ServerPlayer player) {
+        List<ResourceLocation> fresh = FRESH.remove(player.getUUID());
+        WorldQuestStore store = WorldQuestStore.get();
+        if (fresh == null || store == null) return;
+        PlayerQuestData data = store.get(player.getUUID());
+        String lang = com.erikedits.justquests.data.LocalizedText.DEFAULT_LANG;
+        boolean auto = data.autoAccept.orElse(WorldSettings.autoAccept());
+        boolean accepted = false;
+        for (Map.Entry<ResourceLocation, Quest> e : QuestManager.INSTANCE.getQuests().entrySet()) {
+            ResourceLocation id = e.getKey();
+            Quest quest = e.getValue();
+            if (quest.requires().stream().noneMatch(fresh::contains) || !available(player, data, id, quest)) continue;
+            if (quest.team() && com.erikedits.justquests.team.TeamQuests.activeIds(player).contains(id)) continue;
+            String title = quest.title().get(lang);
+            if (auto && !quest.team()) {
+                data.accept(id);
+                accepted = true;
+                player.sendSystemMessage(Msg.tr("justquests.unlocked.accepted", title).append(Msg.lit(" "))
+                    .append(Msg.button(Msg.tr("justquests.unlocked.auto_off"), "/quest autoaccept off", Msg.tr("justquests.unlocked.auto_off_hover"))));
+            } else {
+                player.sendSystemMessage(Msg.tr("justquests.unlocked", title).append(Msg.lit(" "))
+                    .append(Msg.button(Msg.tr("justquests.unlocked.accept"), "/quest accept " + id, Msg.tr("justquests.unlocked.accept_hover"))));
+            }
+        }
+        if (accepted) {
+            store.markDirty();
+            com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        }
+    }
+
+    /**
+     * Whether the player may take the quest now - what the quest book shows as available: allowed,
+     * not active or waiting to be claimed, unlocked, and never done or repeatable and off cooldown.
+     */
+    public static boolean available(ServerPlayer player, PlayerQuestData data, ResourceLocation id, Quest quest) {
+        if (!com.erikedits.justquests.perm.Perms.quest(player, quest) || data.isActive(id) || data.isClaimable(id)) return false;
+        if (!quest.unlocked(data::isCompleted)) return false;
+        Long done = data.completed.get(id);
+        return done == null || quest.repeatable() && System.currentTimeMillis() - done >= quest.cooldownHours().orElse(0) * 3_600_000L;
     }
 
     /**
@@ -171,6 +213,8 @@ public final class QuestProgressService {
      * @return true when the rewards wait to be claimed
      */
     public static boolean finish(ServerPlayer player, PlayerQuestData data, ResourceLocation id, Quest quest) {
+        // what it unlocks is taken or offered by unlocks(), after the caller's messages
+        if (!data.isCompleted(id)) FRESH.computeIfAbsent(player.getUUID(), k -> new ArrayList<>()).add(id);
         data.complete(id);
         // a quest without rewards has nothing to claim: it is simply done
         boolean waits = !quest.rewards().isEmpty() && (WorldSettings.claimRewards() || ChoiceReward.of(quest) != null);

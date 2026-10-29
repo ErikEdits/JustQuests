@@ -3,6 +3,39 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.4] - 2026-10-29
+
+### Added
+- **Alternative objectives: `group`.** Objectives with the same `"group"` are alternatives, and one
+  of them is enough: "craft a Standard Backpack **or** find any backpack". Objectives without a
+  group are all still needed, so both can be mixed in one quest. The quest book, the tracker,
+  `/quest list` and `/quest progress` show "- or -" between them. Mod and plugin. (Requested on
+  GitHub, #10.)
+- **Unlocked quests start by themselves.** When a finished quest unlocks others, they are accepted
+  at once, with a line in the chat. Players who would rather choose turn it off with
+  `/quest autoaccept off` or the box on the quest book's start page; they get the new quest in the
+  chat with an Accept button instead. Server owners set the default with `autoAccept`. Team quests
+  only get the button. Mod and plugin. (Requested on GitHub, #12.)
+- **Accept all:** `/quest accept all` and an "Accept all" button on the quest book's start page
+  take every quest that is available (not team quests and generated quests). Mod and plugin. (#12)
+- **Fold groups in the quest book:** a click on a category's (or status group's) header folds it,
+  so the next category is right there; an arrow shows which groups are folded, and the book
+  remembers them. A search still finds quests in folded groups. (Requested on GitHub, #11.)
+- A second click on the selected quest goes back to the book's start page.
+
+### Changed
+- The scroll bar of a long quest page is easier to see: a dark track with a light thumb that
+  shows where the page is. A click on the track jumps there. (Requested on GitHub, #6.)
+
+### Fixed
+- `gain_advancement` goals showed the advancement's id ("Earn advancement mypack:story/let_me_go")
+  instead of its title. They show the title now ("Earn advancement Please Let me go!"), also on
+  servers, and the id made readable for an advancement without a title. Mod and plugin. (Reported
+  on GitHub, #13.)
+- The example datapack (`docs/example-datapack`) was shown as incompatible on Minecraft 26.x: its
+  `pack.mcmeta` now names the newer `min_format`/`max_format` fields as well. It has a new
+  example, `ex_group`.
+
 ## [0.4.3] - 2026-10-28
 
 ### Fixed

@@ -23,11 +23,13 @@ import java.util.Locale;
  *                   member claims the rewards (category "team" unless one is given)
  * @param requiresMin how many of requires must be done first (any 12 of 16); -1 = all of them
  * @param resetOnDeath the progress goes back to zero when the player (team quest: any member) dies
+ * @param groups     per objective the group it belongs to ("" = none); the objectives of one group
+ *                   are alternatives, one of them is enough
  */
 public record Quest(String id, LocalizedText title, LocalizedText description, String category, boolean any,
                     List<String> requires, boolean repeatable, int cooldownHours, int sort,
                     List<Objective> objectives, List<Reward> rewards, Material icon, String permission,
-                    boolean team, int requiresMin, boolean resetOnDeath) {
+                    boolean team, int requiresMin, boolean resetOnDeath, List<String> groups) {
 
     /**
      * The first folder of a quest's path, used as its category when it names none: "ns:mining/iron"
@@ -43,8 +45,13 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
     public static Quest parse(String id, JsonObject o) {
         if (!o.has("title")) throw new IllegalArgumentException("missing \"title\"");
         List<Objective> objectives = new ArrayList<>();
+        List<String> groups = new ArrayList<>();
         if (o.has("objectives")) {
-            for (JsonElement e : o.getAsJsonArray("objectives")) objectives.add(Objective.parse(e.getAsJsonObject()));
+            for (JsonElement e : o.getAsJsonArray("objectives")) {
+                JsonObject obj = e.getAsJsonObject();
+                objectives.add(Objective.parse(obj));
+                groups.add(obj.has("group") ? obj.get("group").getAsString() : "");
+            }
         }
         if (objectives.isEmpty()) throw new IllegalArgumentException("no objectives");
         for (Objective obj : objectives) {
@@ -76,7 +83,8 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
             List.copyOf(objectives), List.copyOf(rewards), icon,
             o.has("permission") ? o.get("permission").getAsString() : null, team,
             o.has("requires_min") ? o.get("requires_min").getAsInt() : -1,
-            o.has("reset_on_death") && o.get("reset_on_death").getAsBoolean());
+            o.has("reset_on_death") && o.get("reset_on_death").getAsBoolean(),
+            List.copyOf(groups));
     }
 
     static String string(JsonObject o, String field) {
@@ -105,5 +113,46 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
     /** Whether enough of the required quests are done to take this one. */
     public boolean unlocked(java.util.function.Predicate<String> done) {
         return requiredDone(done) >= needed();
+    }
+
+    /** Whether another objective of objective i's group is done, which makes i done as well. */
+    public boolean alternativeDone(int i, java.util.function.IntPredicate done) {
+        String g = groups.get(i);
+        if (g.isEmpty()) return false;
+        for (int j = 0; j < objectives.size(); j++) {
+            if (j != i && g.equals(groups.get(j)) && done.test(j)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Whether the objectives are done: every one of them, where one objective of a group is enough;
+     * in mode "any", any one of them.
+     */
+    public boolean done(java.util.function.IntPredicate done) {
+        boolean one = false;
+        for (int i = 0; i < objectives.size(); i++) {
+            if (done.test(i)) one = true;
+            else if (!any && !alternativeDone(i, done)) return false;
+        }
+        return !any || one;
+    }
+
+    /** The objectives in the order they are shown: the alternatives of a group together, where its first one is. */
+    public List<Integer> shownOrder() {
+        List<Integer> out = new ArrayList<>();
+        for (int i = 0; i < objectives.size(); i++) {
+            if (out.contains(i)) continue;
+            out.add(i);
+            if (groups.get(i).isEmpty()) continue;
+            for (int j = i + 1; j < objectives.size(); j++) if (groups.get(i).equals(groups.get(j))) out.add(j);
+        }
+        return out;
+    }
+
+    /** Whether objective i is shown as "or ..." after another objective of its group. */
+    public boolean orBefore(int i) {
+        String g = groups.get(i);
+        return !g.isEmpty() && groups.indexOf(g) < i;
     }
 }

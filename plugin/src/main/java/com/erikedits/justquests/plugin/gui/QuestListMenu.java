@@ -135,7 +135,7 @@ public final class QuestListMenu extends Menu {
 
         lore.add(Text.lit(""));
         lore.add(Text.lit("§6" + Text.legacy(lang, "justquests.book.objectives")));
-        for (int i = 0; i < q.objectives().size(); i++) lore.add(goalLine(lang, data, q, i));
+        for (int i : q.shownOrder()) lore.add(goalLine(lang, data, q, i));
         if (!q.rewards().isEmpty()) {
             lore.add(Text.lit("§6" + Text.legacy(lang, "justquests.book.rewards")));
             for (Reward r : q.rewards()) {
@@ -164,6 +164,8 @@ public final class QuestListMenu extends Menu {
         TextComponent line = new TextComponent("");
         boolean active = data != null && data.isActive(q.id());
         int have = active ? Math.min(data.progress(q.id(), i), o.requiredCount()) : 0;
+        // an alternative of the objective above it reads "or ..."
+        if (q.orBefore(i)) line.addExtra(Text.lit(" §7" + Text.legacy(lang, "justquests.goal.or")));
         if (active && have >= o.requiredCount()) line.addExtra(Text.lit(" §a✓ §7"));
         else if (active) line.addExtra(Text.lit(" §e" + have + "/" + o.requiredCount() + " §f"));
         else line.addExtra(Text.lit(" §8• §f"));

@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
  */
 public final class QuestCommand implements TabExecutor {
     public static final List<String> PLAYER = List.of("open", "list", "categories", "stats", "leaderboard", "progress",
-        "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "team", "discord");
+        "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "team", "discord", "autoaccept");
     public static final List<String> ADMIN = List.of("reload", "reroll", "mainquests", "difficulty", "generator", "npc", "test", "admin");
 
     private final JustQuestsPlugin plugin;
@@ -81,8 +81,20 @@ public final class QuestCommand implements TabExecutor {
             case "leaderboard" -> leaderboard(sender);
             case "progress" -> withPlayer(sender, p -> progress(p));
             case "accept" -> withPlayer(sender, p -> {
-                if (rest.length < 1) say(p, "justquests.plugin.usage", "/" + label + " accept <quest>");
-                else say(p, plugin.progress().accept(p, id(rest[0])).message());
+                if (rest.length < 1) say(p, "justquests.plugin.usage", "/" + label + " accept <quest|all>");
+                else if (rest[0].equalsIgnoreCase("all")) {
+                    int n = plugin.progress().acceptAll(p);
+                    say(p, n > 0 ? "justquests.accept.all" : "justquests.accept.none", n);
+                } else say(p, plugin.progress().accept(p, id(rest[0])).message());
+            });
+            case "autoaccept" -> withPlayer(sender, p -> {
+                PlayerData d = plugin.store().get(p.getUniqueId());
+                if (rest.length > 0 && List.of("on", "off").contains(rest[0].toLowerCase(Locale.ROOT))) {
+                    d.autoAccept = rest[0].equalsIgnoreCase("on");
+                    plugin.store().markDirty(p.getUniqueId());
+                }
+                boolean on = d.autoAccept != null ? d.autoAccept : plugin.settings().autoAccept;
+                say(p, on ? "justquests.autoaccept.on" : "justquests.autoaccept.off");
             });
             case "abandon" -> withPlayer(sender, p -> {
                 if (rest.length < 1) say(p, "justquests.plugin.usage", "/" + label + " abandon <quest>");
@@ -222,9 +234,12 @@ public final class QuestCommand implements TabExecutor {
             String desc = q.description().get(lang);
             if (!desc.isBlank()) say(src, Text.tr(lang, "justquests.list.description", desc));
             BaseComponent goals = Text.tr(lang, "justquests.list.goal");
-            for (int i = 0; i < q.objectives().size(); i++) {
-                if (i > 0) goals.addExtra(Text.lit("§7, §f"));
+            boolean first = true;
+            for (int i : q.shownOrder()) {
+                if (q.orBefore(i)) goals.addExtra(Text.lit(" §7" + Text.legacy(lang, "justquests.goal.or") + " §f"));
+                else if (!first) goals.addExtra(Text.lit("§7, §f"));
                 goals.addExtra(Objective.shown(q.objectives().get(i), lang));
+                first = false;
             }
             say(src, goals);
             BaseComponent rewards = Text.tr(lang, "justquests.list.reward");
@@ -311,11 +326,13 @@ public final class QuestCommand implements TabExecutor {
             Quest quest = plugin.quests().get(id);
             if (quest == null) continue;
             say(player, Text.tr(lang, "justquests.list.entry", id, quest.title().get(lang)));
-            for (int i = 0; i < quest.objectives().size(); i++) {
+            for (int i : quest.shownOrder()) {
                 Objective obj = quest.objectives().get(i);
                 int have = Math.min(data.progress(id, i), obj.requiredCount());
                 TextComponent line = new TextComponent("");
-                line.addExtra(Text.lit("  " + (have >= obj.requiredCount() ? "§a✓" : "§7" + have + "/" + obj.requiredCount()) + " §f"));
+                // an alternative of the objective above it reads "or ..."
+                String or = quest.orBefore(i) ? "§7" + Text.legacy(lang, "justquests.goal.or") + " " : "";
+                line.addExtra(Text.lit("  " + or + (have >= obj.requiredCount() ? "§a✓" : "§7" + have + "/" + obj.requiredCount()) + " §f"));
                 line.addExtra(Objective.shown(obj, lang));
                 say(player, line);
             }
@@ -623,6 +640,7 @@ public final class QuestCommand implements TabExecutor {
                 }
                 plugin.progress().finish(target, plugin.store().get(uuid), id, quest);
                 plugin.store().markDirty(uuid);
+                plugin.progress().unlocks(target);
                 plugin.tracker().update(target);
                 say(src, "justquests.admin.complete", id, name);
             }
@@ -645,6 +663,7 @@ public final class QuestCommand implements TabExecutor {
             if (args.length == 2) {
                 switch (sub) {
                     case "accept" -> {
+                        out.add("all");
                         for (Quest q : quests(sender)) {
                             if (p == null || QuestStatus.of(plugin, p.getUniqueId(), data, q) == QuestStatus.AVAILABLE) out.add(q.id());
                         }
@@ -652,7 +671,7 @@ public final class QuestCommand implements TabExecutor {
                     case "abandon", "track" -> { if (data != null) out.addAll(data.active.keySet()); }
                     case "claim" -> { if (data != null) out.addAll(data.pendingClaim.keySet()); }
                     case "list" -> quests(sender).stream().map(Quest::category).distinct().sorted().forEach(out::add);
-                    case "mainquests", "bossbar" -> out.addAll(List.of("on", "off"));
+                    case "mainquests", "bossbar", "autoaccept" -> out.addAll(List.of("on", "off"));
                     case "difficulty" -> out.addAll(List.of("easy", "normal", "hard"));
                     case "generator" -> out.addAll(List.of("status", "stats", "preview", "explain", "release"));
                     case "npc" -> out.addAll(List.of("set", "remove"));

@@ -1,0 +1,31 @@
+{
+  "title": "Example: group",
+  "description": "Craft a chest OR a barrel - one of the two is enough - and mine 8 oak logs.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:craft_item",
+      "item": "minecraft:chest",
+      "count": 1,
+      "group": "storage"
+    },
+    {
+      "type": "justquests:craft_item",
+      "item": "minecraft:barrel",
+      "count": 1,
+      "group": "storage"
+    },
+    {
+      "type": "justquests:mine_block",
+      "block": "minecraft:oak_log",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:hopper",
+      "count": 1
+    }
+  ]
+}

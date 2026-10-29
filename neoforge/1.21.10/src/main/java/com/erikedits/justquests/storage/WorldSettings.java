@@ -30,6 +30,7 @@ public final class WorldSettings {
     private static boolean completionSound = true;
     private static boolean completionToast = true;
     private static boolean claimRewards = true;
+    private static boolean autoAccept = true;
     private static boolean mainQuests = true;
     private static boolean generatedQuests = true;
     private static int generatedCount = 5;
@@ -130,6 +131,7 @@ public final class WorldSettings {
         if (o.has("completionSound")) completionSound = o.get("completionSound").getAsBoolean();
         if (o.has("completionToast")) completionToast = o.get("completionToast").getAsBoolean();
         if (o.has("claimRewards")) claimRewards = o.get("claimRewards").getAsBoolean();
+        if (o.has("autoAccept")) autoAccept = o.get("autoAccept").getAsBoolean();
         if (o.has("mainQuests")) mainQuests = o.get("mainQuests").getAsBoolean();
         if (o.has("generatedQuests")) generatedQuests = o.get("generatedQuests").getAsBoolean();
         if (o.has("generatedCount")) generatedCount = o.get("generatedCount").getAsInt();
@@ -188,6 +190,7 @@ public final class WorldSettings {
         o.addProperty("completionSound", completionSound);
         o.addProperty("completionToast", completionToast);
         o.addProperty("claimRewards", claimRewards);
+        o.addProperty("autoAccept", autoAccept);
         o.addProperty("mainQuests", mainQuests);
         o.addProperty("generatedQuests", generatedQuests);
         o.addProperty("generatedCount", generatedCount);
@@ -216,6 +219,8 @@ public final class WorldSettings {
     public static boolean completionToast() { return completionToast; }
 
     public static boolean claimRewards() { return claimRewards; }
+
+    public static boolean autoAccept() { return autoAccept; }
 
     public static boolean mainQuests() { return mainQuests; }
 
@@ -261,6 +266,7 @@ public final class WorldSettings {
         completionSound = true;
         completionToast = true;
         claimRewards = true;
+        autoAccept = true;
         mainQuests = true;
         generatedQuests = true;
         generatedCount = 5;
@@ -284,6 +290,7 @@ public final class WorldSettings {
         + "completionSound: play a sound for the player on completion. "
         + "completionToast: show an action-bar toast on completion. "
         + "claimRewards: finished quests wait until the player claims their rewards (Claim button in the quest book, or /quest claim); false pays rewards out the moment a quest is finished. "
+        + "autoAccept: a quest is accepted by itself once the quests it requires are done; false gives the player an Accept button in the chat instead. Each player can change it for themselves with /quest autoaccept on|off. "
         + "mainQuests: the built-in quests bundled with the mod; set false to hide them from /quest list and the quest book (your own datapack quests, custom and generated quests stay). Toggle in-game with /quest mainquests on|off (OP). "
         + "generatedQuests: auto-generate a rotating set of quests (category 'generated'); set false to disable. "
         + "generatedCount: how many generated quests per cycle (1-20). "

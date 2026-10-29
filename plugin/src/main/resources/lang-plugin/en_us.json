@@ -92,5 +92,6 @@
   "justquests.plugin.npc.not": "§cThat is not a quest giver.",
   "justquests.plugin.help.npc": "make the mob you look at open the quest book",
   "justquests.category.personal": "Personal",
-  "justquests.category.weekly": "Weekly"
+  "justquests.category.weekly": "Weekly",
+  "justquests.plugin.help.autoaccept": "accept unlocked quests by themselves (on/off)"
 }

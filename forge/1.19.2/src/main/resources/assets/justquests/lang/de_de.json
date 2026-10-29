@@ -246,5 +246,22 @@
   "justquests.team.info_leader": " §6(Leitung)",
   "justquests.team.info_online": " §a●",
   "justquests.team.scoreboard": "§7Dein Team ist das Scoreboard-Team §f%s§7.",
-  "justquests.team.parties_off": "§cEigene Teams (/quest team) sind auf diesem Server aus; frag nach einem Scoreboard-Team (/team)."
+  "justquests.team.parties_off": "§cEigene Teams (/quest team) sind auf diesem Server aus; frag nach einem Scoreboard-Team (/team).",
+  "justquests.goal.or": "oder",
+  "justquests.book.or": "- oder -",
+  "justquests.book.hint.fold": "Gruppe einklappen",
+  "justquests.book.hint.unfold": "Gruppe ausklappen",
+  "justquests.book.auto_accept": "Freigeschaltete Quests automatisch annehmen",
+  "justquests.book.acceptable": "Bereit zum Annehmen: %s",
+  "justquests.book.accept_all": "Alle annehmen",
+  "justquests.unlocked": "§eNeue Quest freigeschaltet: §f%s",
+  "justquests.unlocked.accepted": "§a✓ Freigeschaltet und angenommen: §f%s",
+  "justquests.unlocked.accept": "§a[Annehmen]",
+  "justquests.unlocked.accept_hover": "Klicken, um diese Quest anzunehmen",
+  "justquests.unlocked.auto_off": "§7[Ausschalten]",
+  "justquests.unlocked.auto_off_hover": "Freigeschaltete Quests nicht mehr automatisch annehmen (/quest autoaccept off)",
+  "justquests.accept.all": "§a✓ Quests angenommen: %s",
+  "justquests.accept.none": "§7Gerade kann keine Quest angenommen werden.",
+  "justquests.autoaccept.on": "§aFreigeschaltete Quests werden automatisch angenommen. §7Ausschalten mit /quest autoaccept off.",
+  "justquests.autoaccept.off": "§eFreigeschaltete Quests warten, bis du sie annimmst. §7Automatisch annehmen mit /quest autoaccept on."
 }

@@ -246,5 +246,22 @@
   "justquests.team.info_leader": " §6(chef)",
   "justquests.team.info_online": " §a●",
   "justquests.team.scoreboard": "§7Votre équipe est l'équipe du tableau des scores §f%s§7.",
-  "justquests.team.parties_off": "§cLes équipes de /quest team sont désactivées sur ce serveur ; demandez une équipe du tableau des scores (/team)."
+  "justquests.team.parties_off": "§cLes équipes de /quest team sont désactivées sur ce serveur ; demandez une équipe du tableau des scores (/team).",
+  "justquests.goal.or": "ou",
+  "justquests.book.or": "- ou -",
+  "justquests.book.hint.fold": "Replier ce groupe",
+  "justquests.book.hint.unfold": "Déplier ce groupe",
+  "justquests.book.auto_accept": "Accepter automatiquement les quêtes débloquées",
+  "justquests.book.acceptable": "Prêtes à accepter : %s",
+  "justquests.book.accept_all": "Tout accepter",
+  "justquests.unlocked": "§eNouvelle quête débloquée : §f%s",
+  "justquests.unlocked.accepted": "§a✓ Débloquée et acceptée : §f%s",
+  "justquests.unlocked.accept": "§a[Accepter]",
+  "justquests.unlocked.accept_hover": "Cliquez pour accepter cette quête",
+  "justquests.unlocked.auto_off": "§7[Désactiver]",
+  "justquests.unlocked.auto_off_hover": "Ne plus accepter automatiquement les quêtes débloquées (/quest autoaccept off)",
+  "justquests.accept.all": "§a✓ Quêtes acceptées : %s",
+  "justquests.accept.none": "§7Aucune quête ne peut être acceptée pour le moment.",
+  "justquests.autoaccept.on": "§aLes quêtes débloquées sont acceptées automatiquement. §7Désactivez-le avec /quest autoaccept off.",
+  "justquests.autoaccept.off": "§eLes quêtes débloquées attendent que vous les acceptiez. §7Activez-le avec /quest autoaccept on."
 }

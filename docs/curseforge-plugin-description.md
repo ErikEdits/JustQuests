@@ -39,6 +39,8 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 
 - `/quest` – open the quest book
 - `/quest list [category]`, `/quest progress`, `/quest accept <id>`, `/quest abandon <id>`
+- `/quest accept all` – start every quest you can take now
+- `/quest autoaccept on|off` – whether unlocked quests start by themselves (on by default)
 - `/quest claim [id]` – take the rewards of finished quests
 - `/quest track <id>` / `/quest bossbar` – choose or hide the boss bar
 - `/quest book` – a new quest book item

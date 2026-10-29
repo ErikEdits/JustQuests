@@ -48,6 +48,9 @@ public final class GenV2 {
 
     public static QuestGeneratorV2 get() { return gen; }
 
+    /** The running server, null when there is none (on a client connected to a server, for one). */
+    public static MinecraftServer server() { return server; }
+
     /** Server start, after WorldQuestStore, WorldSettings and CustomQuestLoader are loaded. */
     public static void start(MinecraftServer srv) {
         try {

@@ -24,13 +24,20 @@ public class PlayerQuestData {
     public final Map<Identifier, QuestProgress> active = new HashMap<>();
     public final Map<Identifier, Long> pendingClaim = new HashMap<>();
     public final Map<Identifier, Long> completed = new HashMap<>();
+    /** The player's own choice for accepting unlocked quests at once; empty = the world's setting (autoAccept). */
+    public Optional<Boolean> autoAccept = Optional.empty();
 
     public static final Codec<PlayerQuestData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         Codec.STRING.optionalFieldOf("teamId").forGetter(d -> d.teamId),
         Codec.unboundedMap(Identifier.CODEC, QuestProgress.CODEC).optionalFieldOf("active", Map.of()).forGetter(d -> d.active),
         Codec.unboundedMap(Identifier.CODEC, Codec.LONG).optionalFieldOf("pendingClaim", Map.of()).forGetter(d -> d.pendingClaim),
-        Codec.unboundedMap(Identifier.CODEC, Codec.LONG).optionalFieldOf("completed", Map.of()).forGetter(d -> d.completed)
-    ).apply(instance, PlayerQuestData::new));
+        Codec.unboundedMap(Identifier.CODEC, Codec.LONG).optionalFieldOf("completed", Map.of()).forGetter(d -> d.completed),
+        Codec.BOOL.optionalFieldOf("autoAccept").forGetter(d -> d.autoAccept)
+    ).apply(instance, (teamId, active, pendingClaim, completed, autoAccept) -> {
+        PlayerQuestData d = new PlayerQuestData(teamId, active, pendingClaim, completed);
+        d.autoAccept = autoAccept;
+        return d;
+    }));
 
     public PlayerQuestData() {}
 
@@ -78,6 +85,6 @@ public class PlayerQuestData {
     }
 
     public boolean isEmpty() {
-        return active.isEmpty() && pendingClaim.isEmpty() && completed.isEmpty();
+        return active.isEmpty() && pendingClaim.isEmpty() && completed.isEmpty() && autoAccept.isEmpty();
     }
 }

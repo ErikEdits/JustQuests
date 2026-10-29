@@ -35,6 +35,8 @@ public final class ClientSettings {
     /** Quests pinned to the HUD, as ids; QuestHud drops finished or abandoned ones. */
     public static final List<String> pinned = new ArrayList<>();
     private static final int MAX_PINS = 20;
+    /** Quest book groups folded shut: "category:<name>" or "status:<STATUS>". */
+    public static final List<String> folded = new ArrayList<>();
 
     private ClientSettings() {}
 
@@ -62,6 +64,9 @@ public final class ClientSettings {
             if (o.has("pinned")) {
                 for (JsonElement e : o.getAsJsonArray("pinned")) pinned.add(e.getAsString());
             }
+            if (o.has("folded")) {
+                for (JsonElement e : o.getAsJsonArray("folded")) folded.add(e.getAsString());
+            }
         } catch (Exception e) {
             JustQuests.LOG.warn("Could not read justquests-client.json, using defaults", e);
         }
@@ -80,12 +85,19 @@ public final class ClientSettings {
         save();
     }
 
+    /** Folds a quest book group shut, or opens it again. */
+    public static void toggleFold(String group) {
+        if (!folded.remove(group)) folded.add(group);
+        save();
+    }
+
     public static void save() {
         JsonObject o = new JsonObject();
         o.addProperty("_help", "JustQuests client options. hud: show the quest tracker (toggle key H). "
             + "hudCorner: top_left, top_right, bottom_left or bottom_right. hudMax: quests shown (1-5). "
             + "byStatus / hideCompleted: quest book list options (also set by its buttons). "
-            + "pinned: quests pinned to the HUD (set with the pin button in the book).");
+            + "pinned: quests pinned to the HUD (set with the pin button in the book). "
+            + "folded: quest book groups folded shut (click a group's header in the book).");
         o.addProperty("hud", hud);
         o.addProperty("hudCorner", hudCorner);
         o.addProperty("hudMax", hudMax);
@@ -94,6 +106,9 @@ public final class ClientSettings {
         JsonArray pins = new JsonArray();
         pinned.forEach(pins::add);
         o.add("pinned", pins);
+        JsonArray folds = new JsonArray();
+        folded.forEach(folds::add);
+        o.add("folded", folds);
         try {
             Path f = file();
             Files.createDirectories(f.getParent());

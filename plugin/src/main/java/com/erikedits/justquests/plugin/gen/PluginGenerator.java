@@ -448,6 +448,11 @@ public final class PluginGenerator implements GeneratedQuests {
     }
 
     @Override
+    public boolean onBoard(String id) {
+        return board != null && board.isGenerated(id);
+    }
+
+    @Override
     public boolean takenByOther(String id, UUID viewer) {
         ClaimView view = claimView(id);
         return view != null && !view.holder().equals(viewer);

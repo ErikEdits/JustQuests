@@ -16,6 +16,7 @@ import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -91,6 +92,57 @@ public final class ProgressService {
             if (toast != null && !completed) player.spigot().sendMessage(ChatMessageType.ACTION_BAR, toast);
             plugin.tracker().update(player);
         }
+        unlocks(player);
+    }
+
+    /** Quests each player finished for the first time, until {@link #unlocks} looks at what they unlock. */
+    private final Map<UUID, List<String>> fresh = new HashMap<>();
+
+    /**
+     * The quests that the player's newly finished quests unlocked: with auto-accept on (the default)
+     * they are accepted at once, else the player gets an Accept button for each. Team quests only get
+     * the button. Called after the "completed" messages, so the chat reads in order.
+     */
+    public void unlocks(Player player) {
+        List<String> done = fresh.remove(player.getUniqueId());
+        if (done == null) return;
+        String lang = Lang.of(player);
+        PlayerData data = plugin.store().get(player.getUniqueId());
+        boolean auto = data.autoAccept != null ? data.autoAccept : plugin.settings().autoAccept;
+        for (Quest quest : plugin.quests().all().values()) {
+            if (quest.requires().stream().noneMatch(done::contains) || !plugin.canSee(player, quest)) continue;
+            if (QuestStatus.of(plugin, player.getUniqueId(), plugin.view(player.getUniqueId()), quest) != QuestStatus.AVAILABLE) continue;
+            String title = quest.title().get(lang);
+            TextComponent line = new TextComponent("");
+            if (auto && !quest.team() && accept(player, quest.id()).ok()) {
+                line.addExtra(Text.tr(lang, "justquests.unlocked.accepted", title));
+                line.addExtra(" ");
+                line.addExtra(Text.button(Text.tr(lang, "justquests.unlocked.auto_off"), "/quest autoaccept off",
+                    Text.tr(lang, "justquests.unlocked.auto_off_hover")));
+            } else {
+                line.addExtra(Text.tr(lang, "justquests.unlocked", title));
+                line.addExtra(" ");
+                line.addExtra(Text.button(Text.tr(lang, "justquests.unlocked.accept"), "/quest accept " + quest.id(),
+                    Text.tr(lang, "justquests.unlocked.accept_hover")));
+            }
+            player.spigot().sendMessage(line);
+        }
+    }
+
+    /**
+     * /quest accept all: every quest the player may take now, except team quests (they are taken for
+     * the whole team) and the generated board's (they are claimed one at a time). How many it took.
+     */
+    public int acceptAll(Player player) {
+        PlayerData view = plugin.view(player.getUniqueId());
+        int count = 0;
+        for (Quest quest : plugin.quests().all().values()) {
+            if (quest.team() || plugin.generated().onBoard(quest.id()) || !plugin.canSee(player, quest)) continue;
+            if (!plugin.generated().visible(quest.id(), player.getUniqueId())) continue;
+            if (QuestStatus.of(plugin, player.getUniqueId(), view, quest) != QuestStatus.AVAILABLE) continue;
+            if (accept(player, quest.id()).ok()) count++;
+        }
+        return count;
     }
 
     /** Adds what the event counts to each active quest; the quests now complete come back. */
@@ -102,7 +154,6 @@ public final class ProgressService {
             Quest quest = plugin.quests().get(entry.getKey());
             if (quest == null) continue;
             Map<Integer, Integer> progress = entry.getValue();
-            boolean all = true, any = false;
             for (int i = 0; i < quest.objectives().size(); i++) {
                 Objective obj = quest.objectives().get(i);
                 int add = test.amount(obj);
@@ -119,10 +170,8 @@ public final class ProgressService {
                         toast = Text.tr(lang, "justquests.plugin.progress", Objective.shown(obj, lang), have, obj.requiredCount());
                     }
                 }
-                if (have >= obj.requiredCount()) any = true;
-                else all = false;
             }
-            if (quest.any() ? any : all) completing.add(entry.getKey());
+            if (quest.done(i -> progress.getOrDefault(i, 0) >= quest.objectives().get(i).requiredCount())) completing.add(entry.getKey());
         }
         return new Step(changed, toast, completing);
     }
@@ -180,6 +229,7 @@ public final class ProgressService {
             Player online = Bukkit.getPlayer(member);
             if (online != null) {
                 notifyDone(online, quest, finish(online, d, id, quest), "justquests.team.completed");
+                unlocks(online);
                 plugin.tracker().update(online);
             } else {
                 d.complete(id);
@@ -231,6 +281,8 @@ public final class ProgressService {
      * @return true when the rewards wait to be claimed
      */
     public boolean finish(Player player, PlayerData data, String id, Quest quest) {
+        // what it unlocks is taken or offered by unlocks(), after the caller's messages
+        if (!data.isCompleted(id)) fresh.computeIfAbsent(player.getUniqueId(), k -> new ArrayList<>()).add(id);
         data.complete(id);
         if (id.equals(data.pinned)) data.pinned = null;
         // a quest without rewards has nothing to claim: it is simply done

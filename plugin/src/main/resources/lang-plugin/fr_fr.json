@@ -92,5 +92,6 @@
   "justquests.plugin.npc.not": "§cCe n'est pas un donneur de quêtes.",
   "justquests.plugin.help.npc": "le mob regardé ouvre le livre de quêtes",
   "justquests.category.personal": "Personnelles",
-  "justquests.category.weekly": "Hebdomadaires"
+  "justquests.category.weekly": "Hebdomadaires",
+  "justquests.plugin.help.autoaccept": "accepter seules les quêtes débloquées (on/off)"
 }

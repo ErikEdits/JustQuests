@@ -86,6 +86,7 @@ public class QuestCommand {
             .then(Commands.literal("leaderboard").requires(Perms.command("leaderboard")).executes(QuestCommand::leaderboard))
             .then(Commands.literal("progress").requires(Perms.command("progress")).executes(QuestCommand::progress))
             .then(Commands.literal("accept").requires(Perms.command("accept"))
+                .then(Commands.literal("all").executes(QuestCommand::acceptAll))
                 .then(Commands.argument("id", ResourceLocationArgument.id())
                     .suggests(AVAILABLE_QUESTS)
                     .executes(ctx -> accept(ctx, ResourceLocationArgument.getId(ctx, "id")))))
@@ -115,6 +116,10 @@ public class QuestCommand {
                 .then(Commands.literal("kick")
                     .then(Commands.argument("name", StringArgumentType.word())
                         .executes(ctx -> team(ctx, "kick", StringArgumentType.getString(ctx, "name"))))))
+            .then(Commands.literal("autoaccept").requires(Perms.command("autoaccept"))
+                .executes(ctx -> autoAccept(ctx, null))
+                .then(Commands.literal("on").executes(ctx -> autoAccept(ctx, true)))
+                .then(Commands.literal("off").executes(ctx -> autoAccept(ctx, false))))
             .then(Commands.literal("discord").requires(Perms.command("discord")).executes(QuestCommand::discord))
             .then(Commands.literal("reload")
                 .requires(Perms.admin("reload"))
@@ -251,9 +256,12 @@ public class QuestCommand {
 
             MutableComponent goals = Msg.tr("justquests.list.goal");
             List<QuestObjective> objs = quest.objectives();
-            for (int i = 0; i < objs.size(); i++) {
-                if (i > 0) goals.append(Component.literal("§7, §f"));
+            boolean first = true;
+            for (int i : quest.shownOrder()) {
+                if (quest.orBefore(i)) goals.append(Msg.lit(" ")).append(Msg.tr("justquests.goal.or").withStyle(net.minecraft.ChatFormatting.GRAY)).append(Msg.lit(" "));
+                else if (!first) goals.append(Component.literal("§7, §f"));
                 goals.append(QuestObjective.shown(objs.get(i)));
+                first = false;
             }
             src.sendSuccess(() -> goals, false);
 
@@ -381,14 +389,16 @@ public class QuestCommand {
                 Msg.tr("justquests.list.entry", entry.getKey(), quest.title().get(lang)), false);
 
             QuestProgress prog = entry.getValue();
-            for (int i = 0; i < quest.objectives().size(); i++) {
+            for (int i : quest.shownOrder()) {
                 QuestObjective obj = quest.objectives().get(i);
                 int current = Math.min(prog.get(i), obj.requiredCount());
                 int needed = obj.requiredCount();
                 String bar = current >= needed ? "§a✓" : "§7" + current + "/" + needed;
                 final int idx = i;
+                // an alternative of the objective above it reads "or ..."
+                MutableComponent or = quest.orBefore(i) ? Msg.tr("justquests.goal.or").withStyle(net.minecraft.ChatFormatting.GRAY).append(Msg.lit(" ")) : Msg.empty();
                 ctx.getSource().sendSuccess(() ->
-                    Component.literal("  " + bar + " §f").append(QuestObjective.shown(quest.objectives().get(idx))), false);
+                    Component.literal("  ").append(or).append(Msg.lit(bar + " §f")).append(QuestObjective.shown(quest.objectives().get(idx))), false);
             }
         }
         return data.active.size();
@@ -468,6 +478,56 @@ public class QuestCommand {
         com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
         ctx.getSource().sendSuccess(() ->
             Msg.tr("justquests.accept.ok", quest.title().get(lang)), false);
+        return 1;
+    }
+
+    /**
+     * /quest accept all: every quest the player may take now, except team quests (they are taken for
+     * the whole team) and generated ones (they are claimed one at a time).
+     */
+    private static int acceptAll(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.error.storage"));
+            return 0;
+        }
+        PlayerQuestData data = store.get(player.getUUID());
+        var gen = com.erikedits.justquests.generator.GenV2.get();
+        int count = 0;
+        for (Map.Entry<ResourceLocation, Quest> e : QuestManager.INSTANCE.getQuests().entrySet()) {
+            if (e.getValue().team() || (gen != null && gen.isGenerated(e.getKey().toString()))) continue;
+            if (!com.erikedits.justquests.progress.QuestProgressService.available(player, data, e.getKey(), e.getValue())) continue;
+            data.accept(e.getKey());
+            count++;
+        }
+        if (count == 0) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.accept.none"));
+            return 0;
+        }
+        store.markDirty();
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        int n = count;
+        ctx.getSource().sendSuccess(() -> Msg.tr("justquests.accept.all", n), false);
+        return count;
+    }
+
+    /** /quest autoaccept [on|off]: whether quests are accepted by themselves once they get unlocked (null: show it). */
+    private static int autoAccept(CommandContext<CommandSourceStack> ctx, Boolean on) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.error.storage"));
+            return 0;
+        }
+        PlayerQuestData data = store.get(player.getUUID());
+        if (on != null) {
+            data.autoAccept = java.util.Optional.of(on);
+            store.markDirty();
+            com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        }
+        boolean now = data.autoAccept.orElse(com.erikedits.justquests.storage.WorldSettings.autoAccept());
+        ctx.getSource().sendSuccess(() -> Msg.tr(now ? "justquests.autoaccept.on" : "justquests.autoaccept.off"), false);
         return 1;
     }
 
@@ -761,6 +821,7 @@ public class QuestCommand {
         PlayerQuestData data = store.get(target.getUUID());
         com.erikedits.justquests.progress.QuestProgressService.finish(target, data, id, quest);
         store.markDirty();
+        com.erikedits.justquests.progress.QuestProgressService.unlocks(target);
         String name = target.getName().getString();
         com.erikedits.justquests.network.QuestNetwork.syncProgress(target);
         src.sendSuccess(() -> Msg.tr("justquests.admin.complete", id, name), true);

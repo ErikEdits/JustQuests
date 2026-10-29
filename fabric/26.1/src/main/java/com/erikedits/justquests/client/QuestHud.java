@@ -96,11 +96,15 @@ public final class QuestHud {
             List<String> lines = new ArrayList<>();
             List<Integer> colors = new ArrayList<>();
             List<QuestObjective> objs = q.objectives();
-            for (int i = 0; i < objs.size() && i < MAX_OBJECTIVES; i++) {
+            List<Integer> order = q.shownOrder();
+            for (int n = 0; n < order.size() && n < MAX_OBJECTIVES; n++) {
+                int i = order.get(n);
                 int need = objs.get(i).requiredCount();
                 int cur = Math.min(prog.get(i), need);
                 boolean done = cur >= need;
-                String line = fit(font, (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString());
+                // an alternative of the goal above it reads "or ..."
+                String or = q.orBefore(i) ? I18n.get("justquests.goal.or") + " " : "";
+                String line = fit(font, or + (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString());
                 lines.add(line);
                 colors.add(done ? DONE : OPEN);
                 textW = Math.max(textW, font.width(line));

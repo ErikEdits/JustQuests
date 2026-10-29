@@ -54,9 +54,9 @@ public class QuestScreen extends Screen {
         }
     }
 
-    /** One line of the list: a group header, a quest, or an empty spacer. */
-    private record Entry(String header, String icon, String count, ResourceLocation id, Quest quest) {
-        static final Entry SPACER = new Entry(null, null, null, null, null);
+    /** One line of the list: a group header (with the key it folds by), a quest, or an empty spacer. */
+    private record Entry(String header, String icon, String count, ResourceLocation id, Quest quest, String fold) {
+        static final Entry SPACER = new Entry(null, null, null, null, null, null);
 
         boolean isHeader() { return header != null; }
         boolean isQuest() { return id != null; }
@@ -77,6 +77,10 @@ public class QuestScreen extends Screen {
     private long cornerPreviewUntil;
     /** Where the choice options were drawn this frame: x, y, w, h, option index. */
     private final List<int[]> optionHits = new ArrayList<>();
+    /** The quest page's scroll bar this frame: x, top, height, thumb height (null while it fits). */
+    private int[] scrollBar;
+    /** The auto-accept box on the overview page this frame: x, y, w, h (null while not shown). */
+    private int[] autoHit;
 
     public QuestScreen() {
         super(Component.translatable("justquests.book.title"));
@@ -176,19 +180,23 @@ public class QuestScreen extends Screen {
         for (Map.Entry<String, List<Map.Entry<ResourceLocation, Quest>>> group : groups.entrySet()) {
             if (group.getValue().isEmpty()) continue;
             Entry header;
+            String fold = (ClientSettings.byStatus ? "status:" : "category:") + group.getKey();
             if (ClientSettings.byStatus) {
                 Status st = Status.valueOf(group.getKey());
-                header = new Entry(I18n.get("justquests.book.status." + st.label), st.icon, String.valueOf(group.getValue().size()), null, null);
+                header = new Entry(I18n.get("justquests.book.status." + st.label), st.icon, String.valueOf(group.getValue().size()), null, null, fold);
             } else {
                 int[] c = perCategory.get(group.getKey());
                 header = new Entry(QuestIcons.categoryName(group.getKey()), QuestIcons.categoryIcon(group.getKey()),
-                    c[0] + "/" + c[1], null, null);
+                    c[0] + "/" + c[1], null, null, fold);
             }
-            // never leave a header alone on the last line of a page
-            if (entries.size() % ROWS == ROWS - 1) entries.add(Entry.SPACER);
+            // a search shows every match, folded or not
+            boolean folded = q.isEmpty() && ClientSettings.folded.contains(fold);
+            // never leave a header alone on the last line of a page (a folded one has nothing below it)
+            if (!folded && entries.size() % ROWS == ROWS - 1) entries.add(Entry.SPACER);
             entries.add(header);
+            if (folded) continue;
             for (Map.Entry<ResourceLocation, Quest> e : group.getValue()) {
-                entries.add(new Entry(null, null, null, e.getKey(), e.getValue()));
+                entries.add(new Entry(null, null, null, e.getKey(), e.getValue(), null));
             }
         }
         if (page > pages() - 1) page = Math.max(0, pages() - 1);
@@ -203,6 +211,26 @@ public class QuestScreen extends Screen {
             if (QuestIcons.label(o).getString().toLowerCase(Locale.ROOT).contains(q)) return true;
         }
         return false;
+    }
+
+    /** The group header on the current page under the mouse, or null. */
+    private Entry headerAt(double mx, double my) {
+        int start = page * ROWS;
+        for (int i = 0; i < ROWS && start + i < entries.size(); i++) {
+            Entry e = entries.get(start + i);
+            if (e.isHeader() && in(mx, my, listX(), rowY(i), ROW_W, ROW_H)) return e;
+        }
+        return null;
+    }
+
+    /** Quests the "Accept all" button takes: the available ones without team and generated quests (as /quest accept all). */
+    private int acceptable() {
+        int n = 0;
+        for (Map.Entry<ResourceLocation, Quest> e : ClientQuestData.getQuests().entrySet()) {
+            Quest q = e.getValue();
+            if (!q.team() && !"generated".equals(q.category()) && status(e.getKey(), q) == Status.AVAILABLE) n++;
+        }
+        return n;
     }
 
     private int pages() {
@@ -319,6 +347,8 @@ public class QuestScreen extends Screen {
             : in(mouseX, mouseY, cornerX(), barY(), 14, 14) ? "hud_corner"
             : in(mouseX, mouseY, hudX(), barY(), 14, 14) ? (ClientSettings.hud ? "hide_hud" : "show_hud")
             : pinShown && in(mouseX, mouseY, pinX(), actionY(), 20, 20) ? (ClientSettings.isPinned(selected) ? "unpin" : "pin")
+            : headerAt(mouseX, mouseY) != null && query.isBlank()
+                ? (ClientSettings.folded.contains(headerAt(mouseX, mouseY).fold()) ? "unfold" : "fold")
             : null;
         if (hint != null) {
             String text = hint.equals("hud_corner")
@@ -335,7 +365,7 @@ public class QuestScreen extends Screen {
             int start = page * ROWS;
             for (int i = 0; i < ROWS && start + i < entries.size(); i++) {
                 Entry e = entries.get(start + i);
-                if (e.isHeader()) renderHeader(g, e, rowY(i));
+                if (e.isHeader()) renderHeader(g, e, rowY(i), in(mouseX, mouseY, listX(), rowY(i), ROW_W, ROW_H));
                 else if (e.isQuest()) renderRow(g, e, rowY(i), in(mouseX, mouseY, listX(), rowY(i), ROW_W, ROW_H));
             }
         }
@@ -351,12 +381,22 @@ public class QuestScreen extends Screen {
         else renderDetail(g, mouseX, mouseY);
     }
 
-    private void renderHeader(GuiGraphics g, Entry e, int y) {
+    private void renderHeader(GuiGraphics g, Entry e, int y, boolean hover) {
         int x = listX();
+        boolean folded = query.isBlank() && ClientSettings.folded.contains(e.fold());
         blit(g, e.icon(), x + 1, y, 16, 16);
-        g.drawString(this.font, fit(e.header(), ROW_W - 50), x + 20, y + 4, WHITE, true);
-        g.drawString(this.font, e.count(), x + ROW_W - 3 - this.font.width(e.count()), y + 4, LIGHT, true);
+        g.drawString(this.font, fit(e.header(), ROW_W - 58), x + 20, y + 4, WHITE, true);
+        g.drawString(this.font, e.count(), x + ROW_W - 13 - this.font.width(e.count()), y + 4, LIGHT, true);
+        if (query.isBlank()) arrow(g, x + ROW_W - 9, y + 5, folded, hover ? WHITE : LIGHT);
         g.fill(x, y + 16, x + ROW_W, y + 17, 0xFF555555);
+    }
+
+    /** The fold arrow of a group header: pointing down while the group is open, right while it is folded. */
+    private static void arrow(GuiGraphics g, int x, int y, boolean folded, int color) {
+        for (int i = 0; i < 4; i++) {
+            if (folded) g.fill(x + i + 1, y + i, x + i + 2, y + 7 - i, color);
+            else g.fill(x + i, y + i + 1, x + 7 - i, y + i + 2, color);
+        }
     }
 
     private void renderRow(GuiGraphics g, Entry e, int y, boolean hover) {
@@ -389,10 +429,25 @@ public class QuestScreen extends Screen {
 
     private void renderDetail(GuiGraphics g, int mouseX, int mouseY) {
         optionHits.clear();
+        scrollBar = null;
+        autoHit = null;
         int dx = detailX(), dy = top + 24, dw = detailW();
         if (selected == null) {
             g.drawString(this.font, Component.translatable("justquests.book.select_1"), dx, dy, MUTED, false);
             g.drawString(this.font, Component.translatable("justquests.book.select_2"), dx, dy + 11, MUTED, false);
+            dy += 30;
+            // accepting unlocked quests by themselves: the player's setting on the server
+            int boxY = dy;
+            dy = lines(g, I18n.get("justquests.book.auto_accept"), dx + 11, dy, dw - 11, TEXT);
+            autoHit = new int[] {dx, boxY - 1, dw, dy - boxY};
+            radio(g, dx + 1, boxY, ClientQuestData.autoAccept(), in(mouseX, mouseY, dx, boxY - 1, dw, dy - boxY));
+            int n = acceptable();
+            if (n > 0) {
+                lines(g, I18n.get("justquests.book.acceptable", n), dx, dy + 6, dw, MUTED);
+                blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_claim_hover" : "button_claim_normal",
+                    actionX(), actionY(), 72, 20);
+                centered(g, I18n.get("justquests.book.accept_all"), actionX() + 36, actionY() + 6, TEXT);
+            }
             return;
         }
         Quest q = ClientQuestData.get(selected);
@@ -403,7 +458,7 @@ public class QuestScreen extends Screen {
 
         // everything above the buttons scrolls with the mouse wheel once it is taller than the page
         int viewTop = dy, viewBottom = pageBottom();
-        if (detailMax > 0) dw -= 4;   // room for the scroll bar
+        if (detailMax > 0) dw -= 6;   // room for the scroll bar
         detailScroll = Math.min(detailScroll, detailMax);
         g.enableScissor(dx, viewTop, dx + detailW(), viewBottom);
         dy -= detailScroll;
@@ -464,13 +519,20 @@ public class QuestScreen extends Screen {
         dy += 11;
         List<QuestObjective> objs = q.objectives();
         boolean finished = st == Status.COMPLETED || st == Status.CLAIM;
-        for (int i = 0; i < objs.size(); i++) {
+        java.util.function.IntPredicate goalDone = j -> finished || prog != null && prog.get(j) >= objs.get(j).requiredCount();
+        for (int i : q.shownOrder()) {
+            // the objectives of a group are alternatives: one of them is enough
+            if (q.orBefore(i)) {
+                g.drawString(this.font, I18n.get("justquests.book.or"), dx + 8, dy, MUTED, false);
+                dy += 10;
+            }
             int need = objs.get(i).requiredCount();
             int cur = finished ? need : prog != null ? Math.min(prog.get(i), need) : 0;
             boolean done = cur >= need;
+            boolean otherWay = !done && q.alternativeDone(i, goalDone);
             // a long goal wraps onto the next line instead of being cut off
             dy = lines(g, (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString(), dx, dy, dw,
-                done ? GOOD : TEXT);
+                done ? GOOD : otherWay ? MUTED : TEXT);
             // progress bar
             int barW = Math.min(100, dw);
             blit(g, "progress_track", dx, dy, barW, 6);
@@ -512,10 +574,14 @@ public class QuestScreen extends Screen {
         int contentH = dy + detailScroll - viewTop, viewH = viewBottom - viewTop;
         detailMax = Math.max(0, contentH - viewH);
         if (detailMax > 0) {
-            int barX = dx + detailW() - 2, thumbH = Math.max(8, viewH * viewH / contentH);
+            // a dark track and a raised light thumb; a click on the track moves the page there
+            int barX = dx + detailW() - 4, thumbH = Math.max(10, viewH * viewH / contentH);
             int thumbY = viewTop + (viewH - thumbH) * Math.min(detailScroll, detailMax) / detailMax;
-            g.fill(barX, viewTop, barX + 2, viewBottom, 0x30000000);
-            g.fill(barX, thumbY, barX + 2, thumbY + thumbH, 0xFF6B6B6B);
+            boolean overBar = in(mouseX, mouseY, barX, viewTop, 4, viewH);
+            g.fill(barX, viewTop, barX + 4, viewBottom, 0xFF373737);
+            g.fill(barX, thumbY, barX + 4, thumbY + thumbH, 0xFF8B8B8B);
+            g.fill(barX, thumbY, barX + 3, thumbY + thumbH - 1, overBar ? WHITE : LIGHT);
+            scrollBar = new int[] {barX, viewTop, viewH, thumbH};
         }
 
         // claim / accept / abandon button
@@ -691,19 +757,41 @@ public class QuestScreen extends Screen {
             }
             if (hasPrev() && in(mx, my, prevX(), navY(), 12, 12)) { page--; return true; }
             if (hasNext() && in(mx, my, nextX(), navY(), 12, 12)) { page++; return true; }
+            Entry header = headerAt(mx, my);
+            if (header != null && query.isBlank()) {
+                ClientSettings.toggleFold(header.fold());
+                rebuild();
+                return true;
+            }
             int start = page * ROWS;
             for (int i = 0; i < ROWS && start + i < entries.size(); i++) {
                 Entry e = entries.get(start + i);
                 if (e.isQuest() && in(mx, my, listX(), rowY(i), ROW_W, ROW_H)) {
-                    if (!e.id().equals(selected)) {
-                        pick = -1;
-                        detailScroll = 0;
-                        detailMax = 0;
-                    }
-                    selected = e.id();
+                    pick = -1;
+                    detailScroll = 0;
+                    detailMax = 0;
+                    // a second click on the selected quest goes back to the overview page
+                    selected = e.id().equals(selected) && !showStats ? null : e.id();
                     showStats = false;
                     return true;
                 }
+            }
+            if (!showStats && selected == null) {
+                if (autoHit != null && in(mx, my, autoHit[0], autoHit[1], autoHit[2], autoHit[3])) {
+                    send("quest autoaccept " + (ClientQuestData.autoAccept() ? "off" : "on"));
+                    return true;
+                }
+                if (acceptable() > 0 && in(mx, my, actionX(), actionY(), 72, 20)) {
+                    send("quest accept all");
+                    return true;
+                }
+            }
+            if (!showStats && scrollBar != null && in(mx, my, scrollBar[0], scrollBar[1], 4, scrollBar[2])) {
+                // the middle of the thumb goes where the track was clicked
+                int room = Math.max(1, scrollBar[2] - scrollBar[3]);
+                int at = (int) my - scrollBar[1] - scrollBar[3] / 2;
+                detailScroll = Math.max(0, Math.min(detailMax, at * detailMax / room));
+                return true;
             }
             if (!showStats && selected != null) {
                 for (int[] h : optionHits) {

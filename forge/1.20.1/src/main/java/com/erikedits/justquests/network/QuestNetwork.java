@@ -77,6 +77,9 @@ public final class QuestNetwork {
                     .ifPresent(j -> quests.add(id.toString(), j));
             });
             root.add("quests", quests);
+            // the client knows only the advancements it was shown, so gain_advancement goals get their titles here
+            root.add("advancements", com.erikedits.justquests.data.objective.GainAdvancementObjective.titlesJson(
+                player.level().getServer(), QuestManager.INSTANCE.getQuests().values()));
         }
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = com.erikedits.justquests.team.TeamQuests.view(player, store != null ? store.peek(player.getUUID()) : null);
@@ -84,6 +87,9 @@ public final class QuestNetwork {
             PlayerQuestData.CODEC.encodeStart(JsonOps.INSTANCE, data).result()
                 .ifPresent(j -> root.add("progress", j));
         }
+        PlayerQuestData own = store != null ? store.peek(player.getUUID()) : null;
+        root.addProperty("autoAccept", own != null && own.autoAccept.isPresent() ? own.autoAccept.get()
+            : com.erikedits.justquests.storage.WorldSettings.autoAccept());
         root.add("claims", com.erikedits.justquests.generator.GenV2.claimsJson(player.getUUID()));
         JsonObject rank = QuestRank.json(player.getUUID());
         if (rank != null) root.add("rank", rank);

@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 
 /** Earn a specific advancement. */
 public record GainAdvancementObjective(ResourceLocation advancement) implements QuestObjective {
@@ -41,6 +42,29 @@ public record GainAdvancementObjective(ResourceLocation advancement) implements 
 
     @Override
     public Component display() {
-        return Msg.tr("justquests.goal.advancement", advancement);
+        return Msg.tr("justquests.goal.advancement", name());
+    }
+
+    /** The advancement's title, or its id made readable ("Mine Stone") when it has no title or is unknown. */
+    public Component name() {
+        MinecraftServer server = com.erikedits.justquests.generator.GenV2.server();
+        Component title = server != null ? title(server, advancement) : null;
+        return title != null ? title : Msg.lit(readable(advancement.getPath()));
+    }
+
+    /** The title an advancement shows in the advancements screen, null if it has none (or does not exist). */
+    private static Component title(MinecraftServer server, ResourceLocation id) {
+        var adv = server.getAdvancements().getAdvancement(id);
+        return adv == null || adv.getDisplay() == null ? null : adv.getDisplay().getTitle();
+    }
+
+    private static String readable(String path) {
+        StringBuilder out = new StringBuilder();
+        for (String word : Msg.pretty(path).split(" ")) {
+            if (word.isEmpty()) continue;
+            if (out.length() > 0) out.append(' ');
+            out.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1));
+        }
+        return out.toString();
     }
 }

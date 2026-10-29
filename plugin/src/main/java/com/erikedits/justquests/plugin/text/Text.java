@@ -164,13 +164,38 @@ public final class Text {
         return new TranslatableComponent(Compat.enchantmentKey(e));
     }
 
-    /** A vanilla advancement's title ("Acquire Hardware"); the id where the client has no title for it. */
+    /**
+     * An advancement's title: a vanilla one translated by the client ("Acquire Hardware"), another
+     * one as the server knows it, else its id made readable ("Please Let Me Go").
+     */
     public static BaseComponent advancement(String id) {
         NamespacedKey key = NamespacedKey.fromString(id);
-        if (key == null || !NamespacedKey.MINECRAFT.equals(key.getNamespace())) return new TextComponent(id);
-        TranslatableComponent t = new TranslatableComponent("advancements." + key.getKey().replace('/', '.') + ".title");
-        Compat.fallback(t, id);
-        return t;
+        if (key == null) return new TextComponent(id);
+        String readable = readable(key.getKey());
+        if (NamespacedKey.MINECRAFT.equals(key.getNamespace())) {
+            TranslatableComponent t = new TranslatableComponent("advancements." + key.getKey().replace('/', '.') + ".title");
+            Compat.fallback(t, readable);
+            return t;
+        }
+        try {
+            org.bukkit.advancement.Advancement adv = org.bukkit.Bukkit.getAdvancement(key);
+            org.bukkit.advancement.AdvancementDisplay display = adv == null ? null : adv.getDisplay();
+            if (display != null && !display.getTitle().isBlank()) return new TextComponent(display.getTitle());
+        } catch (Throwable e) {
+            // servers older than Spigot's advancement display API: the readable id below
+        }
+        return new TextComponent(readable);
+    }
+
+    /** "story/mine_stone" -> "Mine Stone". */
+    private static String readable(String path) {
+        StringBuilder out = new StringBuilder();
+        for (String word : pretty(path).split(" ")) {
+            if (word.isEmpty()) continue;
+            if (out.length() > 0) out.append(' ');
+            out.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1));
+        }
+        return out.toString();
     }
 
     /** Last path segment, readable: "chests/simple_dungeon" -> "simple dungeon". */

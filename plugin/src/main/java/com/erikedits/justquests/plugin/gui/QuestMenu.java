@@ -66,7 +66,9 @@ public final class QuestMenu extends Menu {
         }
 
         boolean active = data != null && data.isActive(id);
-        for (int i = 0; i < q.objectives().size() && i < GOAL_SLOTS.length; i++) {
+        List<Integer> order = q.shownOrder();
+        for (int n = 0; n < order.size() && n < GOAL_SLOTS.length; n++) {
+            int i = order.get(n);
             Objective o = q.objectives().get(i);
             int have = active ? Math.min(data.progress(id, i), o.requiredCount()) : 0;
             boolean done = active && have >= o.requiredCount();
@@ -75,9 +77,10 @@ public final class QuestMenu extends Menu {
                 lore.add(Text.lit((done ? "§a✓ " : "§e") + have + "/" + o.requiredCount()));
                 lore.add(Text.lit(bar(have, o.requiredCount())));
             }
-            BaseComponent name = Text.lit(done ? "§a" : "§f");
+            // an alternative of the objective before it reads "or ..."
+            BaseComponent name = Text.lit(q.orBefore(i) ? "§7" + legacy("justquests.goal.or") + " " + (done ? "§a" : "§f") : done ? "§a" : "§f");
             name.addExtra(Objective.shown(o, lang));
-            set(GOAL_SLOTS[i], item(o.icon(), 1, name, lore, done));
+            set(GOAL_SLOTS[n], item(o.icon(), 1, name, lore, done));
         }
 
         Reward.Choice choice = Reward.Choice.of(q);

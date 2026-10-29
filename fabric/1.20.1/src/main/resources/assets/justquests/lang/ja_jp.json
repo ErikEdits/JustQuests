@@ -246,5 +246,22 @@
   "justquests.team.info_leader": " §6(リーダー)",
   "justquests.team.info_online": " §a●",
   "justquests.team.scoreboard": "§7あなたのチームはスコアボードのチーム §f%s§7 です。",
-  "justquests.team.parties_off": "§cこのサーバーでは /quest team のチームはオフです。スコアボードのチーム (/team) を頼んでください。"
+  "justquests.team.parties_off": "§cこのサーバーでは /quest team のチームはオフです。スコアボードのチーム (/team) を頼んでください。",
+  "justquests.goal.or": "または",
+  "justquests.book.or": "- または -",
+  "justquests.book.hint.fold": "このグループをたたむ",
+  "justquests.book.hint.unfold": "このグループを広げる",
+  "justquests.book.auto_accept": "解放されたクエストを自動で受ける",
+  "justquests.book.acceptable": "%s件のクエストを受けられます。",
+  "justquests.book.accept_all": "すべて受ける",
+  "justquests.unlocked": "§e新しいクエストが解放されました: §f%s",
+  "justquests.unlocked.accepted": "§a✓ 解放して受けました: §f%s",
+  "justquests.unlocked.accept": "§a[受ける]",
+  "justquests.unlocked.accept_hover": "クリックしてこのクエストを受ける",
+  "justquests.unlocked.auto_off": "§7[オフにする]",
+  "justquests.unlocked.auto_off_hover": "解放されたクエストを自動で受けないようにする (/quest autoaccept off)",
+  "justquests.accept.all": "§a✓ %s件のクエストを受けました。",
+  "justquests.accept.none": "§7今受けられるクエストはありません。",
+  "justquests.autoaccept.on": "§a解放されたクエストは自動で受けます。§7オフにするには /quest autoaccept off。",
+  "justquests.autoaccept.off": "§e解放されたクエストはあなたが受けるまで待ちます。§7自動にするには /quest autoaccept on。"
 }

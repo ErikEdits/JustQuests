@@ -92,5 +92,6 @@
   "justquests.plugin.npc.not": "§cDas ist kein Quest-Geber.",
   "justquests.plugin.help.npc": "der angeschaute Mob öffnet das Questbuch",
   "justquests.category.personal": "Persönlich",
-  "justquests.category.weekly": "Wöchentlich"
+  "justquests.category.weekly": "Wöchentlich",
+  "justquests.plugin.help.autoaccept": "freigeschaltete Quests automatisch annehmen (on/off)"
 }

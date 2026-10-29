@@ -31,6 +31,8 @@ public final class ClientQuestData {
     private static int syncs = 0;
     /** This player's place on the server leaderboard; null in singleplayer. */
     private static Rank rank;
+    /** Whether quests are accepted by themselves once they get unlocked (the player's setting on the server). */
+    private static boolean autoAccept = true;
     /** Active quests, most recently accepted first (tracked here on the client, for the HUD). */
     private static final List<ResourceLocation> activeOrder = new ArrayList<>();
 
@@ -57,7 +59,11 @@ public final class ClientQuestData {
                     ResourceLocation id = ResourceLocation.parse(e.getKey());
                     Quest.CODEC.parse(JsonOps.INSTANCE, e.getValue()).result().ifPresent(quest -> q.put(id, quest));
                 }
+                if (root.has("advancements")) {
+                    com.erikedits.justquests.data.objective.GainAdvancementObjective.readTitles(root.getAsJsonObject("advancements"));
+                }
             }
+            if (root.has("autoAccept")) autoAccept = root.get("autoAccept").getAsBoolean();
             if (root.has("progress")) {
                 p = PlayerQuestData.CODEC.parse(JsonOps.INSTANCE, root.get("progress")).result().orElseGet(PlayerQuestData::new);
             }
@@ -115,6 +121,9 @@ public final class ClientQuestData {
 
     /** Increments on every sync, so the open book can regroup quests by status. */
     public static int syncCount() { return syncs; }
+
+    /** Whether the server accepts unlocked quests for this player by themselves. */
+    public static boolean autoAccept() { return autoAccept; }
 
     /** Leaderboard place, or null (singleplayer). */
     public static Rank rank() { return rank; }

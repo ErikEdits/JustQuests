@@ -13,6 +13,9 @@ completionToast: true
 # /quest claim). false pays rewards out the moment a quest is finished. Quests with a reward
 # choice always wait, since the player has to pick.
 claimRewards: true
+# A quest is accepted by itself once the quests it requires are done. false gives the player an
+# Accept button in the chat instead. Each player can change it with /quest autoaccept on|off.
+autoAccept: true
 # The 25 quests that come with JustQuests. false hides them; your datapack, custom and generated
 # quests stay. Also /quest mainquests on|off.
 mainQuests: true

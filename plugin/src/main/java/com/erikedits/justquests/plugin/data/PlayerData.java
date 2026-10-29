@@ -26,6 +26,8 @@ public final class PlayerData {
     /** quest shown in the boss bar, or null */
     public String pinned;
     public boolean bossbar = true;
+    /** The player's own choice for accepting unlocked quests at once; null = config.yml's autoAccept. */
+    public Boolean autoAccept;
 
     public boolean isActive(String id) {
         return active.containsKey(id);
@@ -66,7 +68,7 @@ public final class PlayerData {
     }
 
     public boolean isEmpty() {
-        return active.isEmpty() && pendingClaim.isEmpty() && completed.isEmpty() && pinned == null && bossbar;
+        return active.isEmpty() && pendingClaim.isEmpty() && completed.isEmpty() && pinned == null && bossbar && autoAccept == null;
     }
 
     public JsonObject toJson() {
@@ -88,6 +90,7 @@ public final class PlayerData {
         o.add("completed", done);
         if (pinned != null) o.addProperty("pinned", pinned);
         if (!bossbar) o.addProperty("bossbar", false);
+        if (autoAccept != null) o.addProperty("autoAccept", autoAccept);
         return o;
     }
 
@@ -121,6 +124,7 @@ public final class PlayerData {
         }
         if (o.has("pinned")) d.pinned = o.get("pinned").getAsString();
         if (o.has("bossbar")) d.bossbar = o.get("bossbar").getAsBoolean();
+        if (o.has("autoAccept")) d.autoAccept = o.get("autoAccept").getAsBoolean();
         return d;
     }
 }

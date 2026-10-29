@@ -92,5 +92,6 @@
   "justquests.plugin.npc.not": "§cEso no es un dador de misiones.",
   "justquests.plugin.help.npc": "la criatura que miras abre el libro de misiones",
   "justquests.category.personal": "Personales",
-  "justquests.category.weekly": "Semanales"
+  "justquests.category.weekly": "Semanales",
+  "justquests.plugin.help.autoaccept": "aceptar solas las misiones desbloqueadas (on/off)"
 }

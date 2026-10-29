@@ -112,6 +112,7 @@ public final class TeamQuests {
             send(player, completed(player, id, QuestProgressService.finish(player, data, id, quest)));
         }
         store.markDirty();
+        QuestProgressService.unlocks(player);
     }
 
     /** The quests the player's team has active (the polled statistics objectives need them). */
@@ -132,7 +133,6 @@ public final class TeamQuests {
             Quest quest = QuestManager.INSTANCE.get(e.getKey());
             if (quest == null) continue;
             QuestProgress progress = e.getValue();
-            boolean all = true, any = false;
             for (int i = 0; i < quest.objectives().size(); i++) {
                 QuestObjective obj = quest.objectives().get(i);
                 int add = QuestProgressService.counted(obj, progress, i, kind, test.amount(obj));
@@ -143,10 +143,8 @@ public final class TeamQuests {
                         changed = true;
                     }
                 }
-                if (progress.get(i) >= obj.requiredCount()) any = true;
-                else all = false;
             }
-            if (quest.mode() == QuestMode.ANY ? any : all) completing.add(e.getKey());
+            if (quest.done(i -> progress.get(i) >= quest.objectives().get(i).requiredCount())) completing.add(e.getKey());
         }
         for (Identifier id : completing) finish(player, team, data, id);
         if (changed || !completing.isEmpty()) {
@@ -187,6 +185,7 @@ public final class TeamQuests {
             send(p, completed(p, id, QuestProgressService.finish(p, store.get(p.getUUID()), id, quest)));
         }
         store.markDirty();
+        for (ServerPlayer p : online) QuestProgressService.unlocks(p);
     }
 
     /** reset_on_death: a member died, so the team's quests with that option start over for everyone. */

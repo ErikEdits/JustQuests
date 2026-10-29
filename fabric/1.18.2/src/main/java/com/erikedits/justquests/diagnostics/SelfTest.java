@@ -253,6 +253,24 @@ public final class SelfTest {
         } catch (Exception ex) { optOk = false; optMsg = ex.toString(); }
         check(results, tally, "Quest options (requires_min, reset_on_death, distinct)", optOk, optMsg);
 
+        // 0.4.4: the objectives of a "group" are alternatives, and the group survives the quest sync
+        boolean groupOk;
+        String groupMsg;
+        try {
+            String json = "{\"title\":\"T\",\"objectives\":["
+                + "{\"type\":\"justquests:craft_item\",\"item\":\"minecraft:chest\",\"count\":1,\"group\":\"box\"},"
+                + "{\"type\":\"justquests:collect_item\",\"item\":\"minecraft:barrel\",\"count\":1,\"group\":\"box\"},"
+                + "{\"type\":\"justquests:reach_level\",\"level\":1}],\"rewards\":[]}";
+            Quest q = Quest.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(json)).result().orElseThrow();
+            boolean or = q.done(i -> i != 0) && q.done(i -> i != 1) && !q.done(i -> i == 2) && !q.done(i -> i != 2);
+            Quest back = Quest.CODEC.parse(JsonOps.INSTANCE, Quest.CODEC.encodeStart(JsonOps.INSTANCE, q).result().orElseThrow())
+                .result().orElseThrow();
+            boolean kept = "box".equals(back.group(1)) && back.group(2).isEmpty() && back.orBefore(1) && !back.orBefore(2);
+            groupOk = or && kept;
+            groupMsg = groupOk ? "ok" : "alternatives=" + or + " sync=" + kept;
+        } catch (Exception ex) { groupOk = false; groupMsg = ex.toString(); }
+        check(results, tally, "Objective groups (one of a group is enough)", groupOk, groupMsg);
+
         // localized title: plain string still works, per-language map resolves,
         // and an unknown language falls back to English (Q21)
         boolean l10nOk = true;
