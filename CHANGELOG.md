@@ -3,6 +3,19 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.3] - 2026-10-28
+
+### Fixed
+- Quest book on Minecraft 1.21.6 and newer (Fabric 1.21.6 - 26.3, NeoForge 1.21.6 - 26.2): the
+  game crashed as soon as the book opened ("Can only blur once per frame") while the menu
+  background blur was on, which is the default. Since 1.21.6 Minecraft draws the blurred
+  background itself, and the book drew it a second time. Setting "Menu Background Blur" to 0 was
+  the workaround. (Reported on Discord.)
+- Quest book on the same versions: the window, buttons and rows were drawn as black boxes
+  reaching to the top-left corner of the screen instead of the book's textures.
+- Quest book on Minecraft 26.3 (Fabric): clicks did nothing. 26.3 reads the mouse through SDL,
+  where the left button is 1 instead of 0.
+
 ## [0.4.2] - 2026-10-25
 
 ### Added

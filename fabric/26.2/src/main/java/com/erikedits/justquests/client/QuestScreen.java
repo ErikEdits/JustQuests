@@ -7,10 +7,12 @@ import com.erikedits.justquests.data.reward.ChoiceReward;
 import com.erikedits.justquests.data.reward.QuestReward;
 import com.erikedits.justquests.network.ClientQuestData;
 import com.erikedits.justquests.player.QuestProgress;
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -93,10 +95,11 @@ public class QuestScreen extends Screen {
     /**
      * Draw the top-left w x h region of a texW x texH texture. This is the ONLY
      * place that calls GuiGraphicsExtractor.blit, so porting to another MC version only
-     * needs this one line changed (the blit signature shifts at 1.21.2/1.21.4).
+     * needs this one line changed (the blit signature shifts at 1.21.2/1.21.4; from 1.21.6 it
+     * takes the render pipeline first, and the overload without one reads x0, y0, x1, y1).
      */
     private void blitPart(GuiGraphicsExtractor g, String name, int x, int y, int w, int h, int texW, int texH) {
-        g.blit(tex(name), x, y, 0, 0, w, h, texW, texH);
+        g.blit(RenderPipelines.GUI_TEXTURED, tex(name), x, y, 0f, 0f, w, h, texW, texH);
     }
 
     private String lang() {
@@ -277,7 +280,7 @@ public class QuestScreen extends Screen {
     @Override
     public void extractRenderState(GuiGraphicsExtractor g, int mouseX, int mouseY, float pt) {
         refresh();
-        this.extractBackground(g, mouseX, mouseY, pt);
+        // Minecraft draws the blurred background before this; a second blur in one frame would crash
         // the HUD hides while a screen is open: show it in its corner while its position is being picked
         if (in(mouseX, mouseY, cornerX(), barY(), 14, 14) || System.currentTimeMillis() < cornerPreviewUntil) QuestHud.preview(g);
         blit(g, "window", left, top, W, H);
@@ -655,7 +658,8 @@ public class QuestScreen extends Screen {
         double mx = event.x();
         double my = event.y();
         int button = event.button();
-        if (button == 0) {
+        // the constant, not 0: from 26.3 (SDL input) the left button is 1
+        if (button == InputConstants.MOUSE_BUTTON_LEFT) {
             if (in(mx, my, closeX(), closeY(), 11, 11)) { onClose(); return true; }
             if (in(mx, my, statsX(), barY(), 14, 14)) { showStats = !showStats; return true; }
             if (in(mx, my, cornerX(), barY(), 14, 14)) {
