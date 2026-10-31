@@ -263,5 +263,7 @@
   "justquests.accept.all": "§a✓ Quests angenommen: %s",
   "justquests.accept.none": "§7Gerade kann keine Quest angenommen werden.",
   "justquests.autoaccept.on": "§aFreigeschaltete Quests werden automatisch angenommen. §7Ausschalten mit /quest autoaccept off.",
-  "justquests.autoaccept.off": "§eFreigeschaltete Quests warten, bis du sie annimmst. §7Automatisch annehmen mit /quest autoaccept on."
+  "justquests.autoaccept.off": "§eFreigeschaltete Quests warten, bis du sie annimmst. §7Automatisch annehmen mit /quest autoaccept on.",
+  "justquests.goal.have": "Besitze %s",
+  "justquests.goal.have_count": "Besitze %sx %s"
 }

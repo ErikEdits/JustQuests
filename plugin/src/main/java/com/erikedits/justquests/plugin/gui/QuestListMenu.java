@@ -169,7 +169,7 @@ public final class QuestListMenu extends Menu {
         if (active && have >= o.requiredCount()) line.addExtra(Text.lit(" §a✓ §7"));
         else if (active) line.addExtra(Text.lit(" §e" + have + "/" + o.requiredCount() + " §f"));
         else line.addExtra(Text.lit(" §8• §f"));
-        line.addExtra(Objective.shown(o, lang));
+        line.addExtra(q.shown(i, lang));
         return line;
     }
 }

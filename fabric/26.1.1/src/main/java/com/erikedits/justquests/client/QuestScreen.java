@@ -208,8 +208,8 @@ public class QuestScreen extends Screen {
         if (q.isEmpty()) return true;
         if (quest.title().get(lang()).toLowerCase(Locale.ROOT).contains(q)) return true;
         if (QuestIcons.categoryName(quest.category()).toLowerCase(Locale.ROOT).contains(q)) return true;
-        for (QuestObjective o : quest.objectives()) {
-            if (QuestIcons.label(o).getString().toLowerCase(Locale.ROOT).contains(q)) return true;
+        for (int i = 0; i < quest.objectives().size(); i++) {
+            if (QuestIcons.label(quest, i).getString().toLowerCase(Locale.ROOT).contains(q)) return true;
         }
         return false;
     }
@@ -532,7 +532,7 @@ public class QuestScreen extends Screen {
             boolean done = cur >= need;
             boolean otherWay = !done && q.alternativeDone(i, goalDone);
             // a long goal wraps onto the next line instead of being cut off
-            dy = lines(g, (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString(), dx, dy, dw,
+            dy = lines(g, (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(q, i).getString(), dx, dy, dw,
                 done ? GOOD : otherWay ? MUTED : TEXT);
             // progress bar
             int barW = Math.min(100, dw);

@@ -250,12 +250,11 @@ public class QuestCommand {
             }
 
             MutableComponent goals = Msg.tr("justquests.list.goal");
-            List<QuestObjective> objs = quest.objectives();
             boolean first = true;
             for (int i : quest.shownOrder()) {
                 if (quest.orBefore(i)) goals.append(Msg.lit(" ")).append(Msg.tr("justquests.goal.or").withStyle(net.minecraft.ChatFormatting.GRAY)).append(Msg.lit(" "));
                 else if (!first) goals.append(Component.literal("§7, §f"));
-                goals.append(QuestObjective.shown(objs.get(i)));
+                goals.append(quest.shown(i, lang));
                 first = false;
             }
             src.sendSuccess(() -> goals, false);
@@ -393,7 +392,7 @@ public class QuestCommand {
                 // an alternative of the objective above it reads "or ..."
                 MutableComponent or = quest.orBefore(i) ? Msg.tr("justquests.goal.or").withStyle(net.minecraft.ChatFormatting.GRAY).append(Msg.lit(" ")) : Msg.empty();
                 ctx.getSource().sendSuccess(() ->
-                    Component.literal("  ").append(or).append(Msg.lit(bar + " §f")).append(QuestObjective.shown(quest.objectives().get(idx))), false);
+                    Component.literal("  ").append(or).append(Msg.lit(bar + " §f")).append(quest.shown(idx, lang)), false);
             }
         }
         return data.active.size();
@@ -550,8 +549,10 @@ public class QuestCommand {
         store.markDirty();
         com.erikedits.justquests.generator.GenV2.abandoned(id, player.getUUID());
         com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        Quest quest = QuestManager.INSTANCE.get(id);
+        String title = quest != null ? quest.title().get(player.clientInformation().language()) : id.toString();
         ctx.getSource().sendSuccess(() ->
-            Msg.tr("justquests.abandon.ok", id), false);
+            Msg.tr("justquests.abandon.ok", title), false);
         return 1;
     }
 

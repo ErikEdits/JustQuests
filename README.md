@@ -8,7 +8,7 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.4.4** — see the [changelog](CHANGELOG.md).
+Current version: **0.4.5** — see the [changelog](CHANGELOG.md).
 
 ## Features
 
@@ -30,7 +30,7 @@ Current version: **0.4.4** — see the [changelog](CHANGELOG.md).
 - **First come, first served** — on servers a generated quest someone accepted is taken; the book
   shows *Taken by Steve* or *Reserved for you*.
 - **Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads
-  by itself while you edit it. 15 objective types, 8 reward types, item tags and item filters.
+  by itself while you edit it. 16 objective types, 8 reward types, item tags and item filters.
 - **Speaks the player's language** — the mod, the built-in quests and the generated quests come
   in English, German, French, Spanish and Japanese; each player reads their own game language.
   Your own quests can use a per-language map too, and item, block and mob names are translated
@@ -61,7 +61,7 @@ server-only - see [Server plugin](#server-plugin-spigot-paper-purpur).
 2. Download the jar for **your loader and exact version** from
    [Modrinth](https://modrinth.com/mod/justquests) or the
    [GitHub releases](https://github.com/ErikEdits/JustQuests/releases) — the file name says which,
-   e.g. `JustQuests-fabric-1.21.1-0.4.4.jar` — and put it into `mods/`.
+   e.g. `JustQuests-fabric-1.21.1-0.4.5.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
 ## Server plugin (Spigot, Paper, Purpur)
@@ -81,7 +81,7 @@ client - nothing to install on their side. There is one jar per range of version
    the quests. `/quest book` gives a new one.
 
 What is the same as the mod: the 25 built-in quests, the quest format (datapack quests in the
-world's `datapacks/` folder work unchanged), all 15 objective and 8 reward types, claiming and
+world's `datapacks/` folder work unchanged), all 16 objective and 8 reward types, claiming and
 reward choices, prerequisites, repeatable quests, the commands, the permission nodes, and the five
 languages - each player reads their own game language, and item, block and mob names are
 translated by their game.
@@ -249,6 +249,7 @@ teams live with the world in `justquests/teams.json` and `team-progress.json`.
 | Type | Fields | Counts when the player… |
 |---|---|---|
 | `justquests:collect_item` | `item`, `count` | picks the item up (mining, harvest, mob drops) |
+| `justquests:have_item` | `item`, `count` | has that many in the inventory at once, wherever they came from |
 | `justquests:craft_item` | `item`, `count` | crafts it (crafting table, inventory or stonecutter) |
 | `justquests:smelt_item` | `item`, `count` | takes it out of a furnace |
 | `justquests:consume_item` | `item`, `count` | eats or drinks it |
@@ -272,6 +273,20 @@ teams live with the world in `justquests/teams.json` and `team-progress.json`.
 ```
 
 `block` and `entity` take an id or a tag as well (`#minecraft:logs`, `#minecraft:skeletons`).
+
+**Items from machines: `have_item`.** `collect_item` only counts items picked up from the ground, and
+machines of other mods (Create, Mekanism and so on) work without a player. `have_item` looks into the
+inventory instead, so it does not matter whether the items came from a machine, a chest or a trade. The
+most the player has held at once counts: moving items in and out does not add up, and the progress
+does not go back when they are used. Items already in the inventory count too.
+
+**Your own goal text: `label`.** Any objective can set `label` (a string or a per-language map); the
+quest book, the tracker and the chat show it instead of the generated goal line:
+
+```json
+{ "type": "justquests:have_item", "item": "create:iron_sheet", "count": 16,
+  "label": { "en_us": "Press Iron Sheets", "de_de": "Eisenbleche pressen" } }
+```
 
 **Alternatives: `group`.** Objectives with the same `group` are alternatives - one of them is
 enough. Objectives without a group are all needed, so the two can be mixed. This quest needs a

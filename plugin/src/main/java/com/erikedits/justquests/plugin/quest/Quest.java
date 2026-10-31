@@ -25,11 +25,12 @@ import java.util.Locale;
  * @param resetOnDeath the progress goes back to zero when the player (team quest: any member) dies
  * @param groups     per objective the group it belongs to ("" = none); the objectives of one group
  *                   are alternatives, one of them is enough
+ * @param labels     per objective its own goal text, shown instead of the generated one
  */
 public record Quest(String id, LocalizedText title, LocalizedText description, String category, boolean any,
                     List<String> requires, boolean repeatable, int cooldownHours, int sort,
                     List<Objective> objectives, List<Reward> rewards, Material icon, String permission,
-                    boolean team, int requiresMin, boolean resetOnDeath, List<String> groups) {
+                    boolean team, int requiresMin, boolean resetOnDeath, List<String> groups, List<LocalizedText> labels) {
 
     /**
      * The first folder of a quest's path, used as its category when it names none: "ns:mining/iron"
@@ -46,11 +47,13 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
         if (!o.has("title")) throw new IllegalArgumentException("missing \"title\"");
         List<Objective> objectives = new ArrayList<>();
         List<String> groups = new ArrayList<>();
+        List<LocalizedText> labels = new ArrayList<>();
         if (o.has("objectives")) {
             for (JsonElement e : o.getAsJsonArray("objectives")) {
                 JsonObject obj = e.getAsJsonObject();
                 objectives.add(Objective.parse(obj));
                 groups.add(obj.has("group") ? obj.get("group").getAsString() : "");
+                labels.add(obj.has("label") ? LocalizedText.parse(obj.get("label")) : LocalizedText.EMPTY);
             }
         }
         if (objectives.isEmpty()) throw new IllegalArgumentException("no objectives");
@@ -84,7 +87,7 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
             o.has("permission") ? o.get("permission").getAsString() : null, team,
             o.has("requires_min") ? o.get("requires_min").getAsInt() : -1,
             o.has("reset_on_death") && o.get("reset_on_death").getAsBoolean(),
-            List.copyOf(groups));
+            List.copyOf(groups), List.copyOf(labels));
     }
 
     static String string(JsonObject o, String field) {
@@ -113,6 +116,12 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
     /** Whether enough of the required quests are done to take this one. */
     public boolean unlocked(java.util.function.Predicate<String> done) {
         return requiredDone(done) >= needed();
+    }
+
+    /** The goal line of objective i: its own text, else the objective's. */
+    public net.md_5.bungee.api.chat.BaseComponent shown(int i, String lang) {
+        return labels.get(i).isBlank() ? Objective.shown(objectives.get(i), lang)
+            : com.erikedits.justquests.plugin.text.Text.lit(labels.get(i).get(lang));
     }
 
     /** Whether another objective of objective i's group is done, which makes i done as well. */

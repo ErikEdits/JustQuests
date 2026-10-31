@@ -112,6 +112,23 @@ final class SelfTest {
             problems++;
             out.add("§c  Objective groups: " + e);
         }
+        // 0.4.5: have_item parses, and an objective can bring its own goal text
+        try {
+            Quest q = Quest.parse("justquests:_selftest_label", JsonParser.parseString("{\"title\":\"T\",\"objectives\":["
+                + "{\"type\":\"have_item\",\"item\":\"minecraft:iron_ingot\",\"count\":2,\"label\":{\"en_us\":\"Press\",\"de_de\":\"Pressen\"}},"
+                + "{\"type\":\"reach_level\",\"level\":1}]}").getAsJsonObject());
+            boolean ok = "justquests:have_item".equals(q.objectives().get(0).typeId())
+                && "Pressen".equals(q.labels().get(0).get("de_de")) && q.labels().get(1).isBlank();
+            if (ok) {
+                out.add("§7  Objective labels and have_item: §aOK");
+            } else {
+                problems++;
+                out.add("§c  Objective labels and have_item: wrong result");
+            }
+        } catch (RuntimeException e) {
+            problems++;
+            out.add("§c  Objective labels and have_item: " + e);
+        }
         int missing = 0;
         for (String lang : Lang.CODES) missing += Lang.missing(lang);
         out.add("§7  Quests: §f" + quests + "§7, items built: §f" + items

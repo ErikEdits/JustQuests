@@ -13,7 +13,7 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
                     List<Identifier> requires, boolean repeatable, Optional<Integer> cooldownHours,
                     int sort, List<QuestObjective> objectives, List<QuestReward> rewards,
                     Optional<Identifier> icon, Optional<String> permission, boolean team,
-                    Optional<Integer> requiresMin, boolean resetOnDeath, List<String> groups) {
+                    Optional<Integer> requiresMin, boolean resetOnDeath, List<String> groups, List<LocalizedText> labels) {
     public static final Codec<Quest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         LocalizedText.CODEC.fieldOf("title").forGetter(Quest::title),
         LocalizedText.CODEC.optionalFieldOf("description", LocalizedText.EMPTY).forGetter(Quest::description),
@@ -43,13 +43,15 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
                        icon, permission, team, requiresMin, resetOnDeath) ->
         new Quest(title, description, category, mode, requires, repeatable, cooldownHours, sort,
             goals.stream().map(Goal::objective).toList(), rewards, icon, permission, team, requiresMin, resetOnDeath,
-            goals.stream().map(Goal::group).toList())));
+            goals.stream().map(Goal::group).toList(), goals.stream().map(Goal::label).toList())));
 
-    /** One entry of "objectives": the objective and the group it belongs to ("" = none). */
-    private record Goal(QuestObjective objective, String group) {
+    /** One entry of "objectives": the objective, the group it belongs to ("" = none) and its own goal text. */
+    private record Goal(QuestObjective objective, String group, LocalizedText label) {
         static final Codec<Goal> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.<QuestObjective>dispatchMap("type", QuestObjective::typeId, QuestObjective::codecForType).forGetter(Goal::objective),
-            Codec.STRING.optionalFieldOf("group", "").forGetter(Goal::group)
+            Codec.STRING.optionalFieldOf("group", "").forGetter(Goal::group),
+            // the goal line to show instead of the generated one ("Press Iron Sheets")
+            LocalizedText.CODEC.optionalFieldOf("label", LocalizedText.EMPTY).forGetter(Goal::label)
         ).apply(instance, Goal::new));
     }
 
@@ -60,12 +62,27 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         List<String> g = new java.util.ArrayList<>(groups == null ? List.of() : groups);
         while (g.size() < objectives.size()) g.add("");
         groups = List.copyOf(g.subList(0, objectives.size()));
+        // the same for the goal texts
+        List<LocalizedText> l = new java.util.ArrayList<>(labels == null ? List.of() : labels);
+        while (l.size() < objectives.size()) l.add(LocalizedText.EMPTY);
+        labels = List.copyOf(l.subList(0, objectives.size()));
     }
 
     private List<Goal> goals() {
         List<Goal> out = new java.util.ArrayList<>();
-        for (int i = 0; i < objectives.size(); i++) out.add(new Goal(objectives.get(i), groups.get(i)));
+        for (int i = 0; i < objectives.size(); i++) out.add(new Goal(objectives.get(i), groups.get(i), labels.get(i)));
         return out;
+    }
+
+    /** Objective i's own goal text in this language, null when it has none. */
+    public String label(int i, String lang) {
+        return labels.get(i).isBlank() ? null : labels.get(i).get(lang);
+    }
+
+    /** The goal line of objective i for the chat: its own text, else the objective's. */
+    public net.minecraft.network.chat.Component shown(int i, String lang) {
+        String own = label(i, lang);
+        return own != null ? com.erikedits.justquests.text.Msg.lit(own) : QuestObjective.shown(objectives.get(i));
     }
 
     /** The group of objective i, "" when it has none. */
@@ -124,7 +141,7 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         boolean named = !"datapack".equals(category) && !(team && "team".equals(category));
         if (slash <= 0 || named) return this;
         return new Quest(title, description, path.substring(0, slash), mode, requires, repeatable, cooldownHours,
-            sort, objectives, rewards, icon, permission, team, requiresMin, resetOnDeath, groups);
+            sort, objectives, rewards, icon, permission, team, requiresMin, resetOnDeath, groups, labels);
     }
 
     /** How many of the required quests must be done first: all of them, or requires_min. */

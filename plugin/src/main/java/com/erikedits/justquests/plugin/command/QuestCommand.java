@@ -238,7 +238,7 @@ public final class QuestCommand implements TabExecutor {
             for (int i : q.shownOrder()) {
                 if (q.orBefore(i)) goals.addExtra(Text.lit(" §7" + Text.legacy(lang, "justquests.goal.or") + " §f"));
                 else if (!first) goals.addExtra(Text.lit("§7, §f"));
-                goals.addExtra(Objective.shown(q.objectives().get(i), lang));
+                goals.addExtra(q.shown(i, lang));
                 first = false;
             }
             say(src, goals);
@@ -333,7 +333,7 @@ public final class QuestCommand implements TabExecutor {
                 // an alternative of the objective above it reads "or ..."
                 String or = quest.orBefore(i) ? "§7" + Text.legacy(lang, "justquests.goal.or") + " " : "";
                 line.addExtra(Text.lit("  " + or + (have >= obj.requiredCount() ? "§a✓" : "§7" + have + "/" + obj.requiredCount()) + " §f"));
-                line.addExtra(Objective.shown(obj, lang));
+                line.addExtra(quest.shown(i, lang));
                 say(player, line);
             }
         }

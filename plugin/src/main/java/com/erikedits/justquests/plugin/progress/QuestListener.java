@@ -173,7 +173,7 @@ public final class QuestListener implements Listener {
         progress().advance(player, o -> o instanceof Objective.Level l && l.reached(player) ? 1 : 0);
     }
 
-    /** reach_location and reach_level: checked once a second for players with active quests. */
+    /** reach_location, reach_level and have_item: checked once a second for players with active quests. */
     public void tick(Player player) {
         PlayerData data = plugin.view(player.getUniqueId());
         if (data == null || data.active.isEmpty()) return;
@@ -182,6 +182,8 @@ public final class QuestListener implements Listener {
             if (o instanceof Objective.Level l && l.reached(player)) return 1;
             // an advancement the player already has counts too, also one earned before the quest was taken
             if (o instanceof Objective.Advancement a && a.earnedBy(player)) return 1;
+            // have_item looks into the inventory, wherever the items came from
+            if (o instanceof Objective.Have h) return h.held(player);
             return 0;
         });
     }

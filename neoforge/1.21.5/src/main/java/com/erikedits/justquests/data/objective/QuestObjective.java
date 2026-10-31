@@ -35,6 +35,7 @@ public interface QuestObjective {
             case SmeltItemObjective.TYPE_ID -> SmeltItemObjective.MAP_CODEC;
             case EnchantItemObjective.TYPE_ID -> EnchantItemObjective.MAP_CODEC;
             case UseItemObjective.TYPE_ID -> UseItemObjective.MAP_CODEC;
+            case HaveItemObjective.TYPE_ID -> HaveItemObjective.MAP_CODEC;
             default -> throw new IllegalStateException("Unknown objective type: " + type);
         };
     }

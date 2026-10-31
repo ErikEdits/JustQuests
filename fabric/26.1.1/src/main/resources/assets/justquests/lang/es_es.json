@@ -263,5 +263,7 @@
   "justquests.accept.all": "§a✓ Misiones aceptadas: %s",
   "justquests.accept.none": "§7Ahora mismo no se puede aceptar ninguna misión.",
   "justquests.autoaccept.on": "§aLas misiones desbloqueadas se aceptan automáticamente. §7Desactívalo con /quest autoaccept off.",
-  "justquests.autoaccept.off": "§eLas misiones desbloqueadas esperan a que las aceptes. §7Actívalo con /quest autoaccept on."
+  "justquests.autoaccept.off": "§eLas misiones desbloqueadas esperan a que las aceptes. §7Actívalo con /quest autoaccept on.",
+  "justquests.goal.have": "Ten %s",
+  "justquests.goal.have_count": "Ten %sx %s"
 }

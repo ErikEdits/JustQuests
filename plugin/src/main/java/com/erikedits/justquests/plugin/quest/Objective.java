@@ -44,6 +44,7 @@ public sealed interface Objective {
         if (!type.contains(":")) type = "justquests:" + type;
         return switch (type) {
             case "justquests:collect_item" -> new Collect(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
+            case "justquests:have_item" -> new Have(ItemMatcher.parse(o.get("item")), count(o));
             case "justquests:craft_item" -> new Craft(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
             case "justquests:smelt_item" -> new Smelt(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
             case "justquests:consume_item" -> new Consume(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
@@ -84,6 +85,27 @@ public sealed interface Objective {
         public String label() { return "Collect " + count + "x " + item.label(); }
         public BaseComponent display(String lang) { return goal(lang, "justquests.goal.collect_count", count, item.name(lang)); }
         public Material icon() { return item.icon(); }
+    }
+
+    /**
+     * Hold X of an item in the inventory, wherever it came from. The most the player has held at once
+     * counts, so moving items in and out does not add up, and the progress does not go back.
+     */
+    record Have(ItemMatcher item, int count) implements Objective {
+        public String typeId() { return "justquests:have_item"; }
+        public int requiredCount() { return count; }
+        public String label() { return "Have " + count + "x " + item.label(); }
+        public BaseComponent display(String lang) { return goal(lang, "justquests.goal.have_count", count, item.name(lang)); }
+        public Material icon() { return item.icon(); }
+
+        /** How many matching items the player has in the whole inventory right now. */
+        public int held(Player p) {
+            int total = 0;
+            for (org.bukkit.inventory.ItemStack stack : p.getInventory().getContents()) {
+                if (stack != null && item.matches(stack)) total += stack.getAmount();
+            }
+            return total;
+        }
     }
 
     record Craft(ItemMatcher item, int count, boolean distinct) implements Objective {

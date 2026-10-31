@@ -79,7 +79,7 @@ public final class QuestMenu extends Menu {
             }
             // an alternative of the objective before it reads "or ..."
             BaseComponent name = Text.lit(q.orBefore(i) ? "§7" + legacy("justquests.goal.or") + " " + (done ? "§a" : "§f") : done ? "§a" : "§f");
-            name.addExtra(Objective.shown(o, lang));
+            name.addExtra(q.shown(i, lang));
             set(GOAL_SLOTS[n], item(o.icon(), 1, name, lore, done));
         }
 
