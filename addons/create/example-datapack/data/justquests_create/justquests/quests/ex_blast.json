@@ -1,0 +1,18 @@
+{
+  "title": "Example: blast_item",
+  "description": "Blast 16 Iron Ingots with a fan and lava.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:blast_item",
+      "item": "minecraft:iron_ingot",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

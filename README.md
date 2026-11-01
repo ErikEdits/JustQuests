@@ -280,6 +280,15 @@ inventory instead, so it does not matter whether the items came from a machine, 
 most the player has held at once counts: moving items in and out does not add up, and the progress
 does not go back when they are used. Items already in the inventory count too.
 
+**What Create's machines really make: the Create addon.** The separate
+[JustQuests Create Addon](addons/create/README.md) adds goals such as
+`justquests_create:press_item`, which count what comes out of that machine. It is for NeoForge 1.21.1
+for now, and needs JustQuests 0.4.6 or newer on the client and the server.
+
+**Writing an addon.** Other mods can add objective types: call `QuestObjective.register(type, codec)`
+while the mod loads, and count the objective with `QuestProgressService.advance`. Override `goal()`
+and `icon()` for the line and the icon in the quest book.
+
 **Your own goal text: `label`.** Any objective can set `label` (a string or a per-language map); the
 quest book, the tracker and the chat show it instead of the generated goal line:
 
@@ -414,6 +423,7 @@ fabric/<version>/     23 Fabric builds      ├─ one source tree per Minecraft
 forge/<version>/       4 Forge builds      ─┘
 plugin/               the Spigot/Paper/Purpur plugin (plain Spigot API): shared code in src/,
                       plugin/<version>/ adds one jar per version range (1.19, 1.21, 26.1)
+addons/create/        the JustQuests Create Addon, a build of its own (see its README)
 generator-v2/         the quest generator core (Java 17, own tests), copied into every build
                       by scripts/sync_generator_v2.py
 docs/                 example datapack, design notes, roadmap (build-todo.md)

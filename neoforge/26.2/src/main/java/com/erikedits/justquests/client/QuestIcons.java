@@ -96,7 +96,7 @@ public final class QuestIcons {
                 : dim.equals("minecraft:overworld") ? Items.GRASS_BLOCK : Items.ENDER_EYE;
         }
         if (o instanceof GainAdvancementObjective) return Items.KNOWLEDGE_BOOK;
-        return null;
+        return o.icon();
     }
 
     private static Item first(ItemMatcher m) {
@@ -152,7 +152,7 @@ public final class QuestIcons {
         if (o instanceof KillMobObjective k) return verb("kill", k.entity().name());
         if (o instanceof TameAnimalObjective t) return verb("tame", t.entity().name());
         if (o instanceof BreedAnimalObjective b) return verb("breed", b.entity().name());
-        return o.display();
+        return o.goal();
     }
 
     /** "Mine %s" with the target's name (a tag's name already reads "any logs"). */

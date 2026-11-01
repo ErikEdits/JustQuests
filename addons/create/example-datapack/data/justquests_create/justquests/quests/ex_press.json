@@ -1,0 +1,18 @@
+{
+  "title": "Example: press_item",
+  "description": "Press 16 Iron Sheets with a Mechanical Press.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:press_item",
+      "item": "create:iron_sheet",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

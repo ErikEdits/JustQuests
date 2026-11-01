@@ -1,0 +1,18 @@
+{
+  "title": "Example: assemble_item",
+  "description": "Assemble a Precision Mechanism.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:assemble_item",
+      "item": "create:precision_mechanism",
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

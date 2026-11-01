@@ -3,6 +3,18 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.6] - 2026-11-01
+
+### Added
+- **Ready for addons:** other mods can add objective types with `QuestObjective.register`. The first
+  one is the **JustQuests Create Addon**, with goals that count what Create's machines really make,
+  such as "Press Iron Sheet". It is a separate download, so JustQuests itself stays small and still
+  doesn't need Create. (Requested on GitHub, #15.)
+
+### Changed
+- A client without an addon the server has no longer sees an empty quest book: only the quests that
+  use the addon's objectives stay off it.
+
 ## [0.4.5] - 2026-10-31
 
 ### Added

@@ -16,6 +16,7 @@ No GUI bloat, no heavy dependencies — datapack-driven quests, an in-game quest
 - **🎒 Ready to play** — 25 built-in quests. Server owners can hide them with `/quest mainquests off`.
 - **🎲 Generated quests** — a fresh board every 12 hours. Every quest is checked to be doable on your version and mod set, sized to a sensible amount of play time and paid with a fitting reward: gather, mine, craft, hunt, enchant, brew and more. Nether and End quests appear once players have been there. Three difficulty levels.
 - **🧩 Mod support** — with **Farmer's Delight, Create, Mekanism, The Twilight Forest, Botania, Applied Energistics 2, Immersive Engineering, Biomes O' Plenty, Alex's Mobs, Tinkers' Construct** or **Ars Nouveau** installed, the board also offers quests for their content.
+- **⚙️ Create machines** — the optional **JustQuests Create Addon** adds goals that count what Create's machines really make, such as "Press Iron Sheet" (NeoForge 1.21.1 for now).
 - **🏁 First come, first served** — on servers a generated quest someone accepted is taken. The quest book shows *Taken by Steve* or *Reserved for you*.
 - **🌍 Five languages** — the quest book, every chat message, the built-in quests and the generated quests come in **English, German, French, Spanish and Japanese**. Every player reads their own game language.
 - **✍️ Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads by itself while you edit it. 16 objective types, 8 reward types, item tags and item filters (enchantments, potions, names).

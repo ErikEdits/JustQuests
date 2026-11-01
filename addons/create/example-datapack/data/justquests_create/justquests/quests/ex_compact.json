@@ -1,0 +1,18 @@
+{
+  "title": "Example: compact_item",
+  "description": "Compact a Blaze Cake Base with a Mechanical Press over a basin.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:compact_item",
+      "item": "create:blaze_cake_base",
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

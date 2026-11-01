@@ -75,3 +75,6 @@ curseforge.token
 # Python
 __pycache__/
 *.pyc
+
+# Create Addon: the Create jar it compiles against
+addons/create/libs/

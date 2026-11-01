@@ -1,0 +1,18 @@
+{
+  "title": "Example: crush_item",
+  "description": "Crush 8 Crushed Iron Ore with Crushing Wheels.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:crush_item",
+      "item": "create:crushed_raw_iron",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

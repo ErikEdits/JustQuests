@@ -1,0 +1,18 @@
+{
+  "title": "Example: mechanical_craft_item",
+  "description": "Craft 2 Crushing Wheels with Mechanical Crafters.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:mechanical_craft_item",
+      "item": "create:crushing_wheel",
+      "count": 2
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}
