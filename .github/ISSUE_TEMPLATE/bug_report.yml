@@ -1,0 +1,70 @@
+name: Bug report
+description: Create a report to help us improve.
+title: '[Bug]: '
+labels: [bug]
+assignees: ErikEdits
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+  - type: textarea
+    id: describe-the-bug
+    attributes:
+      label: Describe the bug.
+      description: A clear and concise description of what the bug is.
+      placeholder: Tell us all about it !
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: "Steps to reproduce the behavior:"
+      value: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: Tell us what you expected!
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+      placeholder: Add screenshots here
+    validations:
+      required: false
+
+  - type: textarea
+    id: os-version
+    attributes:
+      label: Computer information
+      description: To help you fix your issue we would like to know some basic information about the OS you use.
+      value: |
+        - OS: [e.g. Windows, MacOS, Linux Mint, Fedora, etc.]
+        - Version [e.g. 22]
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+      placeholder: Anything else you need to say ?
+    validations:
+      required: false
