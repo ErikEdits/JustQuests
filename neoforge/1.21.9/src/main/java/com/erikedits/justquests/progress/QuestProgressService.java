@@ -167,6 +167,8 @@ public final class QuestProgressService {
      * kind it has not counted yet (remembered from then on) and 0 for one it has.
      */
     public static int counted(QuestObjective obj, QuestProgress progress, int index, String kind, int amount) {
+        // have_item: the amount is what the player holds right now, and the progress only goes up
+        if (obj instanceof com.erikedits.justquests.data.objective.HaveItemObjective) return Math.max(0, amount - progress.get(index));
         if (amount <= 0 || !obj.distinct()) return amount;
         if (kind == null || progress.get(index) >= obj.requiredCount()) return 0;
         return progress.see(index, kind) ? 1 : 0;

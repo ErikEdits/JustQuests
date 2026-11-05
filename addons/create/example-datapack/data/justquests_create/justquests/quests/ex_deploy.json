@@ -1,0 +1,18 @@
+{
+  "title": "Example: deploy_item",
+  "description": "Make 4 Andesite Casings with a Deployer.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:deploy_item",
+      "item": "create:andesite_casing",
+      "count": 4
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

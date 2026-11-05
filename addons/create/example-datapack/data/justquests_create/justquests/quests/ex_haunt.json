@@ -1,0 +1,18 @@
+{
+  "title": "Example: haunt_item",
+  "description": "Haunt 8 Soul Sand with a fan and soul fire.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:haunt_item",
+      "item": "minecraft:soul_sand",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

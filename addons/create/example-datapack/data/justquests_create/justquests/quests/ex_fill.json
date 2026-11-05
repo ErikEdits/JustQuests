@@ -1,0 +1,18 @@
+{
+  "title": "Example: fill_item",
+  "description": "Make 4 Honeyed Apples with a Spout.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:fill_item",
+      "item": "create:honeyed_apple",
+      "count": 4
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.neoforged.net/releases' }
+    }
+}
+
+rootProject.name = 'JustQuestsCreate'
+
+// The addon is a build of its own, so the 46 jars of the main build never need Create.
+// One subproject per supported MC version, as in the main build. More come over time.
+['1.21.1'].each { v ->
+    def name = "neoforge-${v.replace('.', '_')}"
+    include name
+    project(":${name}").projectDir = file("neoforge/${v}")
+}

@@ -16,9 +16,10 @@ No GUI bloat, no heavy dependencies — datapack-driven quests, an in-game quest
 - **🎒 Ready to play** — 25 built-in quests. Server owners can hide them with `/quest mainquests off`.
 - **🎲 Generated quests** — a fresh board every 12 hours. Every quest is checked to be doable on your version and mod set, sized to a sensible amount of play time and paid with a fitting reward: gather, mine, craft, hunt, enchant, brew and more. Nether and End quests appear once players have been there. Three difficulty levels.
 - **🧩 Mod support** — with **Farmer's Delight, Create, Mekanism, The Twilight Forest, Botania, Applied Energistics 2, Immersive Engineering, Biomes O' Plenty, Alex's Mobs, Tinkers' Construct** or **Ars Nouveau** installed, the board also offers quests for their content.
+- **⚙️ Create machines** — the optional **JustQuests Create Addon** adds goals that count what Create's machines really make, such as "Press Iron Sheet" (NeoForge 1.21.1 for now).
 - **🏁 First come, first served** — on servers a generated quest someone accepted is taken. The quest book shows *Taken by Steve* or *Reserved for you*.
 - **🌍 Five languages** — the quest book, every chat message, the built-in quests and the generated quests come in **English, German, French, Spanish and Japanese**. Every player reads their own game language.
-- **✍️ Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads by itself while you edit it. 15 objective types, 8 reward types, item tags and item filters (enchantments, potions, names).
+- **✍️ Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads by itself while you edit it. 16 objective types, 8 reward types, item tags and item filters (enchantments, potions, names).
 - **🔐 Permissions** — LuckPerms & co. get a node for every command, and a quest can be limited to players with a permission.
 - **🔗 Quest logic** — prerequisites and chains (or "any 12 of 16"), quests that start by themselves once they unlock, repeatable quests with cooldowns, "all" or "any" objectives and alternatives ("craft it **or** find it"), progress that resets on death, "10 different foods" goals, categories.
 - **🛠️ For server owners** — completion broadcast, stats and leaderboard, admin commands, a self-test and a per-world `settings.json`.
@@ -47,6 +48,7 @@ Pick the jar for your server version:
 
 **Objectives:**
 - **collect_item** – pick up items (mining, harvesting, mob drops)
+- **have_item** – have items in the inventory, wherever they came from (machines of other mods too)
 - **craft_item** – craft an item (crafting table or stonecutter)
 - **smelt_item** – take items out of a furnace
 - **consume_item** – eat or drink an item

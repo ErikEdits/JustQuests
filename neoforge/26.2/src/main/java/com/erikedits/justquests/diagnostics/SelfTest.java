@@ -220,6 +220,7 @@ public final class SelfTest {
             {"smelt_item", "{\"type\":\"justquests:smelt_item\",\"item\":\"minecraft:iron_ingot\",\"count\":1}"},
             {"enchant_item", "{\"type\":\"justquests:enchant_item\",\"count\":1}"},
             {"use_item", "{\"type\":\"justquests:use_item\",\"item\":\"minecraft:snowball\",\"count\":1}"},
+            {"have_item", "{\"type\":\"justquests:have_item\",\"item\":\"minecraft:iron_ingot\",\"count\":1}"},
             {"collect_item (filter)", "{\"type\":\"justquests:collect_item\",\"item\":{\"id\":\"minecraft:diamond_sword\",\"enchantments\":{\"minecraft:sharpness\":2},\"name\":\"Excalibur\"},\"count\":1}"},
         };
         String objErr = parsesAll(objSamples, true);
@@ -271,6 +272,21 @@ public final class SelfTest {
             groupMsg = groupOk ? "ok" : "alternatives=" + or + " sync=" + kept;
         } catch (Exception ex) { groupOk = false; groupMsg = ex.toString(); }
         check(results, tally, "Objective groups (one of a group is enough)", groupOk, groupMsg);
+
+        // 0.4.5: an objective's own goal text survives the quest sync; without one it stays the generated text
+        boolean labelOk;
+        String labelMsg;
+        try {
+            String json = "{\"title\":\"T\",\"objectives\":["
+                + "{\"type\":\"justquests:have_item\",\"item\":\"minecraft:iron_ingot\",\"count\":2,\"label\":{\"en_us\":\"Press\",\"de_de\":\"Pressen\"}},"
+                + "{\"type\":\"justquests:reach_level\",\"level\":1}],\"rewards\":[]}";
+            Quest q = Quest.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(json)).result().orElseThrow();
+            Quest back = Quest.CODEC.parse(JsonOps.INSTANCE, Quest.CODEC.encodeStart(JsonOps.INSTANCE, q).result().orElseThrow())
+                .result().orElseThrow();
+            labelOk = "Pressen".equals(back.label(0, "de_de")) && "Press".equals(back.label(0, "fr_fr")) && back.label(1, "en_us") == null;
+            labelMsg = labelOk ? "ok" : "de=" + back.label(0, "de_de") + " fr=" + back.label(0, "fr_fr") + " none=" + back.label(1, "en_us");
+        } catch (Exception ex) { labelOk = false; labelMsg = ex.toString(); }
+        check(results, tally, "Objective labels (own goal text, per language)", labelOk, labelMsg);
 
         // localized title: plain string still works, per-language map resolves,
         // and an unknown language falls back to English (Q21)

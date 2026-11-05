@@ -1,0 +1,24 @@
+// Root project of the addon. It builds no mod itself: each version lives in its own subproject
+// under <loader>/<mc-version>/. `exportJars` also copies the finished jars and the changelog to the
+// folder the upload script reads (Desktop/Justquests/create addon/).
+
+evaluationDependsOnChildren()
+
+def exportDir = file("${System.getProperty('user.home')}/Desktop/Justquests/create addon")
+
+tasks.register('exportJars', Copy) {
+    group = 'distribution'
+    description = 'Build every version and copy the jars and the changelog to the Desktop output folder.'
+    into exportDir
+    from('CHANGELOG.md')
+    subprojects.each { sp ->
+        dependsOn sp.tasks.named('build')
+        from(sp.layout.buildDirectory.dir('libs')) {
+            include '*.jar'
+            exclude '*-sources.jar'
+        }
+    }
+    doLast {
+        println "Exported to: ${exportDir}"
+    }
+}

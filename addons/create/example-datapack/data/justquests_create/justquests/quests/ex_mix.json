@@ -1,0 +1,18 @@
+{
+  "title": "Example: mix_item",
+  "description": "Mix 8 Andesite Alloy with a Mechanical Mixer over a basin.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:mix_item",
+      "item": "create:andesite_alloy",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

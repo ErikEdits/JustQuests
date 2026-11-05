@@ -1,0 +1,18 @@
+{
+  "title": "Example: wash_item",
+  "description": "Wash out 16 Iron Nuggets with a fan and water.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:wash_item",
+      "item": "minecraft:iron_nugget",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

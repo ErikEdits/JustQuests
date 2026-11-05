@@ -1,0 +1,70 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.141'
+}
+
+// --- per-version settings ---
+def mcVersion = '1.21.1'
+def mcRange = '[1.21.1,1.21.2)'
+// Create 6.0.10 needs NeoForge 21.1.219 or newer.
+def neoVersion = '21.1.234'
+def neoRange = '[21.1.219,)'
+
+version = addon_version
+group = addon_group
+
+base {
+    archivesName = "JustQuestsCreate-neoforge-${mcVersion}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+neoForge {
+    version = neoVersion
+
+    runs {
+        client {
+            client()
+            gameDirectory = file('run/client')
+            // gradlew runClient -PjoinServer=localhost:25599 goes straight onto a test server
+            if (project.hasProperty('joinServer')) {
+                programArguments.addAll('--quickPlayMultiplayer', project.property('joinServer'), '--width', '1280', '--height', '720')
+            }
+        }
+        server {
+            server()
+            gameDirectory = file('run/server')
+            programArgument '--nogui'
+        }
+    }
+
+    mods {
+        justquests_create {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    // Neither is shipped. A dev run takes both from run/client/mods and run/server/mods.
+    // libs/ (not in git) holds the Create jar and the jars inside it; see addons/create/README.md.
+    compileOnly fileTree(dir: "${rootDir}/libs", include: '*.jar')
+    // Build it first with: gradlew :neoforge-1_21_1:build
+    compileOnly files("${rootDir}/../../neoforge/1.21.1/build/libs/JustQuests-neoforge-1.21.1-${justquests_version}.jar")
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+        minecraft_version_range: mcRange,
+        neo_version_range: neoRange,
+        addon_version: addon_version,
+        justquests_version: justquests_version
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
+    }
+}

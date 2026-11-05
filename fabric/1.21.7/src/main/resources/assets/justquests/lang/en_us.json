@@ -263,5 +263,7 @@
   "justquests.accept.all": "§a✓ Quests accepted: %s",
   "justquests.accept.none": "§7No quests can be accepted right now.",
   "justquests.autoaccept.on": "§aUnlocked quests are accepted automatically. §7Turn it off with /quest autoaccept off.",
-  "justquests.autoaccept.off": "§eUnlocked quests wait for you to accept them. §7Turn auto-accept on with /quest autoaccept on."
+  "justquests.autoaccept.off": "§eUnlocked quests wait for you to accept them. §7Turn auto-accept on with /quest autoaccept on.",
+  "justquests.goal.have": "Have %s",
+  "justquests.goal.have_count": "Have %sx %s"
 }

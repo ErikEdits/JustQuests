@@ -1,0 +1,20 @@
+{
+  "title": "Example: have_item",
+  "description": "Hold 16 iron ingots in your inventory, wherever they came from: a furnace, a chest or a machine.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:have_item",
+      "item": "minecraft:iron_ingot",
+      "count": 16,
+      "label": { "en_us": "Stock up on iron", "de_de": "Eisen auf Vorrat" }
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:iron_block",
+      "count": 1
+    }
+  ]
+}

@@ -57,7 +57,12 @@ public final class ClientQuestData {
                 hasQuests = true;
                 for (Map.Entry<String, com.google.gson.JsonElement> e : root.getAsJsonObject("quests").entrySet()) {
                     ResourceLocation id = new ResourceLocation(e.getKey());
-                    Quest.CODEC.parse(JsonOps.INSTANCE, e.getValue()).result().ifPresent(quest -> q.put(id, quest));
+                    try {
+                        Quest.CODEC.parse(JsonOps.INSTANCE, e.getValue()).result().ifPresent(quest -> q.put(id, quest));
+                    } catch (IllegalStateException ex) {
+                        // an objective of an addon that only the server has: only this quest stays off the book
+                        JustQuests.LOG.warn("Quest {} left out: {}", id, ex.getMessage());
+                    }
                 }
                 if (root.has("advancements")) {
                     com.erikedits.justquests.data.objective.GainAdvancementObjective.readTitles(root.getAsJsonObject("advancements"));

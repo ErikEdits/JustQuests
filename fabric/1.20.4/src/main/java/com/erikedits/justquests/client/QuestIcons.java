@@ -9,6 +9,7 @@ import com.erikedits.justquests.data.objective.CraftItemObjective;
 import com.erikedits.justquests.data.objective.EnchantItemObjective;
 import com.erikedits.justquests.data.objective.EntityMatcher;
 import com.erikedits.justquests.data.objective.GainAdvancementObjective;
+import com.erikedits.justquests.data.objective.HaveItemObjective;
 import com.erikedits.justquests.data.objective.ItemMatcher;
 import com.erikedits.justquests.data.objective.KillMobObjective;
 import com.erikedits.justquests.data.objective.MineBlockObjective;
@@ -75,6 +76,7 @@ public final class QuestIcons {
 
     private static Item fromObjective(QuestObjective o) {
         if (o instanceof CollectItemObjective c) return first(c.item());
+        if (o instanceof HaveItemObjective h) return first(h.item());
         if (o instanceof CraftItemObjective c) return first(c.item());
         if (o instanceof SmeltItemObjective s) return first(s.item());
         if (o instanceof ConsumeItemObjective c) return first(c.item());
@@ -94,7 +96,7 @@ public final class QuestIcons {
                 : dim.equals("minecraft:overworld") ? Items.GRASS_BLOCK : Items.ENDER_EYE;
         }
         if (o instanceof GainAdvancementObjective) return Items.KNOWLEDGE_BOOK;
-        return null;
+        return o.icon();
     }
 
     private static Item first(ItemMatcher m) {
@@ -124,6 +126,12 @@ public final class QuestIcons {
         return fallback;
     }
 
+    /** The goal line of objective i: the quest's own text for it, else {@link #label(QuestObjective)}. */
+    public static Component label(Quest quest, int i) {
+        String own = quest.label(i, net.minecraft.client.Minecraft.getInstance().options.languageCode);
+        return own != null ? Component.literal(own) : label(quest.objectives().get(i));
+    }
+
     /** "Mine Iron Ore": the objective without its count (the book and the HUD show "5/8" in front). */
     public static Component label(QuestObjective o) {
         Component goal = goal(o);
@@ -132,6 +140,7 @@ public final class QuestIcons {
 
     private static Component goal(QuestObjective o) {
         if (o instanceof CollectItemObjective c) return verb("collect", c.item().name());
+        if (o instanceof HaveItemObjective h) return verb("have", h.item().name());
         if (o instanceof CraftItemObjective c) return verb("craft", c.item().name());
         if (o instanceof SmeltItemObjective s) return verb("smelt", s.item().name());
         if (o instanceof ConsumeItemObjective c) return verb("consume", c.item().name());
@@ -144,7 +153,7 @@ public final class QuestIcons {
         if (o instanceof KillMobObjective k) return verb("kill", k.entity().name());
         if (o instanceof TameAnimalObjective t) return verb("tame", t.entity().name());
         if (o instanceof BreedAnimalObjective b) return verb("breed", b.entity().name());
-        return o.display();
+        return o.goal();
     }
 
     /** "Mine %s" with the target's name (a tag's name already reads "any logs"). */

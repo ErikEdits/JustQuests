@@ -158,6 +158,8 @@ public final class ProgressService {
                 Objective obj = quest.objectives().get(i);
                 int add = test.amount(obj);
                 int have = progress.getOrDefault(i, 0);
+                // have_item: the amount is what the player holds right now, and the progress only goes up
+                if (obj instanceof Objective.Have) add = Math.max(0, add - have);
                 if (add > 0 && have < obj.requiredCount() && obj.distinct()) {
                     // a distinct objective counts a kind it has not counted yet, once
                     add = kind != null && data.see(entry.getKey(), i, kind) ? 1 : 0;
@@ -167,7 +169,7 @@ public final class ProgressService {
                     progress.put(i, have);
                     changed = true;
                     if (obj.requiredCount() > 1) {
-                        toast = Text.tr(lang, "justquests.plugin.progress", Objective.shown(obj, lang), have, obj.requiredCount());
+                        toast = Text.tr(lang, "justquests.plugin.progress", quest.shown(i, lang), have, obj.requiredCount());
                     }
                 }
             }

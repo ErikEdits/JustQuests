@@ -263,5 +263,7 @@
   "justquests.accept.all": "§a✓ Quêtes acceptées : %s",
   "justquests.accept.none": "§7Aucune quête ne peut être acceptée pour le moment.",
   "justquests.autoaccept.on": "§aLes quêtes débloquées sont acceptées automatiquement. §7Désactivez-le avec /quest autoaccept off.",
-  "justquests.autoaccept.off": "§eLes quêtes débloquées attendent que vous les acceptiez. §7Activez-le avec /quest autoaccept on."
+  "justquests.autoaccept.off": "§eLes quêtes débloquées attendent que vous les acceptiez. §7Activez-le avec /quest autoaccept on.",
+  "justquests.goal.have": "Posséder %s",
+  "justquests.goal.have_count": "Posséder %sx %s"
 }

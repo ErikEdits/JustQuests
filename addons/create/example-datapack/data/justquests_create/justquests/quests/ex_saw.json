@@ -1,0 +1,18 @@
+{
+  "title": "Example: saw_item",
+  "description": "Strip 16 Oak Logs with a Mechanical Saw.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:saw_item",
+      "item": "minecraft:stripped_oak_log",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

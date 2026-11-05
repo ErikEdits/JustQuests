@@ -14,7 +14,7 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 - **🎁 Claim your rewards** — finished quests wait until the player claims them; a quest can offer a **choice of rewards**. Or switch to instant rewards in `config.yml`.
 - **👥 Team quests** — a quest marked `"team": true` belongs to a whole team (`/quest team` or a scoreboard team): everyone's actions count and every member gets the rewards, also members who were offline.
 - **🎒 Ready to play** — 25 built-in quests in **English, German, French, Spanish and Japanese**; every player reads their own game language, and item, block and mob names are translated by their game.
-- **✍️ Your own quests** — in `custom-quests.json`, one file per quest in `plugins/JustQuests/quests/`, or in a datapack. 15 objective types, 9 reward types (including money), tags and item filters.
+- **✍️ Your own quests** — in `custom-quests.json`, one file per quest in `plugins/JustQuests/quests/`, or in a datapack. 16 objective types, 9 reward types (including money), tags and item filters.
 
 ## 🎲 The server generator
 

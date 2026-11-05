@@ -104,7 +104,7 @@ public final class QuestHud {
                 boolean done = cur >= need;
                 // an alternative of the goal above it reads "or ..."
                 String or = q.orBefore(i) ? I18n.get("justquests.goal.or") + " " : "";
-                String line = fit(font, or + (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(objs.get(i)).getString());
+                String line = fit(font, or + (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(q, i).getString());
                 lines.add(line);
                 colors.add(done ? DONE : OPEN);
                 textW = Math.max(textW, font.width(line));

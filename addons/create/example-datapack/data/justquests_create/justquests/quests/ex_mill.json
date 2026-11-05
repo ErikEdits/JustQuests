@@ -1,0 +1,18 @@
+{
+  "title": "Example: mill_item",
+  "description": "Grind 8 Wheat Flour in a Millstone.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:mill_item",
+      "item": "create:wheat_flour",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

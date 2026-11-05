@@ -3,6 +3,33 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.6] - 2026-11-01
+
+### Added
+- **Ready for addons:** other mods can add objective types with `QuestObjective.register`. The first
+  one is the **JustQuests Create Addon**, with goals that count what Create's machines really make,
+  such as "Press Iron Sheet". It is a separate download, so JustQuests itself stays small and still
+  doesn't need Create. (Requested on GitHub, #15.)
+
+### Changed
+- A client without an addon the server has no longer sees an empty quest book: only the quests that
+  use the addon's objectives stay off it.
+
+## [0.4.5] - 2026-10-31
+
+### Added
+- **`have_item`:** a new objective that counts what the player has in the inventory, wherever it came
+  from - a machine of another mod (Create, Mekanism and so on), a chest or a trade. The most the
+  player has held at once counts, and the progress does not go back. Mod and plugin. (Requested on
+  GitHub, #15.)
+- **`label` on objectives:** any objective can bring its own goal text, as a string or a per-language
+  map, for example "Press Iron Sheets". The quest book, the tracker and the chat show it instead of
+  the generated goal line. Mod and plugin. (Requested on GitHub, #15.)
+
+### Fixed
+- Abandoning a quest showed its id in the chat ("Abandoned quest: justquests:mining/iron") instead of
+  its title. (Reported on GitHub, #14.)
+
 ## [0.4.4] - 2026-10-29
 
 ### Added

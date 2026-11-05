@@ -1,0 +1,18 @@
+{
+  "title": "Example: smoke_item",
+  "description": "Smoke 8 steaks with a fan and fire.",
+  "category": "create",
+  "objectives": [
+    {
+      "type": "justquests_create:smoke_item",
+      "item": "minecraft:cooked_beef",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import com.erikedits.justquests.data.Quest;
 import com.erikedits.justquests.data.QuestManager;
 import com.erikedits.justquests.data.objective.CraftItemObjective;
 import com.erikedits.justquests.data.objective.EnchantItemObjective;
+import com.erikedits.justquests.data.objective.HaveItemObjective;
 import com.erikedits.justquests.data.objective.QuestObjective;
 import com.erikedits.justquests.data.objective.UseItemObjective;
 import com.erikedits.justquests.storage.WorldQuestStore;
@@ -49,6 +50,8 @@ public final class StatObjectives {
         boolean cutting = player.containerMenu instanceof StonecutterMenu;
         boolean full = player.tickCount % 20 == 0;
         if (!enchanting && !cutting && !full) return;
+        // have_item looks into the inventory, wherever the items came from (machines, chests, trades)
+        if (full) QuestProgressService.advance(player, obj -> obj instanceof HaveItemObjective h ? h.held(player) : 0);
 
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = store == null ? null : store.peek(player.getUUID());

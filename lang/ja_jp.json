@@ -263,5 +263,7 @@
   "justquests.accept.all": "§a✓ %s件のクエストを受けました。",
   "justquests.accept.none": "§7今受けられるクエストはありません。",
   "justquests.autoaccept.on": "§a解放されたクエストは自動で受けます。§7オフにするには /quest autoaccept off。",
-  "justquests.autoaccept.off": "§e解放されたクエストはあなたが受けるまで待ちます。§7自動にするには /quest autoaccept on。"
+  "justquests.autoaccept.off": "§e解放されたクエストはあなたが受けるまで待ちます。§7自動にするには /quest autoaccept on。",
+  "justquests.goal.have": "%sを持つ",
+  "justquests.goal.have_count": "%s×%sを持つ"
 }

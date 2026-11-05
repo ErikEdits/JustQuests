@@ -28,7 +28,9 @@ Features:
 - `ex_item_tag` — item field as a `#tag`.
 - `ex_block_mob_tags` — `#tag` for a block and a mob goal.
 - `ex_mode_any` — finish on **any** objective (`"mode": "any"`).
-- `ex_group` — `"group"`: craft a chest **or** a barrel, and 8 oak logs as well (alternatives mixed
+- `ex_have_item` — `have_item` + `label`: hold 16 iron ingots, however you got them; the goal reads
+  "Stock up on iron".
+- `ex_group` — `"group": craft a chest **or** a barrel, and 8 oak logs as well (alternatives mixed
   with a normal objective).
 - `ex_chain_1` + `ex_chain_2` — `requires` (a locked chain).
 - `ex_requires_min` — `requires_min`: unlocks once any 2 of 3 listed quests are done.

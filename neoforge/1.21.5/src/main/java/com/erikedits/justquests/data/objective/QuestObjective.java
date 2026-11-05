@@ -18,6 +18,18 @@ public interface QuestObjective {
         QuestObjective::codecForType
     );
 
+    /** The objective types other mods added with {@link #register}. */
+    java.util.Map<String, MapCodec<? extends QuestObjective>> ADDED = new java.util.concurrent.ConcurrentHashMap<>();
+
+    /**
+     * Adds an objective type for an addon (the JustQuests Create Addon, for example). Call it while
+     * the mod loads, before any quest is read. The addon counts its objective itself with
+     * {@link com.erikedits.justquests.progress.QuestProgressService#advance}.
+     */
+    static void register(String type, MapCodec<? extends QuestObjective> codec) {
+        ADDED.put(type, codec);
+    }
+
     static MapCodec<? extends QuestObjective> codecForType(String type) {
         return switch (type) {
             case CollectItemObjective.TYPE_ID -> CollectItemObjective.MAP_CODEC;
@@ -35,7 +47,12 @@ public interface QuestObjective {
             case SmeltItemObjective.TYPE_ID -> SmeltItemObjective.MAP_CODEC;
             case EnchantItemObjective.TYPE_ID -> EnchantItemObjective.MAP_CODEC;
             case UseItemObjective.TYPE_ID -> UseItemObjective.MAP_CODEC;
-            default -> throw new IllegalStateException("Unknown objective type: " + type);
+            case HaveItemObjective.TYPE_ID -> HaveItemObjective.MAP_CODEC;
+            default -> {
+                MapCodec<? extends QuestObjective> added = ADDED.get(type);
+                if (added == null) throw new IllegalStateException("Unknown objective type: " + type + " (does it need an addon?)");
+                yield added;
+            }
         };
     }
 
@@ -62,4 +79,14 @@ public interface QuestObjective {
      * it localizes to the player's client language for free (Q21).
      */
     Component display();
+
+    /** The goal without its count, as the quest book shows it ("5/8" stands in front). */
+    default Component goal() {
+        return display();
+    }
+
+    /** The item the quest book shows for this objective, or null. Only asked for types of addons. */
+    default net.minecraft.world.item.Item icon() {
+        return null;
+    }
 }
