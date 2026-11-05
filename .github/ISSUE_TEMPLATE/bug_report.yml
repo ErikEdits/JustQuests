@@ -39,7 +39,7 @@ body:
       placeholder: Tell us what you expected!
     validations:
       required: true
-      
+
   - type: textarea
     id: screenshot
     attributes:
@@ -54,7 +54,7 @@ body:
     attributes:
       label: Computer information
       description: To help you fix your issue we would like to know some basic information about the OS you use.
-      value:  |
+      value: |
         - OS: [e.g. Windows, MacOS, Linux Mint, Fedora, etc.]
         - Version [e.g. 22]
     validations:
