@@ -24,10 +24,10 @@ body:
       label: Reproduction
       description: Steps to reproduce the behavior:
       value: |
-              1. Go to '...'
-              2. Click on '....'
-              3. Scroll down to '....'
-              4. See error
+          1. Go to '...'
+          2. Click on '....'
+          3. Scroll down to '....'
+          4. See error
     validations:
       required: true
 
@@ -55,8 +55,8 @@ body:
       label: Computer information
       description: To help you fix your issue we would like to know some basic information about the OS you use.
       value:  |
-                - OS: [e.g. Windows, MacOS, Linux Mint, Fedora, etc.]
-                - Version [e.g. 22]
+          - OS: [e.g. Windows, MacOS, Linux Mint, Fedora, etc.]
+          - Version [e.g. 22]
     validations:
       required: true
 
