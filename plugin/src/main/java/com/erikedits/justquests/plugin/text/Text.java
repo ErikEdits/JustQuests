@@ -188,7 +188,7 @@ public final class Text {
     }
 
     /** "story/mine_stone" -> "Mine Stone". */
-    private static String readable(String path) {
+    public static String readable(String path) {
         StringBuilder out = new StringBuilder();
         for (String word : pretty(path).split(" ")) {
             if (word.isEmpty()) continue;

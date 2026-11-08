@@ -1,5 +1,6 @@
 package com.erikedits.justquests.text;
 
+import com.erikedits.justquests.generator.v2.internal.util.Ids;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -42,10 +43,14 @@ public final class Msg {
         return lit(s.isEmpty() ? s : Character.toUpperCase(s.charAt(0)) + s.substring(1));
     }
 
-    /** The vanilla dimensions by name ("the Nether"), others by id. */
+    /**
+     * The vanilla dimensions by name ("the Nether"). Others get a name made from the id
+     * ("stellaris:moon" -> "Moon"), which a resource pack can replace with the key
+     * {@code justquests.dimension.<namespace>.<path>}.
+     */
     public static MutableComponent dimension(String id) {
         String key = "justquests.dimension." + id.replace(':', '.');
-        return English.has(key) ? tr(key) : lit(id);
+        return English.has(key) ? tr(key) : Component.translatableWithFallback(key, Ids.prettify(id));
     }
 
     /** Last path segment, readable: "chests/simple_dungeon" -> "simple dungeon". */

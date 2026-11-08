@@ -223,6 +223,10 @@ def build():
         out["glyph_" + g] = pack("icons", "glyph", g + ".png")
     for c in ("gathering", "farming", "combat", "survival", "daily", "custom"):
         out["cat_" + c] = pack("icons", "category", c + ".png")
+    # the pack's swords sit in the top left of their 16x16 (#17): 1 px right and 3 down centers them
+    combat = Image.new("RGBA", (16, 16))
+    combat.paste(out["cat_combat"].crop((0, 0, 15, 13)), (1, 3))
+    out["cat_combat"] = combat
     for c, rows in NEW_CATEGORIES.items():
         out["cat_" + c] = pattern(rows)
     out["cat_exploration"] = compass()

@@ -3,6 +3,16 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.7] - 2026-11-08
+
+### Fixed
+- The combat category icon sat too high and a little to the left. It is now centered like the other
+  icons. (#17)
+- A goal to visit a modded dimension showed its id, such as "Visit stellaris:moon". It now shows a
+  name made from the id, "Visit Moon". A resource pack can set a better name with the key
+  `justquests.dimension.<namespace>.<path>`, for example `justquests.dimension.stellaris.moon`
+  (Minecraft 1.19.4 and newer). Mod and plugin. (#18)
+
 ## [0.4.6] - 2026-11-01
 
 ### Added

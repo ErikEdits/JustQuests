@@ -262,9 +262,11 @@ public sealed interface Objective {
         };
     }
 
-    /** "the Nether" for the vanilla dimensions, the id for others. */
+    /** "the Nether" for the vanilla dimensions, a name made from the id for others ("stellaris:moon" -> "Moon"). */
     static BaseComponent dimensionName(String lang, String id) {
         String key = "justquests.dimension." + id.replace(':', '.');
-        return Lang.has(key) ? Text.tr(lang, key) : new TextComponent(id.toLowerCase(Locale.ROOT));
+        if (Lang.has(key)) return Text.tr(lang, key);
+        String path = id.toLowerCase(Locale.ROOT);
+        return new TextComponent(Text.readable(path.substring(path.indexOf(':') + 1)));
     }
 }
