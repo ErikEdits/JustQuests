@@ -3,6 +3,18 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.8] - 2026-11-09
+
+### Added
+- **Required quests are links:** a locked quest's page lists every quest it still needs, one per
+  line. A click opens that quest. If needed, the book clears the search, opens the folded group and
+  turns to the right page. (Requested on GitHub, #20.)
+
+### Fixed
+- With a resource pack that draws a boss's name as a picture, such as Enhanced Boss Bars, the goal
+  "Kill 1 Ender Dragon" showed the whole boss bar. The quest book and the tracker now show the name
+  without the picture, in the player's language. (#19)
+
 ## [0.4.7] - 2026-11-08
 
 ### Fixed

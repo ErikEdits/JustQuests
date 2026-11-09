@@ -133,7 +133,7 @@ public final class QuestIcons {
 
     /** "Mine Iron Ore": the objective without its count (the book and the HUD show "5/8" in front). */
     public static Component label(QuestObjective o) {
-        Component goal = goal(o);
+        Component goal = PlainNames.of(goal(o));
         return o.distinct() ? Component.translatable("justquests.goal.distinct", goal) : goal;
     }
 

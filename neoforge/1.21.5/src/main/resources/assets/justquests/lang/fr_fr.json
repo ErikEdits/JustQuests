@@ -185,6 +185,7 @@
   "justquests.book.completed_by": "Terminée par %s",
   "justquests.book.needs": "Nécessite : %s",
   "justquests.book.needs_of": "Nécessite %s quêtes sur %s (%s faites)",
+  "justquests.book.needs_list": "Nécessite :",
   "justquests.book.reset_on_death": "La progression est perdue si tu meurs",
   "justquests.book.reset_on_death_team": "La progression est perdue si un membre de l'équipe meurt",
   "justquests.book.again_in": "De nouveau dans %s",

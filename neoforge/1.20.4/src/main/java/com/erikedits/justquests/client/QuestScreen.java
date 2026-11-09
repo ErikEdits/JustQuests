@@ -61,6 +61,9 @@ public class QuestScreen extends Screen {
         boolean isQuest() { return id != null; }
     }
 
+    /** A required quest's line on a locked quest's page: a click opens that quest. */
+    private record Link(int x, int y, int w, int h, ResourceLocation id) {}
+
     private final List<Entry> entries = new ArrayList<>();
     private ResourceLocation selected;
     private boolean showStats;
@@ -76,6 +79,8 @@ public class QuestScreen extends Screen {
     private long cornerPreviewUntil;
     /** Where the choice options were drawn this frame: x, y, w, h, option index. */
     private final List<int[]> optionHits = new ArrayList<>();
+    /** Where the required quests were drawn this frame, as links. */
+    private final List<Link> links = new ArrayList<>();
     /** The quest page's scroll bar this frame: x, top, height, thumb height (null while it fits). */
     private int[] scrollBar;
     /** The auto-accept box on the overview page this frame: x, y, w, h (null while not shown). */
@@ -260,6 +265,27 @@ public class QuestScreen extends Screen {
         return out;
     }
 
+    /**
+     * Selects a quest from its link on another quest's page: a search that hides it is cleared, its
+     * folded group opened and the list turned to its page.
+     */
+    private void open(ResourceLocation id) {
+        Quest q = ClientQuestData.get(id);
+        if (q == null) return;
+        if (searchShown() && !matches(q, query.trim().toLowerCase(Locale.ROOT))) search.setValue("");
+        String fold = ClientSettings.byStatus ? "status:" + status(id, q).name() : "category:" + q.category();
+        if (ClientSettings.folded.contains(fold)) ClientSettings.toggleFold(fold);
+        rebuild();
+        for (int i = 0; i < entries.size(); i++) {
+            if (id.equals(entries.get(i).id())) page = i / ROWS;
+        }
+        selected = id;
+        pick = -1;
+        detailScroll = 0;
+        detailMax = 0;
+        showStats = false;
+    }
+
     /** A generated quest another player holds (or finished) under exclusive claims. */
     private static boolean takenByOther(ResourceLocation id) {
         ClientQuestData.Claim c = ClientQuestData.claim(id);
@@ -427,6 +453,7 @@ public class QuestScreen extends Screen {
 
     private void renderDetail(GuiGraphics g, int mouseX, int mouseY) {
         optionHits.clear();
+        links.clear();
         scrollBar = null;
         autoHit = null;
         int dx = detailX(), dy = top + 24, dw = detailW();
@@ -477,6 +504,7 @@ public class QuestScreen extends Screen {
         long wait = st == Status.COMPLETED && q.repeatable() ? cooldownLeft(selected, q) : 0;
         String note = null;
         int noteColor = MUTED;
+        boolean needs = false;
         if (claim != null && !(claim.mine() && claim.completed())) {
             String who = claim.by().isEmpty() ? I18n.get("justquests.another_player") : claim.by();
             note = claim.mine() ? I18n.get("justquests.book.reserved") : I18n.get(claim.completed() ? "justquests.book.completed_by" : "justquests.book.taken_by", who);
@@ -485,14 +513,11 @@ public class QuestScreen extends Screen {
             note = I18n.get("justquests.book.claim_note");
             noteColor = GOOD;
         } else if (st == Status.LOCKED && !missing.isEmpty()) {
-            if (q.needed() < q.requires().size()) {
-                // requires_min: any N of the listed quests
-                note = I18n.get("justquests.book.needs_of", q.needed(), q.requires().size(), q.requires().size() - missing.size());
-            } else {
-                Quest req = ClientQuestData.get(missing.get(0));
-                note = I18n.get("justquests.book.needs", req != null ? req.title().get(lang()) : missing.get(0).getPath())
-                    + (missing.size() > 1 ? " +" + (missing.size() - 1) : "");
-            }
+            // requires_min: any N of the listed quests; the missing ones follow as links
+            note = q.needed() < q.requires().size()
+                ? I18n.get("justquests.book.needs_of", q.needed(), q.requires().size(), q.requires().size() - missing.size())
+                : I18n.get("justquests.book.needs_list");
+            needs = true;
         } else if (wait > 0) {
             note = I18n.get("justquests.book.again_in", duration(wait));
         } else if (st == Status.COMPLETED && !q.rewards().isEmpty()) {
@@ -501,6 +526,7 @@ public class QuestScreen extends Screen {
             noteColor = GOOD;
         }
         if (note != null) dy = lines(g, note, dx, dy, dw, noteColor) + 1;
+        if (needs) dy = needsLinks(g, missing, dx, dy, dw, viewTop, viewBottom, mouseX, mouseY) + 1;
         if (q.resetOnDeath()) {
             dy = lines(g, I18n.get(q.team() ? "justquests.book.reset_on_death_team" : "justquests.book.reset_on_death"), dx, dy, dw, BAD) + 1;
         }
@@ -615,6 +641,30 @@ public class QuestScreen extends Screen {
         for (var line : this.font.split(Component.literal(text), w)) {
             g.drawString(this.font, line, x, y, color, false);
             y += 10;
+        }
+        return y;
+    }
+
+    /**
+     * The quests a locked quest still needs, one per line, underlined under the mouse: a click opens
+     * that quest. One the book does not have (hidden by a permission) stays plain text. Returns the y below.
+     */
+    private int needsLinks(GuiGraphics g, List<ResourceLocation> missing, int x, int y, int w,
+                           int viewTop, int viewBottom, int mouseX, int mouseY) {
+        for (ResourceLocation id : missing) {
+            Quest req = ClientQuestData.get(id);
+            String name = "› " + (req != null ? req.title().get(lang()) : id.toString());
+            int h = this.font.split(Component.literal(name), w - 4).size() * 10;
+            // only a line that is wholly on the page can be clicked
+            boolean link = req != null && y - 1 >= viewTop && y - 1 + h <= viewBottom;
+            boolean hover = link && in(mouseX, mouseY, x, y - 1, w, h);
+            var text = Component.literal(name);
+            if (hover) text.withStyle(net.minecraft.ChatFormatting.UNDERLINE);
+            for (var line : this.font.split(text, w - 4)) {
+                g.drawString(this.font, line, x + 4, y, req != null ? HEAD : MUTED, false);
+                y += 10;
+            }
+            if (link) links.add(new Link(x, y - h - 1, w, h, id));
         }
         return y;
     }
@@ -789,6 +839,9 @@ public class QuestScreen extends Screen {
                 return true;
             }
             if (!showStats && selected != null) {
+                for (Link l : links) {
+                    if (in(mx, my, l.x(), l.y(), l.w(), l.h())) { open(l.id()); return true; }
+                }
                 for (int[] h : optionHits) {
                     if (in(mx, my, h[0], h[1], h[2], h[3])) { pick = h[4]; return true; }
                 }

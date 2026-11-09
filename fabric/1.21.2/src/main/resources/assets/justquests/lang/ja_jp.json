@@ -185,6 +185,7 @@
   "justquests.book.completed_by": "%s が達成",
   "justquests.book.needs": "必要: %s",
   "justquests.book.needs_of": "%2$s個中%1$s個のクエストが必要（%3$s個達成）",
+  "justquests.book.needs_list": "必要:",
   "justquests.book.reset_on_death": "死亡すると進行状況がリセットされます",
   "justquests.book.reset_on_death_team": "チームの誰かが死亡すると進行状況がリセットされます",
   "justquests.book.again_in": "あと%sで再挑戦",

@@ -185,6 +185,7 @@
   "justquests.book.completed_by": "Completed by %s",
   "justquests.book.needs": "Needs: %s",
   "justquests.book.needs_of": "Needs %s of %s quests (%s done)",
+  "justquests.book.needs_list": "Needs:",
   "justquests.book.reset_on_death": "Progress resets if you die",
   "justquests.book.reset_on_death_team": "Progress resets if a team member dies",
   "justquests.book.again_in": "Again in %s",
