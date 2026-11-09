@@ -43,6 +43,11 @@ public final class QuestNetwork {
         send(player, false);
     }
 
+    /** Whether this player's game has JustQuests (it gets the syncs, the quest book and the pack sounds). */
+    public static boolean hasMod(ServerPlayer player) {
+        return player.connection.hasChannel(QuestSyncPayload.TYPE);
+    }
+
     private static void send(ServerPlayer player, boolean full) {
         PacketDistributor.sendToPlayer(player, new QuestSyncPayload(buildJson(player, full)));
     }

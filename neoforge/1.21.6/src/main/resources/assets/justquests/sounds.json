@@ -1,0 +1,48 @@
+{
+  "quest.complete": {
+    "sounds": [
+      {
+        "name": "minecraft:ui/toast/challenge_complete",
+        "volume": 0.6
+      }
+    ]
+  },
+  "quest.accept": {
+    "sounds": []
+  },
+  "quest.abandon": {
+    "sounds": []
+  },
+  "quest.unlock": {
+    "sounds": []
+  },
+  "reward.claim": {
+    "sounds": []
+  },
+  "goal.progress": {
+    "sounds": []
+  },
+  "goal.complete": {
+    "sounds": []
+  },
+  "book.open": {
+    "sounds": []
+  },
+  "book.close": {
+    "sounds": []
+  },
+  "book.page": {
+    "sounds": []
+  },
+  "book.click": {
+    "sounds": [
+      {
+        "name": "minecraft:random/click_stereo",
+        "volume": 0.25
+      }
+    ]
+  },
+  "popup.show": {
+    "sounds": []
+  }
+}

@@ -45,6 +45,8 @@ public class JustQuestsFabricClient implements ClientModInitializer {
                 }
             }
             while (toggleHud.consumeClick()) QuestHud.toggle();
+            // sounds and popups for what the last quest sync changed
+            QuestEvents.tick();
         });
     }
 }

@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "title": "#2E1C0E",
+    "text": "#3A2614",
+    "muted": "#6B5236",
+    "heading": "#802A1A",
+    "link": "#1F4E8C",
+    "done": "#3F6F24",
+    "warning": "#8C1F1F",
+    "group": "#F0DCB0",
+    "group_count": "#C9A66B"
+  },
+  "background": {
+    "blur": true,
+    "mode": "color",
+    "color": "#40201008"
+  }
+}

@@ -54,6 +54,11 @@ public final class QuestNetwork {
         send(player, false);
     }
 
+    /** Whether this player's game has JustQuests (it gets the syncs, the quest book and the pack sounds). */
+    public static boolean hasMod(ServerPlayer player) {
+        return channel != null && channel.isRemotePresent(player.connection.connection);
+    }
+
     private static void send(ServerPlayer player, boolean full) {
         if (channel == null) return;
         channel.send(PacketDistributor.PLAYER.with(() -> player),

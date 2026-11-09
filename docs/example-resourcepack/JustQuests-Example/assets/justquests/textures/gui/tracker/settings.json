@@ -1,0 +1,11 @@
+{
+  "border": 3,
+  "progress_bar": true,
+  "colors": {
+    "title": "#F0DCB0",
+    "goal": "#D9C49A",
+    "done": "#9BD36A",
+    "more": "#A8916A",
+    "claim": "#FFC34D"
+  }
+}

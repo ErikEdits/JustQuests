@@ -46,6 +46,11 @@ public final class QuestNetwork {
         send(player, false);
     }
 
+    /** Whether this player's game has JustQuests (it gets the syncs, the quest book and the pack sounds). */
+    public static boolean hasMod(ServerPlayer player) {
+        return ServerPlayNetworking.canSend(player, CHANNEL);
+    }
+
     private static void send(ServerPlayer player, boolean full) {
         FriendlyByteBuf buf = PacketByteBufs.create();
         buf.writeUtf(buildJson(player, full), 1048576);

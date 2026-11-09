@@ -44,6 +44,8 @@ public final class QuestClient {
                 mc.setScreen(new QuestScreen());
             }
             while (TOGGLE_HUD.consumeClick()) QuestHud.toggle();
+            // sounds and popups for what the last quest sync changed
+            QuestEvents.tick();
         }
 
         /** Draws the quest tracker on top of the in-game HUD. */

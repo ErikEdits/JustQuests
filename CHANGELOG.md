@@ -3,6 +3,35 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.5.0] - 2026-11-09 (beta)
+
+### Added
+- **Resource packs can restyle JustQuests** (requested on GitHub, #21). On every version with the
+  quest book (1.20.1 to 26.3), a pack in `assets/justquests/` can change:
+  - the quest book (`textures/gui/quest_book/book.png`), its quest rows, group headers, the line
+    between rows and the progress bar, which can also be a picture per step (`state_1.png` to
+    `state_100.png`);
+  - every button and its states (`buttons/`), the small symbols (`icons/glyphs/`), an icon for any
+    category (`icons/categories/<id>.png`) and a picture for any quest (`icons/quests/<namespace>/<path>.png`);
+  - the tracker, with a picture that stretches like a frame and an optional progress bar per goal;
+  - places, colours, text shadows and the background behind the book, in one `settings.json` per
+    folder;
+  - the font of the book, the tracker and the popups (`font/book.json`);
+  - a sound for every moment: `justquests:quest.complete`, `quest.accept`, `quest.abandon`,
+    `quest.unlock`, `reward.claim`, `goal.progress`, `goal.complete`, `book.open`, `book.close`,
+    `book.page`, `book.click` and `popup.show`. The ones without a sound so far are empty, so a pack
+    can add one.
+  Pictures may be HD (a whole multiple of their size) and animated with a `.png.mcmeta`. Packs with
+  the old picture names (`window.png`, `button_claim_normal.png` …) keep working.
+- **Popups** for a completed quest ("Quest completed!", or how to claim the reward) and for a newly
+  unlocked quest. Players can turn them off with a new box on the quest book's overview page.
+- An **example resource pack** in `docs/example-resourcepack` that uses every feature.
+
+### Changed
+- Clicks in the quest book now play the normal button click (`justquests:book.click`).
+- Players with JustQuests hear the completion sound as `justquests:quest.complete`. By default it is
+  the same challenge sound as before; players without the mod still hear the vanilla sound.
+
 ## [0.4.8] - 2026-11-09
 
 ### Added

@@ -36,16 +36,12 @@ import net.minecraft.world.level.block.Block;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * What the quest book and the HUD show for a quest: its item icon (the quest's "icon" field, else
  * picked from the first objective), short objective labels and the category icons.
  */
 public final class QuestIcons {
-    /** Categories with their own pixel icon (textures/gui/cat_<name>.png); others use "custom". */
-    private static final Set<String> CATEGORY_ICONS = Set.of("gathering", "farming", "combat", "survival", "daily",
-        "building", "crafting", "exploration", "challenges", "generated", "custom");
 
     private static final Map<ResourceLocation, ItemStack> CACHE = new HashMap<>();
     private static int cacheVersion = -1;
@@ -161,10 +157,12 @@ public final class QuestIcons {
         return Component.translatable("justquests.goal." + goal, name);
     }
 
-    /** Texture name of a category's pixel icon. */
+    /**
+     * Texture name of a category's pixel icon: icons/categories/<id>.png from a pack, else the mod's
+     * own for the built-in categories, else "custom" ({@link Theme#tex} looks them up in that order).
+     */
     public static String categoryIcon(String category) {
-        String c = category.toLowerCase(java.util.Locale.ROOT);
-        return "cat_" + (CATEGORY_ICONS.contains(c) ? c : "custom");
+        return "cat_" + category.toLowerCase(java.util.Locale.ROOT);
     }
 
     /** The translated name of a bundled category, else the id made readable ("my_pack" -> "My pack"). */

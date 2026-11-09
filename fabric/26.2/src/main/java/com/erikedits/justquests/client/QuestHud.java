@@ -23,19 +23,22 @@ import java.util.Set;
  * The quest tracker: a small translucent panel in a screen corner listing the player's pinned
  * quests, or without pins the most recently accepted ones, with their objectives (and, on top, how
  * many finished quests have rewards waiting). Toggled with H or the quest book's
- * HUD button; hidden with F1, F3 and while a screen is open. Drawn with fills, not a texture, so the
- * panel can grow with its text (the look matches hud_panel from the v2-full set).
+ * HUD button; hidden with F1, F3 and while a screen is open. Drawn with fills (the look of hud_panel
+ * from the v2-full set), or with a resource pack's tracker/tracker.png stretched like a frame, so the
+ * panel can grow with its text. Places, colours and an optional progress bar per goal come from
+ * tracker/settings.json (0.5.0).
  */
 public final class QuestHud {
-    private static final int MAX_OBJECTIVES = 3, MAX_TEXT = 140, LINE = 9;
-    private static final int TITLE = 0xFFFFFFFF, OPEN = 0xFFD0D0D0, DONE = 0xFF55FF55, MORE = 0xFFA0A0A0, GOLD = 0xFFFFAA00;
-
     private static int prunedAt = -1;
 
     private QuestHud() {}
 
-    /** One quest block: icon, title and its objective lines. */
-    private record Block(ItemStack icon, String title, int titleColor, List<String> lines, List<Integer> colors) {}
+    /**
+     * One quest block: icon (an item, or a quest with its own picture), title and its objective lines,
+     * each with how far it is (-1 for a line without a bar).
+     */
+    private record Block(ItemStack icon, Identifier quest, Quest q, String title, int titleColor,
+                         List<String> lines, List<Integer> colors, List<Float> progress) {}
 
     public static void toggle() {
         ClientSettings.load();
@@ -47,8 +50,9 @@ public final class QuestHud {
     public static void render(GuiGraphicsExtractor g) {
         ClientSettings.load();
         Minecraft mc = Minecraft.getInstance();
-        if (!ClientSettings.hud || mc.player == null || mc.gui.hud.isHidden() || mc.gui.screen() != null || debugShown(mc)) return;
-        draw(g, false);
+        if (mc.player == null || mc.gui.hud.isHidden() || mc.gui.screen() != null || debugShown(mc)) return;
+        if (ClientSettings.hud) draw(g, false);
+        Popups.render(g);
     }
 
     /** The tracker drawn by the quest book while its corner is picked; shows a sample panel without quests. */
@@ -63,6 +67,7 @@ public final class QuestHud {
         if (!preview && data.active.isEmpty() && data.pendingClaim.isEmpty()) return;
         Font font = mc.font;
         String lang = mc.options.languageCode;
+        Theme t = Theme.get();
         prunePins();
 
         // pinned quests in pin order; without pins the newest active ones
@@ -82,8 +87,8 @@ public final class QuestHud {
         if (ready > 0) {
             String title = fit(font, I18n.get("justquests.hud.rewards", ready));
             String hint = fit(font, I18n.get("justquests.hud.rewards_hint"));
-            textW = Math.max(font.width(title), font.width(hint));
-            blocks.add(new Block(new ItemStack(Items.CHEST), title, GOLD, List.of(hint), List.of(MORE)));
+            textW = Math.max(width(font, title), width(font, hint));
+            blocks.add(new Block(new ItemStack(Items.CHEST), null, null, title, t.tClaim, List.of(hint), List.of(t.tMore), List.of(-1f)));
         }
         int shown = 0;
         for (Identifier id : pins.isEmpty() ? ClientQuestData.activeOrder() : pins) {
@@ -92,12 +97,13 @@ public final class QuestHud {
             QuestProgress prog = data.active.get(id);
             if (q == null || prog == null) continue;
             String title = fit(font, q.title().get(lang));
-            textW = Math.max(textW, font.width(title));
+            textW = Math.max(textW, width(font, title));
             List<String> lines = new ArrayList<>();
             List<Integer> colors = new ArrayList<>();
+            List<Float> progress = new ArrayList<>();
             List<QuestObjective> objs = q.objectives();
             List<Integer> order = q.shownOrder();
-            for (int n = 0; n < order.size() && n < MAX_OBJECTIVES; n++) {
+            for (int n = 0; n < order.size() && n < t.tMaxGoals; n++) {
                 int i = order.get(n);
                 int need = objs.get(i).requiredCount();
                 int cur = Math.min(prog.get(i), need);
@@ -106,46 +112,61 @@ public final class QuestHud {
                 String or = q.orBefore(i) ? I18n.get("justquests.goal.or") + " " : "";
                 String line = fit(font, or + (done ? "✓ " : cur + "/" + need + " ") + QuestIcons.label(q, i).getString());
                 lines.add(line);
-                colors.add(done ? DONE : OPEN);
-                textW = Math.max(textW, font.width(line));
+                colors.add(done ? t.tDone : t.tGoal);
+                progress.add(need > 0 ? cur / (float) need : 1f);
+                textW = Math.max(textW, width(font, line));
             }
-            if (objs.size() > MAX_OBJECTIVES) {
-                lines.add(I18n.get("justquests.hud.more", objs.size() - MAX_OBJECTIVES));
-                colors.add(MORE);
+            if (objs.size() > t.tMaxGoals) {
+                lines.add(I18n.get("justquests.hud.more", objs.size() - t.tMaxGoals));
+                colors.add(t.tMore);
+                progress.add(-1f);
             }
-            blocks.add(new Block(QuestIcons.of(id, q), title, TITLE, lines, colors));
+            blocks.add(new Block(ItemStack.EMPTY, id, q, title, t.tTitle, lines, colors, progress));
             shown++;
         }
         if (blocks.isEmpty()) {
             if (!preview) return;
             String title = fit(font, I18n.get("justquests.hud.preview"));
             String line = fit(font, I18n.get("justquests.hud.preview_empty"));
-            textW = Math.max(font.width(title), font.width(line));
-            blocks.add(new Block(new ItemStack(Items.BOOK), title, TITLE, List.of(line), List.of(MORE)));
+            textW = Math.max(width(font, title), width(font, line));
+            blocks.add(new Block(new ItemStack(Items.BOOK), null, null, title, t.tTitle, List.of(line), List.of(t.tMore), List.of(-1f)));
         }
 
-        int w = 23 + textW + 5;
-        int h = 4;
-        for (Block b : blocks) h += height(b);
-        h += 1;
+        // block places are counted from the top left of the box, as in tracker/settings.json
+        int w = t.tTitleX + textW + 5;
+        int h = 0;
+        for (Block b : blocks) h += height(t, b);
+        h += 5;
         int sw = mc.getWindow().getGuiScaledWidth(), sh = mc.getWindow().getGuiScaledHeight();
         boolean right = ClientSettings.hudCorner.endsWith("right"), bottom = ClientSettings.hudCorner.startsWith("bottom");
-        int x = right ? sw - w - 4 : 4;
-        int y = bottom ? sh - h - 4 : 4;
+        int x = right ? sw - w - t.tOffX : t.tOffX;
+        int y = bottom ? sh - h - t.tOffY : t.tOffY;
         if (bottom && !right) y -= 40;   // stay above the chat input line
 
-        panel(g, x, y, w, h);
-        int cy = y + 4;
+        if (t.has("tracker/tracker")) t.frame(g, "tracker/tracker", x, y, w, h, t.tBorder);
+        else panel(g, x, y, w, h, t.tBox);
+        int by = y;
         for (Block b : blocks) {
-            g.item(b.icon(), x + 4, cy);
-            g.text(font, b.title(), x + 23, cy + 1, b.titleColor(), true);
-            int ly = cy + 11;
+            if (b.quest() != null) t.icon(g, b.quest(), b.q(), x + t.tIconX, by + t.tIconY);
+            else g.item(b.icon(), x + t.tIconX, by + t.tIconY);
+            g.text(font, Theme.text(b.title()), x + t.tTitleX, by + t.tTitleY, b.titleColor(), t.tShadow);
+            int ly = by + t.tGoalY;
             for (int i = 0; i < b.lines().size(); i++) {
-                g.text(font, b.lines().get(i), x + 23, ly, b.colors().get(i), true);
-                ly += LINE;
+                g.text(font, Theme.text(b.lines().get(i)), x + t.tGoalX, ly, b.colors().get(i), t.tShadow);
+                ly += t.tLine;
+                float f = b.progress().get(i);
+                if (t.tBar && f >= 0) {
+                    int bw = t.trackerBarW > 0 ? t.trackerBarW : textW;
+                    t.progress(g, true, x + t.tGoalX, ly - 1, bw, t.trackerBarH, f);
+                    ly += t.trackerBarH + 1;
+                }
             }
-            cy += height(b);
+            by += height(t, b);
         }
+    }
+
+    private static int width(Font font, String s) {
+        return font.width(Theme.text(s));
     }
 
     /** Unpin quests that are loaded but no longer active (finished or abandoned); once per sync. */
@@ -160,15 +181,20 @@ public final class QuestHud {
         if (ClientSettings.pinned.removeIf(p -> known.contains(p) && !active.contains(p))) ClientSettings.save();
     }
 
-    /** Height of one quest block: icon or title + objective lines, plus a gap. */
-    private static int height(Block b) {
-        return Math.max(18, 11 + b.lines().size() * LINE) + 3;
+    /**
+     * Height of one quest block: icon or title + objective lines (and their bars), plus a gap. The
+     * box's top margin (the icon's y) counts once for the whole box, not per block.
+     */
+    private static int height(Theme t, Block b) {
+        int lines = 0;
+        for (float f : b.progress()) lines += t.tLine + (t.tBar && f >= 0 ? t.trackerBarH + 1 : 0);
+        return Math.max(t.tIconY + 18, t.tGoalY + lines) + 3 - t.tIconY;
     }
 
-    /** Translucent black body, black outline with cut corners and a faint top highlight. */
-    private static void panel(GuiGraphicsExtractor g, int x, int y, int w, int h) {
+    /** Translucent body, black outline with cut corners and a faint top highlight. */
+    private static void panel(GuiGraphicsExtractor g, int x, int y, int w, int h, int body) {
         int x2 = x + w, y2 = y + h;
-        g.fill(x + 1, y + 1, x2 - 1, y2 - 1, 0xAA000000);
+        g.fill(x + 1, y + 1, x2 - 1, y2 - 1, body);
         g.fill(x + 1, y, x2 - 1, y + 1, 0xFF000000);
         g.fill(x + 1, y2 - 1, x2 - 1, y2, 0xFF000000);
         g.fill(x, y + 1, x + 1, y2 - 1, 0xFF000000);
@@ -177,8 +203,9 @@ public final class QuestHud {
     }
 
     private static String fit(Font font, String s) {
-        if (font.width(s) <= MAX_TEXT) return s;
-        return font.plainSubstrByWidth(s, MAX_TEXT - font.width("...")) + "...";
+        int max = Theme.get().tMaxText;
+        if (width(font, s) <= max) return s;
+        return font.getSplitter().plainHeadByWidth(s, max - width(font, "..."), Theme.style()) + "...";
     }
 
     private static boolean debugShown(Minecraft mc) {

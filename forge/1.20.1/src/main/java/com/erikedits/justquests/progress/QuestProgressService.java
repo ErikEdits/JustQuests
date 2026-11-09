@@ -30,6 +30,10 @@ import java.util.Map;
  * so adding new objective types only means a new handler + a new test.
  */
 public final class QuestProgressService {
+    /** The completion sound of players with JustQuests (by default the vanilla challenge sound). */
+    private static final net.minecraft.sounds.SoundEvent QUEST_COMPLETE = net.minecraft.sounds.SoundEvent.createVariableRangeEvent(
+        ResourceLocation.tryBuild("justquests", "quest.complete"));
+
 
     private QuestProgressService() {}
 
@@ -91,7 +95,9 @@ public final class QuestProgressService {
             player.sendSystemMessage(completeChat(questTitle, questId, claim));
             // completion sound + action-bar toast (Q12), each toggleable
             if (WorldSettings.completionSound()) {
-                player.playNotifySound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.MASTER, 1.0f, 1.0f);
+                // JustQuests in the player's game: justquests:quest.complete, which a resource pack can change
+                player.playNotifySound(com.erikedits.justquests.network.QuestNetwork.hasMod(player) ? QUEST_COMPLETE
+                    : SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.MASTER, 1.0f, 1.0f);
             }
             if (WorldSettings.completionToast()) {
                 player.displayClientMessage(Msg.tr("justquests.complete.toast", questTitle), true);
