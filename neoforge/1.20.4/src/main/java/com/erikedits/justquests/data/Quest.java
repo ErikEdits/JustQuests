@@ -13,7 +13,8 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
                     List<ResourceLocation> requires, boolean repeatable, Optional<Integer> cooldownHours,
                     int sort, List<QuestObjective> objectives, List<QuestReward> rewards,
                     Optional<ResourceLocation> icon, Optional<String> permission, boolean team,
-                    Optional<Integer> requiresMin, boolean resetOnDeath, List<String> groups, List<LocalizedText> labels) {
+                    Optional<Integer> requiresMin, boolean resetOnDeath, boolean autoAccept, List<String> groups,
+                    List<LocalizedText> labels) {
     public static final Codec<Quest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         LocalizedText.CODEC.fieldOf("title").forGetter(Quest::title),
         LocalizedText.CODEC.optionalFieldOf("description", LocalizedText.EMPTY).forGetter(Quest::description),
@@ -38,12 +39,14 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         // only this many of "requires" must be done first (any 12 of 16); all of them when left out
         Codec.INT.optionalFieldOf("requires_min").forGetter(Quest::requiresMin),
         // the progress goes back to zero when the player (for a team quest: any member) dies
-        Codec.BOOL.optionalFieldOf("reset_on_death", false).forGetter(Quest::resetOnDeath)
+        Codec.BOOL.optionalFieldOf("reset_on_death", false).forGetter(Quest::resetOnDeath),
+        // false: never accepted by itself (auto-accept), only by the player
+        Codec.BOOL.optionalFieldOf("auto_accept", true).forGetter(Quest::autoAccept)
     ).apply(instance, (title, description, category, mode, requires, repeatable, cooldownHours, sort, goals, rewards,
-                       icon, permission, team, requiresMin, resetOnDeath) ->
+                       icon, permission, team, requiresMin, resetOnDeath, autoAccept) ->
         new Quest(title, description, category, mode, requires, repeatable, cooldownHours, sort,
             goals.stream().map(Goal::objective).toList(), rewards, icon, permission, team, requiresMin, resetOnDeath,
-            goals.stream().map(Goal::group).toList(), goals.stream().map(Goal::label).toList())));
+            autoAccept, goals.stream().map(Goal::group).toList(), goals.stream().map(Goal::label).toList())));
 
     /** One entry of "objectives": the objective, the group it belongs to ("" = none) and its own goal text. */
     private record Goal(QuestObjective objective, String group, LocalizedText label) {
@@ -141,7 +144,7 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         boolean named = !"datapack".equals(category) && !(team && "team".equals(category));
         if (slash <= 0 || named) return this;
         return new Quest(title, description, path.substring(0, slash), mode, requires, repeatable, cooldownHours,
-            sort, objectives, rewards, icon, permission, team, requiresMin, resetOnDeath, groups, labels);
+            sort, objectives, rewards, icon, permission, team, requiresMin, resetOnDeath, autoAccept, groups, labels);
     }
 
     /** How many of the required quests must be done first: all of them, or requires_min. */

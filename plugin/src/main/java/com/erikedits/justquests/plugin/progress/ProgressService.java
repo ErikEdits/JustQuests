@@ -114,7 +114,7 @@ public final class ProgressService {
             if (QuestStatus.of(plugin, player.getUniqueId(), plugin.view(player.getUniqueId()), quest) != QuestStatus.AVAILABLE) continue;
             String title = quest.title().get(lang);
             TextComponent line = new TextComponent("");
-            if (auto && !quest.team() && accept(player, quest.id()).ok()) {
+            if (auto && !quest.team() && quest.autoAccept() && accept(player, quest.id()).ok()) {
                 line.addExtra(Text.tr(lang, "justquests.unlocked.accepted", title));
                 line.addExtra(" ");
                 line.addExtra(Text.button(Text.tr(lang, "justquests.unlocked.auto_off"), "/quest autoaccept off",
@@ -127,6 +127,43 @@ public final class ProgressService {
             }
             player.spigot().sendMessage(line);
         }
+    }
+
+    /**
+     * A player's first time on this server (no quest data yet): with auto-accept on, every quest that
+     * is open from the start is taken at once, as "accept all" would (#23).
+     */
+    public void firstJoin(Player player) {
+        PlayerData data = plugin.store().get(player.getUniqueId());
+        if (!data.isEmpty()) return;
+        if (!(data.autoAccept != null ? data.autoAccept : plugin.settings().autoAccept)) return;
+        acceptOpen(player);
+    }
+
+    /**
+     * Takes every quest the player may take now that auto-accept may take: not a team quest, not one of
+     * the generated board and not marked "auto_accept": false. One chat line says how many. Used on the
+     * first join and when the player turns auto-accept on; returns how many were taken.
+     */
+    public int acceptOpen(Player player) {
+        PlayerData view = plugin.view(player.getUniqueId());
+        int count = 0;
+        for (Quest quest : plugin.quests().all().values()) {
+            if (quest.team() || !quest.autoAccept() || plugin.generated().onBoard(quest.id()) || !plugin.canSee(player, quest)) continue;
+            if (!plugin.generated().visible(quest.id(), player.getUniqueId())) continue;
+            if (QuestStatus.of(plugin, player.getUniqueId(), view, quest) != QuestStatus.AVAILABLE) continue;
+            if (accept(player, quest.id()).ok()) count++;
+        }
+        if (count > 0) {
+            String lang = Lang.of(player);
+            TextComponent line = new TextComponent("");
+            line.addExtra(Text.tr(lang, "justquests.autoaccept.accepted", count));
+            line.addExtra(" ");
+            line.addExtra(Text.button(Text.tr(lang, "justquests.unlocked.auto_off"), "/quest autoaccept off",
+                Text.tr(lang, "justquests.unlocked.auto_off_hover")));
+            player.spigot().sendMessage(line);
+        }
+        return count;
     }
 
     /**

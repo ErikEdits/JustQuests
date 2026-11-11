@@ -164,6 +164,7 @@
   "justquests.book.hint.hide_hud": "HUD ausblenden",
   "justquests.book.hint.show_hud": "HUD anzeigen",
   "justquests.book.hint.hud_corner": "HUD verschieben (jetzt: %s)",
+  "justquests.book.hint.popups": "Popups platzieren",
   "justquests.book.corner.top_left": "oben links",
   "justquests.book.corner.top_right": "oben rechts",
   "justquests.book.corner.bottom_left": "unten links",
@@ -190,6 +191,9 @@
   "justquests.popup.done": "Quest abgeschlossen!",
   "justquests.popup.new": "Neue Quest!",
   "justquests.popup.claim": "Drücke %s zum Abholen",
+  "justquests.popup.place_1": "Klicke dahin, wo die Popups erscheinen sollen.",
+  "justquests.popup.place_2": "Rechtsklick: automatisch (unter einer Minimap)    Esc: zurück",
+  "justquests.popup.sample": "Beispiel-Quest",
   "justquests.book.reset_on_death": "Fortschritt geht verloren, wenn du stirbst",
   "justquests.book.reset_on_death_team": "Fortschritt geht verloren, wenn jemand im Team stirbt",
   "justquests.book.again_in": "Wieder in %s",
@@ -269,6 +273,7 @@
   "justquests.accept.none": "§7Gerade kann keine Quest angenommen werden.",
   "justquests.autoaccept.on": "§aFreigeschaltete Quests werden automatisch angenommen. §7Ausschalten mit /quest autoaccept off.",
   "justquests.autoaccept.off": "§eFreigeschaltete Quests warten, bis du sie annimmst. §7Automatisch annehmen mit /quest autoaccept on.",
+  "justquests.autoaccept.accepted": "§a✓ Offene Quests automatisch angenommen: %s",
   "justquests.goal.have": "Besitze %s",
   "justquests.goal.have_count": "Besitze %sx %s"
 }

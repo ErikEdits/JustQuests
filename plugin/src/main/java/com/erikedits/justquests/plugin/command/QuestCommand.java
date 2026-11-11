@@ -89,12 +89,15 @@ public final class QuestCommand implements TabExecutor {
             });
             case "autoaccept" -> withPlayer(sender, p -> {
                 PlayerData d = plugin.store().get(p.getUniqueId());
+                boolean before = d.autoAccept != null ? d.autoAccept : plugin.settings().autoAccept;
                 if (rest.length > 0 && List.of("on", "off").contains(rest[0].toLowerCase(Locale.ROOT))) {
                     d.autoAccept = rest[0].equalsIgnoreCase("on");
                     plugin.store().markDirty(p.getUniqueId());
                 }
                 boolean on = d.autoAccept != null ? d.autoAccept : plugin.settings().autoAccept;
                 say(p, on ? "justquests.autoaccept.on" : "justquests.autoaccept.off");
+                // turned on: what is open already is taken now, not only what unlocks from here on (#23)
+                if (on && !before) plugin.progress().acceptOpen(p);
             });
             case "abandon" -> withPlayer(sender, p -> {
                 if (rest.length < 1) say(p, "justquests.plugin.usage", "/" + label + " abandon <quest>");

@@ -23,6 +23,7 @@ import java.util.Locale;
  *                   member claims the rewards (category "team" unless one is given)
  * @param requiresMin how many of requires must be done first (any 12 of 16); -1 = all of them
  * @param resetOnDeath the progress goes back to zero when the player (team quest: any member) dies
+ * @param autoAccept false: never accepted by itself (auto-accept), only by the player
  * @param groups     per objective the group it belongs to ("" = none); the objectives of one group
  *                   are alternatives, one of them is enough
  * @param labels     per objective its own goal text, shown instead of the generated one
@@ -30,7 +31,8 @@ import java.util.Locale;
 public record Quest(String id, LocalizedText title, LocalizedText description, String category, boolean any,
                     List<String> requires, boolean repeatable, int cooldownHours, int sort,
                     List<Objective> objectives, List<Reward> rewards, Material icon, String permission,
-                    boolean team, int requiresMin, boolean resetOnDeath, List<String> groups, List<LocalizedText> labels) {
+                    boolean team, int requiresMin, boolean resetOnDeath, boolean autoAccept, List<String> groups,
+                    List<LocalizedText> labels) {
 
     /**
      * The first folder of a quest's path, used as its category when it names none: "ns:mining/iron"
@@ -87,6 +89,7 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
             o.has("permission") ? o.get("permission").getAsString() : null, team,
             o.has("requires_min") ? o.get("requires_min").getAsInt() : -1,
             o.has("reset_on_death") && o.get("reset_on_death").getAsBoolean(),
+            !o.has("auto_accept") || o.get("auto_accept").getAsBoolean(),
             List.copyOf(groups), List.copyOf(labels));
     }
 

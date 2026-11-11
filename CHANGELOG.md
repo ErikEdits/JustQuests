@@ -3,6 +3,28 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.5.1] - 2026-11-11
+
+### Fixed
+- **Auto-accept on the first join** (#23): quests that are open from the start were never accepted
+  by themselves, only quests unlocked by finishing another one. Now, on a player's first join and
+  when they turn auto-accept on, every open quest is accepted, as "Accept all" would (team and
+  generated quests stay out). One line in the chat says how many. Mod and plugin.
+- **Popups and the tracker behind a minimap** (#24): with JourneyMap, Xaero's Minimap, FTB Chunks,
+  VoxelMap or Map Atlases, the popups and the tracker now move below the map when they share its
+  corner (top right for JourneyMap, FTB Chunks and VoxelMap, top left for Xaero's and Map Atlases),
+  instead of being drawn under it.
+
+### Added
+- The quest field `"auto_accept": false` keeps a quest out of auto-accept: it is never accepted by
+  itself, also not when the quest before it is done. The chat offers its Accept button. Mod and
+  plugin.
+- **Place the popups anywhere:** a new button in the quest book's title bar. Click it, then click
+  on the screen where the popups should appear; a right click goes back to the automatic place, Esc
+  back to the book. The place is kept per screen edge, so it holds when the window or the GUI scale
+  changes. Resource packs can restyle the button (`buttons/popup_normal.png`, `popup_hover.png`)
+  and move it (`buttons.popup` in `quest_book/settings.json`; by default left of the stats button).
+
 ## [0.5.0] - 2026-11-09 (beta)
 
 ### Added

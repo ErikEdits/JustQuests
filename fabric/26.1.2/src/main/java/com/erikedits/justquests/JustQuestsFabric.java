@@ -95,6 +95,7 @@ public class JustQuestsFabric implements ModInitializer {
             CommunityHints.onLogin(handler.player);
             com.erikedits.justquests.team.TeamQuests.settle(handler.player);   // team rewards from while they were away
             com.erikedits.justquests.network.QuestNetwork.syncPlayer(handler.player);
+            com.erikedits.justquests.progress.QuestProgressService.firstJoin(handler.player);   // auto-accept (#23)
         });
 
         // kill_mob

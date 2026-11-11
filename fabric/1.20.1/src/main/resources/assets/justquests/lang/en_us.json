@@ -164,6 +164,7 @@
   "justquests.book.hint.hide_hud": "Hide the HUD",
   "justquests.book.hint.show_hud": "Show the HUD",
   "justquests.book.hint.hud_corner": "Move the HUD (now: %s)",
+  "justquests.book.hint.popups": "Place the popups",
   "justquests.book.corner.top_left": "top left",
   "justquests.book.corner.top_right": "top right",
   "justquests.book.corner.bottom_left": "bottom left",
@@ -190,6 +191,9 @@
   "justquests.popup.done": "Quest completed!",
   "justquests.popup.new": "New quest!",
   "justquests.popup.claim": "Press %s to claim",
+  "justquests.popup.place_1": "Click where the popups should appear.",
+  "justquests.popup.place_2": "Right click: automatic (below a minimap)    Esc: back",
+  "justquests.popup.sample": "Example quest",
   "justquests.book.reset_on_death": "Progress resets if you die",
   "justquests.book.reset_on_death_team": "Progress resets if a team member dies",
   "justquests.book.again_in": "Again in %s",
@@ -269,6 +273,7 @@
   "justquests.accept.none": "§7No quests can be accepted right now.",
   "justquests.autoaccept.on": "§aUnlocked quests are accepted automatically. §7Turn it off with /quest autoaccept off.",
   "justquests.autoaccept.off": "§eUnlocked quests wait for you to accept them. §7Turn auto-accept on with /quest autoaccept on.",
+  "justquests.autoaccept.accepted": "§a✓ Open quests accepted automatically: %s",
   "justquests.goal.have": "Have %s",
   "justquests.goal.have_count": "Have %sx %s"
 }

@@ -164,6 +164,7 @@
   "justquests.book.hint.hide_hud": "Masquer le HUD",
   "justquests.book.hint.show_hud": "Afficher le HUD",
   "justquests.book.hint.hud_corner": "Déplacer le HUD (actuel : %s)",
+  "justquests.book.hint.popups": "Placer les notifications",
   "justquests.book.corner.top_left": "en haut à gauche",
   "justquests.book.corner.top_right": "en haut à droite",
   "justquests.book.corner.bottom_left": "en bas à gauche",
@@ -190,6 +191,9 @@
   "justquests.popup.done": "Quête terminée !",
   "justquests.popup.new": "Nouvelle quête !",
   "justquests.popup.claim": "Appuie sur %s pour récupérer",
+  "justquests.popup.place_1": "Clique là où les notifications doivent apparaître.",
+  "justquests.popup.place_2": "Clic droit : automatique (sous une minicarte)    Échap : retour",
+  "justquests.popup.sample": "Quête d'exemple",
   "justquests.book.reset_on_death": "La progression est perdue si tu meurs",
   "justquests.book.reset_on_death_team": "La progression est perdue si un membre de l'équipe meurt",
   "justquests.book.again_in": "De nouveau dans %s",
@@ -269,6 +273,7 @@
   "justquests.accept.none": "§7Aucune quête ne peut être acceptée pour le moment.",
   "justquests.autoaccept.on": "§aLes quêtes débloquées sont acceptées automatiquement. §7Désactivez-le avec /quest autoaccept off.",
   "justquests.autoaccept.off": "§eLes quêtes débloquées attendent que vous les acceptiez. §7Activez-le avec /quest autoaccept on.",
+  "justquests.autoaccept.accepted": "§a✓ Quêtes disponibles acceptées automatiquement : %s",
   "justquests.goal.have": "Posséder %s",
   "justquests.goal.have_count": "Posséder %sx %s"
 }

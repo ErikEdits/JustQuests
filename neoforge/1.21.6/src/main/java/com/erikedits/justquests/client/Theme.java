@@ -98,6 +98,9 @@ public final class Theme {
         button(b, "search", 44, 23);
         button(b, "page_prev", 8, 164);
         button(b, "page_next", 108, 164);
+        // the popup button (0.5.1) sits left of the stats button, also in packs that moved that one
+        int[] stats = buttons.get("stats");
+        button(b, "popup", stats[0] - 16, stats[1]);
         title = color(b, 0xFF161616, "colors", "title");
         text = color(b, 0xFF282828, "colors", "text");
         muted = color(b, 0xFF4C4C4C, "colors", "muted");

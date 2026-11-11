@@ -290,7 +290,7 @@ public final class WorldSettings {
         + "completionSound: play a sound for the player on completion. "
         + "completionToast: show an action-bar toast on completion. "
         + "claimRewards: finished quests wait until the player claims their rewards (Claim button in the quest book, or /quest claim); false pays rewards out the moment a quest is finished. "
-        + "autoAccept: a quest is accepted by itself once the quests it requires are done; false gives the player an Accept button in the chat instead. Each player can change it for themselves with /quest autoaccept on|off. "
+        + "autoAccept: a quest is accepted by itself once the quests it requires are done, and on a player's first join every quest that is open from the start is accepted (a quest with \"auto_accept\": false never is); false gives the player an Accept button in the chat instead. Each player can change it for themselves with /quest autoaccept on|off. "
         + "mainQuests: the built-in quests bundled with the mod; set false to hide them from /quest list and the quest book (your own datapack quests, custom and generated quests stay). Toggle in-game with /quest mainquests on|off (OP). "
         + "generatedQuests: auto-generate a rotating set of quests (category 'generated'); set false to disable. "
         + "generatedCount: how many generated quests per cycle (1-20). "

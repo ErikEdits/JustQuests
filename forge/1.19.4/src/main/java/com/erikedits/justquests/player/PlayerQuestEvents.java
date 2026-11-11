@@ -37,6 +37,7 @@ public class PlayerQuestEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         com.erikedits.justquests.community.CommunityHints.onLogin(player);
         com.erikedits.justquests.team.TeamQuests.settle(player);   // team rewards from while they were away
+        com.erikedits.justquests.progress.QuestProgressService.firstJoin(player);   // auto-accept (#23)
     }
 
     /** collect_item */

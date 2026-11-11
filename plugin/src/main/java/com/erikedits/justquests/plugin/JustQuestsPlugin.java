@@ -197,6 +197,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         community.onJoin(e.getPlayer());
         generator.onJoin(e.getPlayer());
+        progress.firstJoin(e.getPlayer());   // auto-accept on a first join (#23)
         tracker.update(e.getPlayer());
     }
 

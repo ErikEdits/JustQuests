@@ -51,6 +51,13 @@ public class PlayerQuestEvents {
         com.erikedits.justquests.team.TeamQuests.settle(player);   // team rewards from while they were away
         // send the quest list + this player's progress so the client GUI works on servers
         com.erikedits.justquests.network.QuestNetwork.syncPlayer(player);
+        migrate(player);
+        // last, so that migrated data counts as a record: auto-accept on a first join (#23)
+        com.erikedits.justquests.progress.QuestProgressService.firstJoin(player);
+    }
+
+    /** The v0.1 quest data of a player the store does not know yet, moved into the store. */
+    private static void migrate(ServerPlayer player) {
         WorldQuestStore store = WorldQuestStore.get();
         if (store == null || store.has(player.getUUID())) return;
 

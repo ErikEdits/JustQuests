@@ -41,6 +41,7 @@ public class PlayerQuestEvents {
         com.erikedits.justquests.community.CommunityHints.onLogin(player);
         com.erikedits.justquests.team.TeamQuests.settle(player);   // team rewards from while they were away
         com.erikedits.justquests.network.QuestNetwork.syncPlayer(player);
+        com.erikedits.justquests.progress.QuestProgressService.firstJoin(player);   // auto-accept (#23)
     }
 
     /** collect_item: advance objectives that match the picked-up item. */

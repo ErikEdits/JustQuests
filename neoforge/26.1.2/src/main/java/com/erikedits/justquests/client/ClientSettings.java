@@ -34,6 +34,13 @@ public final class ClientSettings {
     public static boolean hideCompleted = false;
     /** Popups for completed and newly unlocked quests (0.5.0). */
     public static boolean popups = true;
+    /**
+     * Where the player put the popups (0.5.1, #24): the screen edges they keep to, as "top_right",
+     * "bottom_center" ..., and the distance from those edges in GUI pixels (from the middle for
+     * "center"). Empty: automatic (below a minimap, else the resource pack's corner).
+     */
+    public static String popupAnchor = "";
+    public static int popupX, popupY;
     /** Quests pinned to the HUD, as ids; QuestHud drops finished or abandoned ones. */
     public static final List<String> pinned = new ArrayList<>();
     private static final int MAX_PINS = 20;
@@ -64,6 +71,9 @@ public final class ClientSettings {
             if (o.has("byStatus")) byStatus = o.get("byStatus").getAsBoolean();
             if (o.has("hideCompleted")) hideCompleted = o.get("hideCompleted").getAsBoolean();
             if (o.has("popups")) popups = o.get("popups").getAsBoolean();
+            if (o.has("popupAnchor")) popupAnchor = o.get("popupAnchor").getAsString();
+            if (o.has("popupX")) popupX = o.get("popupX").getAsInt();
+            if (o.has("popupY")) popupY = o.get("popupY").getAsInt();
             if (o.has("pinned")) {
                 for (JsonElement e : o.getAsJsonArray("pinned")) pinned.add(e.getAsString());
             }
@@ -100,6 +110,7 @@ public final class ClientSettings {
             + "hudCorner: top_left, top_right, bottom_left or bottom_right. hudMax: quests shown (1-5). "
             + "byStatus / hideCompleted: quest book list options (also set by its buttons). "
             + "popups: notices for completed and new quests (also a box in the book). "
+            + "popupAnchor, popupX, popupY: where the popups are (set with the popup button in the book; empty: automatic). "
             + "pinned: quests pinned to the HUD (set with the pin button in the book). "
             + "folded: quest book groups folded shut (click a group's header in the book).");
         o.addProperty("hud", hud);
@@ -108,6 +119,9 @@ public final class ClientSettings {
         o.addProperty("byStatus", byStatus);
         o.addProperty("hideCompleted", hideCompleted);
         o.addProperty("popups", popups);
+        o.addProperty("popupAnchor", popupAnchor);
+        o.addProperty("popupX", popupX);
+        o.addProperty("popupY", popupY);
         JsonArray pins = new JsonArray();
         pinned.forEach(pins::add);
         o.add("pinned", pins);

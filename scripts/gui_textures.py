@@ -6,6 +6,7 @@ Source: the v2-full pixel set in docs/assets/gui-2.0.0/JustQuests-GUI-v2-full (v
   - button_sort_* / button_filter_*: the pack's sort and filter buttons
   - button_stats_* / button_hud_* / button_corner_*: the pack's 14x14 button face with a chart /
     HUD glyph, or the HUD frame with a block in the tracker's corner
+  - button_popup_*: the same face with the HUD frame, a popup in its corner and a pointer (0.5.1)
   - button_pin_*: a 20x20 cut of the abandon button with the pack's pin glyph
   - button_abandon_*: the pack's abandon button without its x (the label sits there)
   - search_*: the pack's search field, 74 px wide, and its clear button
@@ -137,6 +138,19 @@ HUD_GLYPH = [
     "          ",
 ]
 
+POPUP_GLYPH = [  # the screen frame with a popup in its top right corner and a pointer that places it (0.5.1)
+    "          ",
+    "dddddddddd",
+    "d        d",
+    "d   dddd d",
+    "d   dddd d",
+    "d        d",
+    "d d      d",
+    "d dd     d",
+    "dddddddddd",
+    "          ",
+]
+
 CORNERS = ("top_left", "top_right", "bottom_left", "bottom_right")
 
 
@@ -216,6 +230,8 @@ def build():
         out[f"button_{name}_normal"] = button14("normal", rows)
         out[f"button_{name}_hover"] = button14("hover", rows)
         out[f"button_{name}_on"] = button14("pressed", rows)
+    out["button_popup_normal"] = button14("normal", POPUP_GLYPH)   # where the popups go (0.5.1)
+    out["button_popup_hover"] = button14("hover", POPUP_GLYPH)
     for c in CORNERS:   # HUD position button, one face per corner
         out[f"button_corner_{c}_normal"] = button14("normal", corner_glyph(c))
         out[f"button_corner_{c}_hover"] = button14("hover", corner_glyph(c))
@@ -244,6 +260,9 @@ def gui_trees():
 
 def main():
     textures = build()
+    only = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if only:   # python scripts/gui_textures.py button_popup_normal button_popup_hover: just these
+        textures = {k: v for k, v in textures.items() if k in only}
     trees = list(gui_trees())
     for tree in trees:
         folder = os.path.join(tree, GUI_REL)

@@ -141,7 +141,7 @@ public final class QuestProgressService {
             if (quest.requires().stream().noneMatch(fresh::contains) || !available(player, data, id, quest)) continue;
             if (quest.team() && com.erikedits.justquests.team.TeamQuests.activeIds(player).contains(id)) continue;
             String title = quest.title().get(lang);
-            if (auto && !quest.team()) {
+            if (auto && !quest.team() && quest.autoAccept()) {
                 data.accept(id);
                 accepted = true;
                 player.sendSystemMessage(Msg.tr("justquests.unlocked.accepted", title).append(Msg.lit(" "))
@@ -155,6 +155,47 @@ public final class QuestProgressService {
             store.markDirty();
             com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
         }
+    }
+
+    /**
+     * A player's first time in this world (no quest record yet): with auto-accept on, every quest that
+     * is open from the start is taken at once, as "Accept all" would (#23). Called last on login, so
+     * older data (a migration) counts as a record.
+     */
+    public static void firstJoin(ServerPlayer player) {
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) return;
+        PlayerQuestData own = store.peek(player.getUUID());
+        if (own != null && !own.isEmpty()) return;
+        if (!(own != null && own.autoAccept.isPresent() ? own.autoAccept.get() : WorldSettings.autoAccept())) return;
+        acceptOpen(player);
+    }
+
+    /**
+     * Takes every quest the player may take now that auto-accept may take: not a team quest, not a
+     * generated one and not marked "auto_accept": false. One chat line says how many. Used on the first
+     * join and when the player turns auto-accept on; returns how many were taken.
+     */
+    public static int acceptOpen(ServerPlayer player) {
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) return 0;
+        PlayerQuestData data = store.get(player.getUUID());
+        var gen = com.erikedits.justquests.generator.GenV2.get();
+        int count = 0;
+        for (Map.Entry<ResourceLocation, Quest> e : QuestManager.INSTANCE.getQuests().entrySet()) {
+            Quest quest = e.getValue();
+            if (quest.team() || !quest.autoAccept() || (gen != null && gen.isGenerated(e.getKey().toString()))) continue;
+            if (!available(player, data, e.getKey(), quest)) continue;
+            data.accept(e.getKey());
+            count++;
+        }
+        if (count > 0) {
+            store.markDirty();
+            player.sendSystemMessage(Msg.tr("justquests.autoaccept.accepted", count).append(Msg.lit(" "))
+                .append(Msg.button(Msg.tr("justquests.unlocked.auto_off"), "/quest autoaccept off", Msg.tr("justquests.unlocked.auto_off_hover"))));
+            com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        }
+        return count;
     }
 
     /**

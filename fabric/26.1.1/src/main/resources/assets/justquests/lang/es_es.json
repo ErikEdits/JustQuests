@@ -164,6 +164,7 @@
   "justquests.book.hint.hide_hud": "Ocultar el HUD",
   "justquests.book.hint.show_hud": "Mostrar el HUD",
   "justquests.book.hint.hud_corner": "Mover el HUD (ahora: %s)",
+  "justquests.book.hint.popups": "Colocar los avisos",
   "justquests.book.corner.top_left": "arriba a la izquierda",
   "justquests.book.corner.top_right": "arriba a la derecha",
   "justquests.book.corner.bottom_left": "abajo a la izquierda",
@@ -190,6 +191,9 @@
   "justquests.popup.done": "¡Misión completada!",
   "justquests.popup.new": "¡Nueva misión!",
   "justquests.popup.claim": "Pulsa %s para reclamar",
+  "justquests.popup.place_1": "Haz clic donde deben aparecer los avisos.",
+  "justquests.popup.place_2": "Clic derecho: automático (debajo de un minimapa)    Esc: volver",
+  "justquests.popup.sample": "Misión de ejemplo",
   "justquests.book.reset_on_death": "El progreso se pierde si mueres",
   "justquests.book.reset_on_death_team": "El progreso se pierde si muere alguien del equipo",
   "justquests.book.again_in": "De nuevo en %s",
@@ -269,6 +273,7 @@
   "justquests.accept.none": "§7Ahora mismo no se puede aceptar ninguna misión.",
   "justquests.autoaccept.on": "§aLas misiones desbloqueadas se aceptan automáticamente. §7Desactívalo con /quest autoaccept off.",
   "justquests.autoaccept.off": "§eLas misiones desbloqueadas esperan a que las aceptes. §7Actívalo con /quest autoaccept on.",
+  "justquests.autoaccept.accepted": "§a✓ Misiones disponibles aceptadas automáticamente: %s",
   "justquests.goal.have": "Ten %s",
   "justquests.goal.have_count": "Ten %sx %s"
 }

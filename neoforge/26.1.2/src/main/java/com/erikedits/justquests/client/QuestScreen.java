@@ -95,6 +95,8 @@ public class QuestScreen extends Screen {
     private int[] autoHit;
     /** The popups box on the overview page this frame: x, y, w, h (null while not shown). */
     private int[] popupHit;
+    /** The player is picking the popups' place on the screen (0.5.1, #24): the book steps aside. */
+    private boolean placing;
 
     public QuestScreen() {
         super(Component.translatable("justquests.book.title"));
@@ -387,6 +389,8 @@ public class QuestScreen extends Screen {
     private int cornerY() { return by("corner"); }
     private int hudX() { return bx("hud"); }
     private int hudY() { return by("hud"); }
+    private int popX() { return bx("popup"); }
+    private int popY() { return by("popup"); }
     private int detailX() { return left + theme.pageX; }
     private int detailY() { return top + theme.pageY; }
     private int detailW() { return theme.pageW; }
@@ -414,6 +418,10 @@ public class QuestScreen extends Screen {
     public void extractRenderState(GuiGraphicsExtractor g, int mouseX, int mouseY, float pt) {
         applyTheme();
         refresh();
+        if (placing) {
+            renderPlacing(g, mouseX, mouseY);
+            return;
+        }
         // Minecraft draws the blurred background before this; a second blur in one frame would crash
         // the HUD hides while a screen is open: show it in its corner while its position is being picked
         if (in(mouseX, mouseY, cornerX(), cornerY(), 14, 14) || System.currentTimeMillis() < cornerPreviewUntil) QuestHud.preview(g);
@@ -427,6 +435,8 @@ public class QuestScreen extends Screen {
             cornerX(), cornerY(), 14, 14);
         blit(g, ClientSettings.hud ? "button_hud_on" : in(mouseX, mouseY, hudX(), hudY(), 14, 14) ? "button_hud_hover" : "button_hud_normal",
             hudX(), hudY(), 14, 14);
+        blit(g, in(mouseX, mouseY, popX(), popY(), 14, 14) ? "button_popup_hover" : "button_popup_normal",
+            popX(), popY(), 14, 14);
         blit(g, in(mouseX, mouseY, closeX(), closeY(), 11, 11) ? "button_close_hover" : "button_close_normal",
             closeX(), closeY(), 11, 11);
 
@@ -453,6 +463,7 @@ public class QuestScreen extends Screen {
             : in(mouseX, mouseY, statsX(), statsY(), 14, 14) ? (showStats ? "back" : "stats")
             : in(mouseX, mouseY, cornerX(), cornerY(), 14, 14) ? "hud_corner"
             : in(mouseX, mouseY, hudX(), hudY(), 14, 14) ? (ClientSettings.hud ? "hide_hud" : "show_hud")
+            : in(mouseX, mouseY, popX(), popY(), 14, 14) ? "popups"
             : pinShown && in(mouseX, mouseY, pinX(), pinY(), 20, 20) ? (ClientSettings.isPinned(selected) ? "unpin" : "pin")
             : headerAt(mouseX, mouseY) != null && query.isBlank()
                 ? (ClientSettings.folded.contains(headerAt(mouseX, mouseY).fold()) ? "unfold" : "fold")
@@ -461,7 +472,7 @@ public class QuestScreen extends Screen {
             String text = hint.equals("hud_corner")
                 ? I18n.get("justquests.book.hint.hud_corner", I18n.get("justquests.book.corner." + corner()))
                 : I18n.get("justquests.book.hint." + hint);
-            text(g, fit("- " + text, statsX() - hintX() - 4), hintX(), hintY(), MUTED);
+            text(g, fit("- " + text, Math.min(statsX(), popX()) - hintX() - 4), hintX(), hintY(), MUTED);
         }
 
         if (entries.isEmpty()) {
@@ -862,6 +873,14 @@ public class QuestScreen extends Screen {
         double mx = event.x();
         double my = event.y();
         int button = event.button();
+        if (placing) {
+            // left: the popups go here; right: back to the automatic place
+            if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_LEFT) Popups.keep((int) mx, (int) my, this.width, this.height);
+            else if (button == com.mojang.blaze3d.platform.InputConstants.MOUSE_BUTTON_RIGHT) Popups.reset();
+            else return true;
+            placing = false;
+            return click();
+        }
         // the constant, not 0: from 26.3 (SDL input) the left button is 1
         if (button == InputConstants.MOUSE_BUTTON_LEFT) {
             if (in(mx, my, closeX(), closeY(), 11, 11)) { onClose(); return true; }
@@ -876,6 +895,10 @@ public class QuestScreen extends Screen {
             if (in(mx, my, hudX(), hudY(), 14, 14)) {
                 ClientSettings.hud = !ClientSettings.hud;
                 ClientSettings.save();
+                return click();
+            }
+            if (in(mx, my, popX(), popY(), 14, 14)) {
+                placing = true;
                 return click();
             }
             if (in(mx, my, sortX(), toolY(), 16, 16)) {
@@ -989,6 +1012,7 @@ public class QuestScreen extends Screen {
     /** The game's own background behind the book (unless the theme turns it off), then the theme's layer. */
     @Override
     public void extractBackground(GuiGraphicsExtractor g, int mouseX, int mouseY, float pt) {
+        if (placing) return;   // the game shows through while the popups are placed
         if (Theme.get().blur) super.extractBackground(g, mouseX, mouseY, pt);
         backgroundLayer(g);
     }
@@ -1002,6 +1026,30 @@ public class QuestScreen extends Screen {
             case "tile" -> t.tile(g, "quest_book/background", 0, 0, this.width, this.height);
             default -> { }
         }
+    }
+
+    /**
+     * Placing the popups: the game shows through, a sample popup follows the mouse and the tracker is
+     * shown, so the popups can be kept clear of it.
+     */
+    private void renderPlacing(GuiGraphicsExtractor g, int mouseX, int mouseY) {
+        QuestHud.preview(g);
+        Popups.preview(g, mouseX, mouseY, this.width, this.height);
+        String a = I18n.get("justquests.popup.place_1"), b = I18n.get("justquests.popup.place_2");
+        int w = Math.max(width(a), width(b)) + 12, x = (this.width - w) / 2, y = this.height / 2 + 24;
+        g.fill(x, y, x + w, y + 26, 0xB0000000);
+        g.text(this.font, Theme.text(a), this.width / 2 - width(a) / 2, y + 4, 0xFFFFFFFF, true);
+        g.text(this.font, Theme.text(b), this.width / 2 - width(b) / 2, y + 15, 0xFFC6C6C6, true);
+    }
+
+    /** Esc while the popups are placed goes back to the book instead of closing it. */
+    @Override
+    public void onClose() {
+        if (placing) {
+            placing = false;
+            return;
+        }
+        super.onClose();
     }
 
     @Override

@@ -90,6 +90,7 @@ public class JustQuestsFabric implements ModInitializer {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             CommunityHints.onLogin(handler.player);
             com.erikedits.justquests.team.TeamQuests.settle(handler.player);   // team rewards from while they were away
+            com.erikedits.justquests.progress.QuestProgressService.firstJoin(handler.player);   // auto-accept (#23)
         });
 
         // mine_block

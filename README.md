@@ -8,7 +8,7 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.5.0 (beta)** — see the [changelog](CHANGELOG.md).
+Current version: **0.5.1** — see the [changelog](CHANGELOG.md).
 
 **Documentation:** the [wiki](https://github.com/ErikEdits/JustQuests/wiki) explains every command, quest
 field and setting, with examples.
@@ -22,7 +22,9 @@ field and setting, with examples.
 - **Quest tracker** — your pinned (or newest) active quests and their goals in a corner of the
   screen; **H** turns it on or off.
 - **Popups** — a small notice when a quest is completed or a new quest unlocks; players can turn
-  them off in the quest book.
+  them off in the quest book or click where on the screen they should appear. With a minimap mod
+  (JourneyMap, Xaero's Minimap, FTB Chunks, VoxelMap, Map Atlases) the popups and the tracker move
+  below the map when they share its corner.
 - **Resource packs can restyle everything** — the quest book, its buttons, rows and progress bars,
   category and quest icons, the tracker, the popups, colours, places, the font and a sound for
   every moment. Old packs keep working. See [Resource Packs](https://github.com/ErikEdits/JustQuests/wiki/Resource-Packs)
@@ -233,12 +235,16 @@ the files - the first folder is the category. The same works for keys like `"min
 `permission` (a permission node; only players with it see and take the quest, see below),
 `team` (`true`: a team quest, see below), `reset_on_death` (`true`: the progress goes back to zero
 when the player dies - for a team quest when any member dies; the quest book says so),
+`auto_accept` (`false`: never accepted by itself, see below),
 `objectives`, `rewards`. `title` and `description` can
 be a string or a per-language map (`{"en_us": "...", "de_de": "..."}`); players see their own
 language with English as fallback.
 
 **Unlocked quests start by themselves.** When a player finishes a quest, every quest that it
-unlocks (through `requires`) is accepted for them at once, with a line in the chat. A player who
+unlocks (through `requires`) is accepted for them at once, with a line in the chat. On a player's
+first join, and when they turn auto-accept on, every quest that is open already is accepted too, as
+"Accept all" would (one line in the chat says how many). A quest with `"auto_accept": false` is
+never accepted by itself; the chat offers its Accept button instead. A player who
 would rather choose turns it off with `/quest autoaccept off` (or the box on the quest book's start
 page); they then get the new quest in the chat with an Accept button. Server owners set the default
 with `autoAccept` in `settings.json`. Team quests are never accepted by themselves - the chat
@@ -376,7 +382,7 @@ set by the book's buttons; the corner button in the title bar moves the tracker)
 | `announceCompletions` | `true` | Tell everyone when a player finishes a quest |
 | `completionSound` / `completionToast` | `true` | Sound and action-bar message on completion |
 | `claimRewards` | `true` | Finished quests wait until the player claims the rewards; `false` pays them out at once |
-| `autoAccept` | `true` | A quest is accepted by itself once the quests it requires are done (each player can change it with `/quest autoaccept`) |
+| `autoAccept` | `true` | A quest is accepted by itself once the quests it requires are done, and on a player's first join every quest that is open already (each player can change it with `/quest autoaccept`) |
 | `discordWelcome` | `true` | One-time Discord invite on a player's first join |
 | `generatedQuests` / `generatedCount` | `true` / `5` | Generated quests on/off and how many per board (1–20) |
 | `difficulty` | `normal` | `easy`, `normal` or `hard` for generated quests |

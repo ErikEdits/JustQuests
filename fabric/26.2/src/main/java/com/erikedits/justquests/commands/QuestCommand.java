@@ -515,6 +515,7 @@ public class QuestCommand {
             return 0;
         }
         PlayerQuestData data = store.get(player.getUUID());
+        boolean before = data.autoAccept.orElse(com.erikedits.justquests.storage.WorldSettings.autoAccept());
         if (on != null) {
             data.autoAccept = java.util.Optional.of(on);
             store.markDirty();
@@ -522,6 +523,8 @@ public class QuestCommand {
         }
         boolean now = data.autoAccept.orElse(com.erikedits.justquests.storage.WorldSettings.autoAccept());
         ctx.getSource().sendSuccess(() -> Msg.tr(now ? "justquests.autoaccept.on" : "justquests.autoaccept.off"), false);
+        // turned on: what is open already is taken now, not only what unlocks from here on (#23)
+        if (now && !before) com.erikedits.justquests.progress.QuestProgressService.acceptOpen(player);
         return 1;
     }
 

@@ -141,6 +141,8 @@ public final class QuestHud {
         boolean right = ClientSettings.hudCorner.endsWith("right"), bottom = ClientSettings.hudCorner.startsWith("bottom");
         int x = right ? sw - w - t.tOffX : t.tOffX;
         int y = bottom ? sh - h - t.tOffY : t.tOffY;
+        // a minimap in the same corner draws over the tracker: the tracker goes below it (#24)
+        if (!bottom && Minimaps.at(right ? "top_right" : "top_left")) y = Math.max(y, Minimaps.below(right ? "top_right" : "top_left", sh));
         if (bottom && !right) y -= 40;   // stay above the chat input line
 
         if (t.has("tracker/tracker")) t.frame(g, "tracker/tracker", x, y, w, h, t.tBorder);
