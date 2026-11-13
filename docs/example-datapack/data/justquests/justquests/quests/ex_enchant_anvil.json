@@ -1,0 +1,19 @@
+{
+  "title": "Example: enchant_item via anvil",
+  "description": "Enchant two items at an anvil: a book on a tool, or two enchanted items combined.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:enchant_item",
+      "via": "anvil",
+      "count": 2
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:anvil",
+      "count": 1
+    }
+  ]
+}

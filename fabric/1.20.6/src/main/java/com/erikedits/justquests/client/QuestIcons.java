@@ -78,6 +78,12 @@ public final class QuestIcons {
         if (o instanceof ConsumeItemObjective c) return first(c.item());
         if (o instanceof UseItemObjective u) return first(u.item());
         if (o instanceof EnchantItemObjective e) return e.item().map(QuestIcons::first).orElse(Items.ENCHANTED_BOOK);
+        if (o instanceof com.erikedits.justquests.data.objective.AnvilItemObjective a) {
+            return a.item().map(QuestIcons::first).orElse(a.with().map(QuestIcons::first).orElse(Items.ANVIL));
+        }
+        if (o instanceof com.erikedits.justquests.data.objective.GrindstoneItemObjective g) {
+            return g.item().map(QuestIcons::first).orElse(Items.GRINDSTONE);
+        }
         if (o instanceof MineBlockObjective m) return block(m.block());
         if (o instanceof PlaceBlockObjective p) return block(p.block());
         if (o instanceof KillMobObjective k) return egg(k.entity(), Items.IRON_SWORD);
@@ -142,7 +148,8 @@ public final class QuestIcons {
         if (o instanceof ConsumeItemObjective c) return verb("consume", c.item().name());
         if (o instanceof UseItemObjective u) return verb("use", u.item().name());
         if (o instanceof EnchantItemObjective e) {
-            return e.item().isPresent() ? verb("enchant", e.item().get().name()) : Component.translatable("justquests.goal.enchant_any");
+            String key = e.via().equals("anvil") ? "enchant_anvil" : "enchant";
+            return e.item().isPresent() ? verb(key, e.item().get().name()) : Component.translatable("justquests.goal." + key + "_any");
         }
         if (o instanceof MineBlockObjective m) return verb("mine", m.block().name());
         if (o instanceof PlaceBlockObjective p) return verb("place", p.block().name());

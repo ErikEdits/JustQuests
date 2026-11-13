@@ -143,6 +143,19 @@ public final class Matchers {
         }
     }
 
+    /** Enchantment id -> level of an item, including an enchanted book's stored enchantments. */
+    public static Map<String, Integer> enchantments(ItemStack stack) {
+        Map<String, Integer> on = new HashMap<>();
+        ItemMeta meta = stack == null ? null : stack.getItemMeta();
+        if (meta != null) {
+            meta.getEnchants().forEach((e, lvl) -> on.merge(Compat.key(e).toString(), lvl, Math::max));
+            if (meta instanceof EnchantmentStorageMeta book) {
+                book.getStoredEnchants().forEach((e, lvl) -> on.merge(Compat.key(e).toString(), lvl, Math::max));
+            }
+        }
+        return on;
+    }
+
     public record Filtered(ItemMatcher base, Map<String, Integer> enchantments, String potion, String customName)
             implements ItemMatcher {
         static Filtered parse(JsonObject o) {
@@ -164,13 +177,7 @@ public final class Matchers {
             if (!base.matches(stack)) return false;
             ItemMeta meta = stack.getItemMeta();
             if (!enchantments.isEmpty()) {
-                Map<String, Integer> on = new HashMap<>();
-                if (meta != null) {
-                    meta.getEnchants().forEach((e, lvl) -> on.merge(Compat.key(e).toString(), lvl, Math::max));
-                    if (meta instanceof EnchantmentStorageMeta book) {
-                        book.getStoredEnchants().forEach((e, lvl) -> on.merge(Compat.key(e).toString(), lvl, Math::max));
-                    }
-                }
+                Map<String, Integer> on = Matchers.enchantments(stack);
                 for (Map.Entry<String, Integer> e : enchantments.entrySet()) {
                     if (on.getOrDefault(e.getKey(), 0) < e.getValue()) return false;
                 }

@@ -85,6 +85,24 @@ public class PlayerQuestEvents {
         }
     }
 
+    /** anvil_item and enchant_item "via": "anvil" (0.5.2, #25): the inputs still lie in the anvil */
+    @SubscribeEvent
+    public void onAnvil(net.minecraftforge.event.entity.player.AnvilRepairEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer player) {
+            com.erikedits.justquests.progress.Workstations.anvil(player, event.getItemInput(), event.getIngredientInput(), event.getItemResult());
+        }
+    }
+
+    /** grindstone_item (0.5.2, #25): the event doesn't say who took the result; the open menu does */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void onGrindstone(net.minecraftforge.event.GrindstoneEvent.OnTakeItem event) {
+        ServerPlayer player = com.erikedits.justquests.progress.Workstations.grindstoneUser(
+            net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer(), event.getTopItem(), event.getBottomItem());
+        if (player != null) {
+            com.erikedits.justquests.progress.Workstations.grindstone(player, event.getTopItem(), event.getBottomItem(), ItemStack.EMPTY);
+        }
+    }
+
     /** tame_animal */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onTame(AnimalTameEvent event) {

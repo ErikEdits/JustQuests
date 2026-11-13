@@ -221,6 +221,9 @@ public final class SelfTest {
             {"enchant_item", "{\"type\":\"justquests:enchant_item\",\"count\":1}"},
             {"use_item", "{\"type\":\"justquests:use_item\",\"item\":\"minecraft:snowball\",\"count\":1}"},
             {"have_item", "{\"type\":\"justquests:have_item\",\"item\":\"minecraft:iron_ingot\",\"count\":1}"},
+            {"anvil_item", "{\"type\":\"justquests:anvil_item\",\"item\":\"minecraft:diamond_axe\",\"with\":\"minecraft:enchanted_book\",\"count\":1}"},
+            {"grindstone_item", "{\"type\":\"justquests:grindstone_item\",\"disenchant\":true,\"count\":1}"},
+            {"enchant_item (via anvil)", "{\"type\":\"justquests:enchant_item\",\"via\":\"anvil\",\"count\":1}"},
             {"collect_item (filter)", "{\"type\":\"justquests:collect_item\",\"item\":{\"id\":\"minecraft:diamond_sword\",\"enchantments\":{\"minecraft:sharpness\":2},\"name\":\"Excalibur\"},\"count\":1}"},
         };
         String objErr = parsesAll(objSamples, true);

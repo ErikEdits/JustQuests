@@ -22,7 +22,8 @@ Objectives (one each):
 `ex_collect_item`, `ex_mine_block`, `ex_craft_item`, `ex_smelt_item`,
 `ex_consume_item`, `ex_place_block`, `ex_kill_mob`, `ex_tame_animal`,
 `ex_breed_animal`, `ex_gain_advancement`, `ex_visit_dimension`,
-`ex_reach_level`, `ex_reach_location`, `ex_enchant_item`, `ex_use_item`.
+`ex_reach_level`, `ex_reach_location`, `ex_enchant_item`, `ex_use_item`,
+`ex_anvil_item`, `ex_grindstone_item`.
 
 Features:
 - `ex_item_tag` — item field as a `#tag`.
@@ -30,6 +31,9 @@ Features:
 - `ex_mode_any` — finish on **any** objective (`"mode": "any"`).
 - `ex_have_item` — `have_item` + `label`: hold 16 iron ingots, however you got them; the goal reads
   "Stock up on iron".
+- `ex_anvil_item` — `anvil_item` with `item` and `with`: Sharpness from an enchanted book on a diamond sword.
+- `ex_enchant_anvil` — `enchant_item` with `"via": "anvil"`: enchant two items at an anvil.
+- `ex_grindstone_item` — `grindstone_item` with `"disenchant": true`: take enchantments off at a grindstone.
 - `ex_group` — `"group": craft a chest **or** a barrel, and 8 oak logs as well (alternatives mixed
   with a normal objective).
 - `ex_chain_1` + `ex_chain_2` — `requires` (a locked chain).

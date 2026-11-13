@@ -49,7 +49,11 @@ public sealed interface Objective {
             case "justquests:smelt_item" -> new Smelt(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
             case "justquests:consume_item" -> new Consume(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
             case "justquests:use_item" -> new Use(ItemMatcher.parse(o.get("item")), count(o), distinct(o));
-            case "justquests:enchant_item" -> new Enchant(o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o));
+            case "justquests:enchant_item" -> new Enchant(o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o), via(o));
+            case "justquests:anvil_item" -> new Anvil(o.has("item") ? ItemMatcher.parse(o.get("item")) : null,
+                o.has("with") ? ItemMatcher.parse(o.get("with")) : null, count(o), distinct(o));
+            case "justquests:grindstone_item" -> new Grindstone(o.has("item") ? ItemMatcher.parse(o.get("item")) : null,
+                o.has("disenchant") && o.get("disenchant").getAsBoolean(), count(o), distinct(o));
             case "justquests:mine_block" -> new Mine(BlockMatcher.parse(Quest.string(o, "block")), count(o), distinct(o));
             case "justquests:place_block" -> new Place(BlockMatcher.parse(Quest.string(o, "block")), count(o), distinct(o));
             case "justquests:kill_mob" -> new Kill(EntityMatcher.parse(Quest.string(o, "entity")), count(o), distinct(o));
@@ -73,6 +77,15 @@ public sealed interface Objective {
 
     private static boolean distinct(JsonObject o) {
         return o.has("distinct") && o.get("distinct").getAsBoolean();
+    }
+
+    /** enchant_item "via": table (the default), anvil or any. */
+    private static String via(JsonObject o) {
+        String via = o.has("via") ? o.get("via").getAsString() : "table";
+        if (!via.equals("table") && !via.equals("anvil") && !via.equals("any")) {
+            throw new IllegalArgumentException("via must be table, anvil or any, not " + via);
+        }
+        return via;
     }
 
     private static BaseComponent goal(String lang, String key, int count, BaseComponent name) {
@@ -141,16 +154,87 @@ public sealed interface Objective {
         public Material icon() { return item.icon(); }
     }
 
-    /** Enchanting at an enchanting table, optionally only a given item. */
-    record Enchant(ItemMatcher item, int count, boolean distinct) implements Objective {
+    /**
+     * Enchanting, optionally only a given item. "via" (0.5.2, #25): "table" (the default), "anvil" (a
+     * result taken out of an anvil with a new or higher enchantment than the item put in) or "any".
+     */
+    record Enchant(ItemMatcher item, int count, boolean distinct, String via) implements Objective {
         public String typeId() { return "justquests:enchant_item"; }
         public int requiredCount() { return count; }
-        public String label() { return "Enchant " + count + "x " + (item == null ? "any item" : item.label()); }
-        public BaseComponent display(String lang) {
-            if (item != null) return goal(lang, "justquests.goal.enchant_count", count, item.name(lang));
-            return Text.tr(lang, count == 1 ? "justquests.goal.enchant_one" : "justquests.goal.enchant_many", count);
+        public String label() {
+            return "Enchant " + count + "x " + (item == null ? "any item" : item.label()) + (via.equals("table") ? "" : " (via " + via + ")");
         }
-        public Material icon() { return item != null ? item.icon() : Material.ENCHANTING_TABLE; }
+        public BaseComponent display(String lang) {
+            String key = via.equals("anvil") ? "justquests.goal.enchant_anvil" : "justquests.goal.enchant";
+            if (item != null) return goal(lang, key + "_count", count, item.name(lang));
+            return Text.tr(lang, count == 1 ? key + "_one" : key + "_many", count);
+        }
+        public Material icon() { return item != null ? item.icon() : via.equals("anvil") ? Material.ANVIL : Material.ENCHANTING_TABLE; }
+        public boolean table() { return !via.equals("anvil"); }
+        public boolean anvil() { return !via.equals("table"); }
+
+        /** Whether the anvil gave the item a new enchantment or a higher level of one it had. */
+        public static boolean raised(org.bukkit.inventory.ItemStack before, org.bukkit.inventory.ItemStack after) {
+            java.util.Map<String, Integer> had = Matchers.enchantments(before);
+            for (java.util.Map.Entry<String, Integer> e : Matchers.enchantments(after).entrySet()) {
+                if (had.getOrDefault(e.getKey(), 0) < e.getValue()) return true;
+            }
+            return false;
+        }
+    }
+
+    /**
+     * Take X results out of an anvil (0.5.2, #25): enchanting with a book, combining, repairing or
+     * renaming. "item" checks what comes out, "with" what lay in the right slot. Both are optional.
+     */
+    record Anvil(ItemMatcher item, ItemMatcher with, int count, boolean distinct) implements Objective {
+        public String typeId() { return "justquests:anvil_item"; }
+        public int requiredCount() { return count; }
+        public String label() {
+            return "Anvil " + count + "x " + (item == null ? "any item" : item.label()) + (with == null ? "" : " with " + with.label());
+        }
+        public BaseComponent display(String lang) {
+            if (item != null && with != null) return Text.tr(lang, "justquests.goal.anvil_combine_count", count, item.name(lang), with.name(lang));
+            if (item != null) return goal(lang, "justquests.goal.anvil_make_count", count, item.name(lang));
+            if (with != null) return goal(lang, "justquests.goal.anvil_with_count", count, with.name(lang));
+            return Text.tr(lang, count == 1 ? "justquests.goal.anvil_one" : "justquests.goal.anvil_many", count);
+        }
+        public Material icon() { return item != null ? item.icon() : with != null ? with.icon() : Material.ANVIL; }
+
+        public boolean accepts(org.bukkit.inventory.ItemStack result, org.bukkit.inventory.ItemStack right) {
+            return (item == null || item.matches(result)) && (with == null || (right != null && with.matches(right)));
+        }
+    }
+
+    /**
+     * Take X results out of a grindstone (0.5.2, #25). "item" checks what comes out, "disenchant":
+     * true counts only when enchantments came off.
+     */
+    record Grindstone(ItemMatcher item, boolean disenchant, int count, boolean distinct) implements Objective {
+        public String typeId() { return "justquests:grindstone_item"; }
+        public int requiredCount() { return count; }
+        public String label() { return (disenchant ? "Disenchant " : "Grindstone ") + count + "x " + (item == null ? "any item" : item.label()); }
+        public BaseComponent display(String lang) {
+            String key = disenchant ? "justquests.goal.disenchant" : "justquests.goal.grindstone";
+            if (item != null) return goal(lang, key + "_count", count, item.name(lang));
+            return Text.tr(lang, count == 1 ? key + "_one" : key + "_many", count);
+        }
+        public Material icon() { return item != null ? item.icon() : Material.GRINDSTONE; }
+
+        public boolean accepts(org.bukkit.inventory.ItemStack result, org.bukkit.inventory.ItemStack top, org.bukkit.inventory.ItemStack bottom) {
+            return (item == null || item.matches(result)) && (!disenchant || removed(result, top, bottom));
+        }
+
+        /** Whether an enchantment of the items put in is gone (or lower) on the result. */
+        public static boolean removed(org.bukkit.inventory.ItemStack result, org.bukkit.inventory.ItemStack top, org.bukkit.inventory.ItemStack bottom) {
+            java.util.Map<String, Integer> after = Matchers.enchantments(result);
+            for (org.bukkit.inventory.ItemStack in : new org.bukkit.inventory.ItemStack[] {top, bottom}) {
+                for (java.util.Map.Entry<String, Integer> e : Matchers.enchantments(in).entrySet()) {
+                    if (after.getOrDefault(e.getKey(), 0) < e.getValue()) return true;
+                }
+            }
+            return false;
+        }
     }
 
     record Mine(BlockMatcher block, int count, boolean distinct) implements Objective {

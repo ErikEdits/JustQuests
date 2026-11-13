@@ -4,8 +4,10 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AnimalBreedMixin",
+    "AnvilMenuMixin",
     "BlockItemPlaceMixin",
     "FurnaceResultSlotMixin",
+    "GrindstoneClickMixin",
     "LivingEntityConsumeMixin",
     "ItemEntityPickupMixin",
     "PlayerAdvancementsMixin",

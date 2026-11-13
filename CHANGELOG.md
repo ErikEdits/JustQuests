@@ -3,6 +3,23 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.5.2] - 2026-11-13
+
+### Added
+- **Anvil and grindstone goals** (requested on GitHub, #25). Mod and plugin, on every version:
+  - `justquests:anvil_item` counts results taken out of an anvil: enchanting with a book, combining
+    two items, repairing or renaming. `item` checks what comes out (with an item filter also its
+    enchantments), `with` what lay in the right slot, so "combine a diamond axe with an enchanted
+    book" is `"item": "minecraft:diamond_axe", "with": "minecraft:enchanted_book"`. Both are optional.
+  - `justquests:grindstone_item` counts results taken out of a grindstone. `item` checks what comes
+    out; `"disenchant": true` counts only when enchantments came off.
+  - `enchant_item` can set `"via"`: `"table"` (the default, as before), `"anvil"` (a result taken
+    out of an anvil with a new or higher enchantment than the item put in) or `"any"`.
+- `craft_item` now also counts the **smithing table** (a netherite upgrade, a trim), the **loom** and
+  the **cartography table**, as it already counted the stonecutter.
+- The quest book shows the new goals in words, such as "Combine Diamond Axe with Enchanted Book" or
+  "Disenchant Diamond Sword", in all five languages.
+
 ## [0.5.1] - 2026-11-11
 
 ### Fixed

@@ -1,0 +1,19 @@
+{
+  "title": "Example: grindstone_item",
+  "description": "Take the enchantments off any item at a grindstone.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:grindstone_item",
+      "disenchant": true,
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:lapis_lazuli",
+      "count": 8
+    }
+  ]
+}

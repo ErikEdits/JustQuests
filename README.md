@@ -8,7 +8,7 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.5.1** — see the [changelog](CHANGELOG.md).
+Current version: **0.5.2** — see the [changelog](CHANGELOG.md).
 
 **Documentation:** the [wiki](https://github.com/ErikEdits/JustQuests/wiki) explains every command, quest
 field and setting, with examples.
@@ -41,7 +41,7 @@ field and setting, with examples.
 - **First come, first served** — on servers a generated quest someone accepted is taken; the book
   shows *Taken by Steve* or *Reserved for you*.
 - **Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads
-  by itself while you edit it. 16 objective types, 8 reward types, item tags and item filters.
+  by itself while you edit it. 18 objective types, 8 reward types, item tags and item filters.
 - **Speaks the player's language** — the mod, the built-in quests and the generated quests come
   in English, German, French, Spanish and Japanese; each player reads their own game language.
   Your own quests can use a per-language map too, and item, block and mob names are translated
@@ -92,7 +92,7 @@ client - nothing to install on their side. There is one jar per range of version
    the quests. `/quest book` gives a new one.
 
 What is the same as the mod: the 25 built-in quests, the quest format (datapack quests in the
-world's `datapacks/` folder work unchanged), all 16 objective and 8 reward types, claiming and
+world's `datapacks/` folder work unchanged), all 18 objective and 8 reward types, claiming and
 reward choices, prerequisites, repeatable quests, the commands, the permission nodes, and the five
 languages - each player reads their own game language, and item, block and mob names are
 translated by their game.
@@ -265,10 +265,12 @@ teams live with the world in `justquests/teams.json` and `team-progress.json`.
 |---|---|---|
 | `justquests:collect_item` | `item`, `count` | picks the item up (mining, harvest, mob drops) |
 | `justquests:have_item` | `item`, `count` | has that many in the inventory at once, wherever they came from |
-| `justquests:craft_item` | `item`, `count` | crafts it (crafting table, inventory or stonecutter) |
+| `justquests:craft_item` | `item`, `count` | crafts it (crafting table, inventory, stonecutter, smithing table, loom or cartography table) |
 | `justquests:smelt_item` | `item`, `count` | takes it out of a furnace |
 | `justquests:consume_item` | `item`, `count` | eats or drinks it |
-| `justquests:enchant_item` | `item` (optional), `count` | enchants an item at an enchanting table |
+| `justquests:enchant_item` | `item` (optional), `count`, `via` (optional) | enchants an item at an enchanting table (`via`: `table`, `anvil` or `any`) |
+| `justquests:anvil_item` | `item` (optional), `with` (optional), `count` | takes a result out of an anvil (enchant with a book, combine, repair, rename) |
+| `justquests:grindstone_item` | `item` (optional), `disenchant` (optional), `count` | takes a result out of a grindstone (`disenchant: true`: only when enchantments came off) |
 | `justquests:use_item` | `item`, `count` | uses it and it does something (throw, place, apply, mine…) |
 | `justquests:mine_block` | `block`, `count` | breaks the block |
 | `justquests:place_block` | `block`, `count` | places the block |
@@ -294,6 +296,17 @@ machines of other mods (Create, Mekanism and so on) work without a player. `have
 inventory instead, so it does not matter whether the items came from a machine, a chest or a trade. The
 most the player has held at once counts: moving items in and out does not add up, and the progress
 does not go back when they are used. Items already in the inventory count too.
+
+**Anvil and grindstone.** `anvil_item` checks the result with `item` and the item in the right slot
+with `with`. This one needs a book of Sharpness III on a diamond axe:
+
+```json
+{ "type": "justquests:anvil_item", "count": 1, "with": "minecraft:enchanted_book",
+  "item": { "id": "minecraft:diamond_axe", "enchantments": { "minecraft:sharpness": 3 } } }
+```
+
+`enchant_item` with `"via": "anvil"` counts any anvil result with a new or higher enchantment, and
+`grindstone_item` with `"disenchant": true` counts taking enchantments off.
 
 **What Create's machines really make: the Create addon.** The separate
 [JustQuests Create Addon](addons/create/README.md) adds goals such as

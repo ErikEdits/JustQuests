@@ -18,6 +18,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityTameEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -85,9 +86,9 @@ public final class QuestListener implements Listener {
 
     /**
      * craft_item and use_item come from the vanilla statistics, as in the mod: "Times Used" for
-     * use_item, "Times Crafted" for craft_item (it covers shift-clicks and the stonecutter). Furnace
-     * outputs also raise "Times Crafted", so only crafting grids and the stonecutter count here;
-     * smelting has its own objective.
+     * use_item, "Times Crafted" for craft_item (it covers shift-clicks, the stonecutter and the
+     * smithing table). Furnace outputs also raise "Times Crafted", so only crafting grids, the
+     * stonecutter and the smithing table count here; smelting has its own objective.
      */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onStatistic(PlayerStatisticIncrementEvent e) {
@@ -99,7 +100,9 @@ public final class QuestListener implements Listener {
             progress().advance(player, kind(item), o -> o instanceof Objective.Use u && u.item().matchesType(item) ? gained : 0);
         } else if (e.getStatistic() == Statistic.CRAFT_ITEM) {
             InventoryType open = player.getOpenInventory().getTopInventory().getType();
-            if (open != InventoryType.CRAFTING && open != InventoryType.WORKBENCH && open != InventoryType.STONECUTTER) return;
+            // SMITHING, and SMITHING_NEW on 1.19.4 (by name: the oldest API has no SMITHING_NEW)
+            if (open != InventoryType.CRAFTING && open != InventoryType.WORKBENCH && open != InventoryType.STONECUTTER
+                && !open.name().startsWith("SMITHING")) return;
             progress().advance(player, kind(item), o -> o instanceof Objective.Craft c && c.item().matchesType(item) ? gained : 0);
         }
     }
@@ -132,8 +135,72 @@ public final class QuestListener implements Listener {
             });
             result.setItemMeta(meta);
         }
-        progress().advance(e.getEnchanter(), kind(e.getItem().getType()), o -> o instanceof Objective.Enchant en
+        progress().advance(e.getEnchanter(), kind(e.getItem().getType()), o -> o instanceof Objective.Enchant en && en.table()
             && (en.item() == null || en.item().matches(result) || en.item().matches(e.getItem())) ? 1 : 0);
+    }
+
+    /**
+     * anvil_item, grindstone_item, enchant_item "via": "anvil", and craft_item at a loom or cartography
+     * table (0.5.2, #25). There is no event for taking these results, so a click on the result slot is
+     * remembered and checked a tick later: a take used up the inputs, a click that could not take the
+     * result (not enough levels, a full cursor) left them.
+     */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onWorkstation(InventoryClickEvent e) {
+        if (!(e.getWhoClicked() instanceof Player player)) return;
+        org.bukkit.inventory.Inventory top = e.getView().getTopInventory();
+        InventoryType type = top.getType();
+        int out = switch (type) {
+            case ANVIL, GRINDSTONE, CARTOGRAPHY -> 2;
+            case LOOM -> 3;
+            default -> -1;
+        };
+        if (out < 0 || e.getRawSlot() != out) return;
+        ItemStack result = copy(e.getCurrentItem());
+        if (result == null) return;
+        ItemStack first = copy(top.getItem(0));
+        ItemStack second = copy(top.getItem(1));
+        plugin.getServer().getScheduler().runTask(plugin, () -> {
+            ItemStack firstNow = top.getItem(0);
+            ItemStack secondNow = top.getItem(1);
+            switch (type) {
+                case ANVIL -> {
+                    // the anvil always empties its left slot when the result is taken
+                    if (first == null || copy(firstNow) != null) return;
+                    progress().advance(player, kind(result.getType()), o -> {
+                        if (o instanceof Objective.Anvil a) return a.accepts(result, second) ? result.getAmount() : 0;
+                        if (o instanceof Objective.Enchant en) {
+                            return en.anvil() && (en.item() == null || en.item().matches(result))
+                                && Objective.Enchant.raised(first, result) ? 1 : 0;
+                        }
+                        return 0;
+                    });
+                }
+                case GRINDSTONE -> {
+                    if (copy(firstNow) != null || copy(secondNow) != null) return;
+                    progress().advance(player, kind(result.getType()), o ->
+                        o instanceof Objective.Grindstone g && g.accepts(result, first, second) ? result.getAmount() : 0);
+                }
+                default -> {
+                    // loom and cartography table: one of each input is used up per result
+                    if (!used(first, firstNow) || !used(second, secondNow)) return;
+                    progress().advance(player, kind(result.getType()), o ->
+                        o instanceof Objective.Craft c && c.item().matches(result) ? result.getAmount() : 0);
+                }
+            }
+        });
+    }
+
+    /** A copy of a real stack, or null for none or air. */
+    private static ItemStack copy(ItemStack stack) {
+        return stack == null || stack.getType().isAir() || stack.getAmount() <= 0 ? null : stack.clone();
+    }
+
+    /** Whether some of an input went away (and was not swapped for another item). */
+    private static boolean used(ItemStack before, ItemStack now) {
+        if (before == null) return false;
+        ItemStack after = copy(now);
+        return after == null || (after.isSimilar(before) && after.getAmount() < before.getAmount());
     }
 
     /** tame_animal */

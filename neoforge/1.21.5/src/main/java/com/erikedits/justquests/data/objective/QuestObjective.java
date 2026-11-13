@@ -48,6 +48,8 @@ public interface QuestObjective {
             case EnchantItemObjective.TYPE_ID -> EnchantItemObjective.MAP_CODEC;
             case UseItemObjective.TYPE_ID -> UseItemObjective.MAP_CODEC;
             case HaveItemObjective.TYPE_ID -> HaveItemObjective.MAP_CODEC;
+            case AnvilItemObjective.TYPE_ID -> AnvilItemObjective.MAP_CODEC;
+            case GrindstoneItemObjective.TYPE_ID -> GrindstoneItemObjective.MAP_CODEC;
             default -> {
                 MapCodec<? extends QuestObjective> added = ADDED.get(type);
                 if (added == null) throw new IllegalStateException("Unknown objective type: " + type + " (does it need an addon?)");

@@ -1,0 +1,25 @@
+{
+  "title": "Example: anvil_item",
+  "description": "Put Sharpness on a diamond sword with an enchanted book at an anvil.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:anvil_item",
+      "count": 1,
+      "with": "minecraft:enchanted_book",
+      "item": {
+        "id": "minecraft:diamond_sword",
+        "enchantments": {
+          "minecraft:sharpness": 1
+        }
+      }
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:experience_bottle",
+      "count": 8
+    }
+  ]
+}

@@ -31,14 +31,15 @@ import java.util.UUID;
  * last poll counts; a statistic is baselined the first time an active quest needs it, and
  * forgotten as soon as none does.
  *
- * <p>craft_item is counted by the crafting events, which don't fire for the stonecutter. While a
- * stonecutter is open its results are read from the "Times Crafted" statistic instead; that
- * menu is the only thing that can raise it then.
+ * <p>craft_item is counted by the crafting events, which don't fire for the stonecutter and the
+ * smithing table. While one of them is open its results are read from the "Times Crafted"
+ * statistic instead; that menu is the only thing that can raise it then. The anvil, grindstone,
+ * loom and cartography table are watched by {@link Workstations}.
  */
 public final class StatObjectives {
     private static final Object ENCHANT = new Object();
 
-    /** Key for an item's "Times Crafted" statistic (watched only while a stonecutter is open). */
+    /** Key for an item's "Times Crafted" statistic (watched only while a stonecutter or smithing table is open). */
     private record Crafted(Item item) {}
     private static final Map<UUID, Map<Object, Integer>> SEEN = new HashMap<>();
 
@@ -46,8 +47,10 @@ public final class StatObjectives {
 
     /** Every server tick, per player. */
     public static void tick(ServerPlayer player) {
+        Workstations.tick(player);
         boolean enchanting = player.containerMenu instanceof EnchantmentMenu;
-        boolean cutting = player.containerMenu instanceof StonecutterMenu;
+        boolean cutting = player.containerMenu instanceof StonecutterMenu
+            || player.containerMenu instanceof net.minecraft.world.inventory.SmithingMenu;
         boolean full = player.tickCount % 20 == 0;
         if (!enchanting && !cutting && !full) return;
         // have_item looks into the inventory, wherever the items came from (machines, chests, trades)
@@ -64,7 +67,7 @@ public final class StatObjectives {
                 Quest quest = QuestManager.INSTANCE.get(id);
                 if (quest == null) continue;
                 for (QuestObjective obj : quest.objectives()) {
-                    if (obj instanceof EnchantItemObjective) watched.add(ENCHANT);
+                    if (obj instanceof EnchantItemObjective e && e.table()) watched.add(ENCHANT);
                     else if (obj instanceof UseItemObjective u) watched.addAll(u.item().items());
                     else if (cutting && obj instanceof CraftItemObjective c) {
                         for (Item item : c.item().items()) watched.add(new Crafted(item));
@@ -104,7 +107,7 @@ public final class StatObjectives {
             String kind = item != null ? QuestProgressService.kind(new ItemStack(item))
                 : enchanted.isEmpty() ? null : QuestProgressService.kind(enchanted);
             QuestProgressService.advance(player, kind, obj -> {
-                if (key == ENCHANT && obj instanceof EnchantItemObjective e) return e.accepts(enchanted) ? n : 0;
+                if (key == ENCHANT && obj instanceof EnchantItemObjective e) return e.table() && e.accepts(enchanted) ? n : 0;
                 if (key instanceof Item it && obj instanceof UseItemObjective u) return u.item().items().contains(it) ? n : 0;
                 if (key instanceof Crafted cf && obj instanceof CraftItemObjective c) return c.matches(new ItemStack(cf.item())) ? n : 0;
                 return 0;
@@ -115,5 +118,6 @@ public final class StatObjectives {
     /** Server stop. */
     public static void clear() {
         SEEN.clear();
+        Workstations.clear();
     }
 }
