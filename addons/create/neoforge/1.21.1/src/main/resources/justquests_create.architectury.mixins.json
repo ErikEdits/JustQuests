@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "com.erikedits.justquests.create.mixin.architectury",
+  "plugin": "com.erikedits.justquests.create.ArchitecturyMixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "NetworkAggregatorMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

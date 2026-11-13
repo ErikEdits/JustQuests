@@ -12,6 +12,11 @@ Quest objectives for Create's machines in JustQuests. What it does for players a
 - `Owners` keeps the player who placed a machine in a data attachment on its block entity.
 - The mixins are not required and do not stop the game if a target changes in another Create version.
   The objective then simply does not count.
+- `mixin/architectury/NetworkAggregatorMixin` has nothing to do with Create. It is a guard for big
+  modpacks (#15): Architectury keeps the packets mods register in plain `HashMap`s, NeoForge constructs
+  mods in parallel, and an entry lost that way makes joining fail with "Invalid player data" ("codec
+  is null"). The mixin wraps these maps in synchronized ones while the class loads. Its own mixin
+  config has the plugin `ArchitecturyMixins`, which applies it only when Architectury is installed.
 
 ## Building
 

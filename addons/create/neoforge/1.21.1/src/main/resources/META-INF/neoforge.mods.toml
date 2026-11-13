@@ -15,6 +15,10 @@ description='''Quest objectives for Create's machines in JustQuests: press, mix,
 [[mixins]]
 config="justquests_create.mixins.json"
 
+# A guard for Architectury's packet maps, only applied when Architectury is installed (#15)
+[[mixins]]
+config="justquests_create.architectury.mixins.json"
+
 [[dependencies.justquests_create]]
 modId="neoforge"
 type="required"

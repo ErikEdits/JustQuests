@@ -3,6 +3,17 @@
 All notable changes to the JustQuests Create Addon are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.1] - 2026-11-13
+
+### Fixed
+- **Joining a world could fail with "Invalid player data"** in big modpacks with Architectury,
+  seen together with Stellaris (#15). The cause is not in the addon: Architectury keeps the packets
+  that mods register in maps that are not safe while NeoForge loads mods in parallel, so an entry can
+  get lost ("codec is null" in the log). Whether it happens depends on timing, so adding or removing
+  any mod can trigger or hide it. The addon now makes these maps safe before any mod registers. This
+  only happens when Architectury is installed; the log then says "Made Architectury's packet maps
+  safe for parallel mod loading".
+
 ## [0.1.0] - 2026-11-01
 
 First version, for NeoForge 1.21.1 with Create 6.0.10 and JustQuests 0.4.6 or newer.
