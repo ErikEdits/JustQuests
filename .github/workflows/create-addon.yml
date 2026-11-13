@@ -1,0 +1,109 @@
+name: Create Addon
+
+# Builds the JustQuests Create Addon (addons/create) on GitHub, so its jars never come from a local
+# PC. A tag create-addon-X.Y.Z publishes a GitHub Release with the jar and the matching section of
+# addons/create/CHANGELOG.md (not marked latest: that stays the mod). A manual run from the Actions
+# tab only builds and keeps the jar as a workflow artifact.
+on:
+  push:
+    tags:
+      - 'create-addon-*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  addon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine version
+        id: ver
+        run: |
+          ADDON_VERSION="$(grep -E '^addon_version=' addons/create/gradle.properties | cut -d= -f2 | tr -d '[:space:]')"
+          echo "version=$ADDON_VERSION" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "push" ] && [ "${GITHUB_REF_NAME#create-addon-}" != "$ADDON_VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match addon_version=$ADDON_VERSION in addons/create/gradle.properties"
+            exit 1
+          fi
+          echo "Building the Create addon $ADDON_VERSION"
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: JustQuests jar to compile against (the oldest with the addon hook, from its release)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          JQ="$(grep -E '^justquests_version=' addons/create/gradle.properties | cut -d= -f2 | tr -d '[:space:]')"
+          mkdir -p neoforge/1.21.1/build/libs
+          gh release download "v$JQ" --repo "$GITHUB_REPOSITORY" --pattern "JustQuests-neoforge-1.21.1-$JQ.jar" --dir neoforge/1.21.1/build/libs
+          ls -l neoforge/1.21.1/build/libs
+
+      - name: Create and the jars inside it (from Modrinth, checked by sha512)
+        # Create 6.0.10 for NeoForge 1.21.1. addons/create/libs is not in git; locally it holds the same files.
+        run: |
+          mkdir -p addons/create/libs
+          curl -fsSL -o addons/create/libs/create-1.21.1-6.0.10.jar \
+            https://cdn.modrinth.com/data/LNytGWDc/versions/UjX6dr61/create-1.21.1-6.0.10.jar
+          echo "11cc8fc049d2f67f6548c7abfada6b82a3adb5c7ca410a742de04bbca76e03862c518721b88d806f6e6d768a4d68531fdb903a85859b25d1484d550cc7bafd4b  addons/create/libs/create-1.21.1-6.0.10.jar" | sha512sum -c -
+          unzip -j -o addons/create/libs/create-1.21.1-6.0.10.jar 'META-INF/jarjar/*.jar' -d addons/create/libs
+          ls -l addons/create/libs
+
+      - name: Build the addon
+        run: ./gradlew -p addons/create build --stacktrace
+
+      - name: Collect the addon jars (no sources)
+        run: |
+          mkdir -p addon-jars
+          find addons/create -path '*/build/libs/*.jar' ! -name '*-sources.jar' -name "*-${{ steps.ver.outputs.version }}.jar" -exec cp -n {} addon-jars/ \;
+          echo "--- addon jars ---"; ls -1 addon-jars
+          [ -n "$(ls addon-jars)" ]
+
+      - name: Keep the jars as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: create-addon-${{ steps.ver.outputs.version }}
+          path: addon-jars/*.jar
+
+      - name: Extract changelog notes
+        if: github.event_name == 'push'
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          JQ="$(grep -E '^justquests_version=' addons/create/gradle.properties | cut -d= -f2 | tr -d '[:space:]')"
+          CREATE="$(grep -E '^create_version=' addons/create/gradle.properties | cut -d= -f2 | tr -d '[:space:]')"
+          {
+            echo "**JustQuests Create Addon $VERSION**, for NeoForge 1.21.1."
+            echo
+            echo "**Needs:** [JustQuests](https://github.com/$GITHUB_REPOSITORY/releases/tag/v$JQ) $JQ or newer and [Create](https://modrinth.com/mod/create) $CREATE, on the client and the server."
+            echo
+            awk -v hdr="## [$VERSION]" '
+              index($0, hdr) == 1 { f = 1; next }
+              f && /^## \[/ { exit }
+              f { print }
+            ' addons/create/CHANGELOG.md
+          } > ADDON_NOTES.md
+          cat ADDON_NOTES.md
+
+      - name: Publish GitHub Release
+        if: github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: JustQuests Create Addon ${{ steps.ver.outputs.version }}
+          body_path: ADDON_NOTES.md
+          files: addon-jars/*.jar
+          fail_on_unmatched_files: true
+          make_latest: false

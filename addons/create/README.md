@@ -39,3 +39,14 @@ The addon is a build of its own, so the main build never needs Create.
 
 For a dev run with `runClient` or `runServer`, put the Create and JustQuests jars into
 `neoforge/1.21.1/run/client/mods` and `run/server/mods`.
+
+## Releases
+
+The jars that are published come from GitHub, not from a local build. The workflow
+`.github/workflows/create-addon.yml` does the same steps as above on GitHub: it fetches the
+JustQuests jar of `justquests_version` from that release and Create from Modrinth (checked by
+sha512), then builds the addon.
+
+- A tag `create-addon-X.Y.Z` (matching `addon_version`) publishes a GitHub Release with the jar and
+  the changelog section. It is not marked as the latest release, which stays the mod.
+- A manual run from the Actions tab only builds and keeps the jar as a workflow artifact.
