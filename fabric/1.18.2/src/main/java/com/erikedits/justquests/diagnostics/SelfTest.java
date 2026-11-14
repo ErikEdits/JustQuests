@@ -302,6 +302,22 @@ public final class SelfTest {
         } catch (Exception ex) { iconOk = false; iconMsg = ex.toString(); }
         check(results, tally, "Quest icon with properties loads", iconOk, iconMsg);
 
+        // 0.6.0: a big quest sync is packed (a server may send at most 1 MiB) and comes back the same
+        boolean syncOk;
+        String syncMsg;
+        try {
+            StringBuilder big = new StringBuilder("{\"quests\":{");
+            for (int i = 0; i < 3000; i++) {
+                big.append(i == 0 ? "" : ",").append("\"q").append(i).append("\":\"").append("Collect some wood. ".repeat(20)).append('"');
+            }
+            String json = big.append("}}").toString();
+            String sent = com.erikedits.justquests.network.SyncText.pack(json);
+            syncOk = sent.length() < com.erikedits.justquests.network.SyncText.MAX && sent.length() < json.length() / 4
+                && com.erikedits.justquests.network.SyncText.unpack(sent).equals(json);
+            syncMsg = json.length() + " -> " + sent.length() + " characters";
+        } catch (Exception ex) { syncOk = false; syncMsg = ex.toString(); }
+        check(results, tally, "Big quest sync is packed", syncOk, syncMsg);
+
         // localized title: plain string still works, per-language map resolves,
         // and an unknown language falls back to English (Q21)
         boolean l10nOk = true;

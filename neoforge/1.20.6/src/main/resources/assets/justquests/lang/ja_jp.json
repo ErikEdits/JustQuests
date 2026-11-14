@@ -221,6 +221,7 @@
   "justquests.hud.on": "クエストHUD オン",
   "justquests.hud.off": "クエストHUD オフ",
   "justquests.hud.more": "ほか%s件",
+  "justquests.hud.more_quests": "ほか%s件のクエスト",
   "justquests.hud.rewards": "受け取れる報酬: %s",
   "justquests.hud.rewards_hint": "クエストブックで受け取ろう",
   "justquests.hud.preview": "クエストHUD",

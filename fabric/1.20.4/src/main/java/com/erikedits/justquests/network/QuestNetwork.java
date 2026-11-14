@@ -53,7 +53,7 @@ public final class QuestNetwork {
 
     private static void send(ServerPlayer player, boolean full) {
         FriendlyByteBuf buf = PacketByteBufs.create();
-        buf.writeUtf(buildJson(player, full), 1048576);
+        buf.writeUtf(syncText(player, full), 1048576);
         ServerPlayNetworking.send(player, CHANNEL, buf);
     }
 
@@ -61,6 +61,15 @@ public final class QuestNetwork {
     public static void syncAll(MinecraftServer server) {
         if (server == null) return;
         for (ServerPlayer p : server.getPlayerList().getPlayers()) syncPlayer(p);
+    }
+
+    /**
+     * The sync text, packed (0.6.0). A quest list too big to send even packed is left out, so the
+     * player still gets their progress; SyncText logs why the book stays empty.
+     */
+    private static String syncText(ServerPlayer player, boolean full) {
+        String text = SyncText.pack(buildJson(player, full));
+        return full && text.length() > SyncText.MAX ? SyncText.pack(buildJson(player, false)) : text;
     }
 
     private static String buildJson(ServerPlayer player, boolean full) {

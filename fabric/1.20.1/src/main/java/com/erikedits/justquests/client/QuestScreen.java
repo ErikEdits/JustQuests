@@ -447,7 +447,8 @@ public class QuestScreen extends Screen {
         search.visible = searchShown();
         if (search.visible) {
             blit(g, search.isFocused() ? "search_focused" : "search_normal", searchX(), searchY(), 74, 14);
-            if (query.isEmpty() && !search.isFocused()) text(g, I18n.get("justquests.book.search"), searchX() + 3, searchY() + 3, 0xFF8B8B8B);
+            if (query.isEmpty() && !search.isFocused()) text(g, I18n.get("justquests.book.search"), searchX() + 3, searchY() + 3, theme.searchHint);
+            search.setTextColor(theme.searchText);
             search.render(g, mouseX, mouseY, pt);
             if (!query.isEmpty()) blit(g, "search_clear", clearX(), searchY() + 2, 10, 10);
         } else {
@@ -510,7 +511,7 @@ public class QuestScreen extends Screen {
     /** The line under a group header and between quest rows: separator.png, else a grey line under headers. */
     private void separator(GuiGraphics g, int x, int y, boolean header) {
         if (theme.has("quest_book/separator")) blit(g, "quest_book/separator", x, y, ROW_W, 1);
-        else if (header) g.fill(x, y, x + ROW_W, y + 1, 0xFF555555);
+        else if (header) g.fill(x, y, x + ROW_W, y + 1, theme.separatorLine);
     }
 
     /** The fold arrow of a group header: pointing down while the group is open, right while it is folded. */
@@ -595,7 +596,18 @@ public class QuestScreen extends Screen {
 
         // icon + title (wraps next to the icon)
         theme.icon(g, selected, q, dx, dy);
-        var titleLines = this.font.split(Theme.text(q.title().get(lang())), dw - 20);
+        String fullTitle = q.title().get(lang());
+        var titleLines = this.font.split(Theme.text(fullTitle), dw - 20);
+        if (titleLines.size() > 3) {
+            // a very long title takes three lines and ends in "..." (0.6.0), so the goals stay in sight
+            int lo = 0, hi = fullTitle.length();
+            while (lo < hi) {
+                int mid = (lo + hi + 1) / 2;
+                if (this.font.split(Theme.text(fullTitle.substring(0, mid) + "..."), dw - 20).size() <= 3) lo = mid;
+                else hi = mid - 1;
+            }
+            titleLines = this.font.split(Theme.text(fullTitle.substring(0, lo) + "..."), dw - 20);
+        }
         int ty = titleLines.size() == 1 ? dy + 4 : dy;
         for (var line : titleLines) {
             text(g, line, dx + 20, ty, TITLE_DARK);
@@ -704,9 +716,9 @@ public class QuestScreen extends Screen {
             int barX = dx + detailW() - 4, thumbH = Math.max(10, viewH * viewH / contentH);
             int thumbY = viewTop + (viewH - thumbH) * Math.min(detailScroll, detailMax) / detailMax;
             boolean overBar = in(mouseX, mouseY, barX, viewTop, 4, viewH);
-            g.fill(barX, viewTop, barX + 4, viewBottom, 0xFF373737);
+            g.fill(barX, viewTop, barX + 4, viewBottom, theme.scrollTrack);
             g.fill(barX, thumbY, barX + 4, thumbY + thumbH, 0xFF8B8B8B);
-            g.fill(barX, thumbY, barX + 3, thumbY + thumbH - 1, overBar ? WHITE : LIGHT);
+            g.fill(barX, thumbY, barX + 3, thumbY + thumbH - 1, overBar ? WHITE : theme.scrollThumb);
             scrollBar = new int[] {barX, viewTop, viewH, thumbH};
         }
 
@@ -789,9 +801,9 @@ public class QuestScreen extends Screen {
 
     /** A small pixel radio box in front of a choice option. */
     private void radio(GuiGraphics g, int x, int y, boolean on, boolean hover) {
-        g.fill(x, y, x + 7, y + 7, 0xFF373737);
-        g.fill(x + 1, y + 1, x + 6, y + 6, hover ? WHITE : 0xFFE0E0E0);
-        if (on) g.fill(x + 2, y + 2, x + 5, y + 5, GOOD);
+        g.fill(x, y, x + 7, y + 7, theme.radioBorder);
+        g.fill(x + 1, y + 1, x + 6, y + 6, hover ? WHITE : theme.radio);
+        if (on) g.fill(x + 2, y + 2, x + 5, y + 5, theme.radioDot);
     }
 
     /** The stats page: totals, per-category progress (hover an icon for its name), dates and server rank. */
@@ -1016,7 +1028,7 @@ public class QuestScreen extends Screen {
         Theme t = Theme.get();
         switch (t.bgMode) {
             case "color" -> g.fill(0, 0, this.width, this.height, t.bgColor);
-            case "stretch" -> t.stretch(g, "quest_book/background", 0, 0, this.width, this.height, this.width, this.height);
+            case "stretch" -> t.stretchFree(g, "quest_book/background", 0, 0, this.width, this.height);
             case "tile" -> t.tile(g, "quest_book/background", 0, 0, this.width, this.height);
             default -> { }
         }

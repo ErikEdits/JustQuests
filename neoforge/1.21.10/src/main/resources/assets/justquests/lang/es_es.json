@@ -221,6 +221,7 @@
   "justquests.hud.on": "HUD de misiones activado",
   "justquests.hud.off": "HUD de misiones desactivado",
   "justquests.hud.more": "+%s más",
+  "justquests.hud.more_quests": "+%s misiones más",
   "justquests.hud.rewards": "Recompensas listas: %s",
   "justquests.hud.rewards_hint": "Recógelas en el libro de misiones",
   "justquests.hud.preview": "HUD de misiones",

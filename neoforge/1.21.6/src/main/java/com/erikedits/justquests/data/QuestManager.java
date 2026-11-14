@@ -33,6 +33,21 @@ public class QuestManager extends SimpleJsonResourceReloadListener<Quest> {
         super(Quest.CODEC, FileToIdConverter.json(DIRECTORY));
     }
 
+    /**
+     * Why a parsed quest can't be used, or null (0.6.0, for datapack and custom quests alike). A broken
+     * objective is dropped by the lenient parse, which would change what the quest asks for; a quest
+     * left without objectives would be done the moment it is accepted.
+     */
+    public static String problem(Quest quest, com.google.gson.JsonElement json) {
+        if (quest.objectives().isEmpty()) return "has no objectives";
+        if (json != null && json.isJsonObject() && json.getAsJsonObject().get("objectives") instanceof com.google.gson.JsonArray a
+                && a.size() > quest.objectives().size()) {
+            return "has a broken objective (" + quest.objectives().size() + " of " + a.size() + " could be read)";
+        }
+        if (quest.objectives().stream().anyMatch(o -> o.requiredCount() <= 0)) return "has an objective with count <= 0";
+        return null;
+    }
+
     @Override
     protected void apply(Map<ResourceLocation, Quest> map, ResourceManager resourceManager, ProfilerFiller profiler) {
         Map<ResourceLocation, Quest> loaded = new HashMap<>();

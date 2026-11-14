@@ -52,7 +52,7 @@ public final class ClientQuestData {
         boolean hasQuests = false;
         Rank r = null;
         try {
-            JsonObject root = JsonParser.parseString(json).getAsJsonObject();
+            JsonObject root = JsonParser.parseString(SyncText.unpack(json)).getAsJsonObject();
             if (root.has("quests")) {
                 hasQuests = true;
                 for (Map.Entry<String, com.google.gson.JsonElement> e : root.getAsJsonObject("quests").entrySet()) {

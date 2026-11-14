@@ -79,7 +79,11 @@ public final class CustomQuestLoader {
                                 : ResourceLocation.fromNamespaceAndPath("justquests", key);
                             Quest.CODEC.parse(JsonOps.INSTANCE, obj)
                                 .resultOrPartial(err -> JustQuests.LOG.error("Custom quest {} invalid: {}", key, err))
-                                .ifPresent(q -> custom.put(id, q.withFolderCategory(id.getPath())));
+                                .ifPresent(q -> {
+                                    String problem = com.erikedits.justquests.data.QuestManager.problem(q, obj);
+                                    if (problem != null) JustQuests.LOG.warn("Custom quest {} {} - skipping", key, problem);
+                                    else custom.put(id, q.withFolderCategory(id.getPath()));
+                                });
                         } catch (Exception ex) {
                             JustQuests.LOG.error("Custom quest {} failed: {}", key, ex.getMessage());
                         }

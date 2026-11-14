@@ -52,6 +52,12 @@ public final class QuestEvents {
         }
     }
 
+    /** The player left the world or the server: the next sync starts afresh and nothing waiting is shown (0.6.0). */
+    public static void reset() {
+        last = null;
+        Popups.clear();
+    }
+
     /** Once a client tick: compares the latest sync with the one before. */
     public static void tick() {
         int s = ClientQuestData.syncCount();
@@ -59,6 +65,8 @@ public final class QuestEvents {
         seenSync = s;
         Snapshot now = Snapshot.now(), before = last;
         last = now;
+        // left the world or the server: what was still waiting belongs to it, not to the next one (0.6.0)
+        if (now.quests().isEmpty()) Popups.clear();
         // the first sync after joining (or a disconnect) only sets the starting point
         if (before == null || before.quests().isEmpty() || now.quests().isEmpty()) return;
 
@@ -75,6 +83,9 @@ public final class QuestEvents {
         for (Identifier id : now.unlocked()) {
             Quest q = ClientQuestData.get(id);
             if (before.unlocked().contains(id) || !before.quests().contains(id) || q == null) continue;
+            // a quest that was done before and is open again after /quest reset is not new (0.6.0):
+            // a reset would otherwise bring one popup for every quest the player had finished
+            if (before.completed().containsKey(id)) continue;
             Popups.questNew(id, q);
             if (rank > 0) { sound = "quest.unlock"; rank = 0; }
         }

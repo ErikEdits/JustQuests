@@ -41,6 +41,8 @@ public final class Theme {
     public final int bookW, bookH, listX, listY, rowW, rowH, rows, pageX, pageY, pageW, pageBottom;
     private final Map<String, int[]> buttons = new HashMap<>();
     public final int title, text, muted, heading, link, done, warning, group, groupCount;
+    // colours that were fixed before 0.6.0: the search field, the radio boxes of a choice, the scroll bar
+    public final int searchText, searchHint, radio, radioBorder, radioDot, scrollTrack, scrollThumb, separatorLine;
     public final boolean blur, bookShadow;
     public final String bgMode;
     public final int bgColor;
@@ -48,6 +50,8 @@ public final class Theme {
     public final int barW, barH, trackerBarW, trackerBarH;
     // --- tracker (tracker/settings.json) ---
     public final int tMaxText, tBorder, tIconX, tIconY, tTitleX, tTitleY, tGoalX, tGoalY, tLine, tMaxGoals, tOffX, tOffY;
+    /** The most of the screen's height the tracker may cover, in percent (0.6.0). */
+    public final int tMaxHeight;
     public final boolean tBar, tShadow;
     public final int tTitle, tGoal, tDone, tMore, tClaim, tBox;
     // --- popups (popup/settings.json) ---
@@ -58,7 +62,7 @@ public final class Theme {
 
     private final Map<String, Identifier> resolved = new HashMap<>();
     private final Map<Identifier, Boolean> present = new HashMap<>();
-    private final Map<Identifier, int[]> anims = new HashMap<>();
+    private final Map<Identifier, int[]> metas = new HashMap<>();
     private final Map<String, Integer> states = new HashMap<>();
     private final Map<Identifier, int[]> sizes = new HashMap<>();
 
@@ -110,6 +114,14 @@ public final class Theme {
         warning = color(b, 0xFF9E2A2A, "colors", "warning");
         group = color(b, 0xFFFFFFFF, "colors", "group");
         groupCount = color(b, 0xFFC6C6C6, "colors", "group_count");
+        searchText = color(b, 0xFFE0E0E0, "colors", "search_text");
+        searchHint = color(b, 0xFF8B8B8B, "colors", "search_hint");
+        radio = color(b, 0xFFE0E0E0, "colors", "radio");
+        radioBorder = color(b, 0xFF373737, "colors", "radio_border");
+        radioDot = color(b, done, "colors", "radio_dot");
+        scrollTrack = color(b, 0xFF373737, "colors", "scrollbar_track");
+        scrollThumb = color(b, 0xFFC6C6C6, "colors", "scrollbar_thumb");
+        separatorLine = color(b, 0xFF555555, "colors", "separator");
         blur = bool(b, true, "background", "blur");
         bgMode = str(b, "none", "background", "mode");
         bgColor = color(b, 0x80000000, "background", "color");
@@ -133,6 +145,7 @@ public final class Theme {
         tGoalY = num(t, 15, "goal", "y");
         tLine = Math.max(1, num(t, 9, "goal", "line_height"));
         tMaxGoals = Math.max(1, num(t, 3, "max_goals"));
+        tMaxHeight = Math.max(10, Math.min(100, num(t, 45, "max_height")));
         tBar = bool(t, false, "progress_bar");
         tOffX = num(t, 4, "offset", 0);
         tOffY = num(t, 4, "offset", 1);
@@ -318,6 +331,16 @@ public final class Theme {
         draw(g, tex(name), x, y, w, h, texW, texH, texW, texH);
     }
 
+    /**
+     * A picture with no size of its own (the stretched background) stretched to w x h. Animated, its
+     * frames have the size its .png.mcmeta gives, else they are square, as Minecraft's own.
+     */
+    public void stretchFree(GuiGraphics g, String name, int x, int y, int w, int h) {
+        Identifier id = tex(name);
+        int[] f = frameOf(id);
+        Draw.blit(g, id, x, y, w, h, 0, f[1], f[2], f[3], f[4], f[5]);
+    }
+
     /** Draws the region (0,0)-(uW,vH) of the current frame, scaled to w x h. */
     private void draw(GuiGraphics g, Identifier id, int x, int y, int w, int h, int uW, int vH, int texW, int texH) {
         int[] a = anim(id, texW, texH);
@@ -326,21 +349,37 @@ public final class Theme {
     }
 
     /**
+     * The current frame of a picture with no shown size (tiles, frames, the stretched background), in
+     * the picture's own pixels: {frame, v, frame width, frame height, picture width, picture height}.
+     */
+    private int[] frameOf(Identifier id) {
+        int[] size = size(id);
+        int[] m = meta(id);
+        if (m[0] == 0) return new int[] {0, 0, size[0], size[1], size[0], size[1]};
+        int fw = m[2] > 0 ? Math.min(m[2], size[0]) : size[0];
+        int fh = m[3] > 0 ? Math.min(m[3], size[1]) : Math.min(size[0], size[1]);
+        int frames = Math.max(1, size[1] / Math.max(1, fh));
+        int frame = (int) (System.currentTimeMillis() / 50 / m[1] % frames);
+        return new int[] {frame, frame * fh, fw, fh, size[0], size[1]};
+    }
+
+    /**
      * A picture stretched like a frame: the outer {@code border} pixels stay, the middle grows. The
      * picture's own pixel size counts (tracker.png can be any size).
      */
     public void frame(GuiGraphics g, String name, int x, int y, int w, int h, int border) {
         Identifier id = tex(name);
-        int[] size = size(id);
-        int tw = size[0], th = size[1];
+        // an animated frame: the 9 parts are cut from the current frame (0.6.0)
+        int[] f = frameOf(id);
+        int tw = f[2], th = f[3], v0 = f[1];
         int b = Math.max(0, Math.min(border, Math.min(Math.min(tw, th) / 2, Math.min(w, h) / 2)));
         int mw = tw - 2 * b, mh = th - 2 * b, iw = w - 2 * b, ih = h - 2 * b;
         int[] xs = {x, x + b, x + w - b}, ws = {b, iw, b}, us = {0, b, tw - b}, uws = {b, mw, b};
-        int[] ys = {y, y + b, y + h - b}, hs = {b, ih, b}, vs = {0, b, th - b}, vhs = {b, mh, b};
+        int[] ys = {y, y + b, y + h - b}, hs = {b, ih, b}, vs = {v0, v0 + b, v0 + th - b}, vhs = {b, mh, b};
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
                 if (ws[c] <= 0 || hs[r] <= 0 || uws[c] <= 0 || vhs[r] <= 0) continue;
-                Draw.blit(g, id, xs[c], ys[r], ws[c], hs[r], us[c], vs[r], uws[c], vhs[r], tw, th);
+                Draw.blit(g, id, xs[c], ys[r], ws[c], hs[r], us[c], vs[r], uws[c], vhs[r], f[4], f[5]);
             }
         }
     }
@@ -348,12 +387,13 @@ public final class Theme {
     /** A picture repeated over an area at its own pixel size. */
     public void tile(GuiGraphics g, String name, int x, int y, int w, int h) {
         Identifier id = tex(name);
-        int[] size = size(id);
-        int tw = Math.max(1, size[0]), th = Math.max(1, size[1]);
+        // an animated tile repeats its current frame (0.6.0)
+        int[] f = frameOf(id);
+        int tw = Math.max(1, f[2]), th = Math.max(1, f[3]);
         for (int ty = y; ty < y + h; ty += th) {
             for (int tx = x; tx < x + w; tx += tw) {
                 int cw = Math.min(tw, x + w - tx), ch = Math.min(th, y + h - ty);
-                Draw.blit(g, id, tx, ty, cw, ch, 0, 0, cw, ch, tw, th);
+                Draw.blit(g, id, tx, ty, cw, ch, 0, f[1], cw, ch, f[4], f[5]);
             }
         }
     }
@@ -366,7 +406,9 @@ public final class Theme {
         // the tracker's own pictures if it has them, else the book's ("progress_track" finds those)
         String track = tracker && has("tracker/progress/track") ? "tracker/progress/track" : "progress_track";
         String fill = tracker && has("tracker/progress/fill") ? "tracker/progress/fill" : "progress_fill";
-        String folder = tracker && states("tracker/progress") > 0 ? "tracker/progress" : "quest_book/progress";
+        // a tracker with its own track or fill but no steps keeps them, not the book's steps (0.6.0)
+        boolean own = tracker && (states("tracker/progress") > 0 || has("tracker/progress/track") || has("tracker/progress/fill"));
+        String folder = own ? "tracker/progress" : "quest_book/progress";
         int n = states(folder);
         float f = Math.max(0f, Math.min(1f, fraction));
         if (n > 0) {
@@ -388,23 +430,38 @@ public final class Theme {
         });
     }
 
-    /** Frames and ticks per frame of a picture; one frame without a .png.mcmeta. */
+    /**
+     * Frames and ticks per frame of a picture shown at texW x texH; one frame without a .png.mcmeta.
+     * A frame has the height the .mcmeta gives, else the picture's width at the shown aspect ratio.
+     * Worked out on every call (cheap), so a picture shown at another size counts right (0.6.0).
+     */
     private int[] anim(Identifier id, int texW, int texH) {
-        return anims.computeIfAbsent(id, i -> {
+        int[] m = meta(id);
+        if (m[0] == 0 || texW <= 0 || texH <= 0) return new int[] {1, 1};
+        int[] size = size(id);
+        int frameH = m[3] > 0 ? m[3] : Math.max(1, size[0] * texH / texW);
+        return new int[] {Math.max(1, size[1] / Math.max(1, frameH)), m[1]};
+    }
+
+    /**
+     * A picture's .png.mcmeta, read once: {1 if animated, ticks per frame, frame width, frame height};
+     * a frame size the .mcmeta leaves out is 0. A broken .mcmeta counts as no animation.
+     */
+    private int[] meta(Identifier id) {
+        return metas.computeIfAbsent(id, i -> {
             Identifier meta = Identifier.tryBuild(i.getNamespace(), i.getPath() + ".mcmeta");
             Optional<Resource> r = meta == null ? Optional.empty() : Minecraft.getInstance().getResourceManager().getResource(meta);
-            if (r.isEmpty() || texW <= 0 || texH <= 0) return new int[] {1, 1};
-            int frametime = 1;
+            if (r.isEmpty()) return new int[] {0, 1, 0, 0};
             try (Reader in = r.get().openAsReader()) {
                 JsonElement e = JsonParser.parseReader(in);
-                frametime = Math.max(1, num(e.getAsJsonObject(), 1, "animation", "frametime"));
+                if (!e.isJsonObject() || !e.getAsJsonObject().has("animation")) return new int[] {0, 1, 0, 0};
+                JsonObject o = e.getAsJsonObject();
+                return new int[] {1, Math.max(1, num(o, 1, "animation", "frametime")),
+                    Math.max(0, num(o, 0, "animation", "width")), Math.max(0, num(o, 0, "animation", "height"))};
             } catch (Exception e) {
                 JustQuests.LOG.warn("Could not read {}: {}", meta, e.getMessage());
+                return new int[] {0, 1, 0, 0};
             }
-            int[] size = size(i);
-            // one frame has the picture's width and the shown aspect ratio
-            int frameH = Math.max(1, size[0] * texH / texW);
-            return new int[] {Math.max(1, size[1] / frameH), frametime};
         });
     }
 

@@ -132,12 +132,29 @@ public final class QuestHud {
             blocks.add(new Block(new ItemStack(Items.BOOK), null, null, title, t.tTitle, List.of(line), List.of(t.tMore), List.of(-1f)));
         }
 
-        // block places are counted from the top left of the box, as in tracker/settings.json
-        int w = t.tTitleX + textW + 5;
-        int h = 0;
-        for (Block b : blocks) h += height(t, b);
-        h += 5;
         int sw = mc.getWindow().getGuiScaledWidth(), sh = mc.getWindow().getGuiScaledHeight();
+        // never more than part of the screen (0.6.0): whole quests that don't fit go from the bottom and
+        // a line counts them; a single quest still too tall shows fewer goals
+        int limit = Math.max(48, sh * t.tMaxHeight / 100);
+        int first = ready > 0 ? 1 : 0;
+        int hidden = 0;
+        while (blocks.size() - first > 1 && boxHeight(t, blocks, hidden) > limit) {
+            blocks.remove(blocks.size() - 1);
+            hidden++;
+        }
+        Block last = blocks.get(blocks.size() - 1);
+        if (last.q() != null) {
+            for (int n = goals(last) - 1; n >= 1 && boxHeight(t, blocks, hidden) > limit; n--) {
+                blocks.set(blocks.size() - 1, trimmed(t, last, n));
+            }
+        }
+        String footer = hidden > 0 ? fit(font, I18n.get("justquests.hud.more_quests", hidden)) : null;
+        if (footer != null) textW = Math.max(textW, width(font, footer));
+
+        // block places are counted from the top left of the box, as in tracker/settings.json; the box
+        // holds the title, the goal lines and a progress bar wider than the text (0.6.0)
+        int w = Math.max(t.tTitleX, t.tGoalX) + Math.max(textW, t.tBar ? t.trackerBarW : 0) + 5;
+        int h = boxHeight(t, blocks, hidden);
         boolean right = ClientSettings.hudCorner.endsWith("right"), bottom = ClientSettings.hudCorner.startsWith("bottom");
         int x = right ? sw - w - t.tOffX : t.tOffX;
         int y = bottom ? sh - h - t.tOffY : t.tOffY;
@@ -165,6 +182,32 @@ public final class QuestHud {
             }
             by += height(t, b);
         }
+        if (footer != null) g.text(font, Theme.text(footer), x + t.tGoalX, by, t.tMore, t.tShadow);
+    }
+
+    /** Height of the whole box: its blocks, the "+n more quests" line when quests are left out, the bottom margin. */
+    private static int boxHeight(Theme t, List<Block> blocks, int hidden) {
+        int h = 5 + (hidden > 0 ? t.tLine + 2 : 0);
+        for (Block b : blocks) h += height(t, b);
+        return h;
+    }
+
+    /** How many goal lines a quest block shows (the "+n more" line is not one). */
+    private static int goals(Block b) {
+        int n = 0;
+        for (float f : b.progress()) if (f >= 0) n++;
+        return n;
+    }
+
+    /** The quest block with only its first n goal lines and a "+x more" line for the others. */
+    private static Block trimmed(Theme t, Block b, int n) {
+        List<String> lines = new ArrayList<>(b.lines().subList(0, n));
+        List<Integer> colors = new ArrayList<>(b.colors().subList(0, n));
+        List<Float> progress = new ArrayList<>(b.progress().subList(0, n));
+        lines.add(I18n.get("justquests.hud.more", b.q().objectives().size() - n));
+        colors.add(t.tMore);
+        progress.add(-1f);
+        return new Block(b.icon(), b.quest(), b.q(), b.title(), b.titleColor(), lines, colors, progress);
     }
 
     private static int width(Font font, String s) {

@@ -31,6 +31,21 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
         super(GSON, DIRECTORY);
     }
 
+    /**
+     * Why a parsed quest can't be used, or null (0.6.0, for datapack and custom quests alike). A broken
+     * objective is dropped by the lenient parse, which would change what the quest asks for; a quest
+     * left without objectives would be done the moment it is accepted.
+     */
+    public static String problem(Quest quest, JsonElement json) {
+        if (quest.objectives().isEmpty()) return "has no objectives";
+        if (json.isJsonObject() && json.getAsJsonObject().get("objectives") instanceof com.google.gson.JsonArray a
+                && a.size() > quest.objectives().size()) {
+            return "has a broken objective (" + quest.objectives().size() + " of " + a.size() + " could be read)";
+        }
+        if (quest.objectives().stream().anyMatch(o -> o.requiredCount() <= 0)) return "has an objective with count <= 0";
+        return null;
+    }
+
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profiler) {
         Map<ResourceLocation, Quest> loaded = new HashMap<>();
@@ -39,13 +54,9 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
                 Quest.CODEC.parse(JsonOps.INSTANCE, json)
                     .resultOrPartial(error -> JustQuests.LOG.error("Failed to parse quest {}: {}", id, error))
                     .ifPresent(quest -> {
-                        if (quest.objectives().isEmpty()) {
-                            JustQuests.LOG.warn("Quest {} has no objectives - skipping", id);
-                        } else if (quest.objectives().stream().anyMatch(o -> o.requiredCount() <= 0)) {
-                            JustQuests.LOG.warn("Quest {} has an objective with count <= 0 - skipping", id);
-                        } else {
-                            loaded.put(id, quest.withFolderCategory(id.getPath()));
-                        }
+                        String problem = problem(quest, json);
+                        if (problem != null) JustQuests.LOG.warn("Quest {} {} - skipping", id, problem);
+                        else loaded.put(id, quest.withFolderCategory(id.getPath()));
                     });
             } catch (Exception e) {
                 JustQuests.LOG.error("Failed to load quest {} (invalid type or data): {}", id, e.getMessage());

@@ -49,13 +49,22 @@ public final class QuestNetwork {
     }
 
     private static void send(ServerPlayer player, boolean full) {
-        ServerPlayNetworking.send(player, new QuestSyncPayload(buildJson(player, full)));
+        ServerPlayNetworking.send(player, new QuestSyncPayload(syncText(player, full)));
     }
 
     /** Resend to everyone (e.g. after a quest reload/reroll changes the list). */
     public static void syncAll(MinecraftServer server) {
         if (server == null) return;
         for (ServerPlayer p : server.getPlayerList().getPlayers()) syncPlayer(p);
+    }
+
+    /**
+     * The sync text, packed (0.6.0). A quest list too big to send even packed is left out, so the
+     * player still gets their progress; SyncText logs why the book stays empty.
+     */
+    private static String syncText(ServerPlayer player, boolean full) {
+        String text = SyncText.pack(buildJson(player, full));
+        return full && text.length() > SyncText.MAX ? SyncText.pack(buildJson(player, false)) : text;
     }
 
     private static String buildJson(ServerPlayer player, boolean full) {

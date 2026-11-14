@@ -28,7 +28,10 @@ public class JustQuestsFabricClient implements ClientModInitializer {
 
         // Drop the last server's quests on disconnect, so the book never shows stale data.
         net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents.DISCONNECT.register(
-            (handler, client) -> client.execute(com.erikedits.justquests.network.ClientQuestData::clear));
+            (handler, client) -> client.execute(() -> {
+                com.erikedits.justquests.network.ClientQuestData.clear();
+                QuestEvents.reset();
+            }));
 
         openQuests = KeyBindingHelper.registerKeyBinding(new KeyMapping(
             "key.justquests.open", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_J, "key.categories.misc"));

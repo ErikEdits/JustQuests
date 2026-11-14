@@ -90,7 +90,8 @@ public final class Popups {
             y = corner.startsWith("bottom") ? sh - h - ClientSettings.popupY : ClientSettings.popupY;
         } else {
             corner = t.pCorner;
-            x = corner.endsWith("center") ? (sw - w) / 2 : corner.endsWith("right") ? sw - w - t.pOffX : t.pOffX;
+            // offset[0] moves a centred popup sideways (0.6.0; before, it was only used at the sides)
+            x = corner.endsWith("center") ? (sw - w) / 2 + t.pOffX : corner.endsWith("right") ? sw - w - t.pOffX : t.pOffX;
             y = corner.startsWith("bottom") ? sh - h - t.pOffY : t.pOffY;
             if (corner.startsWith("top") && Minimaps.at(corner)) y = Math.max(y, Minimaps.below(corner, sh));
         }
@@ -135,6 +136,12 @@ public final class Popups {
         ClientSettings.popupY = top ? p[1] : sh - t.pH - p[1];
         ClientSettings.popupAnchor = (top ? "top_" : "bottom_") + side;
         ClientSettings.save();
+    }
+
+    /** Drops every popup still waiting or shown: the player left the world or the server (0.6.0). */
+    public static void clear() {
+        QUEUE.clear();
+        shown = null;
     }
 
     /** Back to the automatic place. */

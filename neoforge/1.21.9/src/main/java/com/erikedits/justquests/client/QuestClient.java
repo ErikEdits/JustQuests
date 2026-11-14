@@ -38,13 +38,14 @@ public final class QuestClient {
         @SubscribeEvent
         static void onClientTick(ClientTickEvent.Post event) {
             Minecraft mc = Minecraft.getInstance();
+            // sounds and popups for what the last quest sync changed: also with a screen open and between
+            // worlds, as on Fabric (0.6.0), so leaving a world is seen before the next one starts
+            QuestEvents.tick();
             if (mc.player == null || mc.screen != null) return;
             while (OPEN_QUESTS.consumeClick()) {
                 mc.setScreen(new QuestScreen());
             }
             while (TOGGLE_HUD.consumeClick()) QuestHud.toggle();
-            // sounds and popups for what the last quest sync changed
-            QuestEvents.tick();
         }
 
         /** Draws the quest tracker on top of the in-game HUD. */
@@ -57,6 +58,7 @@ public final class QuestClient {
         @SubscribeEvent
         static void onLoggingOut(net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent.LoggingOut event) {
             com.erikedits.justquests.network.ClientQuestData.clear();
+            QuestEvents.reset();
         }
     }
 }

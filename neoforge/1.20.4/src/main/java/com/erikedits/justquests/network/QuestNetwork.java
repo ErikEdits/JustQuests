@@ -27,7 +27,7 @@ public final class QuestNetwork {
     private QuestNetwork() {}
 
     public static void register(RegisterPayloadHandlerEvent event) {
-        IPayloadRegistrar registrar = event.registrar(JustQuests.MOD_ID).versioned("1");
+        IPayloadRegistrar registrar = event.registrar(JustQuests.MOD_ID).versioned("1").optional();   // 0.6.0: either side may be without JustQuests
         registrar.play(QuestSyncPayload.ID, QuestSyncPayload::new,
             handler -> handler.client((payload, ctx) ->
                 ctx.workHandler().submitAsync(() -> ClientQuestData.accept(payload.json()))));
@@ -52,13 +52,24 @@ public final class QuestNetwork {
     }
 
     private static void send(ServerPlayer player, boolean full) {
-        PacketDistributor.PLAYER.with(player).send(new QuestSyncPayload(buildJson(player, full)));
+        // a player without JustQuests gets no syncs (the channel is optional since 0.6.0)
+        if (!hasMod(player)) return;
+        PacketDistributor.PLAYER.with(player).send(new QuestSyncPayload(syncText(player, full)));
     }
 
     /** Resend to everyone (e.g. after a quest reload/reroll changes the list). */
     public static void syncAll(MinecraftServer server) {
         if (server == null) return;
         for (ServerPlayer p : server.getPlayerList().getPlayers()) syncPlayer(p);
+    }
+
+    /**
+     * The sync text, packed (0.6.0). A quest list too big to send even packed is left out, so the
+     * player still gets their progress; SyncText logs why the book stays empty.
+     */
+    private static String syncText(ServerPlayer player, boolean full) {
+        String text = SyncText.pack(buildJson(player, full));
+        return full && text.length() > SyncText.MAX ? SyncText.pack(buildJson(player, false)) : text;
     }
 
     private static String buildJson(ServerPlayer player, boolean full) {

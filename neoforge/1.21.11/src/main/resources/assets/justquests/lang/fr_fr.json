@@ -221,6 +221,7 @@
   "justquests.hud.on": "HUD des quêtes activé",
   "justquests.hud.off": "HUD des quêtes désactivé",
   "justquests.hud.more": "+%s de plus",
+  "justquests.hud.more_quests": "+%s quêtes de plus",
   "justquests.hud.rewards": "Récompenses prêtes : %s",
   "justquests.hud.rewards_hint": "Récupère-les dans le livre de quêtes",
   "justquests.hud.preview": "HUD des quêtes",

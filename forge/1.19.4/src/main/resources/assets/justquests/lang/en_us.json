@@ -221,6 +221,7 @@
   "justquests.hud.on": "Quest HUD on",
   "justquests.hud.off": "Quest HUD off",
   "justquests.hud.more": "+%s more",
+  "justquests.hud.more_quests": "+%s more quests",
   "justquests.hud.rewards": "Rewards ready: %s",
   "justquests.hud.rewards_hint": "Claim them in the quest book",
   "justquests.hud.preview": "Quest HUD",

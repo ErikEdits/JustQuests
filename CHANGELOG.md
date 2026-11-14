@@ -3,6 +3,45 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.6.0] - unreleased
+
+### Fixed
+- **A custom quest with a broken objective** (a count written as text, for example) was kept without
+  that objective. Left with none, it was done the moment it was accepted, rewards included. Now such
+  a quest is skipped with a line in the log that says why, in `custom-quests.json` and datapacks alike.
+- **Big quest lists on servers:** the quest list went to each player as one text of at most 1 MiB, so
+  a pack with very many or long quests could not be sent. It is packed now (about a tenth of the
+  size); a list too big even packed leaves the book empty with a clear log line instead of failing.
+- **NeoForge and Forge:** JustQuests no longer has to be on both sides. A player who has it can join
+  a server without it, and a player without it can join a server with it and use `/quest` in the chat
+  (no quest book, tracker or popups for them), as on Fabric.
+- After `/quest admin reset`, every quest the player had finished came back as a "new quest" popup.
+- Popups still waiting when a player left a world or server showed up in the next one, and on
+  NeoForge and Forge the quests of the next world could come up as "new quest" popups.
+- NeoForge and Forge: the sound for accepting or abandoning a quest in the book plays at once, not
+  only after the book is closed (as on Fabric).
+- The tracker could cover most of the screen with many tracked quests on a small window. It now
+  takes at most 45% of the screen's height: quests that don't fit are counted in a "+N more quests"
+  line, and a single quest that is still too tall shows fewer goals. Resource packs can change the
+  share with `max_height` in `tracker/settings.json`.
+- Resource packs:
+  - An animated tiled background, tracker frame or stretched background (`.png.mcmeta`) now plays.
+    Frames have the size the `.mcmeta` gives (`width`, `height`), else they are square, as in
+    Minecraft. A stretched background no longer shows the wrong frame count after the window changes.
+  - The tracker box is wide enough for a fixed-width progress bar, and the tracker keeps its own
+    `track.png`/`fill.png` when the book has step pictures.
+  - `offset[0]` now moves a popup in the `top_center` or `bottom_center` corner sideways.
+- The mod's `pack.mcmeta` claimed one old format, so some versions called the mod's resources
+  incompatible in the log. It now names the formats each version takes.
+- A very long quest title takes at most three lines on the quest page (with "..."), so the goals
+  stay in sight.
+
+### Added
+- Resource packs can set the colours that were fixed: `search_text`, `search_hint`, `radio`,
+  `radio_border`, `radio_dot`, `scrollbar_track`, `scrollbar_thumb` and `separator` in
+  `quest_book/settings.json`.
+- The self-test checks that a big quest sync is packed.
+
 ## [0.5.3] - 2026-11-14
 
 ### Fixed
