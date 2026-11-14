@@ -299,5 +299,15 @@
   "justquests.goal.enchant_anvil_one": "金床でアイテムに%s回エンチャントする",
   "justquests.goal.enchant_anvil_many": "金床でアイテムに%s回エンチャントする",
   "justquests.goal.enchant_anvil": "金床で%sにエンチャントする",
-  "justquests.goal.enchant_anvil_any": "金床でアイテムにエンチャントする"
+  "justquests.goal.enchant_anvil_any": "金床でアイテムにエンチャントする",
+  "justquests.goal.with_extras": "%s（%s）",
+  "justquests.goal.named": "「%2$s」という名前の%1$s",
+  "justquests.goal.potion_strong": "%s II",
+  "justquests.goal.potion_long": "%s（延長）",
+  "justquests.goal.enchant_with": "%sに%sをエンチャントする",
+  "justquests.goal.enchant_with_count": "%s×%sに%sをエンチャントする",
+  "justquests.goal.enchant_anvil_with": "金床で%sに%sをエンチャントする",
+  "justquests.goal.enchant_anvil_with_count": "金床で%s×%sに%sをエンチャントする",
+  "justquests.goal.anvil_rename": "%sの名前を「%s」に変える",
+  "justquests.goal.anvil_rename_count": "%s×%sの名前を「%s」に変える"
 }

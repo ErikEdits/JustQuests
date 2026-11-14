@@ -290,6 +290,18 @@ public final class SelfTest {
         } catch (Exception ex) { labelOk = false; labelMsg = ex.toString(); }
         check(results, tally, "Objective labels (own goal text, per language)", labelOk, labelMsg);
 
+        // 0.5.3: an icon with properties, as /give writes them, loads; the client reads the properties
+        boolean iconOk;
+        String iconMsg;
+        try {
+            String json = "{\"title\":\"T\",\"icon\":\"minecraft:potion[minecraft:potion_contents={potion:\\\"minecraft:swiftness\\\"}]\","
+                + "\"objectives\":[{\"type\":\"justquests:reach_level\",\"level\":1}],\"rewards\":[]}";
+            Quest q = Quest.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseString(json)).result().orElseThrow();
+            iconOk = q.icon().isPresent() && q.icon().get().startsWith("minecraft:potion[");
+            iconMsg = iconOk ? "ok" : "icon=" + q.icon();
+        } catch (Exception ex) { iconOk = false; iconMsg = ex.toString(); }
+        check(results, tally, "Quest icon with properties loads", iconOk, iconMsg);
+
         // localized title: plain string still works, per-language map resolves,
         // and an unknown language falls back to English (Q21)
         boolean l10nOk = true;

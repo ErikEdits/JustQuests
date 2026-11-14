@@ -60,12 +60,12 @@ public final class QuestIcons {
 
     private static ItemStack compute(Quest quest) {
         if (quest.icon().isPresent()) {
-            Item item = BuiltInRegistries.ITEM.getOptional(quest.icon().get()).orElse(Items.AIR);
-            if (item != Items.AIR) return new ItemStack(item);
+            ItemStack own = ItemIcons.parse(quest.icon().get());
+            if (!own.isEmpty()) return own;
         }
         for (QuestObjective o : quest.objectives()) {
             Item item = fromObjective(o);
-            if (item != null && item != Items.AIR) return new ItemStack(item);
+            if (item != null && item != Items.AIR) return ItemIcons.shown(item);
         }
         return new ItemStack(Items.BOOK);
     }
@@ -147,10 +147,7 @@ public final class QuestIcons {
         if (o instanceof SmeltItemObjective s) return verb("smelt", s.item().name());
         if (o instanceof ConsumeItemObjective c) return verb("consume", c.item().name());
         if (o instanceof UseItemObjective u) return verb("use", u.item().name());
-        if (o instanceof EnchantItemObjective e) {
-            String key = e.via().equals("anvil") ? "enchant_anvil" : "enchant";
-            return e.item().isPresent() ? verb(key, e.item().get().name()) : Component.translatable("justquests.goal." + key + "_any");
-        }
+        if (o instanceof EnchantItemObjective e) return e.goal();
         if (o instanceof MineBlockObjective m) return verb("mine", m.block().name());
         if (o instanceof PlaceBlockObjective p) return verb("place", p.block().name());
         if (o instanceof KillMobObjective k) return verb("kill", k.entity().name());

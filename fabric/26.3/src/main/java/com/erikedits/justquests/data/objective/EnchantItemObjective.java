@@ -74,15 +74,24 @@ public record EnchantItemObjective(Optional<ItemMatcher> item, int count, boolea
             + (via.equals("table") ? "" : " (via " + via + ")");
     }
 
+    /** "Enchant 1x Diamond Sword with Sharpness I": the enchantments a filter asks for come last (#25). */
     @Override
     public Component display() {
-        if (via.equals("anvil")) {
-            return item.isPresent()
-                ? Msg.tr("justquests.goal.enchant_anvil_count", count, item.get().name())
-                : Msg.tr(count == 1 ? "justquests.goal.enchant_anvil_one" : "justquests.goal.enchant_anvil_many", count);
-        }
-        return item.isPresent()
-            ? Msg.tr("justquests.goal.enchant_count", count, item.get().name())
-            : Msg.tr(count == 1 ? "justquests.goal.enchant_one" : "justquests.goal.enchant_many", count);
+        String key = via.equals("anvil") ? "justquests.goal.enchant_anvil" : "justquests.goal.enchant";
+        if (item.isEmpty()) return Msg.tr(count == 1 ? key + "_one" : key + "_many", count);
+        Optional<Component> enchants = item.get().enchantmentNames();
+        return enchants.isPresent()
+            ? Msg.tr(key + "_with_count", count, item.get().plainName(), enchants.get())
+            : Msg.tr(key + "_count", count, item.get().name());
+    }
+
+    @Override
+    public Component goal() {
+        String key = via.equals("anvil") ? "justquests.goal.enchant_anvil" : "justquests.goal.enchant";
+        if (item.isEmpty()) return Msg.tr(key + "_any");
+        Optional<Component> enchants = item.get().enchantmentNames();
+        return enchants.isPresent()
+            ? Msg.tr(key + "_with", item.get().plainName(), enchants.get())
+            : Msg.tr(key, item.get().name());
     }
 }

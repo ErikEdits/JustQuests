@@ -299,5 +299,15 @@
   "justquests.goal.enchant_anvil_one": "Enchant %s item at an anvil",
   "justquests.goal.enchant_anvil_many": "Enchant %s items at an anvil",
   "justquests.goal.enchant_anvil": "Enchant %s at an anvil",
-  "justquests.goal.enchant_anvil_any": "Enchant an item at an anvil"
+  "justquests.goal.enchant_anvil_any": "Enchant an item at an anvil",
+  "justquests.goal.with_extras": "%s (%s)",
+  "justquests.goal.named": "%s named \"%s\"",
+  "justquests.goal.potion_strong": "%s II",
+  "justquests.goal.potion_long": "%s (long)",
+  "justquests.goal.enchant_with": "Enchant %s with %s",
+  "justquests.goal.enchant_with_count": "Enchant %sx %s with %s",
+  "justquests.goal.enchant_anvil_with": "Enchant %s with %s at an anvil",
+  "justquests.goal.enchant_anvil_with_count": "Enchant %sx %s with %s at an anvil",
+  "justquests.goal.anvil_rename": "Rename %s to \"%s\"",
+  "justquests.goal.anvil_rename_count": "Rename %sx %s to \"%s\""
 }

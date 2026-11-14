@@ -299,5 +299,15 @@
   "justquests.goal.enchant_anvil_one": "Enchanter %s objet à l'enclume",
   "justquests.goal.enchant_anvil_many": "Enchanter %s objets à l'enclume",
   "justquests.goal.enchant_anvil": "Enchanter %s à l'enclume",
-  "justquests.goal.enchant_anvil_any": "Enchanter un objet à l'enclume"
+  "justquests.goal.enchant_anvil_any": "Enchanter un objet à l'enclume",
+  "justquests.goal.with_extras": "%s (%s)",
+  "justquests.goal.named": "%s nommé \"%s\"",
+  "justquests.goal.potion_strong": "%s II",
+  "justquests.goal.potion_long": "%s (longue)",
+  "justquests.goal.enchant_with": "Enchanter %s avec %s",
+  "justquests.goal.enchant_with_count": "Enchanter %sx %s avec %s",
+  "justquests.goal.enchant_anvil_with": "Enchanter %s avec %s à l'enclume",
+  "justquests.goal.enchant_anvil_with_count": "Enchanter %sx %s avec %s à l'enclume",
+  "justquests.goal.anvil_rename": "Renommer %s en \"%s\"",
+  "justquests.goal.anvil_rename_count": "Renommer %sx %s en \"%s\""
 }

@@ -299,5 +299,15 @@
   "justquests.goal.enchant_anvil_one": "Verzaubere %s Gegenstand am Amboss",
   "justquests.goal.enchant_anvil_many": "Verzaubere %s Gegenstände am Amboss",
   "justquests.goal.enchant_anvil": "Verzaubere %s am Amboss",
-  "justquests.goal.enchant_anvil_any": "Verzaubere einen Gegenstand am Amboss"
+  "justquests.goal.enchant_anvil_any": "Verzaubere einen Gegenstand am Amboss",
+  "justquests.goal.with_extras": "%s (%s)",
+  "justquests.goal.named": "%s namens \"%s\"",
+  "justquests.goal.potion_strong": "%s II",
+  "justquests.goal.potion_long": "%s (lang)",
+  "justquests.goal.enchant_with": "Verzaubere %s mit %s",
+  "justquests.goal.enchant_with_count": "Verzaubere %sx %s mit %s",
+  "justquests.goal.enchant_anvil_with": "Verzaubere %s am Amboss mit %s",
+  "justquests.goal.enchant_anvil_with_count": "Verzaubere %sx %s am Amboss mit %s",
+  "justquests.goal.anvil_rename": "Benenne %s in \"%s\" um",
+  "justquests.goal.anvil_rename_count": "Benenne %sx %s in \"%s\" um"
 }

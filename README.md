@@ -8,7 +8,7 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.5.2** — see the [changelog](CHANGELOG.md).
+Current version: **0.5.3** — see the [changelog](CHANGELOG.md).
 
 **Documentation:** the [wiki](https://github.com/ErikEdits/JustQuests/wiki) explains every command, quest
 field and setting, with examples.
@@ -231,7 +231,11 @@ the files - the first folder is the category. The same works for keys like `"min
 `mode` (`all` or `any`), `requires` (list of quest ids), `requires_min` (only this many of the
 `requires` quests must be done, e.g. any 12 of 16; the quest book shows "Needs 12 of 16 quests"),
 `repeatable`, `cooldown_hours`,
-`icon` (an item id for the quest book; taken from the first objective when left out),
+`icon` (an item id for the quest book; taken from the first objective when left out. It can carry
+properties the way `/give` writes them, for items whose look depends on one:
+`"minecraft:potion[minecraft:potion_contents={potion:\"minecraft:swiftness\"}]"`; before 1.20.5
+as NBT, `"minecraft:potion{Potion:\"minecraft:swiftness\"}"`. An item the creative inventory only
+lists as variants is shown as its first variant),
 `permission` (a permission node; only players with it see and take the quest, see below),
 `team` (`true`: a team quest, see below), `reset_on_death` (`true`: the progress goes back to zero
 when the player dies - for a team quest when any member dies; the quest book says so),

@@ -37,6 +37,29 @@ public interface ItemMatcher {
     /** The concrete items (a tag's members); use_item reads their "used" statistics. */
     List<Item> items();
 
+    /**
+     * The name without the enchantments a filter asks for (0.5.3, #25), so a goal line can put them
+     * where they read best: "Combine Diamond Sword with Enchanted Book (Sharpness I)".
+     */
+    default Component plainName() {
+        return name();
+    }
+
+    /** The item alone, without any words a filter adds ("Diamond Sword", "Potion of Swiftness"). */
+    default Component bareName() {
+        return name();
+    }
+
+    /** The enchantments a filter asks for, as "Sharpness I, Unbreaking III"; empty without. */
+    default Optional<Component> enchantmentNames() {
+        return Optional.empty();
+    }
+
+    /** The anvil name a filter asks for; empty without. */
+    default Optional<String> anvilName() {
+        return Optional.empty();
+    }
+
     /** "minecraft:oak_log", "#minecraft:logs", or {"id": ..., "enchantments" / "potion" / "name": ...}. */
     Codec<ItemMatcher> CODEC = Codec.either(Codec.STRING, Filtered.CODEC).xmap(
         either -> either.map(ItemMatcher::parse, filtered -> filtered),
@@ -133,21 +156,60 @@ public interface ItemMatcher {
             return sb.toString();
         }
 
+        /** "Diamond Sword named "Excalibur" (Sharpness II)", "Potion of Swiftness". */
         @Override
         public Component name() {
-            List<Component> extras = new ArrayList<>();
-            enchantments.forEach((id, level) -> extras.add(Component.translatable("enchantment." + ns(id).replace(':', '.'))
-                .append(" ").append(Component.translatable("enchantment.level." + level))));
-            potion.ifPresent(p -> extras.add(Component.literal(ns(p).substring(ns(p).indexOf(':') + 1).replace('_', ' '))));
-            customName.ifPresent(n -> extras.add(Component.literal("\"" + n + "\"")));
-            MutableComponent out = base.name().copy();
-            if (extras.isEmpty()) return out;
-            out.append(" (");
-            for (int i = 0; i < extras.size(); i++) {
-                if (i > 0) out.append(", ");
-                out.append(extras.get(i));
+            Optional<Component> enchants = enchantmentNames();
+            return enchants.isPresent() ? Msg.tr("justquests.goal.with_extras", plainName(), enchants.get()) : plainName();
+        }
+
+        @Override
+        public Component plainName() {
+            return customName.isPresent() ? Msg.tr("justquests.goal.named", bareName(), customName.get()) : bareName();
+        }
+
+        @Override
+        public Component bareName() {
+            return potion.isPresent() ? potionName(potion.get()) : base.name();
+        }
+
+        @Override
+        public Optional<Component> enchantmentNames() {
+            if (enchantments.isEmpty()) return Optional.empty();
+            MutableComponent out = Component.literal("");
+            boolean first = true;
+            for (Map.Entry<String, Integer> e : enchantments.entrySet()) {
+                if (!first) out.append(", ");
+                first = false;
+                out.append(Component.translatable("enchantment." + ns(e.getKey()).replace(':', '.')))
+                    .append(" ").append(Component.translatable("enchantment.level." + e.getValue()));
             }
-            return out.append(")");
+            return Optional.of(out);
+        }
+
+        @Override
+        public Optional<String> anvilName() {
+            return customName;
+        }
+
+        /**
+         * The game's own name for a potion, "Potion of Swiftness" ("Splash Potion of ...", "Arrow of
+         * ..." for those items); "strong_" adds II, "long_" (long).
+         */
+        private Component potionName(String id) {
+            String path = ns(id).substring(ns(id).indexOf(':') + 1);
+            boolean strong = path.startsWith("strong_");
+            boolean lasting = path.startsWith("long_");
+            String effect = strong ? path.substring(7) : lasting ? path.substring(5) : path;
+            String kind = "potion";
+            if (base instanceof Single s) {
+                String item = net.minecraft.core.Registry.ITEM.getKey(s.item()).getPath();
+                if (item.equals("splash_potion") || item.equals("lingering_potion") || item.equals("tipped_arrow")) kind = item;
+            }
+            Component name = Component.translatable("item.minecraft." + kind + ".effect." + effect);
+            if (strong) return Msg.tr("justquests.goal.potion_strong", name);
+            if (lasting) return Msg.tr("justquests.goal.potion_long", name);
+            return name;
         }
 
         @Override

@@ -3,6 +3,29 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.5.3] - 2026-11-14
+
+### Fixed
+- **Blank quest icons** (#26): items that only get their picture from a property, such as
+  Automobility's front attachments and automobiles, showed an empty icon. Now:
+  - `icon` can carry properties the way `/give` writes them, so a quest shows exactly the variant
+    it means: `"icon": "automobility:front_attachment[automobility:automobile_part=\"...\"]"`.
+    On versions before 1.20.5 the properties are NBT, as in `/give` there.
+  - An item the creative inventory lists only as variants, never plain, is shown as its first
+    variant. Such icons now have a picture without any change to the quests.
+  - The plugin shows the plain item for an icon with properties.
+
+### Changed
+- **Goal lines read naturally with every filter** (#25), in the mod and the plugin:
+  - Anvil: "Combine Diamond Sword with Enchanted Book (Sharpness I)": the enchantments the result
+    needs come last, behind the item that brings them, and are not said twice when `with` asks for
+    the same ones.
+  - Renaming at an anvil: "Rename Diamond Sword to "Excalibur"".
+  - `enchant_item`: "Enchant Diamond Pickaxe with Efficiency II" (at an anvil: "... at an anvil").
+  - A name filter reads "Diamond Sword named "Excalibur"".
+  - Potions use the game's own names: "Potion of Swiftness II", "Splash Potion of Healing" instead
+    of "Potion (strong swiftness)".
+
 ## [0.5.2] - 2026-11-13
 
 ### Added

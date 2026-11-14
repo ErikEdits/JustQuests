@@ -299,5 +299,15 @@
   "justquests.goal.enchant_anvil_one": "Encanta %s objeto en un yunque",
   "justquests.goal.enchant_anvil_many": "Encanta %s objetos en un yunque",
   "justquests.goal.enchant_anvil": "Encanta %s en un yunque",
-  "justquests.goal.enchant_anvil_any": "Encanta un objeto en un yunque"
+  "justquests.goal.enchant_anvil_any": "Encanta un objeto en un yunque",
+  "justquests.goal.with_extras": "%s (%s)",
+  "justquests.goal.named": "%s llamado \"%s\"",
+  "justquests.goal.potion_strong": "%s II",
+  "justquests.goal.potion_long": "%s (larga)",
+  "justquests.goal.enchant_with": "Encanta %s con %s",
+  "justquests.goal.enchant_with_count": "Encanta %sx %s con %s",
+  "justquests.goal.enchant_anvil_with": "Encanta %s con %s en un yunque",
+  "justquests.goal.enchant_anvil_with_count": "Encanta %sx %s con %s en un yunque",
+  "justquests.goal.anvil_rename": "Renombra %s a \"%s\"",
+  "justquests.goal.anvil_rename_count": "Renombra %sx %s a \"%s\""
 }

@@ -166,8 +166,11 @@ public sealed interface Objective {
         }
         public BaseComponent display(String lang) {
             String key = via.equals("anvil") ? "justquests.goal.enchant_anvil" : "justquests.goal.enchant";
-            if (item != null) return goal(lang, key + "_count", count, item.name(lang));
-            return Text.tr(lang, count == 1 ? key + "_one" : key + "_many", count);
+            if (item == null) return Text.tr(lang, count == 1 ? key + "_one" : key + "_many", count);
+            // the enchantments a filter asks for come last (0.5.3, #25)
+            BaseComponent enchants = item.enchantmentNames(lang);
+            if (enchants != null) return Text.tr(lang, key + "_with_count", count, item.plainName(lang), enchants);
+            return goal(lang, key + "_count", count, item.name(lang));
         }
         public Material icon() { return item != null ? item.icon() : via.equals("anvil") ? Material.ANVIL : Material.ENCHANTING_TABLE; }
         public boolean table() { return !via.equals("anvil"); }
@@ -194,7 +197,23 @@ public sealed interface Objective {
             return "Anvil " + count + "x " + (item == null ? "any item" : item.label()) + (with == null ? "" : " with " + with.label());
         }
         public BaseComponent display(String lang) {
-            if (item != null && with != null) return Text.tr(lang, "justquests.goal.anvil_combine_count", count, item.name(lang), with.name(lang));
+            if (item != null && with != null) {
+                // the enchantments the result needs go behind the item that brings them (0.5.3, #25)
+                BaseComponent needed = item.enchantmentNames(lang);
+                BaseComponent own = with.enchantmentNames(lang);
+                BaseComponent first = item.name(lang);
+                BaseComponent second = with.name(lang);
+                if (needed != null && own == null) {
+                    first = item.plainName(lang);
+                    second = Text.tr(lang, "justquests.goal.with_extras", with.plainName(lang), needed);
+                } else if (needed != null && needed.toPlainText().equals(own.toPlainText())) {
+                    first = item.plainName(lang);
+                }
+                return Text.tr(lang, "justquests.goal.anvil_combine_count", count, first, second);
+            }
+            if (item != null && item.anvilName() != null && item.enchantmentNames(lang) == null) {
+                return Text.tr(lang, "justquests.goal.anvil_rename_count", count, item.bareName(lang), item.anvilName());
+            }
             if (item != null) return goal(lang, "justquests.goal.anvil_make_count", count, item.name(lang));
             if (with != null) return goal(lang, "justquests.goal.anvil_with_count", count, with.name(lang));
             return Text.tr(lang, count == 1 ? "justquests.goal.anvil_one" : "justquests.goal.anvil_many", count);

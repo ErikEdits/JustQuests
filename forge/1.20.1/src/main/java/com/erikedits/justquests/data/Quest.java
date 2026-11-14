@@ -12,7 +12,7 @@ import java.util.Optional;
 public record Quest(LocalizedText title, LocalizedText description, String category, QuestMode mode,
                     List<ResourceLocation> requires, boolean repeatable, Optional<Integer> cooldownHours,
                     int sort, List<QuestObjective> objectives, List<QuestReward> rewards,
-                    Optional<ResourceLocation> icon, Optional<String> permission, boolean team,
+                    Optional<String> icon, Optional<String> permission, boolean team,
                     Optional<Integer> requiresMin, boolean resetOnDeath, boolean autoAccept, List<String> groups,
                     List<LocalizedText> labels) {
     public static final Codec<Quest> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -30,8 +30,9 @@ public record Quest(LocalizedText title, LocalizedText description, String categ
         // each objective may name a "group": the objectives of one group are alternatives, one of them is enough
         Goal.CODEC.listOf().fieldOf("objectives").forGetter(Quest::goals),
         QuestReward.CODEC.listOf().fieldOf("rewards").forGetter(Quest::rewards),
-        // item shown in the quest book and the HUD; picked from the first objective when absent
-        ResourceLocation.CODEC.optionalFieldOf("icon").forGetter(Quest::icon),
+        // item shown in the quest book and the HUD; picked from the first objective when absent. An item
+        // id, or one with properties the way /give writes them (0.5.3, #26), read by the client
+        Codec.STRING.optionalFieldOf("icon").forGetter(Quest::icon),
         // permission node needed to see and take the quest (LuckPerms etc.; operators by default)
         Codec.STRING.optionalFieldOf("permission").forGetter(Quest::permission),
         // a quest for a whole team: every member's actions count, every member claims the rewards

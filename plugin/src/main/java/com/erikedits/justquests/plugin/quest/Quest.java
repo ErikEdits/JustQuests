@@ -72,7 +72,10 @@ public record Quest(String id, LocalizedText title, LocalizedText description, S
         }
         Material icon = null;
         if (o.has("icon")) {
-            icon = Registry.MATERIAL.get(Matchers.key(o.get("icon").getAsString()));
+            // an icon with properties the way /give writes them (0.5.3, #26): the chest menu shows the plain item
+            String text = o.get("icon").getAsString().trim();
+            int cut = text.indexOf('[') >= 0 ? text.indexOf('[') : text.indexOf('{');
+            icon = Registry.MATERIAL.get(Matchers.key(cut >= 0 ? text.substring(0, cut) : text));
             if (icon != null && !icon.isItem()) icon = null;
         }
         boolean team = o.has("team") && o.get("team").getAsBoolean();

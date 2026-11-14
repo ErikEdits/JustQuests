@@ -48,9 +48,34 @@ public record AnvilItemObjective(Optional<ItemMatcher> item, Optional<ItemMatche
             + with.map(w -> " with " + w.label()).orElse("");
     }
 
+    /**
+     * The two names of a combine line (#25): the enchantments the result needs go to the end, behind
+     * the item that brings them ("Combine Diamond Sword with Enchanted Book (Sharpness I)"). When
+     * "with" asks for enchantments itself, they stay with it, and the same ones are not said twice.
+     */
+    private Component[] combineNames() {
+        ItemMatcher result = item.get();
+        ItemMatcher right = with.get();
+        Optional<Component> needed = result.enchantmentNames();
+        if (needed.isEmpty()) return new Component[] {result.name(), right.name()};
+        Optional<Component> own = right.enchantmentNames();
+        if (own.isEmpty()) return new Component[] {result.plainName(), Msg.tr("justquests.goal.with_extras", right.plainName(), needed.get())};
+        if (own.get().getString().equals(needed.get().getString())) return new Component[] {result.plainName(), right.name()};
+        return new Component[] {result.name(), right.name()};
+    }
+
+    /** Only an anvil name is asked for: "Rename Diamond Sword to "Excalibur"". */
+    private boolean renaming() {
+        return item.isPresent() && with.isEmpty() && item.get().anvilName().isPresent() && item.get().enchantmentNames().isEmpty();
+    }
+
     @Override
     public Component display() {
-        if (item.isPresent() && with.isPresent()) return Msg.tr("justquests.goal.anvil_combine_count", count, item.get().name(), with.get().name());
+        if (item.isPresent() && with.isPresent()) {
+            Component[] names = combineNames();
+            return Msg.tr("justquests.goal.anvil_combine_count", count, names[0], names[1]);
+        }
+        if (renaming()) return Msg.tr("justquests.goal.anvil_rename_count", count, item.get().bareName(), item.get().anvilName().get());
         if (item.isPresent()) return Msg.tr("justquests.goal.anvil_make_count", count, item.get().name());
         if (with.isPresent()) return Msg.tr("justquests.goal.anvil_with_count", count, with.get().name());
         return Msg.tr(count == 1 ? "justquests.goal.anvil_one" : "justquests.goal.anvil_many", count);
@@ -58,7 +83,11 @@ public record AnvilItemObjective(Optional<ItemMatcher> item, Optional<ItemMatche
 
     @Override
     public Component goal() {
-        if (item.isPresent() && with.isPresent()) return Msg.tr("justquests.goal.anvil_combine", item.get().name(), with.get().name());
+        if (item.isPresent() && with.isPresent()) {
+            Component[] names = combineNames();
+            return Msg.tr("justquests.goal.anvil_combine", names[0], names[1]);
+        }
+        if (renaming()) return Msg.tr("justquests.goal.anvil_rename", item.get().bareName(), item.get().anvilName().get());
         if (item.isPresent()) return Msg.tr("justquests.goal.anvil_make", item.get().name());
         if (with.isPresent()) return Msg.tr("justquests.goal.anvil_with", with.get().name());
         return Msg.tr("justquests.goal.anvil_any");

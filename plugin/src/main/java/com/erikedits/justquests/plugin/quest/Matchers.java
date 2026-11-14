@@ -64,6 +64,26 @@ public final class Matchers {
         /** An item to show for it in the quest book. */
         Material icon();
 
+        /** The name without the enchantments a filter asks for (0.5.3, #25). */
+        default BaseComponent plainName(String lang) {
+            return name(lang);
+        }
+
+        /** The item alone, without any words a filter adds. */
+        default BaseComponent bareName(String lang) {
+            return name(lang);
+        }
+
+        /** The enchantments a filter asks for, as "Sharpness I, Unbreaking III"; null without. */
+        default BaseComponent enchantmentNames(String lang) {
+            return null;
+        }
+
+        /** The anvil name a filter asks for; null without. */
+        default String anvilName() {
+            return null;
+        }
+
         static ItemMatcher parse(JsonElement e) {
             if (e != null && e.isJsonObject()) return Filtered.parse(e.getAsJsonObject());
             if (e == null || !e.isJsonPrimitive()) throw new IllegalArgumentException("item must be an id, a #tag or an object");
@@ -204,29 +224,56 @@ public final class Matchers {
             return sb.toString();
         }
 
+        /** "Diamond Sword named "Excalibur" (Sharpness II)", "Potion of Swiftness", as in the mod. */
         @Override
         public BaseComponent name(String lang) {
-            List<BaseComponent> extras = new ArrayList<>();
-            enchantments.forEach((id, level) -> {
-                Enchantment e = Registry.ENCHANTMENT.get(key(id));
-                TextComponent part = new TextComponent("");
-                part.addExtra(e != null ? Text.enchantment(e) : new TextComponent(id));
-                part.addExtra(" ");
-                part.addExtra(new TranslatableComponent("enchantment.level." + level));
-                extras.add(part);
-            });
-            if (potion != null) extras.add(new TextComponent(Text.pretty(potion.substring(potion.indexOf(':') + 1))));
-            if (customName != null) extras.add(new TextComponent("\"" + customName + "\""));
+            BaseComponent enchants = enchantmentNames(lang);
+            return enchants != null ? Text.tr(lang, "justquests.goal.with_extras", plainName(lang), enchants) : plainName(lang);
+        }
+
+        @Override
+        public BaseComponent plainName(String lang) {
+            return customName != null ? Text.tr(lang, "justquests.goal.named", bareName(lang), customName) : bareName(lang);
+        }
+
+        @Override
+        public BaseComponent bareName(String lang) {
+            return potion != null ? potionName(lang) : base.name(lang);
+        }
+
+        @Override
+        public BaseComponent enchantmentNames(String lang) {
+            if (enchantments.isEmpty()) return null;
             TextComponent out = new TextComponent("");
-            out.addExtra(base.name(lang));
-            if (extras.isEmpty()) return out;
-            out.addExtra(" (");
-            for (int i = 0; i < extras.size(); i++) {
-                if (i > 0) out.addExtra(", ");
-                out.addExtra(extras.get(i));
+            boolean first = true;
+            for (Map.Entry<String, Integer> en : enchantments.entrySet()) {
+                if (!first) out.addExtra(", ");
+                first = false;
+                Enchantment e = Registry.ENCHANTMENT.get(key(en.getKey()));
+                out.addExtra(e != null ? Text.enchantment(e) : new TextComponent(en.getKey()));
+                out.addExtra(" ");
+                out.addExtra(new TranslatableComponent("enchantment.level." + en.getValue()));
             }
-            out.addExtra(")");
             return out;
+        }
+
+        @Override
+        public String anvilName() {
+            return customName;
+        }
+
+        /** The game's own name for the potion ("Potion of Swiftness"); "strong_" adds II, "long_" (long). */
+        private BaseComponent potionName(String lang) {
+            String path = potion.substring(potion.indexOf(':') + 1);
+            boolean strong = path.startsWith("strong_");
+            boolean lasting = path.startsWith("long_");
+            String effect = strong ? path.substring(7) : lasting ? path.substring(5) : path;
+            String item = base.icon() == null ? "potion" : base.icon().name().toLowerCase(Locale.ROOT);
+            String kind = item.equals("splash_potion") || item.equals("lingering_potion") || item.equals("tipped_arrow") ? item : "potion";
+            BaseComponent name = new TranslatableComponent("item.minecraft." + kind + ".effect." + effect);
+            if (strong) return Text.tr(lang, "justquests.goal.potion_strong", name);
+            if (lasting) return Text.tr(lang, "justquests.goal.potion_long", name);
+            return name;
         }
 
         @Override
