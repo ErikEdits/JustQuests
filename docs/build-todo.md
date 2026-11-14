@@ -46,11 +46,80 @@ community until we are ready for the GUI.
 | 0.3.3 | Block/mob tags, stonecutter counts as crafting, generator uses enchant/use/potions/tags | ✅ shipped |
 | 0.3.4 | HUD tracker, quest book grouped by category/status, pixel icons, stats page | ✅ shipped |
 | 0.3.5 | MC 1.21.11 (NeoForge + Fabric, 36 builds), book search, pin quests to the HUD, mouse wheel | ✅ done |
-| 0.4.0 | Translations (EN, DE, JA, FR, ES), claim button, choice rewards, permissions, more generator profiles, MC 26.x, Spigot/Paper plugin | 🚧 in progress |
+| **0.4.0** | **Translations (EN, DE, JA, FR, ES), claim button, choice rewards, permissions, more generator profiles, MC 26.x, Spigot/Paper plugin** | ✅ shipped |
+| 0.4.1 | Settings for every world (`config/justquests.json`), datapack folders are categories | ✅ shipped |
+| 0.4.2 | `requires_min`, `reset_on_death`, `distinct` | ✅ shipped |
+| 0.4.3 | Fixes | ✅ shipped |
+| 0.4.4 | Alternative objectives (`group`), unlocked quests start by themselves, accept all, fold groups | ✅ shipped |
+| 0.4.5 | `have_item`, `label` on objectives | ✅ shipped |
+| 0.4.6 | Addon support (`QuestObjective.register`), Create addon | ✅ shipped |
+| 0.4.7 | Fixes (combat icon, modded dimension names) | ✅ shipped |
+| 0.4.8 | Required quests are links | ✅ shipped |
+| **0.5.0** | **Resource packs restyle JustQuests, popups, sounds, fonts** (beta) | ✅ shipped |
+| 0.5.1 | Auto-accept on the first join, popups and tracker dodge minimaps, place the popups anywhere | ✅ shipped |
+| 0.5.2 | `anvil_item`, `grindstone_item`, `enchant_item` `via`, crafting at more workstations | ✅ shipped |
+| 0.5.3 | Icons with properties, natural goal lines | ✅ shipped |
+| **0.6.0** | **The big update:** new objectives, Farmer's Delight built in, daily quests, badges, community goals and more (see below) | 🚧 in progress |
 
 Each 0.1.x release is a Modrinth update, which puts the mod back in
 "recently updated" and funnels new players to the Discord — so a steady
 drip of small, useful releases *is* the growth plan, not a detour from it.
+
+## 0.6.0 — the big update (in progress)
+
+Everything that is being worked on for 0.6.0. The list grows while it is built; the
+[CHANGELOG](../CHANGELOG.md) has what is finished.
+
+**Fixes and polish (code audit of 0.5.x)**
+- Popups waiting from one world or server no longer show up in the next one; on NeoForge and
+  Forge the next world's quests no longer come up as "new quest" popups.
+- NeoForge and Forge: JustQuests no longer has to be on both sides (players with it can join
+  servers without it, players without it can join servers with it).
+- Big quest lists are packed for servers; broken custom quests are skipped with a log line.
+- Resource packs: animated tiles and frames, more colours, tracker and popup fixes.
+- The tracker never covers more than part of the screen.
+
+**New objectives**
+- `submit_item` (hand items in), `fish_item`, `trade_villager`, `brew_potion`
+- Statistic goals (play time, distance walked, flown, swum, jumps ...)
+- `interact_entity` (ride, shear, talk to ...), `use_block` (ring a bell, open a chest ...)
+- `find_structure` (structures and biomes)
+
+**Farmer's Delight built in (#22)**
+- `cut_item` (cutting board) and `cook_item` (cooking pot, skillet, stove, feast servings)
+- A rich soil goal; cooking pot meals and cutting board results also count for `craft_item`
+- Generated quests for cutting and cooking when Farmer's Delight is installed
+
+**Quests and progress**
+- Daily and weekly quests (a new set from a pool every day or week)
+- Secret quests (hidden until unlocked)
+- Conditions written into a quest: only at night, in the rain, in a biome or dimension, with an
+  item in hand
+- Chapter rewards (finish every quest of a category)
+- Badges, with optional Discord roles on the JustQuests Discord (opt-in)
+
+**Playing together**
+- Community goals for the whole server
+- Leaderboards and a team view in the quest book
+- Sharing quests with other players (when the quest allows it)
+
+**Writing quests**
+- Import from FTB Quests and BetterQuesting (Heracles)
+- Quick-create a quest from the item in hand
+- Pictures in quest text
+
+**Quest generator**
+- Quest chains with story text, quests that fit the player's progress, biome and structure quests
+
+**Integrations and server**
+- JEI, REI and EMI: "needed for quest X" and a click from the book to the recipe
+- Export and import of player progress
+- Seasonal events: seasonal quests switch on by date, and the chat asks if you want to switch to
+  the seasonal look
+- The server plugin catches up with the mod; docs and wiki updated; tested on more versions
+
+**After 0.6.0**
+- More mods built in, one or a few per version
 
 ---
 
