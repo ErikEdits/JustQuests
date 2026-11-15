@@ -295,12 +295,24 @@ public final class QuestListener implements Listener {
         org.bukkit.inventory.MerchantRecipe recipe = mi.getSelectedRecipe();
         if (recipe == null) return;
         ItemStack bought = recipe.getResult();
-        String who = mi.getMerchant() instanceof org.bukkit.entity.Villager v ? com.erikedits.justquests.plugin.compat.Compat.key(v.getProfession()).toString()
-            : mi.getMerchant() instanceof org.bukkit.entity.Entity ent ? com.erikedits.justquests.plugin.compat.Compat.entityKey(ent.getType()) : "";
+        String who = trader(mi);
         progress().advance(player, kind(bought.getType()), o -> {
             if (!(o instanceof Objective.Trade t) || !t.accepts(bought, who)) return 0;
             return (t.item() != null ? bought.getAmount() : 1) * trades;
         });
+    }
+
+    /**
+     * Who the trade screen belongs to: the villager's profession ("minecraft:farmer") or the mob's id
+     * ("minecraft:wandering_trader"). Paper hands out a wrapper as the inventory's merchant, so the
+     * villager comes from the inventory's holder first.
+     */
+    private static String trader(org.bukkit.inventory.MerchantInventory mi) {
+        Object owner = mi.getHolder();
+        if (!(owner instanceof org.bukkit.entity.Entity)) owner = mi.getMerchant();
+        if (owner instanceof org.bukkit.entity.Villager v) return com.erikedits.justquests.plugin.compat.Compat.key(v.getProfession()).toString();
+        if (owner instanceof org.bukkit.entity.Entity ent) return com.erikedits.justquests.plugin.compat.Compat.key(ent.getType()).toString();
+        return "";
     }
 
     /** brew_potion: a potion taken out of one of the brewing stand's three bottle slots (checked a tick later). */
@@ -327,7 +339,7 @@ public final class QuestListener implements Listener {
         if (again(player, e.getRightClicked().getUniqueId())) return;
         org.bukkit.entity.EntityType type = e.getRightClicked().getType();
         ItemStack held = player.getInventory().getItemInMainHand();
-        progress().advance(player, com.erikedits.justquests.plugin.compat.Compat.entityKey(type),
+        progress().advance(player, kind(type),
             o -> o instanceof Objective.Interact i && i.accepts(type, held) ? 1 : 0);
     }
 
