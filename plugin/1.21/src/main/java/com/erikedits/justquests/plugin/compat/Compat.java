@@ -73,7 +73,8 @@ public final class Compat {
         java.util.List<String[]> out = new java.util.ArrayList<>();
         for (org.bukkit.generator.structure.GeneratedStructure s : l.getChunk().getStructures()) {
             for (org.bukkit.generator.structure.StructurePiece piece : s.getPieces()) {
-                if (piece.getBoundingBox().contains(l.getX(), l.getY(), l.getZ())) {
+                // at most 4 blocks from a piece counts (on its road, on a roof)
+                if (piece.getBoundingBox().clone().expand(4).contains(l.getX(), l.getY(), l.getZ())) {
                     org.bukkit.util.BoundingBox all = s.getBoundingBox();
                     out.add(new String[] {key(s.getStructure()).toString(), (int) all.getMinX() + "," + (int) all.getMinZ()});
                     break;

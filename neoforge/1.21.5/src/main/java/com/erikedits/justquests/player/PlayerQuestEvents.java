@@ -107,6 +107,8 @@ public class PlayerQuestEvents {
         if (event.isCanceled()) return; // placement blocked (protection/claims)
         if (event.getEntity() instanceof ServerPlayer player) {
             Block block = event.getPlacedBlock().getBlock();
+            // Farmer's Delight: organic compost is watched until it turns into rich soil
+            com.erikedits.justquests.progress.FarmersDelight.placed(player, event.getPos(), block);
             QuestProgressService.advance(player, QuestProgressService.kind(block), obj ->
                 (obj instanceof PlaceBlockObjective p && p.matches(block)) ? 1 : 0);
         }

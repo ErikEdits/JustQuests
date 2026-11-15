@@ -98,6 +98,8 @@ public final class GoalEvents {
 
     /** use_block: a right-click on a block with the main hand. */
     public static void usedBlock(ServerPlayer player, BlockPos pos, Block block, ItemStack held) {
+        // Farmer's Delight: every click counts (a cutting board cuts one item per click)
+        FarmersDelight.clicked(player, pos, block, held);
         if (again(player, pos.immutable())) return;
         QuestProgressService.advance(player, QuestProgressService.kind(block), obj ->
             obj instanceof UseBlockObjective u && u.accepts(block, held) ? 1 : 0);
@@ -116,7 +118,19 @@ public final class GoalEvents {
      * find_structure and find_biome, once a second while an active quest asks for one: where the
      * player stands. A structure counts by its id and where it starts, so three villages are three.
      */
+    /** Logged once: looking where a player stands went wrong (a structure of another mod, say). */
+    private static boolean WHERE_FAILED;
+
     static void where(ServerPlayer player, boolean structures, boolean biomes) {
+        try {
+            look(player, structures, biomes);
+        } catch (RuntimeException e) {
+            if (!WHERE_FAILED) com.erikedits.justquests.JustQuests.LOG.warn("find_structure/find_biome: could not look where {} stands", player.getName().getString(), e);
+            WHERE_FAILED = true;
+        }
+    }
+
+    private static void look(ServerPlayer player, boolean structures, boolean biomes) {
         ServerLevel level = (ServerLevel) player.level;
         BlockPos pos = player.blockPosition();
         if (biomes) {
@@ -130,8 +144,9 @@ public final class GoalEvents {
         if (structures) {
             Registry<Structure> registry = level.registryAccess().registryOrThrow(Registry.STRUCTURE_REGISTRY);
             for (Structure structure : level.structureManager().getAllStructuresAt(pos).keySet()) {
-                StructureStart start = level.structureManager().getStructureWithPieceAt(pos, structure);
-                if (start == null || !start.isValid()) continue;
+                // inside the structure's area and near one of its pieces
+                StructureStart start = level.structureManager().getStructureAt(pos, structure);
+                if (start == null || !start.isValid() || !near(start, pos)) continue;
                 ResourceLocation id = registry.getKey(structure);
                 if (id == null) continue;
                 Holder<Structure> holder = registry.getResourceKey(structure).flatMap(registry::getHolder).orElse(null);
@@ -141,6 +156,14 @@ public final class GoalEvents {
                     obj instanceof FindStructureObjective f && f.accepts(holder, id) ? 1 : 0);
             }
         }
+    }
+
+    /** Whether the position is at most 4 blocks from a piece of the structure (on its road, on a roof). */
+    private static boolean near(StructureStart start, BlockPos pos) {
+        for (net.minecraft.world.level.levelgen.structure.StructurePiece piece : start.getPieces()) {
+            if (piece.getBoundingBox().inflatedBy(4).isInside(pos)) return true;
+        }
+        return false;
     }
 
     /** Whether an objective is looked for by {@link #where}. */

@@ -18,6 +18,8 @@ public class BlockItemPlaceMixin {
         if (cir.getReturnValue().consumesAction() && context.getPlayer() instanceof ServerPlayer player) {
             BlockItem self = (BlockItem) (Object) this;
             FabricQuestHooks.onBlockPlace(player, self.getBlock());
+            // Farmer's Delight: organic compost is watched until it turns into rich soil
+            com.erikedits.justquests.progress.FarmersDelight.placed(player, context.getClickedPos(), self.getBlock());
         }
     }
 }

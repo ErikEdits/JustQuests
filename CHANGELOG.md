@@ -62,6 +62,39 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
   removes it again. Server owners can turn it off with `"discordLink": false`. Badges of a quest pack
   (with `"discord": true` and a `justquests/pack.json`) are sent to the Discord owner once for approval,
   also when they are added while the game runs (`/quest reload` or a changed `custom-quests.json`).
+- **Nine new objective types** (mod and plugin):
+  - `submit_item`: hand items in; they leave the inventory. The quest page has a "Hand in" link under
+    the goal, `/quest progress` a `[Hand in]` button (also for players without the mod), and the plugin's
+    quest menu takes a click on the goal. `/quest submit [quest]` does the same. Part of the items can be
+    handed in now and the rest later.
+  - `fish_item`: catch things with a fishing rod; `item` (optional) checks the catch.
+  - `trade_villager`: trade with a villager or the wandering trader. `item` (what you get; then the items
+    count) and `profession` (`minecraft:librarian`, `minecraft:wandering_trader`, ...) are optional.
+  - `brew_potion`: take potions out of a brewing stand. `potion` (`minecraft:swiftness` also counts its
+    long and strong forms) and `item` (a splash potion, for example) are optional.
+  - `stat`: raise a statistic of the statistics screen (`minecraft:jump`, `minecraft:walk_one_cm`,
+    `minecraft:play_time`, `minecraft:sleep_in_bed`, ...). Only what happens after taking the quest
+    counts; distances count in blocks and times in minutes.
+  - `interact_entity`: right-click a mob (shear a sheep, milk a cow), optionally holding an `item`.
+  - `use_block`: right-click a block (ring a bell, open a chest), optionally holding an `item`.
+  - `find_structure` and `find_biome`: stand in a structure or biome, by id or `#tag`
+    (`#minecraft:village`, `#minecraft:is_forest`). A structure counts within its area and at most 4
+    blocks from one of its parts (a village's road, a roof). With a `count` above 1 each must be a
+    different one: three villages, ten biomes.
+- **Farmer's Delight built in** (#22): with Farmer's Delight installed (NeoForge, Forge, or Farmer's
+  Delight Refabricated on Fabric), three more objective types count; without it they simply never do.
+  - `cut_item`: cut items on a cutting board; `item` (what is cut) and `tool` (a knife, an axe, shears)
+    are optional. What the board makes also counts for `craft_item`.
+  - `cook_item`: cook meals; `item` and `via` are optional. `via` is `cooking_pot` (taken out of the pot's
+    window or served into a bowl), `skillet` (placed or in the hand), `stove` or `feast` (a serving taken
+    from a feast). Cooking pot meals also count for `craft_item`. The player who put the food on a stove
+    or skillet gets the credit when it is done.
+  - `rich_soil`: organic compost the player put down turns into rich soil.
+- **More quest files:** besides `custom-quests.json`, every `.json` in `<world>/justquests/quests/` is read,
+  in sub-folders too and with any name, so big quest lists can be split up. A file written like
+  `custom-quests.json` can hold many quests (and `badges`/`pack`); a file that is a single quest gets its
+  path as id (`quests/mining/iron.json` is `justquests:mining/iron`). They reload by themselves when
+  saved. The plugin reads `plugins/JustQuests/quests/` the same way (single-quest files kept working).
 - Resource packs can set the colours that were fixed: `search_text`, `search_hint`, `radio`,
   `radio_border`, `radio_dot`, `scrollbar_track`, `scrollbar_thumb` and `separator` in
   `quest_book/settings.json`.

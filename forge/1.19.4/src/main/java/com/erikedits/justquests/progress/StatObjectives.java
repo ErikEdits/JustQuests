@@ -50,6 +50,7 @@ public final class StatObjectives {
     /** Every server tick, per player. */
     public static void tick(ServerPlayer player) {
         Workstations.tick(player);
+        FarmersDelight.tick(player);   // #22: what its blocks did, cooking, rich soil
         GoalEvents.pollTrades(player);   // trade_villager: no trade event on this Forge
         boolean enchanting = player.containerMenu instanceof EnchantmentMenu;
         boolean cutting = player.containerMenu instanceof StonecutterMenu
@@ -73,8 +74,10 @@ public final class StatObjectives {
                 for (QuestObjective obj : quest.objectives()) {
                     if (obj instanceof EnchantItemObjective e && e.table()) watched.add(ENCHANT);
                     else if (obj instanceof UseItemObjective u) watched.addAll(u.item().items());
-                    else if (obj instanceof com.erikedits.justquests.data.objective.StatObjective st
-                        && net.minecraft.core.registries.BuiltInRegistries.CUSTOM_STAT.containsKey(st.stat())) watched.add(new Custom(st.stat(), st.unit()));
+                    else if (obj instanceof com.erikedits.justquests.data.objective.StatObjective st) {
+                        net.minecraft.resources.ResourceLocation own = registered(st.stat());
+                        if (own != null) watched.add(new Custom(own, st.unit()));
+                    }
                     else if (GoalEvents.structure(obj)) structures = true;
                     else if (GoalEvents.biome(obj)) biomes = true;
                     else if (cutting && obj instanceof CraftItemObjective c) {
@@ -135,10 +138,22 @@ public final class StatObjectives {
         }
     }
 
+    /** The game's own objects of the custom statistics, by id (a statistic is found by its object, not its id). */
+    private static final Map<net.minecraft.resources.ResourceLocation, net.minecraft.resources.ResourceLocation> REGISTERED = new HashMap<>();
+
+    /** The game's own object of a custom statistic id, or null when there is no such statistic. */
+    private static net.minecraft.resources.ResourceLocation registered(net.minecraft.resources.ResourceLocation id) {
+        if (REGISTERED.isEmpty()) {
+            for (net.minecraft.resources.ResourceLocation own : net.minecraft.core.registries.BuiltInRegistries.CUSTOM_STAT) REGISTERED.put(own, own);
+        }
+        return REGISTERED.get(id);
+    }
+
     /** Server stop. */
     public static void clear() {
         SEEN.clear();
         Workstations.clear();
         GoalEvents.clear();
+        FarmersDelight.clear();
     }
 }

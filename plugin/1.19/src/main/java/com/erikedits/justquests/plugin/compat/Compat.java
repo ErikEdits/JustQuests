@@ -102,7 +102,8 @@ public final class Compat {
             for (Object s : (java.util.Collection<?>) list) {
                 for (Object piece : (java.util.Collection<?>) generated.getMethod("getPieces").invoke(s)) {
                     org.bukkit.util.BoundingBox box = (org.bukkit.util.BoundingBox) pieceClass.getMethod("getBoundingBox").invoke(piece);
-                    if (!box.contains(l.getX(), l.getY(), l.getZ())) continue;
+                    // at most 4 blocks from a piece counts (on its road, on a roof)
+                    if (!box.clone().expand(4).contains(l.getX(), l.getY(), l.getZ())) continue;
                     Keyed structure = (Keyed) generated.getMethod("getStructure").invoke(s);
                     org.bukkit.util.BoundingBox all = (org.bukkit.util.BoundingBox) generated.getMethod("getBoundingBox").invoke(s);
                     out.add(new String[] {key(structure).toString(), (int) all.getMinX() + "," + (int) all.getMinZ()});

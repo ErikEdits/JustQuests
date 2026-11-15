@@ -116,6 +116,14 @@ public final class QuestIcons {
         }
         if (o instanceof com.erikedits.justquests.data.objective.FindStructureObjective) return Items.FILLED_MAP;
         if (o instanceof com.erikedits.justquests.data.objective.FindBiomeObjective) return Items.OAK_SAPLING;
+        // Farmer's Delight (#22): its own items when it is installed
+        if (o instanceof com.erikedits.justquests.data.objective.CutItemObjective c) {
+            return c.item().map(QuestIcons::first).orElse(modItem("farmersdelight:cutting_board", Items.IRON_AXE));
+        }
+        if (o instanceof com.erikedits.justquests.data.objective.CookItemObjective c) {
+            return c.item().map(QuestIcons::first).orElse(modItem("farmersdelight:cooking_pot", Items.BOWL));
+        }
+        if (o instanceof com.erikedits.justquests.data.objective.RichSoilObjective) return modItem("farmersdelight:rich_soil", Items.DIRT);
         return o.icon();
     }
 
@@ -142,6 +150,12 @@ public final class QuestIcons {
             case "raid_win", "raid_trigger" -> Items.CROSSBOW;
             default -> Items.PAPER;
         };
+    }
+
+    /** An item of another mod by id, else the fallback. */
+    private static Item modItem(String id, Item fallback) {
+        Identifier rl = Identifier.tryParse(id);
+        return rl == null ? fallback : BuiltInRegistries.ITEM.getOptional(rl).orElse(fallback);
     }
 
     private static Item first(ItemMatcher m) {

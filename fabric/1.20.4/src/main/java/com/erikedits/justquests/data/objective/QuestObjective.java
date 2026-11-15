@@ -62,6 +62,10 @@ public interface QuestObjective {
             case UseBlockObjective.TYPE_ID -> UseBlockObjective.MAP_CODEC;
             case FindStructureObjective.TYPE_ID -> FindStructureObjective.MAP_CODEC;
             case FindBiomeObjective.TYPE_ID -> FindBiomeObjective.MAP_CODEC;
+            // Farmer's Delight (#22, 0.6.0)
+            case CutItemObjective.TYPE_ID -> CutItemObjective.MAP_CODEC;
+            case CookItemObjective.TYPE_ID -> CookItemObjective.MAP_CODEC;
+            case RichSoilObjective.TYPE_ID -> RichSoilObjective.MAP_CODEC;
             default -> {
                 MapCodec<? extends QuestObjective> added = ADDED.get(type);
                 if (added == null) throw new IllegalStateException("Unknown objective type: " + type + " (does it need an addon?)");
