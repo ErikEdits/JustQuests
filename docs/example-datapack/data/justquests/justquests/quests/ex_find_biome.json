@@ -1,0 +1,19 @@
+{
+  "title": "Example: find_biome",
+  "description": "Visit 3 different biomes of the overworld.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:find_biome",
+      "biome": "#minecraft:is_overworld",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:map",
+      "count": 1
+    }
+  ]
+}

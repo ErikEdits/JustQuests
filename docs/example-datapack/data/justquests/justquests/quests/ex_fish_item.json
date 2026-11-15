@@ -1,0 +1,19 @@
+{
+  "title": "Example: fish_item",
+  "description": "Catch 3 cod with a fishing rod.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:fish_item",
+      "item": "minecraft:cod",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:cooked_cod",
+      "count": 3
+    }
+  ]
+}

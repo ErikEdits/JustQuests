@@ -1,0 +1,18 @@
+{
+  "title": "Example: find_structure",
+  "description": "Find a village.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:find_structure",
+      "structure": "#minecraft:village"
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:bread",
+      "count": 8
+    }
+  ]
+}

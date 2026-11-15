@@ -1,0 +1,29 @@
+{
+  "title": "Example: Farmer's Delight",
+  "description": "Needs Farmer's Delight (else the goals never count): cut 4 cabbages with an iron knife, cook a beef stew in a cooking pot and turn compost into rich soil.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:cut_item",
+      "item": "farmersdelight:cabbage",
+      "tool": "farmersdelight:iron_knife",
+      "count": 4
+    },
+    {
+      "type": "justquests:cook_item",
+      "item": "farmersdelight:beef_stew",
+      "via": "cooking_pot",
+      "count": 1
+    },
+    {
+      "type": "justquests:rich_soil",
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 60
+    }
+  ]
+}

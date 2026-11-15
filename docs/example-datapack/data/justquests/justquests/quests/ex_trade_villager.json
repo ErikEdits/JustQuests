@@ -1,0 +1,19 @@
+{
+  "title": "Example: trade_villager",
+  "description": "Trade 3 times with a farmer. Without an item the trades count; with an item, the items you got.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:trade_villager",
+      "profession": "minecraft:farmer",
+      "count": 3
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:emerald",
+      "count": 3
+    }
+  ]
+}

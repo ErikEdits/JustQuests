@@ -1,0 +1,19 @@
+{
+  "title": "Example: submit_item",
+  "description": "Deliver 16 wheat. Hand it in with the Hand in link in the quest book or /quest submit; the wheat is taken from your inventory.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:submit_item",
+      "item": "minecraft:wheat",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:give_item",
+      "item": "minecraft:emerald",
+      "count": 4
+    }
+  ]
+}

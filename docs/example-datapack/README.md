@@ -23,7 +23,10 @@ Objectives (one each):
 `ex_consume_item`, `ex_place_block`, `ex_kill_mob`, `ex_tame_animal`,
 `ex_breed_animal`, `ex_gain_advancement`, `ex_visit_dimension`,
 `ex_reach_level`, `ex_reach_location`, `ex_enchant_item`, `ex_use_item`,
-`ex_anvil_item`, `ex_grindstone_item`.
+`ex_anvil_item`, `ex_grindstone_item`, and since 0.6.0 `ex_submit_item`, `ex_fish_item`,
+`ex_trade_villager`, `ex_brew_potion`, `ex_stat`, `ex_interact_entity`, `ex_use_block`,
+`ex_find_structure`, `ex_find_biome` and `ex_farmersdelight` (`cut_item`, `cook_item` and
+`rich_soil`; it only counts with Farmer's Delight installed).
 
 Features:
 - `ex_item_tag` — item field as a `#tag`.
@@ -48,6 +51,12 @@ Features:
   the reward. Make a team with `/quest team create <name>` first.
 - `ex_item_filter` — `item` as an object with `potion` / `enchantments`
   (also `name` for an anvil name). Filters work on every version.
+- `ex_submit_item` — a delivery: the wheat is taken from the inventory with the quest book's
+  "Hand in" link or `/quest submit`.
+- `ex_stat` — two statistics: blocks walked and jumps, counted from when the quest was taken.
+- `ex_use_block` — `#minecraft:buttons` with `"distinct": true`: 3 different kinds of buttons.
+- `ex_find_structure` / `ex_find_biome` — a structure tag (`#minecraft:village`) and a biome tag
+  (3 different overworld biomes).
 
 Reward types shown across the examples: `give_item`, `xp`, `effect`,
 `message`, `loot_table`, `title`, `choice`, and `command` (`ex_reach_location` runs

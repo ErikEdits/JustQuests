@@ -1,0 +1,19 @@
+{
+  "title": "Example: use_block",
+  "description": "Press 3 different kinds of buttons (each kind counts once).",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:use_block",
+      "block": "#minecraft:buttons",
+      "count": 3,
+      "distinct": true
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 30
+    }
+  ]
+}

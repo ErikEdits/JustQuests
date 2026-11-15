@@ -40,8 +40,12 @@ field and setting, with examples.
   difficulty levels, and Nether/End quests once players have been there.
 - **First come, first served** — on servers a generated quest someone accepted is taken; the book
   shows *Taken by Steve* or *Reserved for you*.
-- **Write your own quests** — in a datapack or in a per-world `custom-quests.json` that reloads
-  by itself while you edit it. 18 objective types, 8 reward types, item tags and item filters.
+- **Write your own quests** — in a datapack, in a per-world `custom-quests.json` or in as many files
+  as you like in the `quests/` folder next to it (any names, sub-folders too); they reload by
+  themselves while you edit them. 27 objective types (deliveries, fishing, trading, brewing,
+  statistics, structures, biomes and more), 8 reward types, item tags and item filters.
+- **Farmer's Delight built in** — cutting board, cooking pot, skillet, stove and rich soil goals
+  switch on by themselves when Farmer's Delight is installed.
 - **Speaks the player's language** — the mod, the built-in quests and the generated quests come
   in English, German, French, Spanish and Japanese; each player reads their own game language.
   Your own quests can use a per-language map too, and item, block and mob names are translated
@@ -92,7 +96,7 @@ client - nothing to install on their side. There is one jar per range of version
    the quests. `/quest book` gives a new one.
 
 What is the same as the mod: the 25 built-in quests, the quest format (datapack quests in the
-world's `datapacks/` folder work unchanged), all 18 objective and 8 reward types, claiming and
+world's `datapacks/` folder work unchanged), the 27 objective types of the game itself (not the Farmer's Delight ones) and the 8 reward types, claiming and
 reward choices, prerequisites, repeatable quests, the commands, the permission nodes, and the five
 languages - each player reads their own game language, and item, block and mob names are
 translated by their game.
@@ -161,7 +165,7 @@ Files in `plugins/JustQuests/`:
 |---|---|
 | `config.yml` | the settings (the same names as the mod's `settings.json`), plus the quest book and boss bar options |
 | `custom-quests.json` | your own quests in the mod's format; reloads by itself when saved |
-| `quests/` | your own quests, one per file (`quests/my_quest.json` becomes `justquests:my_quest`; in a sub-folder, the folder is the category) |
+| `quests/` | more quest files, any names, sub-folders too: a file that is one quest gets its path as id (`quests/mining/iron.json` becomes `justquests:mining/iron`, the folder is the category), any other file holds many quests like `custom-quests.json` |
 | `players/<uuid>.json` | each player's progress |
 | `generator/` | the generator's state: board, personal and weekly quests, server goal |
 
@@ -180,6 +184,7 @@ main world, so a world played in singleplayer with the mod keeps its quests on t
 | `/quest autoaccept [on\|off]` | Whether quests start by themselves once they unlock (on by default) |
 | `/quest progress` | Your active quests and how far along you are |
 | `/quest claim [id]` | Take the rewards of a finished quest (without an id: all waiting rewards) |
+| `/quest submit [id]` | Hand in the items of delivery goals (`submit_item`); without an id: every quest that can take some. The quest book and `/quest progress` have a "Hand in" link for it |
 | `/quest stats` / `/quest leaderboard` | Your stats / the server's top 10 |
 | `/quest team [create <name>\|invite <player>\|accept\|leave\|kick <name>]` | Make a team for team quests; without more, shows your team |
 | `/quest discord` | The community Discord invite |
@@ -210,6 +215,14 @@ it names no `category`, the folder is its category ("mining"; the quest book sho
 resource pack can translate it with the key `justquests.category.mining`). Deeper folders only sort
 the files - the first folder is the category. The same works for keys like `"mining/iron"` in
 `custom-quests.json` and for sub-folders of the plugin's `quests/` folder.
+
+**More quest files: the `quests/` folder.** Next to `custom-quests.json`, the folder
+`<world>/justquests/quests/` (on the plugin `plugins/JustQuests/quests/`) takes as many `.json`
+files as you like, with any names and in sub-folders, so a big quest line doesn't have to live in
+one file. A file with `objectives` at the top is one quest, and its path is its id
+(`quests/mining/iron.json` is `justquests:mining/iron`, with "mining" as category). Any other file
+holds many quests, keyed by id, exactly like `custom-quests.json`. Every file reloads by itself when
+it changes; when the same id is in two files, the server log says which one wins.
 
 ```json
 {
@@ -285,6 +298,18 @@ teams live with the world in `justquests/teams.json` and `team-progress.json`.
 | `justquests:reach_location` | `x`, `y`, `z`, `radius` (4), `dimension` (optional) | stands at the spot |
 | `justquests:visit_dimension` | `dimension` | enters the dimension (vanilla or modded) |
 | `justquests:gain_advancement` | `advancement` | earns the advancement |
+| `justquests:submit_item` | `item`, `count` | hands the items in: they are taken from the inventory (quest book link or `/quest submit`) |
+| `justquests:fish_item` | `item` (optional), `count` | reels the item in with a fishing rod |
+| `justquests:trade_villager` | `item` (optional), `profession` (optional), `count` | trades with a villager (`minecraft:farmer`…) or a wandering trader (`minecraft:wandering_trader`); with `item` the items bought count, without it the trades |
+| `justquests:brew_potion` | `potion` (optional), `item` (optional), `count` | takes a brewed potion out of a brewing stand (`minecraft:swiftness` counts the long and strong ones too) |
+| `justquests:stat` | `stat`, `count` | raises a statistic of the game's statistics screen, from when the quest was taken (distances in blocks, times in minutes) |
+| `justquests:interact_entity` | `entity`, `item` (optional), `count` | right-clicks the mob, with `item` in the hand (milking, shearing, name tags…) |
+| `justquests:use_block` | `block`, `item` (optional), `count` | right-clicks the block (a crafting table, a bell, a button…) |
+| `justquests:find_structure` | `structure`, `count` (1) | stands in the structure (`minecraft:village_plains` or a tag like `#minecraft:village`) |
+| `justquests:find_biome` | `biome`, `count` (1) | stands in the biome (an id or a tag like `#minecraft:is_forest`) |
+| `justquests:cut_item` | `item` (optional), `tool` (optional), `count` | cuts the item on a Farmer's Delight cutting board, with `tool` (a knife, an axe…) |
+| `justquests:cook_item` | `item` (optional), `via` (optional), `count` | cooks a Farmer's Delight meal; `via`: `cooking_pot`, `skillet`, `stove` or `feast` |
+| `justquests:rich_soil` | `count` (1) | lets organic compost they placed turn into rich soil (Farmer's Delight) |
 
 `item` is an id (`minecraft:oak_log`), a tag (`#minecraft:logs`) or an object with filters:
 
@@ -311,6 +336,29 @@ with `with`. This one needs a book of Sharpness III on a diamond axe:
 
 `enchant_item` with `"via": "anvil"` counts any anvil result with a new or higher enchantment, and
 `grindstone_item` with `"disenchant": true` counts taking enchantments off.
+
+**Deliveries: `submit_item`.** The items are only taken when the player hands them in: with the
+"Hand in" link in the quest book, the link in `/quest progress`, or `/quest submit [id]`. Only as
+many as the goal still needs are taken, and partial deliveries add up. Item filters work, so a
+quest can ask for a named or enchanted item.
+
+**Statistics: `stat`.** Any id from the statistics screen's "General" list works:
+`minecraft:jump`, `minecraft:walk_one_cm`, `minecraft:play_time`, `minecraft:sleep_in_bed`,
+`minecraft:animals_bred` and so on. Distances (`..._one_cm`) count in blocks and times in minutes,
+so `{ "stat": "minecraft:walk_one_cm", "count": 500 }` is 500 blocks. Only what happens after the
+quest was taken counts.
+
+**Places: `find_structure` and `find_biome`.** Both take an id or a tag and count the moment the
+player is there. With a `count` above 1 every structure or biome counts once, so
+`{ "biome": "#minecraft:is_overworld", "count": 5 }` means five different biomes.
+
+**Farmer's Delight.** `cut_item`, `cook_item` and `rich_soil` switch on by themselves when Farmer's
+Delight (Farmer's Delight Refabricated on Fabric) is installed; without it, quests that use them
+still load but never count. Whoever puts the food on a stove or skillet gets the credit when it's
+done. What the cutting board and the cooking pot make also counts for `craft_item`.
+
+`fish_item`, `trade_villager`, `brew_potion`, `interact_entity`, `use_block` and the Farmer's
+Delight goals can use `"distinct": true` as well.
 
 **What Create's machines really make: the Create addon.** The separate
 [JustQuests Create Addon](addons/create/README.md) adds goals such as
@@ -419,7 +467,7 @@ With LuckPerms (or another permission mod) every command has a node:
 
 | Node | Default without a permission mod |
 |---|---|
-| `justquests.command.<name>` — `list`, `categories`, `stats`, `leaderboard`, `progress`, `accept`, `abandon`, `claim`, `team`, `discord` | everyone |
+| `justquests.command.<name>` — `list`, `categories`, `stats`, `leaderboard`, `progress`, `accept`, `abandon`, `claim`, `submit`, `team`, `discord` | everyone |
 | `justquests.admin.<name>` — `reload`, `reroll`, `mainquests`, `difficulty`, `generator`, `test`, `admin` | operators (level 2) |
 | the `permission` of a quest, e.g. `myserver.vip` | operators (level 2) |
 

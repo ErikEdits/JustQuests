@@ -79,13 +79,15 @@ Everything that is being worked on for 0.6.0. The list grows while it is built; 
 - Resource packs: animated tiles and frames, more colours, tracker and popup fixes.
 - The tracker never covers more than part of the screen.
 
-**New objectives**
+**New objectives** ✅ (tested in game on 7 builds and on Paper)
 - `submit_item` (hand items in), `fish_item`, `trade_villager`, `brew_potion`
-- Statistic goals (play time, distance walked, flown, swum, jumps ...)
+- Statistic goals (`stat`: play time, distance walked, flown, swum, jumps ...)
 - `interact_entity` (ride, shear, talk to ...), `use_block` (ring a bell, open a chest ...)
-- `find_structure` (structures and biomes)
+- `find_structure` and `find_biome` (ids and tags)
+- More quest files: `<world>/justquests/quests/` and `plugins/JustQuests/quests/`, any names,
+  sub-folders too
 
-**Farmer's Delight built in (#22)**
+**Farmer's Delight built in (#22)** ✅ (tested in game with Forge 1.20.1)
 - `cut_item` (cutting board) and `cook_item` (cooking pot, skillet, stove, feast servings)
 - A rich soil goal; cooking pot meals and cutting board results also count for `craft_item`
 - Generated quests for cutting and cooking when Farmer's Delight is installed
@@ -96,7 +98,7 @@ Everything that is being worked on for 0.6.0. The list grows while it is built; 
 - Conditions written into a quest: only at night, in the rain, in a biome or dimension, with an
   item in hand
 - Chapter rewards (finish every quest of a category)
-- Badges, with optional Discord roles on the JustQuests Discord (opt-in)
+- Badges, with optional Discord roles on the JustQuests Discord (opt-in) ✅
 
 **Playing together**
 - Community goals for the whole server
@@ -109,7 +111,9 @@ Everything that is being worked on for 0.6.0. The list grows while it is built; 
 - Pictures in quest text
 
 **Quest generator**
-- Quest chains with story text, quests that fit the player's progress, biome and structure quests
+- Quest chains with story text (later)
+- ✅ Quests that fit the player's progress (finer server-wide milestones), biome and structure
+  quests, deliveries, fishing, trading, brewing and Farmer's Delight quests
 
 **Integrations and server**
 - JEI, REI and EMI: "needed for quest X" and a click from the book to the recipe

@@ -1,0 +1,23 @@
+{
+  "title": "Example: stat",
+  "description": "Walk 500 blocks and jump 20 times. Only what happens after you took the quest counts.",
+  "category": "examples",
+  "objectives": [
+    {
+      "type": "justquests:stat",
+      "stat": "minecraft:walk_one_cm",
+      "count": 500
+    },
+    {
+      "type": "justquests:stat",
+      "stat": "minecraft:jump",
+      "count": 20
+    }
+  ],
+  "rewards": [
+    {
+      "type": "justquests:xp",
+      "amount": 50
+    }
+  ]
+}
