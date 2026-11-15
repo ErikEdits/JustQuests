@@ -93,12 +93,15 @@ public final class Badges {
         datapack = loaded;
         packs = packInfo;
         JustQuests.LOG.info("Loaded {} badge(s)", loaded.size());
+        com.erikedits.justquests.discord.DiscordLink.requestBadges();
     }
 
     /** The badges and the "pack" section of a world's custom-quests.json. */
     public static void setCustom(Map<ResourceLocation, Badge> badges, JsonObject pack) {
         custom = badges;
         customPack = pack;
+        // new badges of a pack go to the Discord owner for approval (nothing if none asked for it)
+        com.erikedits.justquests.discord.DiscordLink.requestBadges();
     }
 
     /** Every badge, custom ones over datapack ones of the same id. */

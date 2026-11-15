@@ -35,6 +35,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
   incompatible in the log. It now names the formats each version takes.
 - A very long quest title takes at most three lines on the quest page (with "..."), so the goals
   stay in sight.
+- **Quest icons with properties** (#26): when the game can't read an icon's properties, the book now
+  shows the creative-inventory variant whose values they name (for example Automobility's crop
+  harvester), instead of the first variant, and the log says once why they could not be read. An icon
+  worked out before the world was there is no longer kept.
 
 ### Added
 - **Badges.** Players earn badges and keep them:

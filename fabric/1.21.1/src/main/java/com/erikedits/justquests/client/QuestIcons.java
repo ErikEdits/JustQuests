@@ -50,6 +50,8 @@ public final class QuestIcons {
 
     /** The item drawn for a quest; cached until the quest list changes. */
     public static ItemStack of(ResourceLocation id, Quest quest) {
+        // an icon with properties needs the world: one worked out before it is not kept
+        if (net.minecraft.client.Minecraft.getInstance().level == null) return compute(quest);
         int v = ClientQuestData.version();
         if (v != cacheVersion) {
             CACHE.clear();

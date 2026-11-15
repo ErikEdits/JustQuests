@@ -128,6 +128,9 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         getServer().getScheduler().runTaskTimer(this, () -> {
             if (quests.checkCustom()) {
                 getLogger().info("Custom quests changed: " + quests.all().size() + " quest(s) now");
+                // the badges of custom-quests.json too; new ones of a pack go to the Discord owner (0.6.0)
+                badges.readCustom();
+                discord.requestBadges();
                 tracker.updateAll();
             }
         }, 100L, 100L);
