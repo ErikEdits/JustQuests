@@ -90,6 +90,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
     from a feast). Cooking pot meals also count for `craft_item`. The player who put the food on a stove
     or skillet gets the credit when it is done.
   - `rich_soil`: organic compost the player put down turns into rich soil.
+- **Quest generator:**
+  - It now also makes fishing, trading, brewing, delivery (hand in), biome and structure quests. With
+    Farmer's Delight it adds cutting board and cooking quests. Titles and texts come in all five
+    languages.
+  - **Finer progress:** besides the Nether and the End, the generator looks at what the players have
+    reached (a quarter of those online). Iron gives the iron-level content its full weight and diamonds
+    the diamond-level content, also on a young world. Trading, enchanting and brewing quests stay rare
+    until someone has traded, enchanted or brewed. The plugin's generator does the same.
 - **More quest files:** besides `custom-quests.json`, every `.json` in `<world>/justquests/quests/` is read,
   in sub-folders too and with any name, so big quest lists can be split up. A file written like
   `custom-quests.json` can hold many quests (and `badges`/`pack`); a file that is a single quest gets its

@@ -13,7 +13,15 @@
     "place_block": ["{Name}の建築家", "{Name}で建てよう", "{Name}を置こう", "{Name}プロジェクト", "{Name}工事", "{Name}のレイアウト", "飾りつけ：{Name}", "{Name}の建設", "{Name}デザイン"],
     "visit_dimension": ["{Dimension}への旅", "{Dimension}を訪ねよう", "{Dimension}紀行", "{Dimension}へ", "{Dimension}への門", "{Dimension}遠征"],
     "enchant_item": ["{Name}のエンチャンター", "エンチャントされた{Name}", "神秘の{Name}", "{Name}のエンチャント", "魔法がかかった{Name}", "魔法の{Name}"],
-    "use_item": ["{Name}の練習", "{Name}を使おう", "{Name}の訓練", "便利な{Name}", "{Name}トレーニング"]
+    "use_item": ["{Name}の練習", "{Name}を使おう", "{Name}の訓練", "便利な{Name}", "{Name}トレーニング"],
+    "fish_item": ["{Name}の釣果", "{Name}を釣ろう", "{Name}釣り師", "{Name}の餌"],
+    "trade_villager": ["{Name}の取引", "市場：{Name}", "{Name}を買おう", "{Name}のお買い得", "{Name}の商談"],
+    "brew_potion": ["{Name}の醸造", "錬金術：{Name}", "{Name}の仕込み", "醸造の注文"],
+    "submit_item": ["{Name}の配達", "{Name}を届けよう", "{Name}の出荷", "{Name}の補給", "{Name}の納品"],
+    "find_biome": ["{Name}探検", "{Name}を探索", "{Name}への旅", "{Name}の偵察"],
+    "find_structure": ["{Name}を探せ", "{Name}捜索", "{Name}遠征", "隠された{Name}"],
+    "cut_item": ["{Name}を刻もう", "{Name}の下ごしらえ", "まな板：{Name}", "{Name}の薄切り"],
+    "cook_item": ["{Name}を作ろう", "{Name}の厨房", "シェフ：{Name}", "{Name}の注文"]
   },
   "phrases": {
     "collect_item": ["{name}{count}個の収集", "{name}{count}個の採集", "{name}{count}個の回収"],
@@ -27,7 +35,15 @@
     "enchant_item": ["{name}{count}個へのエンチャント"],
     "use_item": ["{name}{count}個の使用"],
     "place_block": ["{name}{count}個の設置", "{name}{count}個での建築"],
-    "visit_dimension": ["{dimension}への旅", "{dimension}への突入"]
+    "visit_dimension": ["{dimension}への旅", "{dimension}への突入"],
+    "fish_item": ["{name}{count}個の釣り上げ", "{name}{count}個の釣果"],
+    "trade_villager": ["取引で{name}{count}個の入手", "村人から{name}{count}個の入手"],
+    "brew_potion": ["{name}{count}個の醸造"],
+    "submit_item": ["{name}{count}個の納品", "{name}{count}個の配達"],
+    "find_biome": ["{name}バイオームの探索", "{name}バイオームへの訪問"],
+    "find_structure": ["{name}の発見", "{name}の捜索"],
+    "cut_item": ["まな板で{name}{count}個のカット"],
+    "cook_item": ["{name}{count}個の調理"]
   },
   "variants": {
     "throw": {"phrases": ["{name}{count}個の投てき"], "titles": ["{Name}投げ", "{Name}を投げよう", "{Name}の連投", "{Name}のピッチング"]},

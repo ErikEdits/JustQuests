@@ -110,7 +110,15 @@
     "place_block": 0.35,
     "visit_dimension": 0.15,
     "enchant_item": 0.8,
-    "use_item": 1.0
+    "use_item": 1.0,
+    "fish_item": 0.7,
+    "trade_villager": 0.5,
+    "brew_potion": 0.5,
+    "submit_item": 0.8,
+    "find_biome": 0.3,
+    "find_structure": 0.3,
+    "cut_item": 0.8,
+    "cook_item": 0.8
   },
   "hintMultipliers": {
     "desert": 1.3,
@@ -221,6 +229,52 @@
           0.5,
           0.3
         ]
+      }
+    ],
+    "milestones": [
+      {
+        "id": "iron",
+        "advancements": [
+          "minecraft:story/smelt_iron"
+        ],
+        "share": 0.25,
+        "tier": 1
+      },
+      {
+        "id": "diamonds",
+        "advancements": [
+          "minecraft:story/mine_diamond"
+        ],
+        "share": 0.25,
+        "tier": 2
+      },
+      {
+        "id": "enchanting",
+        "advancements": [
+          "minecraft:story/enchant_item"
+        ],
+        "share": 0.25,
+        "type": "enchant_item",
+        "before": 0.4
+      },
+      {
+        "id": "trading",
+        "advancements": [
+          "minecraft:adventure/trade"
+        ],
+        "share": 0.25,
+        "day": 8,
+        "type": "trade_villager",
+        "before": 0.3
+      },
+      {
+        "id": "brewing",
+        "advancements": [
+          "minecraft:nether/brew_potion"
+        ],
+        "share": 0.25,
+        "type": "brew_potion",
+        "before": 0.4
       }
     ]
   },

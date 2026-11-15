@@ -21,6 +21,8 @@ public final class Progression {
     private boolean end;
     private String endReason = "";
     private final Map<String, String> moddedDims = new TreeMap<>();
+    /** Milestones reached (0.6.0): id -> why. */
+    private final Map<String, String> milestones = new TreeMap<>();
     private long maxGameDay;
 
     public boolean nether() {
@@ -37,6 +39,37 @@ public final class Progression {
 
     public boolean dimensionUnlocked(String dim) {
         return moddedDims.containsKey(dim);
+    }
+
+    /** Whether the milestone (0.6.0) was reached. */
+    public boolean milestone(String id) {
+        return milestones.containsKey(id);
+    }
+
+    /** The highest tier a reached milestone gives its full weight, or -1. */
+    public int milestoneTier(Balance balance) {
+        int t = -1;
+        for (Balance.Milestone m : balance.milestones) {
+            if (m.tier() >= 0 && milestones.containsKey(m.id())) {
+                t = Math.max(t, m.tier());
+            }
+        }
+        return t;
+    }
+
+    /** The weight factor of an objective type while its milestone is not reached (1.0 when there is none). */
+    public double typeFactor(Balance balance, String type) {
+        for (Balance.Milestone m : balance.milestones) {
+            if (type.equals(m.type()) && !milestones.containsKey(m.id())) {
+                return m.before();
+            }
+        }
+        return 1.0;
+    }
+
+    /** The milestones and why they were reached, for explain. */
+    public Map<String, String> milestones() {
+        return Map.copyOf(milestones);
     }
 
     /**
@@ -73,6 +106,25 @@ public final class Progression {
             if (why != null) {
                 end = true;
                 endReason = why;
+                changed = true;
+            }
+        }
+        for (Balance.Milestone m : balance.milestones) {
+            if (milestones.containsKey(m.id())) {
+                continue;
+            }
+            String why = null;
+            for (String adv : m.advancements()) {
+                why = unlockReason(world, adv, m.share(), 0);
+                if (why != null) {
+                    break;
+                }
+            }
+            if (why == null && m.day() > 0 && maxGameDay >= m.day()) {
+                why = "day " + maxGameDay;
+            }
+            if (why != null) {
+                milestones.put(m.id(), why);
                 changed = true;
             }
         }
@@ -160,6 +212,9 @@ public final class Progression {
         JsonObject dims = new JsonObject();
         moddedDims.forEach(dims::addProperty);
         o.add("dimensions", dims);
+        JsonObject ms = new JsonObject();
+        milestones.forEach(ms::addProperty);
+        o.add("milestones", ms);
         return o;
     }
 
@@ -176,6 +231,11 @@ public final class Progression {
         JsonObject dims = Json.obj(o, "dimensions");
         if (dims != null) {
             dims.entrySet().forEach(e -> p.moddedDims.put(e.getKey(),
+                e.getValue().isJsonPrimitive() ? e.getValue().getAsString() : "restored"));
+        }
+        JsonObject ms = Json.obj(o, "milestones");
+        if (ms != null) {
+            ms.entrySet().forEach(e -> p.milestones.put(e.getKey(),
                 e.getValue().isJsonPrimitive() ? e.getValue().getAsString() : "restored"));
         }
         return p;

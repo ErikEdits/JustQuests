@@ -119,7 +119,7 @@ public final class SchemaCheck {
             return;
         }
         for (String k : o.keySet()) {
-            if (!k.equals("type") && !k.equals(t.field()) && !(t.counted() && k.equals("count"))) {
+            if (!k.equals("type") && !k.equals(t.field()) && !(t.counted() && k.equals("count")) && !t.extras().contains(k)) {
                 p.add("unknown objective key " + k);
             }
         }
@@ -142,7 +142,11 @@ public final class SchemaCheck {
         if (target == null) {
             p.add(t.shortName() + " missing " + t.field());
         } else if (target.startsWith("#")) {
-            if (!t.taggable() || caps == null || !caps.supportsTag(t.typeId())) {
+            if (t.ownTags()) {
+                if (!Ids.isValidTag(target)) {
+                    p.add("bad tag " + target);
+                }
+            } else if (!t.taggable() || caps == null || !caps.supportsTag(t.typeId())) {
                 p.add("tag not allowed for " + t.shortName());
             } else if (!Ids.isValidTag(target)) {
                 p.add("bad tag " + target);

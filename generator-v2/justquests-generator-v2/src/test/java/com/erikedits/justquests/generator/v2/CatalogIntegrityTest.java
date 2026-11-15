@@ -22,9 +22,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /** §16.17 — the bundled data is internally consistent (checked on the raw JSON, not through the loader). */
 class CatalogIntegrityTest {
     private static final Set<String> TYPES = Set.of("collect_item", "mine_block", "craft_item", "smelt_item", "kill_mob",
-        "breed_animal", "tame_animal", "consume_item", "place_block", "visit_dimension", "enchant_item", "use_item");
+        "breed_animal", "tame_animal", "consume_item", "place_block", "visit_dimension", "enchant_item", "use_item",
+        "fish_item", "trade_villager", "brew_potion", "submit_item", "find_biome", "find_structure", "cut_item", "cook_item");
     private static final Set<String> ITEM_TYPES = Set.of("collect_item", "craft_item", "smelt_item", "consume_item",
-        "enchant_item", "use_item");
+        "enchant_item", "use_item", "fish_item", "trade_villager", "submit_item", "cut_item", "cook_item");
+    /** Biomes and structures may name their own #tag (0.6.0). */
+    private static final Set<String> OWN_TAG_TYPES = Set.of("find_biome", "find_structure");
     private static final Set<String> BLOCK_TYPES = Set.of("mine_block", "place_block");
     private static final Set<String> ENTITY_TYPES = Set.of("kill_mob", "breed_animal", "tame_animal");
     private static final Pattern ID = Pattern.compile("[a-z0-9_.-]+:[a-z0-9_./-]+");
@@ -95,7 +98,9 @@ class CatalogIntegrityTest {
                     if (!TYPES.contains(type)) {
                         problems.add(tw + " type not allowed");
                     }
-                    if (id == null || !ID.matcher(id).matches()) {
+                    boolean ownTag = id != null && OWN_TAG_TYPES.contains(type) && id.startsWith("#")
+                        && ID.matcher(id.substring(1)).matches();
+                    if (id == null || !(ID.matcher(id).matches() || ownTag)) {
                         problems.add(tw + " bad id");
                     }
                     for (String a : Json.strings(t, "alt")) {

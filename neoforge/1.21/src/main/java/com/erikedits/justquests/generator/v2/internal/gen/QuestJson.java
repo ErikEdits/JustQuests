@@ -40,6 +40,8 @@ public final class QuestJson {
             if (o.c().type().counted()) {
                 j.addProperty("count", o.count());
             }
+            // profession of a trade, how a meal is cooked (0.6.0)
+            o.c().def().extras().forEach(j::addProperty);
             objs.add(j);
         }
         q.add("objectives", objs);

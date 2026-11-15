@@ -55,5 +55,10 @@
   "Place a shepherd's pie and serve it into a bowl.": ["Stelle einen Hirtenkuchen ab und fülle ihn in eine Schüssel.", "Posez un pâté chinois et servez-le dans un bol.", "Coloca un pastel de pastor y sírvelo en un cuenco.", "シェパーズパイを置いてボウルに取り分ける。"],
   "Place a glazed ham and serve it into a bowl.": ["Stelle einen glasierten Schinken ab und fülle ihn in eine Schüssel.", "Posez un jambon glacé et servez-le dans un bol.", "Coloca un jamón glaseado y sírvelo en un cuenco.", "ハムのグレーズ焼きを置いてボウルに取り分ける。"],
   "Made from rope.": ["Wird aus Strohseil hergestellt.", "Se fabrique avec de la corde.", "Se fabrica con cuerda.", "ロープから作る。"],
-  "It slowly turns into rich soil.": ["Es wird langsam zu reichhaltiger Erde.", "Il se transforme lentement en terre fertile.", "Se convierte poco a poco en suelo rico.", "ゆっくりと肥沃な土に変わる。"]
+  "It slowly turns into rich soil.": ["Es wird langsam zu reichhaltiger Erde.", "Il se transforme lentement en terre fertile.", "Se convierte poco a poco en suelo rico.", "ゆっくりと肥沃な土に変わる。"],
+  "Put it on a cutting board and use a knife.": ["Leg es auf ein Schneidebrett und benutze ein Messer.", "Posez-le sur une planche à découper et utilisez un couteau.", "Ponlo en una tabla de cortar y usa un cuchillo.", "まな板に置いてナイフを使おう。"],
+  "Cook it in a cooking pot on a heat source.": ["Koche es im Kochtopf über einer Hitzequelle.", "Cuisinez-le dans une marmite sur une source de chaleur.", "Cocínalo en una olla sobre una fuente de calor.", "熱源の上の調理鍋で料理しよう。"],
+  "Fry it in a skillet.": ["Brate es in der Pfanne.", "Faites-le frire dans une poêle.", "Fríelo en una sartén.", "フライパンで焼こう。"],
+  "Cook it on a stove.": ["Brate es auf dem Herd.", "Faites-le cuire sur une cuisinière.", "Cocínalo en una estufa.", "コンロで焼こう。"],
+  "Take a serving from a roast chicken feast with a bowl.": ["Nimm mit einer Schüssel eine Portion vom Brathähnchen-Festmahl.", "Prenez une portion d'un festin de poulet rôti avec un bol.", "Toma una ración de un festín de pollo asado con un cuenco.", "ボウルでローストチキンのごちそうから一皿取ろう。"]
 }

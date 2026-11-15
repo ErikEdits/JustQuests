@@ -13,7 +13,15 @@
     "place_block": ["Baumeister: {Name}", "Bauen mit {Name}", "{Name} platzieren", "Projekt: {Name}", "Bauwerk: {Name}", "Grundriss: {Name}", "Dekorieren: {Name}", "Bau: {Name}", "Entwurf: {Name}"],
     "visit_dimension": ["Ausflug: {Dimension}", "Besuch: {Dimension}", "Reise: {Dimension}", "Aufbruch: {Dimension}", "Portal: {Dimension}", "Expedition: {Dimension}"],
     "enchant_item": ["Verzauberer: {Name}", "Verzaubert: {Name}", "Arkan: {Name}", "Verzauberung: {Name}", "Gebannt: {Name}", "Magie: {Name}"],
-    "use_item": ["Übung: {Name}", "{Name} benutzen", "Drill: {Name}", "Praktisch: {Name}", "Training: {Name}"]
+    "use_item": ["Übung: {Name}", "{Name} benutzen", "Drill: {Name}", "Praktisch: {Name}", "Training: {Name}"],
+    "fish_item": ["Fang: {Name}", "{Name} angeln", "Angler: {Name}", "Köder: {Name}"],
+    "trade_villager": ["Handel: {Name}", "Markt: {Name}", "{Name} kaufen", "Schnäppchen: {Name}", "Geschäft: {Name}"],
+    "brew_potion": ["{Name} brauen", "Alchemie: {Name}", "Sud: {Name}", "Brauauftrag"],
+    "submit_item": ["Lieferung: {Name}", "{Name} liefern", "Sendung: {Name}", "Nachschub: {Name}", "Abgabe: {Name}"],
+    "find_biome": ["Expedition: {Name}", "Erkunden: {Name}", "Ausflug: {Name}", "Späher: {Name}"],
+    "find_structure": ["Gesucht: {Name}", "Suche: {Name}", "Expedition: {Name}", "Verborgen: {Name}"],
+    "cut_item": ["{Name} schneiden", "Vorbereitung: {Name}", "Schneidebrett: {Name}", "Scheiben: {Name}"],
+    "cook_item": ["{Name} kochen", "Küche: {Name}", "Koch: {Name}", "Bestellung: {Name}"]
   },
   "phrases": {
     "collect_item": ["Sammle {count}× {name}", "Trage {count}× {name} zusammen", "Hebe {count}× {name} auf"],
@@ -27,7 +35,15 @@
     "enchant_item": ["Verzaubere {count}× {name}"],
     "use_item": ["Benutze {count}× {name}"],
     "place_block": ["Platziere {count}× {name}", "Baue mit {count}× {name}"],
-    "visit_dimension": ["Reise {dimension_to}", "Begib dich {dimension_to}"]
+    "visit_dimension": ["Reise {dimension_to}", "Begib dich {dimension_to}"],
+    "fish_item": ["Fange {count}× {name}", "Angle {count}× {name}"],
+    "trade_villager": ["Ertausche {count}× {name}", "Hol dir {count}× {name} von Dorfbewohnern"],
+    "brew_potion": ["Braue {count}× {name}"],
+    "submit_item": ["Gib {count}× {name} ab", "Liefere {count}× {name}"],
+    "find_biome": ["Besuche das Biom {name}", "Erkunde das Biom {name}"],
+    "find_structure": ["Finde diesen Ort: {name}", "Spüre diesen Ort auf: {name}"],
+    "cut_item": ["Schneide {count}× {name} auf dem Schneidebrett"],
+    "cook_item": ["Koche {count}× {name}"]
   },
   "variants": {
     "throw": {"phrases": ["Wirf {count}× {name}"], "titles": ["Wurf: {Name}", "{Name} werfen", "Salve: {Name}", "Weitwurf: {Name}"]},

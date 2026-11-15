@@ -158,6 +158,15 @@ TEMPLATES = {
         "enchant_item": ["{Name} Enchanter", "Enchanted {Names}", "Arcane {Name}", "{Name} Enchantment",
                          "Spellbound {Names}", "Magic {Name}"],
         "use_item": ["{Name} Practice", "Use {Names}", "{Name} Drill", "Handy {Names}", "{Name} Training"],
+        # 0.6.0
+        "fish_item": ["{Name} Catch", "Fish for {Names}", "{Name} Angler", "{Name} Bait"],
+        "trade_villager": ["{Name} Trade", "Market: {Name}", "Buy {Names}", "{Name} Bargain", "{Name} Deal"],
+        "brew_potion": ["Brew {Names}", "Alchemy: {Name}", "{Name} Batch", "Brewer's Order"],
+        "submit_item": ["{Name} Delivery", "Deliver {Names}", "{Name} Shipment", "Supply Run: {Name}", "{Name} Drop-off"],
+        "find_biome": ["{Name} Expedition", "Explore: {Name}", "{Name} Trip", "{Name} Scout"],
+        "find_structure": ["Find the {Name}", "{Name} Hunt", "{Name} Expedition", "Lost {Name}"],
+        "cut_item": ["Chop {Names}", "{Name} Prep", "Cutting Board: {Name}", "{Name} Slices"],
+        "cook_item": ["Cook {Names}", "{Name} Kitchen", "Chef: {Name}", "{Name} Order"],
     },
     "phrases": {
         "collect_item": ["Collect {count} {names}", "Gather {count} {names}", "Pick up {count} {names}"],
@@ -172,6 +181,15 @@ TEMPLATES = {
         "use_item": ["Use {count} {names}"],
         "place_block": ["Place {count} {names}", "Build with {count} {names}"],
         "visit_dimension": ["Travel to {dimension}", "Enter {dimension}"],
+        # 0.6.0
+        "fish_item": ["Catch {count} {names}", "Fish up {count} {names}"],
+        "trade_villager": ["Trade for {count} {names}", "Get {count} {names} from villagers"],
+        "brew_potion": ["Brew {count} {names}"],
+        "submit_item": ["Hand in {count} {names}", "Deliver {count} {names}"],
+        "find_biome": ["Explore {a_name}", "Visit {a_name}"],
+        "find_structure": ["Find {a_name}", "Track down {a_name}"],
+        "cut_item": ["Cut {count} {names} on a cutting board"],
+        "cook_item": ["Cook {count} {names}"],
     },
     "variants": {
         "throw": {"phrases": ["Throw {count} {names}"], "titles": ["{Name} Toss", "Throw {Names}", "{Name} Volley",
@@ -209,7 +227,8 @@ TEMPLATES = {
         "create_quartz": "Rose Quartz",
         "deep_dark": "Deep Dark", "dyes": "Dye", "stone_tools": "Stonecutter", "leather_armor": "Leatherwork",
         "workstations": "Workshop", "transport": "Transport", "brewing": "Brewer", "enchanting": "Enchanting", "use_items": "Field Work", "exploration": "Explorer",
-        "nether_animals": "Nether Ranch", "nether_crafts": "Nether Mason", "storage_blocks": "Treasury"
+        "nether_animals": "Nether Ranch", "nether_crafts": "Nether Mason", "storage_blocks": "Treasury",
+        "deliveries": "Delivery", "landmarks": "Landmark"
     },
     "tools": {
         "stone": "Needs a stone pickaxe or better",
@@ -492,7 +511,9 @@ BALANCE = {
     },
     "typeWeights": {"collect_item": 1.0, "mine_block": 1.0, "craft_item": 1.0, "smelt_item": 0.8, "kill_mob": 1.0,
                     "breed_animal": 0.6, "tame_animal": 0.25, "consume_item": 0.6, "place_block": 0.35,
-                    "visit_dimension": 0.15, "enchant_item": 0.8, "use_item": 1.0},
+                    "visit_dimension": 0.15, "enchant_item": 0.8, "use_item": 1.0,
+                    "fish_item": 0.7, "trade_villager": 0.5, "brew_potion": 0.5, "submit_item": 0.8,
+                    "find_biome": 0.3, "find_structure": 0.3, "cut_item": 0.8, "cook_item": 0.8},
     "hintMultipliers": {"desert": 1.3, "swamp": 1.3, "jungle": 1.4, "taiga": 1.2, "snowy": 1.3, "ocean": 1.2,
                         "beach": 1.2, "savanna": 1.2, "badlands": 1.6, "mountains": 1.3, "flower_forest": 1.4,
                         "dark_forest": 1.3, "mushroom_fields": 2.0, "lush_caves": 1.4, "dripstone_caves": 1.3,
@@ -513,7 +534,18 @@ BALANCE = {
                     "endUnlockShare": 0.25, "endUnlockDay": 40,
                     "endAdvancements": ["minecraft:story/enter_the_end", "minecraft:end/root"],
                     "earlyWorld": [{"maxDay": 2, "tierWeights": [1.0, 0.6, 0.15, 0.05, 0.05]},
-                                   {"maxDay": 6, "tierWeights": [1.0, 1.0, 0.6, 0.5, 0.3]}]},
+                                   {"maxDay": 6, "tierWeights": [1.0, 1.0, 0.6, 0.5, 0.3]}],
+                    # 0.6.0: what the players reached (share of those online) gives tiers their full weight,
+                    # or lets an objective type out of its low weight
+                    "milestones": [
+                        {"id": "iron", "advancements": ["minecraft:story/smelt_iron"], "share": 0.25, "tier": 1},
+                        {"id": "diamonds", "advancements": ["minecraft:story/mine_diamond"], "share": 0.25, "tier": 2},
+                        {"id": "enchanting", "advancements": ["minecraft:story/enchant_item"], "share": 0.25,
+                         "type": "enchant_item", "before": 0.4},
+                        {"id": "trading", "advancements": ["minecraft:adventure/trade"], "share": 0.25, "day": 8,
+                         "type": "trade_villager", "before": 0.3},
+                        {"id": "brewing", "advancements": ["minecraft:nether/brew_potion"], "share": 0.25,
+                         "type": "brew_potion", "before": 0.4}]},
     "setRules": {"minDistinctTypes": 3, "maxTypeShare": 0.4, "requireQuick": True, "quickFraction": 0.3333,
                  "minPerActiveModAt": 5, "maxPerModShare": 0.5, "typeRepeatPenalty": 0.45, "themeChance": 0.85,
                  "maxAttemptsPerSlot": 40, "rangeSlack": 0.25, "minTargetFraction": 0.5},

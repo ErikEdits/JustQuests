@@ -113,9 +113,12 @@ public final class SetBuilder {
         this.caps = caps;
         this.progression = progression;
         double[] early = balance.earlyWorldWeights(progression.maxGameDay());
+        // a milestone the server reached (iron, diamonds) gives its tiers their full weight, also on a young world
+        int reached = progression.milestoneTier(balance);
         for (int i = 0; i < 5; i++) {
             double lw = i < level.tierWeights.length ? level.tierWeights[i] : 1.0;
-            tierWeights[i] = lw * (i < early.length ? early[i] : 1.0);
+            double e = i < early.length ? early[i] : 1.0;
+            tierWeights[i] = lw * (i <= reached ? Math.max(e, 1.0) : e);
         }
         this.activeIds = CandidateResolver.ids(pool.activeProfiles());
         this.quickLimit = level.quickLimit(balance.quickFraction);
@@ -408,7 +411,8 @@ public final class SetBuilder {
 
     private double weight(Candidate c) {
         int tier = Math.max(0, Math.min(4, c.tier()));
-        double w = c.weight() * balance.typeWeight(difficulty, c.type()) * tierWeights[tier];
+        double w = c.weight() * balance.typeWeight(difficulty, c.type()) * tierWeights[tier]
+            * progression.typeFactor(balance, c.type().shortName());
         int used = typeCounts.getOrDefault(c.type(), 0);
         for (int i = 0; i < used; i++) {
             w *= balance.typeRepeatPenalty;

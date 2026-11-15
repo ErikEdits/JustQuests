@@ -114,6 +114,34 @@ public final class GenV2Host implements GeneratorHost {
 
     private boolean entityOk(ResourceLocation r) { return Registry.ENTITY_TYPE.containsKey(r); }
 
+    /** 0.6.0: an id or a #tag with members in the world's registry. */
+    private boolean biomeOk(String id) {
+        var registry = server.registryAccess().registryOrThrow(net.minecraft.core.Registry.BIOME_REGISTRY);
+        if (id.startsWith("#")) {
+            ResourceLocation t = rl(id.substring(1));
+            return t != null && registry.getTag(TagKey.create(net.minecraft.core.Registry.BIOME_REGISTRY, t)).map(s -> s.size() > 0).orElse(false);
+        }
+        ResourceLocation r = rl(id);
+        return r != null && registry.containsKey(r);
+    }
+
+    /** 0.6.0: an id or a #tag with members in the world's registry. */
+    private boolean structureOk(String id) {
+        var registry = server.registryAccess().registryOrThrow(net.minecraft.core.Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY);
+        if (id.startsWith("#")) {
+            ResourceLocation t = rl(id.substring(1));
+            return t != null && registry.getTag(TagKey.create(net.minecraft.core.Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY, t)).map(s -> s.size() > 0).orElse(false);
+        }
+        ResourceLocation r = rl(id);
+        return r != null && registry.containsKey(r);
+    }
+
+    /** 0.6.0: a potion. */
+    private boolean potionOk(String id) {
+        ResourceLocation r = rl(id);
+        return r != null && net.minecraft.core.Registry.POTION.containsKey(r);
+    }
+
     private Set<String> itemTag(ResourceLocation r) {
         return keys(Registry.ITEM.getTag(TagKey.create(Registry.ITEM_REGISTRY, r)));
     }
@@ -212,6 +240,12 @@ public final class GenV2Host implements GeneratorHost {
         @Override public TriState isTamableAnimal(String entityTypeId) { return TriState.UNKNOWN; }
 
         @Override public TriState isConsumable(String itemId) { return TriState.UNKNOWN; }
+
+        @Override public boolean biomeExists(String id) { return safe(() -> biomeOk(id)); }
+
+        @Override public boolean structureExists(String id) { return safe(() -> structureOk(id)); }
+
+        @Override public boolean potionExists(String id) { return safe(() -> potionOk(id)); }
 
         @Override public String englishName(ContentKind kind, String id) { return null; }
     }
@@ -340,7 +374,10 @@ public final class GenV2Host implements GeneratorHost {
             "justquests:place_block", "justquests:craft_item", "justquests:tame_animal", "justquests:gain_advancement",
             "justquests:visit_dimension", "justquests:reach_level", "justquests:reach_location", "justquests:mine_block",
             "justquests:breed_animal", "justquests:consume_item", "justquests:smelt_item", "justquests:enchant_item",
-            "justquests:use_item");
+            "justquests:use_item",
+            // 0.6.0
+            "justquests:fish_item", "justquests:trade_villager", "justquests:brew_potion", "justquests:submit_item",
+            "justquests:find_biome", "justquests:find_structure", "justquests:cut_item", "justquests:cook_item");
         private static final Set<String> REWARDS = Set.of("justquests:give_item", "justquests:xp", "justquests:effect",
             "justquests:loot_table", "justquests:message", "justquests:command");
 

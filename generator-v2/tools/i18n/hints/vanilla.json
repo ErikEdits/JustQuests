@@ -150,5 +150,11 @@
   "Brew an Awkward Potion with a golden carrot.": ["Braue einen Seltsamen Trank mit einer goldenen Karotte.", "Préparez une potion étrange avec une carotte dorée.", "Prepara una poción rara con una zanahoria dorada.", "奇妙なポーションに金のニンジンを加えて醸造する。"],
   "Brew an Awkward Potion with magma cream.": ["Braue einen Seltsamen Trank mit Magmacreme.", "Préparez une potion étrange avec de la crème de magma.", "Prepara una poción rara con crema de magma.", "奇妙なポーションにマグマクリームを加えて醸造する。"],
   "Brew an Awkward Potion with blaze powder.": ["Braue einen Seltsamen Trank mit Lohenstaub.", "Préparez une potion étrange avec de la poudre de Blaze.", "Prepara una poción rara con polvo de blaze.", "奇妙なポーションにブレイズパウダーを加えて醸造する。"],
-  "Brew an Awkward Potion with a pufferfish.": ["Braue einen Seltsamen Trank mit einem Kugelfisch.", "Préparez une potion étrange avec un poisson-globe.", "Prepara una poción rara con un pez globo.", "奇妙なポーションにフグを加えて醸造する。"]
+  "Brew an Awkward Potion with a pufferfish.": ["Braue einen Seltsamen Trank mit einem Kugelfisch.", "Préparez une potion étrange avec un poisson-globe.", "Prepara una poción rara con un pez globo.", "奇妙なポーションにフグを加えて醸造する。"],
+  "Cast a fishing rod into water.": ["Wirf eine Angel ins Wasser aus.", "Lancez une canne à pêche dans l'eau.", "Lanza una caña de pescar al agua.", "水に釣り竿を投げよう。"],
+  "Sell crops, paper or coal to villagers.": ["Verkaufe Dorfbewohnern Feldfrüchte, Papier oder Kohle.", "Vendez des récoltes, du papier ou du charbon aux villageois.", "Vende cultivos, papel o carbón a los aldeanos.", "村人に作物や紙、石炭を売ろう。"],
+  "Farmers sell bread for emeralds.": ["Bauern verkaufen Brot für Smaragde.", "Les fermiers vendent du pain contre des émeraudes.", "Los granjeros venden pan por esmeraldas.", "農民はエメラルドでパンを売っている。"],
+  "Fletchers sell arrows for emeralds.": ["Pfeilmacher verkaufen Pfeile für Smaragde.", "Les archers vendent des flèches contre des émeraudes.", "Los flecheros venden flechas por esmeraldas.", "矢師はエメラルドで矢を売っている。"],
+  "Clerics sell redstone for emeralds.": ["Geistliche verkaufen Redstone für Smaragde.", "Les clercs vendent de la redstone contre des émeraudes.", "Los clérigos venden redstone por esmeraldas.", "聖職者はエメラルドでレッドストーンを売っている。"],
+  "Hand them in with the quest book or /quest submit.": ["Gib sie im Questbuch oder mit /quest submit ab.", "Remettez-les via le livre de quêtes ou /quest submit.", "Entrégalos con el libro de misiones o /quest submit.", "クエストブックか /quest submit で納品しよう。"]
 }

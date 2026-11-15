@@ -508,7 +508,8 @@ ENTRIES = [
 ]
 
 from vanilla_more import MORE  # noqa: E402  (second batch, extension phase)
-ENTRIES = ENTRIES + MORE
+from vanilla_060 import V060  # noqa: E402  (0.6.0: fishing, trading, brewing, deliveries, biomes, structures)
+ENTRIES = ENTRIES + MORE + V060
 
 VANILLA = {
     "format": 1,

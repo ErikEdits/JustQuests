@@ -23,7 +23,23 @@ public enum ObjectiveType {
     /** Enchanting-table enchants; the target is the enchanted RESULT (books become enchanted_book). */
     ENCHANT_ITEM("enchant_item", "item", ContentKind.ITEM, true),
     /** Uses that did something (vanilla "Times Used"): throwables, bone meal, rockets. */
-    USE_ITEM("use_item", "item", ContentKind.ITEM, true);
+    USE_ITEM("use_item", "item", ContentKind.ITEM, true),
+    /** Catch with a fishing rod; the target is what is caught (0.6.0). */
+    FISH_ITEM("fish_item", "item", ContentKind.ITEM, true),
+    /** Trade with villagers; the target is what the player gets, "profession" can name the trader (0.6.0). */
+    TRADE_VILLAGER("trade_villager", "item", ContentKind.ITEM, true, "profession"),
+    /** Take brewed potions out of a brewing stand; the target is a potion id (0.6.0). */
+    BREW_POTION("brew_potion", "potion", ContentKind.POTION, true),
+    /** A delivery: the items are handed in and leave the inventory (0.6.0). */
+    SUBMIT_ITEM("submit_item", "item", ContentKind.ITEM, true),
+    /** Stand in a biome (id or #tag) (0.6.0). */
+    FIND_BIOME("find_biome", "biome", ContentKind.BIOME, false),
+    /** Stand in a structure (id or #tag) (0.6.0). */
+    FIND_STRUCTURE("find_structure", "structure", ContentKind.STRUCTURE, false),
+    /** Farmer's Delight: cut on a cutting board; the target is what is cut (0.6.0). */
+    CUT_ITEM("cut_item", "item", ContentKind.ITEM, true),
+    /** Farmer's Delight: cook a meal; "via" can name how (cooking_pot, skillet, stove, feast) (0.6.0). */
+    COOK_ITEM("cook_item", "item", ContentKind.ITEM, true, "via");
 
     /** Types that must never be emitted. */
     public static final Set<String> FORBIDDEN = Set.of("gain_advancement", "reach_level", "reach_location");
@@ -32,12 +48,24 @@ public enum ObjectiveType {
     private final String field;
     private final ContentKind kind;
     private final boolean counted;
+    private final Set<String> extras;
 
-    ObjectiveType(String shortName, String field, ContentKind kind, boolean counted) {
+    ObjectiveType(String shortName, String field, ContentKind kind, boolean counted, String... extras) {
         this.shortName = shortName;
         this.field = field;
         this.kind = kind;
         this.counted = counted;
+        this.extras = Set.of(extras);
+    }
+
+    /** Optional extra fields a catalog target may set and the quest JSON carries ({@code profession}, {@code via}). */
+    public Set<String> extras() {
+        return extras;
+    }
+
+    /** Biomes and structures name their own #tags in the catalog (no tag concept, no host tag check). */
+    public boolean ownTags() {
+        return kind == ContentKind.BIOME || kind == ContentKind.STRUCTURE;
     }
 
     /** e.g. {@code collect_item}. */
@@ -74,7 +102,7 @@ public enum ObjectiveType {
      * ({@code HostCapabilities.supportsTag}); dimensions never.
      */
     public boolean taggable() {
-        return kind != ContentKind.DIMENSION;
+        return kind == ContentKind.ITEM || kind == ContentKind.BLOCK || kind == ContentKind.ENTITY;
     }
 
     /** Accepts {@code collect_item}, {@code justquests:collect_item} or enum names; null if unknown. */

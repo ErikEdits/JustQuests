@@ -125,6 +125,56 @@
       "{Name} Drill",
       "Handy {Names}",
       "{Name} Training"
+    ],
+    "fish_item": [
+      "{Name} Catch",
+      "Fish for {Names}",
+      "{Name} Angler",
+      "{Name} Bait"
+    ],
+    "trade_villager": [
+      "{Name} Trade",
+      "Market: {Name}",
+      "Buy {Names}",
+      "{Name} Bargain",
+      "{Name} Deal"
+    ],
+    "brew_potion": [
+      "Brew {Names}",
+      "Alchemy: {Name}",
+      "{Name} Batch",
+      "Brewer's Order"
+    ],
+    "submit_item": [
+      "{Name} Delivery",
+      "Deliver {Names}",
+      "{Name} Shipment",
+      "Supply Run: {Name}",
+      "{Name} Drop-off"
+    ],
+    "find_biome": [
+      "{Name} Expedition",
+      "Explore: {Name}",
+      "{Name} Trip",
+      "{Name} Scout"
+    ],
+    "find_structure": [
+      "Find the {Name}",
+      "{Name} Hunt",
+      "{Name} Expedition",
+      "Lost {Name}"
+    ],
+    "cut_item": [
+      "Chop {Names}",
+      "{Name} Prep",
+      "Cutting Board: {Name}",
+      "{Name} Slices"
+    ],
+    "cook_item": [
+      "Cook {Names}",
+      "{Name} Kitchen",
+      "Chef: {Name}",
+      "{Name} Order"
     ]
   },
   "phrases": {
@@ -171,6 +221,35 @@
     "visit_dimension": [
       "Travel to {dimension}",
       "Enter {dimension}"
+    ],
+    "fish_item": [
+      "Catch {count} {names}",
+      "Fish up {count} {names}"
+    ],
+    "trade_villager": [
+      "Trade for {count} {names}",
+      "Get {count} {names} from villagers"
+    ],
+    "brew_potion": [
+      "Brew {count} {names}"
+    ],
+    "submit_item": [
+      "Hand in {count} {names}",
+      "Deliver {count} {names}"
+    ],
+    "find_biome": [
+      "Explore {a_name}",
+      "Visit {a_name}"
+    ],
+    "find_structure": [
+      "Find {a_name}",
+      "Track down {a_name}"
+    ],
+    "cut_item": [
+      "Cut {count} {names} on a cutting board"
+    ],
+    "cook_item": [
+      "Cook {count} {names}"
     ]
   },
   "variants": {
@@ -336,6 +415,8 @@
     "nether_animals": "Nether Ranch",
     "nether_crafts": "Nether Mason",
     "storage_blocks": "Treasury",
+    "deliveries": "Delivery",
+    "landmarks": "Landmark",
     "mek_osmium": "Osmium",
     "mek_tin": "Tin",
     "mek_lead": "Lead",

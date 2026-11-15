@@ -6068,6 +6068,643 @@
           "potion": "minecraft:water_breathing"
         }
       ]
+    },
+    {
+      "key": "fishing_catch",
+      "family": "fishing",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "fishing_rod",
+      "targets": [
+        {
+          "type": "fish_item",
+          "id": "minecraft:cod",
+          "effort": 0.6,
+          "min": 3,
+          "max": 12,
+          "name": "Raw Cod",
+          "hint": "Cast a fishing rod into water."
+        },
+        {
+          "type": "fish_item",
+          "id": "minecraft:salmon",
+          "effort": 1.2,
+          "min": 2,
+          "max": 8,
+          "hints": [
+            "river"
+          ],
+          "name": "Raw Salmon",
+          "hint": "Cast a fishing rod into water."
+        },
+        {
+          "type": "fish_item",
+          "id": "minecraft:tropical_fish",
+          "effort": 4.0,
+          "min": 1,
+          "max": 3,
+          "hints": [
+            "rare"
+          ],
+          "name": "Tropical Fish",
+          "plural": "Tropical Fish",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "fish_item",
+          "id": "minecraft:pufferfish",
+          "effort": 3.0,
+          "min": 1,
+          "max": 3,
+          "hints": [
+            "rare"
+          ],
+          "name": "Pufferfish",
+          "plural": "Pufferfish",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "trading",
+      "family": "villagers",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "hints": [
+        "village"
+      ],
+      "targets": [
+        {
+          "type": "trade_villager",
+          "id": "minecraft:emerald",
+          "effort": 1.0,
+          "min": 4,
+          "max": 16,
+          "hints": [
+            "village"
+          ],
+          "hint": "Sell crops, paper or coal to villagers."
+        },
+        {
+          "type": "trade_villager",
+          "id": "minecraft:bread",
+          "effort": 0.35,
+          "min": 6,
+          "max": 18,
+          "hints": [
+            "village"
+          ],
+          "hint": "Farmers sell bread for emeralds.",
+          "profession": "minecraft:farmer"
+        },
+        {
+          "type": "trade_villager",
+          "id": "minecraft:arrow",
+          "effort": 0.06,
+          "min": 16,
+          "max": 64,
+          "hints": [
+            "village"
+          ],
+          "hint": "Fletchers sell arrows for emeralds.",
+          "profession": "minecraft:fletcher"
+        },
+        {
+          "type": "trade_villager",
+          "id": "minecraft:redstone",
+          "effort": 0.5,
+          "min": 2,
+          "max": 8,
+          "hints": [
+            "village"
+          ],
+          "name": "Redstone Dust",
+          "plural": "Redstone Dust",
+          "hint": "Clerics sell redstone for emeralds.",
+          "minDifficulty": "normal",
+          "profession": "minecraft:cleric"
+        }
+      ]
+    },
+    {
+      "key": "brewing_stand_work",
+      "family": "brewing",
+      "tier": 3,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "requires": [
+        "nether"
+      ],
+      "notes": "brew_potion counts potions taken out of a brewing stand; long and strong forms count too.",
+      "targets": [
+        {
+          "type": "brew_potion",
+          "id": "minecraft:swiftness",
+          "effort": 3.0,
+          "min": 1,
+          "max": 3,
+          "name": "Potion of Swiftness",
+          "plural": "Potions of Swiftness",
+          "hint": "Brew an Awkward Potion with sugar."
+        },
+        {
+          "type": "brew_potion",
+          "id": "minecraft:night_vision",
+          "effort": 3.0,
+          "min": 1,
+          "max": 3,
+          "name": "Potion of Night Vision",
+          "plural": "Potions of Night Vision",
+          "hint": "Brew an Awkward Potion with a golden carrot."
+        },
+        {
+          "type": "brew_potion",
+          "id": "minecraft:fire_resistance",
+          "effort": 3.5,
+          "min": 1,
+          "max": 3,
+          "name": "Potion of Fire Resistance",
+          "plural": "Potions of Fire Resistance",
+          "hint": "Brew an Awkward Potion with magma cream."
+        },
+        {
+          "type": "brew_potion",
+          "id": "minecraft:strength",
+          "effort": 3.5,
+          "min": 1,
+          "max": 3,
+          "name": "Potion of Strength",
+          "plural": "Potions of Strength",
+          "hint": "Brew an Awkward Potion with blaze powder."
+        },
+        {
+          "type": "brew_potion",
+          "id": "minecraft:water_breathing",
+          "effort": 4.0,
+          "min": 1,
+          "max": 2,
+          "hints": [
+            "ocean"
+          ],
+          "name": "Potion of Water Breathing",
+          "plural": "Potions of Water Breathing",
+          "hint": "Brew an Awkward Potion with a pufferfish."
+        }
+      ]
+    },
+    {
+      "key": "deliveries",
+      "family": "deliveries",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "submit_item",
+          "id": "minecraft:wheat",
+          "effort": 0.3,
+          "min": 16,
+          "max": 48,
+          "hints": [
+            "farm"
+          ],
+          "hint": "Hand them in with the quest book or /quest submit."
+        },
+        {
+          "type": "submit_item",
+          "id": "minecraft:carrot",
+          "effort": 0.3,
+          "min": 16,
+          "max": 48,
+          "hints": [
+            "farm"
+          ],
+          "hint": "Hand them in with the quest book or /quest submit."
+        },
+        {
+          "type": "submit_item",
+          "id": "minecraft:potato",
+          "effort": 0.3,
+          "min": 16,
+          "max": 48,
+          "hints": [
+            "farm"
+          ],
+          "hint": "Hand them in with the quest book or /quest submit."
+        },
+        {
+          "type": "submit_item",
+          "id": "minecraft:oak_log",
+          "effort": 0.12,
+          "min": 16,
+          "max": 64,
+          "hint": "Hand them in with the quest book or /quest submit."
+        },
+        {
+          "type": "submit_item",
+          "id": "minecraft:cobblestone",
+          "effort": 0.05,
+          "min": 32,
+          "max": 128,
+          "tool": "wood",
+          "hint": "Hand them in with the quest book or /quest submit."
+        },
+        {
+          "type": "submit_item",
+          "id": "minecraft:coal",
+          "effort": 0.3,
+          "min": 8,
+          "max": 32,
+          "tool": "wood",
+          "hint": "Hand them in with the quest book or /quest submit."
+        },
+        {
+          "type": "submit_item",
+          "id": "minecraft:bread",
+          "effort": 0.5,
+          "min": 8,
+          "max": 24,
+          "hint": "Hand them in with the quest book or /quest submit."
+        },
+        {
+          "type": "submit_item",
+          "id": "minecraft:leather",
+          "effort": 0.8,
+          "min": 4,
+          "max": 16,
+          "hint": "Hand them in with the quest book or /quest submit."
+        },
+        {
+          "type": "submit_item",
+          "id": "minecraft:iron_ingot",
+          "effort": 1.2,
+          "min": 4,
+          "max": 16,
+          "tier": 1,
+          "tool": "stone",
+          "hint": "Hand them in with the quest book or /quest submit."
+        }
+      ]
+    },
+    {
+      "key": "biomes",
+      "family": "exploration",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "find_biome",
+          "id": "minecraft:desert",
+          "effort": 12,
+          "min": 1,
+          "max": 16,
+          "name": "Desert"
+        },
+        {
+          "type": "find_biome",
+          "id": "#minecraft:is_jungle",
+          "effort": 18,
+          "min": 1,
+          "max": 16,
+          "name": "Jungle"
+        },
+        {
+          "type": "find_biome",
+          "id": "#minecraft:is_savanna",
+          "effort": 12,
+          "min": 1,
+          "max": 16,
+          "name": "Savanna"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:swamp",
+          "effort": 10,
+          "min": 1,
+          "max": 16,
+          "name": "Swamp"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:dark_forest",
+          "effort": 12,
+          "min": 1,
+          "max": 16,
+          "name": "Dark Forest"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:flower_forest",
+          "effort": 18,
+          "min": 1,
+          "max": 16,
+          "name": "Flower Forest"
+        },
+        {
+          "type": "find_biome",
+          "id": "#minecraft:is_taiga",
+          "effort": 10,
+          "min": 1,
+          "max": 16,
+          "name": "Taiga"
+        },
+        {
+          "type": "find_biome",
+          "id": "#minecraft:is_badlands",
+          "effort": 25,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "name": "Badlands Biome"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:ice_spikes",
+          "effort": 30,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "name": "Ice Spikes Biome"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:cherry_grove",
+          "effort": 25,
+          "min": 1,
+          "max": 16,
+          "name": "Cherry Grove",
+          "since": "1.20"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:mangrove_swamp",
+          "effort": 25,
+          "min": 1,
+          "max": 16,
+          "name": "Mangrove Swamp",
+          "since": "1.19"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:mushroom_fields",
+          "effort": 40,
+          "min": 1,
+          "max": 16,
+          "tier": 2,
+          "name": "Mushroom Island",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "nether_biomes",
+      "family": "nether_travel",
+      "tier": 3,
+      "dimension": "minecraft:the_nether",
+      "tool": "none",
+      "requires": [
+        "nether"
+      ],
+      "targets": [
+        {
+          "type": "find_biome",
+          "id": "minecraft:crimson_forest",
+          "effort": 15,
+          "min": 1,
+          "max": 16,
+          "name": "Crimson Forest"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:warped_forest",
+          "effort": 15,
+          "min": 1,
+          "max": 16,
+          "name": "Warped Forest"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:soul_sand_valley",
+          "effort": 15,
+          "min": 1,
+          "max": 16,
+          "name": "Soul Sand Valley"
+        },
+        {
+          "type": "find_biome",
+          "id": "minecraft:basalt_deltas",
+          "effort": 20,
+          "min": 1,
+          "max": 16,
+          "name": "Basalt Delta"
+        }
+      ]
+    },
+    {
+      "key": "landmarks",
+      "family": "landmarks",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "find_structure",
+          "id": "#minecraft:village",
+          "effort": 15,
+          "min": 1,
+          "max": 16,
+          "name": "Village"
+        },
+        {
+          "type": "find_structure",
+          "id": "#minecraft:ruined_portal",
+          "effort": 12,
+          "min": 1,
+          "max": 16,
+          "name": "Ruined Portal"
+        },
+        {
+          "type": "find_structure",
+          "id": "#minecraft:shipwreck",
+          "effort": 20,
+          "min": 1,
+          "max": 16,
+          "hints": [
+            "ocean"
+          ],
+          "name": "Shipwreck"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:pillager_outpost",
+          "effort": 25,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "name": "Pillager Outpost",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:desert_pyramid",
+          "effort": 25,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "hints": [
+            "desert"
+          ],
+          "name": "Desert Temple"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:jungle_pyramid",
+          "effort": 30,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "hints": [
+            "jungle"
+          ],
+          "name": "Jungle Temple"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:swamp_hut",
+          "effort": 30,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "hints": [
+            "swamp"
+          ],
+          "name": "Swamp Hut"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:igloo",
+          "effort": 35,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "hints": [
+            "snowy"
+          ],
+          "name": "Igloo"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:trail_ruins",
+          "effort": 35,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "name": "Trail Ruins",
+          "since": "1.20"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:trial_chambers",
+          "effort": 30,
+          "min": 1,
+          "max": 16,
+          "tier": 1,
+          "hints": [
+            "deep"
+          ],
+          "name": "Trial Chambers",
+          "since": "1.21"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:monument",
+          "effort": 40,
+          "min": 1,
+          "max": 16,
+          "tier": 2,
+          "hints": [
+            "ocean"
+          ],
+          "name": "Ocean Monument",
+          "minDifficulty": "normal"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:ancient_city",
+          "effort": 45,
+          "min": 1,
+          "max": 16,
+          "tier": 2,
+          "hints": [
+            "deep_dark"
+          ],
+          "name": "Ancient City",
+          "minDifficulty": "hard",
+          "since": "1.19"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:stronghold",
+          "effort": 45,
+          "min": 1,
+          "max": 16,
+          "tier": 2,
+          "name": "Stronghold",
+          "minDifficulty": "hard"
+        }
+      ]
+    },
+    {
+      "key": "nether_landmarks",
+      "family": "nether_travel",
+      "tier": 3,
+      "dimension": "minecraft:the_nether",
+      "tool": "none",
+      "requires": [
+        "nether"
+      ],
+      "targets": [
+        {
+          "type": "find_structure",
+          "id": "minecraft:fortress",
+          "effort": 20,
+          "min": 1,
+          "max": 16,
+          "name": "Nether Fortress"
+        },
+        {
+          "type": "find_structure",
+          "id": "minecraft:bastion_remnant",
+          "effort": 25,
+          "min": 1,
+          "max": 16,
+          "name": "Bastion Remnant",
+          "minDifficulty": "normal"
+        }
+      ]
+    },
+    {
+      "key": "end_landmarks",
+      "family": "end_travel",
+      "tier": 4,
+      "dimension": "minecraft:the_end",
+      "tool": "none",
+      "requires": [
+        "end"
+      ],
+      "targets": [
+        {
+          "type": "find_structure",
+          "id": "minecraft:end_city",
+          "effort": 30,
+          "min": 1,
+          "max": 16,
+          "name": "End City",
+          "minDifficulty": "hard"
+        }
+      ]
     }
   ]
 }

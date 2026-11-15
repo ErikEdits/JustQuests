@@ -1280,6 +1280,119 @@
           "hint": "It slowly turns into rich soil."
         }
       ]
+    },
+    {
+      "key": "fd_cutting",
+      "family": "fd_kitchen",
+      "tier": 0,
+      "dimension": "minecraft:overworld",
+      "tool": "knife",
+      "targets": [
+        {
+          "type": "cut_item",
+          "id": "farmersdelight:cabbage",
+          "effort": 0.6,
+          "min": 3,
+          "max": 12,
+          "hint": "Put it on a cutting board and use a knife."
+        },
+        {
+          "type": "cut_item",
+          "id": "minecraft:beef",
+          "effort": 1.0,
+          "min": 2,
+          "max": 8,
+          "hint": "Put it on a cutting board and use a knife."
+        },
+        {
+          "type": "cut_item",
+          "id": "minecraft:porkchop",
+          "effort": 1.0,
+          "min": 2,
+          "max": 8,
+          "hint": "Put it on a cutting board and use a knife."
+        },
+        {
+          "type": "cut_item",
+          "id": "minecraft:salmon",
+          "effort": 1.4,
+          "min": 2,
+          "max": 6,
+          "hint": "Put it on a cutting board and use a knife."
+        },
+        {
+          "type": "cut_item",
+          "id": "minecraft:pumpkin",
+          "effort": 0.8,
+          "min": 2,
+          "max": 6,
+          "hint": "Put it on a cutting board and use a knife."
+        }
+      ]
+    },
+    {
+      "key": "fd_cooking",
+      "family": "fd_stews",
+      "tier": 1,
+      "dimension": "minecraft:overworld",
+      "tool": "none",
+      "targets": [
+        {
+          "type": "cook_item",
+          "id": "farmersdelight:beef_stew",
+          "effort": 4.0,
+          "min": 1,
+          "max": 3,
+          "hint": "Cook it in a cooking pot on a heat source.",
+          "via": "cooking_pot"
+        },
+        {
+          "type": "cook_item",
+          "id": "farmersdelight:vegetable_soup",
+          "effort": 4.0,
+          "min": 1,
+          "max": 3,
+          "hint": "Cook it in a cooking pot on a heat source.",
+          "via": "cooking_pot"
+        },
+        {
+          "type": "cook_item",
+          "id": "farmersdelight:pumpkin_soup",
+          "effort": 4.0,
+          "min": 1,
+          "max": 3,
+          "hint": "Cook it in a cooking pot on a heat source.",
+          "via": "cooking_pot"
+        },
+        {
+          "type": "cook_item",
+          "id": "farmersdelight:fried_egg",
+          "effort": 0.8,
+          "min": 2,
+          "max": 8,
+          "hint": "Fry it in a skillet.",
+          "via": "skillet"
+        },
+        {
+          "type": "cook_item",
+          "id": "minecraft:cooked_beef",
+          "effort": 0.8,
+          "min": 3,
+          "max": 12,
+          "hint": "Cook it on a stove.",
+          "via": "stove"
+        },
+        {
+          "type": "cook_item",
+          "id": "farmersdelight:roast_chicken",
+          "effort": 3.0,
+          "min": 1,
+          "max": 2,
+          "hint": "Take a serving from a roast chicken feast with a bowl.",
+          "minDifficulty": "normal",
+          "via": "feast"
+        }
+      ]
     }
   ],
   "rewards": {

@@ -104,6 +104,24 @@ public final class FakeHost implements GeneratorHost {
             itemTags.put("c:ingots/iron", Set.of("minecraft:iron_ingot"));
         }
 
+        /** A host of 0.6.0: biomes, structures and potions can be looked up. */
+        public boolean kinds060;
+
+        @Override
+        public boolean biomeExists(String id) {
+            return kinds060 && exists(id.startsWith("#") ? id.substring(1) : id);
+        }
+
+        @Override
+        public boolean structureExists(String id) {
+            return kinds060 && exists(id.startsWith("#") ? id.substring(1) : id);
+        }
+
+        @Override
+        public boolean potionExists(String id) {
+            return kinds060 && exists(id);
+        }
+
         private boolean exists(String id) {
             existsCalls++;
             if (id == null || missing.contains(id)) {

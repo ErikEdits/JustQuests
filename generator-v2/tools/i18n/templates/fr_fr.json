@@ -13,7 +13,15 @@
     "place_block": ["Bâtisseur : {name}", "Bâtir en {name}", "Poser : {name}", "Projet : {name}", "Ouvrage : {name}", "Plan : {name}", "Décorer : {name}", "Chantier : {name}", "Design : {name}"],
     "visit_dimension": ["Voyage : {Dimension}", "Visite : {Dimension}", "Périple : {Dimension}", "En route : {Dimension}", "Porte : {Dimension}", "Expédition : {Dimension}"],
     "enchant_item": ["Enchanteur : {name}", "Enchanté : {name}", "Arcane : {name}", "Enchantement : {name}", "Ensorcelé : {name}", "Magie : {name}"],
-    "use_item": ["Pratique : {name}", "Utiliser : {name}", "Exercice : {name}", "Astuce : {name}", "Entraînement : {name}"]
+    "use_item": ["Pratique : {name}", "Utiliser : {name}", "Exercice : {name}", "Astuce : {name}", "Entraînement : {name}"],
+    "fish_item": ["Prise : {name}", "Pêche : {name}", "Pêcheur : {name}", "Appât : {name}"],
+    "trade_villager": ["Commerce : {name}", "Marché : {name}", "Acheter : {name}", "Affaire : {name}", "Marché conclu : {name}"],
+    "brew_potion": ["Brasser : {name}", "Alchimie : {name}", "Fournée : {name}", "Commande d'alchimiste"],
+    "submit_item": ["Livraison : {name}", "Livrer : {name}", "Envoi : {name}", "Ravitaillement : {name}", "Dépôt : {name}"],
+    "find_biome": ["Expédition : {name}", "Explorer : {name}", "Excursion : {name}", "Éclaireur : {name}"],
+    "find_structure": ["Recherche : {name}", "Trouver : {name}", "Expédition : {name}", "Caché : {name}"],
+    "cut_item": ["Découper : {name}", "Préparation : {name}", "Planche : {name}", "Tranches : {name}"],
+    "cook_item": ["Cuisiner : {name}", "Cuisine : {name}", "Chef : {name}", "Commande : {name}"]
   },
   "phrases": {
     "collect_item": ["Récoltez {count}× {name}", "Rassemblez {count}× {name}", "Ramassez {count}× {name}"],
@@ -27,7 +35,15 @@
     "enchant_item": ["Enchantez {count}× {name}"],
     "use_item": ["Utilisez {count}× {name}"],
     "place_block": ["Posez {count}× {name}", "Construisez avec {count}× {name}"],
-    "visit_dimension": ["Rendez-vous {dimension_to}", "Entrez {dimension_to}"]
+    "visit_dimension": ["Rendez-vous {dimension_to}", "Entrez {dimension_to}"],
+    "fish_item": ["Pêchez {count}× {name}", "Attrapez {count}× {name} à la pêche"],
+    "trade_villager": ["Obtenez {count}× {name} par échange", "Obtenez {count}× {name} auprès des villageois"],
+    "brew_potion": ["Préparez {count}× {name}"],
+    "submit_item": ["Remettez {count}× {name}", "Livrez {count}× {name}"],
+    "find_biome": ["Explorez le biome {name}", "Visitez le biome {name}"],
+    "find_structure": ["Trouvez ce lieu : {name}", "Dénichez ce lieu : {name}"],
+    "cut_item": ["Découpez {count}× {name} sur une planche à découper"],
+    "cook_item": ["Cuisinez {count}× {name}"]
   },
   "variants": {
     "throw": {"phrases": ["Lancez {count}× {name}"], "titles": ["Lancer : {name}", "Jeter : {name}", "Volée : {name}", "Tir : {name}"]},

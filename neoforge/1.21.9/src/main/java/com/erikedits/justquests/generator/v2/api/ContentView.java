@@ -157,4 +157,35 @@ public interface ContentView {
      * @return the English name or null
      */
     String englishName(ContentKind kind, String id);
+
+    /**
+     * Biome exists (an id, or a #tag with members). Hosts older than 0.6.0 answer false, so the core
+     * leaves biome objectives out.
+     *
+     * @param id biome id or #tag
+     * @return true if it exists on this build
+     */
+    default boolean biomeExists(String id) {
+        return false;
+    }
+
+    /**
+     * Structure exists (an id, or a #tag with members). Hosts older than 0.6.0 answer false.
+     *
+     * @param id structure id or #tag
+     * @return true if it exists on this build
+     */
+    default boolean structureExists(String id) {
+        return false;
+    }
+
+    /**
+     * Potion exists. Hosts older than 0.6.0 answer false.
+     *
+     * @param id potion id
+     * @return true if it exists on this build
+     */
+    default boolean potionExists(String id) {
+        return false;
+    }
 }

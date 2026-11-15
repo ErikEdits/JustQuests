@@ -70,6 +70,11 @@ public final class Compat {
     }
 
     /** The potion's id ("minecraft:long_swiftness"), or null. */
+    /** Whether the server API can see structures (always on this range). */
+    public static boolean structuresSeen() {
+        return true;
+    }
+
     /**
      * The structures with a piece where the location is (0.6.0, find_structure): each as its id and
      * where it starts ("x,z").

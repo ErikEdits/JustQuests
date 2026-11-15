@@ -188,6 +188,23 @@ public final class BukkitHost implements GeneratorHost {
 
         @Override public TriState isConsumable(String itemId) { return TriState.UNKNOWN; }
 
+        /** 0.6.0: a biome; the vanilla #is_... tags are known to the plugin's find_biome. */
+        @Override
+        public boolean biomeExists(String id) {
+            if (id.startsWith("#")) return id.startsWith("#minecraft:is_");
+            NamespacedKey k = key(id);
+            return k != null && Registry.BIOME.get(k) != null;
+        }
+
+        /** 0.6.0: structures can be seen from 1.20.4 on; the catalog's "since" keeps newer ones out. */
+        @Override
+        public boolean structureExists(String id) {
+            return com.erikedits.justquests.plugin.compat.Compat.structuresSeen() && (id.startsWith("minecraft:") || id.startsWith("#minecraft:"));
+        }
+
+        /** 0.6.0: the vanilla potions are always there. */
+        @Override public boolean potionExists(String id) { return id.startsWith("minecraft:"); }
+
         /** The catalogs carry the English names. */
         @Override public String englishName(ContentKind kind, String id) { return null; }
     }
@@ -317,7 +334,10 @@ public final class BukkitHost implements GeneratorHost {
             "justquests:place_block", "justquests:craft_item", "justquests:tame_animal", "justquests:gain_advancement",
             "justquests:visit_dimension", "justquests:reach_level", "justquests:reach_location", "justquests:mine_block",
             "justquests:breed_animal", "justquests:consume_item", "justquests:smelt_item", "justquests:enchant_item",
-            "justquests:use_item");
+            "justquests:use_item",
+            // 0.6.0 (cut_item and cook_item are Farmer's Delight, a mod)
+            "justquests:fish_item", "justquests:trade_villager", "justquests:brew_potion", "justquests:submit_item",
+            "justquests:find_biome", "justquests:find_structure");
         private static final Set<String> REWARDS = Set.of("justquests:give_item", "justquests:xp", "justquests:effect",
             "justquests:loot_table", "justquests:message", "justquests:command", "justquests:choice");
 

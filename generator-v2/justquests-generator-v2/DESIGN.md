@@ -204,6 +204,20 @@ and Easy never leaves the Overworld. Young worlds weight tiers with `progression
 (day ≤ 2: tier 2 × 0.15; day ≤ 6: tier 2 × 0.6), multiplied with the difficulty's `tierWeights`.
 `explain` shows the reason ("tier 3 (unlocked: day 14)").
 
+**Milestones (0.6.0)** refine this server-wide (`progression.milestones` in `balance.json`). A milestone
+is reached when `share` of the online players have one of its advancements, or on `day`, and is kept in
+the snapshot (never goes back):
+- with a `tier` (iron: `story/smelt_iron` → tier 1, diamonds: `story/mine_diamond` → tier 2), content up
+  to that tier gets its full weight even while the early-world weights would still damp it;
+- with a `type` (enchanting, trading on day 8 at the latest, brewing), that objective type keeps the
+  weight factor `before` until the milestone is reached.
+
+**Objective types of 0.6.0:** `fish_item`, `trade_villager` (optional `profession`), `brew_potion`
+(target: a potion id), `submit_item`, `find_biome` and `find_structure` (no count; the catalog may name
+a biome or structure `#tag` directly), and with Farmer's Delight `cut_item` and `cook_item` (optional
+`via`). Biomes, structures and potions are new content kinds; hosts answer them with
+`ContentView.biomeExists`/`structureExists`/`potionExists` (older hosts: false, so those targets drop out).
+
 ## 8. Claims, rotation, persistence
 
 - **Claims** follow §10 exactly (`ClaimsTest`). A `ClaimRecord` has `holders` (player → claim time)

@@ -471,6 +471,15 @@ public final class CandidateResolver {
             case ENTITY:
                 r = safe(() -> content.entityTypeExists(id), false);
                 break;
+            case BIOME:
+                r = safe(() -> content.biomeExists(id), false);
+                break;
+            case STRUCTURE:
+                r = safe(() -> content.structureExists(id), false);
+                break;
+            case POTION:
+                r = safe(() -> content.potionExists(id), false);
+                break;
             default:
                 r = safe(() -> content.dimensionExists(id), false);
                 break;

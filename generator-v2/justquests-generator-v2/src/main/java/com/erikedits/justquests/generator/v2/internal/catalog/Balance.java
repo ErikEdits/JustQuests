@@ -45,6 +45,18 @@ public final class Balance {
     }
 
     /** Tier weights applied while the world is young. */
+    /**
+     * A milestone of the server's progress (0.6.0): reached when share of the online players have one of
+     * the advancements, or on day (0 = never by day). Then content up to tier gets its full weight, and
+     * an objective type it names loses the weight factor "before" it had until then.
+     */
+    public record Milestone(String id, List<String> advancements, double share, long day, int tier, String type,
+                            double before) {
+    }
+
+    /** Milestones of the progression (0.6.0). */
+    public final List<Milestone> milestones = new ArrayList<>();
+
     public record EarlyWorld(long maxDay, double[] tierWeights) {
     }
 
@@ -152,6 +164,15 @@ public final class Balance {
             if (!adv.isEmpty()) {
                 b.endAdvancements = List.copyOf(adv);
             }
+            List<JsonObject> ms = Json.objects(prog, "milestones");
+            if (!ms.isEmpty()) {
+                b.milestones.clear();
+                for (JsonObject m : ms) {
+                    b.milestones.add(new Milestone(Json.str(m, "id", "milestone"), Json.strings(m, "advancements"),
+                        Json.dbl(m, "share", 0.25), Json.lng(m, "day", 0), Json.integer(m, "tier", -1),
+                        Json.str(m, "type", null), Json.dbl(m, "before", 1.0)));
+                }
+            }
             List<JsonObject> early = Json.objects(prog, "earlyWorld");
             if (!early.isEmpty()) {
                 b.earlyWorld.clear();
@@ -218,8 +239,10 @@ public final class Balance {
         levels.put(Difficulty.HARD, level(15, 35, 4, new double[]{50, 35, 15}, 1.5, 18, 60, true, 0.20, 0.15, 0.05,
             new double[]{0.35, 0.8, 1.0, 1.0, 1.0}));
         String[] types = {"collect_item", "mine_block", "craft_item", "smelt_item", "kill_mob", "breed_animal",
-            "tame_animal", "consume_item", "place_block", "visit_dimension", "enchant_item", "use_item"};
-        double[] w = {1.0, 1.0, 1.0, 0.8, 1.0, 0.6, 0.25, 0.6, 0.35, 0.15, 0.8, 1.0};
+            "tame_animal", "consume_item", "place_block", "visit_dimension", "enchant_item", "use_item",
+            "fish_item", "trade_villager", "brew_potion", "submit_item", "find_biome", "find_structure", "cut_item", "cook_item"};
+        double[] w = {1.0, 1.0, 1.0, 0.8, 1.0, 0.6, 0.25, 0.6, 0.35, 0.15, 0.8, 1.0,
+            0.7, 0.5, 0.5, 0.8, 0.3, 0.3, 0.8, 0.8};
         for (int i = 0; i < types.length; i++) {
             typeWeights.put(types[i], w[i]);
         }
@@ -235,6 +258,11 @@ public final class Balance {
         toolLevels.put("netherite", 4);
         earlyWorld.add(new EarlyWorld(2, new double[]{1.0, 0.6, 0.15, 0.05, 0.05}));
         earlyWorld.add(new EarlyWorld(6, new double[]{1.0, 1.0, 0.6, 0.5, 0.3}));
+        milestones.add(new Milestone("iron", List.of("minecraft:story/smelt_iron"), 0.25, 0, 1, null, 1.0));
+        milestones.add(new Milestone("diamonds", List.of("minecraft:story/mine_diamond"), 0.25, 0, 2, null, 1.0));
+        milestones.add(new Milestone("enchanting", List.of("minecraft:story/enchant_item"), 0.25, 0, -1, "enchant_item", 0.4));
+        milestones.add(new Milestone("trading", List.of("minecraft:adventure/trade"), 0.25, 8, -1, "trade_villager", 0.3));
+        milestones.add(new Milestone("brewing", List.of("minecraft:nether/brew_potion"), 0.25, 0, -1, "brew_potion", 0.4));
     }
 
     private static Level level(double min, double max, int maxTier, double[] objW, double rate, double bMin, double bMax,
