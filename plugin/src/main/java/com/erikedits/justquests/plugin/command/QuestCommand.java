@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
  */
 public final class QuestCommand implements TabExecutor {
     public static final List<String> PLAYER = List.of("open", "list", "categories", "stats", "leaderboard", "progress",
-        "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "team", "discord", "autoaccept");
+        "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "team", "discord", "autoaccept", "badges");
     public static final List<String> ADMIN = List.of("reload", "reroll", "mainquests", "difficulty", "generator", "npc", "test", "admin");
 
     private final JustQuestsPlugin plugin;
@@ -121,7 +121,11 @@ public final class QuestCommand implements TabExecutor {
                 else plugin.generator().goalLines(Lang.of(sender), sender instanceof Player p ? p.getUniqueId() : null).forEach(l -> say(sender, l));
             }
             case "team" -> withPlayer(sender, p -> team(p, label, rest));
-            case "discord" -> say(sender, Community.discord(Lang.of(sender)));
+            case "discord" -> {
+                if (rest.length == 0) say(sender, Community.discord(Lang.of(sender)));
+                else withPlayer(sender, p -> discord(p, label, rest));
+            }
+            case "badges" -> withPlayer(sender, p -> badges(p, label, rest));
             case "reroll" -> {
                 int n = plugin.generator().reroll();
                 if (n < 0) say(sender, "justquests.plugin.reroll.disabled");
@@ -581,7 +585,85 @@ public final class QuestCommand implements TabExecutor {
         say(src, on ? "justquests.mainquests.enabled" : "justquests.mainquests.disabled");
     }
 
+    // --- badges and the JustQuests Discord (0.6.0) --------------------------------------------
+
+    private void badges(Player p, String label, String[] rest) {
+        String lang = Lang.of(p);
+        var badges = plugin.badges();
+        PlayerData data = plugin.store().peek(p.getUniqueId());
+        if (rest.length >= 2 && rest[0].equalsIgnoreCase("show")) {
+            String which = rest[1].equalsIgnoreCase("none") ? "none" : id(rest[1]);
+            if (!badges.show(p, which)) {
+                say(p, "justquests.badges.not_earned", rest[1]);
+                return;
+            }
+            if (which.equals("none")) say(p, "justquests.badges.show_none");
+            else say(p, "justquests.badges.show_set", badges.badge(which).name().get(lang));
+            return;
+        }
+        var all = badges.sorted();
+        var earned = badges.earned(data);
+        say(p, Text.lit("§6" + Text.legacy(lang, "justquests.badges.title", earned.size(), all.size())));
+        if (earned.isEmpty()) say(p, Text.lit("§7" + Text.legacy(lang, "justquests.badges.none")));
+        for (String id : earned) {
+            var b = badges.badge(id);
+            say(p, Text.lit(" " + b.chatColor() + b.sign() + " §f" + b.name().get(lang)
+                + (b.description().isBlank() ? "" : " §7- " + b.description().get(lang))));
+        }
+        for (var b : all) {
+            if (earned.contains(b.id()) || b.secret()) continue;
+            say(p, Text.lit("§8" + Text.legacy(lang, "justquests.badges.open", b.name().get(lang),
+                b.how().isBlank() ? b.description().get(lang) : b.how().get(lang))));
+        }
+        var shown = badges.shown(data);
+        if (shown != null) say(p, Text.lit("§7" + Text.legacy(lang, "justquests.badges.shown", shown.name().get(lang), "/" + label + " badges show <badge|none>")));
+        say(p, plugin.discord().status(p));
+        if (plugin.allowed(p, "justquests.admin.admin", true)) {
+            plugin.discord().requestStatus().forEach((ns, status) -> say(p, Text.lit("§3" + Text.legacy(lang, "justquests.badges.request", ns, status))));
+        }
+    }
+
+    private void discord(Player p, String label, String[] rest) {
+        switch (rest[0].toLowerCase(Locale.ROOT)) {
+            case "link" -> {
+                if (rest.length < 2) say(p, "justquests.plugin.usage", "/" + label + " discord link <code>");
+                else plugin.discord().link(p, String.join(" ", java.util.Arrays.copyOfRange(rest, 1, rest.length)));
+            }
+            case "unlink" -> plugin.discord().unlink(p);
+            case "status" -> say(p, plugin.discord().status(p));
+            default -> say(p, "justquests.plugin.usage", "/" + label + " discord [link <code>|unlink|status]");
+        }
+    }
+
+    /** /quest admin badge give|take <player> <badge> */
+    private void adminBadge(CommandSender src, String label, String[] rest) {
+        if (rest.length < 4 || !List.of("give", "take").contains(rest[1].toLowerCase(Locale.ROOT))) {
+            say(src, "justquests.plugin.usage", "/" + label + " admin badge give|take <player> <badge>");
+            return;
+        }
+        Player target = Bukkit.getPlayerExact(rest[2]);
+        if (target == null) {
+            say(src, "justquests.plugin.unknown_player", rest[2]);
+            return;
+        }
+        String id = id(rest[3]);
+        var b = plugin.badges().badge(id);
+        if (b == null) {
+            say(src, "justquests.badges.unknown", id);
+            return;
+        }
+        boolean give = rest[1].equalsIgnoreCase("give");
+        String name = b.name().get(Lang.of(src));
+        boolean done = give ? plugin.badges().give(target, id) : plugin.badges().take(target, id);
+        if (!done) say(src, give ? "justquests.badges.has_already" : "justquests.badges.has_not", target.getName(), name);
+        else say(src, give ? "justquests.badges.given" : "justquests.badges.taken", name, target.getName());
+    }
+
     private void admin(CommandSender src, String label, String[] rest) {
+        if (rest.length >= 1 && rest[0].equalsIgnoreCase("badge")) {
+            adminBadge(src, label, rest);
+            return;
+        }
         if (rest.length < 2) {
             say(src, "justquests.plugin.usage", "/" + label + " admin view|reset|complete <player> [quest]");
             return;
@@ -679,7 +761,9 @@ public final class QuestCommand implements TabExecutor {
                     case "generator" -> out.addAll(List.of("status", "stats", "preview", "explain", "release"));
                     case "npc" -> out.addAll(List.of("set", "remove"));
                     case "team" -> out.addAll(List.of("info", "create", "invite", "accept", "leave", "kick"));
-                    case "admin" -> { if (plugin.allowed(sender, "justquests.admin.admin", true)) out.addAll(List.of("view", "reset", "complete")); }
+                    case "admin" -> { if (plugin.allowed(sender, "justquests.admin.admin", true)) out.addAll(List.of("view", "reset", "complete", "badge")); }
+                    case "badges" -> out.add("show");
+                    case "discord" -> out.addAll(List.of("link", "unlink", "status"));
                     default -> { }
                 }
             } else if (sub.equals("generator") && args.length == 3 && List.of("explain", "release").contains(args[1].toLowerCase(Locale.ROOT))) {
@@ -689,6 +773,15 @@ public final class QuestCommand implements TabExecutor {
             } else if (sub.equals("team") && args.length == 3 && args[1].equalsIgnoreCase("kick") && p != null) {
                 Party party = plugin.teams().parties().of(p.getUniqueId());
                 if (party != null) party.members().forEach(m -> out.add(name(m)));
+            } else if (sub.equals("badges") && args.length == 3 && args[1].equalsIgnoreCase("show")) {
+                out.add("none");
+                if (p != null) out.addAll(plugin.badges().earned(plugin.store().peek(p.getUniqueId())));
+            } else if (sub.equals("admin") && args.length == 3 && args[1].equalsIgnoreCase("badge")) {
+                out.addAll(List.of("give", "take"));
+            } else if (sub.equals("admin") && args.length == 4 && args[1].equalsIgnoreCase("badge")) {
+                for (Player online : Bukkit.getOnlinePlayers()) out.add(online.getName());
+            } else if (sub.equals("admin") && args.length == 5 && args[1].equalsIgnoreCase("badge")) {
+                out.addAll(plugin.badges().all().keySet());
             } else if (sub.equals("admin") && args.length == 3) {
                 for (Player online : Bukkit.getOnlinePlayers()) out.add(online.getName());
             } else if (sub.equals("admin") && args.length == 4) {

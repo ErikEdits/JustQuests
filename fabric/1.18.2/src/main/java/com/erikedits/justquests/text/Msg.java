@@ -36,6 +36,17 @@ public final class Msg {
             .withHoverEvent(new net.minecraft.network.chat.HoverEvent(net.minecraft.network.chat.HoverEvent.Action.SHOW_TEXT, hover)));
     }
 
+    /** A web address that opens when clicked (0.6.0). */
+    public static MutableComponent url(String url) {
+        return lit(url).withStyle(s -> s.withUnderlined(true).withColor(0x5865F2)
+            .withClickEvent(new net.minecraft.network.chat.ClickEvent(net.minecraft.network.chat.ClickEvent.Action.OPEN_URL, url)));
+    }
+
+    /** Text with a tooltip (0.6.0). */
+    public static MutableComponent hover(MutableComponent text, Component hover) {
+        return text.withStyle(s -> s.withHoverEvent(new net.minecraft.network.chat.HoverEvent(net.minecraft.network.chat.HoverEvent.Action.SHOW_TEXT, hover)));
+    }
+
     /** A category: translated for the bundled categories, the id itself for pack-defined ones. */
     public static MutableComponent category(String category) {
         String key = "justquests.category." + category.toLowerCase(Locale.ROOT);

@@ -19,6 +19,7 @@ public class ServerStorageEvents {
     private int tickCounter = 0;
     private int customCounter = 0;
     private int genCounter = 0;
+    private int discordCounter = 0;
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
@@ -26,11 +27,15 @@ public class ServerStorageEvents {
         WorldSettings.load(event.getServer());   // load settings before readers
         CustomQuestLoader.init(event.getServer());
         com.erikedits.justquests.generator.GenV2.start(event.getServer());
+        // badges as roles on the JustQuests Discord (0.6.0)
+        com.erikedits.justquests.discord.DiscordLink.init(event.getServer(), "neoforge",
+            net.neoforged.fml.ModList.get().getModContainerById(com.erikedits.justquests.JustQuests.MOD_ID).map(c -> c.getModInfo().getVersion().toString()).orElse("?"));
         CommunityHints.init(event.getServer());
     }
 
     @SubscribeEvent
     public void onServerStopping(ServerStoppingEvent event) {
+        com.erikedits.justquests.discord.DiscordLink.stop();
         WorldQuestStore.unload();
         CustomQuestLoader.clear();
         com.erikedits.justquests.generator.GenV2.stop();
@@ -56,6 +61,11 @@ public class ServerStorageEvents {
         if (++genCounter >= GEN_INTERVAL_TICKS) {
             genCounter = 0;
             com.erikedits.justquests.generator.GenV2.tick();
+        }
+        // badges to the JustQuests Discord, once a second (0.6.0)
+        if (++discordCounter >= 20) {
+            discordCounter = 0;
+            com.erikedits.justquests.discord.DiscordLink.tick();
         }
     }
 }

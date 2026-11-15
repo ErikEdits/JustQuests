@@ -83,7 +83,10 @@ public final class QuestNetwork {
             // the client knows only the advancements it was shown, so gain_advancement goals get their titles here
             root.add("advancements", com.erikedits.justquests.data.objective.GainAdvancementObjective.titlesJson(
                 player.level().getServer(), QuestManager.INSTANCE.getQuests().values()));
+            // the badges for the book's badge page (0.6.0)
+            root.add("badges", com.erikedits.justquests.badge.Badges.json());
         }
+        root.add("discord", com.erikedits.justquests.discord.DiscordLink.clientJson(player));
         WorldQuestStore store = WorldQuestStore.get();
         PlayerQuestData data = com.erikedits.justquests.team.TeamQuests.view(player, store != null ? store.peek(player.getUUID()) : null);
         if (data != null) {

@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en_us": "Team Player",
+    "de_de": "Teamplayer",
+    "es_es": "Jugador de equipo",
+    "fr_fr": "Esprit d'équipe",
+    "ja_jp": "チームプレイヤー"
+  },
+  "description": {
+    "en_us": "You helped the whole server reach a goal.",
+    "de_de": "Du hast dem ganzen Server zu einem Ziel verholfen.",
+    "es_es": "Ayudaste a todo el servidor a lograr una meta.",
+    "fr_fr": "Tu as aidé tout le serveur à atteindre un objectif.",
+    "ja_jp": "サーバー全体の目標達成に貢献した。"
+  },
+  "how": {
+    "en_us": "Help with a community goal",
+    "de_de": "Hilf bei einem Gemeinschaftsziel mit",
+    "es_es": "Ayuda en una meta de la comunidad",
+    "fr_fr": "Aide à un objectif commun",
+    "ja_jp": "コミュニティ目標に協力する"
+  },
+  "icon": "minecraft:cake",
+  "color": "#ec407a",
+  "symbol": "♥",
+  "discord": true,
+  "sort": 8
+}

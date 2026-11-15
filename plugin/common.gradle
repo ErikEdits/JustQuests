@@ -64,4 +64,8 @@ tasks.named('processResources', ProcessResources).configure {
     from(bundledQuests) {
         into 'quests'
     }
+    // the mod's own badges (0.6.0)
+    from(rootProject.file('fabric/1.21.1/src/main/resources/data/justquests/justquests/badges')) {
+        into 'badges'
+    }
 }

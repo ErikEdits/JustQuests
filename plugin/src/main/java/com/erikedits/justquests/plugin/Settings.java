@@ -12,6 +12,10 @@ import java.util.Locale;
 /** The options of config.yml (the mod's settings.json names), read on start and on /quest reload. */
 public final class Settings {
     public boolean discordWelcome = true;
+    // badges and the JustQuests Discord (0.6.0)
+    public boolean badgeInName = true;
+    public boolean discordLink = true;
+    public String discordApi = com.erikedits.justquests.plugin.badge.PluginDiscord.DEFAULT_API;
     public boolean announceCompletions = true;
     public boolean completionSound = true;
     public boolean completionToast = true;
@@ -65,6 +69,9 @@ public final class Settings {
 
     public void read(FileConfiguration c) {
         discordWelcome = c.getBoolean("discordWelcome", true);
+        badgeInName = c.getBoolean("badges.inName", true);
+        discordLink = c.getBoolean("discord.link", true);
+        discordApi = c.getString("discord.api", com.erikedits.justquests.plugin.badge.PluginDiscord.DEFAULT_API);
         announceCompletions = c.getBoolean("announceCompletions", true);
         completionSound = c.getBoolean("completionSound", true);
         completionToast = c.getBoolean("completionToast", true);

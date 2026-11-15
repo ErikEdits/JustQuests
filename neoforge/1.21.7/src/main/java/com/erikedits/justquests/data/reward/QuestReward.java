@@ -22,6 +22,7 @@ public interface QuestReward {
             case MessageReward.TYPE_ID -> MessageReward.MAP_CODEC;
             case TitleReward.TYPE_ID -> TitleReward.MAP_CODEC;
             case ChoiceReward.TYPE_ID -> ChoiceReward.MAP_CODEC;
+            case BadgeReward.TYPE_ID -> BadgeReward.MAP_CODEC;
             default -> throw new IllegalStateException("Unknown reward type: " + type);
         };
     }

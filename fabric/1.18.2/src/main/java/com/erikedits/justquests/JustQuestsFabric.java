@@ -52,7 +52,12 @@ public class JustQuestsFabric implements ModInitializer {
         });
         // generator v2 needs the loaded worlds (seed, overworld, tags) -> SERVER_STARTED, not STARTING
         ServerLifecycleEvents.SERVER_STARTED.register(com.erikedits.justquests.generator.GenV2::start);
+        // badges as roles on the JustQuests Discord (0.6.0)
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> com.erikedits.justquests.discord.DiscordLink.init(server, "fabric",
+            net.fabricmc.loader.api.FabricLoader.getInstance().getModContainer(JustQuests.MOD_ID)
+                .map(c -> c.getMetadata().getVersion().getFriendlyString()).orElse("?")));
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+            com.erikedits.justquests.discord.DiscordLink.stop();
             WorldQuestStore.unload();
             CustomQuestLoader.clear();
             com.erikedits.justquests.generator.GenV2.stop();
@@ -76,6 +81,7 @@ public class JustQuestsFabric implements ModInitializer {
                 genCounter = 0;
                 com.erikedits.justquests.generator.GenV2.tick();
             }
+            if (server.getTickCount() % 20 == 0) com.erikedits.justquests.discord.DiscordLink.tick();
             for (ServerPlayer player : server.getPlayerList().getPlayers()) {
                 com.erikedits.justquests.progress.StatObjectives.tick(player);   // use_item, enchant_item
                 if (player.tickCount % 20 == 0) FabricQuestHooks.onPlayerTickReach(player);
@@ -91,6 +97,8 @@ public class JustQuestsFabric implements ModInitializer {
             CommunityHints.onLogin(handler.player);
             com.erikedits.justquests.team.TeamQuests.settle(handler.player);   // team rewards from while they were away
             com.erikedits.justquests.progress.QuestProgressService.firstJoin(handler.player);   // auto-accept (#23)
+            com.erikedits.justquests.badge.Badges.check(handler.player);   // badges for what was done before 0.6.0
+            com.erikedits.justquests.discord.DiscordLink.joined(handler.player);
         });
 
         // mine_block

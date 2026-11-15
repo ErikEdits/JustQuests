@@ -53,6 +53,8 @@ public class PlayerQuestEvents {
         migrate(player);
         // last, so that migrated data counts as a record: auto-accept on a first join (#23)
         com.erikedits.justquests.progress.QuestProgressService.firstJoin(player);
+        com.erikedits.justquests.badge.Badges.check(player);   // badges for what was done before 0.6.0
+        com.erikedits.justquests.discord.DiscordLink.joined(player);
     }
 
     /** The v0.1 quest data of a player the store does not know yet, moved into the store. */
@@ -226,6 +228,23 @@ public class PlayerQuestEvents {
             if (obj instanceof GainAdvancementObjective g && g.earnedBy(player)) return 1;
                 return 0;
             });
+        }
+    }
+
+    /** The sign of the player's badge before their name in the chat and other messages (0.6.0). */
+    @SubscribeEvent
+    public void onNameFormat(PlayerEvent.NameFormat event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            net.minecraft.network.chat.MutableComponent sign = com.erikedits.justquests.badge.Badges.nameSign(player.getUUID());
+            if (sign != null) event.setDisplayname(sign.append(event.getDisplayname()));
+        }
+    }
+
+    /** The sign of the player's badge before their name in the tab list (0.6.0). */
+    @SubscribeEvent
+    public void onTabListName(PlayerEvent.TabListNameFormat event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            event.setDisplayName(com.erikedits.justquests.badge.NameSign.tabName(player, event.getDisplayName()));
         }
     }
 }

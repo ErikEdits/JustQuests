@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en_us": "Quest Rookie",
+    "de_de": "Quest-Neuling",
+    "es_es": "Novato de misiones",
+    "fr_fr": "Débutant des quêtes",
+    "ja_jp": "クエスト新人"
+  },
+  "description": {
+    "en_us": "Ten quests behind you.",
+    "de_de": "Zehn Quests liegen hinter dir.",
+    "es_es": "Diez misiones superadas.",
+    "fr_fr": "Dix quêtes derrière toi.",
+    "ja_jp": "10個のクエストを達成した。"
+  },
+  "how": {
+    "en_us": "Complete 10 quests",
+    "de_de": "Schließe 10 Quests ab",
+    "es_es": "Completa 10 misiones",
+    "fr_fr": "Termine 10 quêtes",
+    "ja_jp": "クエストを10個完了する"
+  },
+  "icon": "minecraft:copper_ingot",
+  "color": "#43a047",
+  "symbol": "✪",
+  "discord": true,
+  "sort": 2
+}

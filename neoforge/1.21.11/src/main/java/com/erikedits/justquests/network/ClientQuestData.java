@@ -44,6 +44,12 @@ public final class ClientQuestData {
 
     private ClientQuestData() {}
 
+    /** The badges of the server, sorted for the badge page (0.6.0; from the full sync). */
+    private static Map<Identifier, com.erikedits.justquests.data.Badge> badges = Collections.emptyMap();
+    /** The JustQuests Discord link: whether the server allows it, the linked user (null: not linked), the invite. */
+    public record Discord(boolean enabled, String user, String invite) {}
+    private static Discord discord = new Discord(false, null, "");
+
     /** Called on the client when a sync packet arrives. */
     public static void accept(String json) {
         Map<Identifier, Quest> q = new LinkedHashMap<>();
@@ -67,6 +73,14 @@ public final class ClientQuestData {
                 if (root.has("advancements")) {
                     com.erikedits.justquests.data.objective.GainAdvancementObjective.readTitles(root.getAsJsonObject("advancements"));
                 }
+                Map<Identifier, com.erikedits.justquests.data.Badge> b = new LinkedHashMap<>();
+                if (root.has("badges")) {
+                    for (Map.Entry<String, com.google.gson.JsonElement> e : root.getAsJsonObject("badges").entrySet()) {
+                        com.erikedits.justquests.data.Badge.CODEC.parse(JsonOps.INSTANCE, e.getValue()).result()
+                            .ifPresent(badge -> { Identifier id = Identifier.tryParse(e.getKey()); if (id != null) b.put(id, badge); });
+                    }
+                }
+                badges = b;
             }
             if (root.has("autoAccept")) autoAccept = root.get("autoAccept").getAsBoolean();
             if (root.has("progress")) {
@@ -79,6 +93,11 @@ public final class ClientQuestData {
                         o.has("mine") && o.get("mine").getAsBoolean(),
                         o.has("state") && "completed".equals(o.get("state").getAsString())));
                 }
+            }
+            if (root.has("discord")) {
+                JsonObject o = root.getAsJsonObject("discord");
+                discord = new Discord(o.has("enabled") && o.get("enabled").getAsBoolean(),
+                    o.has("user") ? o.get("user").getAsString() : null, o.has("invite") ? o.get("invite").getAsString() : "");
             }
             if (root.has("rank")) {
                 JsonObject o = root.getAsJsonObject("rank");
@@ -116,6 +135,8 @@ public final class ClientQuestData {
         progress = new PlayerQuestData();
         claims = Collections.emptyMap();
         rank = null;
+        badges = Collections.emptyMap();
+        discord = new Discord(false, null, "");
         activeOrder.clear();
         version++;
         syncs++;
@@ -139,6 +160,12 @@ public final class ClientQuestData {
     public static Map<Identifier, Quest> getQuests() { return quests; }
 
     public static Quest get(Identifier id) { return quests.get(id); }
+
+    /** The server's badges, in page order (0.6.0). */
+    public static Map<Identifier, com.erikedits.justquests.data.Badge> badges() { return badges; }
+
+    /** The player's link to the JustQuests Discord (0.6.0). */
+    public static Discord discord() { return discord; }
 
     public static PlayerQuestData getData() { return progress; }
 

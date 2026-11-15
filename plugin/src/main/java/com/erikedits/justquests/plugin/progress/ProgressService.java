@@ -324,6 +324,8 @@ public final class ProgressService {
         if (!data.isCompleted(id)) fresh.computeIfAbsent(player.getUniqueId(), k -> new ArrayList<>()).add(id);
         data.complete(id);
         if (id.equals(data.pinned)) data.pinned = null;
+        // badges for so many quests or a whole chapter (0.6.0)
+        plugin.badges().check(player);
         // a quest without rewards has nothing to claim: it is simply done
         boolean waits = !quest.rewards().isEmpty() && (plugin.settings().claimRewards || Reward.Choice.of(quest) != null);
         plugin.generated().completed(id, player.getUniqueId(), waits);

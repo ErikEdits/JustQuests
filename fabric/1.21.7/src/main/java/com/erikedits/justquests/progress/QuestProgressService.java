@@ -268,6 +268,8 @@ public final class QuestProgressService {
         // a quest without rewards has nothing to claim: it is simply done
         boolean waits = !quest.rewards().isEmpty() && (WorldSettings.claimRewards() || ChoiceReward.of(quest) != null);
         com.erikedits.justquests.generator.GenV2.completed(id, player.getUUID(), waits);
+        // badges for so many quests or a whole chapter (0.6.0)
+        com.erikedits.justquests.badge.Badges.check(player);
         if (waits) {
             data.pendingClaim.put(id, System.currentTimeMillis());
             return true;

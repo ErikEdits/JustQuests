@@ -74,6 +74,15 @@ public class QuestScreen extends Screen {
     private final List<Entry> entries = new ArrayList<>();
     private Identifier selected;
     private boolean showStats;
+    /** The badge page instead of the quest page (0.6.0). */
+    private boolean showBadges;
+    /** First row of badges shown (the page scrolls with the mouse wheel). */
+    private int badgeRow;
+
+    /** The right page shows the stats or the badges, not a quest. */
+    private boolean sidePage() {
+        return showStats || showBadges;
+    }
     private int page = 0, left, top;
     private int shownSync = -1;
     private EditBox search;
@@ -389,6 +398,8 @@ public class QuestScreen extends Screen {
     private int hudX() { return bx("hud"); }
     private int hudY() { return by("hud"); }
     private int popX() { return bx("popup"); }
+    private int badgesX() { return bx("badges"); }
+    private int badgesY() { return by("badges"); }
     private int popY() { return by("popup"); }
     private int detailX() { return left + theme.pageX; }
     private int detailY() { return top + theme.pageY; }
@@ -436,6 +447,8 @@ public class QuestScreen extends Screen {
             hudX(), hudY(), 14, 14);
         blit(g, in(mouseX, mouseY, popX(), popY(), 14, 14) ? "button_popup_hover" : "button_popup_normal",
             popX(), popY(), 14, 14);
+        blit(g, showBadges ? "button_badges_on" : in(mouseX, mouseY, badgesX(), badgesY(), 14, 14) ? "button_badges_hover" : "button_badges_normal",
+            badgesX(), badgesY(), 14, 14);
         blit(g, in(mouseX, mouseY, closeX(), closeY(), 11, 11) ? "button_close_hover" : "button_close_normal",
             closeX(), closeY(), 11, 11);
 
@@ -464,6 +477,7 @@ public class QuestScreen extends Screen {
             : in(mouseX, mouseY, cornerX(), cornerY(), 14, 14) ? "hud_corner"
             : in(mouseX, mouseY, hudX(), hudY(), 14, 14) ? (ClientSettings.hud ? "hide_hud" : "show_hud")
             : in(mouseX, mouseY, popX(), popY(), 14, 14) ? "popups"
+            : in(mouseX, mouseY, badgesX(), badgesY(), 14, 14) ? (showBadges ? "back" : "badges")
             : pinShown && in(mouseX, mouseY, pinX(), pinY(), 20, 20) ? (ClientSettings.isPinned(selected) ? "unpin" : "pin")
             : headerAt(mouseX, mouseY) != null && query.isBlank()
                 ? (ClientSettings.folded.contains(headerAt(mouseX, mouseY).fold()) ? "unfold" : "fold")
@@ -472,7 +486,7 @@ public class QuestScreen extends Screen {
             String text = hint.equals("hud_corner")
                 ? I18n.get("justquests.book.hint.hud_corner", I18n.get("justquests.book.corner." + corner()))
                 : I18n.get("justquests.book.hint." + hint);
-            text(g, fit("- " + text, Math.min(statsX(), popX()) - hintX() - 4), hintX(), hintY(), MUTED);
+            text(g, fit("- " + text, Math.min(Math.min(statsX(), popX()), badgesX()) - hintX() - 4), hintX(), hintY(), MUTED);
         }
 
         if (entries.isEmpty()) {
@@ -494,7 +508,8 @@ public class QuestScreen extends Screen {
         String pg = (page + 1) + "/" + pages();
         text(g, pg, (prevX() + nextX() + 12) / 2 - width(pg) / 2, navY() + 2, TEXT);
 
-        if (showStats) renderStats(g, mouseX, mouseY);
+        if (showBadges) renderBadges(g, mouseX, mouseY);
+        else if (showStats) renderStats(g, mouseX, mouseY);
         else renderDetail(g, mouseX, mouseY);
     }
 
@@ -807,6 +822,135 @@ public class QuestScreen extends Screen {
         if (on) g.fill(x + 2, y + 2, x + 5, y + 5, theme.radioDot);
     }
 
+    // ---- the badge page (0.6.0)
+
+    private static final int BADGE_CELL = 22, BADGE_TOP = 26, BADGE_INFO = 52;
+
+    private int badgeCols() {
+        return Math.max(1, detailW() / BADGE_CELL);
+    }
+
+    /** How many rows of badges fit above the info lines. */
+    private int badgeRows() {
+        return Math.max(1, (pageBottom() - detailY() - BADGE_TOP - BADGE_INFO) / BADGE_CELL);
+    }
+
+    /** The badge of the cell under the mouse, or null. */
+    private Identifier badgeAt(double mx, double my) {
+        int cols = badgeCols(), rows = badgeRows();
+        int i = 0;
+        for (Identifier id : ClientQuestData.badges().keySet()) {
+            int row = i / cols - badgeRow, col = i % cols;
+            i++;
+            if (row < 0 || row >= rows) continue;
+            int x = detailX() + col * BADGE_CELL, y = detailY() + BADGE_TOP + row * BADGE_CELL;
+            if (in(mx, my, x, y, BADGE_CELL - 1, BADGE_CELL - 1)) return id;
+        }
+        return null;
+    }
+
+    /** The badge whose sign stands before the player's name: their choice, else the newest. */
+    private Identifier shownBadge() {
+        PlayerQuestData d = data();
+        if (d.badges.isEmpty()) return null;
+        if (d.shownBadge.isPresent()) {
+            if ("none".equals(d.shownBadge.get())) return null;
+            Identifier id = Identifier.tryParse(d.shownBadge.get());
+            if (id != null && d.badges.containsKey(id)) return id;
+        }
+        return d.badges.entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).orElse(null);
+    }
+
+    /** All badges of the server as pictures, the hovered one's details below, the Discord link at the bottom. */
+    private void renderBadges(GuiGraphics g, int mouseX, int mouseY) {
+        int dx = detailX(), dy = detailY(), dw = detailW();
+        PlayerQuestData d = data();
+        Map<Identifier, com.erikedits.justquests.data.Badge> all = ClientQuestData.badges();
+        text(g, Component.translatable("justquests.book.badges"), dx, dy, TITLE_DARK);
+        long earned = all.keySet().stream().filter(d.badges::containsKey).count();
+        text(g, fit(I18n.get("justquests.book.badges_count", earned, all.size()), dw), dx, dy + 13, MUTED);
+        if (all.isEmpty()) {
+            text(g, fit(I18n.get("justquests.book.badges_none"), dw), dx, dy + BADGE_TOP + 2, TEXT);
+            return;
+        }
+        String lang = Minecraft.getInstance().options.languageCode;
+        Identifier shown = shownBadge();
+        Identifier hovered = badgeAt(mouseX, mouseY);
+        int cols = badgeCols(), rows = badgeRows();
+        int i = 0;
+        for (Map.Entry<Identifier, com.erikedits.justquests.data.Badge> e : all.entrySet()) {
+            int row = i / cols - badgeRow, col = i % cols;
+            i++;
+            if (row < 0 || row >= rows) continue;
+            int x = dx + col * BADGE_CELL, y = dy + BADGE_TOP + row * BADGE_CELL;
+            boolean has = d.badges.containsKey(e.getKey());
+            com.erikedits.justquests.data.Badge b = e.getValue();
+            if (e.getKey().equals(shown)) frame(g, x, y, BADGE_CELL - 1, theme.link);
+            else if (e.getKey().equals(hovered)) frame(g, x, y, BADGE_CELL - 1, MUTED);
+            if (!has && b.secret()) {
+                text(g, "?", x + 8, y + 7, MUTED);
+                continue;
+            }
+            badgeIcon(g, e.getKey(), b, x + 3, y + 3);
+            // not earned yet: faded
+            if (!has) g.fill(x + 2, y + 2, x + BADGE_CELL - 3, y + BADGE_CELL - 3, 0x99A0A0A0);
+        }
+        // the hovered badge (else the one before the name) in words
+        Identifier about = hovered != null ? hovered : shown;
+        int iy = dy + BADGE_TOP + rows * BADGE_CELL + 2;
+        com.erikedits.justquests.data.Badge b = about == null ? null : all.get(about);
+        if (b != null && !(b.secret() && !d.badges.containsKey(about))) {
+            text(g, fit(b.name().get(lang), dw), dx, iy, 0xFF000000 | b.rgb());
+            iy += 10;
+            Long at = d.badges.get(about);
+            String state = at != null
+                ? I18n.get("justquests.book.badge_earned", new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(at)))
+                : I18n.get("justquests.book.badge_how", b.how().isBlank() ? b.description().get(lang) : b.how().get(lang));
+            for (var line : this.font.split(Theme.text(state), dw)) {
+                if (iy > pageBottom() - 22) break;
+                text(g, line, dx, iy, TEXT);
+                iy += 9;
+            }
+            if (at != null) {
+                for (var hint : this.font.split(Theme.text(I18n.get(about.equals(shown) ? "justquests.book.badge_shown" : "justquests.book.badge_click")), dw)) {
+                    if (iy > pageBottom() - 22) break;
+                    text(g, hint, dx, iy, MUTED);
+                    iy += 9;
+                }
+            }
+        }
+        ClientQuestData.Discord discord = ClientQuestData.discord();
+        String line = !discord.enabled() ? I18n.get("justquests.book.discord_off")
+            : discord.user() != null ? I18n.get("justquests.book.discord_linked", discord.user())
+            : I18n.get("justquests.book.discord_not_linked");
+        text(g, fit(line, dw), dx, pageBottom() - 10, discord.user() != null ? HEAD : MUTED);
+    }
+
+    /** A badge's picture: textures/gui/badges/<ns>/<path>.png of a resource pack or the mod, else its item, else its sign. */
+    private void badgeIcon(GuiGraphics g, Identifier id, com.erikedits.justquests.data.Badge b, int x, int y) {
+        String tex = "badges/" + id.getNamespace() + "/" + id.getPath();
+        if (theme.has(tex)) {
+            blitPart(g, tex, x, y, 16, 16, 16, 16);
+            return;
+        }
+        if (b.icon().isPresent()) {
+            net.minecraft.world.item.ItemStack stack = ItemIcons.parse(b.icon().get());
+            if (!stack.isEmpty()) {
+                g.renderItem(stack, x, y);
+                return;
+            }
+        }
+        text(g, b.sign(), x + 8 - width(b.sign()) / 2, y + 4, 0xFF000000 | b.rgb());
+    }
+
+    /** A one pixel frame. */
+    private static void frame(GuiGraphics g, int x, int y, int size, int color) {
+        g.fill(x, y, x + size, y + 1, color);
+        g.fill(x, y + size - 1, x + size, y + size, color);
+        g.fill(x, y, x + 1, y + size, color);
+        g.fill(x + size - 1, y, x + size, y + size, color);
+    }
+
     /** The stats page: totals, per-category progress (hover an icon for its name), dates and server rank. */
     private void renderStats(GuiGraphics g, int mouseX, int mouseY) {
         int dx = detailX(), dy = detailY(), dw = detailW();
@@ -894,7 +1038,15 @@ public class QuestScreen extends Screen {
         }
         if (button == 0) {
             if (in(mx, my, closeX(), closeY(), 11, 11)) { onClose(); return true; }
-            if (in(mx, my, statsX(), statsY(), 14, 14)) { showStats = !showStats; return click(); }
+            if (in(mx, my, statsX(), statsY(), 14, 14)) { showStats = !showStats; showBadges = false; return click(); }
+            if (in(mx, my, badgesX(), badgesY(), 14, 14)) { showBadges = !showBadges; showStats = false; badgeRow = 0; return click(); }
+            if (showBadges) {
+                Identifier b = badgeAt(mx, my);
+                if (b != null && data().badges.containsKey(b)) {
+                    send("quest badges show " + b);
+                    return click();
+                }
+            }
             if (in(mx, my, cornerX(), cornerY(), 14, 14)) {
                 ClientSettings.hudCorner = nextCorner(corner());
                 ClientSettings.hud = true;   // moving the tracker means it should show
@@ -944,12 +1096,13 @@ public class QuestScreen extends Screen {
                     detailScroll = 0;
                     detailMax = 0;
                     // a second click on the selected quest goes back to the overview page
-                    selected = e.id().equals(selected) && !showStats ? null : e.id();
+                    selected = e.id().equals(selected) && !sidePage() ? null : e.id();
                     showStats = false;
+                    showBadges = false;
                     return click();
                 }
             }
-            if (!showStats && selected == null) {
+            if (!sidePage() && selected == null) {
                 if (popupHit != null && in(mx, my, popupHit[0], popupHit[1], popupHit[2], popupHit[3])) {
                     ClientSettings.popups = !ClientSettings.popups;
                     ClientSettings.save();
@@ -964,14 +1117,14 @@ public class QuestScreen extends Screen {
                     return click();
                 }
             }
-            if (!showStats && scrollBar != null && in(mx, my, scrollBar[0], scrollBar[1], 4, scrollBar[2])) {
+            if (!sidePage() && scrollBar != null && in(mx, my, scrollBar[0], scrollBar[1], 4, scrollBar[2])) {
                 // the middle of the thumb goes where the track was clicked
                 int room = Math.max(1, scrollBar[2] - scrollBar[3]);
                 int at = (int) my - scrollBar[1] - scrollBar[3] / 2;
                 detailScroll = Math.max(0, Math.min(detailMax, at * detailMax / room));
                 return true;
             }
-            if (!showStats && selected != null) {
+            if (!sidePage() && selected != null) {
                 for (Link l : links) {
                     if (in(mx, my, l.x(), l.y(), l.w(), l.h())) { open(l.id()); return click(); }
                 }
@@ -979,11 +1132,11 @@ public class QuestScreen extends Screen {
                     if (in(mx, my, h[0], h[1], h[2], h[3])) { pick = h[4]; return click(); }
                 }
             }
-            if (!showStats && selected != null && data().isActive(selected) && in(mx, my, pinX(), pinY(), 20, 20)) {
+            if (!sidePage() && selected != null && data().isActive(selected) && in(mx, my, pinX(), pinY(), 20, 20)) {
                 ClientSettings.togglePin(selected);
                 return click();
             }
-            if (!showStats && selected != null && in(mx, my, actionX(), actionY(), 72, 20)) {
+            if (!sidePage() && selected != null && in(mx, my, actionX(), actionY(), 72, 20)) {
                 Quest q = ClientQuestData.get(selected);
                 if (q != null) {
                     Status st = status(selected, q);
@@ -1006,7 +1159,12 @@ public class QuestScreen extends Screen {
             else if (scrollY > 0 && hasPrev()) { page--; turn(); }
             return true;
         }
-        if (!showStats && detailMax > 0 && scrollY != 0 && in(mx, my, detailX(), detailY(), detailW(), pageBottom() - detailY())) {
+        if (showBadges && scrollY != 0 && in(mx, my, detailX(), detailY(), detailW(), pageBottom() - detailY())) {
+            int rows = (ClientQuestData.badges().size() + badgeCols() - 1) / badgeCols();
+            badgeRow = Math.max(0, Math.min(Math.max(0, rows - badgeRows()), badgeRow + (scrollY < 0 ? 1 : -1)));
+            return true;
+        }
+        if (!sidePage() && detailMax > 0 && scrollY != 0 && in(mx, my, detailX(), detailY(), detailW(), pageBottom() - detailY())) {
             detailScroll = Math.max(0, Math.min(detailMax, detailScroll + (scrollY < 0 ? 10 : -10)));
             return true;
         }

@@ -64,6 +64,8 @@ public class QuestManager extends SimpleJsonResourceReloadListener<Quest> implem
         });
         this.datapackQuests = loaded;
         JustQuests.LOG.info("Loaded {} quests", loaded.size());
+        // the badges of the same datapacks (0.6.0)
+        com.erikedits.justquests.badge.Badges.load(resourceManager);
     }
 
     /** The quests bundled with the mod (data/justquests/justquests/quests/): the ones mainQuests hides. */

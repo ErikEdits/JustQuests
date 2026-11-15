@@ -93,5 +93,6 @@
   "justquests.plugin.help.npc": "見ているモブでクエストブックを開けるようにする",
   "justquests.category.personal": "個人",
   "justquests.category.weekly": "週間",
-  "justquests.plugin.help.autoaccept": "解放されたクエストを自動で受ける (on/off)"
+  "justquests.plugin.help.autoaccept": "解放されたクエストを自動で受ける (on/off)",
+  "justquests.plugin.gui.badge_hide": "名前の前にバッジを表示しない"
 }

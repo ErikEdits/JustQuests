@@ -67,6 +67,7 @@ public sealed interface Reward {
                 o.has("stay") ? o.get("stay").getAsInt() : 70,
                 o.has("fade_out") ? o.get("fade_out").getAsInt() : 20);
             case "justquests:money" -> new Money(o.get("amount").getAsInt());
+            case "justquests:badge" -> new Badge(Quest.string(o, "badge"));
             case "justquests:choice" -> {
                 List<Reward> options = new ArrayList<>();
                 for (JsonElement e : o.getAsJsonArray("options")) options.add(parse(e.getAsJsonObject()));
@@ -147,6 +148,30 @@ public sealed interface Reward {
     }
 
     /** Money through the server's economy plugin (see {@link Economy}); the plugin's own reward type. */
+    /** Gives a badge (0.6.0), once per player. */
+    record Badge(String badge) implements Reward {
+        public String typeId() { return "justquests:badge"; }
+
+        public void grant(Player player) {
+            var badges = com.erikedits.justquests.plugin.badge.PluginBadges.get();
+            if (badges != null) badges.give(player, badge);
+        }
+
+        public String label() { return "badge " + badge; }
+
+        public BaseComponent display(String lang) {
+            var badges = com.erikedits.justquests.plugin.badge.PluginBadges.get();
+            var b = badges == null ? null : badges.badge(badge);
+            return Text.tr(lang, "justquests.reward.badge", b == null ? badge : b.name().get(lang));
+        }
+
+        public Material icon() {
+            var badges = com.erikedits.justquests.plugin.badge.PluginBadges.get();
+            var b = badges == null ? null : badges.badge(badge);
+            return b == null ? Material.NETHER_STAR : b.material();
+        }
+    }
+
     record Money(int amount) implements Reward {
         public String typeId() { return "justquests:money"; }
 

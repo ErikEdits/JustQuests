@@ -89,6 +89,13 @@ public final class Placeholders extends PlaceholderExpansion {
         PlayerData data = plugin.view(player.getUniqueId());
         return switch (key) {
             case "completed" -> String.valueOf(data == null ? 0 : data.completed.size());
+            // badges (0.6.0): the coloured sign of the shown badge, its name, how many
+            case "badge" -> plugin.badges().sign(player.getUniqueId());
+            case "badge_name" -> {
+                var b = plugin.badges().shown(plugin.store().peek(player.getUniqueId()));
+                yield b == null ? "" : b.name().getDefault();
+            }
+            case "badges" -> String.valueOf(plugin.badges().earned(plugin.store().peek(player.getUniqueId())).size());
             case "active" -> String.valueOf(data == null ? 0 : data.active.size());
             case "claimable" -> String.valueOf(data == null ? 0 : data.pendingClaim.size());
             case "available" -> online == null ? "" : String.valueOf(available(online, data));

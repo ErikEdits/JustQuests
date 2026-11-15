@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en_us": "Legend",
+    "de_de": "Legende",
+    "es_es": "Leyenda",
+    "fr_fr": "Légende",
+    "ja_jp": "伝説"
+  },
+  "description": {
+    "en_us": "Five hundred quests. People will talk about you.",
+    "de_de": "Fünfhundert Quests. Man wird von dir erzählen.",
+    "es_es": "Quinientas misiones. Hablarán de ti.",
+    "fr_fr": "Cinq cents quêtes. On parlera de toi.",
+    "ja_jp": "500個のクエスト。語り継がれるだろう。"
+  },
+  "how": {
+    "en_us": "Complete 500 quests",
+    "de_de": "Schließe 500 Quests ab",
+    "es_es": "Completa 500 misiones",
+    "fr_fr": "Termine 500 quêtes",
+    "ja_jp": "クエストを500個完了する"
+  },
+  "icon": "minecraft:nether_star",
+  "color": "#f4511e",
+  "symbol": "★",
+  "discord": true,
+  "sort": 5
+}

@@ -18,6 +18,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.IdentifierArgument;
@@ -70,6 +71,21 @@ public class QuestCommand {
         return SharedSuggestionProvider.suggest(cats, builder);
     };
 
+    /** Every badge (0.6.0). */
+    private static final SuggestionProvider<CommandSourceStack> BADGES = (ctx, builder) ->
+        SharedSuggestionProvider.suggestResource(com.erikedits.justquests.badge.Badges.all().keySet(), builder);
+
+    /** The badges the player has, and "none" (0.6.0). */
+    private static final SuggestionProvider<CommandSourceStack> OWN_BADGES = (ctx, builder) -> {
+        ServerPlayer player = ctx.getSource().getEntity() instanceof ServerPlayer sp ? sp : null;
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = player == null || store == null ? null : store.peek(player.getUUID());
+        java.util.List<String> ids = new java.util.ArrayList<>();
+        ids.add("none");
+        com.erikedits.justquests.badge.Badges.earned(data).forEach(id -> ids.add(id.toString()));
+        return SharedSuggestionProvider.suggest(ids, builder);
+    };
+
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("quest")
             .then(Commands.literal("list").requires(Perms.command("list")).executes(ctx -> list(ctx, null))
@@ -115,7 +131,18 @@ public class QuestCommand {
                 .executes(ctx -> autoAccept(ctx, null))
                 .then(Commands.literal("on").executes(ctx -> autoAccept(ctx, true)))
                 .then(Commands.literal("off").executes(ctx -> autoAccept(ctx, false))))
-            .then(Commands.literal("discord").requires(Perms.command("discord")).executes(QuestCommand::discord))
+            .then(Commands.literal("badges").requires(Perms.command("badges"))
+                .executes(QuestCommand::badges)
+                .then(Commands.literal("show")
+                    .then(Commands.argument("badge", StringArgumentType.greedyString())
+                        .suggests(OWN_BADGES)
+                        .executes(ctx -> badgeShow(ctx, StringArgumentType.getString(ctx, "badge"))))))
+            .then(Commands.literal("discord").requires(Perms.command("discord")).executes(QuestCommand::discord)
+                .then(Commands.literal("link")
+                    .then(Commands.argument("code", StringArgumentType.greedyString())
+                        .executes(ctx -> discordLink(ctx, StringArgumentType.getString(ctx, "code")))))
+                .then(Commands.literal("unlink").executes(QuestCommand::discordUnlink))
+                .then(Commands.literal("status").executes(QuestCommand::discordStatus)))
             .then(Commands.literal("reload")
                 .requires(Perms.admin("reload"))
                 .executes(QuestCommand::reload))
@@ -168,7 +195,18 @@ public class QuestCommand {
                     .then(Commands.argument("player", EntityArgument.player())
                         .then(Commands.argument("id", IdentifierArgument.id())
                             .suggests(AVAILABLE_QUESTS)
-                            .executes(ctx -> adminComplete(ctx, IdentifierArgument.getId(ctx, "id"))))))));
+                            .executes(ctx -> adminComplete(ctx, IdentifierArgument.getId(ctx, "id"))))))
+                .then(Commands.literal("badge")
+                    .then(Commands.literal("give")
+                        .then(Commands.argument("player", EntityArgument.player())
+                            .then(Commands.argument("badge", IdentifierArgument.id())
+                                .suggests(BADGES)
+                                .executes(ctx -> adminBadge(ctx, true, IdentifierArgument.getId(ctx, "badge"))))))
+                    .then(Commands.literal("take")
+                        .then(Commands.argument("player", EntityArgument.player())
+                            .then(Commands.argument("badge", IdentifierArgument.id())
+                                .suggests(BADGES)
+                                .executes(ctx -> adminBadge(ctx, false, IdentifierArgument.getId(ctx, "badge")))))))));
     }
 
     /** The client language of the command source, or English for the console. */
@@ -742,6 +780,108 @@ public class QuestCommand {
             else ctx.getSource().sendFailure(line);
         }
         return result.ok() ? 1 : 0;
+    }
+
+    // --- badges and the JustQuests Discord (0.6.0) -----------------------
+
+    private static int badges(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        CommandSourceStack src = ctx.getSource();
+        ServerPlayer player = src.getPlayerOrException();
+        String lang = lang(src);
+        WorldQuestStore store = WorldQuestStore.get();
+        PlayerQuestData data = store == null ? null : store.peek(player.getUUID());
+        var all = com.erikedits.justquests.badge.Badges.sorted();
+        var earned = com.erikedits.justquests.badge.Badges.earned(data);
+        src.sendSuccess(() -> Msg.tr("justquests.badges.title", earned.size(), all.size()).withStyle(ChatFormatting.GOLD), false);
+        if (earned.isEmpty()) src.sendSuccess(() -> Msg.tr("justquests.badges.none").withStyle(ChatFormatting.GRAY), false);
+        for (Identifier id : earned) {
+            com.erikedits.justquests.data.Badge b = com.erikedits.justquests.badge.Badges.get(id);
+            src.sendSuccess(() -> Msg.lit(" " + b.sign() + " ").withStyle(st -> st.withColor(b.rgb()))
+                .append(Msg.lit(b.name().get(lang)).withStyle(ChatFormatting.WHITE))
+                .append(Msg.lit(b.description().isBlank() ? "" : " - " + b.description().get(lang)).withStyle(ChatFormatting.GRAY)), false);
+        }
+        for (var e : all) {
+            com.erikedits.justquests.data.Badge b = e.getValue();
+            if (earned.contains(e.getKey()) || b.secret()) continue;
+            String how = !b.how().isBlank() ? b.how().get(lang) : b.description().get(lang);
+            src.sendSuccess(() -> Msg.tr("justquests.badges.open", b.name().get(lang), how).withStyle(ChatFormatting.DARK_GRAY), false);
+        }
+        Identifier shown = com.erikedits.justquests.badge.Badges.shown(data);
+        if (shown != null) {
+            String name = com.erikedits.justquests.badge.Badges.get(shown).name().get(lang);
+            src.sendSuccess(() -> Msg.tr("justquests.badges.shown", name, "/quest badges show <badge|none>").withStyle(ChatFormatting.GRAY), false);
+        }
+        Component discord = com.erikedits.justquests.discord.DiscordLink.status(player);
+        src.sendSuccess(() -> discord, false);
+        if (Perms.admin("badges").test(src)) {
+            com.erikedits.justquests.discord.DiscordLink.requestStatus().forEach((ns, status) ->
+                src.sendSuccess(() -> Msg.tr("justquests.badges.request", ns, status).withStyle(ChatFormatting.DARK_AQUA), false));
+        }
+        return earned.size();
+    }
+
+    private static int badgeShow(CommandContext<CommandSourceStack> ctx, String which) throws CommandSyntaxException {
+        CommandSourceStack src = ctx.getSource();
+        ServerPlayer player = src.getPlayerOrException();
+        WorldQuestStore store = WorldQuestStore.get();
+        if (store == null) return 0;
+        PlayerQuestData data = store.get(player.getUUID());
+        String w = which.trim();
+        if (w.equals("none")) {
+            data.shownBadge = java.util.Optional.of("none");
+            src.sendSuccess(() -> Msg.tr("justquests.badges.show_none"), false);
+        } else {
+            Identifier id = Identifier.tryParse(w.contains(":") ? w : "justquests:" + w);
+            if (id == null || !data.badges.containsKey(id) || com.erikedits.justquests.badge.Badges.get(id) == null) {
+                src.sendFailure(Msg.tr("justquests.badges.not_earned", w));
+                return 0;
+            }
+            data.shownBadge = java.util.Optional.of(id.toString());
+            String name = com.erikedits.justquests.badge.Badges.get(id).name().get(lang(src));
+            src.sendSuccess(() -> Msg.tr("justquests.badges.show_set", name), false);
+        }
+        store.markDirty();
+        com.erikedits.justquests.badge.NameSign.refresh(player);
+        com.erikedits.justquests.network.QuestNetwork.syncProgress(player);
+        return 1;
+    }
+
+    private static int adminBadge(CommandContext<CommandSourceStack> ctx, boolean give, Identifier badge) throws CommandSyntaxException {
+        CommandSourceStack src = ctx.getSource();
+        ServerPlayer target = EntityArgument.getPlayer(ctx, "player");
+        com.erikedits.justquests.data.Badge b = com.erikedits.justquests.badge.Badges.get(badge);
+        if (b == null) {
+            src.sendFailure(Msg.tr("justquests.badges.unknown", badge.toString()));
+            return 0;
+        }
+        String name = b.name().get(lang(src));
+        String who = target.getName().getString();
+        boolean done = give ? com.erikedits.justquests.badge.Badges.give(target, badge) : com.erikedits.justquests.badge.Badges.take(target, badge);
+        if (!done) {
+            src.sendFailure(Msg.tr(give ? "justquests.badges.has_already" : "justquests.badges.has_not", who, name));
+            return 0;
+        }
+        src.sendSuccess(() -> Msg.tr(give ? "justquests.badges.given" : "justquests.badges.taken", name, who), true);
+        return 1;
+    }
+
+    private static int discordLink(CommandContext<CommandSourceStack> ctx, String code) throws CommandSyntaxException {
+        CommandSourceStack src = ctx.getSource();
+        com.erikedits.justquests.discord.DiscordLink.link(src.getPlayerOrException(), code, c -> src.sendSuccess(() -> c, false));
+        return 1;
+    }
+
+    private static int discordUnlink(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        CommandSourceStack src = ctx.getSource();
+        com.erikedits.justquests.discord.DiscordLink.unlink(src.getPlayerOrException(), c -> src.sendSuccess(() -> c, false));
+        return 1;
+    }
+
+    private static int discordStatus(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
+        CommandSourceStack src = ctx.getSource();
+        Component status = com.erikedits.justquests.discord.DiscordLink.status(src.getPlayerOrException());
+        src.sendSuccess(() -> status, false);
+        return 1;
     }
 
     private static int discord(CommandContext<CommandSourceStack> ctx) {

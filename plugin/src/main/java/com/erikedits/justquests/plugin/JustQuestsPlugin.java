@@ -62,6 +62,8 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     private Community community;
     private GeneratedQuests generated = GeneratedQuests.NONE;
     private PluginGenerator generator;
+    private com.erikedits.justquests.plugin.badge.PluginBadges badges;
+    private com.erikedits.justquests.plugin.badge.PluginDiscord discord;
     private final Set<UUID> hideCompleted = new HashSet<>();
 
     @Override
@@ -95,6 +97,10 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         generator = new PluginGenerator(this, data.resolve("generator"));
         generated = generator;
         generator.start(modWorld);
+        // badges and the JustQuests Discord (0.6.0)
+        badges = new com.erikedits.justquests.plugin.badge.PluginBadges(this);
+        badges.load();
+        discord = new com.erikedits.justquests.plugin.badge.PluginDiscord(this);
         registerPermissions();
 
         PluginManager pm = getServer().getPluginManager();
@@ -104,6 +110,7 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         pm.registerEvents(npc, this);
         pm.registerEvents(generator.fireworks(), this);
         pm.registerEvents(this, this);
+        pm.registerEvents(badges, this);
         if (pm.isPluginEnabled("PlaceholderAPI")) {
             Placeholders.hook(this);
             getLogger().info("PlaceholderAPI found: the %justquests_...% placeholders are ready");
@@ -129,6 +136,9 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
             teams.saveDirty();
         }, 1200L, 1200L);
         getServer().getScheduler().runTaskTimer(this, generator::tick, 1200L, 1200L);
+        getServer().getScheduler().runTaskTimer(this, discord::tick, 20L, 20L);
+        discord.start();
+        for (Player p : Bukkit.getOnlinePlayers()) badges.applyName(p);   // after /reload
         for (Player p : Bukkit.getOnlinePlayers()) tracker.update(p);   // after /reload
     }
 
@@ -180,6 +190,9 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         reloadConfig();
         settings.read(getConfig());
         quests.reloadCustom();
+        badges.load();
+        discord.requestBadges();
+        for (Player p : Bukkit.getOnlinePlayers()) badges.applyName(p);
         generator.reloadConfig();
         registerPermissions();
         tracker.updateAll();
@@ -198,6 +211,9 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         community.onJoin(e.getPlayer());
         generator.onJoin(e.getPlayer());
         progress.firstJoin(e.getPlayer());   // auto-accept on a first join (#23)
+        badges.check(e.getPlayer());   // badges for what was done before 0.6.0
+        badges.applyName(e.getPlayer());
+        discord.joined(e.getPlayer());
         tracker.update(e.getPlayer());
     }
 
@@ -291,6 +307,13 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
     public List<String> selfTest() { return SelfTest.run(this); }
 
     public Settings settings() { return settings; }
+
+    public com.erikedits.justquests.plugin.badge.PluginBadges badges() { return badges; }
+
+    public com.erikedits.justquests.plugin.badge.PluginDiscord discord() { return discord; }
+
+    /** The plugin's own jar (the bundled quests and badges are read from it). */
+    public java.io.File jarFile() { return getFile(); }
 
     public QuestRegistry quests() { return quests; }
 

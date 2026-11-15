@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en_us": "Daily Grinder",
+    "de_de": "Tagesheld",
+    "es_es": "Constante",
+    "fr_fr": "Assidu",
+    "ja_jp": "毎日の努力家"
+  },
+  "description": {
+    "en_us": "Seven days in a row, never missed one.",
+    "de_de": "Sieben Tage am Stück, keinen verpasst.",
+    "es_es": "Siete días seguidos, sin faltar ninguno.",
+    "fr_fr": "Sept jours de suite, sans en manquer un.",
+    "ja_jp": "7日連続、一日も欠かさず。"
+  },
+  "how": {
+    "en_us": "Complete daily quests 7 days in a row",
+    "de_de": "Schließe 7 Tage in Folge tägliche Quests ab",
+    "es_es": "Completa misiones diarias 7 días seguidos",
+    "fr_fr": "Termine des quêtes quotidiennes 7 jours de suite",
+    "ja_jp": "7日連続でデイリークエストを完了する"
+  },
+  "icon": "minecraft:clock",
+  "color": "#00acc1",
+  "symbol": "☀",
+  "discord": true,
+  "sort": 7
+}

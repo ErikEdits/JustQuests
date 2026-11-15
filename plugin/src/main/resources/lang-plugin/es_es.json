@@ -93,5 +93,6 @@
   "justquests.plugin.help.npc": "la criatura que miras abre el libro de misiones",
   "justquests.category.personal": "Personales",
   "justquests.category.weekly": "Semanales",
-  "justquests.plugin.help.autoaccept": "aceptar solas las misiones desbloqueadas (on/off)"
+  "justquests.plugin.help.autoaccept": "aceptar solas las misiones desbloqueadas (on/off)",
+  "justquests.plugin.gui.badge_hide": "No mostrar insignia delante de mi nombre"
 }

@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en_us": "Chapter Hero",
+    "de_de": "Kapitel-Held",
+    "es_es": "Héroe del capítulo",
+    "fr_fr": "Héros du chapitre",
+    "ja_jp": "章の英雄"
+  },
+  "description": {
+    "en_us": "A whole chapter done, every quest of it.",
+    "de_de": "Ein ganzes Kapitel geschafft, jede Quest davon.",
+    "es_es": "Un capítulo entero, cada una de sus misiones.",
+    "fr_fr": "Un chapitre entier, chacune de ses quêtes.",
+    "ja_jp": "章のクエストをすべて達成した。"
+  },
+  "how": {
+    "en_us": "Complete every quest of a chapter (a category with at least 3 quests)",
+    "de_de": "Schließe alle Quests eines Kapitels ab (eine Kategorie mit mindestens 3 Quests)",
+    "es_es": "Completa todas las misiones de un capítulo (una categoría con al menos 3 misiones)",
+    "fr_fr": "Termine toutes les quêtes d'un chapitre (une catégorie d'au moins 3 quêtes)",
+    "ja_jp": "1つの章（3個以上のクエストがあるカテゴリー）のクエストをすべて完了する"
+  },
+  "icon": "minecraft:writable_book",
+  "color": "#fdd835",
+  "symbol": "❖",
+  "discord": true,
+  "sort": 6
+}

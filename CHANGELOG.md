@@ -37,6 +37,26 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
   stay in sight.
 
 ### Added
+- **Badges.** Players earn badges and keep them:
+  - **Built in:** First Steps (first quest), Quest Rookie (10 quests), Adventurer (50), Quest Master (100),
+    Legend (500) and Chapter Hero (every quest of a category with at least 3 quests). Each has its own medal
+    picture and a name in all five languages. Players who did those quests before get them when they join.
+    Daily Grinder and Team Player come with daily quests and community goals.
+  - **Your own badges:** a datapack defines them in `data/<namespace>/justquests/badges/<id>.json`, a world
+    in the `"badges"` section of `custom-quests.json`. They are given by the new reward
+    `{ "type": "justquests:badge", "badge": "<id>" }`.
+  - **In the quest book:** a new page (medal button in the title bar) shows every badge, how to earn it and
+    when it was earned. A click puts its sign before your name.
+  - **Before the name:** the sign of the newest (or chosen) badge stands before the player's name in the
+    chat and in the tab list. Every player sees it, also without the mod. It can be turned off with
+    `"badgeInName": false`; in the plugin, chat plugins can place it with `%justquests_badge%`.
+  - **Commands:** `/quest badges`, `/quest badges show <badge|none>`, `/quest admin badge give|take <player> <badge>`.
+- **Badges as roles on the JustQuests Discord** (opt-in): `/quest discord link <code>` with the code of
+  `/justquests link` on the Discord. Each badge then becomes a role there (no rights). Nothing is sent
+  before a player links, and then only their Minecraft name, UUID and badges; the mod holds no token or
+  secret. A link holds for every world of a game or server (singleplayer too). `/quest discord unlink`
+  removes it again. Server owners can turn it off with `"discordLink": false`. Badges of a quest pack
+  (with `"discord": true` and a `justquests/pack.json`) are sent to the Discord owner once for approval.
 - Resource packs can set the colours that were fixed: `search_text`, `search_hint`, `radio`,
   `radio_border`, `radio_dot`, `scrollbar_track`, `scrollbar_thumb` and `separator` in
   `quest_book/settings.json`.

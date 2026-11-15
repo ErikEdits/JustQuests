@@ -28,6 +28,10 @@ public final class PlayerData {
     public boolean bossbar = true;
     /** The player's own choice for accepting unlocked quests at once; null = config.yml's autoAccept. */
     public Boolean autoAccept;
+    /** Badges earned (0.6.0): badge id -> when, as in the mod's progress.json. */
+    public final Map<String, Long> badges = new LinkedHashMap<>();
+    /** The badge whose sign stands before the name: an id, "none", or null for the newest. */
+    public String shownBadge;
 
     public boolean isActive(String id) {
         return active.containsKey(id);
@@ -68,7 +72,8 @@ public final class PlayerData {
     }
 
     public boolean isEmpty() {
-        return active.isEmpty() && pendingClaim.isEmpty() && completed.isEmpty() && pinned == null && bossbar && autoAccept == null;
+        return active.isEmpty() && pendingClaim.isEmpty() && completed.isEmpty() && pinned == null && bossbar && autoAccept == null
+            && badges.isEmpty() && shownBadge == null;
     }
 
     public JsonObject toJson() {
@@ -91,6 +96,12 @@ public final class PlayerData {
         if (pinned != null) o.addProperty("pinned", pinned);
         if (!bossbar) o.addProperty("bossbar", false);
         if (autoAccept != null) o.addProperty("autoAccept", autoAccept);
+        if (!badges.isEmpty()) {
+            JsonObject b = new JsonObject();
+            badges.forEach(b::addProperty);
+            o.add("badges", b);
+        }
+        if (shownBadge != null) o.addProperty("shownBadge", shownBadge);
         return o;
     }
 
@@ -125,6 +136,10 @@ public final class PlayerData {
         if (o.has("pinned")) d.pinned = o.get("pinned").getAsString();
         if (o.has("bossbar")) d.bossbar = o.get("bossbar").getAsBoolean();
         if (o.has("autoAccept")) d.autoAccept = o.get("autoAccept").getAsBoolean();
+        if (o.has("badges")) {
+            for (Map.Entry<String, JsonElement> e : o.getAsJsonObject("badges").entrySet()) d.badges.put(e.getKey(), e.getValue().getAsLong());
+        }
+        if (o.has("shownBadge")) d.shownBadge = o.get("shownBadge").getAsString();
         return d;
     }
 }

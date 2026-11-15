@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en_us": "Adventurer",
+    "de_de": "Abenteurer",
+    "es_es": "Aventurero",
+    "fr_fr": "Aventurier",
+    "ja_jp": "冒険者"
+  },
+  "description": {
+    "en_us": "Fifty quests: a real adventurer.",
+    "de_de": "Fünfzig Quests: ein echter Abenteurer.",
+    "es_es": "Cincuenta misiones: todo un aventurero.",
+    "fr_fr": "Cinquante quêtes : un vrai aventurier.",
+    "ja_jp": "50個のクエスト：本物の冒険者。"
+  },
+  "how": {
+    "en_us": "Complete 50 quests",
+    "de_de": "Schließe 50 Quests ab",
+    "es_es": "Completa 50 misiones",
+    "fr_fr": "Termine 50 quêtes",
+    "ja_jp": "クエストを50個完了する"
+  },
+  "icon": "minecraft:compass",
+  "color": "#1e88e5",
+  "symbol": "⚔",
+  "discord": true,
+  "sort": 3
+}

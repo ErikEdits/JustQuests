@@ -93,5 +93,6 @@
   "justquests.plugin.help.npc": "le mob regardé ouvre le livre de quêtes",
   "justquests.category.personal": "Personnelles",
   "justquests.category.weekly": "Hebdomadaires",
-  "justquests.plugin.help.autoaccept": "accepter seules les quêtes débloquées (on/off)"
+  "justquests.plugin.help.autoaccept": "accepter seules les quêtes débloquées (on/off)",
+  "justquests.plugin.gui.badge_hide": "Aucun badge devant mon nom"
 }

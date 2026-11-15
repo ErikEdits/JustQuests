@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en_us": "Quest Master",
+    "de_de": "Quest-Meister",
+    "es_es": "Maestro de misiones",
+    "fr_fr": "Maître des quêtes",
+    "ja_jp": "クエストマスター"
+  },
+  "description": {
+    "en_us": "A hundred quests mastered.",
+    "de_de": "Hundert Quests gemeistert.",
+    "es_es": "Cien misiones dominadas.",
+    "fr_fr": "Cent quêtes maîtrisées.",
+    "ja_jp": "100個のクエストを極めた。"
+  },
+  "how": {
+    "en_us": "Complete 100 quests",
+    "de_de": "Schließe 100 Quests ab",
+    "es_es": "Completa 100 misiones",
+    "fr_fr": "Termine 100 quêtes",
+    "ja_jp": "クエストを100個完了する"
+  },
+  "icon": "minecraft:golden_helmet",
+  "color": "#8e24aa",
+  "symbol": "♛",
+  "discord": true,
+  "sort": 4
+}

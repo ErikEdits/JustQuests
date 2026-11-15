@@ -1,0 +1,28 @@
+{
+  "name": {
+    "en_us": "First Steps",
+    "de_de": "Erste Schritte",
+    "es_es": "Primeros pasos",
+    "fr_fr": "Premiers pas",
+    "ja_jp": "はじめの一歩"
+  },
+  "description": {
+    "en_us": "Your first quest is done.",
+    "de_de": "Deine erste Quest ist geschafft.",
+    "es_es": "Tu primera misión está hecha.",
+    "fr_fr": "Ta première quête est terminée.",
+    "ja_jp": "最初のクエストを達成した。"
+  },
+  "how": {
+    "en_us": "Complete your first quest",
+    "de_de": "Schließe deine erste Quest ab",
+    "es_es": "Completa tu primera misión",
+    "fr_fr": "Termine ta première quête",
+    "ja_jp": "最初のクエストを完了する"
+  },
+  "icon": "minecraft:leather_boots",
+  "color": "#7cb342",
+  "symbol": "✦",
+  "discord": true,
+  "sort": 1
+}

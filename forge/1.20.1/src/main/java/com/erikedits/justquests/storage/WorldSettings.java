@@ -46,6 +46,10 @@ public final class WorldSettings {
     private static List<String> generatorDisabledProfiles = new ArrayList<>();
     private static boolean generatorAdaptiveBalancing = false;
     private static boolean generatorStats = true;
+    // badges and the JustQuests Discord (0.6.0)
+    private static boolean discordLink = true;
+    private static String discordApi = com.erikedits.justquests.discord.DiscordLink.DEFAULT_API;
+    private static boolean badgeInName = true;
 
     /** the world's settings.json as read (its own values, kept when config/justquests.json overrides one) */
     private static JsonObject world = new JsonObject();
@@ -119,6 +123,11 @@ public final class WorldSettings {
         }
     }
 
+    /** The config folder of this game or server (config/), for files that hold for all its worlds (0.6.0). */
+    public static Path configDir() {
+        return globalFile().getParent();
+    }
+
     /** Whether config/justquests.json sets this key for every world (commands can't change it then). */
     public static boolean global(String key) {
         return global.has(key);
@@ -150,6 +159,9 @@ public final class WorldSettings {
         }
         if (o.has("generatorAdaptiveBalancing")) generatorAdaptiveBalancing = o.get("generatorAdaptiveBalancing").getAsBoolean();
         if (o.has("generatorStats")) generatorStats = o.get("generatorStats").getAsBoolean();
+        if (o.has("discordLink")) discordLink = o.get("discordLink").getAsBoolean();
+        if (o.has("discordApi")) discordApi = o.get("discordApi").getAsString();
+        if (o.has("badgeInName")) badgeInName = o.get("badgeInName").getAsBoolean();
     }
 
     /** Persist the current settings back to the world file. */
@@ -207,6 +219,9 @@ public final class WorldSettings {
         o.add("generatorDisabledProfiles", profiles);
         o.addProperty("generatorAdaptiveBalancing", generatorAdaptiveBalancing);
         o.addProperty("generatorStats", generatorStats);
+        o.addProperty("discordLink", discordLink);
+        o.addProperty("discordApi", discordApi);
+        o.addProperty("badgeInName", badgeInName);
         return o;
     }
 
@@ -260,6 +275,12 @@ public final class WorldSettings {
 
     public static boolean generatorStats() { return generatorStats; }
 
+    public static boolean discordLink() { return discordLink; }
+
+    public static String discordApi() { return discordApi; }
+
+    public static boolean badgeInName() { return badgeInName; }
+
     public static void reset() {
         discordWelcome = true;
         announceCompletions = true;
@@ -281,6 +302,9 @@ public final class WorldSettings {
         generatorDisabledProfiles = new ArrayList<>();
         generatorAdaptiveBalancing = false;
         generatorStats = true;
+        discordLink = true;
+        discordApi = com.erikedits.justquests.discord.DiscordLink.DEFAULT_API;
+        badgeInName = true;
     }
 
     private static final String HELP =
@@ -304,6 +328,9 @@ public final class WorldSettings {
         + "generatorDisabledProfiles: mod profiles to ignore, e.g. [\"create\"]. "
         + "generatorAdaptiveBalancing: let the generator tune its time estimates from how long quests really take. "
         + "generatorStats: record anonymous statistics in justquests/generator_v2_stats.json. "
+        + "discordLink: players may link their badges to the JustQuests Discord with /quest discord link <code> (nothing is sent before they do; false turns it off). "
+        + "discordApi: the Discord bot's address (an own bot with the same API can be used). "
+        + "badgeInName: the sign of a player's badge stands before their name in the chat and the tab list. "
         + "A key set in config/justquests.json applies to every world and wins over this file.";
 
     private static final String GLOBAL_HELP =

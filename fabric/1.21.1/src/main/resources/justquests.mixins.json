@@ -11,7 +11,9 @@
     "LivingEntityConsumeMixin",
     "ItemEntityPickupMixin",
     "PlayerAdvancementsMixin",
+    "PlayerDisplayNameMixin",
     "ResultSlotMixin",
+    "ServerPlayerTabNameMixin",
     "TamableAnimalMixin"
   ],
   "client": [],

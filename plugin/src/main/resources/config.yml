@@ -21,6 +21,19 @@ autoAccept: true
 # quests stay. Also /quest mainquests on|off.
 mainQuests: true
 
+badges:
+  # The sign of a player's badge stands before their name in the tab list and the chat. Chat plugins
+  # can place it themselves with %justquests_badge% (PlaceholderAPI); set this false then.
+  inName: true
+
+discord:
+  # Players may link their badges to the JustQuests Discord with /quest discord link <code> (the code
+  # comes from /justquests link on that Discord); each badge then becomes a role there. Nothing is sent
+  # before a player links. false turns it off.
+  link: true
+  # The Discord bot's address. An own bot with the same API can be used.
+  api: "https://pocketbot-gateway.erikbestemc-da62f9.workers.dev/api/v1"
+
 questBook:
   # Give every player a quest book on their first join. Right-click it to open the quests.
   giveOnFirstJoin: true

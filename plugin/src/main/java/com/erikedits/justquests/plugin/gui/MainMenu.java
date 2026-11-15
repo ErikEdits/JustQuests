@@ -50,6 +50,11 @@ public final class MainMenu extends Menu {
         }
 
         set(4, stats(data, quests));
+        // the badge page (0.6.0)
+        int earned = plugin.badges().earned(data).size();
+        set(6, item(Material.NAME_TAG, Math.max(1, earned), Text.lit("§6" + legacy("justquests.book.badges")),
+            List.of(tr("justquests.book.badges_count", earned, plugin.badges().all().size()), Text.lit(""), tr("justquests.plugin.gui.click_open")), false),
+            click -> go(new BadgeMenu(plugin, player, 0)));
         if (plugin.settings().personal && plugin.generator().running()) {
             List<BaseComponent> lore = new ArrayList<>();
             lore.add(tr("justquests.plugin.gui.personal_lore"));

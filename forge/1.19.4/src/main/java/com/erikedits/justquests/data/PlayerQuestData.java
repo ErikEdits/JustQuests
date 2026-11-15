@@ -26,16 +26,24 @@ public class PlayerQuestData {
     public final Map<ResourceLocation, Long> completed = new HashMap<>();
     /** The player's own choice for accepting unlocked quests at once; empty = the world's setting (autoAccept). */
     public Optional<Boolean> autoAccept = Optional.empty();
+    /** Badges earned (0.6.0): badge id -> when. */
+    public final Map<ResourceLocation, Long> badges = new HashMap<>();
+    /** The badge whose sign stands before the name: a badge id, "none" to show none, empty = the newest. */
+    public Optional<String> shownBadge = Optional.empty();
 
     public static final Codec<PlayerQuestData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         Codec.STRING.optionalFieldOf("teamId").forGetter(d -> d.teamId),
         Codec.unboundedMap(ResourceLocation.CODEC, QuestProgress.CODEC).optionalFieldOf("active", Map.of()).forGetter(d -> d.active),
         Codec.unboundedMap(ResourceLocation.CODEC, Codec.LONG).optionalFieldOf("pendingClaim", Map.of()).forGetter(d -> d.pendingClaim),
         Codec.unboundedMap(ResourceLocation.CODEC, Codec.LONG).optionalFieldOf("completed", Map.of()).forGetter(d -> d.completed),
-        Codec.BOOL.optionalFieldOf("autoAccept").forGetter(d -> d.autoAccept)
-    ).apply(instance, (teamId, active, pendingClaim, completed, autoAccept) -> {
+        Codec.BOOL.optionalFieldOf("autoAccept").forGetter(d -> d.autoAccept),
+        Codec.unboundedMap(ResourceLocation.CODEC, Codec.LONG).optionalFieldOf("badges", Map.of()).forGetter(d -> d.badges),
+        Codec.STRING.optionalFieldOf("shownBadge").forGetter(d -> d.shownBadge)
+    ).apply(instance, (teamId, active, pendingClaim, completed, autoAccept, badges, shownBadge) -> {
         PlayerQuestData d = new PlayerQuestData(teamId, active, pendingClaim, completed);
         d.autoAccept = autoAccept;
+        d.badges.putAll(badges);
+        d.shownBadge = shownBadge;
         return d;
     }));
 
@@ -85,6 +93,7 @@ public class PlayerQuestData {
     }
 
     public boolean isEmpty() {
-        return active.isEmpty() && pendingClaim.isEmpty() && completed.isEmpty() && autoAccept.isEmpty();
+        return active.isEmpty() && pendingClaim.isEmpty() && completed.isEmpty() && autoAccept.isEmpty()
+            && badges.isEmpty() && shownBadge.isEmpty();
     }
 }

@@ -93,5 +93,6 @@
   "justquests.plugin.help.npc": "der angeschaute Mob öffnet das Questbuch",
   "justquests.category.personal": "Persönlich",
   "justquests.category.weekly": "Wöchentlich",
-  "justquests.plugin.help.autoaccept": "freigeschaltete Quests automatisch annehmen (on/off)"
+  "justquests.plugin.help.autoaccept": "freigeschaltete Quests automatisch annehmen (on/off)",
+  "justquests.plugin.gui.badge_hide": "Kein Abzeichen vor meinem Namen"
 }

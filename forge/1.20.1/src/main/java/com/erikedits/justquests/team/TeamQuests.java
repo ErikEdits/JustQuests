@@ -87,6 +87,11 @@ public final class TeamQuests {
         if (data == null || (data.active.isEmpty() && data.completed.isEmpty())) return own;
         PlayerQuestData v = own == null ? new PlayerQuestData()
             : new PlayerQuestData(own.teamId, own.active, own.pendingClaim, own.completed);
+        // badges are the player's own (0.6.0)
+        if (own != null) {
+            v.badges.putAll(own.badges);
+            v.shownBadge = own.shownBadge;
+        }
         data.active.forEach(v.active::putIfAbsent);
         data.completed.forEach((id, at) -> v.completed.merge(id, at, Math::max));
         return v;

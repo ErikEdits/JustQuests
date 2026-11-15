@@ -61,6 +61,8 @@ public final class CustomQuestLoader {
     /** Parses the custom file and pushes the result into the QuestManager. */
     public static void load() {
         Map<Identifier, Quest> custom = new HashMap<>();
+        Map<Identifier, com.erikedits.justquests.data.Badge> badges = new HashMap<>();
+        JsonObject pack = null;
         if (file != null && Files.exists(file)) {
             try {
                 lastModified = Files.getLastModifiedTime(file).toMillis();
@@ -69,6 +71,16 @@ public final class CustomQuestLoader {
                     for (Map.Entry<String, JsonElement> e : root.getAsJsonObject().entrySet()) {
                         String key = e.getKey();
                         if (key.startsWith("_")) continue;          // _help etc.
+                        // badges (0.6.0): "badges": { "mypack:chapter_1": { "name": ..., ... } }
+                        if (key.equals("badges") && e.getValue().isJsonObject()) {
+                            readBadges(e.getValue().getAsJsonObject(), badges);
+                            continue;
+                        }
+                        // what the JustQuests Discord needs to know to make the badges roles (pack.json in a datapack)
+                        if (key.equals("pack") && e.getValue().isJsonObject()) {
+                            pack = e.getValue().getAsJsonObject();
+                            continue;
+                        }
                         if (!e.getValue().isJsonObject()) continue;
                         JsonObject obj = e.getValue().getAsJsonObject();
                         // blank template slots (no objectives) are skipped silently
@@ -94,7 +106,22 @@ public final class CustomQuestLoader {
             }
         }
         QuestManager.INSTANCE.setCustomQuests(custom);
+        com.erikedits.justquests.badge.Badges.setCustom(badges, pack);
         JustQuests.LOG.info("Loaded {} custom quest(s)", custom.size());
+    }
+
+    private static void readBadges(JsonObject section, Map<Identifier, com.erikedits.justquests.data.Badge> out) {
+        for (Map.Entry<String, JsonElement> b : section.entrySet()) {
+            try {
+                Identifier id = Identifier.tryParse(b.getKey().contains(":") ? b.getKey() : "justquests:" + b.getKey());
+                if (id == null) throw new IllegalArgumentException("not a valid id");
+                com.erikedits.justquests.data.Badge.CODEC.parse(JsonOps.INSTANCE, b.getValue())
+                    .resultOrPartial(err -> JustQuests.LOG.error("Custom badge {} invalid: {}", b.getKey(), err))
+                    .ifPresent(badge -> out.put(id, badge));
+            } catch (Exception ex) {
+                JustQuests.LOG.error("Custom badge {} failed: {}", b.getKey(), ex.getMessage());
+            }
+        }
     }
 
     public static void clear() {
