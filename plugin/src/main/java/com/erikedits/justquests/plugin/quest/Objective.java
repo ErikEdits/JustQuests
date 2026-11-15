@@ -66,6 +66,20 @@ public sealed interface Objective {
                 o.has("dimension") ? Matchers.ns(o.get("dimension").getAsString()) : null,
                 o.get("x").getAsInt(), o.get("y").getAsInt(), o.get("z").getAsInt(),
                 o.has("radius") ? o.get("radius").getAsInt() : 4);
+            // 0.6.0
+            case "justquests:submit_item" -> new Submit(ItemMatcher.parse(o.get("item")), count(o));
+            case "justquests:fish_item" -> new Fish(o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o));
+            case "justquests:trade_villager" -> new Trade(o.has("item") ? ItemMatcher.parse(o.get("item")) : null,
+                o.has("profession") ? Matchers.ns(o.get("profession").getAsString().toLowerCase(Locale.ROOT)) : null, count(o), distinct(o));
+            case "justquests:brew_potion" -> new Brew(o.has("potion") ? Matchers.ns(o.get("potion").getAsString().toLowerCase(Locale.ROOT)) : null,
+                o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o));
+            case "justquests:stat" -> new Stat(Matchers.ns(Quest.string(o, "stat").toLowerCase(Locale.ROOT)), count(o));
+            case "justquests:interact_entity" -> new Interact(EntityMatcher.parse(Quest.string(o, "entity")),
+                o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o));
+            case "justquests:use_block" -> new UseBlock(BlockMatcher.parse(Quest.string(o, "block")),
+                o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o));
+            case "justquests:find_structure" -> new FindStructure(tagOrId(Quest.string(o, "structure")), o.has("count") ? o.get("count").getAsInt() : 1);
+            case "justquests:find_biome" -> new FindBiome(tagOrId(Quest.string(o, "biome")), o.has("count") ? o.get("count").getAsInt() : 1);
             default -> throw new IllegalArgumentException("unknown objective type: " + type);
         };
     }
@@ -77,6 +91,12 @@ public sealed interface Objective {
 
     private static boolean distinct(JsonObject o) {
         return o.has("distinct") && o.get("distinct").getAsBoolean();
+    }
+
+    /** "#minecraft:village" or "village" -> "#minecraft:village", "minecraft:village". */
+    private static String tagOrId(String s) {
+        s = s.toLowerCase(Locale.ROOT);
+        return s.startsWith("#") ? "#" + Matchers.ns(s.substring(1)) : Matchers.ns(s);
     }
 
     /** enchant_item "via": table (the default), anvil or any. */
@@ -353,6 +373,238 @@ public sealed interface Objective {
             double dx = l.getX() - (x + 0.5), dy = l.getY() - (y + 0.5), dz = l.getZ() - (z + 0.5);
             return dx * dx + dy * dy + dz * dz <= (double) radius * radius;
         }
+    }
+
+    // --- 0.6.0 ------------------------------------------------------------------------------
+
+    /** Hand in X of an item: /quest submit or the quest menu's Hand in button takes them out of the inventory. */
+    record Submit(ItemMatcher item, int count) implements Objective {
+        public String typeId() { return "justquests:submit_item"; }
+        public int requiredCount() { return count; }
+        public String label() { return "Hand in " + count + "x " + item.label(); }
+        public BaseComponent display(String lang) { return goal(lang, "justquests.goal.submit_count", count, item.name(lang)); }
+        public Material icon() { return item.icon(); }
+
+        public int held(Player p) {
+            int total = 0;
+            for (org.bukkit.inventory.ItemStack stack : p.getInventory().getContents()) {
+                if (stack != null && item.matches(stack)) total += stack.getAmount();
+            }
+            return total;
+        }
+
+        /** Takes up to n matching items out of the inventory; returns how many it took. */
+        public int take(Player p, int n) {
+            org.bukkit.inventory.PlayerInventory inv = p.getInventory();
+            org.bukkit.inventory.ItemStack[] contents = inv.getContents();
+            int taken = 0;
+            for (int i = 0; i < contents.length && taken < n; i++) {
+                org.bukkit.inventory.ItemStack stack = contents[i];
+                if (stack == null || !item.matches(stack)) continue;
+                int k = Math.min(stack.getAmount(), n - taken);
+                if (k >= stack.getAmount()) {
+                    inv.setItem(i, null);
+                } else {
+                    stack.setAmount(stack.getAmount() - k);
+                    inv.setItem(i, stack);
+                }
+                taken += k;
+            }
+            return taken;
+        }
+    }
+
+    /** Catch X things with a fishing rod; "item" checks what was caught. */
+    record Fish(ItemMatcher item, int count, boolean distinct) implements Objective {
+        public String typeId() { return "justquests:fish_item"; }
+        public int requiredCount() { return count; }
+        public String label() { return "Fish " + count + "x " + (item == null ? "anything" : item.label()); }
+        public BaseComponent display(String lang) {
+            if (item != null) return goal(lang, "justquests.goal.fish_count", count, item.name(lang));
+            return Text.tr(lang, count == 1 ? "justquests.goal.fish_one" : "justquests.goal.fish_many", count);
+        }
+        public Material icon() { return item != null ? item.icon() : Material.FISHING_ROD; }
+        public boolean accepts(org.bukkit.inventory.ItemStack caught) { return item == null || item.matches(caught); }
+    }
+
+    /**
+     * Trade with a villager or the wandering trader. "item" checks what the player gets (then the items
+     * count, else the trades), "profession" who trades (minecraft:librarian, minecraft:wandering_trader).
+     */
+    record Trade(ItemMatcher item, String profession, int count, boolean distinct) implements Objective {
+        public String typeId() { return "justquests:trade_villager"; }
+        public int requiredCount() { return count; }
+        public String label() {
+            return "Trade " + count + "x " + (item == null ? "anything" : item.label()) + (profession == null ? "" : " with " + profession);
+        }
+        public BaseComponent display(String lang) {
+            if (profession != null) {
+                if (item != null) return Text.tr(lang, "justquests.goal.trade_with_count", count, item.name(lang), trader());
+                return Text.tr(lang, count == 1 ? "justquests.goal.trade_with_one" : "justquests.goal.trade_with_many", trader(), count);
+            }
+            if (item != null) return goal(lang, "justquests.goal.trade_count", count, item.name(lang));
+            return Text.tr(lang, count == 1 ? "justquests.goal.trade_one" : "justquests.goal.trade_many", count);
+        }
+        public Material icon() { return item != null ? item.icon() : Material.EMERALD; }
+        public boolean accepts(org.bukkit.inventory.ItemStack bought, String who) {
+            return (item == null || item.matches(bought)) && (profession == null || profession.equals(who));
+        }
+        private BaseComponent trader() {
+            if (profession.equals("minecraft:wandering_trader")) {
+                return new net.md_5.bungee.api.chat.TranslatableComponent("entity.minecraft.wandering_trader");
+            }
+            return new net.md_5.bungee.api.chat.TranslatableComponent("entity.minecraft.villager." + profession.substring(profession.indexOf(':') + 1));
+        }
+    }
+
+    /** Take X potions out of a brewing stand; "potion" (its long and strong forms count too) and "item" filter. */
+    record Brew(String potion, ItemMatcher item, int count, boolean distinct) implements Objective {
+        public String typeId() { return "justquests:brew_potion"; }
+        public int requiredCount() { return count; }
+        public String label() { return "Brew " + count + "x " + (potion != null ? potion : item != null ? item.label() : "any potion"); }
+        public BaseComponent display(String lang) {
+            BaseComponent name = name(lang);
+            if (name != null) return goal(lang, "justquests.goal.brew_count", count, name);
+            return Text.tr(lang, count == 1 ? "justquests.goal.brew_one" : "justquests.goal.brew_many", count);
+        }
+        private BaseComponent name(String lang) {
+            if (potion != null) {
+                ItemMatcher base = item instanceof Matchers.Filtered f ? f.base() : item != null ? item : ItemMatcher.parse("minecraft:potion");
+                return new Matchers.Filtered(base, java.util.Map.of(), potion, null).bareName(lang);
+            }
+            return item != null ? item.name(lang) : null;
+        }
+        public Material icon() { return item != null ? item.icon() : Material.BREWING_STAND; }
+        public boolean accepts(org.bukkit.inventory.ItemStack brewed) {
+            if (item != null && !item.matches(brewed)) return false;
+            if (potion == null) return true;
+            String got = brewed.getItemMeta() instanceof org.bukkit.inventory.meta.PotionMeta pm
+                ? com.erikedits.justquests.plugin.compat.Compat.basePotion(pm) : null;
+            if (got == null) return false;
+            String ns = potion.substring(0, potion.indexOf(':') + 1);
+            String path = potion.substring(potion.indexOf(':') + 1);
+            return got.equals(potion) || got.equals(ns + "long_" + path) || got.equals(ns + "strong_" + path);
+        }
+    }
+
+    /** Raise a statistic after taking the quest: distances in blocks, times in minutes, the rest as counted. */
+    record Stat(String stat, int count) implements Objective {
+        public String typeId() { return "justquests:stat"; }
+        public int requiredCount() { return count; }
+        public String label() { return "Statistic " + stat + " +" + count; }
+        public int unit() {
+            String p = stat.substring(stat.indexOf(':') + 1);
+            if (p.endsWith("_one_cm")) return 100;
+            if (p.equals("play_time") || p.equals("play_one_minute") || p.equals("total_world_time") || p.startsWith("time_since_")
+                || p.equals("sneak_time")) return 1200;
+            return 1;
+        }
+        private String units() { return unit() == 100 ? "_blocks" : unit() == 1200 ? "_minutes" : ""; }
+        public BaseComponent display(String lang) {
+            BaseComponent name = new net.md_5.bungee.api.chat.TranslatableComponent("stat." + stat.replace(':', '.'));
+            return Text.tr(lang, "justquests.goal.stat_count" + units(), name, count);
+        }
+        public Material icon() {
+            String p = stat.substring(stat.indexOf(':') + 1);
+            if (p.endsWith("_one_cm")) return Material.LEATHER_BOOTS;
+            return switch (p) {
+                case "play_time", "play_one_minute", "total_world_time", "time_since_death", "time_since_rest" -> Material.CLOCK;
+                case "sleep_in_bed" -> Material.RED_BED;
+                case "jump" -> Material.RABBIT_FOOT;
+                case "fish_caught" -> Material.FISHING_ROD;
+                default -> Material.PAPER;
+            };
+        }
+        /** The Bukkit statistic of the id, or null. */
+        public org.bukkit.Statistic statistic() {
+            for (org.bukkit.Statistic s : org.bukkit.Statistic.values()) {
+                if (s.getType() == org.bukkit.Statistic.Type.UNTYPED
+                    && com.erikedits.justquests.plugin.compat.Compat.key(s).toString().equals(stat)) return s;
+            }
+            return null;
+        }
+    }
+
+    /** Right-click a mob, optionally holding an item; the same mob again counts after a second. */
+    record Interact(EntityMatcher entity, ItemMatcher item, int count, boolean distinct) implements Objective {
+        public String typeId() { return "justquests:interact_entity"; }
+        public int requiredCount() { return count; }
+        public String label() { return "Interact " + count + "x " + entity.label() + (item == null ? "" : " with " + item.label()); }
+        public BaseComponent display(String lang) {
+            if (item != null) return Text.tr(lang, "justquests.goal.interact_item_count", item.name(lang), count, entity.name(lang));
+            return goal(lang, "justquests.goal.interact_count", count, entity.name(lang));
+        }
+        public Material icon() { return item != null ? item.icon() : entity.icon(); }
+        public boolean accepts(org.bukkit.entity.EntityType type, org.bukkit.inventory.ItemStack held) {
+            return entity.matches(type) && (item == null || (held != null && item.matches(held)));
+        }
+    }
+
+    /** Right-click a block, optionally holding an item; the same block again counts after a second. */
+    record UseBlock(BlockMatcher block, ItemMatcher item, int count, boolean distinct) implements Objective {
+        public String typeId() { return "justquests:use_block"; }
+        public int requiredCount() { return count; }
+        public String label() { return "Use " + count + "x " + block.label() + (item == null ? "" : " with " + item.label()); }
+        public BaseComponent display(String lang) {
+            if (item != null) return Text.tr(lang, "justquests.goal.use_block_item_count", item.name(lang), count, block.name(lang));
+            return goal(lang, "justquests.goal.use_block_count", count, block.name(lang));
+        }
+        public Material icon() { return block.icon(); }
+        public boolean accepts(Material used, org.bukkit.inventory.ItemStack held) {
+            return block.matches(used) && (item == null || (held != null && item.matches(held)));
+        }
+    }
+
+    /** Stand inside a structure (id or #tag); with a count above 1 every structure counts once. */
+    record FindStructure(String structure, int count) implements Objective {
+        public String typeId() { return "justquests:find_structure"; }
+        public int requiredCount() { return count; }
+        public boolean distinct() { return count > 1; }
+        public String label() { return "Find " + count + "x " + structure; }
+        public BaseComponent display(String lang) {
+            BaseComponent name = named(lang, "justquests.structure.", structure);
+            return count == 1 ? Text.tr(lang, "justquests.goal.find_structure", name)
+                : Text.tr(lang, "justquests.goal.find_structure_count", count, name);
+        }
+        public Material icon() { return Material.FILLED_MAP; }
+        /**
+         * The server API knows no structure tags: a tag (#minecraft:village) matches the structures whose
+         * id starts with its name (minecraft:village_plains, ...).
+         */
+        public boolean accepts(String id) {
+            if (!structure.startsWith("#")) return structure.equals(id);
+            return id.startsWith(structure.substring(1));
+        }
+    }
+
+    /** Stand in a biome (id or #tag); with a count above 1 every biome counts once. */
+    record FindBiome(String biome, int count) implements Objective {
+        public String typeId() { return "justquests:find_biome"; }
+        public int requiredCount() { return count; }
+        public boolean distinct() { return count > 1; }
+        public String label() { return "Find " + count + "x " + biome; }
+        public BaseComponent display(String lang) {
+            BaseComponent name = biome.startsWith("#") ? named(lang, "justquests.biome.", biome)
+                : new net.md_5.bungee.api.chat.TranslatableComponent("biome." + biome.replace(':', '.'));
+            return count == 1 ? Text.tr(lang, "justquests.goal.find_biome", name)
+                : Text.tr(lang, "justquests.goal.find_biome_count", count, name);
+        }
+        public Material icon() { return Material.OAK_SAPLING; }
+        public boolean accepts(String id, World.Environment environment) {
+            if (!biome.startsWith("#")) return biome.equals(id);
+            return BiomeTags.has(biome.substring(1), id, environment);
+        }
+    }
+
+    /** A structure or tag name from the language files, a #tag as "any ...", else made from the id. */
+    private static BaseComponent named(String lang, String prefix, String id) {
+        boolean tag = id.startsWith("#");
+        String bare = tag ? id.substring(1) : id;
+        String key = prefix + (tag ? "tag." : "") + bare.replace(':', '.');
+        String path = bare.substring(bare.indexOf(':') + 1);
+        if (prefix.startsWith("justquests.biome") && path.startsWith("is_")) path = path.substring(3);
+        BaseComponent name = Lang.has(key) ? Text.tr(lang, key) : new TextComponent(Text.readable(path));
+        return tag ? Text.tr(lang, "justquests.goal.any", name) : name;
     }
 
     /** The vanilla dimension id of a world's kind; extra worlds of a kind count as that dimension. */

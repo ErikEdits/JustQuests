@@ -123,5 +123,22 @@ public class JustQuestsFabric implements ModInitializer {
         // visit_dimension
         ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register((player, origin, destination) ->
             FabricQuestHooks.onDimension(player, destination.dimension().location()));
+
+        // interact_entity (0.6.0): a right-click on a mob with the main hand
+        net.fabricmc.fabric.api.event.player.UseEntityCallback.EVENT.register((player, world, hand, entity, hit) -> {
+            if (player instanceof ServerPlayer sp && hand == net.minecraft.world.InteractionHand.MAIN_HAND && !sp.isSpectator()) {
+                com.erikedits.justquests.progress.GoalEvents.interacted(sp, entity, sp.getMainHandItem());
+            }
+            return net.minecraft.world.InteractionResult.PASS;
+        });
+
+        // use_block (0.6.0): a right-click on a block with the main hand
+        net.fabricmc.fabric.api.event.player.UseBlockCallback.EVENT.register((player, world, hand, hit) -> {
+            if (player instanceof ServerPlayer sp && hand == net.minecraft.world.InteractionHand.MAIN_HAND && !sp.isSpectator()) {
+                com.erikedits.justquests.progress.GoalEvents.usedBlock(sp, hit.getBlockPos(),
+                    world.getBlockState(hit.getBlockPos()).getBlock(), sp.getMainHandItem());
+            }
+            return net.minecraft.world.InteractionResult.PASS;
+        });
     }
 }

@@ -100,7 +100,48 @@ public final class QuestIcons {
                 : dim.equals("minecraft:overworld") ? Items.GRASS_BLOCK : Items.ENDER_EYE;
         }
         if (o instanceof GainAdvancementObjective) return Items.KNOWLEDGE_BOOK;
+        // 0.6.0
+        if (o instanceof com.erikedits.justquests.data.objective.SubmitItemObjective s) return first(s.item());
+        if (o instanceof com.erikedits.justquests.data.objective.FishItemObjective f) return f.item().map(QuestIcons::first).orElse(Items.FISHING_ROD);
+        if (o instanceof com.erikedits.justquests.data.objective.TradeVillagerObjective t) return t.item().map(QuestIcons::first).orElse(Items.EMERALD);
+        if (o instanceof com.erikedits.justquests.data.objective.BrewPotionObjective b) return b.item().map(QuestIcons::first).orElse(Items.BREWING_STAND);
+        if (o instanceof com.erikedits.justquests.data.objective.StatObjective st) return statIcon(st.stat().getPath());
+        if (o instanceof com.erikedits.justquests.data.objective.InteractEntityObjective i) {
+            Item held = i.item().map(QuestIcons::first).orElse(null);
+            return held != null ? held : egg(i.entity(), Items.LEAD);
+        }
+        if (o instanceof com.erikedits.justquests.data.objective.UseBlockObjective u) {
+            Item b = block(u.block());
+            return b != null ? b : u.item().map(QuestIcons::first).orElse(Items.STICK);
+        }
+        if (o instanceof com.erikedits.justquests.data.objective.FindStructureObjective) return Items.FILLED_MAP;
+        if (o instanceof com.erikedits.justquests.data.objective.FindBiomeObjective) return Items.OAK_SAPLING;
         return o.icon();
+    }
+
+    /** A picture for a statistic: boots for distances, a clock for times, a bed for sleeping. */
+    private static Item statIcon(String stat) {
+        if (stat.endsWith("_one_cm")) {
+            if (stat.startsWith("swim") || stat.startsWith("walk_on_water") || stat.startsWith("walk_under_water")) return Items.WATER_BUCKET;
+            if (stat.startsWith("fly") || stat.startsWith("aviate")) return Items.ELYTRA;
+            if (stat.startsWith("boat")) return Items.OAK_BOAT;
+            if (stat.startsWith("horse")) return Items.SADDLE;
+            if (stat.startsWith("minecart")) return Items.MINECART;
+            return Items.LEATHER_BOOTS;
+        }
+        return switch (stat) {
+            case "play_time", "play_one_minute", "total_world_time", "time_since_death", "time_since_rest" -> Items.CLOCK;
+            case "sleep_in_bed" -> Items.RED_BED;
+            case "jump" -> Items.RABBIT_FOOT;
+            case "fish_caught" -> Items.FISHING_ROD;
+            case "deaths" -> Items.SKELETON_SKULL;
+            case "mob_kills", "player_kills" -> Items.IRON_SWORD;
+            case "damage_dealt", "damage_taken" -> Items.SHIELD;
+            case "animals_bred" -> Items.WHEAT;
+            case "traded_with_villager" -> Items.EMERALD;
+            case "raid_win", "raid_trigger" -> Items.CROSSBOW;
+            default -> Items.PAPER;
+        };
     }
 
     private static Item first(ItemMatcher m) {

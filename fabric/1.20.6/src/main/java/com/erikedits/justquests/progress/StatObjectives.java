@@ -41,6 +41,8 @@ public final class StatObjectives {
 
     /** Key for an item's "Times Crafted" statistic (watched only while a stonecutter or smithing table is open). */
     private record Crafted(Item item) {}
+    /** Key for a statistic of the stat objective (0.6.0); unit raw points make one counted unit. */
+    private record Custom(net.minecraft.resources.ResourceLocation stat, int unit) {}
     private static final Map<UUID, Map<Object, Integer>> SEEN = new HashMap<>();
 
     private StatObjectives() {}
@@ -62,6 +64,7 @@ public final class StatObjectives {
         Set<ResourceLocation> ids = new HashSet<>(com.erikedits.justquests.team.TeamQuests.activeIds(player));
         if (data != null) ids.addAll(data.active.keySet());
         Set<Object> watched = new HashSet<>();
+        boolean structures = false, biomes = false;
         if (!ids.isEmpty()) {
             for (ResourceLocation id : ids) {
                 Quest quest = QuestManager.INSTANCE.get(id);
@@ -69,12 +72,18 @@ public final class StatObjectives {
                 for (QuestObjective obj : quest.objectives()) {
                     if (obj instanceof EnchantItemObjective e && e.table()) watched.add(ENCHANT);
                     else if (obj instanceof UseItemObjective u) watched.addAll(u.item().items());
+                    else if (obj instanceof com.erikedits.justquests.data.objective.StatObjective st
+                        && net.minecraft.core.registries.BuiltInRegistries.CUSTOM_STAT.containsKey(st.stat())) watched.add(new Custom(st.stat(), st.unit()));
+                    else if (GoalEvents.structure(obj)) structures = true;
+                    else if (GoalEvents.biome(obj)) biomes = true;
                     else if (cutting && obj instanceof CraftItemObjective c) {
                         for (Item item : c.item().items()) watched.add(new Crafted(item));
                     }
                 }
             }
         }
+        // find_structure and find_biome: where the player stands, once a second
+        if (full && (structures || biomes)) GoalEvents.where(player, structures, biomes);
         if (watched.isEmpty()) {
             SEEN.remove(player.getUUID());
             return;
@@ -84,9 +93,18 @@ public final class StatObjectives {
         Map<Object, Integer> next = new HashMap<>();
         Map<Object, Integer> gained = new HashMap<>();
         for (Object key : watched) {
-            if (key instanceof Item && !full) {   // "used" statistics only once a second
+            if ((key instanceof Item || key instanceof Custom) && !full) {   // "used" statistics only once a second
                 Integer old = seen.get(key);
                 if (old != null) next.put(key, old);
+                continue;
+            }
+            if (key instanceof Custom cu) {
+                // whole units only (blocks, minutes): the rest waits for the next poll
+                int now = player.getStats().getValue(Stats.CUSTOM.get(cu.stat()));
+                Integer old = seen.get(key);
+                int units = old == null || now <= old ? 0 : (now - old) / cu.unit();
+                next.put(key, old == null || now < old ? now : old + units * cu.unit());
+                if (units > 0) gained.put(key, units);
                 continue;
             }
             int now = player.getStats().getValue(key == ENCHANT ? Stats.CUSTOM.get(Stats.ENCHANT_ITEM)
@@ -110,6 +128,7 @@ public final class StatObjectives {
                 if (key == ENCHANT && obj instanceof EnchantItemObjective e) return e.table() && e.accepts(enchanted) ? n : 0;
                 if (key instanceof Item it && obj instanceof UseItemObjective u) return u.item().items().contains(it) ? n : 0;
                 if (key instanceof Crafted cf && obj instanceof CraftItemObjective c) return c.matches(new ItemStack(cf.item())) ? n : 0;
+                if (key instanceof Custom cu && obj instanceof com.erikedits.justquests.data.objective.StatObjective st) return st.stat().equals(cu.stat()) ? n : 0;
                 return 0;
             });
         }
@@ -119,5 +138,6 @@ public final class StatObjectives {
     public static void clear() {
         SEEN.clear();
         Workstations.clear();
+        GoalEvents.clear();
     }
 }

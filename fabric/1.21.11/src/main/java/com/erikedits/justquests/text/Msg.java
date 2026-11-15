@@ -63,6 +63,33 @@ public final class Msg {
         return English.has(key) ? tr(key) : Component.translatableWithFallback(key, Ids.prettify(id));
     }
 
+    /**
+     * A structure by name ("Plains Village"), a #tag as "any Village". Others get a name made from
+     * the id, which a resource pack can replace with justquests.structure.[tag.]<namespace>.<path> (0.6.0).
+     */
+    public static MutableComponent structure(String id) {
+        boolean tag = id.startsWith("#");
+        String bare = tag ? id.substring(1) : id;
+        String key = "justquests.structure." + (tag ? "tag." : "") + bare.replace(':', '.');
+        MutableComponent name = English.has(key) ? tr(key) : Component.translatableWithFallback(key, Ids.prettify(bare));
+        return tag ? tr("justquests.goal.any", name) : name;
+    }
+
+    /**
+     * A biome by the game's own name ("Plains"), a #tag as "any Forest"; a tag's name can be set with
+     * justquests.biome.tag.<namespace>.<path> (0.6.0).
+     */
+    public static MutableComponent biome(String id) {
+        boolean tag = id.startsWith("#");
+        String bare = tag ? id.substring(1) : id;
+        if (!tag) return Component.translatableWithFallback("biome." + bare.replace(':', '.'), Ids.prettify(bare));
+        String key = "justquests.biome.tag." + bare.replace(':', '.');
+        String path = bare.substring(bare.indexOf(':') + 1);
+        MutableComponent name = English.has(key) ? tr(key)
+            : Component.translatableWithFallback(key, Ids.prettify(path.startsWith("is_") ? path.substring(3) : path));
+        return tr("justquests.goal.any", name);
+    }
+
     /** Last path segment, readable: "chests/simple_dungeon" -> "simple dungeon". */
     public static String pretty(String path) {
         return path.substring(path.lastIndexOf('/') + 1).replace('_', ' ');

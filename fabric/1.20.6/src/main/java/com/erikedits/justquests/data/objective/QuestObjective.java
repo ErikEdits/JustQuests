@@ -50,6 +50,16 @@ public interface QuestObjective {
             case HaveItemObjective.TYPE_ID -> HaveItemObjective.MAP_CODEC;
             case AnvilItemObjective.TYPE_ID -> AnvilItemObjective.MAP_CODEC;
             case GrindstoneItemObjective.TYPE_ID -> GrindstoneItemObjective.MAP_CODEC;
+            // 0.6.0
+            case SubmitItemObjective.TYPE_ID -> SubmitItemObjective.MAP_CODEC;
+            case FishItemObjective.TYPE_ID -> FishItemObjective.MAP_CODEC;
+            case TradeVillagerObjective.TYPE_ID -> TradeVillagerObjective.MAP_CODEC;
+            case BrewPotionObjective.TYPE_ID -> BrewPotionObjective.MAP_CODEC;
+            case StatObjective.TYPE_ID -> StatObjective.MAP_CODEC;
+            case InteractEntityObjective.TYPE_ID -> InteractEntityObjective.MAP_CODEC;
+            case UseBlockObjective.TYPE_ID -> UseBlockObjective.MAP_CODEC;
+            case FindStructureObjective.TYPE_ID -> FindStructureObjective.MAP_CODEC;
+            case FindBiomeObjective.TYPE_ID -> FindBiomeObjective.MAP_CODEC;
             default -> {
                 MapCodec<? extends QuestObjective> added = ADDED.get(type);
                 if (added == null) throw new IllegalStateException("Unknown objective type: " + type + " (does it need an addon?)");

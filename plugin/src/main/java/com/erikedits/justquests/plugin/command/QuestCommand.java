@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
  */
 public final class QuestCommand implements TabExecutor {
     public static final List<String> PLAYER = List.of("open", "list", "categories", "stats", "leaderboard", "progress",
-        "accept", "abandon", "claim", "track", "bossbar", "book", "goal", "team", "discord", "autoaccept", "badges");
+        "accept", "abandon", "claim", "submit", "track", "bossbar", "book", "goal", "team", "discord", "autoaccept", "badges");
     public static final List<String> ADMIN = List.of("reload", "reroll", "mainquests", "difficulty", "generator", "npc", "test", "admin");
 
     private final JustQuestsPlugin plugin;
@@ -107,6 +107,7 @@ public final class QuestCommand implements TabExecutor {
                 if (rest.length < 1) claimAll(p);
                 else claim(p, id(rest[0]), rest.length > 1 ? parseInt(rest[1]) : 0);
             });
+            case "submit" -> withPlayer(sender, p -> submit(p, rest.length > 0 ? id(rest[0]) : null));
             case "track" -> withPlayer(sender, p -> track(p, rest.length > 0 ? id(rest[0]) : null));
             case "bossbar" -> withPlayer(sender, p -> {
                 PlayerData d = plugin.store().get(p.getUniqueId());
@@ -320,6 +321,17 @@ public final class QuestCommand implements TabExecutor {
         return p.getName() != null ? p.getName() : id.toString().substring(0, 8);
     }
 
+    /** /quest submit [quest] (0.6.0): hands in the items submit_item goals still need. */
+    private void submit(Player player, String id) {
+        List<String> open = plugin.progress().submittable(player);
+        if (id != null ? !open.contains(id) : open.isEmpty()) {
+            say(player, "justquests.submit.nothing_wanted");
+            return;
+        }
+        int n = plugin.progress().submit(player, id);
+        say(player, n > 0 ? "justquests.submit.done" : "justquests.submit.none_held", n);
+    }
+
     private void progress(Player player) {
         String lang = Lang.of(player);
         PlayerData data = plugin.view(player.getUniqueId());
@@ -341,6 +353,12 @@ public final class QuestCommand implements TabExecutor {
                 String or = quest.orBefore(i) ? "§7" + Text.legacy(lang, "justquests.goal.or") + " " : "";
                 line.addExtra(Text.lit("  " + or + (have >= obj.requiredCount() ? "§a✓" : "§7" + have + "/" + obj.requiredCount()) + " §f"));
                 line.addExtra(quest.shown(i, lang));
+                // submit_item (0.6.0): a button that hands the items in
+                if (have < obj.requiredCount() && obj instanceof Objective.Submit sub && sub.held(player) > 0) {
+                    line.addExtra(" ");
+                    line.addExtra(Text.button(Text.tr(lang, "justquests.submit.button"), "/quest submit " + id,
+                        Text.tr(lang, "justquests.submit.button_hover")));
+                }
                 say(player, line);
             }
         }
@@ -755,6 +773,7 @@ public final class QuestCommand implements TabExecutor {
                     }
                     case "abandon", "track" -> { if (data != null) out.addAll(data.active.keySet()); }
                     case "claim" -> { if (data != null) out.addAll(data.pendingClaim.keySet()); }
+                    case "submit" -> { if (p != null) out.addAll(plugin.progress().submittable(p)); }
                     case "list" -> quests(sender).stream().map(Quest::category).distinct().sorted().forEach(out::add);
                     case "mainquests", "bossbar", "autoaccept" -> out.addAll(List.of("on", "off"));
                     case "difficulty" -> out.addAll(List.of("easy", "normal", "hard"));

@@ -18,12 +18,17 @@ import java.util.Map;
 
 /**
  * Loads player/server-authored quests from a per-world file
- * (`<world>/justquests/custom-quests.json`, Q31). Custom quests override
- * datapack quests on a shared id (Q54). The file is watched and reloaded
- * automatically when it changes (Q32). A template is written on first run.
+ * (`<world>/justquests/custom-quests.json`, Q31) and, from 0.6.0, from every .json in
+ * `<world>/justquests/quests/` (sub-folders too, any names): a file with "objectives" at the top is
+ * one quest whose id is its path there (quests/mining/iron.json is justquests:mining/iron), any other
+ * file is read like custom-quests.json. Custom quests override datapack quests on a shared id (Q54).
+ * The files are watched and reloaded automatically when they change (Q32). A template is written on
+ * first run.
  */
 public final class CustomQuestLoader {
     private static Path file;
+    /** <world>/justquests/quests/ (0.6.0): more quest files, any names, in sub-folders too. */
+    private static Path folder;
     private static long lastModified = -1L;
     private static MinecraftServer server;
 
@@ -32,11 +37,14 @@ public final class CustomQuestLoader {
     public static void init(MinecraftServer server) {
         CustomQuestLoader.server = server;
         file = server.getWorldPath(LevelResource.ROOT).resolve("justquests").resolve("custom-quests.json");
+        folder = file.getParent().resolve("quests");
         try {
             if (!Files.exists(file)) {
                 Files.createDirectories(file.getParent());
                 Files.writeString(file, TEMPLATE);
             }
+            // the folder for more quest files, so it is easy to find
+            Files.createDirectories(folder);
         } catch (Exception e) {
             JustQuests.LOG.error("Could not create custom-quests.json template", e);
         }
@@ -47,7 +55,7 @@ public final class CustomQuestLoader {
     public static void tickCheck() {
         if (file == null) return;
         try {
-            long m = Files.exists(file) ? Files.getLastModifiedTime(file).toMillis() : -1L;
+            long m = stamp();
             if (m != lastModified) {
                 load();
                 // the quest book only knows the quests it was sent: send the changed list
@@ -58,56 +66,113 @@ public final class CustomQuestLoader {
         }
     }
 
-    /** Parses the custom file and pushes the result into the QuestManager. */
+    /** One number for custom-quests.json and every file of the quests folder: it changes when any of them does. */
+    private static long stamp() throws java.io.IOException {
+        long s = Files.exists(file) ? Files.getLastModifiedTime(file).toMillis() : -1L;
+        if (folder != null && Files.isDirectory(folder)) {
+            try (java.util.stream.Stream<Path> files = Files.walk(folder)) {
+                for (Path p : (Iterable<Path>) files::iterator) {
+                    if (p.toString().endsWith(".json")) s = 31 * s + Files.getLastModifiedTime(p).toMillis() + p.hashCode();
+                }
+            }
+        }
+        return s;
+    }
+
+    /** Parses the custom files and pushes the result into the QuestManager. */
     public static void load() {
         Map<ResourceLocation, Quest> custom = new HashMap<>();
         Map<ResourceLocation, com.erikedits.justquests.data.Badge> badges = new HashMap<>();
         JsonObject pack = null;
+        try {
+            lastModified = file == null ? -1L : stamp();
+        } catch (Exception e) {
+            lastModified = -1L;
+        }
         if (file != null && Files.exists(file)) {
             try {
-                lastModified = Files.getLastModifiedTime(file).toMillis();
                 JsonElement root = JsonParser.parseString(Files.readString(file));
-                if (root.isJsonObject()) {
-                    for (Map.Entry<String, JsonElement> e : root.getAsJsonObject().entrySet()) {
-                        String key = e.getKey();
-                        if (key.startsWith("_")) continue;          // _help etc.
-                        // badges (0.6.0): "badges": { "mypack:chapter_1": { "name": ..., ... } }
-                        if (key.equals("badges") && e.getValue().isJsonObject()) {
-                            readBadges(e.getValue().getAsJsonObject(), badges);
-                            continue;
-                        }
-                        // what the JustQuests Discord needs to know to make the badges roles (pack.json in a datapack)
-                        if (key.equals("pack") && e.getValue().isJsonObject()) {
-                            pack = e.getValue().getAsJsonObject();
-                            continue;
-                        }
-                        if (!e.getValue().isJsonObject()) continue;
-                        JsonObject obj = e.getValue().getAsJsonObject();
-                        // blank template slots (no objectives) are skipped silently
-                        if (!obj.has("objectives") || obj.getAsJsonArray("objectives").isEmpty()) continue;
-                        try {
-                            ResourceLocation id = key.contains(":")
-                                ? ResourceLocation.parse(key)
-                                : ResourceLocation.fromNamespaceAndPath("justquests", key);
-                            Quest.CODEC.parse(JsonOps.INSTANCE, obj)
-                                .resultOrPartial(err -> JustQuests.LOG.error("Custom quest {} invalid: {}", key, err))
-                                .ifPresent(q -> {
-                                    String problem = com.erikedits.justquests.data.QuestManager.problem(q, obj);
-                                    if (problem != null) JustQuests.LOG.warn("Custom quest {} {} - skipping", key, problem);
-                                    else custom.put(id, q.withFolderCategory(id.getPath()));
-                                });
-                        } catch (Exception ex) {
-                            JustQuests.LOG.error("Custom quest {} failed: {}", key, ex.getMessage());
-                        }
-                    }
-                }
+                if (root.isJsonObject()) pack = readFile(root.getAsJsonObject(), "custom-quests.json", custom, badges);
             } catch (Exception e) {
                 JustQuests.LOG.error("Could not read custom-quests.json", e);
+            }
+        }
+        // 0.6.0: the quests folder, sorted so the same files always give the same result
+        if (folder != null && Files.isDirectory(folder)) {
+            java.util.List<Path> files = new java.util.ArrayList<>();
+            try (java.util.stream.Stream<Path> walk = Files.walk(folder)) {
+                walk.filter(p -> Files.isRegularFile(p) && p.toString().endsWith(".json")).sorted().forEach(files::add);
+            } catch (Exception e) {
+                JustQuests.LOG.error("Could not read the quests folder", e);
+            }
+            for (Path p : files) {
+                String rel = folder.relativize(p).toString().replace('\\', '/');
+                try {
+                    JsonElement root = JsonParser.parseString(Files.readString(p));
+                    if (!root.isJsonObject()) continue;
+                    JsonObject obj = root.getAsJsonObject();
+                    if (obj.has("objectives")) {
+                        // one quest per file: its path is its id, as in a datapack
+                        String key = rel.substring(0, rel.length() - 5).toLowerCase(java.util.Locale.ROOT);
+                        readQuest(key, obj, "quests/" + rel, custom);
+                    } else {
+                        JsonObject own = readFile(obj, "quests/" + rel, custom, badges);
+                        if (own != null) pack = own;
+                    }
+                } catch (Exception e) {
+                    JustQuests.LOG.error("Could not read quests/{}: {}", rel, e.getMessage());
+                }
             }
         }
         QuestManager.INSTANCE.setCustomQuests(custom);
         com.erikedits.justquests.badge.Badges.setCustom(badges, pack);
         JustQuests.LOG.info("Loaded {} custom quest(s)", custom.size());
+    }
+
+    /** A file like custom-quests.json: quest ids as keys, "badges" and "pack"; returns its "pack" or null. */
+    private static JsonObject readFile(JsonObject root, String where, Map<ResourceLocation, Quest> custom,
+                                       Map<ResourceLocation, com.erikedits.justquests.data.Badge> badges) {
+        JsonObject pack = null;
+        for (Map.Entry<String, JsonElement> e : root.entrySet()) {
+            String key = e.getKey();
+            if (key.startsWith("_")) continue;          // _help etc.
+            // badges (0.6.0): "badges": { "mypack:chapter_1": { "name": ..., ... } }
+            if (key.equals("badges") && e.getValue().isJsonObject()) {
+                readBadges(e.getValue().getAsJsonObject(), badges);
+                continue;
+            }
+            // what the JustQuests Discord needs to know to make the badges roles (pack.json in a datapack)
+            if (key.equals("pack") && e.getValue().isJsonObject()) {
+                pack = e.getValue().getAsJsonObject();
+                continue;
+            }
+            if (!e.getValue().isJsonObject()) continue;
+            readQuest(key, e.getValue().getAsJsonObject(), where, custom);
+        }
+        return pack;
+    }
+
+    /** One quest; blank template slots (no objectives) are skipped silently. A later file wins on the same id. */
+    private static void readQuest(String key, JsonObject obj, String where, Map<ResourceLocation, Quest> custom) {
+        if (!obj.has("objectives") || obj.getAsJsonArray("objectives").isEmpty()) return;
+        try {
+            ResourceLocation id = key.contains(":")
+                ? ResourceLocation.parse(key)
+                : ResourceLocation.fromNamespaceAndPath("justquests", key);
+            Quest.CODEC.parse(JsonOps.INSTANCE, obj)
+                .resultOrPartial(err -> JustQuests.LOG.error("Custom quest {} ({}) invalid: {}", key, where, err))
+                .ifPresent(q -> {
+                    String problem = com.erikedits.justquests.data.QuestManager.problem(q, obj);
+                    if (problem != null) {
+                        JustQuests.LOG.warn("Custom quest {} ({}) {} - skipping", key, where, problem);
+                        return;
+                    }
+                    if (custom.containsKey(id)) JustQuests.LOG.warn("Custom quest {} is in more than one file, {} wins", id, where);
+                    custom.put(id, q.withFolderCategory(id.getPath()));
+                });
+        } catch (Exception ex) {
+            JustQuests.LOG.error("Custom quest {} ({}) failed: {}", key, where, ex.getMessage());
+        }
     }
 
     private static void readBadges(JsonObject section, Map<ResourceLocation, com.erikedits.justquests.data.Badge> out) {
@@ -126,6 +191,7 @@ public final class CustomQuestLoader {
 
     public static void clear() {
         file = null;
+        folder = null;
         server = null;
         lastModified = -1L;
         QuestManager.INSTANCE.setCustomQuests(new HashMap<>());
@@ -133,7 +199,7 @@ public final class CustomQuestLoader {
 
     private static final String TEMPLATE = """
         {
-          "_help": "Add your own quests here. Each key is the quest id (a bare name becomes justquests:<name>, or use a full namespace:path). Keys starting with _ are ignored: the two _example quests below only show how a quest looks - copy one and take the _ away to use it. Slots with no objectives are skipped, so you can leave blank slots. Custom quests override datapack quests with the same id. The file reloads automatically when you save it. Objective types: collect_item, kill_mob, place_block, mine_block, craft_item, smelt_item, consume_item, enchant_item, use_item, have_item (the player holds that many in the inventory, wherever they came from), anvil_item (results taken out of an anvil: item checks the result, with the item in the right slot), grindstone_item (results taken out of a grindstone; disenchant: true counts only when enchantments come off), tame_animal, breed_animal, gain_advancement, visit_dimension, reach_level, reach_location. An objective may also set group (objectives with the same group are alternatives, one of them is enough) and label (the goal text to show instead of the generated one, a string or a per-language map). Reward types: give_item, command, loot_table, xp, effect, message, title, choice (the player picks one of its options when claiming). A quest may also set requires (a list of quest ids that must be completed first), repeatable (true/false), cooldown_hours (wait time before a repeatable quest can be taken again), icon (an item id shown in the quest book; picked from the first goal when left out; it may carry properties the way /give writes them, such as minecraft:potion[minecraft:potion_contents={potion:'minecraft:swiftness'}]), permission (a permission node: only players who have it see the quest), team (true: one quest for the player's whole team, see /quest team), requires_min (only this many of requires must be done first, e.g. any 12 of 16) reset_on_death (true: the progress goes back to zero when the player dies) and auto_accept (false: the quest is never accepted by itself, only with its Accept button). Item fields accept an id, a #tag, or an object like {\\"id\\": \\"minecraft:diamond_sword\\", \\"enchantments\\": {\\"minecraft:sharpness\\": 2}} (also \\"potion\\" and \\"name\\"). Block and mob fields accept an id or a #tag. craft_item also counts the stonecutter, smithing table, loom and cartography table. enchant_item may set via: table (the default), anvil or any. An objective with \\"distinct\\": true counts every kind of item, block or mob only once (eat 10 different foods). title and description can be a plain string OR a per-language map like {\\"en_us\\": \\"...\\", \\"de_de\\": \\"...\\"} - each player sees their own language, with English as fallback. Item, mob and block names in the goal line are translated automatically. See https://github.com/ErikEdits/JustQuests",
+          "_help": "Add your own quests here. Each key is the quest id (a bare name becomes justquests:<name>, or use a full namespace:path). More quest files can go into the quests folder next to this file (sub-folders too, any names): a file in this form is read like this one, a file that is a single quest (with objectives at the top) gets its path as id. Keys starting with _ are ignored: the two _example quests below only show how a quest looks - copy one and take the _ away to use it. Slots with no objectives are skipped, so you can leave blank slots. Custom quests override datapack quests with the same id. The file reloads automatically when you save it. Objective types: collect_item, kill_mob, place_block, mine_block, craft_item, smelt_item, consume_item, enchant_item, use_item, have_item (the player holds that many in the inventory, wherever they came from), anvil_item (results taken out of an anvil: item checks the result, with the item in the right slot), grindstone_item (results taken out of a grindstone; disenchant: true counts only when enchantments come off), tame_animal, breed_animal, gain_advancement, visit_dimension, reach_level, reach_location, submit_item (hand items in: the Hand in link in the quest book or /quest submit takes them), fish_item (item is optional), trade_villager (item and profession are optional, minecraft:wandering_trader works too), brew_potion (potion like minecraft:swiftness, its long and strong forms count too, and item are optional), stat (a statistic of the statistics screen like minecraft:jump; distances count in blocks, times in minutes; only what happens after taking the quest counts), interact_entity (entity, item held is optional), use_block (block, item held is optional), find_structure (structure: an id or #tag) and find_biome (biome: an id or #tag; for both a count above 1 means that many different ones). An objective may also set group (objectives with the same group are alternatives, one of them is enough) and label (the goal text to show instead of the generated one, a string or a per-language map). Reward types: give_item, command, loot_table, xp, effect, message, title, choice (the player picks one of its options when claiming). A quest may also set requires (a list of quest ids that must be completed first), repeatable (true/false), cooldown_hours (wait time before a repeatable quest can be taken again), icon (an item id shown in the quest book; picked from the first goal when left out; it may carry properties the way /give writes them, such as minecraft:potion[minecraft:potion_contents={potion:'minecraft:swiftness'}]), permission (a permission node: only players who have it see the quest), team (true: one quest for the player's whole team, see /quest team), requires_min (only this many of requires must be done first, e.g. any 12 of 16) reset_on_death (true: the progress goes back to zero when the player dies) and auto_accept (false: the quest is never accepted by itself, only with its Accept button). Item fields accept an id, a #tag, or an object like {\\"id\\": \\"minecraft:diamond_sword\\", \\"enchantments\\": {\\"minecraft:sharpness\\": 2}} (also \\"potion\\" and \\"name\\"). Block and mob fields accept an id or a #tag. craft_item also counts the stonecutter, smithing table, loom and cartography table. enchant_item may set via: table (the default), anvil or any. An objective with \\"distinct\\": true counts every kind of item, block or mob only once (eat 10 different foods). title and description can be a plain string OR a per-language map like {\\"en_us\\": \\"...\\", \\"de_de\\": \\"...\\"} - each player sees their own language, with English as fallback. Item, mob and block names in the goal line are translated automatically. See https://github.com/ErikEdits/JustQuests",
           "_example_quest": {
             "title": "My First Custom Quest",
             "description": "Gather 10 dirt, get a diamond.",

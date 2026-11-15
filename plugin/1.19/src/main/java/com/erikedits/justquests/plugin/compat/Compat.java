@@ -89,6 +89,32 @@ public final class Compat {
     }
 
     /** The potion's id ("minecraft:long_swiftness"), or null. */
+    /**
+     * The structures with a piece where the location is (0.6.0, find_structure): each as its id and
+     * where it starts ("x,z"). The API can see them from 1.20.4 on; before that the list stays empty.
+     */
+    public static java.util.List<String[]> structuresAt(org.bukkit.Location l) {
+        java.util.List<String[]> out = new java.util.ArrayList<>();
+        try {
+            Class<?> generated = Class.forName("org.bukkit.generator.structure.GeneratedStructure");
+            Class<?> pieceClass = Class.forName("org.bukkit.generator.structure.StructurePiece");
+            Object list = org.bukkit.Chunk.class.getMethod("getStructures").invoke(l.getChunk());
+            for (Object s : (java.util.Collection<?>) list) {
+                for (Object piece : (java.util.Collection<?>) generated.getMethod("getPieces").invoke(s)) {
+                    org.bukkit.util.BoundingBox box = (org.bukkit.util.BoundingBox) pieceClass.getMethod("getBoundingBox").invoke(piece);
+                    if (!box.contains(l.getX(), l.getY(), l.getZ())) continue;
+                    Keyed structure = (Keyed) generated.getMethod("getStructure").invoke(s);
+                    org.bukkit.util.BoundingBox all = (org.bukkit.util.BoundingBox) generated.getMethod("getBoundingBox").invoke(s);
+                    out.add(new String[] {key(structure).toString(), (int) all.getMinX() + "," + (int) all.getMinZ()});
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | RuntimeException e) {
+            // before 1.20.4 the API cannot see structures
+        }
+        return out;
+    }
+
     public static String basePotion(PotionMeta meta) {
         if (BASE_POTION_TYPE != null) {
             try {

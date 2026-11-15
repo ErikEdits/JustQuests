@@ -14,7 +14,10 @@
     "PlayerDisplayNameMixin",
     "ResultSlotMixin",
     "ServerPlayerTabNameMixin",
-    "TamableAnimalMixin"
+    "TamableAnimalMixin",
+    "BrewingPotionSlotMixin",
+    "FishingRodHookedTriggerMixin",
+    "TradeTriggerMixin"
   ],
   "client": [],
   "injectors": {

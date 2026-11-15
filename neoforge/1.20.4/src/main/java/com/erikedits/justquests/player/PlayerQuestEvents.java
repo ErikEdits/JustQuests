@@ -218,4 +218,47 @@ public class PlayerQuestEvents {
             event.setDisplayName(com.erikedits.justquests.badge.NameSign.tabName(player, event.getDisplayName()));
         }
     }
+
+    /** fish_item (0.6.0): what a fishing rod pulled in. */
+    @SubscribeEvent
+    public void onFished(net.neoforged.neoforge.event.entity.player.ItemFishedEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            com.erikedits.justquests.progress.GoalEvents.fished(player, event.getDrops());
+        }
+    }
+
+    /** trade_villager (0.6.0): a trade with a villager or the wandering trader. */
+    @SubscribeEvent
+    public void onTrade(net.neoforged.neoforge.event.entity.player.TradeWithVillagerEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            com.erikedits.justquests.progress.GoalEvents.traded(player, event.getAbstractVillager(), event.getMerchantOffer().getResult());
+        }
+    }
+
+    /** brew_potion (0.6.0): a potion taken out of a brewing stand. */
+    @SubscribeEvent
+    public void onBrewed(net.neoforged.neoforge.event.brewing.PlayerBrewedPotionEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            com.erikedits.justquests.progress.GoalEvents.brewed(player, event.getStack());
+        }
+    }
+
+    /** interact_entity (0.6.0): a right-click on a mob with the main hand. */
+    @SubscribeEvent
+    public void onInteractEntity(net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.EntityInteract event) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getHand() == net.minecraft.world.InteractionHand.MAIN_HAND
+                && !player.isSpectator()) {
+            com.erikedits.justquests.progress.GoalEvents.interacted(player, event.getTarget(), player.getMainHandItem());
+        }
+    }
+
+    /** use_block (0.6.0): a right-click on a block with the main hand. */
+    @SubscribeEvent
+    public void onUseBlock(net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickBlock event) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getHand() == net.minecraft.world.InteractionHand.MAIN_HAND
+                && !player.isSpectator()) {
+            com.erikedits.justquests.progress.GoalEvents.usedBlock(player, event.getPos(),
+                player.level().getBlockState(event.getPos()).getBlock(), player.getMainHandItem());
+        }
+    }
 }

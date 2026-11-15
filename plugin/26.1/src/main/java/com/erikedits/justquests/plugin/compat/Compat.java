@@ -70,6 +70,24 @@ public final class Compat {
     }
 
     /** The potion's id ("minecraft:long_swiftness"), or null. */
+    /**
+     * The structures with a piece where the location is (0.6.0, find_structure): each as its id and
+     * where it starts ("x,z").
+     */
+    public static java.util.List<String[]> structuresAt(org.bukkit.Location l) {
+        java.util.List<String[]> out = new java.util.ArrayList<>();
+        for (org.bukkit.generator.structure.GeneratedStructure s : l.getChunk().getStructures()) {
+            for (org.bukkit.generator.structure.StructurePiece piece : s.getPieces()) {
+                if (piece.getBoundingBox().contains(l.getX(), l.getY(), l.getZ())) {
+                    org.bukkit.util.BoundingBox all = s.getBoundingBox();
+                    out.add(new String[] {key(s.getStructure()).toString(), (int) all.getMinX() + "," + (int) all.getMinZ()});
+                    break;
+                }
+            }
+        }
+        return out;
+    }
+
     public static String basePotion(PotionMeta meta) {
         PotionType type = meta.getBasePotionType();
         return type == null ? null : key(type).toString();

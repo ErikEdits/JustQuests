@@ -188,11 +188,34 @@ public final class PluginBadges implements Listener {
         }
     }
 
-    /** The "badges" and "pack" sections of plugins/JustQuests/custom-quests.json. */
+    /**
+     * The "badges" and "pack" sections of plugins/JustQuests/custom-quests.json and (0.6.0) of the
+     * files in plugins/JustQuests/quests/ that are written like it.
+     */
     public void readCustom() {
         Map<String, Badge> c = new LinkedHashMap<>();
         JsonObject pack = null;
-        Path file = plugin.getDataFolder().toPath().resolve("custom-quests.json");
+        java.util.List<Path> files = new java.util.ArrayList<>();
+        files.add(plugin.getDataFolder().toPath().resolve("custom-quests.json"));
+        Path dir = plugin.getDataFolder().toPath().resolve("quests");
+        if (Files.isDirectory(dir)) {
+            try (java.util.stream.Stream<Path> walk = Files.walk(dir)) {
+                walk.filter(p -> Files.isRegularFile(p) && p.toString().endsWith(".json")).sorted().forEach(files::add);
+            } catch (Exception e) {
+                plugin.getLogger().warning("Could not read the quests folder: " + e.getMessage());
+            }
+        }
+        for (Path file : files) {
+            JsonObject own = readCustom(file, c);
+            if (own != null) pack = own;
+        }
+        custom = c;
+        customPack = pack;
+    }
+
+    /** The "badges" of one file into c; returns its "pack" or null. */
+    private JsonObject readCustom(Path file, Map<String, Badge> c) {
+        JsonObject pack = null;
         try {
             if (Files.exists(file)) {
                 JsonElement root = JsonParser.parseString(Files.readString(file));
@@ -213,10 +236,9 @@ public final class PluginBadges implements Listener {
                 }
             }
         } catch (Exception e) {
-            plugin.getLogger().warning("Could not read the badges of custom-quests.json: " + e.getMessage());
+            plugin.getLogger().warning("Could not read the badges of " + file.getFileName() + ": " + e.getMessage());
         }
-        custom = c;
-        customPack = pack;
+        return pack;
     }
 
     public Map<String, Badge> all() {

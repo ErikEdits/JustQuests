@@ -30,8 +30,9 @@ import java.util.zip.ZipFile;
  * <ul>
  *   <li>the quests bundled in the jar (the mod's main quests),</li>
  *   <li>quest datapacks in the main world's datapacks folder (data/&lt;ns&gt;/justquests/quests/),</li>
- *   <li>custom quests: plugins/JustQuests/custom-quests.json (the mod's format) and one quest per
- *       file in plugins/JustQuests/quests/; they reload by themselves when saved,</li>
+ *   <li>custom quests: plugins/JustQuests/custom-quests.json (the mod's format) and every .json in
+ *       plugins/JustQuests/quests/ (sub-folders too, any names): a file that is one quest gets its path
+ *       as id, any other file is read like custom-quests.json (0.6.0); they reload by themselves when saved,</li>
  *   <li>generated quests (own namespace).</li>
  * </ul>
  * Custom quests override bundled and datapack quests with the same id. The main-quest switch hides
@@ -248,8 +249,26 @@ public final class QuestRegistry {
                     if (!Files.isRegularFile(p) || !p.toString().endsWith(".json")) continue;
                     String rel = dir.relativize(p).toString().replace('\\', '/');
                     String id = ("justquests:" + rel.substring(0, rel.length() - 5)).toLowerCase(Locale.ROOT);
+                    JsonObject json;
                     try (InputStream in = Files.newInputStream(p)) {
-                        add(out, id, in, "quests/" + rel);
+                        json = read(in);
+                    } catch (RuntimeException e) {
+                        log.warning("quests/" + rel + " skipped: not valid JSON (" + e.getMessage() + ")");
+                        continue;
+                    }
+                    if (json.has("objectives")) {
+                        add(out, id, json, "quests/" + rel);   // one quest: its path is its id
+                        continue;
+                    }
+                    // 0.6.0: a file like custom-quests.json, with many quests
+                    for (Map.Entry<String, JsonElement> e : json.entrySet()) {
+                        String key = e.getKey();
+                        if (key.startsWith("_") || key.equals("badges") || key.equals("pack") || !e.getValue().isJsonObject()) continue;
+                        JsonObject obj = e.getValue().getAsJsonObject();
+                        if (!obj.has("objectives") || obj.getAsJsonArray("objectives").isEmpty()) continue;
+                        String qid = (key.contains(":") ? key : "justquests:" + key).toLowerCase(Locale.ROOT);
+                        if (out.containsKey(qid)) log.warning("Quest " + qid + " is in more than one file, quests/" + rel + " wins");
+                        add(out, qid, obj, "quests/" + rel);
                     }
                 }
             } catch (IOException e) {

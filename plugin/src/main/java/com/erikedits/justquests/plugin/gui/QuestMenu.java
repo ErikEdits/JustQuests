@@ -80,6 +80,20 @@ public final class QuestMenu extends Menu {
             // an alternative of the objective before it reads "or ..."
             BaseComponent name = Text.lit(q.orBefore(i) ? "§7" + legacy("justquests.goal.or") + " " + (done ? "§a" : "§f") : done ? "§a" : "§f");
             name.addExtra(q.shown(i, lang));
+            // submit_item (0.6.0): a click on the goal hands the items in
+            if (active && !done && o instanceof Objective.Submit sub) {
+                int held = sub.held(player);
+                lore.add(Text.lit(held > 0 ? "§a" + legacy("justquests.book.submit", Math.min(held, o.requiredCount() - have))
+                    : "§7" + legacy("justquests.book.submit_none")));
+                if (held > 0) {
+                    set(GOAL_SLOTS[n], item(o.icon(), 1, name, lore, done), click -> {
+                        int k = plugin.progress().submit(player, id);
+                        player.spigot().sendMessage(tr(k > 0 ? "justquests.submit.done" : "justquests.submit.none_held", k));
+                        redraw();
+                    });
+                    continue;
+                }
+            }
             set(GOAL_SLOTS[n], item(o.icon(), 1, name, lore, done));
         }
 

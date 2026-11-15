@@ -95,6 +95,8 @@ public class QuestScreen extends Screen {
     private long cornerPreviewUntil;
     /** Where the choice options were drawn this frame: x, y, w, h, option index. */
     private final List<int[]> optionHits = new ArrayList<>();
+    /** The Hand in links under submit_item goals (0.6.0). */
+    private final List<int[]> submitHits = new ArrayList<>();
     /** Where the required quests were drawn this frame, as links. */
     private final List<Link> links = new ArrayList<>();
     /** The quest page's scroll bar this frame: x, top, height, thumb height (null while it fits). */
@@ -569,6 +571,7 @@ public class QuestScreen extends Screen {
 
     private void renderDetail(GuiGraphics g, int mouseX, int mouseY) {
         optionHits.clear();
+        submitHits.clear();
         links.clear();
         scrollBar = null;
         autoHit = null;
@@ -693,6 +696,23 @@ public class QuestScreen extends Screen {
             // progress bar
             theme.progress(g, false, dx, dy, Math.min(theme.barW, dw), theme.barH, need > 0 ? cur / (float) need : 1f);
             dy += theme.barH + 3;
+            // submit_item (0.6.0): a link that hands the items in, while the player has some
+            if (st == Status.ACTIVE && !done && !otherWay && minecraft != null && minecraft.player != null
+                    && objs.get(i) instanceof com.erikedits.justquests.data.objective.SubmitItemObjective sub) {
+                int have = sub.held(minecraft.player);
+                String hand = have > 0 ? I18n.get("justquests.book.submit", Math.min(have, need - cur)) : I18n.get("justquests.book.submit_none");
+                int h = this.font.split(Theme.text(hand), dw - 4).size() * 10;
+                // only a line that is wholly on the page can be clicked
+                boolean link = have > 0 && dy - 1 >= viewTop && dy - 1 + h <= viewBottom;
+                var handText = Theme.text(hand);
+                if (link && in(mouseX, mouseY, dx, dy - 1, dw, h)) handText.withStyle(net.minecraft.ChatFormatting.UNDERLINE);
+                for (var line : this.font.split(handText, dw - 4)) {
+                    text(g, line, dx + 4, dy, link ? LINK : MUTED);
+                    dy += 10;
+                }
+                if (link) submitHits.add(new int[] {dx, dy - h - 1, dw, h});
+                dy += 2;
+            }
         }
         ChoiceReward choice = ChoiceReward.of(q);
         if (!q.rewards().isEmpty()) {
@@ -1127,6 +1147,9 @@ public class QuestScreen extends Screen {
             if (!sidePage() && selected != null) {
                 for (Link l : links) {
                     if (in(mx, my, l.x(), l.y(), l.w(), l.h())) { open(l.id()); return click(); }
+                }
+                for (int[] h : submitHits) {
+                    if (in(mx, my, h[0], h[1], h[2], h[3])) { send("quest submit " + selected); return click(); }
                 }
                 for (int[] h : optionHits) {
                     if (in(mx, my, h[0], h[1], h[2], h[3])) { pick = h[4]; return click(); }

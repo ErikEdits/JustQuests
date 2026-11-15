@@ -95,6 +95,51 @@ public final class ProgressService {
         unlocks(player);
     }
 
+    /**
+     * submit_item (0.6.0): hands in the matching items the player has, for one quest or (only null)
+     * every active quest, own and team, up to what each goal still needs. Returns how many items it took.
+     */
+    public int submit(Player player, String only) {
+        PlayerData view = plugin.view(player.getUniqueId());
+        if (view == null) return 0;
+        int total = 0;
+        for (String id : new ArrayList<>(view.active.keySet())) {
+            if (only != null && !only.equals(id)) continue;
+            Quest quest = plugin.quests().get(id);
+            if (quest == null) continue;
+            for (int i = 0; i < quest.objectives().size(); i++) {
+                if (!(quest.objectives().get(i) instanceof Objective.Submit s)) continue;
+                PlayerData now = plugin.view(player.getUniqueId());
+                int missing = s.requiredCount() - (now == null ? 0 : now.progress(id, i));
+                if (missing <= 0) continue;
+                int taken = s.take(player, missing);
+                if (taken <= 0) continue;
+                total += taken;
+                // only this goal of this quest: the same goal in another quest needs its own items
+                advance(player, o -> o == s ? taken : 0);
+            }
+        }
+        return total;
+    }
+
+    /** The active quests (own and team) with a submit_item goal that still needs items. */
+    public List<String> submittable(Player player) {
+        List<String> out = new ArrayList<>();
+        PlayerData view = plugin.view(player.getUniqueId());
+        if (view == null) return out;
+        for (String id : view.active.keySet()) {
+            Quest quest = plugin.quests().get(id);
+            if (quest == null) continue;
+            for (int i = 0; i < quest.objectives().size(); i++) {
+                if (quest.objectives().get(i) instanceof Objective.Submit s && view.progress(id, i) < s.requiredCount()) {
+                    out.add(id);
+                    break;
+                }
+            }
+        }
+        return out;
+    }
+
     /** Quests each player finished for the first time, until {@link #unlocks} looks at what they unlock. */
     private final Map<UUID, List<String>> fresh = new HashMap<>();
 

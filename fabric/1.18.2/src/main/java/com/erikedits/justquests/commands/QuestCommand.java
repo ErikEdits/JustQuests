@@ -53,6 +53,12 @@ public class QuestCommand {
         return builder.buildFuture();
     };
 
+    private static final SuggestionProvider<CommandSourceStack> SUBMITTABLE_QUESTS = (ctx, builder) -> {
+        ServerPlayer player = ctx.getSource().getEntity() instanceof ServerPlayer p ? p : null;
+        if (player == null) return builder.buildFuture();
+        return SharedSuggestionProvider.suggestResource(com.erikedits.justquests.progress.GoalEvents.submittable(player), builder);
+    };
+
     private static final SuggestionProvider<CommandSourceStack> CLAIMABLE_QUESTS = (ctx, builder) -> {
         ServerPlayer player = (ctx.getSource().getEntity() instanceof ServerPlayer __p ? __p : null);
         WorldQuestStore store = WorldQuestStore.get();
@@ -113,6 +119,12 @@ public class QuestCommand {
                     .then(Commands.argument("reward", com.mojang.brigadier.arguments.IntegerArgumentType.integer(1))
                         .executes(ctx -> claim(ctx, ResourceLocationArgument.getId(ctx, "id"),
                             com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "reward"))))))
+            // submit_item (0.6.0): hand in items, for one quest or every quest that wants them
+            .then(Commands.literal("submit").requires(Perms.command("submit"))
+                .executes(ctx -> submit(ctx, null))
+                .then(Commands.argument("id", ResourceLocationArgument.id())
+                    .suggests(SUBMITTABLE_QUESTS)
+                    .executes(ctx -> submit(ctx, ResourceLocationArgument.getId(ctx, "id")))))
             .then(Commands.literal("team").requires(Perms.command("team"))
                 .executes(ctx -> team(ctx, "info", null))
                 .then(Commands.literal("info").executes(ctx -> team(ctx, "info", null)))
@@ -429,8 +441,13 @@ public class QuestCommand {
                 final int idx = i;
                 // an alternative of the objective above it reads "or ..."
                 MutableComponent or = quest.orBefore(i) ? Msg.tr("justquests.goal.or").withStyle(net.minecraft.ChatFormatting.GRAY).append(Msg.lit(" ")) : Msg.empty();
-                ctx.getSource().sendSuccess(
-                    new net.minecraft.network.chat.TextComponent("  ").append(or).append(Msg.lit(bar + " §f")).append(quest.shown(idx, lang)), false);
+                MutableComponent line = new net.minecraft.network.chat.TextComponent("  ").append(or).append(Msg.lit(bar + " §f")).append(quest.shown(idx, lang));
+                // submit_item (0.6.0): a button that hands the items in, for players without the mod too
+                if (current < needed && obj instanceof com.erikedits.justquests.data.objective.SubmitItemObjective sub && sub.held(player) > 0) {
+                    line.append(Msg.lit(" ")).append(Msg.button(Msg.tr("justquests.submit.button"), "/quest submit " + entry.getKey(),
+                        Msg.tr("justquests.submit.button_hover")));
+                }
+                ctx.getSource().sendSuccess(line, false);
             }
         }
         return data.active.size();
@@ -618,6 +635,23 @@ public class QuestCommand {
         store.markDirty();
         say(ctx.getSource(), Msg.tr("justquests.rewards.claimed", quest.title().get(lang)));
         return 1;
+    }
+
+    /** /quest submit [id] (0.6.0): hands in the items submit_item goals still need. */
+    private static int submit(CommandContext<CommandSourceStack> ctx, ResourceLocation id) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        java.util.List<ResourceLocation> open = com.erikedits.justquests.progress.GoalEvents.submittable(player);
+        if (id != null ? !open.contains(id) : open.isEmpty()) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.submit.nothing_wanted"));
+            return 0;
+        }
+        int n = com.erikedits.justquests.progress.GoalEvents.submit(player, id);
+        if (n <= 0) {
+            ctx.getSource().sendFailure(Msg.tr("justquests.submit.none_held"));
+            return 0;
+        }
+        say(ctx.getSource(), Msg.tr("justquests.submit.done", n));
+        return n;
     }
 
     /** /quest claim without an id: every waiting reward at once; quests with a choice ask for the pick. */

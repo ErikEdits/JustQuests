@@ -38,6 +38,7 @@ public final class QuestListener implements Listener {
 
     public QuestListener(JustQuestsPlugin plugin) {
         this.plugin = plugin;
+        this.polls = new GoalPolls(plugin);
     }
 
     private ProgressService progress() {
@@ -253,5 +254,99 @@ public final class QuestListener implements Listener {
             if (o instanceof Objective.Have h) return h.held(player);
             return 0;
         });
+        // statistics, structures and biomes (0.6.0)
+        polls.tick(player, data);
+    }
+
+    // --- 0.6.0 -------------------------------------------------------------------------------
+
+    private final GoalPolls polls;
+    /** The last mob or block each player right-clicked, and when: the same one counts again after a second. */
+    private final java.util.Map<java.util.UUID, Object[]> lastClick = new java.util.HashMap<>();
+
+    private boolean again(Player player, Object what) {
+        long now = player.getWorld().getFullTime();
+        Object[] last = lastClick.get(player.getUniqueId());
+        if (last != null && last[0].equals(what) && now - (Long) last[1] < 20) return true;
+        lastClick.put(player.getUniqueId(), new Object[] {what, now});
+        return false;
+    }
+
+    /** fish_item: what a fishing rod pulled in. */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onFish(org.bukkit.event.player.PlayerFishEvent e) {
+        if (e.getState() != org.bukkit.event.player.PlayerFishEvent.State.CAUGHT_FISH
+            || !(e.getCaught() instanceof org.bukkit.entity.Item caught)) return;
+        ItemStack stack = caught.getItemStack();
+        int n = stack.getAmount();
+        progress().advance(e.getPlayer(), kind(stack.getType()), o -> o instanceof Objective.Fish f && f.accepts(stack) ? n : 0);
+    }
+
+    /**
+     * trade_villager: the game raises "Traded with Villagers" once per trade, while the trade screen
+     * shows the trader and the offer that was taken.
+     */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onTrade(PlayerStatisticIncrementEvent e) {
+        if (e.getStatistic() != Statistic.TRADED_WITH_VILLAGER) return;
+        int trades = e.getNewValue() - e.getPreviousValue();
+        Player player = e.getPlayer();
+        if (trades <= 0 || !(player.getOpenInventory().getTopInventory() instanceof org.bukkit.inventory.MerchantInventory mi)) return;
+        org.bukkit.inventory.MerchantRecipe recipe = mi.getSelectedRecipe();
+        if (recipe == null) return;
+        ItemStack bought = recipe.getResult();
+        String who = mi.getMerchant() instanceof org.bukkit.entity.Villager v ? com.erikedits.justquests.plugin.compat.Compat.key(v.getProfession()).toString()
+            : mi.getMerchant() instanceof org.bukkit.entity.Entity ent ? com.erikedits.justquests.plugin.compat.Compat.entityKey(ent.getType()) : "";
+        progress().advance(player, kind(bought.getType()), o -> {
+            if (!(o instanceof Objective.Trade t) || !t.accepts(bought, who)) return 0;
+            return (t.item() != null ? bought.getAmount() : 1) * trades;
+        });
+    }
+
+    /** brew_potion: a potion taken out of one of the brewing stand's three bottle slots (checked a tick later). */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onBrewTake(InventoryClickEvent e) {
+        if (!(e.getWhoClicked() instanceof Player player)) return;
+        org.bukkit.inventory.Inventory top = e.getView().getTopInventory();
+        if (top.getType() != InventoryType.BREWING || e.getRawSlot() < 0 || e.getRawSlot() > 2) return;
+        ItemStack before = copy(e.getCurrentItem());
+        if (before == null || !before.getType().name().endsWith("POTION")) return;
+        int slot = e.getRawSlot();
+        plugin.getServer().getScheduler().runTask(plugin, () -> {
+            ItemStack now = copy(top.getItem(slot));
+            if (now != null && now.isSimilar(before)) return;   // still there: not taken
+            progress().advance(player, kind(before.getType()), o -> o instanceof Objective.Brew b && b.accepts(before) ? 1 : 0);
+        });
+    }
+
+    /** interact_entity: a right-click on a mob with the main hand. */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onInteractEntity(org.bukkit.event.player.PlayerInteractEntityEvent e) {
+        if (e.getHand() != org.bukkit.inventory.EquipmentSlot.HAND) return;
+        Player player = e.getPlayer();
+        if (again(player, e.getRightClicked().getUniqueId())) return;
+        org.bukkit.entity.EntityType type = e.getRightClicked().getType();
+        ItemStack held = player.getInventory().getItemInMainHand();
+        progress().advance(player, com.erikedits.justquests.plugin.compat.Compat.entityKey(type),
+            o -> o instanceof Objective.Interact i && i.accepts(type, held) ? 1 : 0);
+    }
+
+    /** use_block: a right-click on a block with the main hand. */
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onUseBlock(org.bukkit.event.player.PlayerInteractEvent e) {
+        if (e.getAction() != org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK || e.getHand() != org.bukkit.inventory.EquipmentSlot.HAND
+            || e.getClickedBlock() == null || e.useInteractedBlock() == org.bukkit.event.Event.Result.DENY) return;
+        Player player = e.getPlayer();
+        if (again(player, e.getClickedBlock().getLocation())) return;
+        Material block = e.getClickedBlock().getType();
+        ItemStack held = player.getInventory().getItemInMainHand();
+        progress().advance(player, kind(block), o -> o instanceof Objective.UseBlock u && u.accepts(block, held) ? 1 : 0);
+    }
+
+    /** A player left: forget their clicks and statistics. */
+    @EventHandler
+    public void onQuitGoals(org.bukkit.event.player.PlayerQuitEvent e) {
+        lastClick.remove(e.getPlayer().getUniqueId());
+        polls.forget(e.getPlayer().getUniqueId());
     }
 }

@@ -5,6 +5,8 @@
   "mixins": [
     "AnimalBreedMixin",
     "AnvilMenuMixin",
+    "BrewingPotionSlotMixin",
+    "FishingRodHookedTriggerMixin",
     "BlockItemPlaceMixin",
     "FurnaceResultSlotMixin",
     "GrindstoneClickMixin",
@@ -14,7 +16,8 @@
     "PlayerDisplayNameMixin",
     "ResultSlotMixin",
     "ServerPlayerTabNameMixin",
-    "TamableAnimalMixin"
+    "TamableAnimalMixin",
+    "TradeTriggerMixin"
   ],
   "client": [],
   "injectors": {

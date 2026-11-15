@@ -212,4 +212,40 @@ public class PlayerQuestEvents {
             event.setDisplayName(com.erikedits.justquests.badge.NameSign.tabName(player, event.getDisplayName()));
         }
     }
+
+    /** fish_item (0.6.0): what a fishing rod pulled in. */
+    @SubscribeEvent
+    public void onFished(net.minecraftforge.event.entity.player.ItemFishedEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            com.erikedits.justquests.progress.GoalEvents.fished(player, event.getDrops());
+        }
+    }
+
+
+    /** brew_potion (0.6.0): a potion taken out of a brewing stand. */
+    @SubscribeEvent
+    public void onBrewed(net.minecraftforge.event.brewing.PlayerBrewedPotionEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            com.erikedits.justquests.progress.GoalEvents.brewed(player, event.getStack());
+        }
+    }
+
+    /** interact_entity (0.6.0): a right-click on a mob with the main hand. */
+    @SubscribeEvent
+    public void onInteractEntity(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getHand() == net.minecraft.world.InteractionHand.MAIN_HAND
+                && !player.isSpectator()) {
+            com.erikedits.justquests.progress.GoalEvents.interacted(player, event.getTarget(), player.getMainHandItem());
+        }
+    }
+
+    /** use_block (0.6.0): a right-click on a block with the main hand. */
+    @SubscribeEvent
+    public void onUseBlock(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock event) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getHand() == net.minecraft.world.InteractionHand.MAIN_HAND
+                && !player.isSpectator()) {
+            com.erikedits.justquests.progress.GoalEvents.usedBlock(player, event.getPos(),
+                player.level.getBlockState(event.getPos()).getBlock(), player.getMainHandItem());
+        }
+    }
 }
