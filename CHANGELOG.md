@@ -3,7 +3,7 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [0.6.0] - unreleased
+## [0.6.0] - 2026-11-15 (beta)
 
 ### Fixed
 - **A custom quest with a broken objective** (a count written as text, for example) was kept without
@@ -107,6 +107,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
   `radio_border`, `radio_dot`, `scrollbar_track`, `scrollbar_thumb` and `separator` in
   `quest_book/settings.json`.
 - The self-test checks that a big quest sync is packed.
+- The [example datapack](docs/example-datapack) has an example quest for every new objective type.
 
 ## [0.5.3] - 2026-11-14
 

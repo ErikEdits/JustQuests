@@ -1,17 +1,15 @@
 {
   "title": "Example: Farmer's Delight",
-  "description": "Needs Farmer's Delight (else the goals never count): cut 4 cabbages with an iron knife, cook a beef stew in a cooking pot and turn compost into rich soil.",
+  "description": "Needs Farmer's Delight (else the goals never count): cut 4 raw beef on a cutting board, cook any meal in a cooking pot and turn organic compost into rich soil.",
   "category": "examples",
   "objectives": [
     {
       "type": "justquests:cut_item",
-      "item": "farmersdelight:cabbage",
-      "tool": "farmersdelight:iron_knife",
+      "item": "minecraft:beef",
       "count": 4
     },
     {
       "type": "justquests:cook_item",
-      "item": "farmersdelight:beef_stew",
       "via": "cooking_pot",
       "count": 1
     },

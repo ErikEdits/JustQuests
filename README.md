@@ -8,7 +8,7 @@ quests and a handful of commands. A focused, server-friendly alternative to FTB 
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?logo=discord&logoColor=white)](https://discord.gg/cMTGE9QCja)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](LICENSE)
 
-Current version: **0.5.3** — see the [changelog](CHANGELOG.md).
+Current version: **0.6.0 (beta)** — see the [changelog](CHANGELOG.md).
 
 **Documentation:** the [wiki](https://github.com/ErikEdits/JustQuests/wiki) explains every command, quest
 field and setting, with examples.
