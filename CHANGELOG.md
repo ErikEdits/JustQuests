@@ -60,7 +60,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
   before a player links, and then only their Minecraft name, UUID and badges; the mod holds no token or
   secret. A link holds for every world of a game or server (singleplayer too). `/quest discord unlink`
   removes it again. Server owners can turn it off with `"discordLink": false`. Badges of a quest pack
-  (with `"discord": true` and a `justquests/pack.json`) are sent to the Discord owner once for approval.
+  (with `"discord": true` and a `justquests/pack.json`) are sent to the Discord owner once for approval,
+  also when they are added while the game runs (`/quest reload` or a changed `custom-quests.json`).
 - Resource packs can set the colours that were fixed: `search_text`, `search_hint`, `radio`,
   `radio_border`, `radio_dot`, `scrollbar_track`, `scrollbar_thumb` and `separator` in
   `quest_book/settings.json`.
