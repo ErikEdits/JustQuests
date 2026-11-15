@@ -42,7 +42,63 @@ public final class PluginDiscord {
     public static final String DEFAULT_API = "https://pocketbot-gateway.erikbestemc-da62f9.workers.dev/api/v1";
     public static final String INVITE = "https://discord.gg/tExvseWRE4";
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).build();
+    private static final HttpClient HTTP = client();
+
+    /**
+     * The HTTP client. On Windows it trusts Java's own certificates and those of Windows, as browsers do:
+     * a virus scanner that checks HTTPS adds its certificate to Windows only, and Java alone would then
+     * refuse the bot ("PKIX path building failed").
+     */
+    private static HttpClient client() {
+        HttpClient.Builder b = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15));
+        try {
+            if (System.getProperty("os.name", "").toLowerCase(java.util.Locale.ROOT).contains("win")) b.sslContext(trustJavaAndWindows());
+        } catch (Exception e) {
+            // Java's own certificates only
+        }
+        return b.build();
+    }
+
+    private static javax.net.ssl.SSLContext trustJavaAndWindows() throws Exception {
+        javax.net.ssl.TrustManagerFactory own = javax.net.ssl.TrustManagerFactory.getInstance(javax.net.ssl.TrustManagerFactory.getDefaultAlgorithm());
+        own.init((java.security.KeyStore) null);
+        java.security.KeyStore winStore = java.security.KeyStore.getInstance("Windows-ROOT");
+        winStore.load(null, null);
+        javax.net.ssl.TrustManagerFactory win = javax.net.ssl.TrustManagerFactory.getInstance(javax.net.ssl.TrustManagerFactory.getDefaultAlgorithm());
+        win.init(winStore);
+        javax.net.ssl.X509TrustManager a = x509(own), w = x509(win);
+        javax.net.ssl.X509TrustManager both = new javax.net.ssl.X509TrustManager() {
+            @Override
+            public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String auth) throws java.security.cert.CertificateException {
+                a.checkClientTrusted(chain, auth);
+            }
+
+            @Override
+            public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String auth) throws java.security.cert.CertificateException {
+                try {
+                    a.checkServerTrusted(chain, auth);
+                } catch (java.security.cert.CertificateException e) {
+                    w.checkServerTrusted(chain, auth);
+                }
+            }
+
+            @Override
+            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                java.security.cert.X509Certificate[] x = a.getAcceptedIssuers(), y = w.getAcceptedIssuers();
+                java.security.cert.X509Certificate[] all = java.util.Arrays.copyOf(x, x.length + y.length);
+                System.arraycopy(y, 0, all, x.length, y.length);
+                return all;
+            }
+        };
+        javax.net.ssl.SSLContext ctx = javax.net.ssl.SSLContext.getInstance("TLS");
+        ctx.init(null, new javax.net.ssl.TrustManager[] {both}, null);
+        return ctx;
+    }
+
+    private static javax.net.ssl.X509TrustManager x509(javax.net.ssl.TrustManagerFactory f) {
+        for (javax.net.ssl.TrustManager t : f.getTrustManagers()) if (t instanceof javax.net.ssl.X509TrustManager x) return x;
+        throw new IllegalStateException("no X509TrustManager");
+    }
     private static final int PER_MINUTE = 20;
     private static final long RESEND = 24L * 3600_000L;
 
@@ -79,13 +135,21 @@ public final class PluginDiscord {
 
     /** After the start: invite and privacy links, and the badge requests of quest packs. */
     public void start() {
-        if (!enabled()) return;
+        // nothing goes to the bot at the start; only pack badges that asked for it (see requestBadges)
+        if (enabled()) requestBadges();
+    }
+
+    private boolean healthAsked;
+
+    /** The bot's invite and privacy links, asked once when a player first uses /quest discord. */
+    private void health() {
+        if (healthAsked || !enabled()) return;
+        healthAsked = true;
         get("/health", (status, json) -> {
             if (status != 200) return;
             if (!str(json, "invite").isEmpty()) invite = str(json, "invite");
             if (!str(json, "privacy").isEmpty()) privacy = str(json, "privacy");
         });
-        requestBadges();
     }
 
     /** Once a second (main thread). */
@@ -124,6 +188,7 @@ public final class PluginDiscord {
     // ---- commands
 
     public void link(Player player, String code) {
+        health();
         String lang = Lang.of(player);
         if (!enabled()) {
             say(player, Text.tr(lang, "justquests.discord.off"));
@@ -183,6 +248,7 @@ public final class PluginDiscord {
     }
 
     public BaseComponent status(Player player) {
+        health();
         String lang = Lang.of(player);
         if (!enabled()) return Text.tr(lang, "justquests.discord.off");
         JsonObject l = link(player.getUniqueId());
