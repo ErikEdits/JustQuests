@@ -73,7 +73,14 @@ public sealed interface Objective {
                 o.has("profession") ? Matchers.ns(o.get("profession").getAsString().toLowerCase(Locale.ROOT)) : null, count(o), distinct(o));
             case "justquests:brew_potion" -> new Brew(o.has("potion") ? Matchers.ns(o.get("potion").getAsString().toLowerCase(Locale.ROOT)) : null,
                 o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o));
-            case "justquests:stat" -> new Stat(Matchers.ns(Quest.string(o, "stat").toLowerCase(Locale.ROOT)), count(o));
+            case "justquests:stat" -> {
+                Stat st = new Stat(Matchers.ns(Quest.string(o, "stat").toLowerCase(Locale.ROOT)), count(o));
+                // 0.6.1: an unknown statistic makes the quest invalid (it never counted)
+                if (st.statistic() == null) {
+                    throw new IllegalArgumentException("unknown statistic " + st.stat() + " (use an id of the statistics screen's General list, like minecraft:jump)");
+                }
+                yield st;
+            }
             case "justquests:interact_entity" -> new Interact(EntityMatcher.parse(Quest.string(o, "entity")),
                 o.has("item") ? ItemMatcher.parse(o.get("item")) : null, count(o), distinct(o));
             case "justquests:use_block" -> new UseBlock(BlockMatcher.parse(Quest.string(o, "block")),
