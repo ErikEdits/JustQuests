@@ -79,7 +79,7 @@ public abstract class Menu implements InventoryHolder {
 
     /** Opens another page on the next tick (opening inside a click event is not safe). */
     protected void go(Menu next) {
-        Bukkit.getScheduler().runTask(plugin, next::open);
+        com.erikedits.justquests.plugin.Tasks.at(plugin, player, next::open);
     }
 
     /** The bottom row as a dark frame. */

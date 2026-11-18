@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public final class Platform {
     /** From the most special to the most general: the first that matches names the server. */
-    public static final List<String> TYPES = List.of("leaves", "leaf", "purpur", "paper", "spigot", "bukkit");
+    public static final List<String> TYPES = List.of("folia", "leaves", "leaf", "purpur", "paper", "spigot", "bukkit");
 
     private Platform() {}
 
@@ -31,6 +31,7 @@ public final class Platform {
 
     /** The type of the running server. */
     public static String server() {
+        if (has("io.papermc.paper.threadedregions.RegionizedServer")) return "folia";
         if (has("org.leavesmc.leaves.LeavesConfig")) return "leaves";
         String name = Bukkit.getName().toLowerCase(Locale.ROOT);
         if (name.contains("leaves")) return "leaves";

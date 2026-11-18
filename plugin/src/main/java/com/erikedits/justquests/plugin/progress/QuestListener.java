@@ -161,7 +161,7 @@ public final class QuestListener implements Listener {
         if (result == null) return;
         ItemStack first = copy(top.getItem(0));
         ItemStack second = copy(top.getItem(1));
-        plugin.getServer().getScheduler().runTask(plugin, () -> {
+        com.erikedits.justquests.plugin.Tasks.at(plugin, player, () -> {
             ItemStack firstNow = top.getItem(0);
             ItemStack secondNow = top.getItem(1);
             switch (type) {
@@ -324,7 +324,7 @@ public final class QuestListener implements Listener {
         ItemStack before = copy(e.getCurrentItem());
         if (before == null || !before.getType().name().endsWith("POTION")) return;
         int slot = e.getRawSlot();
-        plugin.getServer().getScheduler().runTask(plugin, () -> {
+        com.erikedits.justquests.plugin.Tasks.at(plugin, player, () -> {
             ItemStack now = copy(top.getItem(slot));
             if (now != null && now.isSimilar(before)) return;   // still there: not taken
             // 0.6.1: only what this stand brewed counts, not a potion put in and taken out again
@@ -346,7 +346,7 @@ public final class QuestListener implements Listener {
         String key = standKey(e.getBlock().getLocation());
         ItemStack[] before = new ItemStack[3];
         for (int i = 0; i < 3; i++) before[i] = copy(inv.getItem(i));
-        plugin.getServer().getScheduler().runTask(plugin, () -> {
+        com.erikedits.justquests.plugin.Tasks.at(plugin, e.getBlock().getLocation(), () -> {
             if (brewed.size() > 4096) brewed.clear();   // a safety net: one entry per stand that brewed
             ItemStack[] marks = brewed.computeIfAbsent(key, k -> new ItemStack[3]);
             for (int i = 0; i < 3; i++) {

@@ -48,7 +48,7 @@ public final class Chat {
     }
 
     private static void command(String line) {
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), line);
+        com.erikedits.justquests.plugin.Tasks.console(org.bukkit.plugin.java.JavaPlugin.getPlugin(com.erikedits.justquests.plugin.JustQuestsPlugin.class), line);
     }
 
     /** The component as the game's text JSON. */

@@ -7,7 +7,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 - **The server plugin comes as one jar per server type:** `JustQuests-plugin-<type>-<range>-<version>.jar`
-  for Bukkit, Spigot, Paper, Purpur, Leaf and Leaves, each for 1.19 - 1.20.6, 1.21 - 1.21.11 and 26.x.
+  for Bukkit, Spigot, Paper, Purpur, Leaf, Leaves and Folia, each for 1.19 - 1.20.6, 1.21 - 1.21.11 and 26.x.
+  - **Folia** is supported now: the plugin uses Folia's region and entity schedulers there, and its events,
+    commands, timers and placeholders take one lock, so the quest data is never changed by two region
+    threads at once. Rewards, fireworks and next-tick checks run in the region of the player or block.
   - On plain Bukkit (CraftBukkit) the plugin did not start at all: the BungeeCord chat components it uses come
     with Spigot and Paper only. The Bukkit jar brings them along and sends its messages, buttons included, as
     the game's own `tellraw`.

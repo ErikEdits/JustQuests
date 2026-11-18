@@ -109,13 +109,14 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
         registerPermissions();
 
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(listener, this);
-        pm.registerEvents(new MenuListener(), this);
-        pm.registerEvents(book, this);
-        pm.registerEvents(npc, this);
-        pm.registerEvents(generator.fireworks(), this);
-        pm.registerEvents(this, this);
-        pm.registerEvents(badges, this);
+        // every event under the plugin's one lock (0.6.1: Folia runs regions at the same time)
+        Tasks.register(this, listener);
+        Tasks.register(this, new MenuListener());
+        Tasks.register(this, book);
+        Tasks.register(this, npc);
+        Tasks.register(this, generator.fireworks());
+        Tasks.register(this, this);
+        Tasks.register(this, badges);
         if (pm.isPluginEnabled("PlaceholderAPI")) {
             Placeholders.hook(this);
             getLogger().info("PlaceholderAPI found: the %justquests_...% placeholders are ready");
@@ -127,10 +128,11 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
             cmd.setTabCompleter(executor);
         }
 
-        getServer().getScheduler().runTaskTimer(this, () -> {
-            for (Player p : Bukkit.getOnlinePlayers()) listener.tick(p);
+        // once a second each player's goals (on Folia in the region the player stands in)
+        Tasks.timer(this, () -> {
+            for (Player p : Bukkit.getOnlinePlayers()) Tasks.on(this, p, () -> listener.tick(p));
         }, 20L, 20L);
-        getServer().getScheduler().runTaskTimer(this, () -> {
+        Tasks.timer(this, () -> {
             if (quests.checkCustom()) {
                 getLogger().info("Custom quests changed: " + quests.all().size() + " quest(s) now");
                 // the badges of custom-quests.json too; new ones of a pack go to the Discord owner (0.6.0)
@@ -139,12 +141,12 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
                 tracker.updateAll();
             }
         }, 100L, 100L);
-        getServer().getScheduler().runTaskTimer(this, () -> {
+        Tasks.timer(this, () -> {
             store.saveDirty();
             teams.saveDirty();
         }, 1200L, 1200L);
-        getServer().getScheduler().runTaskTimer(this, generator::tick, 1200L, 1200L);
-        getServer().getScheduler().runTaskTimer(this, discord::tick, 20L, 20L);
+        Tasks.timer(this, generator::tick, 1200L, 1200L);
+        Tasks.timer(this, discord::tick, 20L, 20L);
         discord.start();
         for (Player p : Bukkit.getOnlinePlayers()) badges.applyName(p);   // after /reload
         for (Player p : Bukkit.getOnlinePlayers()) tracker.update(p);   // after /reload

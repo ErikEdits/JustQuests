@@ -112,7 +112,7 @@ public sealed interface Reward {
             if (cmd.startsWith("/")) cmd = cmd.substring(1);
             if (cmd.contains("@s") || cmd.contains("~")) cmd = "execute as " + player.getUniqueId() + " at @s run " + cmd;
             try {
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
+                com.erikedits.justquests.plugin.Tasks.console(org.bukkit.plugin.java.JavaPlugin.getPlugin(com.erikedits.justquests.plugin.JustQuestsPlugin.class), cmd);
             } catch (RuntimeException e) {
                 LOG.log(Level.SEVERE, "Command reward failed: /" + cmd, e);
             }
@@ -179,7 +179,7 @@ public sealed interface Reward {
             String cmd = Economy.command(player.getName(), amount);
             if (cmd == null) return;
             try {
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
+                com.erikedits.justquests.plugin.Tasks.console(org.bukkit.plugin.java.JavaPlugin.getPlugin(com.erikedits.justquests.plugin.JustQuestsPlugin.class), cmd);
             } catch (RuntimeException e) {
                 LOG.log(Level.SEVERE, "Money reward failed: /" + cmd, e);
             }

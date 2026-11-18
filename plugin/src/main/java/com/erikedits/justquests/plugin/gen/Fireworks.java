@@ -22,14 +22,23 @@ public final class Fireworks implements Listener {
 
     private final NamespacedKey key;
     private final Random random = new Random();
+    private final Plugin plugin;
 
     Fireworks(Plugin plugin) {
         this.key = new NamespacedKey(plugin, "celebration");
+        this.plugin = plugin;
     }
 
     /** Three rockets around every online player. */
     void celebrate() {
         for (Player p : Bukkit.getOnlinePlayers()) {
+            // on Folia in the region the player stands in (0.6.1)
+            com.erikedits.justquests.plugin.Tasks.on(plugin, p, () -> rockets(p));
+        }
+    }
+
+    private void rockets(Player p) {
+        {
             for (int i = 0; i < 3; i++) {
                 Firework fw = p.getWorld().spawn(p.getLocation().add(random.nextInt(5) - 2, 1, random.nextInt(5) - 2), Firework.class);
                 FireworkMeta meta = fw.getFireworkMeta();

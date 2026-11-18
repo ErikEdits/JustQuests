@@ -403,6 +403,10 @@ public final class ProgressService {
     }
 
     private void grant(Player player, Quest quest, int pick) {
+        com.erikedits.justquests.plugin.Tasks.on(plugin, player, () -> grantHere(player, quest, pick));
+    }
+
+    private void grantHere(Player player, Quest quest, int pick) {
         Reward.Choice choice = Reward.Choice.of(quest);
         for (Reward r : quest.rewards()) {
             if (r == choice) choice.grant(player, pick);

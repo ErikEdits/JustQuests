@@ -440,7 +440,7 @@ public final class PluginDiscord {
                 }
             }
             JsonObject result = json;
-            if (plugin.isEnabled()) Bukkit.getScheduler().runTask(plugin, () -> answer.accept(status, result));
+            if (plugin.isEnabled()) com.erikedits.justquests.plugin.Tasks.global(plugin, () -> answer.accept(status, result));
         });
     }
 

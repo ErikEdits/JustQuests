@@ -62,6 +62,11 @@ public final class QuestCommand implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // one at a time with the events (0.6.1: Folia)
+        return com.erikedits.justquests.plugin.Tasks.locked(() -> command(sender, label, args));
+    }
+
+    private boolean command(CommandSender sender, String label, String[] args) {
         String sub = args.length == 0 ? "open" : args[0].toLowerCase(Locale.ROOT);
         boolean admin = ADMIN.contains(sub);
         if (!PLAYER.contains(sub) && !admin) {
@@ -756,6 +761,10 @@ public final class QuestCommand implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        return com.erikedits.justquests.plugin.Tasks.locked(() -> complete(sender, alias, args));
+    }
+
+    private List<String> complete(CommandSender sender, String alias, String[] args) {
         List<String> out = new ArrayList<>();
         if (args.length == 1) {
             for (String s : PLAYER) if (plugin.allowed(sender, "justquests.command." + s, false)) out.add(s);

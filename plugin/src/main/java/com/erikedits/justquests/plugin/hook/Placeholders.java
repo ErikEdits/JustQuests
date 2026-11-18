@@ -57,6 +57,11 @@ public final class Placeholders extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, String params) {
+        // PlaceholderAPI may ask from any thread: one at a time with the events (0.6.1)
+        return com.erikedits.justquests.plugin.Tasks.locked(() -> request(player, params));
+    }
+
+    private String request(OfflinePlayer player, String params) {
         try {
             return value(player, params.toLowerCase(Locale.ROOT));
         } catch (RuntimeException e) {

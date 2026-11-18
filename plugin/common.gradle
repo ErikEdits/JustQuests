@@ -73,7 +73,7 @@ tasks.named('processResources', ProcessResources).configure {
 // 0.6.1: one jar per server type, named JustQuests-plugin-<type>-<range>-<version>.jar. The code is the same;
 // each jar knows its type (justquests-platform.txt) and says so when it lands on another kind of server. The
 // Bukkit jar brings the BungeeCord chat components along, which plain Bukkit (CraftBukkit) does not have.
-def platforms = ['bukkit', 'spigot', 'paper', 'purpur', 'leaf', 'leaves']
+def platforms = ['bukkit', 'spigot', 'paper', 'purpur', 'leaf', 'leaves', 'folia']
 tasks.named('jar', Jar).configure { enabled = false }   // the one jar for all is gone
 platforms.each { pf ->
     def marker = layout.buildDirectory.file("platform/${pf}/justquests-platform.txt")

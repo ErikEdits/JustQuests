@@ -79,7 +79,7 @@ server-only - see [Server plugin](#server-plugin-spigot-paper-purpur).
    e.g. `JustQuests-fabric-1.21.1-0.5.0.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
-## Server plugin (Bukkit, Spigot, Paper, Purpur, Leaf, Leaves)
+## Server plugin (Bukkit, Spigot, Paper, Purpur, Leaf, Leaves, Folia)
 
 JustQuests also comes as a server plugin. Players join with a plain vanilla client - nothing to
 install on their side. Since 0.6.1 there is one jar for each kind of server and range of versions:
@@ -93,6 +93,7 @@ install on their side. Since 0.6.1 there is one jar for each kind of server and 
 | Purpur | `purpur` |
 | Leaf | `leaf` |
 | Leaves | `leaves` |
+| Folia | `folia` (runs on Folia's region threads) |
 
 | Server version | `<range>` | Java |
 |---|---|---|
