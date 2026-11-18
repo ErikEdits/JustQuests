@@ -3,6 +3,42 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.6.1] - unreleased
+
+### Changed
+- **The server plugin comes as one jar per server type:** `JustQuests-plugin-<type>-<range>-<version>.jar`
+  for Bukkit, Spigot, Paper, Purpur, Leaf and Leaves, each for 1.19 - 1.20.6, 1.21 - 1.21.11 and 26.x.
+  - On plain Bukkit (CraftBukkit) the plugin did not start at all: the BungeeCord chat components it uses come
+    with Spigot and Paper only. The Bukkit jar brings them along and sends its messages, buttons included, as
+    the game's own `tellraw`.
+  - Each jar knows its type. On another kind of server the log says which jar to take; a Spigot or Paper jar
+    on plain Bukkit stops with that message instead of an error.
+
+### Fixed
+- **Progress is never lost to a broken file:** a `progress.json` that could not be read (a typo made by hand,
+  a cut-off file) started empty and was overwritten at the next save. Now such a file is kept as
+  `progress.corrupt-<time>.json` first, and the same goes for the team files, `settings.json`, the Discord
+  links and every data file of the plugin (which even deleted an unreadable player file). All of them are
+  written through a temp file, so a crash in the middle never breaks them.
+- `settings.json`: a value of the wrong type no longer sets every setting after it back to its default.
+- `submit_item`: items were taken for a goal that no longer needed them - the alternative of a group that
+  was already done, or a goal of a quest the goal before it had just finished, which lost the items. Worn
+  armor is never handed in.
+- `brew_potion` counted any potion put into a brewing stand and taken out again, water bottles too. Only
+  what the stand really brewed counts now.
+- `stat`: an unknown statistic (`minecraft:jumps`) makes the quest invalid with a line in the log instead of
+  never counting. Plugin: 23 statistics never counted, `minecraft:play_time` among them, because Bukkit
+  names them differently.
+- A quest file in the `quests` folder may have any name now, spaces and umlauts too (`Meine Quest.json` is
+  `justquests:meine_quest`).
+- NeoForge 1.20.6 and newer: picking up part of a stack (with a full inventory) counted the whole stack for
+  `collect_item`, and the rest again later.
+- Farmer's Delight before 1.3: meals taken out of the cooking pot window and food cooked on the stove never
+  counted.
+- Plugin: the badges Daily Grinder (a week of daily quests in a row) and Team Player (helping a server goal)
+  were listed but never given. A death another plugin cancelled no longer counts.
+- An item id of a mod that is not installed is named once in the log (its goals can never count).
+
 ## [0.6.0] - 2026-11-15 (beta)
 
 ### Fixed

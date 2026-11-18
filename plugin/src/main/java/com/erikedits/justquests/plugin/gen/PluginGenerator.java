@@ -158,7 +158,7 @@ public final class PluginGenerator implements GeneratedQuests {
         for (Player p : Bukkit.getOnlinePlayers()) {
             String lang = Lang.of(p);
             BaseComponent text = argument == null ? Text.tr(lang, key) : Text.tr(lang, key, argument.apply(lang));
-            p.spigot().sendMessage(Text.button(text, "/quest", Text.tr(lang, "justquests.plugin.announce.hover")));
+            com.erikedits.justquests.plugin.text.Chat.send(p, Text.button(text, "/quest", Text.tr(lang, "justquests.plugin.announce.hover")));
             p.playSound(p.getLocation(), "minecraft:block.note_block.bell", org.bukkit.SoundCategory.MASTER, 0.7f, 1.2f);
         }
     }
@@ -350,7 +350,7 @@ public final class PluginGenerator implements GeneratedQuests {
                 plugin.store().markDirty(e.holder());
             }
             Player p = Bukkit.getPlayer(e.holder());
-            if (p != null) p.spigot().sendMessage(Text.tr(Lang.of(p), "justquests.claim.expired", plugin.progress().title(e.questId(), Lang.of(p))));
+            if (p != null) com.erikedits.justquests.plugin.text.Chat.send(p, Text.tr(Lang.of(p), "justquests.claim.expired", plugin.progress().title(e.questId(), Lang.of(p))));
         }
         plugin.tracker().updateAll();
     }
@@ -519,7 +519,7 @@ public final class PluginGenerator implements GeneratedQuests {
         int max = prize.item().getMaxStackSize();
         for (int left = prize.count(); left > 0; left -= max) Reward.give(player, new ItemStack(prize.item(), Math.min(left, max)));
         String lang = Lang.of(player);
-        player.spigot().sendMessage(Text.tr(lang, "justquests.plugin.lucky", prize.count(), Text.item(prize.item())));
+        com.erikedits.justquests.plugin.text.Chat.send(player, Text.tr(lang, "justquests.plugin.lucky", prize.count(), Text.item(prize.item())));
         player.playSound(player.getLocation(), "minecraft:entity.player.levelup", org.bukkit.SoundCategory.MASTER, 0.8f, 1.4f);
     }
 
@@ -619,7 +619,7 @@ public final class PluginGenerator implements GeneratedQuests {
         }
         Player p = Bukkit.getPlayer(former.get());
         if (p != null) {
-            p.spigot().sendMessage(Text.tr(Lang.of(p), "justquests.claim.released_by_op", plugin.progress().title(id, Lang.of(p))));
+            com.erikedits.justquests.plugin.text.Chat.send(p, Text.tr(Lang.of(p), "justquests.claim.released_by_op", plugin.progress().title(id, Lang.of(p))));
             plugin.tracker().update(p);
         }
         register();

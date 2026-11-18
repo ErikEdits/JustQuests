@@ -89,7 +89,7 @@ public final class QuestMenu extends Menu {
                 if (held > 0) {
                     set(GOAL_SLOTS[n], item(o.icon(), 1, name, lore, done), click -> {
                         int k = plugin.progress().submit(player, id);
-                        player.spigot().sendMessage(tr(k > 0 ? "justquests.submit.done" : "justquests.submit.none_held", k));
+                        com.erikedits.justquests.plugin.text.Chat.send(player, tr(k > 0 ? "justquests.submit.done" : "justquests.submit.none_held", k));
                         redraw();
                     });
                     continue;
@@ -180,7 +180,7 @@ public final class QuestMenu extends Menu {
     }
 
     private void act(ProgressService.Result result) {
-        if (result.message() != null) player.spigot().sendMessage(result.message());
+        if (result.message() != null) com.erikedits.justquests.plugin.text.Chat.send(player, result.message());
         pick = -1;
         redraw();
     }

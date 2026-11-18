@@ -51,7 +51,7 @@ public final class Community {
         if (!seen.add(player.getUniqueId())) return;
         save();
         if (plugin.settings().giveBookOnFirstJoin) plugin.book().give(player);
-        if (plugin.settings().discordWelcome) player.spigot().sendMessage(welcome(Lang.of(player)));
+        if (plugin.settings().discordWelcome) com.erikedits.justquests.plugin.text.Chat.send(player, welcome(Lang.of(player)));
     }
 
     private void save() {

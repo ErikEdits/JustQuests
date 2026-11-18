@@ -272,7 +272,7 @@ public final class PluginDiscord {
     }
 
     private static void say(Player p, BaseComponent c) {
-        p.spigot().sendMessage(c);
+        com.erikedits.justquests.plugin.text.Chat.send(p, c);
     }
 
     // ---- badges to the bot

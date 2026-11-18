@@ -79,7 +79,7 @@ public final class BadgeMenu extends Menu {
         set(50, item(Material.MAP, 1, line, List.of(Text.lit("§7/quest discord link <code>"), Text.lit("§7/quest discord status")), user != null),
             c -> {
                 player.closeInventory();
-                player.spigot().sendMessage(plugin.discord().status(player));
+                com.erikedits.justquests.plugin.text.Chat.send(player, plugin.discord().status(player));
             });
     }
 }

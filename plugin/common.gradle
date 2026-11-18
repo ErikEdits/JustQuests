@@ -1,4 +1,4 @@
-// --- the server plugin for Spigot, Paper and Purpur: one jar per range of Minecraft versions ---
+// --- the server plugin: one jar per server type and range of Minecraft versions ---
 // Each plugin/<version>/build.gradle sets
 //   ext.pluginApi   = '1.21'                 api-version in plugin.yml, and part of the jar name
 //   ext.spigotApi   = '1.21-R0.1-SNAPSHOT'   the oldest API of its range, so it never calls anything newer
@@ -68,4 +68,38 @@ tasks.named('processResources', ProcessResources).configure {
     from(rootProject.file('fabric/1.21.1/src/main/resources/data/justquests/justquests/badges')) {
         into 'badges'
     }
+}
+
+// 0.6.1: one jar per server type, named JustQuests-plugin-<type>-<range>-<version>.jar. The code is the same;
+// each jar knows its type (justquests-platform.txt) and says so when it lands on another kind of server. The
+// Bukkit jar brings the BungeeCord chat components along, which plain Bukkit (CraftBukkit) does not have.
+def platforms = ['bukkit', 'spigot', 'paper', 'purpur', 'leaf', 'leaves']
+tasks.named('jar', Jar).configure { enabled = false }   // the one jar for all is gone
+platforms.each { pf ->
+    def marker = layout.buildDirectory.file("platform/${pf}/justquests-platform.txt")
+    def writeMarker = tasks.register("platformFile_${pf}") {
+        outputs.file(marker)
+        doLast {
+            def f = marker.get().asFile
+            f.parentFile.mkdirs()
+            f.text = pf
+        }
+    }
+    def platformJar = tasks.register("jar_${pf}", Jar) {
+        group = 'build'
+        description = "The plugin jar for ${pf} servers."
+        dependsOn writeMarker
+        archiveBaseName = "${mod_name}-plugin-${pf}-${pluginApi}"
+        archiveVersion = project.version
+        from sourceSets.main.output
+        from(marker)
+        if (pf == 'bukkit') {
+            // the chat components of the API this range is built against (chat, and from 1.21.6 its serializer)
+            from({ configurations.compileClasspath.filter { it.name.startsWith('bungeecord-') }.collect { zipTree(it) } }) {
+                exclude 'META-INF/**'
+            }
+        }
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+    tasks.named('assemble').configure { dependsOn platformJar }
 }

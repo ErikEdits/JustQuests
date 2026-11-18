@@ -169,7 +169,7 @@ final class ServerGoal {
     private void announce(int percent) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             String lang = Lang.of(p);
-            p.spigot().sendMessage(Text.tr(lang, percent >= 100 ? "justquests.plugin.goal.reached" : "justquests.plugin.goal.milestone",
+            com.erikedits.justquests.plugin.text.Chat.send(p, Text.tr(lang, percent >= 100 ? "justquests.plugin.goal.reached" : "justquests.plugin.goal.milestone",
                 percent, quest.objectives().get(0).display(lang)));
         }
     }
@@ -197,7 +197,7 @@ final class ServerGoal {
         var badges = com.erikedits.justquests.plugin.badge.PluginBadges.get();
         if (badges != null) badges.give(p, "justquests:community_goal");
         String lang = Lang.of(p);
-        p.spigot().sendMessage(Text.tr(lang, "justquests.plugin.goal.rewarded"));
+        com.erikedits.justquests.plugin.text.Chat.send(p, Text.tr(lang, "justquests.plugin.goal.rewarded"));
         p.playSound(p.getLocation(), "minecraft:ui.toast.challenge_complete", SoundCategory.MASTER, 1f, 1f);
     }
 

@@ -80,7 +80,7 @@ public final class QuestListMenu extends Menu {
             Quest q = list.get(p * 45 + i);
             set(i, questItem(plugin, player, lang, data, q, true), click -> {
                 if (click.isShiftClick() && QuestStatus.of(plugin, player.getUniqueId(), plugin.view(player.getUniqueId()), q) == QuestStatus.AVAILABLE) {
-                    player.spigot().sendMessage(plugin.progress().accept(player, q.id()).message());
+                    com.erikedits.justquests.plugin.text.Chat.send(player, plugin.progress().accept(player, q.id()).message());
                     redraw();
                 } else {
                     go(new QuestMenu(plugin, player, q.id(), this));

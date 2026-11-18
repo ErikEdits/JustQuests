@@ -81,7 +81,7 @@ public final class MainMenu extends Menu {
             List<BaseComponent> lore = new ArrayList<>(plugin.generator().goalLines(lang, player.getUniqueId()));
             set(5, item(plugin.generator().goalIcon(), 1, Text.lit("§6" + legacy("justquests.plugin.goal.title")
                     + " §7(" + plugin.generator().goalPercent() + "%)"), lore, plugin.generator().goalDone()),
-                click -> plugin.generator().goalLines(lang, player.getUniqueId()).forEach(l -> player.spigot().sendMessage(l)));
+                click -> plugin.generator().goalLines(lang, player.getUniqueId()).forEach(l -> com.erikedits.justquests.plugin.text.Chat.send(player, l)));
         }
 
         int slot = 10;

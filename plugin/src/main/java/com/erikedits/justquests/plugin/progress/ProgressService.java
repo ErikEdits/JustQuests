@@ -89,7 +89,7 @@ public final class ProgressService {
         }
 
         if (changed) {
-            if (toast != null && !completed) player.spigot().sendMessage(ChatMessageType.ACTION_BAR, toast);
+            if (toast != null && !completed) com.erikedits.justquests.plugin.text.Chat.actionBar(player, toast);
             plugin.tracker().update(player);
         }
         unlocks(player);
@@ -180,7 +180,7 @@ public final class ProgressService {
                 line.addExtra(Text.button(Text.tr(lang, "justquests.unlocked.accept"), "/quest accept " + quest.id(),
                     Text.tr(lang, "justquests.unlocked.accept_hover")));
             }
-            player.spigot().sendMessage(line);
+            com.erikedits.justquests.plugin.text.Chat.send(player, line);
         }
     }
 
@@ -216,7 +216,7 @@ public final class ProgressService {
             line.addExtra(" ");
             line.addExtra(Text.button(Text.tr(lang, "justquests.unlocked.auto_off"), "/quest autoaccept off",
                 Text.tr(lang, "justquests.unlocked.auto_off_hover")));
-            player.spigot().sendMessage(line);
+            com.erikedits.justquests.plugin.text.Chat.send(player, line);
         }
         return count;
     }
@@ -276,7 +276,7 @@ public final class ProgressService {
         List<String> own = data == null ? List.of() : reset(data);
         if (!own.isEmpty()) {
             String lang = Lang.of(player);
-            for (String id : own) player.spigot().sendMessage(Text.tr(lang, "justquests.reset.death", title(id, lang)));
+            for (String id : own) com.erikedits.justquests.plugin.text.Chat.send(player, Text.tr(lang, "justquests.reset.death", title(id, lang)));
             plugin.store().markDirty(player.getUniqueId());
         }
         TeamRef team = plugin.teams().of(player.getUniqueId());
@@ -287,7 +287,7 @@ public final class ProgressService {
             for (Player member : plugin.teams().onlineMembers(team)) {
                 String lang = Lang.of(member);
                 for (String id : shared) {
-                    member.spigot().sendMessage(Text.tr(lang, "justquests.reset.death_team", title(id, lang), player.getName()));
+                    com.erikedits.justquests.plugin.text.Chat.send(member, Text.tr(lang, "justquests.reset.death_team", title(id, lang), player.getName()));
                 }
                 plugin.tracker().update(member);
             }
@@ -350,19 +350,19 @@ public final class ProgressService {
             chat.addExtra(" ");
             chat.addExtra(claimButton(lang, quest.id()));
         }
-        player.spigot().sendMessage(chat);
+        com.erikedits.justquests.plugin.text.Chat.send(player, chat);
         if (plugin.settings().completionSound) {
             player.playSound(player.getLocation(), "minecraft:ui.toast.challenge_complete", SoundCategory.MASTER, 1f, 1f);
         }
         if (plugin.settings().completionToast) {
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, Text.tr(lang, "justquests.complete.toast", title));
+            com.erikedits.justquests.plugin.text.Chat.actionBar(player, Text.tr(lang, "justquests.complete.toast", title));
         }
     }
 
     private void broadcast(Player player, Quest quest) {
         if (plugin.settings().announceCompletions) {
             for (Player p : Bukkit.getOnlinePlayers()) {
-                p.spigot().sendMessage(Text.tr(Lang.of(p), "justquests.complete.broadcast", player.getName(), quest.title().get(Lang.of(p))));
+                com.erikedits.justquests.plugin.text.Chat.send(p, Text.tr(Lang.of(p), "justquests.complete.broadcast", player.getName(), quest.title().get(Lang.of(p))));
             }
             Bukkit.getConsoleSender().sendMessage(Text.legacy(Lang.DEFAULT, "justquests.complete.broadcast", player.getName(), quest.title().getDefault()));
         }
@@ -506,7 +506,7 @@ public final class ProgressService {
         plugin.store().markDirty(player.getUniqueId());
         for (Player member : plugin.teams().onlineMembers(team)) {
             if (!member.equals(player)) {
-                member.spigot().sendMessage(Text.tr(Lang.of(member), "justquests.team.accepted", player.getName(),
+                com.erikedits.justquests.plugin.text.Chat.send(member, Text.tr(Lang.of(member), "justquests.team.accepted", player.getName(),
                     quest.title().get(Lang.of(member))));
             }
             plugin.tracker().update(member);
@@ -541,7 +541,7 @@ public final class ProgressService {
                 plugin.store().markDirty(member.getUniqueId());
             }
             if (!member.equals(player)) {
-                member.spigot().sendMessage(Text.tr(Lang.of(member), "justquests.team.abandoned", player.getName(),
+                com.erikedits.justquests.plugin.text.Chat.send(member, Text.tr(Lang.of(member), "justquests.team.abandoned", player.getName(),
                     title(id, Lang.of(member))));
             }
             plugin.tracker().update(member);

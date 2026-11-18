@@ -52,7 +52,7 @@ public final class QuestCommand implements TabExecutor {
     }
 
     private static void say(CommandSender s, BaseComponent msg) {
-        if (s instanceof Player p) p.spigot().sendMessage(msg);
+        if (s instanceof Player p) com.erikedits.justquests.plugin.text.Chat.send(p, msg);
         else s.sendMessage(msg.toLegacyText());
     }
 
@@ -481,7 +481,7 @@ public final class QuestCommand implements TabExecutor {
                     msg.addExtra(" ");
                     msg.addExtra(Text.button(Text.tr(tl, "justquests.team.accept_button"), "/quest team accept",
                         Text.tr(tl, "justquests.team.accept_hover")));
-                    target.spigot().sendMessage(msg);
+                    com.erikedits.justquests.plugin.text.Chat.send(target, msg);
                 }
             }
             case "accept" -> {

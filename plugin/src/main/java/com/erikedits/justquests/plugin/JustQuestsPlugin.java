@@ -68,6 +68,11 @@ public final class JustQuestsPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        // the right jar for this kind of server (0.6.1): a jar that cannot run here stops with a clear message
+        if (!Platform.check(getLogger(), Compat.FIRST)) {
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
         String version = Bukkit.getBukkitVersion();
         if (!Items.atLeast(version, Compat.FIRST) || Items.atLeast(version, Compat.BEYOND)) {
             getLogger().warning("This JustQuests jar is made for Minecraft " + Compat.RANGE + ", but the server runs "
