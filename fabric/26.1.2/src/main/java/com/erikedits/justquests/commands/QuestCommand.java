@@ -443,7 +443,8 @@ public class QuestCommand {
                 MutableComponent or = quest.orBefore(i) ? Msg.tr("justquests.goal.or").withStyle(net.minecraft.ChatFormatting.GRAY).append(Msg.lit(" ")) : Msg.empty();
                 MutableComponent line = Component.literal("  ").append(or).append(Msg.lit(bar + " §f")).append(quest.shown(idx, lang));
                 // submit_item (0.6.0): a button that hands the items in, for players without the mod too
-                if (current < needed && obj instanceof com.erikedits.justquests.data.objective.SubmitItemObjective sub && sub.held(player) > 0) {
+                if (current < needed && obj instanceof com.erikedits.justquests.data.objective.SubmitItemObjective sub && sub.held(player) > 0
+                        && com.erikedits.justquests.progress.GoalEvents.needed(quest, prog, idx)) {
                     line.append(Msg.lit(" ")).append(Msg.button(Msg.tr("justquests.submit.button"), "/quest submit " + entry.getKey(),
                         Msg.tr("justquests.submit.button_hover")));
                 }

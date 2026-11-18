@@ -2,6 +2,7 @@ package com.erikedits.justquests.team;
 
 import com.erikedits.justquests.JustQuests;
 import com.erikedits.justquests.data.PlayerQuestData;
+import com.erikedits.justquests.storage.SafeFiles;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -100,15 +101,23 @@ public final class TeamStore {
                     }
                 }
             }
-            Path prog = dir.resolve("team-progress.json");
+        } catch (Exception e) {
+            SafeFiles.keepBroken(dir.resolve("teams.json"), e.getMessage());
+        }
+        Path prog = dir.resolve("team-progress.json");
+        try {
             if (Files.exists(prog)) {
                 JsonObject root = JsonParser.parseString(Files.readString(prog)).getAsJsonObject();
+                boolean partly = false;
                 for (Map.Entry<String, JsonElement> e : root.entrySet()) {
-                    PlayerQuestData.CODEC.parse(JsonOps.INSTANCE, e.getValue()).result().ifPresent(d -> s.progress.put(e.getKey(), d));
+                    var d = PlayerQuestData.CODEC.parse(JsonOps.INSTANCE, e.getValue()).result();
+                    if (d.isPresent()) s.progress.put(e.getKey(), d.get());
+                    else partly = true;
                 }
+                if (partly) SafeFiles.keepBroken(prog, "a team's quests could not be read");
             }
         } catch (Exception e) {
-            JustQuests.LOG.error("Could not read the team files", e);
+            SafeFiles.keepBroken(prog, e.getMessage());
         }
         instance = s;
     }
@@ -154,7 +163,7 @@ public final class TeamStore {
                 owedJson.add(who, a);
             });
             root.add("owed", owedJson);
-            Files.writeString(dir.resolve("teams.json"), GSON.toJson(root));
+            SafeFiles.write(dir.resolve("teams.json"), GSON.toJson(root));
 
             JsonObject prog = new JsonObject();
             progress.forEach((key, data) -> {
@@ -162,7 +171,7 @@ public final class TeamStore {
                     PlayerQuestData.CODEC.encodeStart(JsonOps.INSTANCE, data).result().ifPresent(j -> prog.add(key, j));
                 }
             });
-            Files.writeString(dir.resolve("team-progress.json"), GSON.toJson(prog));
+            SafeFiles.write(dir.resolve("team-progress.json"), GSON.toJson(prog));
             dirty = false;
         } catch (Exception e) {
             JustQuests.LOG.error("Could not write the team files", e);

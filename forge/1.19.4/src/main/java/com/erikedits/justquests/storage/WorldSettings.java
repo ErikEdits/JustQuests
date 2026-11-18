@@ -86,7 +86,8 @@ public final class WorldSettings {
                 Files.writeString(file, GSON.toJson(toJson()));
             }
         } catch (Exception e) {
-            JustQuests.LOG.error("Could not load settings.json", e);
+            // kept aside before a command saves the settings over it (0.6.1)
+            SafeFiles.keepBroken(file, e.getMessage());
         }
         loadGlobal();
     }
@@ -135,33 +136,74 @@ public final class WorldSettings {
 
     /** One settings object (a world's settings.json or config/justquests.json) over the current values. */
     private static void read(JsonObject o) {
-        if (o.has("discordWelcome")) discordWelcome = o.get("discordWelcome").getAsBoolean();
-        if (o.has("announceCompletions")) announceCompletions = o.get("announceCompletions").getAsBoolean();
-        if (o.has("completionSound")) completionSound = o.get("completionSound").getAsBoolean();
-        if (o.has("completionToast")) completionToast = o.get("completionToast").getAsBoolean();
-        if (o.has("claimRewards")) claimRewards = o.get("claimRewards").getAsBoolean();
-        if (o.has("autoAccept")) autoAccept = o.get("autoAccept").getAsBoolean();
-        if (o.has("mainQuests")) mainQuests = o.get("mainQuests").getAsBoolean();
-        if (o.has("generatedQuests")) generatedQuests = o.get("generatedQuests").getAsBoolean();
-        if (o.has("generatedCount")) generatedCount = o.get("generatedCount").getAsInt();
-        if (o.has("difficulty")) difficulty = o.get("difficulty").getAsString();
-        if (o.has("generatorExclusiveClaims")) generatorExclusiveClaims = o.get("generatorExclusiveClaims").getAsBoolean();
-        if (o.has("generatorOneActivePerPlayer")) generatorOneActivePerPlayer = o.get("generatorOneActivePerPlayer").getAsBoolean();
-        if (o.has("generatorReleaseOnAbandon")) generatorReleaseOnAbandon = o.get("generatorReleaseOnAbandon").getAsBoolean();
-        if (o.has("generatorClaimExpiryHours")) generatorClaimExpiryHours = o.get("generatorClaimExpiryHours").getAsInt();
-        if (o.has("generatorCycleHours")) generatorCycleHours = o.get("generatorCycleHours").getAsInt();
-        if (o.has("generatorCycleAnchorHour")) generatorCycleAnchorHour = o.get("generatorCycleAnchorHour").getAsInt();
-        if (o.has("generatorModdedShare")) generatorModdedShare = o.get("generatorModdedShare").getAsDouble();
+        discordWelcome = bool(o, "discordWelcome", discordWelcome);
+        announceCompletions = bool(o, "announceCompletions", announceCompletions);
+        completionSound = bool(o, "completionSound", completionSound);
+        completionToast = bool(o, "completionToast", completionToast);
+        claimRewards = bool(o, "claimRewards", claimRewards);
+        autoAccept = bool(o, "autoAccept", autoAccept);
+        mainQuests = bool(o, "mainQuests", mainQuests);
+        generatedQuests = bool(o, "generatedQuests", generatedQuests);
+        generatedCount = integer(o, "generatedCount", generatedCount);
+        difficulty = string(o, "difficulty", difficulty);
+        generatorExclusiveClaims = bool(o, "generatorExclusiveClaims", generatorExclusiveClaims);
+        generatorOneActivePerPlayer = bool(o, "generatorOneActivePerPlayer", generatorOneActivePerPlayer);
+        generatorReleaseOnAbandon = bool(o, "generatorReleaseOnAbandon", generatorReleaseOnAbandon);
+        generatorClaimExpiryHours = integer(o, "generatorClaimExpiryHours", generatorClaimExpiryHours);
+        generatorCycleHours = integer(o, "generatorCycleHours", generatorCycleHours);
+        generatorCycleAnchorHour = integer(o, "generatorCycleAnchorHour", generatorCycleAnchorHour);
+        generatorModdedShare = number(o, "generatorModdedShare", generatorModdedShare);
         if (o.has("generatorDisabledProfiles") && o.get("generatorDisabledProfiles").isJsonArray()) {
             List<String> list = new ArrayList<>();
-            for (JsonElement e : o.getAsJsonArray("generatorDisabledProfiles")) list.add(e.getAsString());
+            for (JsonElement e : o.getAsJsonArray("generatorDisabledProfiles")) if (e.isJsonPrimitive()) list.add(e.getAsString());
             generatorDisabledProfiles = list;
         }
-        if (o.has("generatorAdaptiveBalancing")) generatorAdaptiveBalancing = o.get("generatorAdaptiveBalancing").getAsBoolean();
-        if (o.has("generatorStats")) generatorStats = o.get("generatorStats").getAsBoolean();
-        if (o.has("discordLink")) discordLink = o.get("discordLink").getAsBoolean();
-        if (o.has("discordApi")) discordApi = o.get("discordApi").getAsString();
-        if (o.has("badgeInName")) badgeInName = o.get("badgeInName").getAsBoolean();
+        generatorAdaptiveBalancing = bool(o, "generatorAdaptiveBalancing", generatorAdaptiveBalancing);
+        generatorStats = bool(o, "generatorStats", generatorStats);
+        discordLink = bool(o, "discordLink", discordLink);
+        discordApi = string(o, "discordApi", discordApi);
+        badgeInName = bool(o, "badgeInName", badgeInName);
+    }
+
+
+    // one setting at a time (0.6.1): a value of the wrong type keeps the current one and says so,
+    // instead of leaving every setting after it at its default
+
+    private static boolean bool(JsonObject o, String key, boolean now) {
+        JsonElement e = o.get(key);
+        if (e == null) return now;
+        if (e.isJsonPrimitive() && e.getAsJsonPrimitive().isBoolean()) return e.getAsBoolean();
+        return wrong(key, e, "true or false", now);
+    }
+
+    private static int integer(JsonObject o, String key, int now) {
+        JsonElement e = o.get(key);
+        if (e == null) return now;
+        try {
+            if (e.isJsonPrimitive() && e.getAsJsonPrimitive().isNumber()) return e.getAsInt();
+        } catch (RuntimeException ignored) {
+            // not a whole number
+        }
+        return wrong(key, e, "a whole number", now);
+    }
+
+    private static double number(JsonObject o, String key, double now) {
+        JsonElement e = o.get(key);
+        if (e == null) return now;
+        if (e.isJsonPrimitive() && e.getAsJsonPrimitive().isNumber()) return e.getAsDouble();
+        return wrong(key, e, "a number", now);
+    }
+
+    private static String string(JsonObject o, String key, String now) {
+        JsonElement e = o.get(key);
+        if (e == null) return now;
+        if (e.isJsonPrimitive() && e.getAsJsonPrimitive().isString()) return e.getAsString();
+        return wrong(key, e, "a text in quotes", now);
+    }
+
+    private static <T> T wrong(String key, JsonElement value, String want, T now) {
+        JustQuests.LOG.warn("Setting {} must be {}, not {}: using {}", key, want, value, now);
+        return now;
     }
 
     /** Persist the current settings back to the world file. */

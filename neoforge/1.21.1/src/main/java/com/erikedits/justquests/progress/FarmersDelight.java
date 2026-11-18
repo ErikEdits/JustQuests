@@ -313,7 +313,7 @@ public final class FarmersDelight {
         COMPOST.forEach((k, v) -> o.addProperty(k, v.toString()));
         try {
             Files.createDirectories(compostFile.getParent());
-            Files.writeString(compostFile, o.toString());
+            com.erikedits.justquests.storage.SafeFiles.write(compostFile, o.toString());
         } catch (Exception e) {
             JustQuests.LOG.warn("Could not write {}: {}", compostFile, e.getMessage());
         }

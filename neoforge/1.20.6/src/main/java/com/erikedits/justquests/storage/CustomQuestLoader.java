@@ -112,8 +112,9 @@ public final class CustomQuestLoader {
                     if (!root.isJsonObject()) continue;
                     JsonObject obj = root.getAsJsonObject();
                     if (obj.has("objectives")) {
-                        // one quest per file: its path is its id, as in a datapack
-                        String key = rel.substring(0, rel.length() - 5).toLowerCase(java.util.Locale.ROOT);
+                        // one quest per file: its path is its id, as in a datapack (any file name works)
+                        String key = fileId(rel.substring(0, rel.length() - 5));
+                        if (!key.equals(rel.substring(0, rel.length() - 5))) JustQuests.LOG.info("quests/{} has the quest id justquests:{}", rel, key);
                         readQuest(key, obj, "quests/" + rel, custom);
                     } else {
                         JsonObject own = readFile(obj, "quests/" + rel, custom, badges);
@@ -127,6 +128,24 @@ public final class CustomQuestLoader {
         QuestManager.INSTANCE.setCustomQuests(custom);
         com.erikedits.justquests.badge.Badges.setCustom(badges, pack);
         JustQuests.LOG.info("Loaded {} custom quest(s)", custom.size());
+    }
+
+    /**
+     * A file's path as a quest id: lower case, umlauts spelled out, and anything else an id can't hold
+     * becomes "_", so any file name works ("Meine Quest.json" is justquests:meine_quest).
+     */
+    static String fileId(String path) {
+        StringBuilder b = new StringBuilder();
+        for (char c : path.toLowerCase(java.util.Locale.ROOT).toCharArray()) {
+            switch (c) {
+                case '\u00e4' -> b.append("ae");
+                case '\u00f6' -> b.append("oe");
+                case '\u00fc' -> b.append("ue");
+                case '\u00df' -> b.append("ss");
+                default -> b.append((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '/' || c == '.' || c == '_' || c == '-' ? c : '_');
+            }
+        }
+        return b.toString();
     }
 
     /** A file like custom-quests.json: quest ids as keys, "badges" and "pack"; returns its "pack" or null. */

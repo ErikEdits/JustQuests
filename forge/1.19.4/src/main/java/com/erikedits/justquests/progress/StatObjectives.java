@@ -50,6 +50,7 @@ public final class StatObjectives {
     /** Every server tick, per player. */
     public static void tick(ServerPlayer player) {
         Workstations.tick(player);
+        Brewing.tick(player);          // brew_potion: what the open brewing stand really brewed
         FarmersDelight.tick(player);   // #22: what its blocks did, cooking, rich soil
         GoalEvents.pollTrades(player);   // trade_villager: no trade event on this Forge
         boolean enchanting = player.containerMenu instanceof EnchantmentMenu;
@@ -149,11 +150,17 @@ public final class StatObjectives {
         return REGISTERED.get(id);
     }
 
+    /** Whether the id is a statistic of the statistics screen's General list (checked when a quest loads). */
+    public static boolean known(net.minecraft.resources.ResourceLocation id) {
+        return registered(id) != null;
+    }
+
     /** Server stop. */
     public static void clear() {
         SEEN.clear();
         Workstations.clear();
         GoalEvents.clear();
+        Brewing.clear();
         FarmersDelight.clear();
     }
 }

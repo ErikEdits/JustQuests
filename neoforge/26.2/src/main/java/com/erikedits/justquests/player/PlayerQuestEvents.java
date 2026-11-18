@@ -65,9 +65,12 @@ public class PlayerQuestEvents {
 
         ItemStack picked = event.getOriginalStack();
         if (picked.isEmpty()) return;
+        // the original stack is the whole one; a full inventory may have taken only part of it (0.6.1)
+        int taken = picked.getCount() - event.getCurrentStack().getCount();
+        if (taken <= 0) return;
 
         QuestProgressService.advance(serverPlayer, QuestProgressService.kind(picked), obj ->
-            (obj instanceof CollectItemObjective c && c.matches(picked)) ? picked.getCount() : 0);
+            (obj instanceof CollectItemObjective c && c.matches(picked)) ? taken : 0);
     }
 
     /** kill_mob: advance objectives that match the killed entity type. */

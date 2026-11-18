@@ -12,10 +12,8 @@ import net.minecraft.core.UUIDUtil;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.storage.LevelResource;
 
-import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -54,12 +52,13 @@ public class WorldQuestStore {
         try {
             if (Files.exists(store.file)) {
                 JsonElement json = JsonParser.parseString(Files.readString(store.file));
+                // a part that can't be read: the file is kept aside before the next save (0.6.1)
                 PLAYERS_CODEC.parse(JsonOps.INSTANCE, json)
-                    .resultOrPartial(err -> JustQuests.LOG.error("Failed to parse progress.json: {}", err))
+                    .resultOrPartial(err -> SafeFiles.keepBroken(store.file, "partly: " + err))
                     .ifPresent(store.players::putAll);
             }
         } catch (Exception e) {
-            JustQuests.LOG.error("Could not read progress.json", e);
+            SafeFiles.keepBroken(store.file, e.getMessage());
         }
         instance = store;
         com.erikedits.justquests.team.TeamStore.load(store.file.getParent());
@@ -86,15 +85,8 @@ public class WorldQuestStore {
             });
             JsonElement json = PLAYERS_CODEC.encodeStart(JsonOps.INSTANCE, nonEmpty).getOrThrow();
 
-            // Atomic write: write a temp file then move it over the real
-            // one, so a crash mid-write can never corrupt progress.json.
-            Path tmp = file.resolveSibling("progress.json.tmp");
-            Files.writeString(tmp, GSON.toJson(json));
-            try {
-                Files.move(tmp, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
-            } catch (AtomicMoveNotSupportedException ex) {
-                Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING);
-            }
+            // through a temp file, so a crash mid-write can never corrupt progress.json
+            SafeFiles.write(file, GSON.toJson(json));
             dirty = false;
         } catch (Exception e) {
             JustQuests.LOG.error("Could not write progress.json", e);

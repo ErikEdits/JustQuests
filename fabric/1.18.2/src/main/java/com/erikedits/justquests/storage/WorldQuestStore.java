@@ -12,9 +12,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.storage.LevelResource;
 
 import java.nio.file.AtomicMoveNotSupportedException;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -53,12 +53,13 @@ public class WorldQuestStore {
         try {
             if (Files.exists(store.file)) {
                 JsonElement json = JsonParser.parseString(Files.readString(store.file));
+                // a part that can't be read: the file is kept aside before the next save (0.6.1)
                 PLAYERS_CODEC.parse(JsonOps.INSTANCE, json)
-                    .resultOrPartial(err -> JustQuests.LOG.error("Failed to parse progress.json: {}", err))
+                    .resultOrPartial(err -> SafeFiles.keepBroken(store.file, "partly: " + err))
                     .ifPresent(store.players::putAll);
             }
         } catch (Exception e) {
-            JustQuests.LOG.error("Could not read progress.json", e);
+            SafeFiles.keepBroken(store.file, e.getMessage());
         }
         instance = store;
         com.erikedits.justquests.team.TeamStore.load(store.file.getParent());

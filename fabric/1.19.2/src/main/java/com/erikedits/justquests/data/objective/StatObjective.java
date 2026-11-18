@@ -16,14 +16,18 @@ public record StatObjective(ResourceLocation stat, int count) implements QuestOb
     public static final String TYPE_ID = "justquests:stat";
 
     public static final MapCodec<StatObjective> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-        Codec.STRING.xmap(StatObjective::parse, ResourceLocation::toString).fieldOf("stat").forGetter(StatObjective::stat),
+        Codec.STRING.comapFlatMap(StatObjective::read, ResourceLocation::toString).fieldOf("stat").forGetter(StatObjective::stat),
         Codec.INT.fieldOf("count").forGetter(StatObjective::count)
     ).apply(instance, StatObjective::new));
 
-    private static ResourceLocation parse(String id) {
+    /** A statistic of the statistics screen's General list; anything else makes the quest invalid (with a log line). */
+    private static com.mojang.serialization.DataResult<ResourceLocation> read(String id) {
         ResourceLocation rl = ResourceLocation.tryParse(id.indexOf(':') >= 0 ? id : "minecraft:" + id);
-        if (rl == null) throw new IllegalArgumentException("not a statistic id: " + id);
-        return rl;
+        if (rl == null) return com.mojang.serialization.DataResult.error("not a statistic id: " + id);
+        if (!com.erikedits.justquests.progress.StatObjectives.known(rl)) {
+            return com.mojang.serialization.DataResult.error("unknown statistic " + rl + " (use an id of the statistics screen's General list, like minecraft:jump)");
+        }
+        return com.mojang.serialization.DataResult.success(rl);
     }
 
     @Override

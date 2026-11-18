@@ -70,8 +70,16 @@ public interface ItemMatcher {
         if (s.startsWith("#")) {
             return new Tag(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(s.substring(1))));
         }
-        return new Single(Registry.ITEM.get(new ResourceLocation(s)));
+        ResourceLocation id = new ResourceLocation(s);
+        // an item of a mod that is not installed is Air: the goal never counts (0.6.1: said once in the log)
+        if (!Registry.ITEM.containsKey(id) && UNKNOWN.add(s)) {
+            com.erikedits.justquests.JustQuests.LOG.warn("Unknown item {} in a quest (is its mod installed?): goals with it never count", s);
+        }
+        return new Single(Registry.ITEM.get(id));
     }
+
+    /** Unknown item ids already named in the log. */
+    java.util.Set<String> UNKNOWN = java.util.concurrent.ConcurrentHashMap.newKeySet();
 
     record Single(Item item) implements ItemMatcher {
         @Override

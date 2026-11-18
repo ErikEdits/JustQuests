@@ -80,9 +80,9 @@ public final class GoalEvents {
         return BuiltInRegistries.ENTITY_TYPE.getKey(trader.getType()).toString();
     }
 
-    /** brew_potion: a potion taken out of a brewing stand. */
+    /** brew_potion: a potion taken out of a brewing stand; it counts only when the stand brewed it (0.6.1). */
     public static void brewed(ServerPlayer player, ItemStack potion) {
-        if (potion.isEmpty()) return;
+        if (potion.isEmpty() || !Brewing.taken(player, potion)) return;
         String which = BrewPotionObjective.potionOf(potion);
         int n = potion.getCount();
         QuestProgressService.advance(player, which != null ? which : QuestProgressService.kind(potion), obj ->
@@ -190,9 +190,13 @@ public final class GoalEvents {
             Quest quest = QuestManager.INSTANCE.get(e.getKey());
             if (quest == null) continue;
             List<QuestObjective> goals = quest.objectives();
+            QuestProgress progress = e.getValue();
             for (int i = 0; i < goals.size(); i++) {
                 if (!(goals.get(i) instanceof SubmitItemObjective s)) continue;
-                int missing = s.requiredCount() - e.getValue().get(i);
+                // an earlier goal may have finished the quest, or done the alternative of this one:
+                // then nothing more is taken for it
+                if (!stillActive(player, store, e.getKey()) || !needed(quest, progress, i)) continue;
+                int missing = s.requiredCount() - progress.get(i);
                 if (missing <= 0) continue;
                 int taken = s.take(player, missing);
                 if (taken <= 0) continue;
@@ -215,13 +219,26 @@ public final class GoalEvents {
             Quest quest = QuestManager.INSTANCE.get(e.getKey());
             if (quest == null) continue;
             for (int i = 0; i < quest.objectives().size(); i++) {
-                if (quest.objectives().get(i) instanceof SubmitItemObjective s && e.getValue().get(i) < s.requiredCount()) {
+                if (quest.objectives().get(i) instanceof SubmitItemObjective && needed(quest, e.getValue(), i)) {
                     out.add(e.getKey());
                     break;
                 }
             }
         }
         return out;
+    }
+
+    /** Whether objective i still needs progress: not done, and no alternative of its group is done. */
+    public static boolean needed(Quest quest, QuestProgress progress, int i) {
+        List<QuestObjective> goals = quest.objectives();
+        if (progress.get(i) >= goals.get(i).requiredCount()) return false;
+        return !quest.alternativeDone(i, j -> progress.get(j) >= goals.get(j).requiredCount());
+    }
+
+    /** Whether the quest is still one of the player's (or their team's) active quests. */
+    private static boolean stillActive(ServerPlayer player, WorldQuestStore store, ResourceLocation id) {
+        PlayerQuestData own = store.peek(player.getUUID());
+        return (own != null && own.active.containsKey(id)) || com.erikedits.justquests.team.TeamQuests.activeIds(player).contains(id);
     }
 
     /** The "Traded with Villagers" statistic of each player while a trade screen is open. */

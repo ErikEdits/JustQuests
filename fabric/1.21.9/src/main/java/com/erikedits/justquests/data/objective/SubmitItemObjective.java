@@ -26,11 +26,12 @@ public record SubmitItemObjective(ItemMatcher item, int count) implements QuestO
         return TYPE_ID;
     }
 
-    /** How many matching items the player has in the whole inventory (also asked by the quest book). */
+    /** How many matching items the player has in the inventory, worn armor left out (also asked by the quest book). */
     public int held(Player player) {
         Inventory inventory = player.getInventory();
         int total = 0;
         for (int i = 0; i < inventory.getContainerSize(); i++) {
+            if (worn(i)) continue;
             ItemStack stack = inventory.getItem(i);
             if (!stack.isEmpty() && item.matches(stack)) total += stack.getCount();
         }
@@ -42,6 +43,7 @@ public record SubmitItemObjective(ItemMatcher item, int count) implements QuestO
         Inventory inventory = player.getInventory();
         int taken = 0;
         for (int i = 0; i < inventory.getContainerSize() && taken < n; i++) {
+            if (worn(i)) continue;
             ItemStack stack = inventory.getItem(i);
             if (stack.isEmpty() || !item.matches(stack)) continue;
             int k = Math.min(stack.getCount(), n - taken);
@@ -51,6 +53,11 @@ public record SubmitItemObjective(ItemMatcher item, int count) implements QuestO
         }
         if (taken > 0) inventory.setChanged();
         return taken;
+    }
+
+    /** The four armor slots (36 to 39 on every version): what the player wears is never handed in. */
+    private static boolean worn(int slot) {
+        return slot >= 36 && slot < 40;
     }
 
     @Override

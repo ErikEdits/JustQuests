@@ -542,7 +542,7 @@ public final class DiscordLink {
                 if (j.isJsonObject()) return j.getAsJsonObject();
             }
         } catch (Exception e) {
-            JustQuests.LOG.error("Could not read {}", file, e);
+            com.erikedits.justquests.storage.SafeFiles.keepBroken(file, e.getMessage());
         }
         return new JsonObject();
     }
@@ -555,7 +555,7 @@ public final class DiscordLink {
                 ? "JustQuests: links of players to the JustQuests Discord (their badges become roles there). "
                     + "A player removes their own with /quest discord unlink. Keep this file private: it holds each link's token."
                 : "JustQuests: what the JustQuests Discord said about the badges of your datapacks (asked again when they change).");
-            Files.writeString(file, GSON.toJson(out));
+            com.erikedits.justquests.storage.SafeFiles.write(file, GSON.toJson(out));
         } catch (Exception e) {
             JustQuests.LOG.error("Could not write {}", file, e);
         }

@@ -60,8 +60,8 @@ public final class QuestListener implements Listener {
         progress().advance(player, kind(stack.getType()), o -> o instanceof Objective.Collect c && c.item().matches(stack) ? picked : 0);
     }
 
-    /** kill_mob */
-    @EventHandler(priority = EventPriority.MONITOR)
+    /** kill_mob (a death another plugin cancelled, on Paper, is no death: 0.6.1) */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onDeath(EntityDeathEvent e) {
         // reset_on_death: quests with that option start over when the player dies
         if (e.getEntity() instanceof Player dead) progress().died(dead);
