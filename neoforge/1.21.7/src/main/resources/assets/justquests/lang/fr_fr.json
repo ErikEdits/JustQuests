@@ -205,6 +205,7 @@
   "justquests.book.objectives": "Objectifs",
   "justquests.book.rewards": "Récompenses",
   "justquests.book.abandon": "Abandonner",
+  "justquests.book.abandon_confirm": "Vraiment ?",
   "justquests.book.accept": "Accepter",
   "justquests.book.taken": "Prise",
   "justquests.book.wait": "Attendre",

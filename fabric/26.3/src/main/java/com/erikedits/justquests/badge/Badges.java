@@ -118,9 +118,16 @@ public final class Badges {
         return b != null ? b : datapack.get(id);
     }
 
+    /**
+     * Badges of what the mod does not have yet - daily quests (Daily Grinder) and community goals (Team
+     * Player): not shown until they come, so nobody chases what cannot be earned (0.6.1). The plugin has both.
+     */
+    private static final java.util.Set<Object> NOT_YET = java.util.Set.of(DAILY_STREAK_7, COMMUNITY_GOAL);
+
     /** Every badge sorted for the page: by sort, then by id. */
     public static List<Map.Entry<Identifier, Badge>> sorted() {
         List<Map.Entry<Identifier, Badge>> list = new ArrayList<>(all().entrySet());
+        list.removeIf(e -> NOT_YET.contains(e.getKey()));
         list.sort(Comparator.<Map.Entry<Identifier, Badge>>comparingInt(e -> e.getValue().sort())
             .thenComparing(e -> e.getKey().toString()));
         return list;

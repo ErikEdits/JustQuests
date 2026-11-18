@@ -205,6 +205,7 @@
   "justquests.book.objectives": "目標",
   "justquests.book.rewards": "報酬",
   "justquests.book.abandon": "放棄",
+  "justquests.book.abandon_confirm": "本当に？",
   "justquests.book.accept": "受注",
   "justquests.book.taken": "受注済み",
   "justquests.book.wait": "待機中",

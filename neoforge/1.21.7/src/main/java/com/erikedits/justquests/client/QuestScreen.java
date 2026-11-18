@@ -762,7 +762,7 @@ public class QuestScreen extends Screen {
         if (st == Status.ACTIVE) {
             blit(g, in(mouseX, mouseY, actionX(), actionY(), 72, 20) ? "button_abandon_hover" : "button_abandon_normal",
                 actionX(), actionY(), 72, 20);
-            centered(g, I18n.get("justquests.book.abandon"), actionX() + 36, actionY() + 6, TEXT);
+            centered(g, I18n.get(armed() ? "justquests.book.abandon_confirm" : "justquests.book.abandon"), actionX() + 36, actionY() + 6, armed() ? BAD : TEXT);
             // pin to the HUD
             boolean pinned = ClientSettings.isPinned(selected);
             blit(g, pinned ? "button_pin_on" : in(mouseX, mouseY, pinX(), pinY(), 20, 20) ? "button_pin_hover" : "button_pin_normal",
@@ -1160,7 +1160,16 @@ public class QuestScreen extends Screen {
                 Quest q = ClientQuestData.get(selected);
                 if (q != null) {
                     Status st = status(selected, q);
-                    if (st == Status.ACTIVE) send("quest abandon " + selected);
+                    if (st == Status.ACTIVE) {
+                        // a second click within 3 seconds abandons (0.6.1): one click by mistake costs nothing
+                        if (armed()) {
+                            send("quest abandon " + selected);
+                            abandonArmed = null;
+                        } else {
+                            abandonArmed = selected;
+                            abandonUntil = System.currentTimeMillis() + 3000;
+                        }
+                    }
                     else if (st == Status.AVAILABLE) send("quest accept " + selected);
                     else if (st == Status.CLAIM && ChoiceReward.of(q) == null) send("quest claim " + selected);
                     else if (st == Status.CLAIM && pick >= 0) send("quest claim " + selected + " " + (pick + 1));
@@ -1189,6 +1198,14 @@ public class QuestScreen extends Screen {
             return true;
         }
         return super.mouseScrolled(mx, my, scrollX, scrollY);
+    }
+
+    /** The quest whose Abandon button was clicked once, and until when a second click abandons it. */
+    private Object abandonArmed;
+    private long abandonUntil;
+
+    private boolean armed() {
+        return abandonArmed != null && abandonArmed.equals(selected) && System.currentTimeMillis() < abandonUntil;
     }
 
     private void send(String cmd) {

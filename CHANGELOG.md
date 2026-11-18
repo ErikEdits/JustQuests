@@ -16,6 +16,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
     the game's own `tellraw`.
   - Each jar knows its type. On another kind of server the log says which jar to take; a Spigot or Paper jar
     on plain Bukkit stops with that message instead of an error.
+- **Abandon asks first:** in the quest book, the first click turns the button into a red "Really?", a
+  second click within three seconds abandons the quest. One click by mistake costs nothing now (handed-in
+  items of a delivery quest were gone with it). The plugin's quest menu already asked twice.
+- The badges Daily Grinder and Team Player are not shown in the mod until it has daily quests and community
+  goals; nobody could earn them yet. The plugin has both and gives them.
 
 ### Fixed
 - **Progress is never lost to a broken file:** a `progress.json` that could not be read (a typo made by hand,
