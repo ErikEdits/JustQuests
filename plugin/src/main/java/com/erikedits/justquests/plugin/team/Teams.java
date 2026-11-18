@@ -144,7 +144,7 @@ public final class Teams {
                 if (e.getValue().isJsonObject()) progress.put(e.getKey(), PlayerData.fromJson(e.getValue().getAsJsonObject()));
             }
         } catch (Exception e) {
-            plugin.getLogger().warning("Could not read " + file.getFileName() + ": " + e.getMessage());
+            com.erikedits.justquests.plugin.data.SafeFiles.keepBroken(file, e.getMessage(), plugin.getLogger());
         }
     }
 
@@ -190,7 +190,7 @@ public final class Teams {
         });
         try {
             Files.createDirectories(file.getParent());
-            Files.writeString(file, GSON.toJson(root));
+            com.erikedits.justquests.plugin.data.SafeFiles.write(file, GSON.toJson(root));
         } catch (Exception e) {
             plugin.getLogger().warning("Could not save " + file.getFileName() + ": " + e.getMessage());
         }

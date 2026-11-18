@@ -474,7 +474,7 @@ public final class PluginDiscord {
                 if (j.isJsonObject()) return j.getAsJsonObject();
             }
         } catch (Exception e) {
-            plugin.getLogger().warning("Could not read " + file + ": " + e.getMessage());
+            com.erikedits.justquests.plugin.data.SafeFiles.keepBroken(file, e.getMessage(), plugin.getLogger());
         }
         return new JsonObject();
     }
@@ -487,7 +487,7 @@ public final class PluginDiscord {
                 ? "JustQuests: links of players to the JustQuests Discord (their badges become roles there). "
                     + "A player removes their own with /quest discord unlink. Keep this file private: it holds each link's token."
                 : "JustQuests: what the JustQuests Discord said about the badges of your quest packs (asked again when they change).");
-            Files.writeString(file, GSON.toJson(out));
+            com.erikedits.justquests.plugin.data.SafeFiles.write(file, GSON.toJson(out));
         } catch (Exception e) {
             plugin.getLogger().warning("Could not write " + file + ": " + e.getMessage());
         }

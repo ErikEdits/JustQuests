@@ -49,12 +49,14 @@ public final class PlayerStore {
             try (DirectoryStream<Path> files = Files.newDirectoryStream(dir, "*.json")) {
                 for (Path f : files) {
                     String name = f.getFileName().toString();
+                    if (name.contains(".corrupt-")) continue;   // a copy kept aside by SafeFiles
                     try {
                         UUID id = UUID.fromString(name.substring(0, name.length() - 5));
                         JsonElement e = JsonParser.parseString(Files.readString(f));
                         if (e.isJsonObject()) players.put(id, PlayerData.fromJson(e.getAsJsonObject()));
                     } catch (Exception e) {
-                        log.warning("Skipped player file " + name + ": " + e.getMessage());
+                        // kept aside: the next save would overwrite it, or delete it for a player with no data (0.6.1)
+                        SafeFiles.keepBroken(f, e.getMessage(), log);
                     }
                 }
             }

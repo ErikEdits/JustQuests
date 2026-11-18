@@ -144,7 +144,7 @@ final class WeeklyQuests {
                 for (JsonElement h : root.getAsJsonArray("history")) history.add(h.getAsString());
             }
         } catch (Exception e) {
-            plugin.getLogger().warning("[Generator] could not read " + file.getFileName() + ": " + e.getMessage());
+            com.erikedits.justquests.plugin.data.SafeFiles.keepBroken(file, e.getMessage(), plugin.getLogger());
         }
     }
 
@@ -159,7 +159,7 @@ final class WeeklyQuests {
         root.add("history", h);
         try {
             Files.createDirectories(file.getParent());
-            Files.writeString(file, GSON.toJson(root));
+            com.erikedits.justquests.plugin.data.SafeFiles.write(file, GSON.toJson(root));
         } catch (Exception e) {
             plugin.getLogger().warning("[Generator] could not save " + file.getFileName() + ": " + e.getMessage());
         }

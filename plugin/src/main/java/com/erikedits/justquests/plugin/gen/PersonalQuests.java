@@ -142,6 +142,10 @@ final class PersonalQuests {
         e.streak = e.lastDoneDay == today - 1 ? e.streak + 1 : 1;
         e.lastDoneDay = today;
         dirty = true;
+        // the badge for a week of daily quests in a row (0.6.1: it was listed but never given)
+        org.bukkit.entity.Player online = org.bukkit.Bukkit.getPlayer(player);
+        var badges = com.erikedits.justquests.plugin.badge.PluginBadges.get();
+        if (e.streak >= 7 && online != null && badges != null) badges.give(online, "justquests:daily_streak_7");
     }
 
     /** Days in a row with a personal quest done (0 once a day was missed). */
@@ -183,7 +187,7 @@ final class PersonalQuests {
                 entries.put(uuid, e);
             }
         } catch (Exception ex) {
-            plugin.getLogger().warning("[Generator] could not read " + file.getFileName() + ": " + ex.getMessage());
+            com.erikedits.justquests.plugin.data.SafeFiles.keepBroken(file, ex.getMessage(), plugin.getLogger());
         }
     }
 
@@ -205,7 +209,7 @@ final class PersonalQuests {
         });
         try {
             Files.createDirectories(file.getParent());
-            Files.writeString(file, GSON.toJson(root));
+            com.erikedits.justquests.plugin.data.SafeFiles.write(file, GSON.toJson(root));
             dirty = false;
         } catch (Exception ex) {
             plugin.getLogger().warning("[Generator] could not save " + file.getFileName() + ": " + ex.getMessage());

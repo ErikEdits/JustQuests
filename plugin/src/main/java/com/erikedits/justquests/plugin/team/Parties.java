@@ -120,7 +120,7 @@ public final class Parties {
                 for (UUID m : p.members) byMember.put(m, p);
             }
         } catch (Exception e) {
-            log.warning("Could not read " + file.getFileName() + ": " + e.getMessage());
+            com.erikedits.justquests.plugin.data.SafeFiles.keepBroken(file, e.getMessage(), log);
         }
     }
 
@@ -139,7 +139,7 @@ public final class Parties {
         root.add("teams", teams);
         try {
             Files.createDirectories(file.getParent());
-            Files.writeString(file, GSON.toJson(root));
+            com.erikedits.justquests.plugin.data.SafeFiles.write(file, GSON.toJson(root));
         } catch (Exception e) {
             log.warning("Could not save " + file.getFileName() + ": " + e.getMessage());
         }

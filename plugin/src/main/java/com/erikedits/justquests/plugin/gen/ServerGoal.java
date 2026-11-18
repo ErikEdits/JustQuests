@@ -193,6 +193,9 @@ final class ServerGoal {
     /** Pays a helper's goal reward: the same for everyone who helped. */
     private void reward(Player p, List<Reward> rewards) {
         for (Reward r : rewards) r.grant(p);
+        // the badge for helping with a community goal (0.6.1: it was listed but never given)
+        var badges = com.erikedits.justquests.plugin.badge.PluginBadges.get();
+        if (badges != null) badges.give(p, "justquests:community_goal");
         String lang = Lang.of(p);
         p.spigot().sendMessage(Text.tr(lang, "justquests.plugin.goal.rewarded"));
         p.playSound(p.getLocation(), "minecraft:ui.toast.challenge_complete", SoundCategory.MASTER, 1f, 1f);
@@ -296,7 +299,7 @@ final class ServerGoal {
                 if (!pending.isEmpty()) pendingRewards.put(week, json.getAsJsonArray("rewards").deepCopy());
             }
         } catch (Exception e) {
-            plugin.getLogger().warning("[Generator] could not read " + file.getFileName() + ": " + e.getMessage());
+            com.erikedits.justquests.plugin.data.SafeFiles.keepBroken(file, e.getMessage(), plugin.getLogger());
         }
     }
 
@@ -326,7 +329,7 @@ final class ServerGoal {
         root.add("pendingRewards", pr);
         try {
             Files.createDirectories(file.getParent());
-            Files.writeString(file, GSON.toJson(root));
+            com.erikedits.justquests.plugin.data.SafeFiles.write(file, GSON.toJson(root));
             dirty = false;
         } catch (Exception e) {
             plugin.getLogger().warning("[Generator] could not save " + file.getFileName() + ": " + e.getMessage());
