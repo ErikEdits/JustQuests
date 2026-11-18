@@ -83,7 +83,7 @@ public final class FarmersDelight {
                 p = new Pending(CUT, pos.immutable(), stack(call(be, "getStoredItem")), held.copy(), null, 0, null, now);
             } else if (is(be, "CookingPotBlockEntity")) {
                 p = new Pending(POT, pos.immutable(), stack(call(be, "getMeal")), held.copy(), null, 0, inventory(player), now);
-            } else if (is(be, "AbstractStoveBlockEntity")) {
+            } else if (stove(be)) {
                 p = new Pending(STOVE, pos.immutable(), ItemStack.EMPTY, held.copy(), slots(be), 0, null, now);
             } else if (is(be, "SkilletBlockEntity")) {
                 p = new Pending(SKILLET, pos.immutable(), stack(call(be, "getStoredStack")), held.copy(), null, 0, null, now);
@@ -169,7 +169,7 @@ public final class FarmersDelight {
                 }
             }
             case STOVE -> {
-                if (!is(be, "AbstractStoveBlockEntity")) return;
+                if (!stove(be)) return;
                 List<ItemStack> now = slots(be);
                 for (int i = 0; i < now.size(); i++) {
                     boolean had = i < p.slots().size() && !p.slots().get(i).isEmpty();
@@ -208,7 +208,7 @@ public final class FarmersDelight {
             BlockEntity be = level.getBlockEntity(c.pos());
             ItemStack in;
             if (c.slot() >= 0) {
-                List<ItemStack> s = is(be, "AbstractStoveBlockEntity") ? slots(be) : List.of();
+                List<ItemStack> s = stove(be) ? slots(be) : List.of();
                 in = c.slot() < s.size() ? s.get(c.slot()) : ItemStack.EMPTY;
             } else {
                 in = is(be, "SkilletBlockEntity") ? stack(call(be, "getStoredStack")) : ItemStack.EMPTY;
@@ -246,7 +246,7 @@ public final class FarmersDelight {
             POT_OPEN.remove(player.getUUID());
             return;
         }
-        int index = menu.getClass().getField("INDEX_OUTPUT").getInt(null);
+        int index = outputSlot(menu);
         ItemStack output = menu.getSlot(index).getItem().copy();
         PotView last = POT_OPEN.get(player.getUUID());
         Item meal = last != null && !last.output().isEmpty() ? last.output().getItem() : output.getItem();
@@ -257,6 +257,19 @@ public final class FarmersDelight {
         int n = Math.min(less, held - last.held());
         if (n > 0) cooked(player, withCount(last.output(), n), "cooking_pot", true);
     }
+
+    /** The pot's output slot: INDEX_OUTPUT, or 8 in older Farmer's Delight versions that have no such name (0.6.1). */
+    private static int outputSlot(AbstractContainerMenu menu) {
+        return OUTPUT_SLOT.computeIfAbsent(menu.getClass(), c -> {
+            try {
+                return c.getField("INDEX_OUTPUT").getInt(null);
+            } catch (ReflectiveOperationException e) {
+                return 8;
+            }
+        });
+    }
+
+    private static final Map<Class<?>, Integer> OUTPUT_SLOT = new HashMap<>();
 
     // --- rich soil --------------------------------------------------------------------------------
 
@@ -375,9 +388,19 @@ public final class FarmersDelight {
         return out;
     }
 
+    /** A stove: AbstractStoveBlockEntity since Farmer's Delight 1.3, StoveBlockEntity alone before (0.6.1). */
+    private static boolean stove(Object o) {
+        return is(o, "AbstractStoveBlockEntity") || is(o, "StoveBlockEntity");
+    }
+
     /** The slots of a stove (an item handler of Farmer's Delight). */
     private static List<ItemStack> slots(Object stove) throws Exception {
-        Object items = call(stove, "getItems");
+        Object items;
+        try {
+            items = call(stove, "getItems");
+        } catch (NoSuchMethodException e) {
+            items = call(stove, "getInventory");   // Farmer's Delight before 1.3
+        }
         int n = (Integer) call(items, "getSlots");
         List<ItemStack> out = new ArrayList<>();
         Method get = items.getClass().getMethod("getStackInSlot", int.class);
