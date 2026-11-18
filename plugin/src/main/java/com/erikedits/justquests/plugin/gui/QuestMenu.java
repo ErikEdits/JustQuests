@@ -81,7 +81,8 @@ public final class QuestMenu extends Menu {
             BaseComponent name = Text.lit(q.orBefore(i) ? "§7" + legacy("justquests.goal.or") + " " + (done ? "§a" : "§f") : done ? "§a" : "§f");
             name.addExtra(q.shown(i, lang));
             // submit_item (0.6.0): a click on the goal hands the items in
-            if (active && !done && o instanceof Objective.Submit sub) {
+            if (active && !done && o instanceof Objective.Submit sub
+                    && com.erikedits.justquests.plugin.progress.ProgressService.needed(q, data, id, i)) {
                 int held = sub.held(player);
                 lore.add(Text.lit(held > 0 ? "§a" + legacy("justquests.book.submit", Math.min(held, o.requiredCount() - have))
                     : "§7" + legacy("justquests.book.submit_none")));

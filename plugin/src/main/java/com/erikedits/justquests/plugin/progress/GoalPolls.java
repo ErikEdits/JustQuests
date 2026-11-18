@@ -81,9 +81,10 @@ final class GoalPolls {
         }
         seen.put(player.getUniqueId(), next);
         for (Map.Entry<Statistic, Integer> e : gained.entrySet()) {
-            String key = Compat.key(e.getKey()).toString();
+            Statistic stat = e.getKey();
             int n = e.getValue();
-            plugin.progress().advance(player, o -> o instanceof Objective.Stat st && st.stat().equals(key) ? n : 0);
+            // by the statistic itself: Bukkit's names are not always the game's ids
+            plugin.progress().advance(player, o -> o instanceof Objective.Stat st && st.statistic() == stat ? n : 0);
         }
     }
 

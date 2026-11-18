@@ -327,8 +327,37 @@ public final class QuestListener implements Listener {
         plugin.getServer().getScheduler().runTask(plugin, () -> {
             ItemStack now = copy(top.getItem(slot));
             if (now != null && now.isSimilar(before)) return;   // still there: not taken
+            // 0.6.1: only what this stand brewed counts, not a potion put in and taken out again
+            ItemStack[] marks = brewed.get(standKey(top.getLocation()));
+            ItemStack mark = marks == null ? null : marks[slot];
+            if (marks != null) marks[slot] = null;
+            if (mark == null || !mark.isSimilar(before)) return;
             progress().advance(player, kind(before.getType()), o -> o instanceof Objective.Brew b && b.accepts(before) ? 1 : 0);
         });
+    }
+
+    /** brew_potion (0.6.1): the bottles each brewing stand really brewed, by where it stands. */
+    private final java.util.Map<String, ItemStack[]> brewed = new java.util.HashMap<>();
+
+    /** A brewing stand finished: the bottles that changed a tick later were brewed. */
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onBrew(org.bukkit.event.inventory.BrewEvent e) {
+        org.bukkit.inventory.BrewerInventory inv = e.getContents();
+        String key = standKey(e.getBlock().getLocation());
+        ItemStack[] before = new ItemStack[3];
+        for (int i = 0; i < 3; i++) before[i] = copy(inv.getItem(i));
+        plugin.getServer().getScheduler().runTask(plugin, () -> {
+            if (brewed.size() > 4096) brewed.clear();   // a safety net: one entry per stand that brewed
+            ItemStack[] marks = brewed.computeIfAbsent(key, k -> new ItemStack[3]);
+            for (int i = 0; i < 3; i++) {
+                ItemStack now = copy(inv.getItem(i));
+                if (now != null && (before[i] == null || !now.isSimilar(before[i]))) marks[i] = now;
+            }
+        });
+    }
+
+    private static String standKey(org.bukkit.Location at) {
+        return at == null || at.getWorld() == null ? "" : at.getWorld().getName() + "|" + at.getBlockX() + "|" + at.getBlockY() + "|" + at.getBlockZ();
     }
 
     /** interact_entity: a right-click on a mob with the main hand. */

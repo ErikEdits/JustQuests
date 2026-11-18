@@ -110,7 +110,10 @@ public final class ProgressService {
             for (int i = 0; i < quest.objectives().size(); i++) {
                 if (!(quest.objectives().get(i) instanceof Objective.Submit s)) continue;
                 PlayerData now = plugin.view(player.getUniqueId());
-                int missing = s.requiredCount() - (now == null ? 0 : now.progress(id, i));
+                // an earlier goal may have finished the quest, or done the alternative of this one:
+                // then nothing more is taken for it (0.6.1)
+                if (now == null || !now.active.containsKey(id) || !needed(quest, now, id, i)) continue;
+                int missing = s.requiredCount() - now.progress(id, i);
                 if (missing <= 0) continue;
                 int taken = s.take(player, missing);
                 if (taken <= 0) continue;
@@ -131,13 +134,20 @@ public final class ProgressService {
             Quest quest = plugin.quests().get(id);
             if (quest == null) continue;
             for (int i = 0; i < quest.objectives().size(); i++) {
-                if (quest.objectives().get(i) instanceof Objective.Submit s && view.progress(id, i) < s.requiredCount()) {
+                if (quest.objectives().get(i) instanceof Objective.Submit && needed(quest, view, id, i)) {
                     out.add(id);
                     break;
                 }
             }
         }
         return out;
+    }
+
+    /** Whether objective i of the quest still needs progress: not done, and no alternative of its group is done. */
+    public static boolean needed(Quest quest, PlayerData data, String id, int i) {
+        List<Objective> goals = quest.objectives();
+        if (data.progress(id, i) >= goals.get(i).requiredCount()) return false;
+        return !quest.alternativeDone(i, j -> data.progress(id, j) >= goals.get(j).requiredCount());
     }
 
     /** Quests each player finished for the first time, until {@link #unlocks} looks at what they unlock. */

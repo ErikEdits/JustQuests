@@ -354,7 +354,8 @@ public final class QuestCommand implements TabExecutor {
                 line.addExtra(Text.lit("  " + or + (have >= obj.requiredCount() ? "§a✓" : "§7" + have + "/" + obj.requiredCount()) + " §f"));
                 line.addExtra(quest.shown(i, lang));
                 // submit_item (0.6.0): a button that hands the items in
-                if (have < obj.requiredCount() && obj instanceof Objective.Submit sub && sub.held(player) > 0) {
+                if (have < obj.requiredCount() && obj instanceof Objective.Submit sub && sub.held(player) > 0
+                        && com.erikedits.justquests.plugin.progress.ProgressService.needed(quest, data, id, i)) {
                     line.addExtra(" ");
                     line.addExtra(Text.button(Text.tr(lang, "justquests.submit.button"), "/quest submit " + id,
                         Text.tr(lang, "justquests.submit.button_hover")));

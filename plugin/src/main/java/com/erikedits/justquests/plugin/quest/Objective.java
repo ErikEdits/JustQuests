@@ -385,12 +385,20 @@ public sealed interface Objective {
         public BaseComponent display(String lang) { return goal(lang, "justquests.goal.submit_count", count, item.name(lang)); }
         public Material icon() { return item.icon(); }
 
+        /** How many matching items the player has, worn armor left out (0.6.1). */
         public int held(Player p) {
+            org.bukkit.inventory.ItemStack[] contents = p.getInventory().getContents();
             int total = 0;
-            for (org.bukkit.inventory.ItemStack stack : p.getInventory().getContents()) {
-                if (stack != null && item.matches(stack)) total += stack.getAmount();
+            for (int i = 0; i < contents.length; i++) {
+                org.bukkit.inventory.ItemStack stack = contents[i];
+                if (!worn(i) && stack != null && item.matches(stack)) total += stack.getAmount();
             }
             return total;
+        }
+
+        /** The armor slots of a player inventory's contents: what the player wears is never handed in. */
+        private static boolean worn(int slot) {
+            return slot >= 36 && slot < 40;
         }
 
         /** Takes up to n matching items out of the inventory; returns how many it took. */
@@ -400,7 +408,7 @@ public sealed interface Objective {
             int taken = 0;
             for (int i = 0; i < contents.length && taken < n; i++) {
                 org.bukkit.inventory.ItemStack stack = contents[i];
-                if (stack == null || !item.matches(stack)) continue;
+                if (worn(i) || stack == null || !item.matches(stack)) continue;
                 int k = Math.min(stack.getAmount(), n - taken);
                 if (k >= stack.getAmount()) {
                     inv.setItem(i, null);
@@ -517,12 +525,47 @@ public sealed interface Objective {
         }
         /** The Bukkit statistic of the id, or null. */
         public org.bukkit.Statistic statistic() {
+            // Bukkit names some statistics differently from the game (0.6.1): minecraft:play_time is PLAY_ONE_MINUTE
+            String alias = BUKKIT_NAMES.get(stat);
+            if (alias != null) {
+                try {
+                    return org.bukkit.Statistic.valueOf(alias);
+                } catch (IllegalArgumentException e) {
+                    return null;
+                }
+            }
             for (org.bukkit.Statistic s : org.bukkit.Statistic.values()) {
                 if (s.getType() == org.bukkit.Statistic.Type.UNTYPED
                     && com.erikedits.justquests.plugin.compat.Compat.key(s).toString().equals(stat)) return s;
             }
             return null;
         }
+
+        /** The game's statistic ids whose Bukkit name is not the id in capitals. */
+        private static final java.util.Map<String, String> BUKKIT_NAMES = java.util.Map.ofEntries(
+            java.util.Map.entry("minecraft:play_time", "PLAY_ONE_MINUTE"),
+            java.util.Map.entry("minecraft:drop", "DROP_COUNT"),
+            java.util.Map.entry("minecraft:eat_cake_slice", "CAKE_SLICES_EATEN"),
+            java.util.Map.entry("minecraft:fill_cauldron", "CAULDRON_FILLED"),
+            java.util.Map.entry("minecraft:use_cauldron", "CAULDRON_USED"),
+            java.util.Map.entry("minecraft:clean_armor", "ARMOR_CLEANED"),
+            java.util.Map.entry("minecraft:clean_banner", "BANNER_CLEANED"),
+            java.util.Map.entry("minecraft:interact_with_brewingstand", "BREWINGSTAND_INTERACTION"),
+            java.util.Map.entry("minecraft:interact_with_beacon", "BEACON_INTERACTION"),
+            java.util.Map.entry("minecraft:inspect_dropper", "DROPPER_INSPECTED"),
+            java.util.Map.entry("minecraft:inspect_hopper", "HOPPER_INSPECTED"),
+            java.util.Map.entry("minecraft:inspect_dispenser", "DISPENSER_INSPECTED"),
+            java.util.Map.entry("minecraft:play_noteblock", "NOTEBLOCK_PLAYED"),
+            java.util.Map.entry("minecraft:tune_noteblock", "NOTEBLOCK_TUNED"),
+            java.util.Map.entry("minecraft:pot_flower", "FLOWER_POTTED"),
+            java.util.Map.entry("minecraft:trigger_trapped_chest", "TRAPPED_CHEST_TRIGGERED"),
+            java.util.Map.entry("minecraft:open_enderchest", "ENDERCHEST_OPENED"),
+            java.util.Map.entry("minecraft:enchant_item", "ITEM_ENCHANTED"),
+            java.util.Map.entry("minecraft:play_record", "RECORD_PLAYED"),
+            java.util.Map.entry("minecraft:interact_with_furnace", "FURNACE_INTERACTION"),
+            java.util.Map.entry("minecraft:interact_with_crafting_table", "CRAFTING_TABLE_INTERACTION"),
+            java.util.Map.entry("minecraft:open_chest", "CHEST_OPENED"),
+            java.util.Map.entry("minecraft:open_shulker_box", "SHULKER_BOX_OPENED"));
     }
 
     /** Right-click a mob, optionally holding an item; the same mob again counts after a second. */

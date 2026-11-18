@@ -244,11 +244,12 @@ public final class QuestRegistry {
         }
         Path dir = questFolder();
         if (Files.isDirectory(dir)) {
-            try (Stream<Path> files = Files.walk(dir)) {
+            try (Stream<Path> files = Files.walk(dir).sorted()) {
                 for (Path p : (Iterable<Path>) files::iterator) {
                     if (!Files.isRegularFile(p) || !p.toString().endsWith(".json")) continue;
                     String rel = dir.relativize(p).toString().replace('\\', '/');
-                    String id = ("justquests:" + rel.substring(0, rel.length() - 5)).toLowerCase(Locale.ROOT);
+                    // any file name works: "Meine Quest.json" is justquests:meine_quest (0.6.1)
+                    String id = "justquests:" + fileId(rel.substring(0, rel.length() - 5));
                     JsonObject json;
                     try (InputStream in = Files.newInputStream(p)) {
                         json = read(in);
@@ -277,6 +278,21 @@ public final class QuestRegistry {
         }
         custom = out;
         return out.size();
+    }
+
+    /** A file's path as a quest id: lower case, umlauts spelled out, anything else an id can't hold becomes "_". */
+    static String fileId(String path) {
+        StringBuilder b = new StringBuilder();
+        for (char c : path.toLowerCase(Locale.ROOT).toCharArray()) {
+            switch (c) {
+                case '\u00e4' -> b.append("ae");
+                case '\u00f6' -> b.append("oe");
+                case '\u00fc' -> b.append("ue");
+                case '\u00df' -> b.append("ss");
+                default -> b.append((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '/' || c == '.' || c == '_' || c == '-' ? c : '_');
+            }
+        }
+        return b.toString();
     }
 
     // --- shared ------------------------------------------------------------------------------
