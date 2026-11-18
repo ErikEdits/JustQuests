@@ -79,19 +79,31 @@ server-only - see [Server plugin](#server-plugin-spigot-paper-purpur).
    e.g. `JustQuests-fabric-1.21.1-0.5.0.jar` — and put it into `mods/`.
 3. Start the game, press **J** (or run `/quest list`).
 
-## Server plugin (Spigot, Paper, Purpur)
+## Server plugin (Bukkit, Spigot, Paper, Purpur, Leaf, Leaves)
 
-JustQuests also comes as a plugin for Spigot, Paper and Purpur. Players join with a plain vanilla
-client - nothing to install on their side. There is one jar per range of versions:
+JustQuests also comes as a server plugin. Players join with a plain vanilla client - nothing to
+install on their side. Since 0.6.1 there is one jar for each kind of server and range of versions:
+`JustQuests-plugin-<type>-<range>-<version>.jar`.
 
-| Server version | Jar | Java |
+| Server type | `<type>` |
+|---|---|
+| Bukkit (CraftBukkit) | `bukkit` (brings the chat components plain Bukkit lacks) |
+| Spigot | `spigot` |
+| Paper | `paper` |
+| Purpur | `purpur` |
+| Leaf | `leaf` |
+| Leaves | `leaves` |
+
+| Server version | `<range>` | Java |
 |---|---|---|
-| 1.19 – 1.20.6 | `JustQuests-plugin-1.19-<version>.jar` | 17 or newer |
-| 1.21 – 1.21.11 | `JustQuests-plugin-1.21-<version>.jar` | 21 or newer |
-| 26.1 – 26.3 | `JustQuests-plugin-26.1-<version>.jar` | 25 |
+| 1.19 – 1.20.6 | `1.19` | 17 or newer |
+| 1.21 – 1.21.11 | `1.21` | 21 or newer |
+| 26.1 – 26.3 | `26.1` | 25 |
 
-1. Put the jar for your server version into the `plugins/` folder and start the server (a jar for
-   another range says so in the console).
+So a Purpur 1.21.11 server takes `JustQuests-plugin-purpur-1.21-<version>.jar`.
+
+1. Put the jar for your server type and version into the `plugins/` folder and start the server.
+   The console names the server type; a jar for another type or range says which one to take.
 2. New players get a **quest book**; right-click it (or type `/quest`, `/quests` or `/jq`) to open
    the quests. `/quest book` gives a new one.
 
