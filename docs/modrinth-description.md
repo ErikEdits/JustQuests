@@ -5,7 +5,7 @@ No GUI bloat, no heavy dependencies — datapack-driven quests, an in-game quest
 
 > **43 mod builds** for NeoForge, Fabric and Forge across **Minecraft 1.18.2 – 26.3**, plus a **server plugin** for **1.19 – 26.3** that works with plain vanilla clients. Singleplayer **and** servers.
 
----
+***
 
 ## ✨ Features
 
@@ -25,7 +25,7 @@ No GUI bloat, no heavy dependencies — datapack-driven quests, an in-game quest
 - **🔐 Permissions** — LuckPerms & co. get a node for every command, and a quest can be limited to players with a permission.
 - **🛠️ For server owners** — completion broadcast, stats and leaderboard, admin commands, a self-test, a per-world `settings.json`, and data files that are never lost: a damaged file is kept as a copy instead of being overwritten.
 
----
+***
 
 ## 🖥️ Server plugin
 
@@ -43,7 +43,7 @@ The same quests on a plugin server — players join with a **plain vanilla clien
 
 Example: a Purpur 1.21.11 server takes `JustQuests-plugin-purpur-1.21-<version>.jar`. A jar on the wrong kind of server says in the console which one to take.
 
----
+***
 
 ## 🧩 Objectives & rewards
 
@@ -64,7 +64,7 @@ Items, blocks, mobs, biomes and structures accept an id or a **tag** (`#minecraf
 
 **Rewards:** give_item · loot_table · xp · effect · message · title · command (`{player}` is replaced) · choice (the player picks one) · badge
 
----
+***
 
 ## 🎮 Commands
 
@@ -77,7 +77,7 @@ Items, blocks, mobs, biomes and structures accept an id or a **tag** (`#minecraf
 
 **Operators:** `/quest reload` · `/quest mainquests on|off` · `/quest difficulty` · `/quest reroll` · `/quest generator …` · `/quest admin view|reset|complete|badge` · `/quest test`
 
----
+***
 
 ## ✍️ Custom quests
 
@@ -89,7 +89,7 @@ On first start JustQuests writes `<world>/justquests/custom-quests.json` with an
 
 A full [example datapack](https://github.com/ErikEdits/JustQuests/tree/main/docs/example-datapack) with examples for the objective and reward types is on GitHub, and the [wiki](https://github.com/ErikEdits/JustQuests/wiki) explains every field and setting.
 
----
+***
 
 ## 📥 Installation
 
@@ -102,7 +102,7 @@ Install the mod on the server **and** on the clients.
 
 **Plugin:** put the jar for your server type and version into `plugins/` and start the server. Players need nothing.
 
----
+***
 
 ## ✅ Compatibility
 
@@ -113,7 +113,7 @@ Install the mod on the server **and** on the clients.
 - **Quest book** on 1.20.1 and newer. 1.18 and 1.19 are command-only — quests, tracking and rewards work the same.
 - Minecraft 26.x needs **Java 25**.
 
----
+***
 
 ## 🌐 Hosting
 
@@ -122,7 +122,7 @@ Install the mod on the server **and** on the clients.
 The JustQuests Discord bot (badges as roles) runs on bot-hosting.net, where you can host Discord bots for free. Want to run a bot of your own? Signing up through this button supports JustQuests.
 *(Affiliate link — I may get a small commission.)*
 
----
+***
 
 ## 💬 Community
 
@@ -130,7 +130,7 @@ The JustQuests Discord bot (badges as roles) runs on bot-hosting.net, where you 
 
 Join the JustQuests Discord for support, update news and sneak peeks — or run `/quest discord` in-game. Bug reports and ideas are very welcome on the [issue tracker](https://github.com/ErikEdits/JustQuests/issues) or on Discord.
 
----
+***
 
 ## 📄 License
 

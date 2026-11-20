@@ -5,7 +5,7 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 
 > One jar per server type and range of versions (**1.19 – 1.20.6**, **1.21 – 1.21.11**, **26.1 – 26.3**). Also available as a mod for NeoForge, Fabric and Forge (JustQuests under Mods).
 
----
+***
 
 ## ✨ Features
 
@@ -34,7 +34,7 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 - **Permissions** — a node for every command (`justquests.command.<name>`, `justquests.admin.<name>`), and quests limited to players with a permission.
 - **Moving from the mod** — a world played with the JustQuests mod keeps its progress, custom quests, teams and generated board when it moves to a plugin server.
 
----
+***
 
 ## 🎮 Commands
 
@@ -53,7 +53,7 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 
 **Operators:** `/quest reload`, `/quest reroll`, `/quest difficulty`, `/quest generator …`, `/quest mainquests on|off`, `/quest npc set|remove`, `/quest admin view|reset|complete`, `/quest test`.
 
----
+***
 
 ## 📥 Installation
 
@@ -65,7 +65,7 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 
 Players need nothing — any vanilla client works.
 
----
+***
 
 ## 🌐 Hosting
 
@@ -74,7 +74,7 @@ Players need nothing — any vanilla client works.
 The JustQuests Discord bot (badges as roles) runs on bot-hosting.net, where you can host Discord bots for free. Want to run a bot of your own? Signing up through this button supports JustQuests.
 *(Affiliate link — I may get a small commission.)*
 
----
+***
 
 ## 💬 Community
 
