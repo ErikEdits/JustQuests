@@ -3,7 +3,7 @@
 All notable changes to JustQuests are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [0.6.1] - unreleased
+## [0.6.1] - 2026-11-20
 
 ### Changed
 - **The server plugin comes as one jar per server type:** `JustQuests-plugin-<type>-<range>-<version>.jar`
