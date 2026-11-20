@@ -117,14 +117,18 @@ Install the mod on the server **and** on the clients.
 
 ## 🌐 Hosting
 
-The JustQuests Discord bot (badges as roles) runs on **[bot-hosting.net](https://bot-hosting.net/?aff=erikedits_ae)**, where you can host Discord bots for free. Want to run a bot of your own? Signing up through this link supports JustQuests.
+[![Free hosting on bot-hosting.net](https://cdn.jsdelivr.net/gh/ErikEdits/JustQuests@main/docs/assets/badges/bot-hosting_vector.svg)](https://bot-hosting.net/?aff=erikedits_ae)
+
+The JustQuests Discord bot (badges as roles) runs on bot-hosting.net, where you can host Discord bots for free. Want to run a bot of your own? Signing up through this button supports JustQuests.
 *(Affiliate link — I may get a small commission.)*
 
 ---
 
 ## 💬 Community
 
-**[Join the JustQuests Discord](https://discord.gg/cMTGE9QCja)** for support, update news and sneak peeks — or run `/quest discord` in-game. Bug reports and ideas are very welcome on the [issue tracker](https://github.com/ErikEdits/JustQuests/issues) or on Discord.
+[![Chat with us on Discord](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/social/discord-plural_vector.svg)](https://discord.gg/cMTGE9QCja)
+
+Join the JustQuests Discord for support, update news and sneak peeks — or run `/quest discord` in-game. Bug reports and ideas are very welcome on the [issue tracker](https://github.com/ErikEdits/JustQuests/issues) or on Discord.
 
 ---
 
