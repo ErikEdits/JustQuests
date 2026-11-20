@@ -69,7 +69,7 @@ Players need nothing — any vanilla client works.
 
 ## 🌐 Hosting
 
-[![Free hosting on bot-hosting.net](https://cdn.jsdelivr.net/gh/ErikEdits/JustQuests@main/docs/assets/badges/bot-hosting_46h.png)](https://bot-hosting.net/?aff=erikedits_ae)
+[![Free hosting on bot-hosting.net](https://cdn.jsdelivr.net/gh/ErikEdits/JustQuests@main/docs/assets/badges/bot-hosting_46h.png?v=2)](https://bot-hosting.net/?aff=erikedits_ae)
 
 The JustQuests Discord bot (badges as roles) runs on bot-hosting.net, where you can host Discord bots for free. Want to run a bot of your own? Signing up through this button supports JustQuests.
 *(Affiliate link — I may get a small commission.)*
