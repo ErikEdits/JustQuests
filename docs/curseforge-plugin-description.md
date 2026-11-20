@@ -1,9 +1,9 @@
 # JustQuests (server plugin)
 
-**A lightweight quest system for Spigot, Paper and Purpur — players join with a plain vanilla client.**
-Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest generator built for servers, team quests and a weekly server goal. No client mod, no heavy dependencies.
+**A lightweight quest system for Bukkit, Spigot, Paper, Purpur, Leaf, Leaves and Folia — players join with a plain vanilla client.**
+Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest generator built for servers, team quests, badges and a weekly server goal. No client mod, no heavy dependencies.
 
-> One jar per range of versions: **1.19 – 1.20.6**, **1.21 – 1.21.11** and **26.1 – 26.3**. Also available as a mod for NeoForge, Fabric and Forge (JustQuests under Mods).
+> One jar per server type and range of versions (**1.19 – 1.20.6**, **1.21 – 1.21.11**, **26.1 – 26.3**). Also available as a mod for NeoForge, Fabric and Forge (JustQuests under Mods).
 
 ---
 
@@ -14,7 +14,8 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 - **🎁 Claim your rewards** — finished quests wait until the player claims them; a quest can offer a **choice of rewards**. Or switch to instant rewards in `config.yml`.
 - **👥 Team quests** — a quest marked `"team": true` belongs to a whole team (`/quest team` or a scoreboard team): everyone's actions count and every member gets the rewards, also members who were offline.
 - **🎒 Ready to play** — 25 built-in quests in **English, German, French, Spanish and Japanese**; every player reads their own game language, and item, block and mob names are translated by their game.
-- **✍️ Your own quests** — in `custom-quests.json`, one file per quest in `plugins/JustQuests/quests/`, or in a datapack. 18 objective types, 9 reward types (including money), tags and item filters.
+- **🏅 Badges** — for the first quest, 10 / 50 / 100 / 500 quests, a finished chapter, a week of daily quests and helping a server goal. The sign of a badge stands before the player's name; quest packs can bring their own badges.
+- **✍️ Your own quests** — in `custom-quests.json`, in as many files as you like in `plugins/JustQuests/quests/` (any names, sub-folders too), or in a datapack. **27 objective types** — deliveries (`/quest submit`), fishing, trading, brewing, statistics, biomes, structures and more — 10 reward types (including money and badges), tags and item filters.
 
 ## 🎲 The server generator
 
@@ -45,6 +46,8 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 - `/quest track <id>` / `/quest bossbar` – choose or hide the boss bar
 - `/quest book` – a new quest book item
 - `/quest goal` – the server goal
+- `/quest submit [id]` – hand in the items of delivery quests
+- `/quest badges` – your badges
 - `/quest team [create|invite|accept|leave|kick]` – your team for team quests
 - `/quest stats` / `/quest leaderboard`
 
@@ -54,19 +57,26 @@ Datapack-driven quests, a chest-menu quest book, a boss-bar tracker, a quest gen
 
 ## 📥 Installation
 
-1. Pick the jar for your server version:
-   - `JustQuests-plugin-1.19` — Minecraft 1.19 – 1.20.6 (Java 17+)
-   - `JustQuests-plugin-1.21` — Minecraft 1.21 – 1.21.11 (Java 21+)
-   - `JustQuests-plugin-26.1` — Minecraft 26.1 – 26.3 (Java 25)
+1. Pick the jar for your server type and version: `JustQuests-plugin-<type>-<range>-<version>.jar`
+   - **Type:** `bukkit`, `spigot`, `paper`, `purpur`, `leaf`, `leaves` or `folia`
+   - **Range:** `1.19` (1.19 – 1.20.6, Java 17+), `1.21` (1.21 – 1.21.11, Java 21+), `26.1` (26.1 – 26.3, Java 25)
+   - Example: Purpur 1.21.11 → `JustQuests-plugin-purpur-1.21-<version>.jar`. A jar on the wrong kind of server says in the console which one to take.
 2. Put it into `plugins/` and start the server. Everything is set in `plugins/JustQuests/config.yml`.
 
 Players need nothing — any vanilla client works.
 
 ---
 
+## 🌐 Hosting
+
+The JustQuests Discord bot (badges as roles) runs on **[bot-hosting.net](https://bot-hosting.net/?aff=erikedits_ae)**. If you need hosting yourself, signing up through this link supports JustQuests at no extra cost to you.
+*(Affiliate link — I may get a small commission.)*
+
+---
+
 ## 💬 Community
 
-**[Join the JustQuests Discord](https://discord.gg/cMTGE9QCja)** for support and update news. Bug reports and ideas: [issue tracker](https://github.com/ErikEdits/JustQuests/issues). The [README](https://github.com/ErikEdits/JustQuests#server-plugin-spigot-paper-purpur) explains every option.
+**[Join the JustQuests Discord](https://discord.gg/cMTGE9QCja)** for support and update news. Bug reports and ideas: [issue tracker](https://github.com/ErikEdits/JustQuests/issues). The [wiki](https://github.com/ErikEdits/JustQuests/wiki/Server-Plugin) explains every option.
 
 ## 📄 License
 
